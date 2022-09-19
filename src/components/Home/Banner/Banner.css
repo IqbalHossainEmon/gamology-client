@@ -1,0 +1,47 @@
+#banner {
+	margin-top: 10rem;
+}
+.carousels {
+	position: relative;
+	width: 75vw;
+	max-width: 1600px;
+	height: calc(75vw / 1.77777778);
+	max-height: 900px;
+	overflow: hidden;
+}
+.prevButton,
+.nextButton {
+	position: absolute;
+	z-index: 2;
+	background-color: transparent;
+	border: none;
+}
+.prevButton:hover,
+.nextButton:hover {
+	cursor: pointer;
+}
+.nextButton {
+	translate: 30vw;
+	transform: rotate(220deg);
+}
+.prevButton {
+	translate: 30vw -100%;
+	transform: rotate(130deg);
+}
+.prevButton > img,
+.nextButton > img {
+	width: 2vw;
+}
+@media only screen and (min-width: 2134px) {
+	.nextButton {
+		translate: 640px;
+	}
+	.prevButton {
+		translate: 640px -100%;
+	}
+
+	.prevButton > img,
+	.nextButton > img {
+		width: 3rem;
+	}
+}
