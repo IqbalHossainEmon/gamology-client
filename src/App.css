@@ -1,9 +1,0 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
-
-.App {
-	font-family: "Inter", sans-serif;
-	display: flex;
-	justify-content: center;
-	background-color: rgba(30, 30, 30, 1);
-	height: 1000vh;
-}

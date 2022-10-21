@@ -1,0 +1,7 @@
+.carouselItems {
+    position: relative;
+    width: 75vw;
+    aspect-ratio: 1.77777778/1;
+    max-width: 1600px;
+    overflow: hidden;
+}
