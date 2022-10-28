@@ -3,6 +3,6 @@
     cursor: pointer;
 }
 .btnImg {
-    fill: #a8a8a881;
-    transition: fill 0.4s;
+    fill: #ffffff30;
+    transition: fill 500ms;
 }

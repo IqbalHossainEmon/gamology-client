@@ -1,7 +1,13 @@
 .carouselItems {
-    position: relative;
     width: 75vw;
     aspect-ratio: 1.77777778/1;
     max-width: 1600px;
-    overflow: hidden;
+}
+
+@media only screen and (max-width:1023px) and (min-width:766px) {
+    .carouselItems {
+        width: 97vw;
+        aspect-ratio: 1.77777778/1;
+    }
+
 }

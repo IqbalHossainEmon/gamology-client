@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #181818;
     color: white;
+    font-family: 'Inter', sans-serif;
 }
+
 #root {
     display: flex;
     flex-direction: column;

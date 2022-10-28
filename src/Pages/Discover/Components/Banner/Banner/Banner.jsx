@@ -1,5 +1,8 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import Buttons from '../Buttons/Buttons';
+import InfoItems from '../InfoItems/InfoItems';
+import ItemCards from '../ItemCards/ItemCards';
 import Items from '../Items/Items';
 import useBannerState from '../useBannerState/useBannerState';
 import styles from './Banner.module.css';
@@ -43,7 +46,7 @@ const data = [
   },
   {
     id: 4,
-    name: "Assassin's Creed Mirage",
+    name: 'A Plague Tale Requiem',
     logoImg: 'https://i.ibb.co/D4XXzTW/a-plague-tale-requiem-logo.png',
     coverImg: 'https://i.ibb.co/9wkqcQ6/a-plague-tale-requiem-cover.jpg',
     carouselThumb: 'https://i.ibb.co/bB8Wsbc/a-plague-tale-requiem-carousel-thumb.jpg',
@@ -53,16 +56,29 @@ const data = [
 ];
 
 export default function Banner() {
-  const [initialState, reducer] = useBannerState(data.length);
-  const [bannerState, dispatch] = useReducer(reducer, initialState);
-
+  const { initalState, reducer } = useBannerState(data.length);
+  const [{ active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initalState);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch({ type: 'next' });
+    }, 8500);
+    return () => clearInterval(intervalId);
+  }, [active]);
+  const screenWidth = useScreenWidth();
   return (
     <div className={styles.banner}>
-      <Items
-        bannerState={{ active: bannerState.active, fadeOut: bannerState.fadeOut }}
-        data={data}
-      />
+      <div className={styles.bannerOverflow}>
+        <Items
+          cardsPosition={cardsPosition}
+          bannerState={{ active, fadeOut, fadeIn }}
+          data={data}
+        />
+        <InfoItems data={data} bannerState={{ active, fadeOut, fadeIn }} />
+      </div>
       <Buttons handleClick={dispatch} />
+      {screenWidth > 765 && (
+        <ItemCards handleClick={dispatch} data={data} cardsPosition={cardsPosition} />
+      )}
     </div>
   );
 }

@@ -1,3 +1,21 @@
 .banner {
     position: relative;
+    margin-top: 5rem;
+}
+
+.bannerOverflow {
+    overflow: hidden;
+    position: relative;
+}
+
+@media only screen and (max-width:765px) {
+
+    .bannerOverflow {
+        width: 100vw;
+        aspect-ratio: 1/1.0675;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }

@@ -1,0 +1,43 @@
+.carouselItem {
+    top: 0;
+    width: 80vw;
+    position: absolute;
+    aspect-ratio: 1/1.33273662;
+    transition: translate 300ms, scale 300ms;
+}
+
+#five {
+    translate: -90% 0;
+    scale: .9;
+    opacity: 1;
+    z-index: 0;
+}
+
+#first {
+    opacity: 1;
+    z-index: 1;
+}
+
+#two {
+    opacity: 1;
+    scale: .9;
+    z-index: 0;
+    translate: 90% 0;
+}
+
+#three {
+    scale: 0;
+    z-index: -1;
+    translate: 90% 0;
+}
+
+#four {
+    scale: 0;
+    z-index: -1;
+    translate: -90% 0;
+}
+
+.carouselImg {
+    width: 100%;
+    border-radius: 0;
+}
