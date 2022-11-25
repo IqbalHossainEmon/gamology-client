@@ -60,7 +60,7 @@
     opacity: 0;
     transition: translate .2s, opacity 500ms;
     border-radius: 0 5px 5px 0;
-    font-size: 1vw;
+    font-size: .8rem;
 }
 
 #first .cardName {
@@ -85,7 +85,7 @@
     #first .cardName {
         translate: 8.25rem;
         opacity: 1;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 }
 

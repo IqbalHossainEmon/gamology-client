@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
-import Buttons from '../Buttons/Buttons';
+import BannerButtons from '../BannerButtons/BannerButtons';
 import InfoItems from '../InfoItems/InfoItems';
 import ItemCards from '../ItemCards/ItemCards';
 import Items from '../Items/Items';
@@ -15,7 +15,7 @@ const data = [
     logoImg: 'https://i.ibb.co/wWJ85k7/spiderman-logo.png',
     carouselThumb: 'https://i.ibb.co/KhyqrYM/spiderman-carousel-thumb.png',
     coverMobile: 'https://i.ibb.co/M19978g/spider-man-remaster-carousel-mobile.png',
-    price: 59,
+    price: { regular: 59.99, discount: 29.99 },
   },
   {
     id: 1,
@@ -24,7 +24,7 @@ const data = [
     logoImg: 'https://i.ibb.co/n7cSm73/fortnite-logo.png',
     carouselThumb: 'https://i.ibb.co/2WD5cNZ/fortnite-carousel-thumb.jpg',
     coverMobile: 'https://i.ibb.co/CPyXG7n/uncharted-carousel-mobile.jpg',
-    price: '49.99',
+    price: { regular: 49.99, discount: 15.99 },
   },
   {
     id: 2,
@@ -51,7 +51,7 @@ const data = [
     coverImg: 'https://i.ibb.co/9wkqcQ6/a-plague-tale-requiem-cover.jpg',
     carouselThumb: 'https://i.ibb.co/bB8Wsbc/a-plague-tale-requiem-carousel-thumb.jpg',
     coverMobile: 'https://i.ibb.co/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
-    price: '',
+    price: 69,
   },
 ];
 
@@ -75,7 +75,7 @@ export default function Banner() {
         />
         <InfoItems data={data} bannerState={{ active, fadeOut, fadeIn }} />
       </div>
-      <Buttons handleClick={dispatch} />
+      <BannerButtons handleClick={dispatch} />
       {screenWidth > 765 && (
         <ItemCards handleClick={dispatch} data={data} cardsPosition={cardsPosition} />
       )}

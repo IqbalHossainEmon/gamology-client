@@ -9,7 +9,7 @@ export default function Items({ data, bannerState, cardsPosition }) {
     <div className={styles.carouselItems}>
       {data.map(({ coverMobile, coverImg, id, name }) =>
         screenWidth > 765 ? (
-          <Item key={id} banner={{ coverImg, coverMobile, id, name }} bannerState={bannerState} />
+          <Item key={id} banner={{ coverImg, id, name }} bannerState={bannerState} />
         ) : (
           <ItemMobile key={id} banner={{ coverMobile, id, name }} cardsPosition={cardsPosition} />
         )

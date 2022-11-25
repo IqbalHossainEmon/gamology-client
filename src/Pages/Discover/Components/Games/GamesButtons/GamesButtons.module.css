@@ -1,0 +1,58 @@
+.Buttons {
+    position: absolute;
+    left: calc(100% - 2rem * 3);
+    top: 0;
+}
+
+.btn:disabled {
+    border: 1px solid rgb(41, 41, 41);
+}
+
+.btn:disabled svg {
+    fill: rgb(36, 36, 36);
+}
+
+.btn:disabled svg {
+    fill: rgb(36, 36, 36);
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    z-index: 2;
+    position: absolute;
+    border: 1px solid rgb(92, 92, 92);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn:hover:enabled svg {
+    fill: rgb(255, 255, 255);
+}
+
+.btn:active:enabled {
+    background-color: rgb(58, 58, 58);
+}
+
+.nextBtn {
+    rotate: -90deg;
+}
+
+.prevBtn {
+    rotate: 90deg;
+    translate: 200% 0;
+}
+
+@media only screen and (max-width: 765px) {
+    .Buttons {
+        left: calc(100% - 1.5rem * 3);
+    }
+
+    .prevBtn {
+        translate: 110% 0;
+    }
+}

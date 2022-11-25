@@ -1,20 +1,8 @@
-import { useRef } from 'react';
-import styles from './Button.module.css';
+import styles from './ArrowButton.module.css';
 
-export default function Button({ handleClick, className }) {
-  const timeOutRef = useRef(false);
-  const handleDebuncingClick = () => {
-    if (!timeOutRef.current) {
-      handleClick();
-      timeOutRef.current = true;
-      setTimeout(() => {
-        timeOutRef.current = false;
-      }, 400);
-    }
-  };
-
+export default function ArrowButton({ handleClick, className, btnState = false }) {
   return (
-    <button className={className} type="button" onClick={handleDebuncingClick}>
+    <button className={className} disabled={btnState} type="button" onClick={handleClick}>
       <svg
         className={styles.btnImg}
         version="1.1"

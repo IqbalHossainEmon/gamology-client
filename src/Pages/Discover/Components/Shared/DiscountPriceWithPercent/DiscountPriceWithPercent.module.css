@@ -1,0 +1,28 @@
+.DiscountPriceWithPercent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.discountPercentage {
+    width: 30%;
+    margin-right: 5px;
+    background-color: rgb(0, 116, 228);
+    text-align: center;
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.discountPrice {
+    width: 75%;
+}
+
+.dicountFontSize {
+    font-size: .8rem;
+}
+
+@media (min-width:2134px) {
+    .dicountFontSize {
+        font-size: 1rem;
+    }
+}

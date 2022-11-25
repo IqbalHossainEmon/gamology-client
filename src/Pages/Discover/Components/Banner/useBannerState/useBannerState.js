@@ -1,3 +1,5 @@
+// this function take the items lenth and returns the inital state, reducer and activeBnner function .
+
 export default function useBannerState(dataLength) {
   const initalState = {
     active: 0,
@@ -5,8 +7,13 @@ export default function useBannerState(dataLength) {
     fadeOut: null,
     cardsPosition: [...Array(dataLength).keys()],
   };
+
+  // reducer function take's the state and active to rentern the new state of the items.
+
   function reducer(state, action) {
     const { active } = state;
+
+    // this two function sets the next state of the active item, the item will fade out and the item will fade in. the active state is for inital state.
 
     const increaseByOne = () => ({
       active: (active + 1) % dataLength,
