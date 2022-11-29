@@ -1,0 +1,30 @@
+.gameHeader {
+    width: 100%;
+}
+
+.gameHeader img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.freeNow {
+    background-color: rgb(0, 116, 228);
+}
+
+.comming {
+    background-color: #000;
+}
+
+.common {
+    margin: -5px 0;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 0 0 5px 5px;
+}
+.date {
+    position: absolute;
+    color: rgb(173, 173, 173);
+    bottom: 1rem;
+}

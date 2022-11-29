@@ -4,6 +4,7 @@ import styles from './Buttons.module.css';
 
 export default function BannerButtons({ handleClick }) {
   const timeOutRef = useRef(false);
+  // handle multiple click.
   const handleDebuncingClick = (type) => {
     if (!timeOutRef.current) {
       handleClick(type);

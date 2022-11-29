@@ -6,10 +6,12 @@
 
 .btn:disabled {
     border: 1px solid rgb(41, 41, 41);
+    cursor: default;
 }
 
 .btn:disabled svg {
     fill: rgb(36, 36, 36);
+    cursor: default;
 }
 
 .btn:disabled svg {

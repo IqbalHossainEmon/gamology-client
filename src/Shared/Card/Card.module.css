@@ -27,7 +27,9 @@
     cursor: pointer;
     transition: filter 100ms;
 }
-
+.card img {
+    border-radius: 5px;
+}
 .price {
     width: 100%;
     position: absolute;
@@ -44,25 +46,25 @@
     }
 }
 
-@media (max-width:2133px) and (min-width: 1600px) {
+@media (max-width: 2133px) and (min-width: 1600px) {
     .card {
         width: calc((75vw / 6) - 20px);
     }
 }
 
-@media (max-width: 1599px) and (min-width:1024px) {
+@media (max-width: 1599px) and (min-width: 1024px) {
     .card {
         width: calc((75vw / 5) - 20px);
     }
 }
 
-@media (min-width: 766px) and (max-width:1023px) {
+@media (min-width: 766px) and (max-width: 1023px) {
     .card {
         width: calc((97vw / 4) - 20px);
     }
 }
 
-@media (min-width: 592px) and (max-width:765px) {
+@media (min-width: 592px) and (max-width: 765px) {
     .card {
         width: calc((98vw / 3) - 20px);
     }
