@@ -1,0 +1,28 @@
+.rightBorder {
+    border-right: 1px solid rgba(148, 148, 148, 0.486);
+    margin-right: 1rem;
+}
+.notBorder {
+    margin-right: 1rem;
+}
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 2rem;
+}
+.heading button {
+    border: 1px solid rgba(156, 156, 156, 0.692);
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: box-shadow 300ms;
+}
+.heading button:hover {
+    box-shadow: 0 0 10px 0px grey;
+}
+.heading h2 {
+    font-size: 1rem;
+}

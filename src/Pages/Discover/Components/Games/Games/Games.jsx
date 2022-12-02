@@ -239,7 +239,7 @@ const data = [
 export default function Games() {
   const [cardPosition, setCardPosition] = useState(0);
   const screenWidth = useScreenWidth();
-  const cardsInOneDeck = useRef(0);
+  const [cardsInOneDeck, setCardsInOneDeck] = useState();
   const cardMoveNumbers = useRef(0);
   const lastCardNumbers = useRef(0);
   const cardsWidth = useRef(0);
@@ -249,9 +249,9 @@ export default function Games() {
 
   useEffect(() => {
     if (cardPosition === cardMoveNumbers.current) {
-      setTranslate(`calc(${-dataLength.current + cardsInOneDeck.current} * ${cardsWidth.current})`);
+      setTranslate(`calc(${-dataLength.current + cardsInOneDeck} * ${cardsWidth.current})`);
     } else {
-      setTranslate(`calc(${cardPosition * cardsInOneDeck.current} * ${cardsWidth.current})`);
+      setTranslate(`calc(${cardPosition * cardsInOneDeck} * ${cardsWidth.current})`);
     }
     if (cardPosition === cardMoveNumbers.current) {
       setBtnState({
@@ -269,39 +269,39 @@ export default function Games() {
         next: false,
       });
     }
-  }, [cardPosition, translate, screenWidth]);
+  }, [cardPosition, translate, screenWidth, cardsInOneDeck]);
 
   useEffect(() => {
     if (screenWidth >= 2134) {
-      cardsInOneDeck.current = 6;
+      setCardsInOneDeck(6);
       cardsWidth.current = `266.666667px`;
     } else if (screenWidth >= 1600 && screenWidth <= 2133) {
-      cardsInOneDeck.current = 6;
-      cardsWidth.current = `calc(75vw / ${cardsInOneDeck.current})`;
+      setCardsInOneDeck(6);
+      cardsWidth.current = `calc(75vw / ${cardsInOneDeck})`;
     } else if (screenWidth >= 1024 && screenWidth <= 1599) {
-      cardsInOneDeck.current = 5;
-      cardsWidth.current = `calc(75vw / ${cardsInOneDeck.current})`;
+      setCardsInOneDeck(5);
+      cardsWidth.current = `calc(75vw / ${cardsInOneDeck})`;
     } else if (screenWidth >= 766 && screenWidth <= 1023) {
-      cardsInOneDeck.current = 4;
-      cardsWidth.current = `calc(97vw / ${cardsInOneDeck.current})`;
+      setCardsInOneDeck(4);
+      cardsWidth.current = `calc(97vw / ${cardsInOneDeck})`;
     } else if (screenWidth >= 592 && screenWidth <= 765) {
-      cardsInOneDeck.current = 3;
-      cardsWidth.current = `calc(98vw / ${cardsInOneDeck.current})`;
+      setCardsInOneDeck(3);
+      cardsWidth.current = `calc(98vw / ${cardsInOneDeck})`;
     } else if (screenWidth >= 326 && screenWidth <= 591) {
-      cardsInOneDeck.current = 2;
-      cardsWidth.current = ` calc(98vw / ${cardsInOneDeck.current})`;
+      setCardsInOneDeck(2);
+      cardsWidth.current = ` calc(98vw / ${cardsInOneDeck})`;
     } else if (screenWidth <= 325) {
-      cardsInOneDeck.current = 1;
+      setCardsInOneDeck(1);
       cardsWidth.current = `98vw`;
     }
-    cardMoveNumbers.current = -Math.floor(dataLength.current / cardsInOneDeck.current);
-    if (dataLength.current % cardsInOneDeck.current === 0) {
-      lastCardNumbers.current = cardsInOneDeck.current;
+    cardMoveNumbers.current = -Math.floor(dataLength.current / cardsInOneDeck);
+    if (dataLength.current % cardsInOneDeck === 0) {
+      lastCardNumbers.current = cardsInOneDeck;
       cardMoveNumbers.current += 1;
     } else {
-      lastCardNumbers.current = (dataLength.current % cardsInOneDeck.current) + 1;
+      lastCardNumbers.current = (dataLength.current % cardsInOneDeck) + 1;
     }
-  }, [screenWidth]);
+  }, [screenWidth, cardsInOneDeck]);
 
   const handleClick = (click) => {
     if (click === 'next' && cardPosition < 0) {

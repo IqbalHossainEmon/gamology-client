@@ -25,7 +25,7 @@
     margin: 0 10px;
     flex: 0 0 auto;
     cursor: pointer;
-    transition: filter 100ms;
+    transition: filter 300ms;
 }
 .card img {
     border-radius: 5px;

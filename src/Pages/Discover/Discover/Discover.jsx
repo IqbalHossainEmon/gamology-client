@@ -8,6 +8,7 @@ export default function Discover() {
       <Banner />
       <Games />
       <FreeGames />
+      {/* <EventGames /> */}
     </>
   );
 }

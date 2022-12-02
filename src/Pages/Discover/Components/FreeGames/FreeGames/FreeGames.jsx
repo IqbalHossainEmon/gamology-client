@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
 
@@ -71,21 +72,49 @@ const data = [
 
 export default function FreeGames() {
   const dataLength = useRef(data.length);
-  const date = new Date();
+  const [gameStyle, setGameStyle] = useState({
+    gridTemplateColumns: `repeat(${dataLength.current}, 1fr)`,
+  });
+  const screenWidth = useScreenWidth();
+  const date = useRef(new Date());
+  const today = useRef([
+    date.current.getDate(),
+    date.current.getMonth() + 1,
+    date.current.getFullYear(),
+  ]);
 
-  const today = useRef([date.getDate(), date.getMonth() + 1, date.getFullYear()]);
+  useEffect(() => {
+    // How many cards to show depend on total games numbers
+    if (screenWidth < 768 && dataLength.current % 2 === 0) {
+      setGameStyle({
+        gridTemplateColumns: `repeat(2, 1fr)`,
+      });
+    } else if (screenWidth < 768) {
+      setGameStyle({
+        gridTemplateColumns: `repeat(1, 1fr)`,
+      });
+    } else {
+      setGameStyle({
+        gridTemplateColumns: `repeat(${dataLength.current}, 1fr)`,
+      });
+    }
+  }, [screenWidth]);
+
   return (
     <div className={styles.freeGames}>
       <div className={styles.header}>
         <img src="https://i.ibb.co/QXZH4W7/gift.png" alt="gift" />
         <h3>Free games</h3>
       </div>
-      <div
-        className={styles.games}
-        style={{ gridTemplateColumns: `repeat(${dataLength.current}, 1fr)` }}
-      >
+      <div className={styles.games} style={gameStyle}>
         {data.map((game) => (
-          <FreeGame key={game.id} data={game} today={today.current} />
+          <FreeGame
+            key={game.id}
+            screenWidth={screenWidth}
+            length={dataLength.current}
+            data={game}
+            today={today.current}
+          />
         ))}
       </div>
     </div>
