@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import ChangeEventButtons from '../ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../GamesColumn/GamesColumn';
 import styles from './EventGames.module.css';
 
@@ -50,11 +53,42 @@ const newGames = [
 ];
 
 export default function EventGames() {
+  const screenWidth = useScreenWidth();
+  const [cardPosition, setCardPosition] = useState(0);
+  const style = screenWidth < 767 ? { width: `${screenWidth}px` } : {};
   return (
-    <div className={styles.EventGames}>
-      <GamesColumn games={newGames} border header="New Releases" />
-      <GamesColumn games={newGames} border header="Top Rated" />
-      <GamesColumn games={newGames} header="Comming Soon" />
+    <div className={styles.EventGamesContainer}>
+      <div
+        className={styles.EventGames}
+        style={screenWidth < 767 ? { translate: `-${cardPosition}00%` } : {}}
+      >
+        <GamesColumn
+          cardPosition={cardPosition}
+          style={style}
+          games={newGames}
+          border
+          colNum={0}
+          header="New Releases"
+        />
+        <GamesColumn
+          cardPosition={cardPosition}
+          style={style}
+          games={newGames}
+          border
+          colNum={1}
+          header="Top Rated"
+        />
+        <GamesColumn
+          cardPosition={cardPosition}
+          style={style}
+          games={newGames}
+          header="Comming Soon"
+          colNum={2}
+        />
+      </div>
+      {screenWidth < 765 && (
+        <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
+      )}
     </div>
   );
 }

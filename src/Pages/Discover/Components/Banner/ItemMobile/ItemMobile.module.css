@@ -8,7 +8,7 @@
 
 #five {
     translate: -90% 0;
-    scale: .9;
+    scale: 0.9;
     opacity: 1;
     z-index: 0;
 }
@@ -16,11 +16,12 @@
 #first {
     opacity: 1;
     z-index: 1;
+    translate: 0 0;
 }
 
 #two {
     opacity: 1;
-    scale: .9;
+    scale: 0.9;
     z-index: 0;
     translate: 90% 0;
 }

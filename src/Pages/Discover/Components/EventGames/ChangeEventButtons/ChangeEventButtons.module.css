@@ -1,0 +1,21 @@
+.ChangeEventButtons {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+.ChangeEventButtons > div {
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+.button {
+    background-color: rgb(255, 255, 255);
+    padding: 3px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 0, 0);
+    transition: background-color 400ms, border 400ms;
+}
+#active {
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(85, 85, 85);
+}

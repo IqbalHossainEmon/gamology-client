@@ -20,9 +20,12 @@
 }
 
 .games {
-    display: grid;
-    grid-column-gap: 0.5rem;
-    padding: 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: space-evenly;
+    padding: 0 1rem;
 }
 
 .header img {
@@ -35,7 +38,9 @@
         width: 97vw;
         padding: 0.1rem 0;
     }
+}
+@media only screen and (max-width: 352px) {
     .games {
-        padding: 0 1rem;
+        padding: 0;
     }
 }

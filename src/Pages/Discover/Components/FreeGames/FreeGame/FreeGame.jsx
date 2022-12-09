@@ -1,25 +1,23 @@
 import { useEffect, useState } from 'react';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import styles from './FreeGame.module.css';
 
-export default function FreeGame({ data, today, length, screenWidth }) {
+export default function FreeGame({ data, today, length }) {
   const [dateState, setDateState] = useState(-1);
-  const [gameStyle, setGameStyle] = useState({ width: `calc((75vw - 4rem)/${length})` });
+  const screenWidth = useScreenWidth();
+  const [gameWidth, setGameWidth] = useState({ width: `${100 / length}%` });
   function getMonthName(monthNumber) {
     const date = new Date();
     date.setMonth(monthNumber - 1);
     return date.toLocaleString('en-US', { month: 'long' });
   }
   useEffect(() => {
-    if (screenWidth >= 2134) {
-      setGameStyle({ width: `calc((1600px - 4rem - (${length - 1} * 0.5rem))/${length})` });
-    } else if (screenWidth < 2134 && screenWidth > 1023) {
-      setGameStyle({ width: `calc((75vw - 4rem - (${length - 1} * 0.5rem))/${length})` });
-    } else if (screenWidth <= 1023 && screenWidth > 767) {
-      setGameStyle({ width: `calc((97vw - 2rem - (${length - 1} * 0.5rem))/${length})` });
+    if (screenWidth > 767) {
+      setGameWidth({ width: `${100 / length - length + 2}%` });
     } else if (length % 2 === 0) {
-      setGameStyle({ width: `calc((97vw - 2rem - (${length - 1} * 0.5rem))/2)` });
+      setGameWidth({ width: '46%' });
     } else {
-      setGameStyle({ width: `calc((97vw - 2rem - (${length - 1} * 0.5rem))/1)` });
+      setGameWidth({ width: '100%' });
     }
   }, [screenWidth, length]);
 
@@ -41,7 +39,7 @@ export default function FreeGame({ data, today, length, screenWidth }) {
   }, [today, data.saleTill]);
 
   return (
-    <div className={styles.freeGame} style={gameStyle}>
+    <div className={styles.freeGame} style={gameWidth}>
       <div className={styles.gameHeader}>
         <img style={{ aspectRatio: `1/1.${length}` }} src={data.carouselThumb} alt="" />
         {dateState !== -1 && (

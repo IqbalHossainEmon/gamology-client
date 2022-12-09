@@ -2,14 +2,14 @@
     cursor: pointer;
     position: relative;
     transition: filter 300ms;
+    flex: 0 1 auto;
 }
 .freeGame:hover {
-    filter: drop-shadow(0px 0px 5px rgba(177, 177, 177, 0.616)) brightness(1.1);
+    filter: drop-shadow(0px 0px 5px rgba(134, 134, 134, 0.616)) brightness(1.1);
 }
 
 .gameHeader {
     width: 100%;
-    margin-bottom: 2rem;
 }
 
 .gameHeader img {
@@ -50,7 +50,8 @@
     color: rgb(173, 173, 173);
     bottom: 0;
 }
-@media only screen and (max-width: 272px) {
+
+@media only screen and (max-width: 352px) {
     .gameDetail {
         padding-bottom: 3rem;
     }

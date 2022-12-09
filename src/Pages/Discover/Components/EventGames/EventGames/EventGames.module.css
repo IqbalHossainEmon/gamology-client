@@ -1,18 +1,31 @@
-.EventGames {
+.EventGamesContainer {
     margin-top: 5rem;
     margin-bottom: 5rem;
     width: 75vw;
     max-width: 1600px;
     display: flex;
+    flex-direction: column;
 }
-@media only screen and (max-width: 765px) {
-    .EventGames {
-        width: 98vw;
+.EventGames {
+    width: 100%;
+    display: flex;
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+    .EventGamesContainer {
+        width: 97vw;
     }
 }
 
-@media (max-width: 1023px) and (min-width: 766px) {
+@media only screen and (max-width: 767px) {
+    .EventGamesContainer {
+        width: 100%;
+        overflow: hidden;
+    }
     .EventGames {
-        width: 97vw;
+        width: 100%;
+        left: 5px;
+        transition: translate 400ms;
+        position: relative;
     }
 }

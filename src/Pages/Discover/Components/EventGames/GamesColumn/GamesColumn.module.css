@@ -1,18 +1,19 @@
+.GameColumn {
+    width: 32.5%;
+    transition: opacity 200ms;
+}
 .rightBorder {
     border-right: 1px solid rgba(148, 148, 148, 0.486);
-    margin-right: 1rem;
-}
-.notBorder {
-    margin-right: 1rem;
 }
 .heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-right: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
 }
 .heading button {
-    border: 1px solid rgba(156, 156, 156, 0.692);
+    border: 1px solid rgba(156, 156, 156, 0.6);
     background-color: black;
     color: white;
     border-radius: 5px;
@@ -25,4 +26,15 @@
 }
 .heading h2 {
     font-size: 1rem;
+}
+@media only screen and (max-width: 767px) {
+    .Opcity0 {
+        opacity: 0;
+    }
+    .GameColumn {
+        flex-shrink: 0;
+    }
+    .rightBorder {
+        border-right: none;
+    }
 }

@@ -1,0 +1,53 @@
+.GameColumn {
+    display: flex;
+    transition: background-color 300ms;
+    padding: 0.4rem;
+    margin: 0.3rem 1rem;
+    cursor: pointer;
+    justify-content: stretch;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.GameColumn:hover {
+    background-color: rgba(75, 75, 75, 0.473);
+}
+.gameImage {
+    width: 30%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gameDetails {
+    width: 70%;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.name {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+@media only screen and (max-width: 767px) {
+    .GameColumn {
+        padding: 0.1rem;
+        margin: 0.3rem 0.3rem;
+    }
+}

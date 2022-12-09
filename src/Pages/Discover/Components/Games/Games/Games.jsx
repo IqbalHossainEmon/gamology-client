@@ -254,20 +254,11 @@ export default function Games() {
       setTranslate(`calc(${cardPosition * cardsInOneDeck} * ${cardsWidth.current})`);
     }
     if (cardPosition === cardMoveNumbers.current) {
-      setBtnState({
-        prev: true,
-        next: false,
-      });
+      setBtnState({ prev: true, next: false });
     } else if (cardPosition === 0) {
-      setBtnState({
-        prev: false,
-        next: true,
-      });
+      setBtnState({ prev: false, next: true });
     } else {
-      setBtnState({
-        prev: false,
-        next: false,
-      });
+      setBtnState({ prev: false, next: false });
     }
   }, [cardPosition, translate, screenWidth, cardsInOneDeck]);
 
