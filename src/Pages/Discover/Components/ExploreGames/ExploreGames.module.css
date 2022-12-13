@@ -1,0 +1,54 @@
+.ExploreGames {
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 3rem;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+}
+.ExploreTexts {
+    position: relative;
+    width: 15%;
+    top: 45%;
+    left: 20%;
+}
+.ExploreTexts h4 {
+    margin: 1rem 0;
+}
+.ExploreTexts p {
+    margin: 1rem 0;
+}
+
+.ExploreTexts button {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 300ms;
+}
+.ExploreTexts button:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+.ExploreTexts button:active {
+    background-color: rgb(78, 78, 78);
+}
+@media only screen and (max-width: 1024px) and (min-width: 357px) {
+    .ExploreGames {
+        clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+    }
+    .ExploreTexts {
+        width: 35%;
+    }
+}
+@media only screen and (max-width: 355px) {
+    .ExploreGames {
+        clip-path: polygon(0 10%, 100% 0, 100% 80%, 0 100%);
+    }
+    .ExploreTexts {
+        width: 55%;
+    }
+}

@@ -240,77 +240,74 @@ export default function Games() {
   const [cardPosition, setCardPosition] = useState(0);
   const screenWidth = useScreenWidth();
   const [cardsInOneDeck, setCardsInOneDeck] = useState();
-  const cardMoveNumbers = useRef(0);
-  const lastCardNumbers = useRef(0);
-  const cardsWidth = useRef(0);
-  const dataLength = useRef(data.length);
+  const [cardMoveNumbers, setCardMoveNumbers] = useState(0);
+  const [cardsWidth, setCardsWidth] = useState('0px');
   const [translate, setTranslate] = useState('calc(0vw)');
   const [btnState, setBtnState] = useState({ next: true, prev: false });
+  const dataLength = useRef(data.length);
 
   useEffect(() => {
-    if (cardPosition === cardMoveNumbers.current) {
-      setTranslate(`calc(${-dataLength.current + cardsInOneDeck} * ${cardsWidth.current})`);
+    if (cardPosition === cardMoveNumbers) {
+      setTranslate(`calc(${-dataLength.current + cardsInOneDeck} * ${cardsWidth})`);
     } else {
-      setTranslate(`calc(${cardPosition * cardsInOneDeck} * ${cardsWidth.current})`);
+      setTranslate(`calc(${cardPosition * cardsInOneDeck} * ${cardsWidth})`);
     }
-    if (cardPosition === cardMoveNumbers.current) {
+    if (cardPosition === cardMoveNumbers) {
       setBtnState({ prev: true, next: false });
     } else if (cardPosition === 0) {
       setBtnState({ prev: false, next: true });
     } else {
       setBtnState({ prev: false, next: false });
     }
-  }, [cardPosition, translate, screenWidth, cardsInOneDeck]);
+  }, [cardPosition, translate, screenWidth, cardsInOneDeck, cardMoveNumbers, cardsWidth]);
 
   useEffect(() => {
     if (screenWidth >= 2134) {
       setCardsInOneDeck(6);
-      cardsWidth.current = `266.666667px`;
+      setCardsWidth(`266.666667px`);
     } else if (screenWidth >= 1600 && screenWidth <= 2133) {
       setCardsInOneDeck(6);
-      cardsWidth.current = `calc(75vw / ${cardsInOneDeck})`;
+      setCardsWidth(`calc(75vw / ${cardsInOneDeck})`);
     } else if (screenWidth >= 1024 && screenWidth <= 1599) {
       setCardsInOneDeck(5);
-      cardsWidth.current = `calc(75vw / ${cardsInOneDeck})`;
+      setCardsWidth(`calc(75vw / ${cardsInOneDeck})`);
     } else if (screenWidth >= 766 && screenWidth <= 1023) {
       setCardsInOneDeck(4);
-      cardsWidth.current = `calc(97vw / ${cardsInOneDeck})`;
+      setCardsWidth(`calc(97vw / ${cardsInOneDeck})`);
     } else if (screenWidth >= 592 && screenWidth <= 765) {
       setCardsInOneDeck(3);
-      cardsWidth.current = `calc(98vw / ${cardsInOneDeck})`;
+      setCardsWidth(`calc(98vw / ${cardsInOneDeck})`);
     } else if (screenWidth >= 326 && screenWidth <= 591) {
       setCardsInOneDeck(2);
-      cardsWidth.current = ` calc(98vw / ${cardsInOneDeck})`;
+      setCardsWidth(` calc(98vw / ${cardsInOneDeck})`);
     } else if (screenWidth <= 325) {
       setCardsInOneDeck(1);
-      cardsWidth.current = `98vw`;
+      setCardsWidth(`98vw`);
     }
-    cardMoveNumbers.current = -Math.floor(dataLength.current / cardsInOneDeck);
+    setCardMoveNumbers(-Math.floor(dataLength.current / cardsInOneDeck));
     if (dataLength.current % cardsInOneDeck === 0) {
-      lastCardNumbers.current = cardsInOneDeck;
-      cardMoveNumbers.current += 1;
-    } else {
-      lastCardNumbers.current = (dataLength.current % cardsInOneDeck) + 1;
+      setCardMoveNumbers((prev) => prev + 1);
     }
   }, [screenWidth, cardsInOneDeck]);
+
+  // reset cards position wih screen width width change
+  useEffect(() => {
+    setCardPosition(0);
+  }, [screenWidth]);
 
   const handleClick = (click) => {
     if (click === 'next' && cardPosition < 0) {
       setCardPosition((prevState) => prevState + 1);
-    } else if (click === 'prev' && cardPosition > cardMoveNumbers.current) {
+    } else if (click === 'prev' && cardPosition > cardMoveNumbers) {
       setCardPosition((prevState) => prevState - 1);
     }
   };
+
   return (
     <div className={styles.Games}>
       <CardsHeader headerTitle="Game on sale" />
       <GamesButton btnState={btnState} handleClick={handleClick} />
-      <Cards
-        data={data}
-        screenWidth={screenWidth}
-        translate={translate}
-        cardPosition={cardPosition}
-      />
+      <Cards data={data} screenWidth={screenWidth} translate={translate} />
     </div>
   );
 }

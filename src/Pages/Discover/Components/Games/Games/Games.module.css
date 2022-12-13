@@ -1,6 +1,5 @@
 .Games {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     width: 75vw;
     max-width: 1600px;
     position: relative;
@@ -12,13 +11,13 @@
     margin: 0;
 }
 
-@media only screen and (max-width:765px) {
+@media only screen and (max-width: 765px) {
     .Games {
         width: 98vw;
     }
 }
 
-@media (max-width:1023px) and (min-width:766px) {
+@media (max-width: 1023px) and (min-width: 766px) {
     .Games {
         width: 97vw;
     }
