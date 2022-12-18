@@ -1,0 +1,201 @@
+.FirstNavbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #222222;
+}
+.navOptions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.leftPart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navOption {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 0 1rem;
+    overflow: hidden;
+}
+.leftPart a {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 200ms;
+}
+.navOption::after {
+    content: '';
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 5px;
+    left: 0;
+    bottom: -5px;
+    transition: bottom 200ms;
+    position: absolute;
+}
+.active::after {
+    bottom: 0px;
+}
+.navOption:hover::after {
+    bottom: 0px;
+}
+.leftPart div:hover a,
+.active a {
+    color: #fff;
+}
+.gamologyLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter 300ms;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+.gamologyLogo:hover {
+    filter: brightness(1.5);
+}
+.gamologyLogo img {
+    width: 60px;
+}
+.rightPart {
+    display: flex;
+    align-items: center;
+    padding-right: 1rem;
+}
+.profileImg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.hambugerButton {
+    display: none;
+}
+.hambuger {
+    display: none;
+    position: absolute;
+    z-index: 100;
+}
+@media only screen and (max-width: 767px) {
+    .FirstNavbar {
+        position: relative;
+        justify-content: space-between;
+    }
+    .navOptions {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        right: 0;
+        top: 0;
+        flex-direction: column;
+        width: 80vw;
+        height: calc(100vh - 2rem);
+        opacity: 0;
+    }
+
+    #show {
+        transition: opacity 300ms 300ms;
+        z-index: 4;
+        opacity: 1;
+    }
+    #hide {
+        z-index: -1;
+        transition: z-index 0s linear 1s, opacity 300ms;
+    }
+    .navOptionBg {
+        z-index: 3;
+        position: absolute;
+        right: 0px;
+        top: 0;
+        background-color: rgb(46, 46, 46);
+        width: 55px;
+        height: 50px;
+        transition: width 300ms 300ms, height 300ms 300ms, box-shadow 300ms 0ms;
+        box-shadow: 0vw 0px 15px rgba(17, 17, 17, 0.664);
+    }
+    #hambugerActive {
+        top: 0;
+        right: 0;
+        width: 80vw;
+        height: 100vh;
+        transition: width 300ms, height 300ms, box-shadow 300ms 300ms;
+        box-shadow: -20.1vw 0px 0px rgba(17, 17, 17, 0.5);
+    }
+    .hambugerButton {
+        display: block;
+        background-color: transparent;
+        z-index: 5;
+        right: 10px;
+        position: relative;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+    }
+    .leftPart {
+        display: flex;
+        z-index: 1;
+        flex-direction: column;
+    }
+    .navOption::after {
+        content: none;
+    }
+    .navOption {
+        padding: 0;
+        margin-top: 1rem;
+    }
+    .rightPart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+    .hambuger {
+        display: block;
+        top: 10px;
+        left: 0px;
+        height: 2px;
+        width: 30px;
+        background-image: linear-gradient(#8e00ff, #ce03f0);
+        transition: 500ms;
+        border: none;
+        padding: 0;
+    }
+    .hambuger::before,
+    .hambuger::after {
+        z-index: 3;
+        content: '';
+        display: block;
+        position: absolute;
+        height: 2px;
+        right: 30px;
+        width: 30px;
+        left: 0;
+        background-image: linear-gradient(#8e00ff, #ce03f0);
+        transition: 300ms;
+    }
+    .hambuger::after {
+        top: -10px;
+    }
+    .hambuger::before {
+        top: 10px;
+    }
+    #cross {
+        rotate: 45deg;
+    }
+    #cross::after,
+    #cross::before {
+        rotate: 90deg;
+        top: 0;
+    }
+}

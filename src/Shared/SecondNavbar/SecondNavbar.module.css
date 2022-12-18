@@ -1,0 +1,79 @@
+.SecondNavbar {
+    width: 75vw;
+    padding: 1rem 0;
+    max-width: 1600px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: #181818d7;
+    z-index: 2;
+}
+.searchField {
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    align-items: center;
+    border-radius: 1.5rem;
+    padding: 0.1rem 0.7rem;
+    max-width: 250px;
+    transition: background-color 300ms;
+}
+.searchField img {
+    margin-right: 5px;
+}
+.searchField input {
+    height: 100%;
+    background-color: rgb(44, 44, 44);
+    padding: 0;
+    border: none;
+    font-size: 1rem;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    transition: background-color 300ms, color 200ms;
+}
+.searchField input::placeholder {
+    color: rgb(255, 255, 255, 0.5);
+    transition: color 200ms;
+}
+.searchField input:focus {
+    outline: 0;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+}
+.searchField input:focus::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+.searchField:has(input:focus) {
+    background-color: rgb(255, 255, 255);
+}
+.leftSide {
+    display: flex;
+    align-items: center;
+}
+.navLinks a,
+.rightSide a {
+    margin-left: 1rem;
+    color: rgb(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 200ms;
+}
+.navLinks a:hover,
+.rightSide a:hover {
+    color: rgb(255, 255, 255);
+}
+.rightSide {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+@media only screen and (max-width: 765px) {
+    .SecondNavbar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1023px) and (min-width: 766px) {
+    .SecondNavbar {
+        width: 97vw;
+    }
+}

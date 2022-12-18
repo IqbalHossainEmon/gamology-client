@@ -21,7 +21,7 @@ export default function ExploreGames() {
     <div
       className={styles.ExploreGames}
       style={
-        screenWidth > 1024
+        screenWidth > 767
           ? { backgroundImage: data.backgroundDesktop }
           : { backgroundImage: data.backgroundPhone }
       }
@@ -29,7 +29,9 @@ export default function ExploreGames() {
       <div className={styles.ExploreTexts}>
         <h4>{data.heading}</h4>
         <p>{data.details}</p>
-        <button type="button">Learn More</button>
+        <a href="#d" type="button">
+          Learn More
+        </a>
       </div>
     </div>
   );
