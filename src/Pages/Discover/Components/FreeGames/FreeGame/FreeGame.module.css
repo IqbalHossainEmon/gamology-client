@@ -50,9 +50,17 @@
     color: rgb(173, 173, 173);
     bottom: 0;
 }
+.name {
+    font-size: 14px;
+}
 
 @media only screen and (max-width: 352px) {
     .gameDetail {
         padding-bottom: 3rem;
+    }
+}
+@media only screen and (min-width: 1600px) {
+    .name {
+        font-size: 16px;
     }
 }

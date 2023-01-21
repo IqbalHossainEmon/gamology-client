@@ -1,3 +1,4 @@
+import Footer from '../../../Shared/Footer/Footer';
 import Banner from '../Components/Banner/Banner/Banner';
 import EventGames from '../Components/EventGames/EventGames/EventGames';
 import ExploreGames from '../Components/ExploreGames/ExploreGames';
@@ -14,6 +15,7 @@ export default function Discover() {
       <FreeGames />
       <EventGames />
       <ExploreGames />
+      <Footer />
     </>
   );
 }

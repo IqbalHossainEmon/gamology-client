@@ -3,13 +3,14 @@
     width: 80vw;
     position: absolute;
     aspect-ratio: 1/1.33273662;
-    transition: translate 300ms, scale 300ms;
+    transition: opacity 500ms, translate 500ms, z-index 0ms, scale 500ms,
+        opacity 300ms;
 }
 
 #five {
     translate: -90% 0;
     scale: 0.9;
-    opacity: 1;
+    opacity: 0.3;
     z-index: 0;
 }
 
@@ -20,7 +21,7 @@
 }
 
 #two {
-    opacity: 1;
+    opacity: 0.3;
     scale: 0.9;
     z-index: 0;
     translate: 90% 0;

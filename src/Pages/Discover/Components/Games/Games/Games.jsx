@@ -274,7 +274,7 @@ export default function Games() {
     } else if (screenWidth >= 766 && screenWidth <= 1023) {
       setCardsInOneDeck(4);
       setCardsWidth(`calc(97vw / ${cardsInOneDeck})`);
-    } else if (screenWidth >= 592 && screenWidth <= 765) {
+    } else if (screenWidth >= 592 && screenWidth <= 768) {
       setCardsInOneDeck(3);
       setCardsWidth(`calc(98vw / ${cardsInOneDeck})`);
     } else if (screenWidth >= 326 && screenWidth <= 591) {

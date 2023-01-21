@@ -21,7 +21,7 @@ export default function ExploreGames() {
     <div
       className={styles.ExploreGames}
       style={
-        screenWidth > 767
+        screenWidth >= 768
           ? { backgroundImage: data.backgroundDesktop }
           : { backgroundImage: data.backgroundPhone }
       }

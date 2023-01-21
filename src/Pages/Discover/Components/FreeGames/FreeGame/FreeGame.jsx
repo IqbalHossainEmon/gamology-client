@@ -12,7 +12,7 @@ export default function FreeGame({ data, today, length }) {
     return date.toLocaleString('en-US', { month: 'long' });
   }
   useEffect(() => {
-    if (screenWidth > 767) {
+    if (screenWidth >= 768) {
       setGameWidth({ width: `${100 / length - length + 2}%` });
     } else if (length % 2 === 0) {
       setGameWidth({ width: '46%' });
@@ -56,7 +56,7 @@ export default function FreeGame({ data, today, length }) {
           )}
         </div>
         <div className={styles.gameDetail}>
-          <p>{data.name}</p>
+          <p className={styles.name}>{data.name}</p>
           <div className={styles.date}>
             <p>{`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
               data.saleTill[0][0]

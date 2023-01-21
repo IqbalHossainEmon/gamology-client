@@ -17,7 +17,7 @@ const data = [
     price: 'Comming soon',
     saleTill: [
       [12, 12, 2022],
-      [31, 12, 2022],
+      [31, 12, 2025],
     ],
   },
   {
@@ -33,7 +33,7 @@ const data = [
     price: 'Free',
     saleTill: [
       [2, 11, 2022],
-      [24, 12, 2022],
+      [24, 12, 2025],
     ],
   },
   {
@@ -48,7 +48,7 @@ const data = [
     coverMobile: 'https://i.ibb.co/BNm4v3M/fall-guys-carousel-mobile.jpg',
     price: 'Free',
     saleTill: [
-      [11, 12, 2022],
+      [11, 12, 2024],
       [15, 12, 2025],
     ],
   },
@@ -64,8 +64,8 @@ const data = [
     logoImg: 'https://i.ibb.co/SyGvndD/fortnite-carousel-logo.png',
     price: 'Free',
     saleTill: [
-      [1, 11, 2022],
-      [23, 12, 2022],
+      [1, 11, 2024],
+      [23, 12, 2025],
     ],
   },
 ];

@@ -74,9 +74,10 @@
     }
 }
 
-@media only screen and (max-width: 765px) {
+@media only screen and (max-width: 768px) {
     .logoImg {
         width: 30vw;
+        height: auto;
     }
 
     .itemInfo {
@@ -89,7 +90,7 @@
     }
 
     .price {
-        font-size: 4vw;
+        font-size: 14px;
     }
 
     @keyframes fadeout {
@@ -115,6 +116,6 @@
 
 @media (min-width: 2134px) {
     .price {
-        font-size: 1.2rem;
+        font-size: 16px;
     }
 }

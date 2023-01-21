@@ -1,6 +1,6 @@
 .ExploreGames {
     width: 100%;
-    height: 100vh;
+    aspect-ratio: 4/3;
     margin-bottom: 3rem;
     background-position: center;
     background-size: cover;
@@ -8,18 +8,21 @@
     background-repeat: no-repeat;
     background-origin: border-box;
     clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+    display: flex;
+    align-items: center;
 }
 .ExploreTexts {
     position: relative;
-    width: 15%;
-    top: 45%;
+    width: 20%;
     left: 20%;
 }
 .ExploreTexts h4 {
-    margin: 1rem 0;
+    margin: 0;
+    font-size: 16px;
 }
 .ExploreTexts p {
     margin: 1rem 0;
+    font-size: 14px;
 }
 
 .ExploreTexts a {
@@ -33,6 +36,7 @@
     transition: all 300ms;
     background-color: white;
     border: 1px solid white;
+    font-size: 14px;
 }
 .ExploreTexts a:hover {
     background-color: rgba(0, 0, 0, 0.4);
@@ -47,14 +51,38 @@
         clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
     }
     .ExploreTexts {
-        width: 35%;
+        width: 45%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .ExploreTexts h4 {
+        font-size: 14px;
+    }
+    .ExploreTexts p,
+    .ExploreTexts a {
+        font-size: 12px;
+    }
+    .ExploreGames {
+        aspect-ratio: 1/1;
     }
 }
 @media only screen and (max-width: 355px) {
     .ExploreGames {
-        clip-path: polygon(0 10%, 100% 0, 100% 80%, 0 100%);
+        clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
     }
     .ExploreTexts {
         width: 55%;
+    }
+}
+@media only screen and (min-width: 2134px) {
+    .ExploreGames {
+        aspect-ratio: 5/3;
+    }
+    .ExploreTexts h4 {
+        font-size: 18px;
+    }
+    .ExploreTexts p,
+    .ExploreTexts a {
+        font-size: 16px;
     }
 }

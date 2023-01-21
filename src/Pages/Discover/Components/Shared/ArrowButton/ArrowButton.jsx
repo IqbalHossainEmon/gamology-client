@@ -1,8 +1,14 @@
 import styles from './ArrowButton.module.css';
 
-export default function ArrowButton({ handleClick, className, btnState = false }) {
+export default function ArrowButton({ name, handleClick, className, btnState = false }) {
   return (
-    <button className={className} disabled={btnState} type="button" onClick={handleClick}>
+    <button
+      className={className}
+      name={name}
+      disabled={btnState}
+      type="button"
+      onClick={handleClick}
+    >
       <svg
         className={styles.btnImg}
         version="1.1"

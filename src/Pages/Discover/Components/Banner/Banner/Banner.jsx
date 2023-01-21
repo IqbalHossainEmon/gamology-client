@@ -57,18 +57,22 @@ const data = [
 
 export default function Banner() {
   const { initalState, reducer } = useBannerState(data.length);
+
   const [{ active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initalState);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch({ type: 'next' });
     }, 8500);
     return () => clearInterval(intervalId);
   }, [active]);
+
   const screenWidth = useScreenWidth();
   return (
     <div className={styles.banner}>
       <div className={styles.bannerOverflow}>
         <Items
+          screenWidth={screenWidth}
           cardsPosition={cardsPosition}
           bannerState={{ active, fadeOut, fadeIn }}
           data={data}
@@ -76,7 +80,7 @@ export default function Banner() {
         <InfoItems data={data} bannerState={{ active, fadeOut, fadeIn }} />
       </div>
       <BannerButtons handleClick={dispatch} />
-      {screenWidth > 765 && (
+      {screenWidth > 768 && (
         <ItemCards handleClick={dispatch} data={data} cardsPosition={cardsPosition} />
       )}
     </div>

@@ -15,6 +15,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
+    font-size: 14px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
@@ -44,11 +45,17 @@
     .card {
         width: 246.666667px;
     }
+    .name {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 2133px) and (min-width: 1600px) {
     .card {
         width: calc((75vw / 6) - 20px);
+    }
+    .name {
+        font-size: 1rem;
     }
 }
 
@@ -64,7 +71,7 @@
     }
 }
 
-@media (min-width: 592px) and (max-width: 765px) {
+@media (min-width: 592px) and (max-width: 768px) {
     .card {
         width: calc((98vw / 3) - 20px);
     }

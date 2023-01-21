@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useDeviceType from '../../../../../Hooks/useDeviceType';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import ChangeEventButtons from '../ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../GamesColumn/GamesColumn';
@@ -55,13 +56,42 @@ const newGames = [
 export default function EventGames() {
   const screenWidth = useScreenWidth();
   const [cardPosition, setCardPosition] = useState(0);
-  const style = screenWidth < 767 ? { width: `${screenWidth}px` } : {};
+  const [style, setStyle] = useState({ width: `${screenWidth}px` });
+  const [translateStyle, setTranslateStyle] = useState({
+    translate: `-${cardPosition}00%`,
+  });
+
+  const deviceType = useDeviceType();
+
+  useEffect(() => {
+    if (screenWidth < 768) {
+      if (deviceType) {
+        setTranslateStyle({
+          translate: `-${cardPosition}00%`,
+        });
+      } else {
+        setTranslateStyle({
+          translate: `calc(-${cardPosition}00% - ${cardPosition} * 8px )`,
+        });
+      }
+    } else {
+      setTranslateStyle({
+        translate: `0`,
+      });
+    }
+  }, [deviceType, cardPosition, screenWidth]);
+
+  useEffect(() => {
+    if (screenWidth < 768) {
+      setStyle({ width: `${screenWidth}px` });
+    } else {
+      setStyle({ width: `auto` });
+    }
+  }, [screenWidth]);
+
   return (
     <div className={styles.EventGamesContainer}>
-      <div
-        className={styles.EventGames}
-        style={screenWidth < 767 ? { translate: `-${cardPosition}00%` } : {}}
-      >
+      <div className={styles.EventGames} style={translateStyle}>
         <GamesColumn
           cardPosition={cardPosition}
           style={style}
@@ -86,7 +116,7 @@ export default function EventGames() {
           colNum={2}
         />
       </div>
-      {screenWidth < 765 && (
+      {screenWidth <= 768 && (
         <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
       )}
     </div>

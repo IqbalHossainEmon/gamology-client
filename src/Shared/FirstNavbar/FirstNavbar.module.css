@@ -84,7 +84,7 @@
     position: absolute;
     z-index: 100;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
     .FirstNavbar {
         position: relative;
         justify-content: space-between;
@@ -103,7 +103,7 @@
 
     #show {
         transition: opacity 300ms 300ms;
-        z-index: 4;
+        z-index: 5;
         opacity: 1;
     }
     #hide {
@@ -111,30 +111,31 @@
         transition: z-index 0s linear 1s, opacity 300ms;
     }
     .navOptionBg {
-        z-index: 3;
+        z-index: 4;
         position: absolute;
-        right: 0px;
+        right: 0;
         top: 0;
         background-color: rgb(46, 46, 46);
         width: 55px;
         height: 50px;
-        transition: width 300ms 300ms, height 300ms 300ms, box-shadow 300ms 0ms;
-        box-shadow: 0vw 0px 15px rgba(17, 17, 17, 0.664);
+        border-radius: 0 0 0 20px;
+        transition: width 300ms 300ms, height 300ms 300ms,
+            border-radius 200ms 300ms;
     }
     #hambugerActive {
         top: 0;
         right: 0;
         width: 80vw;
         height: 100vh;
-        transition: width 300ms, height 300ms, box-shadow 300ms 300ms;
-        box-shadow: -20.1vw 0px 0px rgba(17, 17, 17, 0.5);
+        border-radius: 0 0 0 0;
+        transition: width 300ms, height 300ms, border-radius 200ms 100ms;
     }
     .hambugerButton {
         display: block;
         background-color: transparent;
         z-index: 5;
         right: 10px;
-        position: relative;
+        position: absolute;
         width: 30px;
         height: 22px;
         cursor: pointer;
@@ -146,6 +147,7 @@
         z-index: 1;
         flex-direction: column;
     }
+
     .navOption::after {
         content: none;
     }
@@ -197,5 +199,26 @@
     #cross::before {
         rotate: 90deg;
         top: 0;
+    }
+    .navCloseButton {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        rotate: 0deg;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        border: none;
+        height: 100vh;
+        width: 20vw;
+    }
+
+    #navOpened {
+        translate: 0 0;
+        transition: translate 300ms;
+    }
+
+    #navClosed {
+        translate: -100% 0;
+        transition: translate 300ms 300ms;
     }
 }

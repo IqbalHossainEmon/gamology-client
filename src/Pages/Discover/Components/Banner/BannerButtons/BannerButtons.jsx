@@ -17,10 +17,12 @@ export default function BannerButtons({ handleClick }) {
   return (
     <>
       <ArrowButton
+        name="Next Button"
         handleClick={() => handleDebuncingClick({ type: 'next' })}
         className={[styles.btn, styles.nextBtn].join(' ')}
       />
       <ArrowButton
+        name="Previous Button"
         handleClick={() => handleDebuncingClick({ type: 'prev' })}
         className={[styles.btn, styles.prevBtn].join(' ')}
       />
