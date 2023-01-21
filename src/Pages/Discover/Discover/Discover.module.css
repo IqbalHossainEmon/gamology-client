@@ -1,0 +1,28 @@
+.Discover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #181818;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #272727;
+    border-radius: 5px;
+    opacity: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #303030;
+    opacity: 0;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgb(114, 114, 114);
+}

@@ -9,11 +9,11 @@ export default function FirstNavbar({ screenWidth }) {
   useEffect(() => {
     if (navState && !deviceType) {
       document.body.style.overflowY = 'hidden';
-      document.body.style.marginRight = '8px';
+      document.getElementById('root').style.marginRight = '8px';
     } else if (navState && deviceType) {
       document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.marginRight = '0px';
+      document.getElementById('root').style.marginRight = '0px';
       document.body.style.overflowY = 'scroll';
     }
   }, [navState, deviceType]);
