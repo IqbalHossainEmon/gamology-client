@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import useDeviceType from '../../Hooks/useDeviceType';
+import useScreenWidth from '../../Hooks/useScreenWidth';
 import styles from './FirstNavbar.module.css';
 
-export default function FirstNavbar({ screenWidth }) {
+export default function FirstNavbar() {
   const [navState, setNavState] = useState(false);
+  const screenWidth = useScreenWidth();
   const deviceType = useDeviceType();
 
   useEffect(() => {

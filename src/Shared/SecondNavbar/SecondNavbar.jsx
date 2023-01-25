@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import useScreenWidth from '../../Hooks/useScreenWidth';
 
 import styles from './SecondNavbar.module.css';
 
-export default function SecondNavbar({ screenWidth }) {
+export default function SecondNavbar() {
+  const screenWidth = useScreenWidth();
   const [navTextState, setNavTextState] = useState(styles.discover);
   const [navShow, setNavShow] = useState(false);
 

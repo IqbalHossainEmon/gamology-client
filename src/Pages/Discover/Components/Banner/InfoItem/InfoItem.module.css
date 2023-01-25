@@ -27,12 +27,6 @@
     display: inline-block;
 }
 
-#intialBanner {
-    opacity: 1;
-    z-index: 1;
-    visibility: visible;
-}
-
 #bannerFadeIn {
     opacity: 0;
     z-index: 1;

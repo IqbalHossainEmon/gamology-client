@@ -1,0 +1,20 @@
+.BrowseHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.NumberOfGames {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+.button {
+    background-color: transparent;
+    color: rgb(222, 222, 222);
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Inter';
+    margin-right: 5px;
+}

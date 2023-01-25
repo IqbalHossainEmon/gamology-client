@@ -56,9 +56,9 @@ const data = [
 ];
 
 export default function Banner() {
-  const { initalState, reducer } = useBannerState(data.length);
+  const { initialState, reducer } = useBannerState(data.length);
 
-  const [{ active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initalState);
+  const [{ active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const intervalId = setInterval(() => {

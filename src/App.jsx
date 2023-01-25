@@ -1,5 +1,5 @@
-import Discover from './Pages/Discover/Discover/Discover';
+import Browse from './Pages/Browse/Browse/Browse';
 
 export default function App() {
-  return <Discover />;
+  return <Browse />;
 }

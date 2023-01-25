@@ -32,7 +32,7 @@ export default function Footer() {
         <p>
           <small>
             Share capital: 500,698,500 PLN paid in full; National Court Register (KRS) number:
-            0169691510; District Court for the City of Dhaka, 14th Commercial;
+            1269691510; District Court for the City of Dhaka, 14th Commercial;
           </small>
         </p>
         <p>
