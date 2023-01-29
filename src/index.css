@@ -29,6 +29,14 @@ body {
     background: rgb(114, 114, 114);
 }
 
+.margin-right-8px {
+    margin-right: 8px;
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden;
+}
+
 #root {
     display: flex;
     flex-direction: column;

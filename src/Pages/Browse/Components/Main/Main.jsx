@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
+
 import BrowseHeader from '../BrowseHeader/BrowseHeader';
+import useBrowseState from '../useBrowseState/useBrowseState';
 import styles from './Main.module.css';
 
 export default function Main() {
-  const [numberOfGames, setNumberOfGames] = useState('PC Games / All');
-  console.log(setNumberOfGames);
+  const { initialState, reducer } = useBrowseState();
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log(dispatch);
+
   return (
     <main className={styles.Main}>
-      <BrowseHeader gameNumbers={numberOfGames} />
+      <BrowseHeader state={state} />
     </main>
   );
 }

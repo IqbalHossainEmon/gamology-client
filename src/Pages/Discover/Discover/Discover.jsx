@@ -1,6 +1,7 @@
-import FirstNavbar from '../../../Shared/FirstNavbar/FirstNavbar';
+import FirstNavbar from '../../../Shared/FirstNavbar/FirstNavBar/FirstNavbar';
 import Footer from '../../../Shared/Footer/Footer';
-import SecondNavbar from '../../../Shared/SecondNavbar/SecondNavbar';
+import SecondNavbar from '../../../Shared/SecondNavbar/SecondNavBar/SecondNavbar';
+
 import Main from '../Components/Main/Main';
 
 export default function Discover() {

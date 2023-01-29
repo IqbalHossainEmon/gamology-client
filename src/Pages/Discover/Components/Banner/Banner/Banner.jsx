@@ -1,13 +1,13 @@
-import { useEffect, useReducer } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import { useEffect, useReducer, useState } from 'react';
+import useScreenInfo from '../../../../../Hooks/useScreenInfo';
 import BannerButtons from '../BannerButtons/BannerButtons';
 import InfoItems from '../InfoItems/InfoItems';
 import ItemCards from '../ItemCards/ItemCards';
 import Items from '../Items/Items';
-import useBannerState from '../useBannerState/useBannerState';
+import useBannerLogics from '../useBannerLogics/useBannerLogics';
 import styles from './Banner.module.css';
 
-const data = [
+const items = [
   {
     id: 0,
     name: "Marvel's Spider-Man Remastered",
@@ -56,9 +56,15 @@ const data = [
 ];
 
 export default function Banner() {
-  const { initialState, reducer } = useBannerState(data.length);
-
+  const [data, setData] = useState([]);
+  const { reducer, initialState } = useBannerLogics();
   const [{ active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initialState);
+
+  const { screenWidth } = useScreenInfo();
+
+  useEffect(() => {
+    setData(items);
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -67,7 +73,6 @@ export default function Banner() {
     return () => clearInterval(intervalId);
   }, [active]);
 
-  const screenWidth = useScreenWidth();
   return (
     <div className={styles.banner}>
       <div className={styles.bannerOverflow}>

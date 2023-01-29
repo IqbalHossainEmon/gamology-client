@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useScreenWidth from '../../../../Hooks/useScreenWidth';
+import useScreenInfo from '../../../../Hooks/useScreenInfo';
 import styles from './ExploreGames.module.css';
 
 const fetched = {
@@ -10,7 +10,7 @@ const fetched = {
 };
 
 export default function ExploreGames() {
-  const screenWidth = useScreenWidth();
+  const { screenWidth } = useScreenInfo();
   const [data, setData] = useState({});
 
   useEffect(() => {

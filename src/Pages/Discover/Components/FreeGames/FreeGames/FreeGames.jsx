@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
 
@@ -72,7 +71,7 @@ const data = [
 
 export default function FreeGames() {
   const dataLength = useRef(data.length);
-  const screenWidth = useScreenWidth();
+
   const date = useRef(new Date());
   const today = useRef([
     date.current.getDate(),
@@ -88,13 +87,7 @@ export default function FreeGames() {
       </div>
       <div className={styles.games}>
         {data.map((game) => (
-          <FreeGame
-            key={game.id}
-            screenWidth={screenWidth}
-            length={dataLength.current}
-            data={game}
-            today={today.current}
-          />
+          <FreeGame key={game.id} length={dataLength.current} data={game} today={today.current} />
         ))}
       </div>
     </div>

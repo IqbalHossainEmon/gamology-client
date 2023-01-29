@@ -8,20 +8,33 @@
     justify-content: center;
 }
 .header a {
-    text-decoration: none;
     display: flex;
+    text-decoration: none;
     flex-direction: column;
     align-items: center;
 }
 .header h2 {
+    position: relative;
     margin: 0;
     margin-top: -1rem;
     background: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.header a:hover {
-    text-decoration: underline;
+.header h2::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 2px;
+    left: 0;
+    border-radius: 5px;
+    bottom: -3px;
+    opacity: 0;
+    transition: opacity 300ms;
+    background: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
+}
+.header a:hover h2:after {
+    opacity: 1;
 }
 .linkContainer {
     display: flex;

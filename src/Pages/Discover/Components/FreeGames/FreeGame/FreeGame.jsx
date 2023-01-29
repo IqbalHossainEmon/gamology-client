@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import useScreenInfo from '../../../../../Hooks/useScreenInfo';
 import styles from './FreeGame.module.css';
 
 export default function FreeGame({ data, today, length }) {
   const [dateState, setDateState] = useState(-1);
-  const screenWidth = useScreenWidth();
+  const { screenWidth } = useScreenInfo();
+
   const [gameWidth, setGameWidth] = useState({ width: `${100 / length}%` });
   function getMonthName(monthNumber) {
     const date = new Date();

@@ -1,0 +1,25 @@
+.SecondNavbar {
+    width: 75vw;
+    padding: 1rem 0;
+    max-width: 1600px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: -2px;
+    background-color: #181818d7;
+    z-index: 2;
+    height: 50px;
+}
+
+@media (max-width: 1023px) and (min-width: 766px) {
+    .SecondNavbar {
+        width: 97vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .SecondNavbar {
+        width: calc(100% - 10px);
+        padding-left: 10px;
+    }
+}

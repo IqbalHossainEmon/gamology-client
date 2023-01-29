@@ -1,9 +1,9 @@
-import useBannerState from '../useBannerState/useBannerState';
+import useBannerLogics from '../useBannerLogics/useBannerLogics';
 import styles from './Item.module.css';
 
 export default function Item({ banner, bannerState }) {
   const { coverImg, name, id } = banner;
-  const { activeBanner } = useBannerState();
+  const { activeBanner } = useBannerLogics();
   const idState = activeBanner(id, bannerState, styles);
 
   return (

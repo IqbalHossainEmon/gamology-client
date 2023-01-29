@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import useScreenInfo from '../../../../../Hooks/useScreenInfo';
 import Cards from '../Cards/Cards';
 import CardsHeader from '../CardsHeader/CardsHeader';
 import GamesButton from '../GamesButtons/GamesButtons';
@@ -238,7 +238,7 @@ const data = [
 
 export default function Games() {
   const [cardPosition, setCardPosition] = useState(0);
-  const screenWidth = useScreenWidth();
+  const { screenWidth } = useScreenInfo();
   const [cardsInOneDeck, setCardsInOneDeck] = useState();
   const [cardMoveNumbers, setCardMoveNumbers] = useState(0);
   const [cardsWidth, setCardsWidth] = useState('0px');

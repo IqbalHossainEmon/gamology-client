@@ -1,0 +1,26 @@
+.rightSide {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.rightSide a {
+    margin-left: 1rem;
+    color: rgb(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 300ms;
+}
+
+.rightSide a:hover {
+    color: rgb(255, 255, 255);
+}
+@media only screen and (max-width: 768px) {
+    #wishList,
+    #cart {
+        fill: rgb(138, 138, 138);
+    }
+    #wishList:hover,
+    #cart:hover {
+        fill: rgb(200, 200, 200);
+    }
+}

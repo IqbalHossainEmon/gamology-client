@@ -1,32 +1,18 @@
-.SecondNavbar {
-    width: 75vw;
-    padding: 1rem 0;
-    max-width: 1600px;
+.leftSide {
     display: flex;
-    justify-content: space-between;
-    position: sticky;
-    top: -2px;
-    background-color: #181818d7;
-    z-index: 2;
-    height: 50px;
+    align-items: center;
+}
+.searchField:focus-within #searchIcon {
+    fill: rgb(0, 0, 0);
 }
 .searchField {
     background-color: rgb(44, 44, 44);
     display: flex;
     align-items: center;
     border-radius: 1.5rem;
-    padding: 0 10px;
+    padding: 5px 10px;
     max-width: 250px;
     transition: background-color 300ms;
-}
-#searchIcon {
-    width: 30px;
-    aspect-ratio: 1/1;
-    fill: rgb(255, 255, 255, 0.5);
-    transition: fill 300ms;
-}
-.searchField:focus-within #searchIcon {
-    fill: rgb(0, 0, 0);
 }
 .searchField input {
     height: 100%;
@@ -55,15 +41,19 @@
     background-color: rgb(255, 255, 255);
 }
 #searchIcon {
+    width: 30px;
+    aspect-ratio: 1/1;
+    fill: rgb(255, 255, 255, 0.5);
+    transition: fill 300ms;
+}
+
+#searchIcon {
     width: 25px;
     height: 30px;
     display: flex;
     align-items: center;
 }
-.leftSide {
-    display: flex;
-    align-items: center;
-}
+
 .navLinks a,
 .rightSide a,
 .navLinksSlider a {
@@ -77,18 +67,6 @@
 .navLinksSlider a:hover {
     color: rgb(255, 255, 255);
 }
-.rightSide {
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-}
-
-@media (max-width: 1023px) and (min-width: 766px) {
-    .SecondNavbar {
-        width: 97vw;
-    }
-}
-
 @media only screen and (max-width: 768px) {
     .searchField {
         background-color: transparent;
@@ -97,6 +75,28 @@
         left: -10px;
         margin-left: 10px;
         transition: all 300ms;
+    }
+    .searchField:has(input:focus) {
+        padding: 0 10px;
+        width: calc(100% - 20px);
+        background-color: white;
+        position: absolute;
+        margin-left: 0px;
+        padding-left: 20px;
+        border-radius: 0;
+    }
+    .searchField:has(input:not(:focus)) {
+        width: 25px;
+    }
+
+    #searchIcon {
+        fill: rgb(138, 138, 138);
+    }
+    .navLinkOverFlow {
+        display: flex;
+        width: 65px;
+        flex-direction: column;
+        transition: 300ms;
     }
     .navLinks {
         position: absolute;
@@ -109,12 +109,7 @@
         padding: 0 5px;
         overflow-y: hidden;
         cursor: pointer;
-    }
-    .navLinkOverFlow {
-        display: flex;
-        width: 65px;
-        flex-direction: column;
-        transition: 300ms;
+        z-index: 2;
     }
     #discover {
         translate: 0 0;
@@ -125,14 +120,6 @@
     #news {
         translate: 0 -40px;
     }
-    .navLinks p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.589);
-    }
-    .navLinksSlider a {
-        margin: 10px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.281);
-    }
 
     .navArrow {
         position: absolute;
@@ -142,6 +129,29 @@
         left: 70px;
         height: 20px;
         width: 20px;
+    }
+    #navTopOpened {
+        height: 135px;
+        z-index: 1;
+    }
+    .navCloseTopButton {
+        position: absolute;
+        background-color: transparent;
+        border: 0;
+        border: none;
+        width: 100%;
+        bottom: 0;
+        rotate: 180deg;
+        left: 0;
+    }
+
+    .navLinks p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.589);
+    }
+    .navLinksSlider a {
+        margin: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.281);
     }
 
     .navLinksSlider {
@@ -154,6 +164,7 @@
         left: 0;
         transition: top 300ms, opacity 300ms, visibility 300ms;
     }
+
     #navShow {
         top: 100%;
         z-index: -1;
@@ -167,33 +178,16 @@
         visibility: hidden;
         transition-delay: 300ms;
     }
-    .searchField:has(input:focus) {
-        padding: 0 10px;
-        width: calc(100% - 20px);
-        background-color: white;
-        position: absolute;
-        margin-left: 0px;
-        padding-left: 20px;
-        border-radius: 0;
-    }
-    .SecondNavbar {
-        width: calc(100% - 10px);
-        padding-left: 10px;
+
+    #navBottomOpened {
+        height: 400%;
+        transition-delay: 300ms;
     }
 
-    .searchField:has(input:not(:focus)) {
-        width: 25px;
+    #navBottomClosed {
+        height: 0;
     }
-    .searchField #searchIcon,
-    #wishList,
-    #cart {
-        fill: rgb(138, 138, 138);
-    }
-    #wishList:hover,
-    #cart:hover {
-        fill: rgb(200, 200, 200);
-    }
-    .navCloseButton {
+    .navCloseBottomButton {
         position: absolute;
         background-color: rgba(0, 0, 0, 0.5);
         border: none;
@@ -202,14 +196,5 @@
         width: 100%;
         z-index: 3;
         transition: height 300ms;
-    }
-
-    #navOpened {
-        height: 100vh;
-        transition-delay: 300ms;
-    }
-
-    #navClosed {
-        height: 0;
     }
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import useDeviceType from '../../../../../Hooks/useDeviceType';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import useScreenInfo from '../../../../../Hooks/useScreenInfo';
 import ChangeEventButtons from '../ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../GamesColumn/GamesColumn';
 import styles from './EventGames.module.css';
@@ -54,18 +53,16 @@ const newGames = [
 ];
 
 export default function EventGames() {
-  const screenWidth = useScreenWidth();
+  const { screenWidth, touchAble } = useScreenInfo();
   const [cardPosition, setCardPosition] = useState(0);
   const [style, setStyle] = useState({ width: `${screenWidth}px` });
   const [translateStyle, setTranslateStyle] = useState({
     translate: `-${cardPosition}00%`,
   });
 
-  const deviceType = useDeviceType();
-
   useEffect(() => {
     if (screenWidth < 768) {
-      if (deviceType) {
+      if (touchAble) {
         setTranslateStyle({
           translate: `-${cardPosition}00%`,
         });
@@ -79,7 +76,7 @@ export default function EventGames() {
         translate: `0`,
       });
     }
-  }, [deviceType, cardPosition, screenWidth]);
+  }, [touchAble, cardPosition, screenWidth]);
 
   useEffect(() => {
     if (screenWidth < 768) {

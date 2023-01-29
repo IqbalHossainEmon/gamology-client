@@ -1,10 +1,10 @@
 import DiscountPrice from '../../Shared/DiscountPrice/DiscountPrice';
-import useBannerState from '../useBannerState/useBannerState';
+import useBannerLogics from '../useBannerLogics/useBannerLogics';
 import styles from './InfoItem.module.css';
 
 export default function ItemInfo({ banner, bannerState }) {
   const { logoImg, name, id, price } = banner;
-  const { activeBanner } = useBannerState();
+  const { activeBanner } = useBannerLogics();
   const idState = activeBanner(id, bannerState, styles);
   return (
     <div className={styles.itemInfo} id={idState || ''}>
