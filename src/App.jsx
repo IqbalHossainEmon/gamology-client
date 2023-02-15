@@ -1,5 +1,5 @@
 import withScreenInfoProvider from './HOC/withScreenInfoProvider';
-import Discover from './Pages/Discover/Discover/Discover';
+import Browse from './Pages/Browse/Browse/Browse';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
 import SecondNavbar from './Shared/SecondNavbar/SecondNavBar/SecondNavbar';
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <main>
         <SecondNavbar />
-        <Discover />
+        <Browse />
       </main>
       <Footer />
     </>

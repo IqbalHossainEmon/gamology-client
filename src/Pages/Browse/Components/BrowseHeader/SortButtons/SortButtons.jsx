@@ -5,7 +5,7 @@ import styles from './SortButtons.module.css';
 const links = [
   {
     no: 0,
-    name: 'New release',
+    name: 'New Release',
     URL: '#new',
   },
   {
