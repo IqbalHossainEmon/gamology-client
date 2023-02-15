@@ -13,8 +13,8 @@ const links = [
 
 export default function FirstNavLinks({ setNavState }) {
   return (
-    <ul className={styles.leftPart}>
-      <LinksList styles={styles} links={links} onclick={setNavState} />
+    <ul className={styles.FirstNavLinks}>
+      <LinksList active={0} styles={styles} links={links} onclick={setNavState} />
     </ul>
   );
 }

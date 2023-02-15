@@ -1,13 +1,18 @@
+.SecondNavContainer {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #181818d7;
+    display: flex;
+    justify-content: center;
+}
 .SecondNavbar {
     width: 75vw;
     padding: 1rem 0;
     max-width: 1600px;
     display: flex;
-    justify-content: space-between;
-    position: sticky;
-    top: -2px;
-    background-color: #181818d7;
-    z-index: 2;
+    align-items: center;
     height: 50px;
 }
 

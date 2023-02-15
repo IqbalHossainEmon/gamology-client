@@ -6,8 +6,11 @@
     flex-direction: column;
 }
 .EventGames {
+    margin: 0;
+    padding: 0;
     width: 100%;
     display: flex;
+    list-style: none;
 }
 
 @media (max-width: 1023px) and (min-width: 768px) {

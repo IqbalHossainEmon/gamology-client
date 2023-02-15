@@ -1,13 +1,17 @@
-const useDropDownHide = (element, setState) => {
+import { useRef } from 'react';
+
+const useDropDownHide = (setState) => {
+  const element = useRef();
   const closeMenu = (e) => {
-    if (!element.contains(e.target)) {
+    if (element.current && !element.current.contains(e.target)) {
       setState(false);
-      document.removeEventListener('click', closeMenu);
+      document.removeEventListener('mousedown', closeMenu);
     }
   };
 
-  function showMenu() {
-    window.document.addEventListener('click', closeMenu);
+  function showMenu(ele) {
+    element.current = ele;
+    window.document.addEventListener('mousedown', closeMenu);
   }
 
   return showMenu;

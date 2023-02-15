@@ -1,0 +1,74 @@
+.RightSide {
+    position: relative;
+}
+.button {
+    background-color: transparent;
+    color: rgb(153, 153, 153);
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Inter';
+    margin-right: 5px;
+    position: relative;
+    padding-right: 1.5rem;
+    cursor: pointer;
+}
+.button span {
+    color: rgb(222, 222, 222);
+}
+.downArrow {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    transition: rotate 200ms;
+}
+#arrowDown {
+    rotate: -90deg;
+}
+#arrowUp {
+    rotate: 90deg;
+}
+
+.sortLists {
+    position: absolute;
+    width: 100%;
+}
+
+.sortLists ol {
+    margin: 0;
+    background-color: rgba(55, 55, 55, 0.95);
+    padding: 5px;
+    width: calc(100% - 10px);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.sortLists ol li {
+    margin-top: 5px;
+}
+.sortLists ol:last-child li {
+    margin-bottom: 5px;
+}
+.sortButtons {
+    width: 100%;
+    font-family: 'Inter';
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 5px;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    transition: color 200ms;
+}
+.sortButtons:hover {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: underline;
+}
+#active {
+    color: rgba(255, 255, 255, 0.4);
+}
+#active:hover {
+    color: rgba(255, 255, 255, 0.4);
+    cursor: default;
+    text-decoration: none;
+}

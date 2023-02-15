@@ -5,8 +5,8 @@ import styles from './ExploreGames.module.css';
 const fetched = {
   heading: 'Explore Our Catalog',
   details: 'Browse by genre, features, price, and more to find your next favorite game.',
-  backgroundDesktop: 'url(https://i.ibb.co/Yy799TQ/hitman.png)',
-  backgroundPhone: 'url(https://i.ibb.co/nRpxDZ2/hitman-mobile.jpg)',
+  backgroundDesktop: './images/hitmanBackgound/hitman.png',
+  backgroundPhone: './images/hitmanBackgound/hitman-mobile.jpg',
 };
 
 export default function ExploreGames() {
@@ -18,12 +18,12 @@ export default function ExploreGames() {
   }, []);
 
   return (
-    <div
+    <section
       className={styles.ExploreGames}
       style={
         screenWidth >= 768
-          ? { backgroundImage: data.backgroundDesktop }
-          : { backgroundImage: data.backgroundPhone }
+          ? { backgroundImage: `url(${fetched.backgroundDesktop})` }
+          : { backgroundImage: `url(${fetched.backgroundPhone})` }
       }
     >
       <div className={styles.ExploreTexts}>
@@ -33,6 +33,6 @@ export default function ExploreGames() {
           Learn More
         </a>
       </div>
-    </div>
+    </section>
   );
 }

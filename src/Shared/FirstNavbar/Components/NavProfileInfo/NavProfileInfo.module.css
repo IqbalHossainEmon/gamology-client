@@ -1,20 +1,34 @@
+.profile {
+    display: flex;
+    align-items: center;
+    padding-right: 1rem;
+}
 .profileImg {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
-.rightPart {
-    display: flex;
-    align-items: center;
-    padding-right: 1rem;
-}
 
 @media only screen and (max-width: 768px) {
-    .rightPart {
+    .profile {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 0;
+        padding-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    .profile p {
+        text-overflow: ellipsis;
+        width: 80%;
+        margin: 0;
+        text-align: center;
+        word-wrap: break-word;
+    }
+    .profileImg {
+        width: 30px;
+        height: 30px;
+        margin-right: 0;
     }
 }

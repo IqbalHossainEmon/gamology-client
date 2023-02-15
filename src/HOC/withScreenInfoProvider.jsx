@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import ScreenInfoContext from '../Contexts/ScreenInfoContext';
-import useCheckDeviceType from '../Hooks/useCheckDeviceType';
-import useCheckScreenWidth from '../Hooks/useCheckScreenWidth';
+import useCheckScreenInfo from '../Hooks/useCheckScreenInfo';
 
 const withScreenInfoProvider = (Component) =>
   function ScreenInfoProvider() {
-    const screenWidth = useCheckScreenWidth();
-    const touchAble = useCheckDeviceType(screenWidth);
+    const screenInfo = useCheckScreenInfo();
 
-    const [deviceInfo, setDeviceInfo] = useState({ screenWidth, touchAble });
+    const [deviceInfo, setDeviceInfo] = useState(screenInfo);
 
     useEffect(() => {
-      setDeviceInfo({ screenWidth, touchAble });
-    }, [screenWidth, touchAble]);
+      setDeviceInfo(screenInfo);
+      console.log('wkwk');
+    }, [screenInfo]);
 
     return (
       <ScreenInfoContext.Provider value={deviceInfo}>

@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 
 // this function checks if the device is touchable or not
 export default function useCheckDeviceType(screenWidth) {
-  const [touchable, setTouchable] = useState(window.matchMedia('(pointer: coarse)').matches);
+  function isTouchDevice() {
+    return (
+      'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+    );
+  }
+  const [touchable, setTouchable] = useState(isTouchDevice);
 
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      setTouchable(true);
-    } else {
-      setTouchable(false);
-    }
+    setTouchable(isTouchDevice());
   }, [screenWidth]);
 
   return touchable;

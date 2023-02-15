@@ -44,7 +44,7 @@
     left: 0px;
     height: 2px;
     width: 30px;
-    background-image: linear-gradient(#8e00ff, #ce03f0);
+    background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
     transition: 500ms;
     border: none;
     padding: 0;
@@ -59,7 +59,7 @@
     right: 30px;
     width: 30px;
     left: 0;
-    background-image: linear-gradient(#8e00ff, #ce03f0);
+    background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
     transition: 300ms;
 }
 .hamburger::after {

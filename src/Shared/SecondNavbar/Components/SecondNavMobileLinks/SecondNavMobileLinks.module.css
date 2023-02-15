@@ -1,0 +1,51 @@
+.navLinkOverFlow {
+    display: flex;
+    width: 65px;
+    flex-direction: column;
+    transition: 300ms;
+}
+.navLinks {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 85px;
+    height: 20px;
+    translate: -50% -10px;
+    border: 1px solid rgba(255, 255, 255, 0.425);
+    padding: 0 5px;
+    overflow-y: hidden;
+    cursor: pointer;
+}
+#zUp {
+    z-index: 3;
+}
+#zDown {
+    z-index: 0;
+}
+#discover {
+    translate: 0 0;
+}
+#browse {
+    translate: 0 -20px;
+}
+#news {
+    translate: 0 -40px;
+}
+
+.navArrow {
+    position: absolute;
+    top: -3px;
+    color: rgba(255, 255, 255, 0.397);
+    rotate: -90deg;
+    left: 70px;
+    height: 20px;
+    width: 20px;
+}
+
+.navLinks p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.589);
+}
+.mobileLinks {
+    z-index: 2;
+}

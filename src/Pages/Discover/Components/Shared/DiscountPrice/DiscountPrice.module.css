@@ -3,11 +3,11 @@
     height: 100%;
     color: rgb(226, 226, 226);
     display: flex;
+    justify-content: space-around;
     align-items: center;
 }
 
 .regular {
     color: rgb(145, 145, 145);
     display: inline-block;
-    margin-right: 10px;
 }

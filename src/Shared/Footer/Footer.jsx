@@ -2,10 +2,10 @@ import styles from './Footer.module.css';
 
 export default function Footer() {
   return (
-    <div id={styles.Footer}>
+    <footer id={styles.Footer}>
       <div className={styles.header}>
         <a href="/">
-          <img src="https://i.ibb.co/sFTf2wp/game-controller-1.png" alt="game-controller-logo" />
+          <img src="./images/game-controller-1.png" alt="game-controller-logo" />
           <h2>Gamology</h2>
         </a>
       </div>
@@ -42,6 +42,6 @@ export default function Footer() {
           </small>
         </p>
       </div>
-    </div>
+    </footer>
   );
 }

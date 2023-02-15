@@ -1,4 +1,4 @@
-.leftPart {
+.FirstNavLinks {
     margin: 0;
     padding: 0;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     list-style: none;
 }
-.leftPart a {
+.FirstNavLinks a {
     margin: 0;
     display: flex;
     align-items: center;
@@ -16,25 +16,34 @@
     text-decoration: none;
     transition: color 200ms;
 }
-.leftPart div:hover a,
+
+#active {
+    cursor: default;
+}
+
 #active a {
     color: #fff;
+    pointer-events: none;
 }
 #active::after {
     bottom: 0px;
+    background-color: rgba(255, 255, 255);
 }
 .navOption {
     cursor: pointer;
     height: 100%;
     width: 100%;
     position: relative;
-    padding: 0 1rem;
     overflow: hidden;
+}
+.navOption a {
+    padding: 0 1rem;
+    transition: color 200ms;
 }
 
 .navOption::after {
     content: '';
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
     width: 100%;
     height: 5px;
     left: 0;
@@ -42,12 +51,15 @@
     transition: bottom 200ms;
     position: absolute;
 }
-
+.navOption:hover a {
+    color: rgba(255, 255, 255, 0.8);
+}
 .navOption:hover::after {
     bottom: 0px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 @media only screen and (max-width: 768px) {
-    .leftPart {
+    .FirstNavLinks {
         display: flex;
         z-index: 1;
         flex-direction: column;

@@ -8,13 +8,13 @@ export default function FirstNavbar() {
   const { screenWidth, touchAble } = useScreenInfo();
 
   return (
-    <div className={styles.FirstNavbar}>
+    <nav className={styles.FirstNavbar}>
       <div className={styles.gamologyLogo}>
         <a href="/">
-          <img src="https://i.ibb.co/sFTf2wp/game-controller-1.png" alt="game controller" />
+          <img src="./images/game-controller-1.png" alt="game controller" />
         </a>
       </div>
-      {screenWidth >= 768 ? (
+      {screenWidth >= 769 ? (
         <div className={styles.navOptions}>
           <FirstNavLinks />
           <NavProfileInfo />
@@ -22,6 +22,6 @@ export default function FirstNavbar() {
       ) : (
         <MobileBugerMenu screenWidth={screenWidth} touchAble={touchAble} />
       )}
-    </div>
+    </nav>
   );
 }

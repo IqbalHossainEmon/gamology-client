@@ -1,0 +1,26 @@
+.shadowPage {
+    width: calc(100vw - 8px);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.425);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#ShadowShow {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+    transition: opacity 300ms;
+}
+#ShadowHide {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms, visibility 0ms 300ms;
+}
+@media (pointer: coarse) {
+    .shadowPage {
+        width: 100vw;
+    }
+}

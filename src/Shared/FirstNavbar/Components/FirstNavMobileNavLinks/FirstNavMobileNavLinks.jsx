@@ -4,7 +4,7 @@ import styles from './FirstNavMobileNavLinks.module.css';
 
 export default function FirstNavMobileNavLinks({ setNavState, navState }) {
   return (
-    <div className={styles.NavLinks} id={navState ? styles.show : ''}>
+    <div className={styles.NavLinks} {...(navState && { id: styles.show })}>
       <FirstNavLinks setNavState={() => setNavState(false)} />
       <NavProfileInfo />
     </div>
