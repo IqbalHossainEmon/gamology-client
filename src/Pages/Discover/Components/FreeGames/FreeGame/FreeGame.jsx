@@ -41,7 +41,7 @@ export default function FreeGame({ data, today, length }) {
 
   return (
     dateState !== -1 && (
-      <div className={styles.freeGame} style={gameWidth}>
+      <div className={[styles.freeGame, 'hover-shadow'].join(' ')} style={gameWidth}>
         <div className={styles.gameHeader}>
           <img style={{ aspectRatio: `1/1.${length}` }} src={data.carouselThumb} alt="" />
           {dateState !== -1 && (
@@ -49,7 +49,7 @@ export default function FreeGame({ data, today, length }) {
               className={
                 dateState === 1
                   ? [styles.common, styles.freeNow].join(' ')
-                  : [styles.common, styles.comming].join(' ')
+                  : [styles.common, styles.coming].join(' ')
               }
             >
               {dateState === 1 ? 'FREE GAME' : 'COMMING SOON'}

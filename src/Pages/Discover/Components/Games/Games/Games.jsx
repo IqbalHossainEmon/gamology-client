@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
+import useElementSize from '../../../../../Hooks/useElementSize';
 import useScreenInfo from '../../../../../Hooks/useScreenInfo';
 import Cards from '../Components/Cards/Cards';
 import CardsHeader from '../Components/CardsHeader/CardsHeader';
@@ -251,9 +252,10 @@ const items = [
 
 export default function Games() {
   const cardsContainer = useRef();
-  const { screenWidth } = useScreenInfo();
+  const screenInfo = useScreenInfo();
   const { initialState, reducer } = useGamesLogics();
   const timerId = useRef();
+  const getElementWidth = useElementSize();
 
   const [{ data, translateStyle, cardActive, cardsWidth, cardOnDeck }, dispatch] = useReducer(
     reducer,
@@ -264,37 +266,28 @@ export default function Games() {
     dispatch({ type: 'fetch', data: items, dataLength: items.length });
   }, []);
 
-  const findCardsContainerWidth = useCallback((element) => {
-    if (element) {
-      return window.getComputedStyle
-        ? parseInt(getComputedStyle(element, null).getPropertyValue('width').slice(0, -2), 10)
-        : element.clientWidth;
-    }
-    return 0;
-  }, []);
-
   useEffect(() => {
     let cardOnOneDeck;
-    if (screenWidth >= 1600) {
+    if (screenInfo.screenWidth >= 1600) {
       cardOnOneDeck = 6;
-    } else if (screenWidth >= 1024 && screenWidth <= 1599) {
+    } else if (screenInfo.screenWidth >= 1024 && screenInfo.screenWidth <= 1599) {
       cardOnOneDeck = 5;
-    } else if (screenWidth >= 769 && screenWidth <= 1023) {
+    } else if (screenInfo.screenWidth >= 769 && screenInfo.screenWidth <= 1023) {
       cardOnOneDeck = 4;
-    } else if (screenWidth >= 592 && screenWidth <= 768) {
+    } else if (screenInfo.screenWidth >= 592 && screenInfo.screenWidth <= 768) {
       cardOnOneDeck = 3;
-    } else if (screenWidth >= 326 && screenWidth <= 591) {
+    } else if (screenInfo.screenWidth >= 326 && screenInfo.screenWidth <= 591) {
       cardOnOneDeck = 2;
-    } else if (screenWidth <= 325) {
+    } else if (screenInfo.screenWidth <= 325) {
       cardOnOneDeck = 1;
     }
 
     dispatch({
       type: 'screenWidthChange',
-      width: findCardsContainerWidth(cardsContainer.current) / cardOnOneDeck,
+      width: getElementWidth(cardsContainer.current, 'width') / cardOnOneDeck,
       cardOnDeck: cardOnOneDeck,
     });
-  }, [findCardsContainerWidth, screenWidth]);
+  }, [screenInfo, getElementWidth]);
 
   const timerFunction = () => {
     timerId.current = setTimeout(() => {

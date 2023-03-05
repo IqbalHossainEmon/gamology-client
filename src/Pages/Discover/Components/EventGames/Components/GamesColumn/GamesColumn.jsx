@@ -5,7 +5,7 @@ export default function GamesColumn({ header, games, border, style, colNum, card
   return (
     <li
       className={
-        colNum === cardPosition ? styles.GameColumn : [styles.GameColumn, styles.Opcity0].join(' ')
+        colNum === cardPosition ? styles.GameColumn : [styles.GameColumn, styles.Opacity0].join(' ')
       }
       style={style}
     >

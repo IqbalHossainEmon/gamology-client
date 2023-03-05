@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import useDropDownHide from '../../../../../Hooks/useDropDownHide';
+import RotateArrow from '../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './SortButtons.module.css';
 
 const links = [
@@ -41,21 +42,24 @@ const links = [
 ];
 
 export default function SortButtons({ state, handleChange }) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState();
   const dropDownRef = useRef();
-  const showMenu = useDropDownHide(setShow);
 
-  const handleClick = () => {
-    setShow((prev) => !prev);
-    showMenu(dropDownRef.current);
-  };
+  const showMenu = useDropDownHide(setShow);
 
   return (
     <div ref={dropDownRef} className={styles.RightSide}>
-      <button onClick={handleClick} className={styles.button} type="button">
-        Show : <span>{state.sortBy}</span>{' '}
-        <div className={styles.downArrow} id={show ? styles.arrowDown : styles.arrowUp}>
-          &#60;
+      <button
+        onClick={() => {
+          showMenu(dropDownRef.current);
+          setShow((prev) => !prev);
+        }}
+        className={styles.button}
+        type="button"
+      >
+        Show : <span className={styles.sortBy}>{state.sortBy}</span>
+        <div className={styles.downArrow}>
+          <RotateArrow state={show} />
         </div>
       </button>
       <div className={styles.sortLists} {...(!show && { hidden: true })}>

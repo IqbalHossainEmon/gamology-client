@@ -1,19 +1,24 @@
 import { useRef, useState } from 'react';
 
 import useDropDownHide from '../../../../Hooks/useDropDownHide';
-import ScreenShadow from '../../../ScreenShadow/ScreenShadow';
-import SecondNavLinks from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
+import RotateArrow from '../../../RotateArrow/RotateArrow';
+import SecondNavLinkLists from '../SecondNavLinkLists/SecondNavLinkLists';
 import styles from './SecondNavMobileLinks.module.css';
 
-export default function SecondNavMobileLinks() {
+export default function SecondNavMobileLinks({ setNavShow }) {
   const [navTextState, setNavTextState] = useState(styles.discover);
-  const [navShow, setNavShow] = useState(false);
-  const element = useRef();
+  const [navMidShow, setNavMidShow] = useState(undefined);
+  const midSliderElement = useRef();
 
-  const showMenu = useDropDownHide(setNavShow);
+  const setShowState = (state) => {
+    setNavShow(state);
+    setNavMidShow(state);
+  };
+
+  const showMenu = useDropDownHide(setShowState);
 
   const handleClick = (no) => {
-    setNavShow(false);
+    setShowState(false);
     if (no === 1) {
       setNavTextState(styles.browse);
     } else if (no === 2) {
@@ -24,32 +29,36 @@ export default function SecondNavMobileLinks() {
   };
 
   return (
-    <>
-      <div ref={element} className={styles.mobileLinks}>
-        <SecondNavLinks
+    <div ref={midSliderElement} className={styles.mobileLinks}>
+      <div
+        style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }}
+        className={styles.navLinksContainer}
+      >
+        <SecondNavLinkLists
+          navMidShow={navMidShow}
           setNavTextState={handleClick}
-          setNavShow={setNavShow}
-          id={navShow ? 'navShow' : 'navHide'}
+          id={navMidShow ? 'navShow' : 'navHide'}
         />
-        <div
-          role="button"
-          tabIndex="0"
-          onClick={() => {
-            setNavShow(true);
-            showMenu(element.current);
-          }}
-          className={styles.navLinks}
-          id={navShow ? styles.zUp : styles.zDown}
-        >
-          <div id={navTextState} className={styles.navLinkOverFlow}>
-            <p>Discover</p>
-            <p>Browse</p>
-            <p>News</p>
-          </div>
-          <div className={styles.navArrow}>&#60;</div>
+      </div>
+      <div
+        role="button"
+        tabIndex="0"
+        onClick={() => {
+          setShowState(true);
+          showMenu(midSliderElement.current);
+        }}
+        className={styles.navLinks}
+        id={navMidShow ? styles.zUp : styles.zDown}
+      >
+        <div id={navTextState} className={styles.navLinkOverFlow}>
+          <p>Discover</p>
+          <p>Browse</p>
+          <p>News</p>
+        </div>
+        <div className={styles.navArrow}>
+          <RotateArrow state={navMidShow} />
         </div>
       </div>
-      <ScreenShadow show={navShow} />
-    </>
+    </div>
   );
 }

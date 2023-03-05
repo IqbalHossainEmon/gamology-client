@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import ArrowButton from '../../../Shared/ArrowButton/ArrowButton';
+import ArrowButton from '../../../../../../Shared/ArrowButton/ArrowButton';
 import styles from './BannerButtons.module.css';
 
 export default function BannerButtons({ handleClick }) {

@@ -3,6 +3,7 @@ const reducer = (state, action) => {
     case 'fetch':
       return { ...state, data: action.data, dataLength: action.dataLength };
     case 'screenWidthChange':
+      // calculate cards depend on screen width
       return {
         ...state,
         cardsWidth: action.width,
@@ -25,6 +26,7 @@ const reducer = (state, action) => {
         extraCard: 0,
       };
     case 'next':
+      // if cards number is not equal to cards showing on one time and there is a reminder, then the reminder will be added with previous number and they added as extra cards.
       return {
         ...state,
         cardActive:
@@ -43,9 +45,13 @@ const reducer = (state, action) => {
                 translate: `${state.cardsWidth * action.nextActiveCard}px`,
                 transitionDuration: '300ms',
               },
-        extraCard: state.dataLength % state.cardOnDeck,
+        extraCard:
+          state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
+            ? state.dataLength % state.cardOnDeck
+            : 0,
       };
     case 'prev':
+      // if previous cards is added as reminder and extra card, then prev button will be move just the extra cards.
       return {
         ...state,
         cardActive: state.extraCard ? state.cardActive + state.extraCard : action.nextActiveCard,
@@ -62,6 +68,7 @@ const reducer = (state, action) => {
         extraCard: 0,
       };
     case 'transitionStop':
+      // set transition 0 because transition happens only when button clicked.
       return {
         ...state,
         translateStyle: { translate: state.translateStyle.translate, transitionDuration: '0ms' },

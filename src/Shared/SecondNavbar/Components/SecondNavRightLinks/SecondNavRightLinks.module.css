@@ -1,7 +1,7 @@
 .links {
     display: flex;
-    margin-right: 1rem;
-    margin-left: auto;
+    position: absolute;
+    right: 1rem;
     list-style: none;
 }
 
@@ -24,7 +24,8 @@
 
 @media only screen and (max-width: 768px) {
     .links {
-        margin-right: 0;
+        z-index: 1;
+        right: 5px;
     }
     .navOption a {
         fill: rgba(255, 255, 255, 0.5);

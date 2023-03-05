@@ -10,13 +10,13 @@
 .SecondNavbar {
     width: 75vw;
     padding: 1rem 0;
+    position: relative;
     max-width: 1600px;
     display: flex;
     align-items: center;
-    height: 50px;
 }
 
-@media (max-width: 1023px) and (min-width: 766px) {
+@media (max-width: 1023px) and (min-width: 769px) {
     .SecondNavbar {
         width: 97vw;
     }
@@ -24,7 +24,9 @@
 
 @media only screen and (max-width: 768px) {
     .SecondNavbar {
-        width: calc(100% - 10px);
-        padding-left: 10px;
+        width: 100%;
+        padding: 0;
+        height: 60px;
+        position: relative;
     }
 }

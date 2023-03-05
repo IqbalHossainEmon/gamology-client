@@ -5,7 +5,6 @@
 
 .category {
     color: rgb(158, 158, 158);
-    margin: 0;
 }
 
 .name {
@@ -23,7 +22,7 @@
 .card {
     width: 100%;
     position: relative;
-    padding: 0 0 30px 0;
+    padding: 0 0 20px 0;
     flex: 0 0 auto;
     cursor: pointer;
     transition: filter 300ms;
@@ -32,13 +31,9 @@
     border-radius: 5px;
 }
 .price {
-    width: calc(100% - 10px);
+    width: 100%;
     position: absolute;
     bottom: 0;
-}
-
-.card:hover {
-    filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
 }
 
 .slider {

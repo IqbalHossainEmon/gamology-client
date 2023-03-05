@@ -1,19 +1,31 @@
+.mobileLinks {
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
 .navLinkOverFlow {
     display: flex;
+    z-index: 5;
     width: 65px;
     flex-direction: column;
     transition: 300ms;
+}
+.navLinksContainer {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    top: 100%;
 }
 .navLinks {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 85px;
+    width: 95px;
     height: 20px;
     translate: -50% -10px;
     border: 1px solid rgba(255, 255, 255, 0.425);
     padding: 0 5px;
-    overflow-y: hidden;
+    overflow: hidden;
     cursor: pointer;
 }
 #zUp {
@@ -34,18 +46,18 @@
 
 .navArrow {
     position: absolute;
-    top: -3px;
-    color: rgba(255, 255, 255, 0.397);
-    rotate: -90deg;
-    left: 70px;
-    height: 20px;
-    width: 20px;
+    top: -2px;
+    right: -2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navArrow svg {
+    width: 24px;
+    height: 24px;
+    scale: 0.59;
 }
 
 .navLinks p {
-    margin: 0;
     color: rgba(255, 255, 255, 0.589);
-}
-.mobileLinks {
-    z-index: 2;
 }

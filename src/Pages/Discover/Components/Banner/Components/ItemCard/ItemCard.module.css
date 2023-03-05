@@ -18,6 +18,9 @@
     translate: calc(200% + 0.5px) calc(320% + 0.5px);
 }
 
+#first:hover {
+    filter: none;
+}
 #three :hover,
 #two :hover,
 #five :hover,
@@ -28,13 +31,12 @@
 .cards {
     position: absolute;
     z-index: 1;
-    transition: translate 300ms cubic-bezier(0.66, 0, 0.11, 0.95);
+    transition: translate 300ms cubic-bezier(0.66, 0, 0.11, 0.95), filter 300ms;
     height: 20%;
     width: 8.4375%;
 }
 
 .cards button {
-    padding: 0;
     border: 0;
     background-color: transparent;
     height: 100%;
@@ -48,33 +50,41 @@
     height: 100%;
 }
 
+.cardNameContainer {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    transition: visibility 0ms 300ms;
+}
+
+#first .cardNameContainer {
+    visibility: visible;
+    transition: visibility 0ms 0ms;
+}
+
 .cardName {
-    margin: 0;
-    padding: 0 10%;
-    background-color: rgba(0, 0, 0, 0.507);
     position: relative;
+    background-color: rgba(0, 0, 0, 0.507);
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -1;
-    visibility: hidden;
-    opacity: 0;
-    translate: -100%;
-    transition: translate 200ms, opacity 200ms, visibility 0s 100ms;
+    translate: calc(-100% + 0.5px) 0px;
+    transition: translate 200ms;
     border-radius: 0 5px 5px 0;
     font-size: 14px;
 }
 
 .cardName p {
-    margin: 0;
+    padding: 0 10px;
 }
 
 #first .cardName {
-    visibility: visible;
-    translate: 0;
-    opacity: 1;
-    transition: translate 200ms 200ms, opacity 200ms 250ms, visibility 0s;
+    translate: 0px 0px;
+    transition: translate 300ms 500ms;
 }
 
 .cardContainer {
@@ -96,8 +106,8 @@
     background-color: rgb(22, 22, 22);
     width: 100%;
     height: 100%;
-    translate: 0 -100%;
-    animation: upToDown 8s linear 500ms 1 forwards normal;
+    translate: 0 calc(-100% + 0.5px);
+    animation: upToDown 8s linear 800ms 1 forwards normal;
 }
 
 #pause {
@@ -113,7 +123,7 @@
 
 @keyframes upToDown {
     0% {
-        translate: 0 -100%;
+        translate: 0 calc(-100% + 0.5px);
     }
 
     100% {

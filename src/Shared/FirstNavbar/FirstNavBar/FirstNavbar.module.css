@@ -1,6 +1,6 @@
 .FirstNavbar {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     background-color: #222222;
 }

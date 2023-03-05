@@ -1,4 +1,4 @@
-import DiscountPriceWithPercent from '../../Pages/Discover/Components/Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
+import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import styles from './Card.module.css';
 
 export default function Card({ cardInfo, cardsWidth, slider }) {
@@ -7,7 +7,7 @@ export default function Card({ cardInfo, cardsWidth, slider }) {
 
   return (
     <li
-      className={`${styles.card} ${slider && styles.slider}`}
+      className={`${styles.card} ${slider && styles.slider} hover-shadow`}
       {...(cardsWidth && { style: { width: `${cardsWidth - 10}px` } })}
     >
       <img className={styles.cardImg} src={carouselThumb} alt={`${name}-cardThum-${id + 1}`} />

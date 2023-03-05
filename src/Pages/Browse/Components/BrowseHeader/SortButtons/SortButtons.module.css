@@ -1,32 +1,29 @@
 .RightSide {
     position: relative;
+    z-index: 1;
 }
 .button {
     background-color: transparent;
     color: rgb(153, 153, 153);
     border: none;
+    display: flex;
     font-size: 20px;
     font-weight: 600;
     font-family: 'Inter';
-    margin-right: 5px;
     position: relative;
-    padding-right: 1.2rem;
     cursor: pointer;
 }
 .button span {
     color: rgb(222, 222, 222);
 }
+.sortBy {
+    margin-left: 5px;
+}
 .downArrow {
-    position: absolute;
-    top: 3px;
-    right: 0;
-    transition: rotate 200ms;
-}
-#arrowDown {
-    rotate: -90deg;
-}
-#arrowUp {
-    rotate: 90deg;
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    scale: 0.6;
 }
 
 .sortLists {
@@ -35,7 +32,6 @@
 }
 
 .sortLists ol {
-    margin: 0;
     background-color: rgba(55, 55, 55, 0.95);
     padding: 5px;
     width: calc(100% - 10px);

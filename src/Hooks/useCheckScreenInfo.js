@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 
 export default function useCheckScreenInfo() {
-  function isTouchDevice() {
-    return (
-      'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
-    );
-  }
+  const isTouchDevice = () =>
+    'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
   const [screenInfo, setScreenInfo] = useState({
     screenWidth: window.innerWidth,
-    touchAble: isTouchDevice,
+    touchAble: isTouchDevice(),
   });
 
   const handleChange = useCallback(() => {
     setScreenInfo({
       screenWidth: window.innerWidth,
-      touchAble: isTouchDevice,
+      touchAble: isTouchDevice(),
     });
   }, []);
 

@@ -1,5 +1,5 @@
 #footer {
-    padding: 3rem 0;
+    padding: 5rem 0;
 }
 .header {
     display: flex;
@@ -15,7 +15,6 @@
 }
 .header h2 {
     position: relative;
-    margin: 0;
     margin-top: -1rem;
     background: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
     background-clip: text;
@@ -45,7 +44,6 @@
     list-style: none;
     display: flex;
     margin-top: 3rem;
-    padding: 0;
 }
 .links li:not(:first-child) {
     margin-left: 2rem;

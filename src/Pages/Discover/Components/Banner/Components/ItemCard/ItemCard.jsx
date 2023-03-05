@@ -39,11 +39,11 @@ export default function ItemCard({ banner, handleClick, cardsPosition, isPause }
   };
 
   return (
-    <li className={styles.cards} id={card.position}>
-      <div className={styles.cardContainer}>
-        <button type="button" onClick={handleCardClick}>
-          <img src={carouselThumb} alt={`${name} card-${id}`} />
-        </button>
+    <li className={[styles.cards, 'hover-shadow'].join(' ')} id={card.position}>
+      <button type="button" onClick={handleCardClick}>
+        <img src={carouselThumb} alt={`${name} card-${id}`} />
+      </button>
+      <div className={styles.cardNameContainer}>
         <div className={styles.cardName}>
           <p>{name}</p>
           {card.active && (

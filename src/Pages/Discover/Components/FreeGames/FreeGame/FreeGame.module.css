@@ -3,9 +3,7 @@
     position: relative;
     transition: filter 300ms;
     flex: 0 1 auto;
-}
-.freeGame:hover {
-    filter: drop-shadow(0px 0px 5px rgba(134, 134, 134, 0.616)) brightness(1.1);
+    margin-top: 20px;
 }
 
 .gameHeader {
@@ -34,7 +32,7 @@
     background-color: rgb(0, 116, 228);
 }
 
-.comming {
+.coming {
     background-color: #000;
 }
 
@@ -52,6 +50,7 @@
 }
 .name {
     font-size: 14px;
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 352px) {

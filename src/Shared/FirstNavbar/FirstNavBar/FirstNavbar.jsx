@@ -5,7 +5,7 @@ import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';
 import styles from './FirstNavbar.module.css';
 
 export default function FirstNavbar() {
-  const { screenWidth, touchAble } = useScreenInfo();
+  const { screenWidth } = useScreenInfo();
 
   return (
     <nav className={styles.FirstNavbar}>
@@ -20,7 +20,7 @@ export default function FirstNavbar() {
           <NavProfileInfo />
         </div>
       ) : (
-        <MobileBugerMenu screenWidth={screenWidth} touchAble={touchAble} />
+        <MobileBugerMenu />
       )}
     </nav>
   );

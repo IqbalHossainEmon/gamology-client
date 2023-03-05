@@ -3,23 +3,30 @@ import useDropDownHide from '../../../../Hooks/useDropDownHide';
 import ScreenShadow from '../../../ScreenShadow/ScreenShadow';
 import styles from './SecondNavSearchField.module.css';
 
-export default function SecondNavSearchField({ screenWidth }) {
+export default function SecondNavSearchField({ screenWidth, setNavShow }) {
   const searchRef = useRef();
   const searchInputRef = useRef();
   const [show, setShow] = useState(false);
 
-  const showMenu = useDropDownHide(setShow);
+  const setShowState = (state) => {
+    if (typeof setNavShow === 'function') {
+      setNavShow(state);
+    }
+    setShow(state);
+  };
+
+  const showMenu = useDropDownHide(setShowState);
 
   const handleBlurEsc = (e) => {
     if (e.key === 'Escape') {
-      setShow(false);
+      setShowState(false);
       searchInputRef.current.blur();
       searchRef.current.removeEventListener('keydown', handleBlurEsc);
     }
   };
 
   const handleSearchClick = () => {
-    setShow(true);
+    setShowState(true);
     showMenu(searchRef.current);
     searchInputRef.current.focus();
     searchRef.current.addEventListener('keydown', handleBlurEsc);

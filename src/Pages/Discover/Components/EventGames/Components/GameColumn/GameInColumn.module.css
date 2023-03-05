@@ -1,13 +1,12 @@
 .GameColumn {
     display: flex;
     transition: background-color 300ms;
-    padding: 0.4rem;
-    margin: 0.3rem 1rem;
+    padding: 5px;
     cursor: pointer;
     justify-content: stretch;
     align-items: stretch;
     align-content: stretch;
-    width: calc(100% - (0.4rem + 2rem));
+    width: 100%;
     aspect-ratio: 2.53/1;
 }
 
@@ -16,6 +15,7 @@
 }
 .gameImage {
     width: 30%;
+    padding: 5px;
 }
 
 .image {
@@ -31,12 +31,14 @@
 .gameDetails {
     width: 70%;
     margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .name {
     font-size: 14px;
     font-weight: 400;
-    margin-bottom: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -47,7 +49,6 @@
 @media only screen and (max-width: 768px) {
     .GameColumn {
         padding: 0.1rem;
-        margin: 0.3rem 0rem 0.3rem 1rem;
     }
 }
 @media only screen and (min-width: 1600px) {

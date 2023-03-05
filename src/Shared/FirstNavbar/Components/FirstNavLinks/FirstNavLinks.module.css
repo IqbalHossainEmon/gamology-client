@@ -1,13 +1,10 @@
 .FirstNavLinks {
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
 }
 .FirstNavLinks a {
-    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;

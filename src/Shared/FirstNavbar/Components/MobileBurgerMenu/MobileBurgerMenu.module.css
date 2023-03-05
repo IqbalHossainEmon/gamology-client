@@ -16,7 +16,7 @@
     width: 80vw;
     height: 100vh;
     border-radius: 0 0 0 0;
-    box-shadow: -20vw 0px 0px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: -20vw 0px 20px 20px rgba(0, 0, 0, 0.5);
     transition: width 300ms, height 300ms, border-radius 200ms 100ms,
         box-shadow 300ms 300ms;
 }
@@ -31,7 +31,6 @@
     height: 22px;
     cursor: pointer;
     border: none;
-    padding: 0;
 }
 .hamburger {
     display: none;
@@ -47,7 +46,6 @@
     background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
     transition: 500ms;
     border: none;
-    padding: 0;
 }
 .hamburger::before,
 .hamburger::after {
