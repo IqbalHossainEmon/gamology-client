@@ -1,67 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-    font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: #181818;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #181818;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #272727;
-    border-radius: 5px;
-    opacity: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #303030;
-    opacity: 0;
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: rgb(114, 114, 114);
+  background-color: #181818;
 }
 
 .margin-right-8px {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .overflow-y-hidden {
-    overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 #root {
-    position: relative;
-    background-color: #181818;
+  position: relative;
+  background-color: #181818;
 
-    color: rgb(222, 222, 222);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  color: rgb(222, 222, 222);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* Common css */
 
-.hover-shadow:hover {
+@media (hover: hover) and (pointer: fine) {
+  .hover-shadow:hover {
     filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #181818;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #272727;
+    border-radius: 5px;
+    opacity: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #303030;
+    opacity: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: rgb(114, 114, 114);
+  }
 }

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import useDropDownHide from '../../../../Hooks/useDropDownHide';
 import RotateArrow from '../../../RotateArrow/RotateArrow';
@@ -7,7 +7,7 @@ import styles from './SecondNavMobileLinks.module.css';
 
 export default function SecondNavMobileLinks({ setNavShow }) {
   const [navTextState, setNavTextState] = useState(styles.discover);
-  const [navMidShow, setNavMidShow] = useState(undefined);
+  const [navMidShow, setNavMidShow] = useState();
   const midSliderElement = useRef();
 
   const setShowState = (state) => {
@@ -15,7 +15,12 @@ export default function SecondNavMobileLinks({ setNavShow }) {
     setNavMidShow(state);
   };
 
-  const showMenu = useDropDownHide(setShowState);
+  const { showMenu, setElement, closeMenu } = useDropDownHide(setShowState);
+
+  useEffect(() => {
+    setElement(midSliderElement.current);
+    return closeMenu;
+  }, [setElement, midSliderElement, closeMenu]);
 
   const handleClick = (no) => {
     setShowState(false);
@@ -44,8 +49,8 @@ export default function SecondNavMobileLinks({ setNavShow }) {
         role="button"
         tabIndex="0"
         onClick={() => {
-          setShowState(true);
-          showMenu(midSliderElement.current);
+          setShowState((prev) => !prev);
+          showMenu();
         }}
         className={styles.navLinks}
         id={navMidShow ? styles.zUp : styles.zDown}

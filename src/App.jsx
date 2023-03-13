@@ -1,4 +1,5 @@
-import withScreenInfoProvider from './HOC/withScreenInfoProvider';
+import { memo } from 'react';
+import withScreenWidthProvider from './HOC/withScreenWidthProvider';
 import Browse from './Pages/Browse/Browse/Browse';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
@@ -17,4 +18,4 @@ function App() {
   );
 }
 
-export default withScreenInfoProvider(App);
+export default withScreenWidthProvider(memo(App));

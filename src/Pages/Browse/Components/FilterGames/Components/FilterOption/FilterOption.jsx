@@ -1,12 +1,14 @@
+import { forwardRef } from 'react';
 import styles from './FilterOption.module.css';
 
-export default function FilterOption({ text, state, setState, border }) {
+function FilterOption({ text, state, setState, border }, ref) {
   return (
     <div
+      ref={ref}
       tabIndex="0"
       role="button"
       onClick={setState}
-      className={`${styles.FilterOption} ${border && styles.borderBot}`}
+      className={`${styles.filterOption} ${border && styles.borderBot} hover-shadow`}
     >
       <p className={styles.text}>{text}</p>
       <div className={styles.toggleButtonContainer}>
@@ -17,3 +19,5 @@ export default function FilterOption({ text, state, setState, border }) {
     </div>
   );
 }
+
+export default forwardRef(FilterOption);

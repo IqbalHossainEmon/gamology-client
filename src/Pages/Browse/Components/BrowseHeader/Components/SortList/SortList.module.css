@@ -1,0 +1,65 @@
+.listContainer {
+  background-color: rgba(55, 55, 55, 0.95);
+  padding: 5px;
+  width: calc(100% - 10px);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.listContainer li {
+  margin-top: 5px;
+}
+.listContainer:last-child li {
+  margin-bottom: 5px;
+}
+
+#active {
+  color: rgba(255, 255, 255, 0.4);
+}
+#active:hover {
+  color: rgba(255, 255, 255, 0.4);
+  cursor: default;
+  text-decoration: none;
+}
+
+.sortButtons {
+  width: 100%;
+  font-family: 'Inter';
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 5px;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  transition: color 200ms;
+}
+.sortButtons:hover {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+}
+@media only screen and (max-width: 768px) {
+  .sortLists ol {
+    width: 100%;
+    margin: 0;
+  }
+  .sortButtons {
+    position: relative;
+  }
+  .sortButtons::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(136, 136, 136);
+  }
+  #active {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  #active:hover {
+    color: rgb(0, 0, 0, 0.9);
+    cursor: default;
+    text-decoration: none;
+  }
+}

@@ -26,8 +26,8 @@ const initialState = {
     controllerSupport: false,
     cloudSaves: false,
     overlay: false,
-    releaseDate: [0, 5000],
-  },
+    releaseDate: [0, 5000]
+  }
 };
 
 const reducer = (state, action) => {
@@ -41,6 +41,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 export default function useBrowseLogics() {
   return { initialState, reducer };
 }

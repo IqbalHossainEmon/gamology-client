@@ -6,7 +6,7 @@ const data = [
   {
     id: 0,
     category: {
-      card: 'Base game',
+      card: 'Base game'
     },
     name: "Marvel's Spider-Man Remastered",
     coverImg: './images/CarouselCoverDesktop/spiderman.png',
@@ -16,13 +16,13 @@ const data = [
     price: 'Comming soon',
     saleTill: [
       [12, 12, 2022],
-      [31, 12, 2025],
-    ],
+      [31, 12, 2025]
+    ]
   },
   {
     id: 1,
     category: {
-      card: 'Base game',
+      card: 'Base game'
     },
     name: 'UNCHARTED™: Legacy of Thieves Collection',
     coverImg: './images/CarouselCoverDesktop/fortnite.png',
@@ -32,13 +32,13 @@ const data = [
     price: 'Free',
     saleTill: [
       [2, 11, 2022],
-      [24, 12, 2025],
-    ],
+      [24, 12, 2025]
+    ]
   },
   {
     id: 2,
     category: {
-      card: 'Base game',
+      card: 'Base game'
     },
     name: 'Fall Guy',
     coverImg: './images/CarouselCoverDesktop/fall-guy.png',
@@ -48,13 +48,13 @@ const data = [
     price: 'Free',
     saleTill: [
       [11, 12, 2024],
-      [15, 12, 2025],
-    ],
+      [15, 12, 2025]
+    ]
   },
   {
     id: 3,
     category: {
-      card: 'Base game',
+      card: 'Base game'
     },
     name: 'Fortnite',
     carouselThumb: './images/CarouselCard/fortnite-carousel-thumb.jpg',
@@ -64,9 +64,9 @@ const data = [
     price: 'Free',
     saleTill: [
       [1, 11, 2024],
-      [23, 12, 2025],
-    ],
-  },
+      [23, 12, 2025]
+    ]
+  }
 ];
 
 export default function FreeGames() {
@@ -76,7 +76,7 @@ export default function FreeGames() {
   const today = useRef([
     date.current.getDate(),
     date.current.getMonth() + 1,
-    date.current.getFullYear(),
+    date.current.getFullYear()
   ]);
 
   return (

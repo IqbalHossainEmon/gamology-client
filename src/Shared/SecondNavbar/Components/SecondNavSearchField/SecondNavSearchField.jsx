@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../Hooks/useDropDownHide';
 import ScreenShadow from '../../../ScreenShadow/ScreenShadow';
 import styles from './SecondNavSearchField.module.css';
@@ -15,7 +15,12 @@ export default function SecondNavSearchField({ screenWidth, setNavShow }) {
     setShow(state);
   };
 
-  const showMenu = useDropDownHide(setShowState);
+  const { showMenu, setElement, closeMenu } = useDropDownHide(setShowState);
+
+  useEffect(() => {
+    setElement(searchRef.current);
+    return closeMenu;
+  }, [setElement, searchRef, closeMenu]);
 
   const handleBlurEsc = (e) => {
     if (e.key === 'Escape') {
@@ -27,7 +32,7 @@ export default function SecondNavSearchField({ screenWidth, setNavShow }) {
 
   const handleSearchClick = () => {
     setShowState(true);
-    showMenu(searchRef.current);
+    showMenu();
     searchInputRef.current.focus();
     searchRef.current.addEventListener('keydown', handleBlurEsc);
   };

@@ -1,20 +1,29 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
+import useBodyOverflowYHidden from './useBodyOverflowYHidden';
 
 const useDropDownHide = (setState) => {
   const element = useRef();
-  const closeMenu = (e) => {
-    if (element.current && !element.current.contains(e.target)) {
-      setState(false);
-      document.removeEventListener('mousedown', closeMenu);
-    }
-  };
+  const { bodyOverflowShow } = useBodyOverflowYHidden();
+  const closeMenu = useCallback(
+    (e) => {
+      if (element.current && e && !element.current.contains(e.target)) {
+        setState(false);
+        document.removeEventListener('mousedown', closeMenu);
+        bodyOverflowShow();
+      }
+    },
+    [bodyOverflowShow, setState]
+  );
 
-  function showMenu(ele) {
+  const setElement = useCallback((ele) => {
     element.current = ele;
-    window.document.addEventListener('mousedown', closeMenu);
-  }
+  }, []);
 
-  return showMenu;
+  const showMenu = useCallback(() => {
+    window.document.addEventListener('mousedown', closeMenu);
+  }, [closeMenu]);
+
+  return { showMenu, setElement, closeMenu };
 };
 
 export default useDropDownHide;

@@ -1,63 +1,64 @@
 .mobileLinks {
-    left: 0;
-    top: 0;
-    z-index: 1;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  user-select: none;
 }
 .navLinkOverFlow {
-    display: flex;
-    z-index: 5;
-    width: 65px;
-    flex-direction: column;
-    transition: 300ms;
+  display: flex;
+  z-index: 5;
+  width: 65px;
+  flex-direction: column;
+  transition: 300ms;
 }
 .navLinksContainer {
-    position: absolute;
-    width: 100%;
-    overflow: hidden;
-    top: 100%;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  top: 100%;
 }
 .navLinks {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 95px;
-    height: 20px;
-    translate: -50% -10px;
-    border: 1px solid rgba(255, 255, 255, 0.425);
-    padding: 0 5px;
-    overflow: hidden;
-    cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 95px;
+  height: 20px;
+  translate: -50% -10px;
+  border: 1px solid rgba(255, 255, 255, 0.425);
+  padding: 0 5px;
+  overflow: hidden;
+  cursor: pointer;
 }
 #zUp {
-    z-index: 3;
+  z-index: 3;
 }
 #zDown {
-    z-index: 0;
+  z-index: 0;
 }
 #discover {
-    translate: 0 0;
+  translate: 0 -1px;
 }
 #browse {
-    translate: 0 -20px;
+  translate: 0 -21px;
 }
 #news {
-    translate: 0 -40px;
+  translate: 0 -41px;
 }
 
 .navArrow {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .navArrow svg {
-    width: 24px;
-    height: 24px;
-    scale: 0.59;
+  width: 24px;
+  height: 24px;
+  scale: 0.59;
 }
 
 .navLinks p {
-    color: rgba(255, 255, 255, 0.589);
+  color: rgba(255, 255, 255, 0.589);
 }

@@ -1,7 +1,7 @@
-import useScreenInfo from '../../Hooks/useScreenInfo';
+import useScreenWidth from '../../Hooks/useScreenWidth';
 
 export default function LinksList({ styles, links, onclick, active }) {
-  const { screenWidth } = useScreenInfo();
+  const screenWidth = useScreenWidth();
   return links.map((link) => (
     <li
       key={link.no}

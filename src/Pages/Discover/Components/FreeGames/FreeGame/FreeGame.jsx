@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
-import useScreenInfo from '../../../../../Hooks/useScreenInfo';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import styles from './FreeGame.module.css';
 
 export default function FreeGame({ data, today, length }) {
   const [dateState, setDateState] = useState(-1);
-  const { screenWidth } = useScreenInfo();
+  const screenWidth = useScreenWidth();
 
   const [gameWidth, setGameWidth] = useState({ width: `${100 / length}%` });
+
+  // get the month name depending on given time
   function getMonthName(monthNumber) {
     const date = new Date();
     date.setMonth(monthNumber - 1);
     return date.toLocaleString('en-US', { month: 'long' });
   }
+
+  // sets cards width depending on screen width
   useEffect(() => {
     if (screenWidth >= 768) {
       setGameWidth({ width: `${100 / length - length + 2}%` });
@@ -22,6 +26,7 @@ export default function FreeGame({ data, today, length }) {
     }
   }, [screenWidth, length]);
 
+  // Finding todays date and comparing the upcoming / expire date and setting styles
   useEffect(() => {
     const todayDate = new Date(`${today[2]}-${today[1]}-${today[0]}`);
     const firstDay = new Date(

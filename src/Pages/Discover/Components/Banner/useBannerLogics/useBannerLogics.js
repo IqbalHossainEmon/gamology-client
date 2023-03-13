@@ -6,14 +6,14 @@ const increaseByOne = (state, fadeIn) => ({
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
     cardPosition > 0 ? cardPosition - 1 : 5 - 1
-  ),
+  )
 });
 const decreaseByOne = (state, fadeIn) => ({
   fadeIn: (fadeIn + (5 - 1)) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
     cardPosition < 5 - 1 ? cardPosition + 1 : 0
-  ),
+  )
 });
 
 // reducer function take's the state and active to return the new state of the items.
@@ -52,35 +52,35 @@ const initialState = {
   active: 0,
   fadeIn: 0,
   fadeOut: null,
-  cardsPosition: [...Array(5).keys()],
+  cardsPosition: [...Array(5).keys()]
 };
 
 // this function just returns every functions.
 export default function useBannerLogics() {
-  const timerId = useRef(undefined);
+  const timerRef = useRef(undefined);
   const timerState = useRef(false);
   const [isPause, setIsPause] = useState(false);
 
   // this function runs the dispatch function and take the start time.
   const run = useCallback(() => {
     timerState.timeStartAt = new Date().getTime();
-    timerId.dispatch({ type: 'next' });
+    timerRef.dispatch({ type: 'next' });
   }, []);
 
   // this function stops the timer;
   const stopTimer = useCallback(() => {
-    if (timerId.current) {
-      clearInterval(timerId.current);
-      timerId.current = undefined;
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = undefined;
     }
   }, []);
 
   // this function starts the timer
   const startTimer = useCallback(() => {
-    if (!timerId.current) {
+    if (!timerRef.current) {
       timerState.timeStartAt = new Date().getTime();
       timerState.currentTotalTime = 9000;
-      timerId.current = setInterval(() => {
+      timerRef.current = setInterval(() => {
         run();
       }, timerState.currentTotalTime);
     }
@@ -90,11 +90,11 @@ export default function useBannerLogics() {
   const pause = useCallback(() => {
     if (!timerState.current) {
       setIsPause(true);
-      if (timerId.current) {
+      if (timerRef.current) {
         stopTimer();
-      } else if (timerId.pauseTimer) {
-        clearTimeout(timerId.pauseTimer);
-        timerId.pauseTimer = undefined;
+      } else if (timerRef.pauseTimer) {
+        clearTimeout(timerRef.pauseTimer);
+        timerRef.pauseTimer = undefined;
       }
       timerState.current = true;
       timerState.remain =
@@ -109,9 +109,9 @@ export default function useBannerLogics() {
       timerState.current = false;
       timerState.timeStartAt = new Date().getTime();
       timerState.currentTotalTime = timerState.remain - 100;
-      timerId.pauseTimer = setTimeout(() => {
-        clearTimeout(timerId.pauseTimer);
-        timerId.pauseTimer = undefined;
+      timerRef.pauseTimer = setTimeout(() => {
+        clearTimeout(timerRef.pauseTimer);
+        timerRef.pauseTimer = undefined;
         run();
         startTimer();
       }, timerState.remain);
@@ -121,8 +121,8 @@ export default function useBannerLogics() {
   // this function start the timer and set all the listeners and functions
   const start = useCallback(
     (dispatch) => {
-      if (!timerId.dispatch) {
-        timerId.dispatch = dispatch;
+      if (!timerRef.dispatch) {
+        timerRef.dispatch = dispatch;
       }
       startTimer(dispatch);
       window.addEventListener('blur', pause);
@@ -134,9 +134,9 @@ export default function useBannerLogics() {
   // this function stops the timer and removes the listeners
   const stop = useCallback(() => {
     stopTimer();
-    if (timerId.pauseTimer) {
-      clearTimeout(timerId.pauseTimer);
-      timerId.pauseTimer = undefined;
+    if (timerRef.pauseTimer) {
+      clearTimeout(timerRef.pauseTimer);
+      timerRef.pauseTimer = undefined;
     }
 
     window.removeEventListener('blur', pause);
@@ -147,9 +147,9 @@ export default function useBannerLogics() {
   const reset = useCallback(() => {
     stopTimer();
     startTimer();
-    if (timerId.pauseTimer) {
-      clearTimeout(timerId.pauseTimer);
-      timerId.pauseTimer = undefined;
+    if (timerRef.pauseTimer) {
+      clearTimeout(timerRef.pauseTimer);
+      timerRef.pauseTimer = undefined;
     }
   }, [startTimer, stopTimer]);
 

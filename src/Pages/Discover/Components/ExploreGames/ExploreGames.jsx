@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import useScreenInfo from '../../../../Hooks/useScreenInfo';
+import useScreenWidth from '../../../../Hooks/useScreenWidth';
 import styles from './ExploreGames.module.css';
 
 const fetched = {
   heading: 'Explore Our Catalog',
   details: 'Browse by genre, features, price, and more to find your next favorite game.',
   backgroundDesktop: './images/hitmanBackgound/hitman.png',
-  backgroundPhone: './images/hitmanBackgound/hitman-mobile.jpg',
+  backgroundPhone: './images/hitmanBackgound/hitman-mobile.jpg'
 };
 
 export default function ExploreGames() {
-  const { screenWidth } = useScreenInfo();
+  const screenWidth = useScreenWidth();
   const [data, setData] = useState({});
 
   useEffect(() => {

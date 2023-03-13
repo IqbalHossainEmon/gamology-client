@@ -1,0 +1,30 @@
+.button {
+    background-color: transparent;
+    color: rgb(153, 153, 153);
+    border: none;
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Inter';
+    position: relative;
+    cursor: pointer;
+}
+.button span {
+    color: rgb(222, 222, 222);
+}
+.sortBy {
+    margin-left: 5px;
+}
+
+.downArrow {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    scale: 0.6;
+}
+
+@media only screen and (max-width: 768px) {
+    .button {
+        display: none;
+    }
+}

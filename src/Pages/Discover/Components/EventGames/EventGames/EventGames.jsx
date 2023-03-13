@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import useScreenInfo from '../../../../../Hooks/useScreenInfo';
+import { useState } from 'react';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import ChangeEventButtons from '../Components/ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../Components/GamesColumn/GamesColumn';
 import styles from './EventGames.module.css';
@@ -9,74 +9,47 @@ const newGames = [
     id: 0,
     name: "Marvel's Spider-Man Remastered",
     carouselThumb: './images/CarouselCard/spiderman-carousel-thumb.png',
-    price: { regular: 59.99, discount: 29.99 },
+    price: { regular: 59.99, discount: 29.99 }
   },
   {
     id: 1,
     name: 'UNCHARTED™: Legacy of Thieves Collection',
     carouselThumb: './images/CarouselCard/fortnite-carousel-thumb.jpg',
-    price: { regular: 49.99, discount: 15.99 },
+    price: { regular: 49.99, discount: 15.99 }
   },
   {
     id: 2,
     name: 'Fall Guy',
     carouselThumb: './images/CarouselCard/fall-guys-carousel-thumb.jpg',
-    price: 59,
+    price: 59
   },
   {
     id: 3,
     name: 'Fortnite',
     carouselThumb: './images/CarouselCard/fortnite-carousel-thumb.jpg',
-    price: 'Free',
+    price: 'Free'
   },
   {
     id: 4,
     name: 'A Plague Tale Requiem',
     carouselThumb: './images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-    price: { regular: 59.99, discount: 29.99 },
-  },
+    price: { regular: 59.99, discount: 29.99 }
+  }
 ];
 
 export default function EventGames() {
-  const { screenWidth, touchAble } = useScreenInfo();
+  const screenWidth = useScreenWidth();
   const [cardPosition, setCardPosition] = useState(0);
-  const [style, setStyle] = useState({ width: `${screenWidth}px` });
-  const [translateStyle, setTranslateStyle] = useState({
-    translate: `-${cardPosition}00%`,
-  });
-
-  useEffect(() => {
-    if (screenWidth < 768) {
-      if (touchAble) {
-        setTranslateStyle({
-          translate: `-${cardPosition}00%`,
-        });
-      } else {
-        setTranslateStyle({
-          translate: `calc(-${cardPosition}00% - ${cardPosition} * 8px )`,
-        });
-      }
-    } else {
-      setTranslateStyle({
-        translate: `0`,
-      });
-    }
-  }, [touchAble, cardPosition, screenWidth]);
-
-  useEffect(() => {
-    if (screenWidth < 768) {
-      setStyle({ width: `${screenWidth}px` });
-    } else {
-      setStyle({ width: `auto` });
-    }
-  }, [screenWidth]);
 
   return (
     <section className={styles.EventGamesContainer}>
-      <ul className={styles.EventGames} style={translateStyle}>
+      <ul
+        className={styles.EventGames}
+        {...(screenWidth < 768 && { style: { translate: `-${cardPosition * screenWidth}px` } })}
+      >
         <GamesColumn
           cardPosition={cardPosition}
-          style={style}
+          screenWidth={screenWidth}
           games={newGames}
           border
           colNum={0}
@@ -84,7 +57,7 @@ export default function EventGames() {
         />
         <GamesColumn
           cardPosition={cardPosition}
-          style={style}
+          screenWidth={screenWidth}
           games={newGames}
           border
           colNum={1}
@@ -92,7 +65,7 @@ export default function EventGames() {
         />
         <GamesColumn
           cardPosition={cardPosition}
-          style={style}
+          screenWidth={screenWidth}
           games={newGames}
           header="Comming Soon"
           colNum={2}

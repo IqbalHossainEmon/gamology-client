@@ -1,28 +1,12 @@
 .RotateArrow {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
+  transition: rotate 150ms;
 }
 
 #arrowDown {
-    animation: UpToDown 150ms ease-in-out 0ms 1 normal forwards;
+  rotate: 0deg;
 }
 #arrowUp {
-    animation: DownToUp 150ms ease-in-out 0ms 1 normal forwards;
-}
-
-@keyframes DownToUp {
-    0% {
-        rotate: 180deg;
-    }
-    100% {
-        rotate: 360deg;
-    }
-}
-@keyframes UpToDown {
-    0% {
-        rotate: 0deg;
-    }
-    100% {
-        rotate: 180deg;
-    }
+  rotate: -180deg;
 }
