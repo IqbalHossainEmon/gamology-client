@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import useFilterSortState from '../../../../../../Hooks/useFilterSortState';
 import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../../Shared/ScreenShadow/ScreenShadow';
+import useFilterSortState from '../../../FilterGames/Components/useFilterSortState/useFilterSortState';
 import CloseButton from '../../../Shared/CloseButton/CloseButton';
 import SortButton from '../SortButton/SortButton';
 import SortList from '../SortList/SortList';
@@ -33,10 +33,12 @@ export default function SortContainer({ state, handleChange }) {
             setShow={setFilterSort}
           />
         )}
-        <div className={styles.sortLists} {...(show && screenWidth > 769 && { hidden: true })}>
-          {screenWidth < 769 && <h2>Sort by</h2>}
-          <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
-        </div>
+        {!show && screenWidth > 769 && (
+          <div className={styles.sortLists}>
+            {screenWidth < 769 && <h2>Sort by</h2>}
+            <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
+          </div>
+        )}
         {screenWidth < 769 && (
           <div className={styles.closeButton}>
             <CloseButton setState={setFilterSort} state="sort" />

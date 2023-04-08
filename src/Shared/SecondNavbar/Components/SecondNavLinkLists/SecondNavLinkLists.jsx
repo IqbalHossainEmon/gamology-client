@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import useElementSize from '../../../../Hooks/useElementSize';
 import LinksList from '../../../LinksList/LinksList';
 import styles from './SecondNavLinkLists.module.css';
 
@@ -15,14 +14,13 @@ const links = [
 
 export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState }) {
   const [style, setStyle] = useState({});
-  const getElementHight = useElementSize();
   const sliderElementRef = useRef();
 
   useEffect(() => {
     if (sliderElementRef) {
-      setStyle({ bottom: `${getElementHight(sliderElementRef.current, 'height')}px` });
+      setStyle({ bottom: `${sliderElementRef.current?.offsetHeight}px` });
     }
-  }, [getElementHight, sliderElementRef]);
+  }, [sliderElementRef]);
 
   return (
     <ul

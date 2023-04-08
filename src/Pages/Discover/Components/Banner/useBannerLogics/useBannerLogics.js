@@ -124,7 +124,7 @@ export default function useBannerLogics() {
       if (!timerRef.dispatch) {
         timerRef.dispatch = dispatch;
       }
-      startTimer(dispatch);
+      startTimer();
       window.addEventListener('blur', pause);
       window.addEventListener('focus', resume);
     },

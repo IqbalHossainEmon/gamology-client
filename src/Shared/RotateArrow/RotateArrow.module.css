@@ -1,6 +1,4 @@
-.RotateArrow {
-  width: 24px;
-  height: 24px;
+.rotateArrow {
   transition: rotate 150ms;
 }
 

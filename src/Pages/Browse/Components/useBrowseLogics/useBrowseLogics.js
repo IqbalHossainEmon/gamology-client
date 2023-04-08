@@ -1,4 +1,5 @@
 const initialState = {
+  items: [],
   NumberOfGames: 'Pc Games / All',
   sortBy: 'New Release',
   filterState: {
@@ -26,17 +27,23 @@ const initialState = {
     controllerSupport: false,
     cloudSaves: false,
     overlay: false,
-    releaseDate: [0, 5000]
-  }
+    releaseDate: [0, 5000],
+    activePage: 1
+  },
+  pageCount: 69,
+  rangeLimits: { price: [0, 269], releaseDate: [1980, new Date().getFullYear()] }
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'sort':
+    case 'fetch':
+      return { ...state, items: action.data };
+    case 'sortChange':
       return { ...state, sortBy: action.value };
     case 'filterChange':
       return { ...state, filterState: action.filter };
-
+    case 'pageChange':
+      return { ...state, filterState: { ...state.filterState, activePage: action.activePage } };
     default:
       return state;
   }

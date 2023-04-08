@@ -1,52 +1,58 @@
-import { useEffect, useState } from 'react';
 import styles from './ItemCard.module.css';
 
 export default function ItemCard({ banner, handleClick, cardsPosition, isPause }) {
   const { carouselThumb, id, name } = banner;
 
-  // this function takes card poistions in the screen and returns a object where cards position styles and fucntion is added as element
+  // this function takes card positions in the screen and returns a object where cards position styles and function is added as element
   const handleCardPosition = (num) => {
     switch (num) {
       case 0:
-        return (prev) => ({ ...prev, position: styles.first, cardChange: undefined, active: true });
+        return styles.first;
       case 1:
-        return { position: styles.two, cardChange: 'next', clickTimes: 1 };
+        return styles.two;
       case 2:
-        return { position: styles.three, cardChange: 'next', clickTimes: 2 };
+        return styles.three;
       case 3:
-        return { position: styles.four, cardChange: 'prev', clickTimes: 2 };
+        return styles.four;
       case 4:
-        return { position: styles.five, cardChange: 'prev', clickTimes: 1 };
+        return styles.five;
       default:
-        return {};
+        return '';
     }
   };
 
-  const [card, setCard] = useState(handleCardPosition(cardsPosition[id]));
+  const handleOnClickParam = (num) => {
+    if (num > 2) {
+      return 'prev';
+    }
+    if (num < 3) {
+      return 'next';
+    }
 
-  useEffect(() => {
-    setCard(handleCardPosition(cardsPosition[id]));
-  }, [cardsPosition, id]);
+    return '';
+  };
 
   const handleCardClick = () => {
-    handleClick({ type: card.cardChange });
-    if (card.clickTimes === 2) {
+    if (cardsPosition[id] === 2 || cardsPosition[id] === 3) {
+      handleClick({ type: handleOnClickParam(cardsPosition[id]) });
       const timerId = setTimeout(() => {
-        handleClick({ type: card.cardChange });
+        handleClick({ type: handleOnClickParam(cardsPosition[id]) });
         clearTimeout(timerId);
       }, 500);
+    } else {
+      handleClick({ type: handleOnClickParam(cardsPosition[id]) });
     }
   };
 
   return (
-    <li className={[styles.cards, 'hover-shadow'].join(' ')} id={card.position}>
-      <button type="button" onClick={handleCardClick}>
+    <li className={`${styles.cards} hover-shadow`} id={handleCardPosition(cardsPosition[id])}>
+      <button type="button" {...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}>
         <img src={carouselThumb} alt={`${name} card-${id}`} />
       </button>
       <div className={styles.cardNameContainer}>
         <div className={styles.cardName}>
           <p>{name}</p>
-          {card.active && (
+          {cardsPosition[id] === 0 && (
             <div className={styles.shadowContainer}>
               <div id={isPause ? styles.pause : styles.play} className={styles.shadow} />
             </div>

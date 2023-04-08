@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import useFilterSortState from '../../../../../Hooks/useFilterSortState';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import CloseButton from '../../Shared/CloseButton/CloseButton';
 import ApplyButton from '../Components/ApplyButton/ApplyButton';
-import FilterOptions from '../Components/FilterOptions/FilterOptions';
+import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
+import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
+
+import FilterOptions from '../Components/FilterOptions/FilterOptions/FilterOptions';
 import styles from './FilterGames.module.css';
 
 const options = [
   {
     id: 0,
+    type: 'dropDown',
     optionList: [
       { id: 0, text: 'Show only discounted', filter: 'showOnlyDiscounted' },
       { id: 1, text: 'Hide DLCs and extras', filter: 'HideDLCsAndExtras' },
@@ -17,6 +20,14 @@ const options = [
   },
   {
     id: 1,
+    type: 'slider',
+    title: 'Price Range',
+    rangeName: 'price',
+    steps: 4
+  },
+  {
+    id: 2,
+    type: 'dropDown',
     title: 'Genres',
     optionList: [
       { id: 0, text: 'Action', filter: 'action' },
@@ -30,7 +41,8 @@ const options = [
     ]
   },
   {
-    id: 2,
+    id: 3,
+    type: 'dropDown',
     title: 'Os',
     optionList: [
       { id: 0, text: 'Windows', filter: 'windows' },
@@ -39,7 +51,8 @@ const options = [
     ]
   },
   {
-    id: 3,
+    id: 4,
+    type: 'dropDown',
     title: 'Features',
     optionList: [
       { id: 0, text: 'Single-player', filter: 'singlePlayer' },
@@ -51,10 +64,16 @@ const options = [
       { id: 6, text: 'Cloud saves', filter: 'cloudSaves' },
       { id: 7, text: 'Overlay', filter: 'overlay' }
     ]
+  },
+  {
+    id: 5,
+    type: 'slider',
+    title: 'Release Date',
+    rangeName: 'releaseDate'
   }
 ];
 
-export default function FilterGames({ filterState, dispatch }) {
+export default function FilterGames({ filterState, dispatch, limits }) {
   const [state, setState] = useState(filterState);
 
   const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
@@ -65,14 +84,27 @@ export default function FilterGames({ filterState, dispatch }) {
   return (
     <aside
       ref={filterSortRef}
-      className={`${styles.FilterGames} ${filter && screenWidth < 769 && styles.hidden}`}
+      className={`${styles.FilterGames} ${
+        filter && screenWidth < 769 ? styles.hidden : styles.show
+      }`}
     >
       <div className={styles.filterContainer}>
         {screenWidth < 769 && <h2>Filters</h2>}
         <div>
-          {options.map((option) => (
-            <FilterOptions key={option.id} options={option} setState={setState} state={state} />
-          ))}
+          {options.map((option) => {
+            if (option.type === 'slider') {
+              return (
+                <FilterRangeOption
+                  key={option.id}
+                  limit={limits[option.rangeName]}
+                  option={option}
+                />
+              );
+            }
+            return (
+              <FilterOptions key={option.id} option={option} setState={setState} state={state} />
+            );
+          })}
         </div>
         <ApplyButton
           setShow={setFilterSort}

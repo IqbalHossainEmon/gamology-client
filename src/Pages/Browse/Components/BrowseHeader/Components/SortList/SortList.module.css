@@ -1,10 +1,13 @@
 .listContainer {
-  background-color: rgba(55, 55, 55, 0.95);
+  background-color: rgba(55, 55, 55);
   padding: 5px;
   width: calc(100% - 10px);
   list-style: none;
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgb(24, 24, 24);
+  animation: FadeIn 200ms ease-in 0s 1 forwards normal;
 }
 .listContainer li {
   margin-top: 5px;
@@ -55,11 +58,20 @@
     background-color: rgb(136, 136, 136);
   }
   #active {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(0, 118, 228, 0.5);
   }
   #active:hover {
-    color: rgb(0, 0, 0, 0.9);
+    color: rgba(0, 118, 228, 0.5);
     cursor: default;
     text-decoration: none;
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

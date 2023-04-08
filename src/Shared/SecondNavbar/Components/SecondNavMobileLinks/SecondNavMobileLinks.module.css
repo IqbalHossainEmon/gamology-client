@@ -47,6 +47,7 @@
 
 .navArrow {
   position: absolute;
+  scale: 0.7;
   top: -2px;
   right: -2px;
   display: flex;
@@ -60,5 +61,5 @@
 }
 
 .navLinks p {
-  color: rgba(255, 255, 255, 0.589);
+  color: rgba(255, 255, 255, 0.6);
 }

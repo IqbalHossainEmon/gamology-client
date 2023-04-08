@@ -21,9 +21,14 @@
     padding: 0;
     transition: translate 300ms;
   }
+
+  .show {
+    translate: 0 0%;
+  }
   .hidden {
     translate: 0 100%;
   }
+
   .filterContainer {
     overflow-y: scroll;
     position: relative;
@@ -31,6 +36,26 @@
     width: 100%;
     padding: 20px 10px;
   }
+
+  .filterContainer::-webkit-scrollbar-track {
+    background: #303030;
+  }
+
+  .filterContainer::-webkit-scrollbar-thumb {
+    background: #414141;
+    border-radius: 5px;
+    opacity: 0;
+  }
+
+  .filterContainer::-webkit-scrollbar-thumb:hover {
+    background: #616161;
+    opacity: 0;
+  }
+
+  .filterContainer::-webkit-scrollbar-thumb:active {
+    background: rgb(114, 114, 114);
+  }
+
   .closeButton {
     position: fixed;
     right: 10px;

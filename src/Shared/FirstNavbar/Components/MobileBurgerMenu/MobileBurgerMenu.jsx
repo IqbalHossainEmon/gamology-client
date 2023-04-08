@@ -4,11 +4,14 @@ import useDropDownHide from '../../../../Hooks/useDropDownHide';
 import FirstNavMobileNavLinks from '../FirstNavMobileNavLinks/FirstNavMobileNavLinks';
 import styles from './MobileBurgerMenu.module.css';
 
-export default function MobileBurgerMenu({ bodyOverflowYHidden }) {
+export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow }) {
   const [navState, setNavState] = useState(false);
   const elementRef = useRef();
 
-  const { showMenu, setElement, closeMenu } = useDropDownHide(setNavState);
+  const { showMenu, setElement, closeMenu } = useDropDownHide((prop) => {
+    setNavState(prop);
+    showBodyOverflow();
+  });
 
   useEffect(() => {
     setElement(elementRef.current);
@@ -17,7 +20,8 @@ export default function MobileBurgerMenu({ bodyOverflowYHidden }) {
   const handleClick = () => {
     setNavState((prev) => !prev);
     showMenu();
-    bodyOverflowYHidden(navState);
+    if (!navState) hideBodyOverflow();
+    else showBodyOverflow();
     document.documentElement.scrollTop = 0;
   };
 

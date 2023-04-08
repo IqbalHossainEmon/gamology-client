@@ -5,8 +5,8 @@ import styles from './ExploreGames.module.css';
 const fetched = {
   heading: 'Explore Our Catalog',
   details: 'Browse by genre, features, price, and more to find your next favorite game.',
-  backgroundDesktop: './images/hitmanBackgound/hitman.png',
-  backgroundPhone: './images/hitmanBackgound/hitman-mobile.jpg'
+  backgroundDesktop: '/src/assets/images/hitmanBackgound/hitman.png',
+  backgroundPhone: '/src/assets/images/hitmanBackgound/hitman-mobile.jpg',
 };
 
 export default function ExploreGames() {

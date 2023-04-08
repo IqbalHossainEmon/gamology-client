@@ -12,7 +12,7 @@
   .sortContainer {
     width: 100%;
     position: fixed;
-    background-color: rgba(55, 55, 55, 0.95);
+    background-color: rgba(55, 55, 55);
     left: 0;
     bottom: 0%;
     z-index: 4;

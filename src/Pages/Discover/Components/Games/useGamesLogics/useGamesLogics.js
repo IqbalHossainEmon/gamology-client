@@ -1,5 +1,4 @@
 import { useCallback, useRef } from 'react';
-import useElementSize from '../../../../../Hooks/useElementSize';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -93,7 +92,6 @@ const initialState = {
 
 export default function useGamesLogics() {
   const referenceRef = useRef();
-  const getElementWidth = useElementSize();
 
   // this function get calls after every change of cards and turns off the transition of translate of the cards.
   const timerFunction = useCallback(() => {
@@ -127,31 +125,28 @@ export default function useGamesLogics() {
   };
 
   // this function checks screen widths and set cards on deck and send it through dispatch.
-  const setCardsOnScreenWidthChange = useCallback(
-    (screenWidth, cardsContainer) => {
-      let cardOnOneDeck;
-      if (screenWidth >= 1600) {
-        cardOnOneDeck = 6;
-      } else if (screenWidth >= 1024 && screenWidth <= 1599) {
-        cardOnOneDeck = 5;
-      } else if (screenWidth >= 769 && screenWidth <= 1023) {
-        cardOnOneDeck = 4;
-      } else if (screenWidth >= 592 && screenWidth <= 768) {
-        cardOnOneDeck = 3;
-      } else if (screenWidth >= 326 && screenWidth <= 591) {
-        cardOnOneDeck = 2;
-      } else if (screenWidth <= 325) {
-        cardOnOneDeck = 1;
-      }
+  const setCardsOnScreenWidthChange = useCallback((screenWidth, cardsContainer) => {
+    let cardOnOneDeck;
+    if (screenWidth >= 1600) {
+      cardOnOneDeck = 6;
+    } else if (screenWidth >= 1024 && screenWidth <= 1599) {
+      cardOnOneDeck = 5;
+    } else if (screenWidth >= 769 && screenWidth <= 1023) {
+      cardOnOneDeck = 4;
+    } else if (screenWidth >= 592 && screenWidth <= 768) {
+      cardOnOneDeck = 3;
+    } else if (screenWidth >= 326 && screenWidth <= 591) {
+      cardOnOneDeck = 2;
+    } else if (screenWidth <= 325) {
+      cardOnOneDeck = 1;
+    }
 
-      referenceRef.dispatch({
-        type: 'screenWidthChange',
-        width: getElementWidth(cardsContainer, 'width') / cardOnOneDeck,
-        cardOnDeck: cardOnOneDeck
-      });
-    },
-    [getElementWidth]
-  );
+    referenceRef.dispatch({
+      type: 'screenWidthChange',
+      width: cardsContainer.offsetWidth / cardOnOneDeck,
+      cardOnDeck: cardOnOneDeck
+    });
+  }, []);
 
   return { initialState, reducer, handleClick, setReference, setCardsOnScreenWidthChange };
 }

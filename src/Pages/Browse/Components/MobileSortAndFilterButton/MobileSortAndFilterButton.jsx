@@ -1,4 +1,4 @@
-import useFilterSortState from '../../../../Hooks/useFilterSortState';
+import useFilterSortState from '../FilterGames/Components/useFilterSortState/useFilterSortState';
 import styles from './MobileSortAndFilterButton.module.css';
 
 export default function MobileSortAndFilterButton() {
@@ -8,7 +8,7 @@ export default function MobileSortAndFilterButton() {
     <div className={styles.buttonPosition}>
       <div className={styles.buttonContainer}>
         <button onClick={() => setFilterSort('sort')} className={styles.sortButton} type="button">
-          <img src="./images/sortButton.png" alt="sort button" />
+          <img src="/src/assets/images/sortButton.png" alt="sort button" />
           <span>Sort</span>
         </button>
         <div className={styles.verticalLine} />
@@ -17,7 +17,7 @@ export default function MobileSortAndFilterButton() {
           className={styles.filterButton}
           type="button"
         >
-          <img src="./images/filterButton.png" alt="filter button" />
+          <img src="/src/assets/images/filterButton.png" alt="filter button" />
           <span>Filter</span>
         </button>
       </div>

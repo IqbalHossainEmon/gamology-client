@@ -6,67 +6,67 @@ const data = [
   {
     id: 0,
     category: {
-      card: 'Base game'
+      card: 'Base game',
     },
     name: "Marvel's Spider-Man Remastered",
-    coverImg: './images/CarouselCoverDesktop/spiderman.png',
-    logoImg: './images/CarouselInfo/spiderman-logo.png',
-    carouselThumb: './images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: './images/CarouselCoverMobile/spider-man-remaster-carousel-mobile.png',
+    coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
+    logoImg: '/src/assets/images/CarouselInfo/spiderman-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/spider-man-remaster-carousel-mobile.png',
     price: 'Comming soon',
     saleTill: [
       [12, 12, 2022],
-      [31, 12, 2025]
-    ]
+      [31, 12, 2025],
+    ],
   },
   {
     id: 1,
     category: {
-      card: 'Base game'
+      card: 'Base game',
     },
     name: 'UNCHARTED™: Legacy of Thieves Collection',
-    coverImg: './images/CarouselCoverDesktop/fortnite.png',
-    logoImg: './images/CarouselInfo/fortnite-logo.png',
-    carouselThumb: './images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile: './images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
+    coverImg: '/src/assets/images/CarouselCoverDesktop/fortnite.png',
+    logoImg: '/src/assets/images/CarouselInfo/fortnite-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
     price: 'Free',
     saleTill: [
       [2, 11, 2022],
-      [24, 12, 2025]
-    ]
+      [24, 12, 2025],
+    ],
   },
   {
     id: 2,
     category: {
-      card: 'Base game'
+      card: 'Base game',
     },
     name: 'Fall Guy',
-    coverImg: './images/CarouselCoverDesktop/fall-guy.png',
-    logoImg: './images/CarouselInfo/fall-guy-logo.png',
-    carouselThumb: './images/CarouselCard/fall-guys-carousel-thumb.jpg',
-    coverMobile: './images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
+    coverImg: '/src/assets/images/CarouselCoverDesktop/fall-guy.png',
+    logoImg: '/src/assets/images/CarouselInfo/fall-guy-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
     price: 'Free',
     saleTill: [
       [11, 12, 2024],
-      [15, 12, 2025]
-    ]
+      [15, 12, 2025],
+    ],
   },
   {
     id: 3,
     category: {
-      card: 'Base game'
+      card: 'Base game',
     },
     name: 'Fortnite',
-    carouselThumb: './images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile: './images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
-    coverImg: './images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
-    logoImg: './images/CarouselInfo/fortnite-carousel-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
+    coverImg: '/src/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    logoImg: '/src/assets/images/CarouselInfo/fortnite-carousel-logo.png',
     price: 'Free',
     saleTill: [
       [1, 11, 2024],
-      [23, 12, 2025]
-    ]
-  }
+      [23, 12, 2025],
+    ],
+  },
 ];
 
 export default function FreeGames() {
@@ -76,13 +76,13 @@ export default function FreeGames() {
   const today = useRef([
     date.current.getDate(),
     date.current.getMonth() + 1,
-    date.current.getFullYear()
+    date.current.getFullYear(),
   ]);
 
   return (
     <section className={styles.freeGames}>
       <div className={styles.header}>
-        <img src="./images/gift.png" alt="gift" />
+        <img src="/src/assets/images/gift.png" alt="gift" />
         <h3>Free games</h3>
       </div>
       <div className={styles.games}>

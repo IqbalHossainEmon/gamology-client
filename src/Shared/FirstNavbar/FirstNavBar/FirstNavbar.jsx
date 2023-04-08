@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useBodyOverflowYHidden from '../../../Hooks/useBodyOverflowYHidden';
+import useChangeBodyOverflow from '../../../Hooks/useChangeBodyOverflow';
 import useScreenWidth from '../../../Hooks/useScreenWidth';
 import FirstNavLinks from '../Components/FirstNavLinks/FirstNavLinks';
 import MobileBurgerMenu from '../Components/MobileBurgerMenu/MobileBurgerMenu';
@@ -8,19 +8,19 @@ import styles from './FirstNavbar.module.css';
 
 export default function FirstNavbar() {
   const screenWidth = useScreenWidth();
-  const { bodyOverflowYHidden, bodyOverflowShow } = useBodyOverflowYHidden();
+  const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
   useEffect(() => {
     if (screenWidth > 768) {
-      bodyOverflowShow();
+      showBodyOverflow();
     }
-  }, [bodyOverflowShow, screenWidth]);
+  }, [showBodyOverflow, screenWidth]);
 
   return (
     <nav className={styles.FirstNavbar}>
       <div className={styles.gamologyLogo}>
         <a href="/">
-          <img src="./images/game-controller-1.png" alt="game controller" />
+          <img src="/src/assets/images/game-controller-1.png" alt="game controller" />
         </a>
       </div>
       {screenWidth > 768 ? (
@@ -29,7 +29,7 @@ export default function FirstNavbar() {
           <NavProfileInfo />
         </div>
       ) : (
-        <MobileBurgerMenu bodyOverflowYHidden={bodyOverflowYHidden} />
+        <MobileBurgerMenu hideBodyOverflow={hideBodyOverflow} showBodyOverflow={showBodyOverflow} />
       )}
     </nav>
   );

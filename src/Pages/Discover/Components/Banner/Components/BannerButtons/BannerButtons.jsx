@@ -1,29 +1,19 @@
-import { useRef } from 'react';
-import ArrowButton from '../../../../../../Shared/ArrowButton/ArrowButton';
+import useHandleDebouncing from '../../../../../../Hooks/useHandleDebouncing';
+import ArrowButton from '../../../Shared/ArrowButton/ArrowButton';
 import styles from './BannerButtons.module.css';
 
 export default function BannerButtons({ handleClick }) {
-  const timeOutRef = useRef(false);
-  // handle multiple click.
-  const handleDebuncingClick = (type) => {
-    if (!timeOutRef.current) {
-      handleClick(type);
-      timeOutRef.current = true;
-      setTimeout(() => {
-        timeOutRef.current = false;
-      }, 400);
-    }
-  };
+  const handleDebouncing = useHandleDebouncing();
   return (
     <>
       <ArrowButton
         name="Next Button"
-        handleClick={() => handleDebuncingClick({ type: 'next' })}
+        handleClick={() => handleDebouncing(() => handleClick({ type: 'next' }))}
         className={[styles.btn, styles.nextBtn].join(' ')}
       />
       <ArrowButton
         name="Previous Button"
-        handleClick={() => handleDebuncingClick({ type: 'prev' })}
+        handleClick={() => handleDebouncing(() => handleClick({ type: 'prev' }))}
         className={[styles.btn, styles.prevBtn].join(' ')}
       />
     </>

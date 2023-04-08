@@ -12,48 +12,48 @@ const items = [
   {
     id: 0,
     name: "Marvel's Spider-Man Remastered",
-    coverImg: './images/CarouselCoverDesktop/spiderman.png',
-    logoImg: './images/CarouselInfo/spiderman-logo.png',
-    carouselThumb: './images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: './images/CarouselCoverMobile/spider-man-remaster-carousel-mobile.png',
-    price: { regular: 59.99, discount: 29.99 }
+    coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
+    logoImg: '/src/assets/images/CarouselInfo/spiderman-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/spider-man-remaster-carousel-mobile.png',
+    price: { regular: 59.99, discount: 29.99 },
   },
   {
     id: 1,
     name: 'UNCHARTED™: Legacy of Thieves Collection',
-    coverImg: './images/CarouselCoverDesktop/fortnite.png',
-    logoImg: './images/CarouselInfo/fortnite-logo.png',
-    carouselThumb: './images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile: './images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
-    price: { regular: 49.99, discount: 15.99 }
+    coverImg: '/src/assets/images/CarouselCoverDesktop/fortnite.png',
+    logoImg: '/src/assets/images/CarouselInfo/fortnite-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
+    price: { regular: 49.99, discount: 15.99 },
   },
   {
     id: 2,
     name: 'Fall Guy',
-    coverImg: './images/CarouselCoverDesktop/fall-guy.png',
-    logoImg: './images/CarouselInfo/fall-guy-logo.png',
-    carouselThumb: './images/CarouselCard/fall-guys-carousel-thumb.jpg',
-    coverMobile: './images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
-    price: 'Free'
+    coverImg: '/src/assets/images/CarouselCoverDesktop/fall-guy.png',
+    logoImg: '/src/assets/images/CarouselInfo/fall-guy-logo.png',
+    carouselThumb: '/src/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
+    price: 'Free',
   },
   {
     id: 3,
     name: 'Fortnite',
-    carouselThumb: './images/CarouselCard/fortnite-carousel-thumb-2.jpg',
-    coverMobile: './images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
-    coverImg: './images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
-    logoImg: './images/CarouselInfo/fortnite-carousel-logo.png',
-    price: 'Free'
+    carouselThumb: '/src/assets/images/CarouselCard/fortnite-carousel-thumb-2.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
+    coverImg: '/src/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    logoImg: '/src/assets/images/CarouselInfo/fortnite-carousel-logo.png',
+    price: 'Free',
   },
   {
     id: 4,
     name: 'A Plague Tale Requiem',
-    logoImg: './images/CarouselInfo/a-plague-tale-requiem-logo.png',
-    coverImg: './images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
-    carouselThumb: './images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-    coverMobile: './images/CarouselCoverMobile/a-plague-tale-requiem-carousel-mobile.jpg',
-    price: 69
-  }
+    logoImg: '/src/assets/images/CarouselInfo/a-plague-tale-requiem-logo.png',
+    coverImg: '/src/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
+    carouselThumb: '/src/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
+    coverMobile: '/src/assets/images/CarouselCoverMobile/a-plague-tale-requiem-carousel-mobile.jpg',
+    price: 69,
+  },
 ];
 
 export default function Banner() {

@@ -1,4 +1,4 @@
-import ArrowButton from '../../../../../../Shared/ArrowButton/ArrowButton';
+import ArrowButton from '../../../Shared/ArrowButton/ArrowButton';
 import styles from './GamesButtons.module.css';
 
 export default function GamesButton({ handleClick, cardActive, length }) {
@@ -12,7 +12,7 @@ export default function GamesButton({ handleClick, cardActive, length }) {
       />
       <ArrowButton
         enable={length === -cardActive}
-        name="Nexdt Button"
+        name="Next Button"
         handleClick={() => handleClick('next')}
         className={[styles.btn, styles.prevBtn].join(' ')}
       />

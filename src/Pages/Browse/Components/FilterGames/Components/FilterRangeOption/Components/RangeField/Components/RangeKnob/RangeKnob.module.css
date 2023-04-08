@@ -1,0 +1,35 @@
+.knobContainer {
+  position: absolute;
+  width: 10%;
+  left: 0;
+  will-change: translate;
+  z-index: 0;
+}
+
+.knop {
+  position: absolute;
+  top: -7.5px;
+  left: -7.5px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  cursor: grab;
+  background-color: rgb(0, 104, 202);
+  user-select: none;
+  transition: scale 200ms, background-color 200ms;
+}
+
+.knop:hover {
+  scale: 1.4;
+}
+
+.knop:active {
+  cursor: grabbing;
+  scale: 1.4;
+  background-color: rgb(0, 71, 138);
+  z-index: 10;
+}
+
+.knobContainer:has(.knop:active) {
+  z-index: 1;
+}

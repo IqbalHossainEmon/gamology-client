@@ -80,14 +80,14 @@
   cursor: pointer;
 }
 
+.disableButton {
+  pointer-events: none;
+}
 @media only screen and (max-width: 768px) {
   .buttonContainer {
     position: fixed;
     bottom: 10px;
     left: 50%;
     translate: -50%;
-  }
-  .disableButton {
-    pointer-events: none;
   }
 }
