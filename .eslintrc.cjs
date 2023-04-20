@@ -23,6 +23,7 @@ module.exports = {
     jest: true,
   },
   rules: {
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
     'react-hooks/rules-of-hooks': 'error',
@@ -35,7 +36,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        trailingComma: 'es5',
+        trailingComma: 'all',
         singleQuote: true,
         printWidth: 100,
         tabWidth: 2,

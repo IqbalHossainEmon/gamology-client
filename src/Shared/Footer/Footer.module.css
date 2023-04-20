@@ -14,6 +14,9 @@
   flex-direction: column;
   align-items: center;
 }
+.header img {
+  width: 50%;
+}
 .header h2 {
   position: relative;
   margin-top: -1rem;

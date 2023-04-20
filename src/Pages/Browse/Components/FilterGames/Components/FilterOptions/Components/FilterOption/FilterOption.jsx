@@ -1,10 +1,8 @@
-import { forwardRef } from 'react';
 import styles from './FilterOption.module.css';
 
-function FilterOption({ text, state, setState, border }, ref) {
+function FilterOption({ text, state, setState, border }) {
   return (
     <div
-      ref={ref}
       tabIndex="0"
       role="button"
       onClick={setState}
@@ -20,4 +18,4 @@ function FilterOption({ text, state, setState, border }, ref) {
   );
 }
 
-export default forwardRef(FilterOption);
+export default FilterOption;

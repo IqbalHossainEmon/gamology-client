@@ -5,15 +5,15 @@ const increaseByOne = (state, fadeIn) => ({
   fadeIn: (fadeIn + 1) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
-    cardPosition > 0 ? cardPosition - 1 : 5 - 1
-  )
+    cardPosition > 0 ? cardPosition - 1 : 5 - 1,
+  ),
 });
 const decreaseByOne = (state, fadeIn) => ({
   fadeIn: (fadeIn + (5 - 1)) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
-    cardPosition < 5 - 1 ? cardPosition + 1 : 0
-  )
+    cardPosition < 5 - 1 ? cardPosition + 1 : 0,
+  ),
 });
 
 // reducer function take's the state and active to return the new state of the items.
@@ -52,7 +52,7 @@ const initialState = {
   active: 0,
   fadeIn: 0,
   fadeOut: null,
-  cardsPosition: [...Array(5).keys()]
+  cardsPosition: [...Array(5).keys()],
 };
 
 // this function just returns every functions.
@@ -128,7 +128,7 @@ export default function useBannerLogics() {
       window.addEventListener('blur', pause);
       window.addEventListener('focus', resume);
     },
-    [pause, resume, startTimer]
+    [pause, resume, startTimer],
   );
 
   // this function stops the timer and removes the listeners

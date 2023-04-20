@@ -257,7 +257,7 @@ export default function Games() {
 
   const [{ data, translateStyle, cardActive, cardsWidth, cardOnDeck }, dispatch] = useReducer(
     reducer,
-    initialState
+    initialState,
   );
 
   useEffect(() => {

@@ -5,27 +5,23 @@ export default function Footer() {
     <footer id={styles.footer}>
       <div className={styles.header}>
         <a href="/">
-          <img src="/src/assets/images/game-controller-1.png" alt="game-controller-logo" />
+          <img src="/src/assets/images/game-controller.png" alt="game-controller-logo" />
           <h2>Gamology</h2>
         </a>
       </div>
       <div className={styles.linkContainer}>
         <ol className={styles.links}>
-          <li>
-            <a href="#pp">Privacy Policy</a>
-          </li>
-          <li>
-            <a href="#cp">Cookie Policy</a>
-          </li>
-          <li>
-            <a href="#tos">Terms of Service</a>
-          </li>
-          <li>
-            <a href="#IC">IR Contacts</a>
-          </li>
-          <li>
-            <a href="#IS">Information Security</a>
-          </li>
+          {[
+            { text: 'Privacy Policy', link: 'privacyPolicy' },
+            { text: 'Cookie Policy', link: 'cookiePolicy' },
+            { text: 'Terms of Service', link: 'termsOfService' },
+            { text: 'IR Contacts', link: 'IRContacts' },
+            { text: 'Information Security', link: 'informationSecurity' },
+          ].map((link) => (
+            <li key={link.link}>
+              <a href={link.link}>{link.text}</a>
+            </li>
+          ))}
         </ol>
       </div>
       <div className={styles.description}>

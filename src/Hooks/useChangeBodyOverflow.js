@@ -1,10 +1,13 @@
 import { useCallback, useRef } from 'react';
+import useIsTouchAble from './useIsTouchable';
 
 export default function useChangeBodyOverflow() {
   const touchAble = useRef();
+
+  const isTouchable = useIsTouchAble();
+
   const hideBodyOverflow = useCallback(() => {
-    touchAble.current =
-      'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    touchAble.current = isTouchable();
 
     if (
       !touchAble.current &&
@@ -16,7 +19,7 @@ export default function useChangeBodyOverflow() {
     } else if (touchAble.current) {
       document.body.classList.add('overflow-y-hidden');
     }
-  }, []);
+  }, [isTouchable]);
 
   const showBodyOverflow = useCallback(() => {
     if (document.getElementById('root').classList.contains('margin-right-8px')) {

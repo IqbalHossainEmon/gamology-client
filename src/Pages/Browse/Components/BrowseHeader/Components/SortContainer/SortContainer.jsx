@@ -33,9 +33,14 @@ export default function SortContainer({ state, handleChange }) {
             setShow={setFilterSort}
           />
         )}
-        {!show && screenWidth > 769 && (
+        {!show && screenWidth > 768 && (
           <div className={styles.sortLists}>
-            {screenWidth < 769 && <h2>Sort by</h2>}
+            <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
+          </div>
+        )}
+        {screenWidth < 769 && (
+          <div className={styles.sortLists}>
+            <h2>Sort by</h2>
             <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
           </div>
         )}

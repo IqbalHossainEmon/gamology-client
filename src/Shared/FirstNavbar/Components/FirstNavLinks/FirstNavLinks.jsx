@@ -5,10 +5,10 @@ const links = [
   {
     no: 0,
     name: 'Store',
-    URL: '#store'
+    URL: '#store',
   },
   { no: 1, name: 'FAQ', URL: '#faq' },
-  { no: 2, name: 'Help', URL: '#Help' }
+  { no: 2, name: 'Help', URL: '#Help' },
 ];
 
 export default function FirstNavLinks({ setNavState }) {

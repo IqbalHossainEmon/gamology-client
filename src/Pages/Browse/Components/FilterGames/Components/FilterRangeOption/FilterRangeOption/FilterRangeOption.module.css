@@ -3,6 +3,12 @@
   margin-bottom: 3rem;
 }
 
+.filterRange[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
+}
+
 .downArrow {
   position: absolute;
   width: 23px;

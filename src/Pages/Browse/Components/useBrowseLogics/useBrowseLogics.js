@@ -28,10 +28,13 @@ const initialState = {
     cloudSaves: false,
     overlay: false,
     releaseDate: [0, 5000],
-    activePage: 1
   },
+  activePage: 1,
   pageCount: 69,
-  rangeLimits: { price: [0, 269], releaseDate: [1980, new Date().getFullYear()] }
+  rangeLimits: {
+    price: { lower: 0, higher: 148 },
+    releaseDate: { lower: 2023, higher: new Date().getFullYear() },
+  },
 };
 
 const reducer = (state, action) => {
@@ -43,7 +46,7 @@ const reducer = (state, action) => {
     case 'filterChange':
       return { ...state, filterState: action.filter };
     case 'pageChange':
-      return { ...state, filterState: { ...state.filterState, activePage: action.activePage } };
+      return { ...state, activePage: action.activePage };
     default:
       return state;
   }

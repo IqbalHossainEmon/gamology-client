@@ -23,9 +23,9 @@ const reducer = (state, action) => {
             state.cardActive % action.cardOnDeck !== 0
               ? `${action.width * (state.cardActive - (state.cardActive % action.cardOnDeck))}px`
               : `${action.width * state.cardActive}px`,
-          transitionDuration: '0ms'
+          transitionDuration: '0ms',
         },
-        extraCard: 0
+        extraCard: 0,
       };
     case 'next':
       // if cards number is not equal to cards showing on one time and there is a reminder, then the reminder will be added with previous number and they added as extra cards.
@@ -41,16 +41,16 @@ const reducer = (state, action) => {
                 translate: `${
                   state.cardsWidth * (state.cardActive - (state.dataLength % state.cardOnDeck))
                 }px`,
-                transitionDuration: '300ms'
+                transitionDuration: '300ms',
               }
             : {
                 translate: `${state.cardsWidth * action.nextActiveCard}px`,
-                transitionDuration: '300ms'
+                transitionDuration: '300ms',
               },
         extraCard:
           state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
             ? state.dataLength % state.cardOnDeck
-            : 0
+            : 0,
       };
     case 'prev':
       // if previous cards is added as reminder and extra card, then prev button will be move just the extra cards.
@@ -60,20 +60,20 @@ const reducer = (state, action) => {
         translateStyle: state.extraCard
           ? {
               translate: `${state.cardsWidth * (state.cardActive + state.extraCard)}px`,
-              transitionDuration: '300ms'
+              transitionDuration: '300ms',
             }
           : {
               translate: `${state.cardsWidth * action.nextActiveCard}px`,
-              transitionDuration: '300ms'
+              transitionDuration: '300ms',
             },
 
-        extraCard: 0
+        extraCard: 0,
       };
     case 'transitionStop':
       // set transition 0 because transition happens only when button clicked.
       return {
         ...state,
-        translateStyle: { translate: state.translateStyle.translate, transitionDuration: '0ms' }
+        translateStyle: { translate: state.translateStyle.translate, transitionDuration: '0ms' },
       };
     default:
       return state;
@@ -87,7 +87,7 @@ const initialState = {
   cardActive: 0,
   cardOnDeck: 0,
   translateStyle: { translate: '0px', transitionDuration: '0ms' },
-  extraCard: 0
+  extraCard: 0,
 };
 
 export default function useGamesLogics() {
@@ -144,7 +144,7 @@ export default function useGamesLogics() {
     referenceRef.dispatch({
       type: 'screenWidthChange',
       width: cardsContainer.offsetWidth / cardOnOneDeck,
-      cardOnDeck: cardOnOneDeck
+      cardOnDeck: cardOnOneDeck,
     });
   }, []);
 

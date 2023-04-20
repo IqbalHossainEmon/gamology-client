@@ -1,12 +1,30 @@
 import RangeInputField from '../Components/RangeInputField/RangeInputField';
 import styles from './RangeInput.module.css';
 
-export default function RangeInput({ value, setValue, limit }) {
+export default function RangeInput({ value, limit, everyStep, float }) {
+  const handleSetValue = (val, knob) => {
+    console.log(typeof val, knob);
+  };
+
   return (
     <div className={styles.rangeInput}>
-      <RangeInputField state={value} setState={setValue} knob="knob1" limit={limit} />
+      <RangeInputField
+        float={float}
+        everyStep={everyStep}
+        handleSetValue={handleSetValue}
+        state={value}
+        knob="knob1"
+        limit={limit}
+      />
       <span className={styles.minus} />
-      <RangeInputField state={value} setState={setValue} knob="knob2" limit={limit} />
+      <RangeInputField
+        float={float}
+        everyStep={everyStep}
+        handleSetValue={handleSetValue}
+        state={value}
+        knob="knob2"
+        limit={limit}
+      />
     </div>
   );
 }

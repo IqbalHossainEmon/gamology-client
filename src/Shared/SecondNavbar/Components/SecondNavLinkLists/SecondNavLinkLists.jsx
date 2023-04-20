@@ -6,10 +6,10 @@ const links = [
   {
     no: 0,
     name: 'Discover',
-    URL: '#discover'
+    URL: '#discover',
   },
   { no: 1, name: 'Browse', URL: '#browse' },
-  { no: 2, name: 'News', URL: '#news' }
+  { no: 2, name: 'News', URL: '#news' },
 ];
 
 export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState }) {

@@ -30,10 +30,10 @@ export default function FreeGame({ data, today, length }) {
   useEffect(() => {
     const todayDate = new Date(`${today[2]}-${today[1]}-${today[0]}`);
     const firstDay = new Date(
-      `${data.saleTill[0][2]}-${data.saleTill[0][1]}-${data.saleTill[0][0]}`
+      `${data.saleTill[0][2]}-${data.saleTill[0][1]}-${data.saleTill[0][0]}`,
     );
     const lastDay = new Date(
-      `${data.saleTill[1][2]}-${data.saleTill[1][1]}-${data.saleTill[1][0]}`
+      `${data.saleTill[1][2]}-${data.saleTill[1][1]}-${data.saleTill[1][0]}`,
     );
     if (todayDate < firstDay) {
       setDateState(0);

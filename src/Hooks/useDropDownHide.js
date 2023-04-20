@@ -10,7 +10,7 @@ const useDropDownHide = (setState) => {
         document.removeEventListener('mousedown', closeMenu);
       }
     },
-    [setState]
+    [setState],
   );
 
   const setElement = useCallback((ele) => {

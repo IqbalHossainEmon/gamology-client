@@ -3,6 +3,7 @@
   width: 10%;
   left: 0;
   will-change: translate;
+  /* transition: translate linear 70ms; */
   z-index: 0;
 }
 
@@ -15,6 +16,7 @@
   border-radius: 50%;
   cursor: grab;
   background-color: rgb(0, 104, 202);
+  box-shadow: 0 0 3px 1px rgb(0, 0, 0);
   user-select: none;
   transition: scale 200ms, background-color 200ms;
 }
@@ -27,9 +29,9 @@
   cursor: grabbing;
   scale: 1.4;
   background-color: rgb(0, 71, 138);
-  z-index: 10;
 }
 
-.knobContainer:has(.knop:active) {
+.knobContainer:has(.knop:active),
+.knobContainer:has(.knop:hover) {
   z-index: 1;
 }

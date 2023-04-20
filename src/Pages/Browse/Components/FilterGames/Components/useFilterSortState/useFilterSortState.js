@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import {
   FilterSortContext,
   FilterSortRefContext,
-  SetFilterSortContext
+  SetFilterSortContext,
 } from '../../../../../../Contexts/FilterSortContext';
 
 const useFilterSortState = () => {

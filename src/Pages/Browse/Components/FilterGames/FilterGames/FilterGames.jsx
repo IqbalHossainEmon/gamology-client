@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import CloseButton from '../../Shared/CloseButton/CloseButton';
-import ApplyButton from '../Components/ApplyButton/ApplyButton';
-import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
 
-import FilterOptions from '../Components/FilterOptions/FilterOptions/FilterOptions';
+import ApplyButton from '../Components/ApplyButton/ApplyButton';
+import FilterOptionList from '../Components/FilterOptionList/FilterOptionList';
 import styles from './FilterGames.module.css';
 
 const options = [
@@ -15,15 +14,16 @@ const options = [
     optionList: [
       { id: 0, text: 'Show only discounted', filter: 'showOnlyDiscounted' },
       { id: 1, text: 'Hide DLCs and extras', filter: 'HideDLCsAndExtras' },
-      { id: 2, text: 'Hide all owned products', filter: 'hideAllOwnedProducts' }
-    ]
+      { id: 2, text: 'Hide all owned products', filter: 'hideAllOwnedProducts' },
+    ],
   },
   {
     id: 1,
     type: 'slider',
     title: 'Price Range',
     rangeName: 'price',
-    steps: 4
+    steps: 5,
+    float: true,
   },
   {
     id: 2,
@@ -37,8 +37,8 @@ const options = [
       { id: 4, text: 'Role-playing', filter: 'rolePlaying' },
       { id: 5, text: 'Sports', filter: 'sports' },
       { id: 6, text: 'Strategy', filter: 'strategy' },
-      { id: 7, text: 'Simulation', filter: 'simulation' }
-    ]
+      { id: 7, text: 'Simulation', filter: 'simulation' },
+    ],
   },
   {
     id: 3,
@@ -47,8 +47,8 @@ const options = [
     optionList: [
       { id: 0, text: 'Windows', filter: 'windows' },
       { id: 1, text: 'macOS', filter: 'macOS' },
-      { id: 2, text: 'Linux', filter: 'linux' }
-    ]
+      { id: 2, text: 'Linux', filter: 'linux' },
+    ],
   },
   {
     id: 4,
@@ -62,15 +62,17 @@ const options = [
       { id: 4, text: 'Leader Boards', filter: 'leaderBoards' },
       { id: 5, text: 'Controller support', filter: 'controllerSupport' },
       { id: 6, text: 'Cloud saves', filter: 'cloudSaves' },
-      { id: 7, text: 'Overlay', filter: 'overlay' }
-    ]
+      { id: 7, text: 'Overlay', filter: 'overlay' },
+    ],
   },
   {
     id: 5,
     type: 'slider',
     title: 'Release Date',
-    rangeName: 'releaseDate'
-  }
+    rangeName: 'releaseDate',
+    steps: 1,
+    float: false,
+  },
 ];
 
 export default function FilterGames({ filterState, dispatch, limits }) {
@@ -90,22 +92,7 @@ export default function FilterGames({ filterState, dispatch, limits }) {
     >
       <div className={styles.filterContainer}>
         {screenWidth < 769 && <h2>Filters</h2>}
-        <div>
-          {options.map((option) => {
-            if (option.type === 'slider') {
-              return (
-                <FilterRangeOption
-                  key={option.id}
-                  limit={limits[option.rangeName]}
-                  option={option}
-                />
-              );
-            }
-            return (
-              <FilterOptions key={option.id} option={option} setState={setState} state={state} />
-            );
-          })}
-        </div>
+        <FilterOptionList options={options} state={state} setState={setState} limits={limits} />
         <ApplyButton
           setShow={setFilterSort}
           dispatch={dispatch}

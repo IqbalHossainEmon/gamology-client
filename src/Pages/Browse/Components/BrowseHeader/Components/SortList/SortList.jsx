@@ -4,38 +4,38 @@ const links = [
   {
     no: 0,
     name: 'New Release',
-    URL: '#new'
+    URL: '#new',
   },
   {
     no: 1,
     name: 'Comming Soon',
-    URL: '#comming'
+    URL: '#comming',
   },
   {
     no: 2,
     name: 'Rating',
-    URL: '#rating'
+    URL: '#rating',
   },
   {
     no: 3,
     name: 'Discount',
-    URL: '#discount'
+    URL: '#discount',
   },
   {
     no: 4,
     name: 'A → Z',
-    URL: '#atoz'
+    URL: '#atoz',
   },
   {
     no: 5,
     name: 'Price (High → Low)',
-    URL: '#pricehtl'
+    URL: '#pricehtl',
   },
   {
     no: 6,
     name: 'Price (Low → High)',
-    URL: '#pricelth'
-  }
+    URL: '#pricelth',
+  },
 ];
 
 export default function SortList({ state, setShow, handleChange }) {
@@ -50,7 +50,7 @@ export default function SortList({ state, setShow, handleChange }) {
                   onClick: () => {
                     setShow('sort');
                     handleChange({ type: 'sortChange', value: link.name, URL: link.URL });
-                  }
+                  },
                 })}
             className={styles.sortButtons}
             type="button"

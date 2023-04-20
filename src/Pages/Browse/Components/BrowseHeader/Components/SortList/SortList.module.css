@@ -6,9 +6,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgb(24, 24, 24);
   animation: FadeIn 200ms ease-in 0s 1 forwards normal;
 }
+
 .listContainer li {
   margin-top: 5px;
 }
@@ -40,6 +40,13 @@
   color: rgba(255, 255, 255, 0.9);
   text-decoration: underline;
 }
+
+@media only screen and (min-width: 769px) {
+  .listContainer {
+    box-shadow: 0 0 10px 0 rgb(24, 24, 24);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .sortLists ol {
     width: 100%;

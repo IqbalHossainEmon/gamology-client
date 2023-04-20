@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   FilterSortContext,
   FilterSortRefContext,
-  SetFilterSortContext
+  SetFilterSortContext,
 } from '../Contexts/FilterSortContext';
 import useChangeBodyOverflow from '../Hooks/useChangeBodyOverflow';
 import useDropDownHide from '../Hooks/useDropDownHide';
@@ -12,7 +12,7 @@ const withFilterSortProvider = (Component) =>
   function FilterSortProvider() {
     const [filterSortState, setFilterSortState] = useState({
       filter: true,
-      sort: true
+      sort: true,
     });
 
     const filterSortRef = useRef();
@@ -42,7 +42,7 @@ const withFilterSortProvider = (Component) =>
             }
             return {
               filter: !prev.filter,
-              sort: true
+              sort: true,
             };
           });
         } else if (prop === 'sort') {
@@ -60,7 +60,7 @@ const withFilterSortProvider = (Component) =>
           setFilterSortState({ sort: true, filter: true });
         }
       },
-      [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu]
+      [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu],
     );
 
     return (

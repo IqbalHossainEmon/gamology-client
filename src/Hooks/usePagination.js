@@ -2,9 +2,7 @@ import { useMemo } from 'react';
 
 export const DOTS = '...';
 
-const range = (start, end) => {
-  return Array.from({ length: end - start + 1 }, (_, i) => i + start);
-};
+const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => i + start);
 
 export default function usePagination(totalPage, activePage, siblingCount = 1) {
   const paginationRange = useMemo(() => {
