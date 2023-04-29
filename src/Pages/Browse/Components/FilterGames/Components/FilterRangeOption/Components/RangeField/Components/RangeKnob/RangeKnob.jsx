@@ -2,42 +2,32 @@ import { useCallback, useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({ state, setState, pathEleRef, name, everyStep = 0 }) {
+function RangeKnob({ state, setState, pathEleRef, name, everyStep = 0, handleSetValue }) {
   const stateRef = useRef(state);
   stateRef.current = state;
 
-  /*   const everyStep = useRef();
-
-  useEffect(() => {
-    if (Array.isArray(limit)) {
-      everyStep.current = 1000 / Math.floor((limit[1] - limit[0]) / steps);
-    }
-  }, [ steps]); */
-
   const handleMove = useCallback(
     (e) => {
-      e.preventDefault();
+      const cursorInEle = e?.touches
+        ? e.touches[0].pageX - pathEleRef.offsetLeft
+        : e.pageX - pathEleRef.offsetLeft;
 
-      const cursorInEle = e.pageX - pathEleRef.offsetLeft;
+      const cursorInPercent = (cursorInEle / pathEleRef.width) * 100;
 
-      const pointerLeftStep =
-        Math.round(((cursorInEle / pathEleRef.width) * 1000) / everyStep.current) *
-        everyStep.current;
+      const pointerLeftStep = Math.round(cursorInPercent / everyStep.current) * everyStep.current;
 
       const pointerRightStep = pointerLeftStep + everyStep.current;
 
       if (cursorInEle >= 0 && cursorInEle <= pathEleRef.width) {
         if (
-          (cursorInEle / pathEleRef.width) * 1000 - pointerLeftStep <
-            pointerRightStep - (cursorInEle / pathEleRef.width) * 1000 &&
+          cursorInPercent - pointerLeftStep < pointerRightStep - cursorInPercent &&
           stateRef.current[name] !== pointerLeftStep
         ) {
           setState((prev) => ({ ...prev, [name]: pointerLeftStep }));
           return;
         }
         if (
-          (cursorInEle / pathEleRef.width) * 1000 - pointerLeftStep >
-            pointerRightStep - (cursorInEle / pathEleRef.width) * 1000 &&
+          cursorInPercent - pointerLeftStep > pointerRightStep - cursorInPercent &&
           stateRef.current[name] !== pointerRightStep
         ) {
           setState((prev) => ({ ...prev, [name]: pointerRightStep }));
@@ -47,17 +37,24 @@ function RangeKnob({ state, setState, pathEleRef, name, everyStep = 0 }) {
       if (cursorInEle < 0 && stateRef.current[name] !== 0) {
         setState((prev) => ({ ...prev, [name]: 0 }));
       }
-      if (cursorInEle > pathEleRef.width && stateRef.current[name] !== 1000) {
-        setState((prev) => ({ ...prev, [name]: 1000 }));
+      if (cursorInEle > pathEleRef.width && stateRef.current[name] !== 100) {
+        setState((prev) => ({ ...prev, [name]: 100 }));
       }
     },
     [everyStep, name, pathEleRef, setState],
   );
 
-  const onStart = useDragStartStop(handleMove);
+  const onStart = useDragStartStop(handleMove, handleSetValue);
 
   return (
-    <div className={styles.knobContainer} style={{ translate: `${state[name]}%` }}>
+    <div
+      className={styles.knobContainer}
+      style={
+        state.transition
+          ? { translate: `${state[name]}%`, transition: 'translate linear 200ms' }
+          : { translate: `${state[name]}%` }
+      }
+    >
       <div
         role="button"
         onTouchStart={onStart}

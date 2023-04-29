@@ -23,7 +23,7 @@ const options = [
     title: 'Price Range',
     rangeName: 'price',
     steps: 5,
-    float: true,
+    float: 2,
   },
   {
     id: 2,
@@ -71,7 +71,7 @@ const options = [
     title: 'Release Date',
     rangeName: 'releaseDate',
     steps: 1,
-    float: false,
+    float: 0,
   },
 ];
 

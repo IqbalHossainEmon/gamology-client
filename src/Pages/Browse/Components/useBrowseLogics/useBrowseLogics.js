@@ -6,7 +6,7 @@ const initialState = {
     showOnlyDiscounted: false,
     HideDLCsAndExtras: false,
     hideAllOwnedProducts: false,
-    priceRange: [0, 5000],
+    price: { lower: 7.35, higher: 148.18 },
     ShowOnlyFreeGames: false,
     action: false,
     adventure: false,
@@ -27,13 +27,13 @@ const initialState = {
     controllerSupport: false,
     cloudSaves: false,
     overlay: false,
-    releaseDate: [0, 5000],
+    releaseDate: { lower: 1980, higher: new Date().getFullYear() },
   },
   activePage: 1,
   pageCount: 69,
   rangeLimits: {
-    price: { lower: 0, higher: 148 },
-    releaseDate: { lower: 2023, higher: new Date().getFullYear() },
+    price: { lower: 7.35, higher: 148.18 },
+    releaseDate: { lower: 1980, higher: new Date().getFullYear() },
   },
 };
 

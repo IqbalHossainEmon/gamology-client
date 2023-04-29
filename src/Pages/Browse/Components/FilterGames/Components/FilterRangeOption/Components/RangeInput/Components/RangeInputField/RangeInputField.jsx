@@ -1,41 +1,78 @@
 import { useEffect, useState } from 'react';
 import styles from './RangeInputField.module.css';
 
-export default function RangeInputField({ state, limit, knob, handleSetValue, everyStep, float }) {
+export default function RangeInputField({
+  state,
+  limit,
+  knob,
+  handleSetValue,
+  everyStep = 1,
+  float,
+  step = 1,
+  lowerLim,
+  setMainValue,
+}) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     const { knob1, knob2 } = state;
 
-    const { higher, lower } = limit;
-
-    console.log(everyStep);
+    const { lower, higher } = limit;
 
     let val;
 
     if (knob === 'knob2') {
-      if (knob1 === 1000 || knob2 === 1000) {
-        val = higher;
-      } else if (knob1 <= knob2) {
-        val = (knob2 / 1000) * higher;
+      if (knob1 <= knob2) {
+        if (knob2 === 100) {
+          val = higher;
+        } else if (knob2 === 0) {
+          val = lower;
+        } else {
+          val = everyStep * knob2 + lowerLim;
+        }
       } else if (knob1 > knob2) {
-        val = (knob1 / 1000) * higher;
+        if (knob1 === 100) {
+          val = higher;
+        } else if (knob1 === 0) {
+          val = lower;
+        } else {
+          val = everyStep * knob1 + lowerLim;
+        }
       }
     } else if (knob === 'knob1') {
-      if (knob1 === 0 || knob2 === 0) {
-        val = lower;
-      } else if (knob2 >= knob1) {
-        val = (knob1 / 1000) * higher;
+      if (knob2 >= knob1) {
+        if (knob1 === 100) {
+          val = higher;
+        } else if (knob1 === 0) {
+          val = lower;
+        } else {
+          val = everyStep * knob1 + lowerLim;
+        }
       } else if (knob2 < knob1) {
-        val = (knob2 / 1000) * higher;
+        if (knob2 === 100) {
+          val = higher;
+        } else if (knob2 === 0) {
+          val = lower;
+        } else {
+          val = everyStep * knob2 + lowerLim;
+        }
       }
     }
-    setValue(float ? val.toFixed(2) : val);
-  }, [everyStep, float, knob, limit, state]);
+
+    setValue(val.toFixed(float));
+  }, [everyStep, float, knob, limit, lowerLim, setMainValue, state, step]);
 
   const handleClick = (e) => {
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-      handleSetValue(value, knob);
+      let val = value;
+      const { lower, higher } = limit;
+      if (value > higher) {
+        val = higher;
+      }
+      if (value < lower) {
+        val = lower;
+      }
+      handleSetValue(parseFloat(val), knob);
     }
   };
   return (
