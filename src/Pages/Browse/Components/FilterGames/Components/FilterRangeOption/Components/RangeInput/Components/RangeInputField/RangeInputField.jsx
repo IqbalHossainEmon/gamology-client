@@ -21,42 +21,37 @@ export default function RangeInputField({
 
     let val;
 
-    if (knob === 'knob2') {
-      if (knob1 <= knob2) {
-        if (knob2 === 100) {
+    const checkKnob = (kn) => {
+      switch (kn) {
+        case 100:
           val = higher;
-        } else if (knob2 === 0) {
+          break;
+        case 0:
           val = lower;
-        } else {
-          val = everyStep * knob2 + lowerLim;
-        }
-      } else if (knob1 > knob2) {
-        if (knob1 === 100) {
-          val = higher;
-        } else if (knob1 === 0) {
-          val = lower;
-        } else {
-          val = everyStep * knob1 + lowerLim;
-        }
+          break;
+        default:
+          val = everyStep * kn + lowerLim;
+          break;
       }
-    } else if (knob === 'knob1') {
-      if (knob2 >= knob1) {
-        if (knob1 === 100) {
-          val = higher;
-        } else if (knob1 === 0) {
-          val = lower;
-        } else {
-          val = everyStep * knob1 + lowerLim;
+    };
+
+    switch (knob) {
+      case 'knob2':
+        if (knob1 <= knob2) {
+          checkKnob(knob2);
+        } else if (knob1 > knob2) {
+          checkKnob(knob1);
         }
-      } else if (knob2 < knob1) {
-        if (knob2 === 100) {
-          val = higher;
-        } else if (knob2 === 0) {
-          val = lower;
-        } else {
-          val = everyStep * knob2 + lowerLim;
+        break;
+      case 'knob1':
+        if (knob2 >= knob1) {
+          checkKnob(knob1);
+        } else if (knob2 < knob1) {
+          checkKnob(knob2);
         }
-      }
+        break;
+      default:
+        return;
     }
 
     setValue(val.toFixed(float));

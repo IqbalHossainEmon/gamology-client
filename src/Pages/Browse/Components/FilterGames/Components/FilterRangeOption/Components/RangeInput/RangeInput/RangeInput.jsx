@@ -23,19 +23,25 @@ export default function RangeInput({
       newVal = 0;
     }
 
-    if (knob === 'knob1') {
-      if (knob1 <= knob2) {
-        setValue((prev) => ({ ...prev, knob1: newVal, transition: true }));
-      } else {
-        setValue((prev) => ({ ...prev, knob2: newVal, transition: true }));
-      }
-    } else if (knob === 'knob2') {
-      if (knob1 >= knob2) {
-        setValue((prev) => ({ ...prev, knob1: newVal, transition: true }));
-      } else {
-        setValue((prev) => ({ ...prev, knob2: newVal, transition: true }));
-      }
+    switch (knob) {
+      case 'knob1':
+        if (knob1 <= knob2) {
+          setValue((prev) => ({ ...prev, knob1: newVal, transition: true }));
+        } else {
+          setValue((prev) => ({ ...prev, knob2: newVal, transition: true }));
+        }
+        break;
+      case 'knob2':
+        if (knob1 >= knob2) {
+          setValue((prev) => ({ ...prev, knob1: newVal, transition: true }));
+        } else {
+          setValue((prev) => ({ ...prev, knob2: newVal, transition: true }));
+        }
+        break;
+      default:
+        return;
     }
+
     setTimeout(() => {
       setValue((prev) => ({ ...prev, transition: false }));
     }, 300);
