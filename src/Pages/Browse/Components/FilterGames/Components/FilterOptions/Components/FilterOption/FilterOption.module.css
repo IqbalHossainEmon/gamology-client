@@ -5,7 +5,7 @@
   cursor: pointer;
   position: relative;
   margin: 20px 0;
-  padding-right: 42px;
+  padding-right: 20%;
   transition: filter 200ms;
 }
 .text {
@@ -17,42 +17,10 @@
 
 .toggleButtonContainer {
   position: absolute;
-  right: 0;
-}
-
-.toggleButton {
+  right: 12px;
   width: 36px;
-  height: 18px;
-  margin-right: 3px;
-  border-radius: 15px;
-  box-shadow: inset 0 0 2px 0px rgba(0, 0, 0, 0.8);
-  position: relative;
-  transition: background-color 100ms;
 }
 
-#filterOn {
-  background-color: rgb(52, 115, 252);
-}
-#filterOff {
-  background-color: rgb(190, 190, 190);
-}
-
-.round {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.8);
-  scale: 1.2;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  transition: translate 100ms;
-}
-#filterOn .round {
-  translate: 100%;
-}
-#filterOff .round {
-  translate: 0%;
-}
 .borderBot::after {
   content: '';
   position: absolute;

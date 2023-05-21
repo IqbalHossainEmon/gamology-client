@@ -14,7 +14,11 @@ const options = [
     optionList: [
       { id: 0, text: 'Show only discounted', filter: 'showOnlyDiscounted' },
       { id: 1, text: 'Hide DLCs and extras', filter: 'HideDLCsAndExtras' },
-      { id: 2, text: 'Hide all owned products', filter: 'hideAllOwnedProducts' },
+      {
+        id: 2,
+        text: 'Hide all owned products',
+        filter: 'hideAllOwnedProducts',
+      },
     ],
   },
   {
@@ -78,7 +82,8 @@ const options = [
 export default function FilterGames({ filterState, dispatch, limits }) {
   const [state, setState] = useState(filterState);
 
-  const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
+  const { filterSortState, setFilterSort, filterSortRef } =
+    useFilterSortState();
   const { filter } = filterSortState;
 
   const screenWidth = useScreenWidth();
@@ -92,7 +97,12 @@ export default function FilterGames({ filterState, dispatch, limits }) {
     >
       <div className={styles.filterContainer}>
         {screenWidth < 769 && <h2>Filters</h2>}
-        <FilterOptionList options={options} state={state} setState={setState} limits={limits} />
+        <FilterOptionList
+          options={options}
+          state={state}
+          setState={setState}
+          limits={limits}
+        />
         <ApplyButton
           setShow={setFilterSort}
           dispatch={dispatch}

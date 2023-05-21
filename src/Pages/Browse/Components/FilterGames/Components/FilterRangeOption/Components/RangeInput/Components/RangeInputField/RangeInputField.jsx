@@ -14,6 +14,7 @@ export default function RangeInputField({
 }) {
   const [value, setValue] = useState(0);
 
+  // when knob moves depending on percentage set knob value
   useEffect(() => {
     const { knob1, knob2 } = state;
 
@@ -76,7 +77,10 @@ export default function RangeInputField({
       value={value}
       type="text"
       onChange={(e) => {
-        if (e.target.value === '' || /^\d{1,}(\.\d{0,2})?$/.test(e.target.value)) {
+        if (
+          e.target.value === '' ||
+          /^\d{1,}(\.\d{0,2})?$/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}

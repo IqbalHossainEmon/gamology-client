@@ -51,7 +51,8 @@ export default function FilterOptions({ option, state, setState }) {
             text={op.text}
             border={op.id !== optionList.length - 1}
             state={state[op.filter]}
-            setState={() => setState((prev) => ({ ...prev, [op.filter]: !prev[op.filter] }))}
+            name={op.filter}
+            setState={setState}
           />
         ))}
       </div>

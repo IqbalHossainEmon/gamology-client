@@ -4,15 +4,17 @@
   "editor.formatOnSave": true,
   "[javascript]": {
     "editor.formatOnSave": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": null
   },
   "[javascriptreact]": {
     "editor.formatOnSave": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": null
   },
-  "javascript.validate.enable": false, //disable all built-in syntax checking
+  "javascript.validate.enable": false,
+  //disable all built-in syntax checking
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.tslint": true,
     "source.organizeImports": true
   },
   "eslint.alwaysShowStatus": true,

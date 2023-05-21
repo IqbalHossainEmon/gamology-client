@@ -34,10 +34,12 @@ export default function FilterRangeOption({ option, limit, setState }) {
         everyStep.current = step;
       }
       everyStep.stepForInput = option.steps / everyStep.current;
-      everyStep.lowerForInput = Math.floor(limit.lower / option.steps) * option.steps;
+      everyStep.lowerForInput =
+        Math.floor(limit.lower / option.steps) * option.steps;
     }
   }, [limit, option]);
 
+  // set value after re-render and value change
   const handleSetValue = useCallback(() => {
     setTimeout(() => {
       const { knob1, knob2 } = stateRef.current;
@@ -65,11 +67,17 @@ export default function FilterRangeOption({ option, limit, setState }) {
   }, [limit, option, setState]);
 
   useEffect(() => {
-    setKnobState((prev) => ({ ...prev, height: optionRef.current.offsetHeight }));
+    setKnobState((prev) => ({
+      ...prev,
+      height: optionRef.current.offsetHeight,
+    }));
   }, [optionRef]);
 
   return (
-    <div className={styles.filterRange} {...(knobState.disabled && { disabled: 'disabled' })}>
+    <div
+      className={styles.filterRange}
+      {...(knobState.disabled && { disabled: 'disabled' })}
+    >
       <div
         tabIndex={0}
         role="button"

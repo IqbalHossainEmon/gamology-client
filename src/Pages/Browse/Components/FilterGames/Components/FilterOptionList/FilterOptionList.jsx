@@ -16,7 +16,14 @@ function FilterOptionList({ options, state, setState, limits }) {
             />
           );
         }
-        return <FilterOptions key={option.id} option={option} setState={setState} state={state} />;
+        return (
+          <FilterOptions
+            key={option.id}
+            option={option}
+            setState={setState}
+            state={state}
+          />
+        );
       })}
     </div>
   );

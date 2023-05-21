@@ -1,43 +1,49 @@
-import { useEffect, useRef } from 'react';
-import useScreenWidth from '../../../../../../../../../Hooks/useScreenWidth';
+import { useRef } from 'react';
+import useLeftRightPointerStep from '../../../../../../../../../Hooks/useLeftRightPointerStep';
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
-export default function RangeField({ state, setState, everyStep = 0, handleSetValue }) {
+export default function RangeField({
+  state,
+  setState,
+  everyStep = 0,
+  handleSetValue,
+}) {
   const rangePathRef = useRef();
   const activePathRef = useRef();
   const stateRef = useRef(state);
   stateRef.current = state;
 
-  const screenWidth = useScreenWidth();
+  const getLeftRightPointerStep = useLeftRightPointerStep(
+    rangePathRef,
+    everyStep.current,
+  );
 
-  useEffect(() => {
-    rangePathRef.width = rangePathRef.current?.offsetWidth;
-    rangePathRef.offsetLeft = rangePathRef.current?.offsetLeft;
-  }, [rangePathRef, screenWidth]);
-
+  // set click value in the path of slider depending on steps
   const handlePathClick = (e) => {
-    if (e.target === rangePathRef.current || e.target === activePathRef.current) {
-      const cursorInEle = e?.touches
-        ? e.touches[0].pageX - rangePathRef.offsetLeft
-        : e.pageX - rangePathRef.offsetLeft;
+    if (
+      e.target === rangePathRef.current ||
+      e.target === activePathRef.current
+    ) {
+      const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } =
+        getLeftRightPointerStep(e);
 
-      const cursorInPercent = (cursorInEle / rangePathRef.width) * 100;
-
-      const pointerLeftStep = Math.round(cursorInPercent / everyStep.current) * everyStep.current;
-
-      const pointerRightStep = pointerLeftStep + everyStep.current;
-
-      if (cursorInPercent - pointerLeftStep < pointerRightStep - cursorInPercent) {
+      if (leftDiff < rightDiff) {
         setState((prev) => {
-          if (Math.abs(pointerLeftStep - prev.knob1) <= Math.abs(pointerLeftStep - prev.knob2)) {
+          if (
+            Math.abs(pointerLeftStep - prev.knob1) <=
+            Math.abs(pointerLeftStep - prev.knob2)
+          ) {
             return { ...prev, knob1: pointerLeftStep };
           }
           return { ...prev, knob2: pointerLeftStep };
         });
-      } else if (cursorInPercent - pointerLeftStep > pointerRightStep - cursorInPercent) {
+      } else if (leftDiff > rightDiff) {
         setState((prev) => {
-          if (Math.abs(pointerRightStep - prev.knob1) <= Math.abs(pointerRightStep - prev.knob2)) {
+          if (
+            Math.abs(pointerRightStep - prev.knob1) <=
+            Math.abs(pointerRightStep - prev.knob2)
+          ) {
             return { ...prev, knob1: pointerRightStep };
           }
           return { ...prev, knob2: pointerRightStep };
@@ -65,12 +71,16 @@ export default function RangeField({ state, setState, everyStep = 0, handleSetVa
             state.transition
               ? {
                   translate: `${knob1 < knob2 ? knob1 : knob2}%`,
-                  scale: `${(knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100} 1`,
+                  scale: `${
+                    (knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100
+                  } 1`,
                   transition: 'translate linear 200ms, scale linear 200ms',
                 }
               : {
                   translate: `${knob1 < knob2 ? knob1 : knob2}%`,
-                  scale: `${(knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100} 1.25`,
+                  scale: `${
+                    (knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100
+                  } 1.25`,
                 }
           }
         />
@@ -78,8 +88,7 @@ export default function RangeField({ state, setState, everyStep = 0, handleSetVa
         {['knob1', 'knob2'].map((rangeKnob) => (
           <RangeKnob
             key={rangeKnob}
-            everyStep={everyStep}
-            pathEleRef={rangePathRef}
+            getLeftRightStep={getLeftRightPointerStep}
             setState={setState}
             state={state}
             name={rangeKnob}

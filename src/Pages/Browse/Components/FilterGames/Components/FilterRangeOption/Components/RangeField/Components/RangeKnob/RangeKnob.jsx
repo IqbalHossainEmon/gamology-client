@@ -2,56 +2,66 @@ import { useCallback, useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({ state, setState, pathEleRef, name, everyStep = 0, handleSetValue }) {
+function RangeKnob({
+  state,
+  setState,
+  name,
+  handleSetValue,
+  getLeftRightStep,
+}) {
   const stateRef = useRef(state);
   stateRef.current = state;
 
+  // Calculate move value
   const handleMove = useCallback(
     (e) => {
-      const cursorInEle = e?.touches
-        ? e.touches[0].pageX - pathEleRef.offsetLeft
-        : e.pageX - pathEleRef.offsetLeft;
+      const {
+        cursorInPercent,
+        pointerLeftStep,
+        pointerRightStep,
+        leftDiff,
+        rightDiff,
+      } = getLeftRightStep(e);
 
-      const cursorInPercent = (cursorInEle / pathEleRef.width) * 100;
-
-      const pointerLeftStep = Math.round(cursorInPercent / everyStep.current) * everyStep.current;
-
-      const pointerRightStep = pointerLeftStep + everyStep.current;
-
-      if (cursorInEle >= 0 && cursorInEle <= pathEleRef.width) {
+      // if cursors position is inside the slider range;
+      if (cursorInPercent > 0 && cursorInPercent < 100) {
+        // check and set value depend on step
         if (
-          cursorInPercent - pointerLeftStep < pointerRightStep - cursorInPercent &&
+          leftDiff < rightDiff &&
           stateRef.current[name] !== pointerLeftStep
         ) {
           setState((prev) => ({ ...prev, [name]: pointerLeftStep }));
           return;
         }
         if (
-          cursorInPercent - pointerLeftStep > pointerRightStep - cursorInPercent &&
+          leftDiff > rightDiff &&
           stateRef.current[name] !== pointerRightStep
         ) {
           setState((prev) => ({ ...prev, [name]: pointerRightStep }));
         }
         return;
       }
-      if (cursorInEle < 0 && stateRef.current[name] !== 0) {
+      if (cursorInPercent <= 0 && stateRef.current[name] !== 0) {
         setState((prev) => ({ ...prev, [name]: 0 }));
       }
-      if (cursorInEle > pathEleRef.width && stateRef.current[name] !== 100) {
+      if (cursorInPercent >= 100 && stateRef.current[name] !== 100) {
         setState((prev) => ({ ...prev, [name]: 100 }));
       }
     },
-    [everyStep, name, pathEleRef, setState],
+    [getLeftRightStep, name, setState],
   );
 
-  const onStart = useDragStartStop(handleMove, handleSetValue);
+  const onStart = useDragStartStop(handleMove, handleSetValue, true);
 
   return (
     <div
       className={styles.knobContainer}
       style={
         state.transition
-          ? { translate: `${state[name]}%`, transition: 'translate linear 200ms' }
+          ? {
+              translate: `${state[name]}%`,
+              transition: 'translate linear 200ms',
+            }
           : { translate: `${state[name]}%` }
       }
     >

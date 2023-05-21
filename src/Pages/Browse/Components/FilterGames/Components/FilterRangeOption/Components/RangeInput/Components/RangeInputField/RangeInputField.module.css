@@ -6,6 +6,7 @@
   background-color: #222;
   transition: border 100ms;
   outline: none;
+  user-select: none;
 }
 .input:hover {
   border: 1px solid rgb(6, 73, 136);

@@ -1,3 +1,4 @@
+import useHandleTimerTransition from '../../../../../../../../../Hooks/useHandleTimerTransition';
 import RangeInputField from '../Components/RangeInputField/RangeInputField';
 import styles from './RangeInput.module.css';
 
@@ -11,11 +12,15 @@ export default function RangeInput({
   lowerLim,
   handleSetValue: handleValue,
 }) {
+  const handleTimerTransition = useHandleTimerTransition(setValue, 250);
+  // set value depending on knobs position
   const handleSetValue = (val, knob) => {
     const { knob1, knob2 } = value;
 
     let newVal =
-      float === 0 ? (Math.round(val) - lowerLim) / everyStep : (val - lowerLim) / everyStep;
+      float === 0
+        ? (Math.round(val) - lowerLim) / everyStep
+        : (val - lowerLim) / everyStep;
 
     if (newVal > 100) {
       newVal = 100;
@@ -42,9 +47,7 @@ export default function RangeInput({
         return;
     }
 
-    setTimeout(() => {
-      setValue((prev) => ({ ...prev, transition: false }));
-    }, 300);
+    handleTimerTransition();
     handleValue();
   };
 

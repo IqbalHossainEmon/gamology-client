@@ -1,12 +1,16 @@
 import { useCallback } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
-export default function useDragStartStop(handleMove, handleSetValue) {
+export default function useDragStartStop(handleMove, handleSetValue, grab) {
   const isTouchAble = useIsTouchAble();
 
   const onStop = useCallback(() => {
     handleSetValue();
-    document.getElementById('root').removeAttribute('class');
+
+    if (document.getElementById('root').classList.contains('grabbing')) {
+      document.getElementById('root').classList.remove('grabbing');
+    }
+
     document.removeEventListener('mousemove', handleMove);
     document.removeEventListener('touchmove', handleMove);
     document.removeEventListener('mouseup', onStop);
@@ -14,16 +18,20 @@ export default function useDragStartStop(handleMove, handleSetValue) {
     window.removeEventListener('blur', onStop);
   }, [handleMove, handleSetValue]);
 
-  const onStart = useCallback(() => {
-    if (!isTouchAble()) {
-      document.getElementById('root').classList.add('grabbing');
-    }
-
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('touchmove', handleMove);
-    document.addEventListener('mouseup', onStop);
-    document.addEventListener('touchend', onStop);
-    window.addEventListener('blur', onStop);
-  }, [handleMove, isTouchAble, onStop]);
+  const onStart = useCallback(
+    (e) => {
+      if (!isTouchAble() && grab) {
+        e.preventDefault();
+        document.getElementById('root').classList.add('grabbing');
+      }
+      document.body.blur();
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('touchmove', handleMove);
+      document.addEventListener('mouseup', onStop);
+      document.addEventListener('touchend', onStop);
+      window.addEventListener('blur', onStop);
+    },
+    [grab, handleMove, isTouchAble, onStop],
+  );
   return onStart;
 }

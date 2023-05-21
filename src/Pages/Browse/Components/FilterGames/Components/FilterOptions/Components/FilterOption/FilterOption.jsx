@@ -1,18 +1,31 @@
+import { useCallback } from 'react';
+import FilterSwitch from '../FilterSwitch/FilterSwitch';
 import styles from './FilterOption.module.css';
 
-function FilterOption({ text, state, setState, border }) {
+function FilterOption({ text, setState, border, state, name }) {
+  const handleClick = useCallback(() => {
+    setState((prev) => ({ ...prev, [name]: !prev[name] }));
+    document.removeEventListener('mouseup', handleClick);
+  }, [name, setState]);
   return (
     <div
       tabIndex="0"
       role="button"
-      onClick={setState}
-      className={`${styles.filterOption} ${border && styles.borderBot} hover-shadow`}
+      onMouseDown={() => {
+        document.addEventListener('mouseup', handleClick);
+      }}
+      className={`${styles.filterOption} ${
+        border && styles.borderBot
+      } hover-shadow`}
     >
       <p className={styles.text}>{text}</p>
       <div className={styles.toggleButtonContainer}>
-        <div className={styles.toggleButton} id={state ? styles.filterOn : styles.filterOff}>
-          <div className={styles.round} />
-        </div>
+        <FilterSwitch
+          event={handleClick}
+          state={state}
+          setState={setState}
+          name={name}
+        />
       </div>
     </div>
   );
