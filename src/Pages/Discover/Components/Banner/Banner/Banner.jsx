@@ -1,9 +1,9 @@
 import { useEffect, useReducer, useState } from 'react';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import BannerButtons from '../Components/BannerButtons/BannerButtons';
-import InfoItems from '../Components/InfoItems/InfoItems';
-import ItemCards from '../Components/ItemCards/ItemCards';
-import Items from '../Components/Items/Items';
+import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
+import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards';
+import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems';
 
 import useBannerLogics from '../useBannerLogics/useBannerLogics';
 import styles from './Banner.module.css';
@@ -95,13 +95,13 @@ export default function Banner() {
   return (
     <section className={styles.banner}>
       <div className={styles.bannerOverflow}>
-        <Items
+        <DiscoverBannerItems
           screenWidth={screenWidth}
           cardsPosition={cardsPosition}
           bannerState={{ active, fadeOut, fadeIn }}
           data={data}
         />
-        <InfoItems
+        <DiscoverBannerInfoItems
           data={data}
           activeBanner={activeBanner}
           bannerState={{ active, fadeOut, fadeIn }}
@@ -109,7 +109,7 @@ export default function Banner() {
       </div>
       <BannerButtons handleClick={handleClick} />
       {screenWidth > 768 && (
-        <ItemCards
+        <DiscoverBannerItemCards
           handleClick={handleClick}
           data={data}
           cardsPosition={cardsPosition}

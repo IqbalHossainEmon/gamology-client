@@ -1,7 +1,11 @@
 import DiscountPrice from '../../../../../../Shared/DiscountPrice/DiscountPrice';
-import styles from './InfoItem.module.css';
+import styles from './DiscoverBannerInfoItem.module.css';
 
-export default function ItemInfo({ banner, bannerState, activeBanner }) {
+export default function DiscoverBannerInfoItem({
+  banner,
+  bannerState,
+  activeBanner,
+}) {
   const { logoImg, name, id, price } = banner;
   const idState = activeBanner(id, bannerState, styles);
 

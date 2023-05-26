@@ -1,8 +1,8 @@
 import useHandleDebouncing from '../../../../../../Hooks/useHandleDebouncing';
-import ItemCard from '../ItemCard/ItemCard';
-import styles from './ItemCards.module.css';
+import DiscoverBannerItemCard from '../DiscoverBannerItemCard/DiscoverBannerItemCard';
+import styles from './DiscoverBannerItemCards.module.css';
 
-export default function ItemCards({
+export default function DiscoverBannerItemCards({
   data,
   handleClick,
   cardsPosition,
@@ -13,7 +13,7 @@ export default function ItemCards({
   return (
     <ul className={styles.itemCards}>
       {data.map(({ id, carouselThumb, name }) => (
-        <ItemCard
+        <DiscoverBannerItemCard
           key={id}
           isPause={isPause}
           banner={{ carouselThumb, id, name }}

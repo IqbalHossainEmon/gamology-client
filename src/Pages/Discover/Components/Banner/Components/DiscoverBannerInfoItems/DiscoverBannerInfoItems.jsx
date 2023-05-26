@@ -1,11 +1,15 @@
-import ItemInfo from '../InfoItem/InfoItem';
-import styles from './InfoItems.module.css';
+import DiscoverBannerInfoItem from '../DiscoverBannerInfoItem/DiscoverBannerInfoItem';
+import styles from './DiscoverBannerInfoItems.module.css';
 
-export default function InfoItems({ data, bannerState, activeBanner }) {
+export default function DiscoverBannerInfoItems({
+  data,
+  bannerState,
+  activeBanner,
+}) {
   return (
     <div className={styles.infoItems}>
       {data.map(({ id, logoImg, name, price }) => (
-        <ItemInfo
+        <DiscoverBannerInfoItem
           key={id}
           bannerState={bannerState}
           activeBanner={activeBanner}

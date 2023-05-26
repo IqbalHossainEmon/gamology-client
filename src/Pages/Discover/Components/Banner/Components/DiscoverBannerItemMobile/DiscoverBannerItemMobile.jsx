@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import styles from './ItemMobile.module.css';
+import styles from './DiscoverBannerItemMobile.module.css';
 
-export default function ItemMobile({ banner, cardsPosition }) {
+export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
   const { coverMobile, name, id } = banner;
   const [position, setPosition] = useState(0);
 

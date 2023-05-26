@@ -1,6 +1,6 @@
-import styles from './ItemCard.module.css';
+import styles from './DiscoverBannerItemCard.module.css';
 
-export default function ItemCard({
+export default function DiscoverBannerItemCard({
   banner,
   handleClick,
   cardsPosition,
