@@ -49,7 +49,11 @@ export default function SortList({ state, setShow, handleChange }) {
               : {
                   onClick: () => {
                     setShow('sort');
-                    handleChange({ type: 'sortChange', value: link.name, URL: link.URL });
+                    handleChange({
+                      type: 'sortChange',
+                      value: link.name,
+                      URL: link.URL,
+                    });
                   },
                 })}
             className={styles.sortButtons}

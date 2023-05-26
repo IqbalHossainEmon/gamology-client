@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <Header />
+      <SecondNavbar />
       <main>
-        <SecondNavbar />
         <IndividualGame />
       </main>
       <Footer />

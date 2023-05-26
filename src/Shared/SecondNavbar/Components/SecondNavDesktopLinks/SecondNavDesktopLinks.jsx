@@ -14,7 +14,12 @@ const links = [
 export default function SecondNavDesktopLinks({ id, setNavTextState }) {
   return (
     <ul className={styles.SecondNavLinks} id={styles[id]}>
-      <LinksList active={0} styles={styles} links={links} onclick={setNavTextState} />
+      <LinksList
+        active={0}
+        styles={styles}
+        links={links}
+        onclick={setNavTextState}
+      />
     </ul>
   );
 }

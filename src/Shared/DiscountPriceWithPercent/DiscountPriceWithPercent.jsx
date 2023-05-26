@@ -6,7 +6,11 @@ export default function DiscountPriceWithPercent({ price }) {
     <div className={styles.DiscountPriceWithPercent}>
       {typeof price === 'object' && (
         <div className={[styles.discountPercentage].join(' ')}>
-          -{(((price.regular - price.discount) / price.regular) * 100).toFixed(0)}%
+          -
+          {(((price.regular - price.discount) / price.regular) * 100).toFixed(
+            0,
+          )}
+          %
         </div>
       )}
       <div className={styles.discountPrice}>

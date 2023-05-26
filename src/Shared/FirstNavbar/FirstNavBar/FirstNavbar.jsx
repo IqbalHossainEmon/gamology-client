@@ -20,7 +20,10 @@ export default function FirstNavbar() {
     <nav className={styles.FirstNavbar}>
       <div className={styles.gamologyLogo}>
         <a href="/">
-          <img src="/src/assets/images/game-controller.png" alt="game controller" />
+          <img
+            src="/src/assets/images/game-controller.png"
+            alt="game controller"
+          />
         </a>
       </div>
       {screenWidth > 768 ? (
@@ -29,7 +32,10 @@ export default function FirstNavbar() {
           <NavProfileInfo />
         </div>
       ) : (
-        <MobileBurgerMenu hideBodyOverflow={hideBodyOverflow} showBodyOverflow={showBodyOverflow} />
+        <MobileBurgerMenu
+          hideBodyOverflow={hideBodyOverflow}
+          showBodyOverflow={showBodyOverflow}
+        />
       )}
     </nav>
   );

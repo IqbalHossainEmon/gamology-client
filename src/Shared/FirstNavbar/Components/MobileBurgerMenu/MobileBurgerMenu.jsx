@@ -4,7 +4,10 @@ import useDropDownHide from '../../../../Hooks/useDropDownHide';
 import FirstNavMobileNavLinks from '../FirstNavMobileNavLinks/FirstNavMobileNavLinks';
 import styles from './MobileBurgerMenu.module.css';
 
-export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow }) {
+export default function MobileBurgerMenu({
+  hideBodyOverflow,
+  showBodyOverflow,
+}) {
   const [navState, setNavState] = useState(false);
   const elementRef = useRef();
 
@@ -28,9 +31,19 @@ export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow })
   return (
     <div ref={elementRef}>
       <FirstNavMobileNavLinks setNavState={setNavState} navState={navState} />
-      <div className={styles.navOptionBg} {...(navState && { id: styles.hamburgerActive })} />
-      <button type="button" onClick={handleClick} className={styles.hamburgerButton}>
-        <div className={styles.hamburger} {...(navState && { id: styles.cross })} />
+      <div
+        className={styles.navOptionBg}
+        {...(navState && { id: styles.hamburgerActive })}
+      />
+      <button
+        type="button"
+        onClick={handleClick}
+        className={styles.hamburgerButton}
+      >
+        <div
+          className={styles.hamburger}
+          {...(navState && { id: styles.cross })}
+        />
       </button>
     </div>
   );

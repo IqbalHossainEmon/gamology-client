@@ -11,7 +11,11 @@ export default function DiscountPrice({ price, className }) {
   if (typeof price === 'object') {
     return (
       <span
-        className={className ? [styles.DiscountPrice, className].join(' ') : styles.DiscountPrice}
+        className={
+          className
+            ? [styles.DiscountPrice, className].join(' ')
+            : styles.DiscountPrice
+        }
       >
         <del className={styles.regular}>${price.regular}</del>
         <span className={styles.discount}>${price.discount}</span>

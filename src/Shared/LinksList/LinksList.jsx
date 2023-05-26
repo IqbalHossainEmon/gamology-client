@@ -9,7 +9,8 @@ export default function LinksList({ styles, links, onclick, active }) {
       {...(link.no === active && { id: styles.active })}
     >
       <a
-        {...(onclick && screenWidth <= 768 && { onClick: () => onclick(link.no) })}
+        {...(onclick &&
+          screenWidth <= 768 && { onClick: () => onclick(link.no) })}
         href={link.URL}
       >
         {link.name}

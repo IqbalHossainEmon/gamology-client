@@ -10,7 +10,11 @@ export default function Card({ cardInfo, cardsWidth, slider }) {
       className={`${styles.card} ${slider && styles.slider} hover-shadow`}
       {...(cardsWidth && { style: { width: `${cardsWidth - 10}px` } })}
     >
-      <img className={styles.cardImg} src={carouselThumb} alt={`${name}-cardThum-${id + 1}`} />
+      <img
+        className={styles.cardImg}
+        src={carouselThumb}
+        alt={`${name}-cardThum-${id + 1}`}
+      />
       <p className={styles.category}>
         <small>{card}</small>
       </p>

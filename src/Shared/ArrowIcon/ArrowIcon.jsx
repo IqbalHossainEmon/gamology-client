@@ -1,4 +1,8 @@
-export default function ArrowIcon({ id, className, stroke = 'rgba(255, 255, 255, 0.6)' }) {
+export default function ArrowIcon({
+  id,
+  className,
+  stroke = 'rgba(255, 255, 255, 0.6)',
+}) {
   return (
     <svg id={id} className={`${className || ''}`} viewBox="0 0 23 23">
       <path

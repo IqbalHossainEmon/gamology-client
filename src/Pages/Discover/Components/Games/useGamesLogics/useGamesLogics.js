@@ -21,7 +21,10 @@ const reducer = (state, action) => {
             action.cardOnDeck !== state.cardOnDeck &&
             state.cardOnDeck &&
             state.cardActive % action.cardOnDeck !== 0
-              ? `${action.width * (state.cardActive - (state.cardActive % action.cardOnDeck))}px`
+              ? `${
+                  action.width *
+                  (state.cardActive - (state.cardActive % action.cardOnDeck))
+                }px`
               : `${action.width * state.cardActive}px`,
           transitionDuration: '0ms',
         },
@@ -32,14 +35,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         cardActive:
-          state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
+          state.dataLength - (state.dataLength % state.cardOnDeck) ===
+          action.nextActiveCard * -1
             ? state.cardActive - (state.dataLength % state.cardOnDeck)
             : action.nextActiveCard,
         translateStyle:
-          state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
+          state.dataLength - (state.dataLength % state.cardOnDeck) ===
+          action.nextActiveCard * -1
             ? {
                 translate: `${
-                  state.cardsWidth * (state.cardActive - (state.dataLength % state.cardOnDeck))
+                  state.cardsWidth *
+                  (state.cardActive - (state.dataLength % state.cardOnDeck))
                 }px`,
                 transitionDuration: '300ms',
               }
@@ -48,7 +54,8 @@ const reducer = (state, action) => {
                 transitionDuration: '300ms',
               },
         extraCard:
-          state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
+          state.dataLength - (state.dataLength % state.cardOnDeck) ===
+          action.nextActiveCard * -1
             ? state.dataLength % state.cardOnDeck
             : 0,
       };
@@ -56,10 +63,14 @@ const reducer = (state, action) => {
       // if previous cards is added as reminder and extra card, then prev button will be move just the extra cards.
       return {
         ...state,
-        cardActive: state.extraCard ? state.cardActive + state.extraCard : action.nextActiveCard,
+        cardActive: state.extraCard
+          ? state.cardActive + state.extraCard
+          : action.nextActiveCard,
         translateStyle: state.extraCard
           ? {
-              translate: `${state.cardsWidth * (state.cardActive + state.extraCard)}px`,
+              translate: `${
+                state.cardsWidth * (state.cardActive + state.extraCard)
+              }px`,
               transitionDuration: '300ms',
             }
           : {
@@ -73,7 +84,10 @@ const reducer = (state, action) => {
       // set transition 0 because transition happens only when button clicked.
       return {
         ...state,
-        translateStyle: { translate: state.translateStyle.translate, transitionDuration: '0ms' },
+        translateStyle: {
+          translate: state.translateStyle.translate,
+          transitionDuration: '0ms',
+        },
       };
     default:
       return state;
@@ -110,9 +124,15 @@ export default function useGamesLogics() {
   // this function handles clicks in the cards change.
   const handleClick = (click, cardActive, cardOnDeck) => {
     if (click === 'next') {
-      referenceRef.dispatch({ type: 'next', nextActiveCard: cardActive - cardOnDeck });
+      referenceRef.dispatch({
+        type: 'next',
+        nextActiveCard: cardActive - cardOnDeck,
+      });
     } else if (click === 'prev') {
-      referenceRef.dispatch({ type: 'prev', nextActiveCard: cardActive + cardOnDeck });
+      referenceRef.dispatch({
+        type: 'prev',
+        nextActiveCard: cardActive + cardOnDeck,
+      });
     }
 
     if (referenceRef.timerId) {
@@ -125,28 +145,37 @@ export default function useGamesLogics() {
   };
 
   // this function checks screen widths and set cards on deck and send it through dispatch.
-  const setCardsOnScreenWidthChange = useCallback((screenWidth, cardsContainer) => {
-    let cardOnOneDeck;
-    if (screenWidth >= 1600) {
-      cardOnOneDeck = 6;
-    } else if (screenWidth >= 1024 && screenWidth <= 1599) {
-      cardOnOneDeck = 5;
-    } else if (screenWidth >= 769 && screenWidth <= 1023) {
-      cardOnOneDeck = 4;
-    } else if (screenWidth >= 592 && screenWidth <= 768) {
-      cardOnOneDeck = 3;
-    } else if (screenWidth >= 326 && screenWidth <= 591) {
-      cardOnOneDeck = 2;
-    } else if (screenWidth <= 325) {
-      cardOnOneDeck = 1;
-    }
+  const setCardsOnScreenWidthChange = useCallback(
+    (screenWidth, cardsContainer) => {
+      let cardOnOneDeck;
+      if (screenWidth >= 1600) {
+        cardOnOneDeck = 6;
+      } else if (screenWidth >= 1024 && screenWidth <= 1599) {
+        cardOnOneDeck = 5;
+      } else if (screenWidth >= 769 && screenWidth <= 1023) {
+        cardOnOneDeck = 4;
+      } else if (screenWidth >= 592 && screenWidth <= 768) {
+        cardOnOneDeck = 3;
+      } else if (screenWidth >= 326 && screenWidth <= 591) {
+        cardOnOneDeck = 2;
+      } else if (screenWidth <= 325) {
+        cardOnOneDeck = 1;
+      }
 
-    referenceRef.dispatch({
-      type: 'screenWidthChange',
-      width: cardsContainer.offsetWidth / cardOnOneDeck,
-      cardOnDeck: cardOnOneDeck,
-    });
-  }, []);
+      referenceRef.dispatch({
+        type: 'screenWidthChange',
+        width: cardsContainer.offsetWidth / cardOnOneDeck,
+        cardOnDeck: cardOnOneDeck,
+      });
+    },
+    [],
+  );
 
-  return { initialState, reducer, handleClick, setReference, setCardsOnScreenWidthChange };
+  return {
+    initialState,
+    reducer,
+    handleClick,
+    setReference,
+    setCardsOnScreenWidthChange,
+  };
 }

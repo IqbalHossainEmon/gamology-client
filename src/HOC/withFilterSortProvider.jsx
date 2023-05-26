@@ -26,7 +26,10 @@ const withFilterSortProvider = (Component) =>
     });
 
     useEffect(() => {
-      if (screenWidth < 769 && (!filterSortState.sort || !filterSortState.filter)) {
+      if (
+        screenWidth < 769 &&
+        (!filterSortState.sort || !filterSortState.filter)
+      ) {
         hideBodyOverflow();
       }
     }, [filterSortState, screenWidth, hideBodyOverflow]);

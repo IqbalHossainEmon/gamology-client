@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 
 export const DOTS = '...';
 
-const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => i + start);
+const range = (start, end) =>
+  Array.from({ length: end - start + 1 }, (_, i) => i + start);
 
 export default function usePagination(totalPage, activePage, siblingCount = 1) {
   const paginationRange = useMemo(() => {
@@ -28,12 +29,22 @@ export default function usePagination(totalPage, activePage, siblingCount = 1) {
 
     // show left dots not the right dots
     if (shouldShowLeftDots && !shouldShowRightDots) {
-      return [1, DOTS, ...range(totalPage - (3 + 2 * siblingCount) + 1, totalPage)];
+      return [
+        1,
+        DOTS,
+        ...range(totalPage - (3 + 2 * siblingCount) + 1, totalPage),
+      ];
     }
 
     // show both dots
     if (shouldShowLeftDots && shouldShowRightDots) {
-      return [1, DOTS, ...range(leftSiblingIndex, rightSiblingIndex), DOTS, totalPage];
+      return [
+        1,
+        DOTS,
+        ...range(leftSiblingIndex, rightSiblingIndex),
+        DOTS,
+        totalPage,
+      ];
     }
     return [];
   }, [totalPage, activePage, siblingCount]);

@@ -7,7 +7,11 @@ export default function ItemInfo({ banner, bannerState, activeBanner }) {
 
   return (
     <div className={styles.itemInfo} id={idState || ''}>
-      <img className={styles.logoImg} src={logoImg} alt={`${name} Logo-${id + 1}`} />
+      <img
+        className={styles.logoImg}
+        src={logoImg}
+        alt={`${name} Logo-${id + 1}`}
+      />
       {price === 'Free' || price === 'free' ? (
         <div className={styles.price}>Free</div>
       ) : (

@@ -2,7 +2,12 @@ import useHandleDebouncing from '../../../../../../Hooks/useHandleDebouncing';
 import ItemCard from '../ItemCard/ItemCard';
 import styles from './ItemCards.module.css';
 
-export default function ItemCards({ data, handleClick, cardsPosition, isPause }) {
+export default function ItemCards({
+  data,
+  handleClick,
+  cardsPosition,
+  isPause,
+}) {
   const handleDebouncing = useHandleDebouncing();
 
   return (

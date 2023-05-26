@@ -98,7 +98,8 @@ export default function useBannerLogics() {
       }
       timerState.current = true;
       timerState.remain =
-        timerState.currentTotalTime - (new Date().getTime() - timerState.timeStartAt);
+        timerState.currentTotalTime -
+        (new Date().getTime() - timerState.timeStartAt);
     }
   }, [stopTimer]);
 
