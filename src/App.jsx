@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import withScreenWidthProvider from './HOC/withScreenWidthProvider';
-import Browse from './Pages/Browse/Browse/Browse';
+import IndividualGame from './Pages/IndividualGame/IndividualGame/IndividualGame';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
 import SecondNavbar from './Shared/SecondNavbar/SecondNavBar/SecondNavbar';
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <main>
         <SecondNavbar />
-        <Browse />
+        <IndividualGame />
       </main>
       <Footer />
     </>

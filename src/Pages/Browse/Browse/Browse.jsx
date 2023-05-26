@@ -17,8 +17,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -29,8 +31,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: 59.99,
   },
   {
@@ -41,8 +45,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: 'Free',
   },
   {
@@ -53,8 +59,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -65,8 +73,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -77,8 +87,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -89,8 +101,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -101,8 +115,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -113,8 +129,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -125,8 +143,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -137,8 +157,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -149,8 +171,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -161,8 +185,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -173,8 +199,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -185,8 +213,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -197,8 +227,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -209,8 +241,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -221,8 +255,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -233,8 +269,10 @@ const items = [
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/src/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/src/assets/images/wWJ85k7/spiderman-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile: '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    coverMobile:
+      '/src/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
 
@@ -246,8 +284,10 @@ const items = [
     },
     coverImg: '/src/assets/images/CarouselCoverDesktop/fortnite.png',
     logoImg: '/src/assets/images/CarouselInfo/fortnite-logo.png',
-    carouselThumb: '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile: '/src/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
+    carouselThumb:
+      '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
+    coverMobile:
+      '/src/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
     price: { regular: 49.99, discount: 15.99 },
   },
 ];

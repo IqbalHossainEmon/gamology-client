@@ -1,34 +1,37 @@
 .links {
-    display: flex;
-    position: absolute;
-    right: 1rem;
-    list-style: none;
+  display: flex;
+  position: absolute;
+  right: 1rem;
+  list-style: none;
 }
 
 .navOption:not(:first-child) {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .navOption a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
-    transition: color 300ms;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 300ms;
 }
 
 .navOption a:hover {
-    color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 #active {
-    color: rgba(255, 255, 255);
+  color: rgba(255, 255, 255);
 }
 
 @media only screen and (max-width: 768px) {
-    .links {
-        z-index: 1;
-        right: 5px;
-    }
-    .navOption a {
-        fill: rgba(255, 255, 255, 0.5);
-        transition: fill 300ms;
-    }
+  .links {
+    z-index: 1;
+    right: 0px;
+  }
+  .navOption:not(:first-child) {
+    margin-left: 5px;
+  }
+  .navOption a {
+    fill: rgba(255, 255, 255, 0.5);
+    transition: fill 300ms;
+  }
 }

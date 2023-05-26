@@ -1,0 +1,19 @@
+.individualGame {
+  width: 75vw;
+  max-width: 1600px;
+  display: flex;
+  position: relative;
+}
+
+@media (max-width: 1023px) and (min-width: 766px) {
+  .individualGame {
+    width: 97vw;
+    flex-direction: column-reverse;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .individualGame {
+    width: 98vw;
+  }
+}
