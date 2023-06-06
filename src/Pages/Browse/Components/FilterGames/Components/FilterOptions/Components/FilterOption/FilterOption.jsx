@@ -14,9 +14,9 @@ function FilterOption({ text, setState, border, state, name }) {
       onMouseDown={() => {
         document.addEventListener('mouseup', handleClick);
       }}
-      className={`${styles.filterOption} ${
-        border && styles.borderBot
-      } hover-shadow`}
+      className={`${styles.filterOption} ${border && styles.borderBot} ${
+        styles.shadow
+      }`}
     >
       <p className={styles.text}>{text}</p>
       <div className={styles.toggleButtonContainer}>

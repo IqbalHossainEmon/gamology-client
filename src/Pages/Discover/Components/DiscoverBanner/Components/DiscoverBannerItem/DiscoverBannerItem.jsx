@@ -1,4 +1,4 @@
-import useBannerLogics from '../../useBannerLogics/useBannerLogics';
+import useBannerLogics from '../../useBannerLogics/useDiscoverBannerLogics';
 import styles from './DiscoverBannerItem.module.css';
 
 export default function DiscoverBannerItem({ banner, bannerState }) {

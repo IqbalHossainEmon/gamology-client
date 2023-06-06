@@ -61,7 +61,7 @@ export default function RangeField({
         tabIndex="0"
         role="button"
         ref={rangePathRef}
-        onClick={handlePathClick}
+        onMouseDown={handlePathClick}
         className={styles.rangeField}
       >
         <div

@@ -1,8 +1,8 @@
 import useHandleDebouncing from '../../../../../../Hooks/useHandleDebouncing';
 import ArrowButton from '../../../Shared/ArrowButton/ArrowButton';
-import styles from './BannerButtons.module.css';
+import styles from './DiscoverBannerButtons.module.css';
 
-export default function BannerButtons({ handleClick }) {
+export default function DiscoverBannerButtons({ handleClick }) {
   const handleDebouncing = useHandleDebouncing();
   return (
     <>

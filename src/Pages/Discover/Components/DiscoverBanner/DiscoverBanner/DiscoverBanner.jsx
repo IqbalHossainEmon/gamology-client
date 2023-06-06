@@ -1,12 +1,12 @@
 import { useEffect, useReducer, useState } from 'react';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
-import BannerButtons from '../Components/BannerButtons/BannerButtons';
+import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerButtons';
 import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
 import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards';
 import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems';
 
-import useBannerLogics from '../useBannerLogics/useBannerLogics';
-import styles from './Banner.module.css';
+import useBannerLogics from '../useBannerLogics/useDiscoverBannerLogics';
+import styles from './DiscoverBanner.module.css';
 
 const items = [
   {
@@ -68,7 +68,7 @@ const items = [
   },
 ];
 
-export default function Banner() {
+export default function DiscoverBanner() {
   const [data, setData] = useState([]);
   const { reducer, initialState, reset, start, stop, activeBanner, isPause } =
     useBannerLogics();

@@ -25,7 +25,7 @@ export default function FilterOptions({ option, state, setState }) {
           tabIndex="0"
           role="button"
           onClick={() => setShow((prev) => ({ ...prev, show: !prev.show }))}
-          className={`${styles.filterTitle} hover-shadow`}
+          className={styles.filterTitle}
         >
           <h3>{title}</h3>
           <div className={styles.downArrow}>
