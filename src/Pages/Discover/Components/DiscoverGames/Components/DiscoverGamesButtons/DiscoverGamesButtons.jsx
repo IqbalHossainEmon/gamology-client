@@ -1,7 +1,11 @@
 import ArrowButton from '../../../Shared/ArrowButton/ArrowButton';
-import styles from './GamesButtons.module.css';
+import styles from './DiscoverGamesButtons.module.css';
 
-export default function GamesButton({ handleClick, cardActive, length }) {
+export default function DiscoverGamesButton({
+  handleClick,
+  cardActive,
+  length,
+}) {
   return (
     <div className={styles.Buttons}>
       <ArrowButton

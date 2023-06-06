@@ -1,7 +1,7 @@
-import GameInColumn from '../GameColumn/GameInColumn';
-import styles from './GamesColumn.module.css';
+import GameInColumn from '../EventGamesGameColumn/EventGamesGameInColumn';
+import styles from './EventGamesGamesColumn.module.css';
 
-export default function GamesColumn({
+export default function EventGamesGamesColumn({
   header,
   games,
   border,

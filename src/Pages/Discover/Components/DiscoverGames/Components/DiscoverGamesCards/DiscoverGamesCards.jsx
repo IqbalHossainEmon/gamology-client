@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import Card from '../../../../../../Shared/Card/Card';
-import styles from './Cards.module.css';
+import styles from './DiscoverGamesCards.module.css';
 
-function Cards({ data, style, cardsWidth }, ref) {
+function DiscoverGamesCards({ data, style, cardsWidth }, ref) {
   return (
     <div ref={ref} className={styles.Cards}>
       <ul className={styles.CardSlider} style={style}>
@@ -19,4 +19,4 @@ function Cards({ data, style, cardsWidth }, ref) {
   );
 }
 
-export default forwardRef(Cards);
+export default forwardRef(DiscoverGamesCards);

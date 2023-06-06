@@ -1,10 +1,10 @@
 import { useEffect, useReducer, useRef } from 'react';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
-import Cards from '../Components/Cards/Cards';
-import CardsHeader from '../Components/CardsHeader/CardsHeader';
-import GamesButton from '../Components/GamesButtons/GamesButtons';
+import GamesButton from '../Components/DiscoverGamesButtons/DiscoverGamesButtons';
+import DiscoverGamesCards from '../Components/DiscoverGamesCards/DiscoverGamesCards';
+import CardsHeader from '../Components/DiscoverGamesCardsHeader/DiscoverGamesCardsHeader';
 import useGamesLogics from '../useGamesLogics/useGamesLogics';
-import styles from './Games.module.css';
+import styles from './DiscoverGames.module.css';
 
 const items = [
   {
@@ -285,7 +285,7 @@ const items = [
   },
 ];
 
-export default function Games() {
+export default function DiscoverGames() {
   const cardsContainer = useRef();
   const screenWidth = useScreenWidth();
   const {
@@ -318,7 +318,7 @@ export default function Games() {
         length={data.length - cardOnDeck}
         handleClick={(click) => handleClick(click, cardActive, cardOnDeck)}
       />
-      <Cards
+      <DiscoverGamesCards
         style={translateStyle}
         cardsWidth={cardsWidth}
         ref={cardsContainer}

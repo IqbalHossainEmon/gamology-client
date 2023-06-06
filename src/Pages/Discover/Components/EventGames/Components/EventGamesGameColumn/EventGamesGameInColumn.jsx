@@ -1,7 +1,7 @@
 import DiscountPriceWithPercent from '../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
-import styles from './GameInColumn.module.css';
+import styles from './EventGamesGameInColumn.module.css';
 
-export default function GameColumn({ game }) {
+export default function EventGamesGameColumn({ game }) {
   return (
     <li className={styles.GameColumn}>
       <div className={styles.gameImage}>

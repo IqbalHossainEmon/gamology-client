@@ -1,6 +1,6 @@
-import styles from './CardsHeader.module.css';
+import styles from './DiscoverGamesCardsHeader.module.css';
 
-export default function CardsHeader({ headerTitle }) {
+export default function DiscoverGamesCardsHeader({ headerTitle }) {
   return (
     <h4 className={styles.CardsHeader}>
       {headerTitle}

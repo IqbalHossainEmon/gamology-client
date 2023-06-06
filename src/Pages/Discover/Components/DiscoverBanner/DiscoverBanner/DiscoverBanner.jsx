@@ -4,8 +4,7 @@ import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerBut
 import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
 import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards';
 import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems';
-
-import useBannerLogics from '../useBannerLogics/useDiscoverBannerLogics';
+import useBannerLogics from '../useBannerLogics/useBannerLogics';
 import styles from './DiscoverBanner.module.css';
 
 const items = [
