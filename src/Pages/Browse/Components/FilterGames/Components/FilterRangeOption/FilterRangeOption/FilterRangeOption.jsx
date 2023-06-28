@@ -41,7 +41,7 @@ export default function FilterRangeOption({ option, limit, setState }) {
 
   // set value after re-render and value change
   const handleSetValue = useCallback(() => {
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       const { knob1, knob2 } = stateRef.current;
       let higher;
       let lower;
@@ -63,6 +63,7 @@ export default function FilterRangeOption({ option, limit, setState }) {
         ...prev,
         [option.rangeName]: { lower, higher },
       }));
+      clearTimeout(timerId);
     }, 0);
   }, [limit, option, setState]);
 

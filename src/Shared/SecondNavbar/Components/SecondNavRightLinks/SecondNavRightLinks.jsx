@@ -22,7 +22,6 @@ export default function SecondNavRightLinks({ screenWidth }) {
           name: (
             <svg
               id={styles.wishList}
-              xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -38,7 +37,6 @@ export default function SecondNavRightLinks({ screenWidth }) {
           name: (
             <svg
               id={styles.cart}
-              xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
               width="24"
               height="24"

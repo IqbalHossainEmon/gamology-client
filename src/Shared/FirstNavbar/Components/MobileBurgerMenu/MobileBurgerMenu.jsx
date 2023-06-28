@@ -11,14 +11,14 @@ export default function MobileBurgerMenu({
   const [navState, setNavState] = useState(false);
   const elementRef = useRef();
 
-  const { showMenu, setElement, closeMenu } = useDropDownHide((prop) => {
+  const { showMenu, setElement } = useDropDownHide((prop) => {
     setNavState(prop);
     showBodyOverflow();
   });
 
   useEffect(() => {
     setElement(elementRef.current);
-  }, [setElement, elementRef, closeMenu]);
+  }, [setElement, elementRef]);
 
   const handleClick = () => {
     setNavState((prev) => !prev);

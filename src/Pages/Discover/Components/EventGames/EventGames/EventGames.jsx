@@ -8,36 +8,32 @@ const newGames = [
   {
     id: 0,
     name: "Marvel's Spider-Man Remastered",
-    carouselThumb:
-      '/src/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+    carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
     id: 1,
     name: 'UNCHARTED™: Legacy of Thieves Collection',
-    carouselThumb:
-      '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
+    carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
     price: { regular: 49.99, discount: 15.99 },
   },
   {
     id: 2,
     name: 'Fall Guy',
-    carouselThumb:
-      '/src/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
+    carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
     price: 59,
   },
   {
     id: 3,
     name: 'Fortnite',
-    carouselThumb:
-      '/src/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
+    carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
     price: 'Free',
   },
   {
     id: 4,
     name: 'A Plague Tale Requiem',
     carouselThumb:
-      '/src/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
+      '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
     price: { regular: 59.99, discount: 29.99 },
   },
 ];

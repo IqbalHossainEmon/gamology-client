@@ -15,12 +15,11 @@ export default function SecondNavMobileLinks({ setNavShow }) {
     setNavMidShow(state);
   };
 
-  const { showMenu, setElement, closeMenu } = useDropDownHide(setShowState);
+  const { showMenu, setElement } = useDropDownHide(setShowState);
 
   useEffect(() => {
     setElement(midSliderElement.current);
-    return closeMenu;
-  }, [setElement, midSliderElement, closeMenu]);
+  }, [setElement, midSliderElement]);
 
   const handleClick = (no) => {
     setShowState(false);

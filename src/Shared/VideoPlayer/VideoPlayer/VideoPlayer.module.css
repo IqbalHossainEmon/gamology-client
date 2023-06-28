@@ -1,0 +1,11 @@
+.videoContainer {
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1.7777778;
+}
+
+.videoContainer:fullscreen .video {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}

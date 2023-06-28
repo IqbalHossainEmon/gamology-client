@@ -38,11 +38,12 @@ function RangeKnob({
           stateRef.current[name] !== pointerRightStep
         ) {
           setState((prev) => ({ ...prev, [name]: pointerRightStep }));
+          return;
         }
-        return;
       }
       if (cursorInPercent <= 0 && stateRef.current[name] !== 0) {
         setState((prev) => ({ ...prev, [name]: 0 }));
+        return;
       }
       if (cursorInPercent >= 100 && stateRef.current[name] !== 100) {
         setState((prev) => ({ ...prev, [name]: 100 }));

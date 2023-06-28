@@ -5,7 +5,7 @@ export default function NavProfileInfo() {
     <div className={styles.profile}>
       <img
         className={styles.profileImg}
-        src="/src/assets/images/user-1.png"
+        src="/assets/images/user-1.png"
         alt=""
       />
       <p>iqbal.hossain.emon</p>

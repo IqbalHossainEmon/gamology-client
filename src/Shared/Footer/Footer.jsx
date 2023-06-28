@@ -6,7 +6,7 @@ export default function Footer() {
       <div className={styles.header}>
         <a href="/">
           <img
-            src="/src/assets/images/game-controller.png"
+            src="/assets/images/game-controller.png"
             alt="game-controller-logo"
           />
           <h2>Gamology</h2>

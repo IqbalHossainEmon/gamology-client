@@ -12,7 +12,7 @@ export default function MobileSortAndFilterButton() {
           className={styles.sortButton}
           type="button"
         >
-          <img src="/src/assets/images/sortButton.png" alt="sort button" />
+          <img src="/assets/images/sortButton.png" alt="sort button" />
           <span>Sort</span>
         </button>
         <div className={styles.verticalLine} />
@@ -21,7 +21,7 @@ export default function MobileSortAndFilterButton() {
           className={styles.filterButton}
           type="button"
         >
-          <img src="/src/assets/images/filterButton.png" alt="filter button" />
+          <img src="/assets/images/filterButton.png" alt="filter button" />
           <span>Filter</span>
         </button>
       </div>

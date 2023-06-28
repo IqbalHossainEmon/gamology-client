@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../../../../../../../Hooks/useDragStartStop';
 import useHandleTimerTransition from '../../../../../../../../Hooks/useHandleTimerTransition';
-import useLeftRightPointerStep from '../../../../../../../../Hooks/useLeftRightPointerStep';
+
+import usePointersEveryStep from '../../../../../../../../Hooks/usePointersEveryStep';
 import styles from './FilterSwitch.module.css';
 
 function FilterSwitch({ state, setState, name, event }) {
@@ -14,11 +15,7 @@ function FilterSwitch({ state, setState, name, event }) {
   const stateRef = useRef(circlePosition);
   stateRef.current = circlePosition.translate;
 
-  const getLeftRightPointerStep = useLeftRightPointerStep(
-    rangePathRef,
-    0,
-    false,
-  );
+  const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, 0, false);
   const handleTimerTransition = useHandleTimerTransition(
     setCirclePosition,
     100,

@@ -1,0 +1,16 @@
+.playPauseButton {
+  border: none;
+  background: none;
+  padding: 10px;
+  height: 100%;
+  cursor: pointer;
+}
+.playPauseButton > span {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+.playPauseButton > span > svg {
+  width: 100%;
+  height: 100%;
+}

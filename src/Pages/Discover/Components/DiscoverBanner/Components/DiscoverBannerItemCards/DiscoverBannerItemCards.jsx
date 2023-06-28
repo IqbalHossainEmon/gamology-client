@@ -8,7 +8,7 @@ export default function DiscoverBannerItemCards({
   cardsPosition,
   isPause,
 }) {
-  const handleDebouncing = useHandleDebouncing();
+  const handleDebouncing = useHandleDebouncing(400);
 
   return (
     <ul className={styles.itemCards}>

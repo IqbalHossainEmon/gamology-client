@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import useLeftRightPointerStep from '../../../../../../../../../Hooks/useLeftRightPointerStep';
+
+import usePointersEveryStep from '../../../../../../../../../Hooks/usePointersEveryStep';
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
@@ -14,7 +15,7 @@ export default function RangeField({
   const stateRef = useRef(state);
   stateRef.current = state;
 
-  const getLeftRightPointerStep = useLeftRightPointerStep(
+  const getLeftRightPointerStep = usePointersEveryStep(
     rangePathRef,
     everyStep.current,
   );

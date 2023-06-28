@@ -12,16 +12,21 @@ const useDropDownHide = (setState) => {
     },
     [setState],
   );
+  const closeMenuBlur = useCallback(() => {
+    setState(false);
+    window.addEventListener('blur', closeMenuBlur);
+  }, [setState]);
 
   const setElement = useCallback((ele) => {
     element.current = ele;
   }, []);
 
   const showMenu = useCallback(() => {
-    window.document.addEventListener('mousedown', closeMenu);
-  }, [closeMenu]);
+    document.addEventListener('mousedown', closeMenu);
+    window.addEventListener('blur', closeMenuBlur);
+  }, [closeMenu, closeMenuBlur]);
 
-  return { showMenu, setElement, closeMenu };
+  return { showMenu, setElement };
 };
 
 export default useDropDownHide;

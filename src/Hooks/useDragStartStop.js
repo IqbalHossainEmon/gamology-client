@@ -1,22 +1,29 @@
 import { useCallback } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
-export default function useDragStartStop(handleMove, handleSetValue, grab) {
+export default function useDragStartStop(
+  handleMove,
+  handleSetValue = () => {},
+  grab = false,
+) {
   const isTouchAble = useIsTouchAble();
 
-  const onStop = useCallback(() => {
-    handleSetValue();
+  const onStop = useCallback(
+    (e) => {
+      handleSetValue(e);
 
-    if (document.getElementById('root').classList.contains('grabbing')) {
-      document.getElementById('root').classList.remove('grabbing');
-    }
+      if (document.getElementById('root').classList.contains('grabbing')) {
+        document.getElementById('root').classList.remove('grabbing');
+      }
 
-    document.removeEventListener('mousemove', handleMove);
-    document.removeEventListener('touchmove', handleMove);
-    document.removeEventListener('mouseup', onStop);
-    document.removeEventListener('touchend', onStop);
-    window.removeEventListener('blur', onStop);
-  }, [handleMove, handleSetValue]);
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('touchmove', handleMove);
+      document.removeEventListener('mouseup', onStop);
+      document.removeEventListener('touchend', onStop);
+      window.removeEventListener('blur', onStop);
+    },
+    [handleMove, handleSetValue],
+  );
 
   const onStart = useCallback(
     (e) => {

@@ -20,10 +20,7 @@ export default function FirstNavbar() {
     <nav className={styles.FirstNavbar}>
       <div className={styles.gamologyLogo}>
         <a href="/">
-          <img
-            src="/src/assets/images/game-controller.png"
-            alt="game controller"
-          />
+          <img src="/assets/images/game-controller.png" alt="game controller" />
         </a>
       </div>
       {screenWidth > 768 ? (
