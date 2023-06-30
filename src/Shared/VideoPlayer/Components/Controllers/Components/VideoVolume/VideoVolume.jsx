@@ -5,12 +5,11 @@ import VolumeButton from '../VolumeButton/VolumeButton';
 import styles from './VideoVolume.module.css';
 
 export default function VideoVolume({ videoRef, className, isFullScreen }) {
-  const [volume, setVolume] = useState({
-    progress: 0,
-  });
+  const [volume, setVolume] = useState(0);
 
   const handleSetValue = useCallback(
     (val) => {
+      setVolume(val);
       if (val > 0) {
         videoRef.muted = false;
       } else {
@@ -24,18 +23,13 @@ export default function VideoVolume({ videoRef, className, isFullScreen }) {
 
   return (
     <>
-      <VolumeButton
-        setVolume={setVolume}
-        volume={volume.progress}
-        videoRef={videoRef}
-      />
+      <VolumeButton setVolume={setVolume} volume={volume} videoRef={videoRef} />
       <div className={[styles.volumeSliderContainer, className].join(' ')}>
         <div className={styles.volumeSlider}>
           <VideoSlider
             isFullScreen={isFullScreen}
-            setPosition={setVolume}
+            setPosition={handleSetValue}
             position={volume}
-            setValue={handleSetValue}
           />
         </div>
       </div>

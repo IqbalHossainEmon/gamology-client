@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import FullScreenButton, {
   handleFullScreen,
 } from '../Components/FullScreenButton/FullScreenButton';
@@ -23,31 +23,65 @@ export default function Controllers({
   const clickTimerId = useRef(null);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [progression, setProgression] = useState({
+    progress: 0,
+    buffer: 0,
+    progressTime: 0,
+    durationTime: 0,
+  });
+
+  const progressUpdate = useCallback(
+    ({ target: { duration, currentTime } }) => {
+      setProgression((prev) => ({
+        ...prev,
+        progress: (currentTime / duration) * 100,
+        progressTime: currentTime,
+      }));
+    },
+    [setProgression],
+  );
+
+  const progressBufferUpdate = useCallback(
+    ({ target: { buffered, duration } }) => {
+      if (buffered.length > 0) {
+        setProgression((prev) => ({
+          ...prev,
+          buffer: (buffered.end(0) / duration) * 100,
+        }));
+      }
+    },
+    [setProgression],
+  );
 
   const togglePausePlay = () => {
-    setStatus((prev) => {
-      if (prev.play) {
-        videoRef.pause();
-        if (prev.animation) {
-          return { ...prev, play: false };
+    if (!videoRef.ended) {
+      setStatus((prev) => {
+        if (prev.play) {
+          videoRef.pause();
+          if (prev.animation) {
+            return { ...prev, play: false };
+          }
+          return { play: false, animation: true };
         }
-        return { play: false, animation: true };
-      }
-      videoRef.play();
-      if (prev.animation) {
-        return { ...prev, play: true };
-      }
-      return { play: true, animation: true };
-    });
+        videoRef.play();
+        if (prev.animation) {
+          return { ...prev, play: true };
+        }
+        return { play: true, animation: true };
+      });
 
-    if (timerId.current) {
-      clearTimeout(timerId.current);
+      if (timerId.current) {
+        clearTimeout(timerId.current);
+      }
+      timerId.current = setTimeout(() => {
+        clearTimeout(timerId);
+        timerId.current = null;
+        setStatus((prev) => ({ ...prev, animation: false }));
+      }, 500);
+    } else {
+      videoRef.currentTime = 0;
+      videoRef.play();
     }
-    timerId.current = setTimeout(() => {
-      clearTimeout(timerId);
-      timerId.current = null;
-      setStatus((prev) => ({ ...prev, animation: false }));
-    }, 500);
   };
 
   const handleClick = () => {
@@ -77,6 +111,10 @@ export default function Controllers({
       >
         <li className={styles.videoProgressSlider}>
           <VideoProgressBar
+            progressUpdate={progressUpdate}
+            progressBufferUpdate={progressBufferUpdate}
+            progression={progression}
+            setProgression={setProgression}
             isFullScreen={isFullScreen}
             src={src}
             videoRef={videoRef}
@@ -96,7 +134,11 @@ export default function Controllers({
           />
         </li>
         <li>
-          <ProgressTimeShow videoRef={videoRef} />
+          <ProgressTimeShow
+            setProgression={setProgression}
+            time={progression}
+            videoRef={videoRef}
+          />
         </li>
         <li ref={gearRef} className={styles.gearButton}>
           <GearButton

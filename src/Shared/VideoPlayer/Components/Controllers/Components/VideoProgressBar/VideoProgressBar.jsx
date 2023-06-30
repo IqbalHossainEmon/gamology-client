@@ -1,39 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
-export default function VideoProgressBar({ videoRef, src, isFullScreen }) {
-  const [progression, setProgression] = useState({ progress: 0, buffer: 0 });
-
+export default function VideoProgressBar({
+  videoRef,
+  src,
+  isFullScreen,
+  progression,
+  setProgression,
+  progressUpdate,
+  progressBufferUpdate,
+}) {
   const interval = useRef(null);
-
-  const progressUpdate = useCallback(
-    ({ target: { duration, currentTime } }) => {
-      setProgression((prev) => ({
-        ...prev,
-        progress: (currentTime / duration) * 100,
-      }));
-    },
-    [],
-  );
-
-  const progressBufferUpdate = useCallback(
-    ({ target: { buffered, duration } }) => {
-      if (buffered.length > 0) {
-        setProgression((prev) => ({
-          ...prev,
-          buffer: (buffered.end(0) / duration) * 100,
-        }));
-      }
-    },
-    [],
-  );
-
-  const handleSliderValue = useCallback(
-    (val) => {
-      videoRef.currentTime = (val / 100) * videoRef.duration;
-    },
-    [videoRef],
-  );
 
   const handleError = useCallback(() => {
     if (interval.current) {
@@ -62,7 +39,7 @@ export default function VideoProgressBar({ videoRef, src, isFullScreen }) {
           clearInterval(interval.current);
           interval.current = null;
         }
-        interval.count = +1;
+        interval.count++;
       }, 500);
     }
 
@@ -73,13 +50,25 @@ export default function VideoProgressBar({ videoRef, src, isFullScreen }) {
     };
   }, [handleError, progressBufferUpdate, progressUpdate, src, videoRef]);
 
+  const handleSetProgression = useCallback(
+    (val) => {
+      setProgression((prev) => ({
+        ...prev,
+        progress: val,
+        progressTime: (val / 100) * videoRef.duration,
+      }));
+      videoRef.currentTime = (val / 100) * videoRef.duration;
+    },
+    [setProgression, videoRef],
+  );
+
   return (
     <VideoSlider
       isFullScreen={isFullScreen}
-      buffer
-      position={progression}
-      setPosition={setProgression}
-      setValue={handleSliderValue}
+      isBuffer
+      position={progression.progress}
+      buffer={progression.buffer}
+      setPosition={handleSetProgression}
     />
   );
 }

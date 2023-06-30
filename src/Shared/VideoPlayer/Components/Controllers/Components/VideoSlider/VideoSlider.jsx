@@ -5,16 +5,16 @@ import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import styles from './VideoSlider.module.css';
 
 export default function VideoSlider({
-  setValue = () => {},
   position,
   setPosition,
+  isBuffer,
   buffer,
   isFullScreen,
 }) {
   const stateRef = useRef(position);
   stateRef.current = position;
   const pathRef = useRef(null);
-  const isDraggingRef = useRef(false);
+  const isDragging = useRef(false);
   const screenWidth = useScreenWidth();
 
   useEffect(() => {
@@ -22,49 +22,35 @@ export default function VideoSlider({
     pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
   }, [pathRef, screenWidth, isFullScreen]);
 
-  const getCursorInPercent = (e) =>
-    ((e?.touches
-      ? e.touches[0].pageX - pathRef.offsetLeft
-      : e.pageX - pathRef.offsetLeft) /
-      pathRef.width) *
-    100;
-
-  const onMove = useCallback(
+  const onMouseEvent = useCallback(
     (e) => {
-      isDraggingRef.current = true;
-      const cursorInPercent = getCursorInPercent(e);
+      isDragging.current = true;
+      const cursorInPercent =
+        ((e?.touches
+          ? e.touches[0].pageX - pathRef.offsetLeft
+          : e.pageX - pathRef.offsetLeft) /
+          pathRef.width) *
+        100;
 
       if (cursorInPercent >= 0 && cursorInPercent <= 100) {
-        setPosition((prev) => ({ ...prev, progress: cursorInPercent }));
-        setValue(cursorInPercent);
-        return;
-      }
-      if (cursorInPercent < 0 && stateRef.current.progress !== 0) {
-        setPosition((prev) => ({ ...prev, progress: 0 }));
-        setValue(0);
-        return;
-      }
-      if (cursorInPercent > 100 && stateRef.current.progress !== 100) {
-        setPosition((prev) => ({ ...prev, progress: 100 }));
-        setValue(100);
+        setPosition(cursorInPercent);
+      } else if (cursorInPercent < 0 && stateRef.current !== 0) {
+        setPosition(0);
+      } else if (cursorInPercent > 100 && stateRef.current !== 100) {
+        setPosition(100);
       }
     },
-    [setPosition, setValue],
+    [setPosition],
   );
 
   const handleClick = (e) => {
-    if (isDraggingRef.current) {
-      isDraggingRef.current = false;
-      return;
+    if (!isDragging.current) {
+      onMouseEvent(e);
     }
-    const cursorInPercent = getCursorInPercent(e);
-    if (position.progress !== cursorInPercent) {
-      setPosition((prev) => ({ ...prev, progress: cursorInPercent }));
-      setValue(cursorInPercent);
-    }
+    isDragging.current = false;
   };
 
-  const onStart = useDragStartStop(onMove, handleClick);
+  const onStart = useDragStartStop(onMouseEvent, handleClick);
 
   return (
     <div
@@ -73,22 +59,21 @@ export default function VideoSlider({
       role="button"
       onMouseDown={onStart}
       onTouchStart={onStart}
-      onClick={handleClick}
       className={styles.videoSliderPath}
     >
       <div className={styles.path} />
       <div
-        style={{ scale: `${position.progress / 100} 1` }}
+        style={{ scale: `${position / 100} 1` }}
         className={styles.activePath}
       />
-      {buffer && (
+      {isBuffer && (
         <div
-          style={{ scale: `${position.buffer / 100} 1` }}
+          style={{ scale: `${buffer / 100} 1` }}
           className={styles.preloadedPath}
         />
       )}
       <div
-        style={{ translate: `${position.progress}%` }}
+        style={{ translate: `${position}%` }}
         className={styles.knobContainer}
       >
         <div className={styles.knob} />

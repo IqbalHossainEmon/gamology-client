@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-/* import useHandleDebouncing from '../../../../../../Hooks/useHandleDebouncing'; */
+
 import styles from './PlayPauseButton.module.css';
 
 export default function PlayPauseButton({ videoRef, togglePausePlay }) {
   const [isPlaying, setIsPlaying] = useState(false);
-
-  /*   const handleDebouncing = useHandleDebouncing(550); */
 
   const handlePlay = useCallback(() => setIsPlaying(true), []);
 
@@ -23,7 +21,7 @@ export default function PlayPauseButton({ videoRef, togglePausePlay }) {
   return (
     <button
       type="button"
-      onClick={/* () => handleDebouncing( */ togglePausePlay /* ) */}
+      onClick={togglePausePlay}
       className={styles.playPauseButton}
     >
       <span>

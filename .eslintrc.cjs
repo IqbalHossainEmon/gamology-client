@@ -33,6 +33,7 @@ module.exports = {
     'react/prop-types': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'no-param-reassign': 0,
+    'no-plusplus': 0,
     'prettier/prettier': [
       'error',
       {
