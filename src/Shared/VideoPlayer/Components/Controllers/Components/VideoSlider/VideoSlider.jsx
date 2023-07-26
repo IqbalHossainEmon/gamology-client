@@ -9,7 +9,8 @@ export default function VideoSlider({
   setPosition,
   isBuffer,
   buffer,
-  isFullScreen,
+  handleSingleClick = () => {},
+  videoContainerRef,
 }) {
   const stateRef = useRef(position);
   stateRef.current = position;
@@ -17,40 +18,70 @@ export default function VideoSlider({
   const isDragging = useRef(false);
   const screenWidth = useScreenWidth();
 
-  useEffect(() => {
+  const handleResize = useCallback(() => {
     pathRef.width = pathRef.current?.offsetWidth;
     pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
-  }, [pathRef, screenWidth, isFullScreen]);
+  }, []);
 
+  useEffect(() => {
+    handleResize();
+  }, [handleResize, screenWidth]);
+
+  useEffect(() => {
+    videoContainerRef.addEventListener('fullscreenchange', handleResize);
+    videoContainerRef.addEventListener('mozfullscreenchange', handleResize);
+    videoContainerRef.addEventListener('MSFullscreenChange', handleResize);
+    videoContainerRef.addEventListener('webkitfullscreenchange', handleResize);
+    return () => {
+      videoContainerRef.removeEventListener('fullscreenchange', handleResize);
+      videoContainerRef.removeEventListener(
+        'mozfullscreenchange',
+        handleResize,
+      );
+      videoContainerRef.removeEventListener('MSFullscreenChange', handleResize);
+      videoContainerRef.removeEventListener(
+        'webkitfullscreenchange',
+        handleResize,
+      );
+    };
+  }, [handleResize, videoContainerRef]);
+
+  // get cursor position while dragging
   const onMouseEvent = useCallback(
-    (e) => {
+    (e, singleClick = false) => {
       isDragging.current = true;
-      const cursorInPercent =
+      let cursorInPercent =
         ((e?.touches
           ? e.touches[0].pageX - pathRef.offsetLeft
           : e.pageX - pathRef.offsetLeft) /
           pathRef.width) *
         100;
 
-      if (cursorInPercent >= 0 && cursorInPercent <= 100) {
-        setPosition(cursorInPercent);
-      } else if (cursorInPercent < 0 && stateRef.current !== 0) {
-        setPosition(0);
-      } else if (cursorInPercent > 100 && stateRef.current !== 100) {
-        setPosition(100);
+      if (cursorInPercent < 0) {
+        cursorInPercent = 0;
+      } else if (cursorInPercent > 100) {
+        cursorInPercent = 100;
+      }
+      if (
+        parseFloat(cursorInPercent.toFixed(3)) !==
+        parseFloat(stateRef.current.toFixed(3))
+      ) {
+        if (singleClick) handleSingleClick(cursorInPercent);
+        else setPosition(cursorInPercent);
       }
     },
-    [setPosition],
+    [handleSingleClick, setPosition],
   );
 
+  // get single click
   const handleClick = (e) => {
     if (!isDragging.current) {
-      onMouseEvent(e);
+      onMouseEvent(e, true);
     }
     isDragging.current = false;
   };
 
-  const onStart = useDragStartStop(onMouseEvent, handleClick);
+  const onStart = useDragStartStop(onMouseEvent, handleClick, false);
 
   return (
     <div

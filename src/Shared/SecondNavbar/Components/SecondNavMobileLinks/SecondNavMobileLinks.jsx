@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import useDropDownHide from '../../../../Hooks/useDropDownHide';
 import RotateArrow from '../../../RotateArrow/RotateArrow';
-import SecondNavLinkLists from '../SecondNavLinkLists/SecondNavLinkLists';
+import SecondNavLinkLists from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
 import styles from './SecondNavMobileLinks.module.css';
 
 export default function SecondNavMobileLinks({ setNavShow }) {

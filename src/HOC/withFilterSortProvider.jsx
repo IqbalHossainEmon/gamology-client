@@ -9,7 +9,7 @@ import useDropDownHide from '../Hooks/useDropDownHide';
 import useScreenWidth from '../Hooks/useScreenWidth';
 
 const withFilterSortProvider = (Component) =>
-  function FilterSortProvider() {
+  function FilterSortProvider(props) {
     const [filterSortState, setFilterSortState] = useState({
       filter: true,
       sort: true,
@@ -70,7 +70,7 @@ const withFilterSortProvider = (Component) =>
       <FilterSortContext.Provider value={filterSortState}>
         <SetFilterSortContext.Provider value={setFilterSort}>
           <FilterSortRefContext.Provider value={filterSortRef}>
-            <Component />
+            <Component {...props} />
           </FilterSortRefContext.Provider>
         </SetFilterSortContext.Provider>
       </FilterSortContext.Provider>

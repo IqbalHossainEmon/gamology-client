@@ -4,7 +4,7 @@ import useHandleTimerTransition from '../../../../../../../Hooks/useHandleTimerT
 import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 import styles from './Switch.module.css';
 
-function Switch({ state, setState, event, isFullScreen }) {
+function Switch({ state, setState, event, videoContainerRef }) {
   const rangePathRef = useRef();
   const [circlePosition, setCirclePosition] = useState({
     translate: state ? 100 : 0,
@@ -17,12 +17,33 @@ function Switch({ state, setState, event, isFullScreen }) {
   const pathInfoRef = useRef();
   const screenWidth = useScreenWidth();
 
-  // const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, 0, false);
-
-  useEffect(() => {
+  const handleResize = useCallback(() => {
     pathInfoRef.width = rangePathRef.current?.offsetWidth;
     pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
-  }, [rangePathRef, screenWidth, isFullScreen]);
+  }, []);
+
+  useEffect(() => {
+    handleResize();
+  }, [handleResize, screenWidth]);
+
+  useEffect(() => {
+    videoContainerRef.addEventListener('fullscreenchange', handleResize);
+    videoContainerRef.addEventListener('mozfullscreenchange', handleResize);
+    videoContainerRef.addEventListener('MSFullscreenChange', handleResize);
+    videoContainerRef.addEventListener('webkitfullscreenchange', handleResize);
+    return () => {
+      videoContainerRef.removeEventListener('fullscreenchange', handleResize);
+      videoContainerRef.removeEventListener(
+        'mozfullscreenchange',
+        handleResize,
+      );
+      videoContainerRef.removeEventListener('MSFullscreenChange', handleResize);
+      videoContainerRef.removeEventListener(
+        'webkitfullscreenchange',
+        handleResize,
+      );
+    };
+  }, [handleResize, videoContainerRef]);
 
   const handleTimerTransition = useHandleTimerTransition(
     setCirclePosition,

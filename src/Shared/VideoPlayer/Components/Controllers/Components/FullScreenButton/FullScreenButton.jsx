@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './FullScreenButton.module.css';
 
 export const handleFullScreen = (ref) => {
@@ -26,11 +26,9 @@ export const handleFullScreen = (ref) => {
   }
 };
 
-export default function FullScreenButton({
-  videoContainerRef,
-  isFullScreen,
-  setIsFullScreen,
-}) {
+export default function FullScreenButton({ videoContainerRef }) {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const handleFullscreenChange = useCallback(() => {
     setIsFullScreen((prev) => !prev);
   }, [setIsFullScreen]);

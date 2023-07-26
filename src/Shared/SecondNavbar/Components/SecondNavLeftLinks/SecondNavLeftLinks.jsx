@@ -1,4 +1,4 @@
-import SecondNavLinkLists from '../SecondNavLinkLists/SecondNavLinkLists';
+import SecondNavLinkLists from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
 import SecondNavMobileLinks from '../SecondNavMobileLinks/SecondNavMobileLinks';
 import styles from './SecondNavLeftLinks.module.css';
 

@@ -79,7 +79,7 @@ export default function useBannerLogics() {
   const startTimer = useCallback(() => {
     if (!timerRef.current) {
       timerState.timeStartAt = new Date().getTime();
-      timerState.currentTotalTime = 9000;
+      timerState.currentTotalTime = 8900;
       timerRef.current = setInterval(() => {
         run();
       }, timerState.currentTotalTime);

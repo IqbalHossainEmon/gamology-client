@@ -3,23 +3,21 @@ import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
 import Switch from '../Switch/Switch';
 import styles from './GearButton.module.css';
 
-export default function GearButton({
-  gearRef,
-  autoplay,
-  setAutoplay,
-  isFullScreen,
-}) {
+export default function GearButton({ gearRef, videoContainerRef }) {
+  const [autoplay, setAutoplay] = useState(false);
+
   const [show, setShow] = useState(false);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
   useEffect(() => {
     setElement(gearRef.current);
+    if (localStorage.getItem('autoplay')) {
+      setAutoplay(true);
+    }
   }, [gearRef, setElement]);
 
   const handleClick = () => {
-    console.log('wkwk');
-
     setAutoplay((prev) => {
       if (prev) {
         localStorage.removeItem('autoplay');
@@ -71,7 +69,7 @@ export default function GearButton({
             </div>
             <div className={styles.switch}>
               <Switch
-                isFullScreen={isFullScreen}
+                videoContainerRef={videoContainerRef}
                 state={autoplay}
                 setState={setAutoplay}
                 event={handleClick}

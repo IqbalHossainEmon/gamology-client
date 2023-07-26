@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
+import { memo, useRef } from 'react';
+import withVideoPlayerProgress from '../../../../../HOC/withVideoPlayerProgress';
 import FullScreenButton, {
   handleFullScreen,
 } from '../Components/FullScreenButton/FullScreenButton';
@@ -6,84 +7,34 @@ import GearButton from '../Components/GearButton/GearButton/GearButton';
 import PlayPauseButton from '../Components/PlayPauseButton/PlayPauseButton';
 import ProgressTimeShow from '../Components/ProgressTimeShow/ProgressTimeShow';
 import VideoProgressBar from '../Components/VideoProgressBar/VideoProgressBar';
+import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
-export default function Controllers({
+function Controllers({
   videoRef,
   src,
   videoContainerRef,
-  autoplay,
-  setAutoplay,
   isControllerShowing,
-  setStatus,
 }) {
   const gearRef = useRef(null);
-  const timerId = useRef(null);
+  const isSeekedRef = useRef(true);
   const clickTimerId = useRef(null);
-
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [progression, setProgression] = useState({
-    progress: 0,
-    buffer: 0,
-    progressTime: 0,
-    durationTime: 0,
-  });
-
-  const progressUpdate = useCallback(
-    ({ target: { duration, currentTime } }) => {
-      setProgression((prev) => ({
-        ...prev,
-        progress: (currentTime / duration) * 100,
-        progressTime: currentTime,
-      }));
-    },
-    [setProgression],
-  );
-
-  const progressBufferUpdate = useCallback(
-    ({ target: { buffered, duration } }) => {
-      if (buffered.length > 0) {
-        setProgression((prev) => ({
-          ...prev,
-          buffer: (buffered.end(0) / duration) * 100,
-        }));
-      }
-    },
-    [setProgression],
-  );
 
   const togglePausePlay = () => {
     if (!videoRef.ended) {
-      setStatus((prev) => {
-        if (prev.play) {
-          videoRef.pause();
-          if (prev.animation) {
-            return { ...prev, play: false };
-          }
-          return { play: false, animation: true };
-        }
+      if (videoRef.paused) {
         videoRef.play();
-        if (prev.animation) {
-          return { ...prev, play: true };
-        }
-        return { play: true, animation: true };
-      });
-
-      if (timerId.current) {
-        clearTimeout(timerId.current);
+      } else {
+        videoRef.pause();
       }
-      timerId.current = setTimeout(() => {
-        clearTimeout(timerId);
-        timerId.current = null;
-        setStatus((prev) => ({ ...prev, animation: false }));
-      }, 500);
     } else {
       videoRef.currentTime = 0;
       videoRef.play();
     }
   };
 
+  // handle full screen or toggle play depending on click type
   const handleClick = () => {
     if (clickTimerId.current) {
       handleFullScreen(videoContainerRef);
@@ -111,51 +62,39 @@ export default function Controllers({
       >
         <li className={styles.videoProgressSlider}>
           <VideoProgressBar
-            progressUpdate={progressUpdate}
-            progressBufferUpdate={progressBufferUpdate}
-            progression={progression}
-            setProgression={setProgression}
-            isFullScreen={isFullScreen}
+            isSeekedRef={isSeekedRef}
+            videoContainerRef={videoContainerRef}
             src={src}
             videoRef={videoRef}
           />
         </li>
         <li>
           <PlayPauseButton
+            isSeekedRef={isSeekedRef}
             videoRef={videoRef}
             togglePausePlay={togglePausePlay}
           />
         </li>
         <li className={styles.volumeBtn}>
           <VideoVolume
-            isFullScreen={isFullScreen}
+            videoContainerRef={videoContainerRef}
             className={styles.sliderContainer}
             videoRef={videoRef}
           />
         </li>
         <li>
-          <ProgressTimeShow
-            setProgression={setProgression}
-            time={progression}
-            videoRef={videoRef}
-          />
+          <ProgressTimeShow videoRef={videoRef} />
         </li>
         <li ref={gearRef} className={styles.gearButton}>
-          <GearButton
-            isFullScreen={isFullScreen}
-            gearRef={gearRef}
-            autoplay={autoplay}
-            setAutoplay={setAutoplay}
-          />
+          <GearButton videoContainerRef={videoContainerRef} gearRef={gearRef} />
         </li>
         <li>
-          <FullScreenButton
-            isFullScreen={isFullScreen}
-            setIsFullScreen={setIsFullScreen}
-            videoContainerRef={videoContainerRef}
-          />
+          <FullScreenButton videoContainerRef={videoContainerRef} />
         </li>
       </ul>
+      <VideoStatus isSeekedRef={isSeekedRef} videoRef={videoRef} />
     </>
   );
 }
+
+export default withVideoPlayerProgress(memo(Controllers));
