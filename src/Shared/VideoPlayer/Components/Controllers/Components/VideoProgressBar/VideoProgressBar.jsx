@@ -9,12 +9,10 @@ export default function VideoProgressBar({
   videoRef,
   src,
   videoContainerRef,
-
   isSeekedRef,
 }) {
   const interval = useRef(null);
   const wasPlaying = useRef(false);
-  const seekingInterval = useRef(null);
   const [buffer, setBuffer] = useState(0);
 
   const progress = useVideoPlayerProgress();
@@ -78,23 +76,7 @@ export default function VideoProgressBar({
   }, [handleError, progressBufferUpdate, progressUpdate, src, videoRef]);
 
   // set current time but after 100ms of mouse move else clear the timer
-  const setCurrentTime = useCallback(() => {
-    if (seekingInterval.current) {
-      clearTimeout(seekingInterval.current);
-      seekingInterval.current = null;
-    }
-    seekingInterval.current = setTimeout(() => {
-      if (wasPlaying.current) {
-        videoRef.play();
-        wasPlaying.current = false;
-      }
-      videoRef.currentTime = (progressRef.current / 100) * videoRef.duration;
-      clearTimeout(seekingInterval.current);
-      seekingInterval.current = null;
-    }, 100);
-  }, [videoRef]);
-
-  const handleOnclickCurrentTime = useCallback(
+  const setCurrentTime = useCallback(
     (val) => {
       videoRef.currentTime = (val / 100) * videoRef.duration;
     },
@@ -103,16 +85,33 @@ export default function VideoProgressBar({
 
   const handleSetProgression = useCallback(
     (val) => {
-      if (!videoRef.paused) {
-        videoRef.pause();
-        wasPlaying.current = true;
-        isSeekedRef.current = false;
-      }
       setProgress(val);
-      setCurrentTime();
     },
-    [isSeekedRef, setCurrentTime, setProgress, videoRef],
+    [setProgress],
   );
+  const handleSingleClick = useCallback(
+    (val) => {
+      setProgress(val);
+      setCurrentTime(val);
+    },
+    [setCurrentTime, setProgress],
+  );
+
+  const handleMouseDown = useCallback(() => {
+    if (!videoRef.paused) {
+      videoRef.pause();
+      wasPlaying.current = true;
+      isSeekedRef.current = false;
+    }
+  }, [isSeekedRef, videoRef]);
+
+  const handleMouseUp = useCallback(() => {
+    if (wasPlaying.current) {
+      videoRef.play();
+      wasPlaying.current = false;
+    }
+    setCurrentTime(progressRef.current);
+  }, [setCurrentTime, videoRef]);
 
   return (
     <VideoSlider
@@ -120,8 +119,10 @@ export default function VideoProgressBar({
       isBuffer
       position={progress}
       buffer={buffer}
+      handleMouseDown={handleMouseDown}
+      handleMouseUp={handleMouseUp}
       setPosition={handleSetProgression}
-      handleSingleClick={handleOnclickCurrentTime}
+      handleSingleClick={handleSingleClick}
     />
   );
 }

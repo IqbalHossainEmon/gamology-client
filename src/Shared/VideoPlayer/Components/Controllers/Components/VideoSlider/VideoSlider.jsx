@@ -9,8 +9,10 @@ export default function VideoSlider({
   setPosition,
   isBuffer,
   buffer,
-  handleSingleClick = () => {},
   videoContainerRef,
+  handleSingleClick = () => {},
+  handleMouseUp = () => {},
+  handleMouseDown,
 }) {
   const stateRef = useRef(position);
   stateRef.current = position;
@@ -74,14 +76,24 @@ export default function VideoSlider({
   );
 
   // get single click
-  const handleClick = (e) => {
-    if (!isDragging.current) {
-      onMouseEvent(e, true);
-    }
-    isDragging.current = false;
-  };
+  const handleClick = useCallback(
+    (e) => {
+      if (!isDragging.current) {
+        onMouseEvent(e, true);
+      } else {
+        handleMouseUp();
+      }
+      isDragging.current = false;
+    },
+    [handleMouseUp, onMouseEvent],
+  );
 
-  const onStart = useDragStartStop(onMouseEvent, handleClick, false);
+  const onStart = useDragStartStop(
+    onMouseEvent,
+    handleClick,
+    false,
+    handleMouseDown,
+  );
 
   return (
     <div

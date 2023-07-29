@@ -5,6 +5,7 @@ export default function useDragStartStop(
   handleMove,
   handleSetValue = () => {},
   grab = false,
+  handleMouseDown = () => {},
 ) {
   const isTouchAble = useIsTouchAble();
 
@@ -27,6 +28,7 @@ export default function useDragStartStop(
 
   const onStart = useCallback(
     (e) => {
+      handleMouseDown(e);
       if (!isTouchAble() && grab) {
         e.preventDefault();
         document.getElementById('root').classList.add('grabbing');
@@ -38,7 +40,7 @@ export default function useDragStartStop(
       document.addEventListener('touchend', onStop);
       window.addEventListener('blur', onStop);
     },
-    [grab, handleMove, isTouchAble, onStop],
+    [grab, handleMouseDown, handleMove, isTouchAble, onStop],
   );
   return onStart;
 }
