@@ -26,7 +26,7 @@
   margin-left: 2px;
 }
 .fadeOut {
-  animation: fadeOut 600ms linear 0s infinite normal forwards;
+  animation: fadeOut 500ms linear 0s infinite normal forwards;
 }
 
 .initialPlaceholder {

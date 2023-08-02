@@ -3,7 +3,7 @@ import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
 import Switch from '../Switch/Switch';
 import styles from './GearButton.module.css';
 
-export default function GearButton({ gearRef, videoContainerRef }) {
+export default function GearButton({ gearRef, videoContainer }) {
   const [autoplay, setAutoplay] = useState(false);
 
   const [show, setShow] = useState(false);
@@ -69,7 +69,7 @@ export default function GearButton({ gearRef, videoContainerRef }) {
             </div>
             <div className={styles.switch}>
               <Switch
-                videoContainerRef={videoContainerRef}
+                videoContainer={videoContainer}
                 state={autoplay}
                 setState={setAutoplay}
                 event={handleClick}

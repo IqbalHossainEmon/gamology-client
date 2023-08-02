@@ -5,15 +5,9 @@
   position: relative;
 }
 
-@media (max-width: 1023px) and (min-width: 766px) {
+@media (max-width: 1023px) {
   .individualGame {
     width: 97vw;
     flex-direction: column-reverse;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .individualGame {
-    width: 98vw;
   }
 }

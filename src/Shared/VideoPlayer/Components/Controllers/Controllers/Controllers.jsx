@@ -1,4 +1,4 @@
-import { memo, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import withVideoPlayerProgress from '../../../../../HOC/withVideoPlayerProgress';
 import FullScreenButton, {
   handleFullScreen,
@@ -11,33 +11,36 @@ import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
-function Controllers({
-  videoRef,
-  src,
-  videoContainerRef,
-  isControllerShowing,
-}) {
+function Controllers({ video, videoContainer, src, isControllerShowing }) {
   const gearRef = useRef(null);
-  const isSeekedRef = useRef(true);
   const clickTimerId = useRef(null);
+  const videoRef = useRef(video);
+
+  const isSeekedRef = useRef(true);
+  const canPlay = useRef(true);
+  const shouldPause = useRef(false);
 
   const togglePausePlay = () => {
-    if (!videoRef.ended) {
-      if (videoRef.paused) {
-        videoRef.play();
+    if (canPlay.current) {
+      if (!videoRef.current.ended) {
+        if (videoRef.current.paused) {
+          videoRef.current.play();
+        } else {
+          videoRef.current.pause();
+        }
       } else {
-        videoRef.pause();
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
       }
     } else {
-      videoRef.currentTime = 0;
-      videoRef.play();
+      shouldPause.current = true;
     }
   };
 
   // handle full screen or toggle play depending on click type
   const handleClick = () => {
     if (clickTimerId.current) {
-      handleFullScreen(videoContainerRef);
+      handleFullScreen(videoContainer.current);
       clearTimeout(clickTimerId.current);
       clickTimerId.current = null;
     } else {
@@ -48,6 +51,37 @@ function Controllers({
       }, 200);
     }
   };
+
+  const handlePlaying = useCallback(() => {
+    canPlay.current = true;
+    if (shouldPause.current) {
+      videoRef.current.pause();
+    }
+  }, []);
+
+  const handleCanPlayPlayThorough = useCallback(() => {
+    console.log('can Play thorugh');
+  }, []);
+
+  const handleWaiting = useCallback(() => {
+    canPlay.current = false;
+  }, []);
+
+  useEffect(() => {
+    if (video.current) {
+      videoRef.current = video.current;
+      videoRef.current.addEventListener('playing', handlePlaying);
+      videoRef.current.addEventListener(
+        'canplaythrough',
+        handleCanPlayPlayThorough,
+      );
+      videoRef.current.addEventListener('waiting', handleWaiting);
+    }
+    return () => {
+      videoRef.current.removeEventListener('playing', handlePlaying);
+      videoRef.current.removeEventListener('waiting', handleWaiting);
+    };
+  }, [handleCanPlayPlayThorough, handlePlaying, handleWaiting, video]);
 
   return (
     <>
@@ -63,36 +97,32 @@ function Controllers({
         <li className={styles.videoProgressSlider}>
           <VideoProgressBar
             isSeekedRef={isSeekedRef}
-            videoContainerRef={videoContainerRef}
+            video={video}
+            videoContainer={videoContainer}
             src={src}
-            videoRef={videoRef}
           />
         </li>
         <li>
           <PlayPauseButton
             isSeekedRef={isSeekedRef}
-            videoRef={videoRef}
+            video={video}
             togglePausePlay={togglePausePlay}
           />
         </li>
-        <li className={styles.volumeBtn}>
-          <VideoVolume
-            videoContainerRef={videoContainerRef}
-            className={styles.sliderContainer}
-            videoRef={videoRef}
-          />
+        <li>
+          <VideoVolume video={video} videoContainer={videoContainer} />
         </li>
         <li>
-          <ProgressTimeShow videoRef={videoRef} />
+          <ProgressTimeShow video={video} />
         </li>
         <li ref={gearRef} className={styles.gearButton}>
-          <GearButton videoContainerRef={videoContainerRef} gearRef={gearRef} />
+          <GearButton videoContainer={videoContainer} gearRef={gearRef} />
         </li>
         <li>
-          <FullScreenButton videoContainerRef={videoContainerRef} />
+          <FullScreenButton videoContainer={videoContainer} />
         </li>
       </ul>
-      <VideoStatus isSeekedRef={isSeekedRef} videoRef={videoRef} />
+      <VideoStatus isSeekedRef={isSeekedRef} video={video} />
     </>
   );
 }

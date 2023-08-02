@@ -1,12 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
+import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
 
-export default function VideoStatus({ videoRef, isSeekedRef }) {
+export default function VideoStatus({ video, isSeekedRef }) {
   const formatTime = useTimeFormat();
   const timerId = useRef(null);
+  const videoRef = useRef(video.current);
 
-  const [status, setStatus] = useState({ duration: 0, initialShow: true });
+  const [status, setStatus] = useState({
+    duration: 0,
+    initialShow: true,
+    loading: false,
+  });
 
   const handleTransition = () => {
     if (!timerId.current) {
@@ -23,52 +29,84 @@ export default function VideoStatus({ videoRef, isSeekedRef }) {
   }, []);
 
   const loadUpdate = useCallback(() => {
-    if (localStorage.getItem('autoplay')) {
-      videoRef.play();
+    if (localStorage.getItem('autoplay') && videoRef.current.paused) {
+      videoRef.current.play();
     }
-  }, [videoRef]);
+  }, []);
 
   const handlePlay = useCallback(() => {
     if (isSeekedRef.current) {
       setStatus((prev) => {
         if (!prev.initialShow) {
-          return { play: true, animation: true };
+          return { play: true, animation: true, loading: false };
         }
         return {};
       });
       handleTransition();
-    } else {
-      isSeekedRef.current = true;
     }
   }, [isSeekedRef]);
 
   const handlePause = useCallback(() => {
-    if (isSeekedRef.current && !videoRef.ended) {
-      setStatus({ play: false, animation: true });
+    if (isSeekedRef.current && !videoRef.current.ended) {
+      setStatus({ play: false, animation: true, loading: false });
       handleTransition();
     }
-  }, [isSeekedRef, videoRef]);
+  }, [isSeekedRef]);
 
   const initialBtnPlay = useCallback(() => {
-    videoRef.play();
-  }, [videoRef]);
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    }
+  }, []);
+
+  const handlePlaying = useCallback(() => {
+    setStatus((prev) => ({ ...prev, loading: false }));
+  }, []);
+
+  const handleWaiting = useCallback(() => {
+    setStatus((prev) => ({ ...prev, loading: true }));
+  }, []);
 
   useEffect(() => {
-    videoRef.addEventListener('loadedmetadata', loadMetaDataUpdate);
-    videoRef.addEventListener('loadeddata', loadUpdate);
-    videoRef.addEventListener('play', handlePlay);
-    videoRef.addEventListener('pause', handlePause);
+    if (video.current) {
+      videoRef.current = video.current;
+
+      videoRef.current.addEventListener('loadedmetadata', loadMetaDataUpdate);
+      videoRef.current.addEventListener('loadeddata', loadUpdate);
+      videoRef.current.addEventListener('play', handlePlay);
+      videoRef.current.addEventListener('pause', handlePause);
+      videoRef.current.addEventListener('playing', handlePlaying);
+      videoRef.current.addEventListener('waiting', handleWaiting);
+    }
 
     return () => {
-      videoRef.removeEventListener('loadedmetadata', loadMetaDataUpdate);
-      videoRef.removeEventListener('loadeddata', loadUpdate);
-      videoRef.removeEventListener('play', handlePlay);
-      videoRef.removeEventListener('pause', handlePause);
+      videoRef.current.removeEventListener(
+        'loadedmetadata',
+        loadMetaDataUpdate,
+      );
+      videoRef.current.removeEventListener('loadeddata', loadUpdate);
+      videoRef.current.removeEventListener('play', handlePlay);
+      videoRef.current.removeEventListener('pause', handlePause);
+      videoRef.current.removeEventListener('playing', handlePlaying);
+      videoRef.current.removeEventListener('waiting', handleWaiting);
     };
-  }, [handlePause, handlePlay, loadMetaDataUpdate, loadUpdate, videoRef]);
+  }, [
+    handlePlaying,
+    handlePause,
+    handlePlay,
+    handleWaiting,
+    loadMetaDataUpdate,
+    loadUpdate,
+    video,
+  ]);
 
   return (
     <>
+      {!status.initialShow && !status.animation && status.loading && (
+        <div>
+          <CircularSpinner />
+        </div>
+      )}
       {!status.initialShow && (
         <div
           className={
@@ -91,7 +129,7 @@ export default function VideoStatus({ videoRef, isSeekedRef }) {
           </span>
         </div>
       )}
-      {status.initialShow && (
+      {status.initialShow && status.duration > 0 && (
         <div className={styles.initialPlaceholder}>
           <button
             onClick={initialBtnPlay}

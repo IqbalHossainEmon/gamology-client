@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 import styles from './Video.module.css';
 
-function Video({ videoContainerRef, src, captions, className }, ref) {
+function Video({ videoContainer, src, captions, className }, ref) {
   const [fullscreenSize, setFullscreenSize] = useState({
     isFullScreen: false,
     width: 0,
@@ -38,42 +38,44 @@ function Video({ videoContainerRef, src, captions, className }, ref) {
   }, []);
 
   useEffect(() => {
-    videoContainerRef?.addEventListener(
+    videoContainer?.current.addEventListener(
       'fullscreenchange',
       handleFullscreenChange,
     );
-    videoContainerRef?.addEventListener(
+    videoContainer?.current.addEventListener(
       'mozfullscreenchange',
       handleFullscreenChange,
     );
-    videoContainerRef?.addEventListener(
+    videoContainer?.current.addEventListener(
       'MSFullscreenChange',
       handleFullscreenChange,
     );
-    videoContainerRef?.addEventListener(
+    videoContainer?.current.addEventListener(
       'webkitfullscreenchange',
       handleFullscreenChange,
     );
 
+    const videoContainerRef = videoContainer?.current;
+
     return () => {
-      videoContainerRef?.removeEventListener(
+      videoContainerRef.removeEventListener(
         'fullscreenchange',
         handleFullscreenChange,
       );
-      videoContainerRef?.removeEventListener(
+      videoContainerRef.removeEventListener(
         'mozfullscreenchange',
         handleFullscreenChange,
       );
-      videoContainerRef?.removeEventListener(
+      videoContainerRef.removeEventListener(
         'MSFullscreenChange',
         handleFullscreenChange,
       );
-      videoContainerRef?.removeEventListener(
+      videoContainerRef.removeEventListener(
         'webkitfullscreenchange',
         handleFullscreenChange,
       );
     };
-  }, [handleFullscreenChange, videoContainerRef]);
+  }, [handleFullscreenChange, videoContainer]);
 
   return (
     <video

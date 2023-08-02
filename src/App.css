@@ -74,13 +74,13 @@ main {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #272727;
+    background: #474747;
     border-radius: 5px;
     opacity: 0;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #303030;
+    background: rgb(82, 82, 82);
     opacity: 0;
   }
 

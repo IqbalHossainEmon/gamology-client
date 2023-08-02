@@ -49,13 +49,7 @@
   outline: none;
   border: none;
 }
-.volumeBtn {
-  display: flex;
-  align-items: center;
-}
-.volumeBtn:hover .sliderContainer {
-  max-width: 64px;
-}
+
 .gearButton {
   margin-left: auto;
 }

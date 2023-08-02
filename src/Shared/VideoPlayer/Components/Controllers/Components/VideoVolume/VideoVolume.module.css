@@ -1,3 +1,9 @@
+.volume {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .volumeBtn {
   border: none;
   background: none;
@@ -23,6 +29,11 @@
   position: relative;
   margin-bottom: -3px;
   padding: 10px 0;
+}
+
+.volume:hover .volumeSliderContainer,
+.volume:active .volumeSliderContainer {
+  max-width: 64px;
 }
 
 .volumeSlider {

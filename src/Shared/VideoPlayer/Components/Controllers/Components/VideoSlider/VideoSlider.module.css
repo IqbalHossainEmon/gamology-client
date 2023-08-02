@@ -23,7 +23,7 @@
   background-color: rgb(0, 116, 228);
   transform-origin: 0 0;
 }
-.preloadedPath {
+.bufferPath {
   position: absolute;
   top: 50%;
   left: 0;

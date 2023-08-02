@@ -9,15 +9,13 @@ export default function VideoSlider({
   setPosition,
   isBuffer,
   buffer,
-  videoContainerRef,
-  handleSingleClick = () => {},
+  videoContainer,
   handleMouseUp = () => {},
-  handleMouseDown,
+  handleMouseDown = () => {},
 }) {
   const stateRef = useRef(position);
   stateRef.current = position;
   const pathRef = useRef(null);
-  const isDragging = useRef(false);
   const screenWidth = useScreenWidth();
 
   const handleResize = useCallback(() => {
@@ -30,10 +28,26 @@ export default function VideoSlider({
   }, [handleResize, screenWidth]);
 
   useEffect(() => {
-    videoContainerRef.addEventListener('fullscreenchange', handleResize);
-    videoContainerRef.addEventListener('mozfullscreenchange', handleResize);
-    videoContainerRef.addEventListener('MSFullscreenChange', handleResize);
-    videoContainerRef.addEventListener('webkitfullscreenchange', handleResize);
+    let videoContainerRef;
+
+    if (videoContainer.current) {
+      videoContainer.current.addEventListener('fullscreenchange', handleResize);
+      videoContainer.current.addEventListener(
+        'mozfullscreenchange',
+        handleResize,
+      );
+      videoContainer.current.addEventListener(
+        'MSFullscreenChange',
+        handleResize,
+      );
+      videoContainer.current.addEventListener(
+        'webkitfullscreenchange',
+        handleResize,
+      );
+
+      videoContainerRef = videoContainer.current;
+    }
+
     return () => {
       videoContainerRef.removeEventListener('fullscreenchange', handleResize);
       videoContainerRef.removeEventListener(
@@ -46,12 +60,11 @@ export default function VideoSlider({
         handleResize,
       );
     };
-  }, [handleResize, videoContainerRef]);
+  }, [handleResize, videoContainer]);
 
   // get cursor position while dragging
   const onMouseEvent = useCallback(
-    (e, singleClick = false) => {
-      isDragging.current = true;
+    (e) => {
       let cursorInPercent =
         ((e?.touches
           ? e.touches[0].pageX - pathRef.offsetLeft
@@ -68,31 +81,25 @@ export default function VideoSlider({
         parseFloat(cursorInPercent.toFixed(3)) !==
         parseFloat(stateRef.current.toFixed(3))
       ) {
-        if (singleClick) handleSingleClick(cursorInPercent);
-        else setPosition(cursorInPercent);
+        setPosition(cursorInPercent);
       }
     },
-    [handleSingleClick, setPosition],
+    [setPosition],
   );
 
-  // get single click
-  const handleClick = useCallback(
+  const handleMouseDownClick = useCallback(
     (e) => {
-      if (!isDragging.current) {
-        onMouseEvent(e, true);
-      } else {
-        handleMouseUp();
-      }
-      isDragging.current = false;
+      onMouseEvent(e);
+      handleMouseDown();
     },
-    [handleMouseUp, onMouseEvent],
+    [handleMouseDown, onMouseEvent],
   );
 
   const onStart = useDragStartStop(
     onMouseEvent,
-    handleClick,
+    handleMouseUp,
+    handleMouseDownClick,
     false,
-    handleMouseDown,
   );
 
   return (
@@ -112,7 +119,7 @@ export default function VideoSlider({
       {isBuffer && (
         <div
           style={{ scale: `${buffer / 100} 1` }}
-          className={styles.preloadedPath}
+          className={styles.bufferPath}
         />
       )}
       <div

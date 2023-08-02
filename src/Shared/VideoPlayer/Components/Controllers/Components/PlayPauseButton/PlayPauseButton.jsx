@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import styles from './PlayPauseButton.module.css';
 
 export default function PlayPauseButton({
-  videoRef,
+  video,
   togglePausePlay,
   isSeekedRef,
 }) {
@@ -22,13 +22,18 @@ export default function PlayPauseButton({
   }, [isSeekedRef]);
 
   useEffect(() => {
-    videoRef.addEventListener('play', handlePlay);
-    videoRef.addEventListener('pause', handlePause);
+    let videoRef;
+    if (video.current) {
+      videoRef = video.current;
+      videoRef.addEventListener('play', handlePlay);
+      videoRef.addEventListener('pause', handlePause);
+    }
+
     return () => {
       videoRef.removeEventListener('play', handlePlay);
       videoRef.removeEventListener('pause', handlePause);
     };
-  }, [handlePause, handlePlay, videoRef]);
+  }, [handlePause, handlePlay, video]);
 
   return (
     <button

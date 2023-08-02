@@ -3,15 +3,15 @@ import useIsTouchAble from './useIsTouchable';
 
 export default function useDragStartStop(
   handleMove,
-  handleSetValue = () => {},
-  grab = false,
+  handleMouseUp = () => {},
   handleMouseDown = () => {},
+  grab = false,
 ) {
   const isTouchAble = useIsTouchAble();
 
   const onStop = useCallback(
     (e) => {
-      handleSetValue(e);
+      handleMouseUp(e);
 
       if (document.getElementById('root').classList.contains('grabbing')) {
         document.getElementById('root').classList.remove('grabbing');
@@ -23,7 +23,7 @@ export default function useDragStartStop(
       document.removeEventListener('touchend', onStop);
       window.removeEventListener('blur', onStop);
     },
-    [handleMove, handleSetValue],
+    [handleMove, handleMouseUp],
   );
 
   const onStart = useCallback(

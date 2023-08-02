@@ -26,7 +26,7 @@ export const handleFullScreen = (ref) => {
   }
 };
 
-export default function FullScreenButton({ videoContainerRef }) {
+export default function FullScreenButton({ videoContainer }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const handleFullscreenChange = useCallback(() => {
@@ -34,22 +34,27 @@ export default function FullScreenButton({ videoContainerRef }) {
   }, [setIsFullScreen]);
 
   useEffect(() => {
-    videoContainerRef.addEventListener(
-      'fullscreenchange',
-      handleFullscreenChange,
-    );
-    videoContainerRef.addEventListener(
-      'mozfullscreenchange',
-      handleFullscreenChange,
-    );
-    videoContainerRef.addEventListener(
-      'MSFullscreenChange',
-      handleFullscreenChange,
-    );
-    videoContainerRef.addEventListener(
-      'webkitfullscreenchange',
-      handleFullscreenChange,
-    );
+    let videoContainerRef;
+    if (videoContainer.current) {
+      videoContainerRef = videoContainer.current;
+
+      videoContainerRef.addEventListener(
+        'fullscreenchange',
+        handleFullscreenChange,
+      );
+      videoContainerRef.addEventListener(
+        'mozfullscreenchange',
+        handleFullscreenChange,
+      );
+      videoContainerRef.addEventListener(
+        'MSFullscreenChange',
+        handleFullscreenChange,
+      );
+      videoContainerRef.addEventListener(
+        'webkitfullscreenchange',
+        handleFullscreenChange,
+      );
+    }
     return () => {
       videoContainerRef.removeEventListener(
         'fullscreenchange',
@@ -68,12 +73,12 @@ export default function FullScreenButton({ videoContainerRef }) {
         handleFullscreenChange,
       );
     };
-  }, [handleFullscreenChange, videoContainerRef]);
+  }, [handleFullscreenChange, videoContainer]);
 
   return (
     <button
       type="button"
-      onClick={() => handleFullScreen(videoContainerRef)}
+      onClick={() => handleFullScreen(videoContainer.current)}
       className={styles.fullScreenButton}
     >
       <span>
