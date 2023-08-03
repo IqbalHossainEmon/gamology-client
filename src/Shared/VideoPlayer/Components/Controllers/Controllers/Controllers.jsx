@@ -56,12 +56,11 @@ function Controllers({ video, videoContainer, src, isControllerShowing }) {
     canPlay.current = true;
     if (shouldPause.current) {
       videoRef.current.pause();
+      shouldPause.current = false;
     }
   }, []);
 
-  const handleCanPlayPlayThorough = useCallback(() => {
-    console.log('can Play thorugh');
-  }, []);
+  const handleCanPlayPlayThorough = useCallback(() => {}, []);
 
   const handleWaiting = useCallback(() => {
     canPlay.current = false;
@@ -104,6 +103,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing }) {
         </li>
         <li>
           <PlayPauseButton
+            canPlay={canPlay}
             isSeekedRef={isSeekedRef}
             video={video}
             togglePausePlay={togglePausePlay}

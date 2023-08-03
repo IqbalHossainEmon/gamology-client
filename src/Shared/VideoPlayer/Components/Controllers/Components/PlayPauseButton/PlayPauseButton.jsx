@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import styles from './PlayPauseButton.module.css';
 
@@ -6,20 +6,32 @@ export default function PlayPauseButton({
   video,
   togglePausePlay,
   isSeekedRef,
+  canPlay,
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const isPlayingRef = useRef(isPlaying);
+  isPlayingRef.current = isPlaying;
 
   const handlePlay = useCallback(() => {
-    if (isSeekedRef.current) {
+    if (isSeekedRef.current && !isPlayingRef.current) {
       setIsPlaying(true);
     }
   }, [isSeekedRef]);
 
   const handlePause = useCallback(() => {
-    if (isSeekedRef.current) {
+    if (isSeekedRef.current && isPlayingRef.current) {
       setIsPlaying(false);
     }
   }, [isSeekedRef]);
+
+  const handleCanToggle = () => {
+    if (canPlay.current) {
+      togglePausePlay();
+    } else if (isPlayingRef.current) {
+      setIsPlaying(false);
+      togglePausePlay();
+    }
+  };
 
   useEffect(() => {
     let videoRef;
@@ -38,7 +50,7 @@ export default function PlayPauseButton({
   return (
     <button
       type="button"
-      onClick={togglePausePlay}
+      onClick={handleCanToggle}
       className={styles.playPauseButton}
     >
       <span>

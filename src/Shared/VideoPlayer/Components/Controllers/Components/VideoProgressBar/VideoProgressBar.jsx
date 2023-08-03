@@ -72,9 +72,7 @@ export default function VideoProgressBar({
   }, []);
 
   const handlePause = useCallback(() => {
-    if (isMouseDown.current) {
-      isPlaying.current = false;
-    }
+    isPlaying.current = false;
   }, []);
 
   const handleSeeked = useCallback(() => {
