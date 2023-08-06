@@ -1,15 +1,15 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerButtons';
 import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
 import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards';
 import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems';
-import useBannerLogics from '../useBannerLogics/useBannerLogics';
+import useDiscoverBannerLogics from '../useDiscoverBannerLogics/useDiscoverBannerLogics';
 import styles from './DiscoverBanner.module.css';
 
 const items = [
   {
-    id: 0,
+    id: 1000,
     name: "Marvel's Spider-Man Remastered",
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/CarouselInfo/spiderman-logo.png',
@@ -19,7 +19,7 @@ const items = [
     price: { regular: 59.99, discount: 29.99 },
   },
   {
-    id: 1,
+    id: 1001,
     name: 'UNCHARTED™: Legacy of Thieves Collection',
     coverImg: '/assets/images/CarouselCoverDesktop/fortnite.png',
     logoImg: '/assets/images/CarouselInfo/fortnite-logo.png',
@@ -29,7 +29,7 @@ const items = [
     price: { regular: 49.99, discount: 15.99 },
   },
   {
-    id: 2,
+    id: 1010,
     name: 'Fall Guy',
     coverImg: '/assets/images/CarouselCoverDesktop/fall-guy.png',
     logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
@@ -39,7 +39,7 @@ const items = [
     price: 'Free',
   },
   {
-    id: 3,
+    id: 1011,
     name: 'Fortnite',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb-2.jpg',
     coverMobile:
@@ -50,7 +50,7 @@ const items = [
     price: 'Free',
   },
   {
-    id: 4,
+    id: 1100,
     name: 'A Plague Tale Requiem',
     logoImg: '/assets/images/CarouselInfo/a-plague-tale-requiem-logo.png',
     coverImg:
@@ -64,17 +64,15 @@ const items = [
 ];
 
 export default function DiscoverBanner() {
-  const [data, setData] = useState([]);
   const { reducer, initialState, reset, start, stop, activeBanner, isPause } =
-    useBannerLogics();
-  const [{ active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+    useDiscoverBannerLogics();
+
+  const [{ data, active, fadeIn, fadeOut, cardsPosition }, dispatch] =
+    useReducer(reducer, initialState);
   const screenWidth = useScreenWidth();
 
   useEffect(() => {
-    setData(items);
+    dispatch({ type: 'fetch', data: items });
   }, []);
 
   const handleClick = (type) => {

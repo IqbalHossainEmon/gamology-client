@@ -11,7 +11,13 @@ import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
-function Controllers({ video, videoContainer, src, isControllerShowing }) {
+function Controllers({
+  video,
+  videoContainer,
+  src,
+  isControllerShowing,
+  isChanging,
+}) {
   const gearRef = useRef(null);
   const clickTimerId = useRef(null);
   const videoRef = useRef(video);
@@ -122,7 +128,11 @@ function Controllers({ video, videoContainer, src, isControllerShowing }) {
           <FullScreenButton videoContainer={videoContainer} />
         </li>
       </ul>
-      <VideoStatus isSeekedRef={isSeekedRef} video={video} />
+      <VideoStatus
+        isChanging={isChanging}
+        isSeekedRef={isSeekedRef}
+        video={video}
+      />
     </>
   );
 }

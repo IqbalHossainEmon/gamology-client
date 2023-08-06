@@ -3,7 +3,7 @@ import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
 
-export default function VideoStatus({ video, isSeekedRef }) {
+export default function VideoStatus({ video, isSeekedRef, isChanging }) {
   const formatTime = useTimeFormat();
   const timerId = useRef(null);
   const videoRef = useRef(video.current);
@@ -47,11 +47,14 @@ export default function VideoStatus({ video, isSeekedRef }) {
   }, [isSeekedRef]);
 
   const handlePause = useCallback(() => {
-    if (isSeekedRef.current && !videoRef.current.ended) {
+    if (isSeekedRef.current && !videoRef.current.ended && !isChanging.current) {
       setStatus({ play: false, animation: true, loading: false });
       handleTransition();
     }
-  }, [isSeekedRef]);
+    if (isChanging.current) {
+      isChanging.current = false;
+    }
+  }, [isChanging, isSeekedRef]);
 
   const initialBtnPlay = useCallback(() => {
     if (videoRef.current.paused) {

@@ -12,11 +12,11 @@ export default function DiscoverBannerItemCards({
 
   return (
     <ul className={styles.itemCards}>
-      {data.map(({ id, carouselThumb, name }) => (
+      {data.map(({ id, carouselThumb, name }, index) => (
         <DiscoverBannerItemCard
           key={id}
           isPause={isPause}
-          banner={{ carouselThumb, id, name }}
+          banner={{ carouselThumb, id: index, name }}
           handleClick={(prop) => handleDebouncing(() => handleClick(prop))}
           cardsPosition={cardsPosition}
         />

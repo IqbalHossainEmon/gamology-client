@@ -8,7 +8,7 @@ import styles from './DiscoverGames.module.css';
 
 const items = [
   {
-    id: 0,
+    id: 10000,
     category: {
       card: 'Base game',
     },
@@ -21,7 +21,7 @@ const items = [
     price: { regular: 59.99, discount: 29.99 },
   },
   {
-    id: 1,
+    id: 10001,
     category: {
       card: 'Base game',
     },
@@ -33,7 +33,7 @@ const items = [
     price: { regular: 64.99, discount: 18.99 },
   },
   {
-    id: 2,
+    id: 10010,
     category: {
       card: 'Base game',
     },
@@ -45,7 +45,7 @@ const items = [
     price: { regular: 39.99, discount: 29.99 },
   },
   {
-    id: 3,
+    id: 100011,
     category: {
       card: 'Base game',
     },
@@ -58,7 +58,7 @@ const items = [
     price: { regular: 34.99, discount: 25.99 },
   },
   {
-    id: 4,
+    id: 100100,
     category: {
       card: 'Base game',
     },
@@ -73,7 +73,7 @@ const items = [
     price: { regular: 36.99, discount: 24.99 },
   },
   {
-    id: 5,
+    id: 100101,
     category: {
       card: 'Base game',
     },
@@ -86,7 +86,7 @@ const items = [
     price: { regular: 59.99, discount: 29.99 },
   },
   {
-    id: 6,
+    id: 100110,
     category: {
       card: 'Base game',
     },
@@ -98,7 +98,7 @@ const items = [
     price: { regular: 64.99, discount: 18.99 },
   },
   {
-    id: 7,
+    id: 100111,
     category: {
       card: 'Base game',
     },
@@ -110,7 +110,7 @@ const items = [
     price: { regular: 39.99, discount: 29.99 },
   },
   {
-    id: 8,
+    id: 101000,
     category: {
       card: 'Base game',
     },
@@ -123,7 +123,7 @@ const items = [
     price: { regular: 34.99, discount: 25.99 },
   },
   {
-    id: 9,
+    id: 101001,
     category: {
       card: 'Base game',
     },
@@ -138,7 +138,7 @@ const items = [
     price: { regular: 36.99, discount: 24.99 },
   },
   {
-    id: 10,
+    id: 101010,
     category: {
       card: 'Base game',
     },
@@ -151,7 +151,7 @@ const items = [
     price: { regular: 59.99, discount: 29.99 },
   },
   {
-    id: 11,
+    id: 101011,
     category: {
       card: 'Base game',
     },
@@ -163,7 +163,7 @@ const items = [
     price: { regular: 64.99, discount: 18.99 },
   },
   {
-    id: 12,
+    id: 101100,
     category: {
       card: 'Base game',
     },
@@ -175,7 +175,7 @@ const items = [
     price: { regular: 39.99, discount: 29.99 },
   },
   {
-    id: 13,
+    id: 101101,
     category: {
       card: 'Base game',
     },
@@ -188,7 +188,7 @@ const items = [
     price: { regular: 34.99, discount: 25.99 },
   },
   {
-    id: 14,
+    id: 101110,
     category: {
       card: 'Base game',
     },
@@ -203,7 +203,7 @@ const items = [
     price: { regular: 36.99, discount: 24.99 },
   },
   {
-    id: 15,
+    id: 101111,
     category: {
       card: 'Base game',
     },
@@ -216,7 +216,7 @@ const items = [
     price: { regular: 59.99, discount: 29.99 },
   },
   {
-    id: 16,
+    id: 110000,
     category: {
       card: 'Base game',
     },
@@ -228,7 +228,7 @@ const items = [
     price: { regular: 64.99, discount: 18.99 },
   },
   {
-    id: 17,
+    id: 110001,
     category: {
       card: 'Base game',
     },
@@ -240,7 +240,7 @@ const items = [
     price: { regular: 39.99, discount: 29.99 },
   },
   {
-    id: 18,
+    id: 110010,
     category: {
       card: 'Base game',
     },
@@ -251,21 +251,6 @@ const items = [
       '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
     logoImg: '/assets/images/SyGvndD/fortnite-carousel-logo.png',
     price: { regular: 34.99, discount: 25.99 },
-  },
-  {
-    id: 19,
-    category: {
-      card: 'Base game',
-    },
-    name: 'A Plague Tale Requiem',
-    logoImg: '/assets/images/D4XXzTW/a-plague-tale-requiem-logo.png',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
-    carouselThumb:
-      '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
-    price: { regular: 36.99, discount: 24.99 },
   },
 ];
 

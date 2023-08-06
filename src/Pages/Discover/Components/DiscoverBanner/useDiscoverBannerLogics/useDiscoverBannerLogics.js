@@ -21,6 +21,8 @@ function reducer(state, action) {
   const { fadeIn } = state;
 
   switch (action.type) {
+    case 'fetch':
+      return { ...state, data: action.data };
     case 'next':
       return increaseByOne(state, fadeIn);
     case 'prev':
@@ -49,6 +51,7 @@ function activeBanner(bannerId, bannerState, styles) {
 
 // initial state of banner, The active state is for initial state.
 const initialState = {
+  data: [],
   active: 0,
   fadeIn: 0,
   fadeOut: null,
@@ -56,7 +59,7 @@ const initialState = {
 };
 
 // this function just returns every functions.
-export default function useBannerLogics() {
+export default function useDiscoverBannerLogics() {
   const timerRef = useRef(undefined);
   const timerState = useRef(false);
   const [isPause, setIsPause] = useState(false);

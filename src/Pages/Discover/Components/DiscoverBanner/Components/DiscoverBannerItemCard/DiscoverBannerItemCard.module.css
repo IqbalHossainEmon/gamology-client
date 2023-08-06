@@ -1,144 +1,144 @@
 #first {
-    translate: calc(350% + 0.5px) calc(200% + 0.5px);
+  translate: calc(350% + 0.5px) calc(200% + 0.5px);
 }
 
 #two {
-    translate: calc(200% + 0.5px) calc(80% + 0.5px);
+  translate: calc(200% + 0.5px) calc(80% + 0.5px);
 }
 
 #three {
-    translate: calc(0% + 0.5px) calc(-40% + 0.5px);
+  translate: calc(0% + 0.5px) calc(-40% + 0.5px);
 }
 
 #four {
-    translate: calc(0% + 0.5px) calc(440% + 0.5px);
+  translate: calc(0% + 0.5px) calc(440% + 0.5px);
 }
 
 #five {
-    translate: calc(200% + 0.5px) calc(320% + 0.5px);
+  translate: calc(200% + 0.5px) calc(320% + 0.5px);
 }
 
 #first:hover {
-    filter: none;
+  filter: none;
 }
 #three :hover,
 #two :hover,
 #five :hover,
 #four :hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .cards {
-    position: absolute;
-    z-index: 1;
-    transition: translate 300ms cubic-bezier(0.66, 0, 0.11, 0.95), filter 300ms;
-    height: 20%;
-    width: 8.4375%;
+  position: absolute;
+  z-index: 1;
+  transition: translate 300ms cubic-bezier(0.66, 0, 0.11, 0.95), filter 300ms;
+  height: 20%;
+  width: 8.4375%;
 }
 
 .cards button {
-    border: 0;
-    background-color: transparent;
-    height: 100%;
-    min-width: 100%;
-    position: relative;
+  border: 0;
+  background-color: transparent;
+  height: 100%;
+  min-width: 100%;
+  position: relative;
 }
 
 .cards img {
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
 }
 
 .cardNameContainer {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    left: 100%;
-    visibility: hidden;
-    overflow: hidden;
-    transition: visibility 0ms 300ms;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  visibility: hidden;
+  overflow: hidden;
+  transition: visibility 0ms 300ms;
 }
 
 #first .cardNameContainer {
-    visibility: visible;
-    transition: visibility 0ms 0ms;
+  visibility: visible;
+  transition: visibility 0ms 0ms;
 }
 
 .cardName {
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.507);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    translate: calc(-100% + 0.5px) 0px;
-    transition: translate 200ms;
-    border-radius: 0 5px 5px 0;
-    font-size: 14px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.507);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  translate: calc(-100% + 0.5px) 0px;
+  transition: translate 200ms;
+  border-radius: 0 5px 5px 0;
+  font-size: 14px;
 }
 
 .cardName p {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 #first .cardName {
-    translate: 0px 0px;
-    transition: translate 300ms 500ms;
+  translate: 0px 0px;
+  transition: translate 300ms 800ms;
 }
 
 .cardContainer {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
 }
 .shadowContainer {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
-    overflow: hidden;
-    border-radius: 0 5px 5px 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: 0 5px 5px 0;
 }
 
 .shadow {
-    background-color: rgb(22, 22, 22);
-    width: 100%;
-    height: 100%;
-    translate: 0 calc(-100% + 0.5px);
-    animation: upToDown 8s linear 800ms 1 forwards normal;
+  background-color: rgb(22, 22, 22);
+  width: 100%;
+  height: 100%;
+  translate: 0 calc(-100% + 0.5px);
+  animation: upToDown 8s linear 800ms 1 forwards normal;
 }
 
 #pause {
-    animation-play-state: paused;
-    -webkit-animation-play-state: paused;
-    -moz-animation-play-state: paused;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
 }
 #play {
-    animation-play-state: running;
-    -webkit-animation-play-state: running;
-    -moz-animation-play-state: running;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
 }
 
 @keyframes upToDown {
-    0% {
-        translate: 0 calc(-100% + 0.5px);
-    }
+  0% {
+    translate: 0 calc(-100% + 0.5px);
+  }
 
-    100% {
-        translate: 0 0;
-    }
+  100% {
+    translate: 0 0;
+  }
 }
 
 #first img {
-    border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
 }
 @media only screen and (min-width: 2134px) {
-    .cardName {
-        font-size: 1.5rem;
-    }
-    .cards {
-        height: 180px;
-    }
+  .cardName {
+    font-size: 1.5rem;
+  }
+  .cards {
+    height: 180px;
+  }
 }

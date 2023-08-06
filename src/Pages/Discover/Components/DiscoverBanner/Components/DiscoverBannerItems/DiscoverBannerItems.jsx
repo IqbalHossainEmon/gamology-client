@@ -10,17 +10,17 @@ export default function DiscoverBannerItems({
 }) {
   return (
     <div className={styles.carouselItems}>
-      {data.map(({ coverMobile, coverImg, id, name }) =>
+      {data.map(({ coverMobile, coverImg, id, name }, index) =>
         screenWidth > 768 ? (
           <DiscoverBannerItem
             key={id}
-            banner={{ coverImg, id, name }}
+            banner={{ coverImg, id: index, name }}
             bannerState={bannerState}
           />
         ) : (
           <DiscoverBannerItemMobile
             key={id}
-            banner={{ coverMobile, id, name }}
+            banner={{ coverMobile, id: index, name }}
             cardsPosition={cardsPosition}
           />
         ),

@@ -1,39 +1,37 @@
 .btn {
-    background-color: transparent;
-    border: none;
-    width: 2rem;
-    height: 2rem;
-    z-index: 1;
-    left: 30%;
-    position: absolute;
+  width: 2rem;
+  height: 2rem;
+  z-index: 1;
+  left: 30%;
+  position: absolute;
 }
 
 .btn:active svg {
-    fill: rgb(128, 128, 128);
+  fill: rgb(128, 128, 128);
 }
 
 .nextBtn {
-    rotate: -45deg;
-    top: 0;
+  rotate: -45deg;
+  top: 0;
 }
 
 .prevBtn {
-    bottom: 0;
-    rotate: -135deg;
+  bottom: 0;
+  rotate: -135deg;
 }
 
 @media only screen and (max-width: 768px) {
-    .btn {
-        top: calc(50% - 2rem);
-    }
+  .btn {
+    top: calc(50% - 2rem);
+  }
 
-    .nextBtn {
-        left: calc(100% - 2rem);
-        rotate: 90deg;
-    }
+  .nextBtn {
+    left: calc(100% - 2rem);
+    rotate: 90deg;
+  }
 
-    .prevBtn {
-        left: 0%;
-        rotate: -90deg;
-    }
+  .prevBtn {
+    left: 0%;
+    rotate: -90deg;
+  }
 }

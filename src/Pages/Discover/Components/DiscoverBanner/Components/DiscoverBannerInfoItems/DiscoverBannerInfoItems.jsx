@@ -8,12 +8,12 @@ export default function DiscoverBannerInfoItems({
 }) {
   return (
     <div className={styles.infoItems}>
-      {data.map(({ id, logoImg, name, price }) => (
+      {data.map(({ id, logoImg, name, price }, index) => (
         <DiscoverBannerInfoItem
           key={id}
           bannerState={bannerState}
           activeBanner={activeBanner}
-          banner={{ id, logoImg, price, name }}
+          banner={{ id: index, logoImg, price, name }}
         />
       ))}
     </div>

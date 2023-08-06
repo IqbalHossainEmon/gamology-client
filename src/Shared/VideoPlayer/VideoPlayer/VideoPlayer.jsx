@@ -3,11 +3,17 @@ import Controllers from '../Components/Controllers/Controllers/Controllers';
 import Video from '../Components/Video/Video';
 import styles from './VideoPlayer.module.css';
 
-export default function VideoPlayer({ src, captions, sizeClassName }) {
+export default function VideoPlayer({
+  src,
+  captions,
+  sizeClassName,
+  changePause,
+}) {
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
   const mouseMoveTimerId = useRef(null);
   const onLoadedRef = useRef(false);
+  const isChanging = useRef(false);
 
   const [isControllerShowing, setIsControllerShowing] = useState(false);
 
@@ -32,6 +38,13 @@ export default function VideoPlayer({ src, captions, sizeClassName }) {
   const handleMouseMove = useCallback(() => {
     handleShowHide();
   }, [handleShowHide]);
+
+  useEffect(() => {
+    if (!videoRef.current.paused) {
+      videoRef.current.pause();
+      isChanging.current = true;
+    }
+  }, [changePause]);
 
   const handleMouseDown = useCallback(() => {
     if (mouseMoveTimerId.current) {
@@ -97,6 +110,7 @@ export default function VideoPlayer({ src, captions, sizeClassName }) {
         src={src}
         videoContainer={videoContainerRef}
         video={videoRef}
+        isChanging={isChanging}
       />
     </div>
   );

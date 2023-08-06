@@ -4,7 +4,7 @@ import styles from './FreeGames.module.css';
 
 const data = [
   {
-    id: 0,
+    id: 100,
     category: {
       card: 'Base game',
     },
@@ -21,7 +21,7 @@ const data = [
     ],
   },
   {
-    id: 1,
+    id: 101,
     category: {
       card: 'Base game',
     },
@@ -38,7 +38,7 @@ const data = [
     ],
   },
   {
-    id: 2,
+    id: 110,
     category: {
       card: 'Base game',
     },
@@ -55,7 +55,7 @@ const data = [
     ],
   },
   {
-    id: 3,
+    id: 111,
     category: {
       card: 'Base game',
     },
