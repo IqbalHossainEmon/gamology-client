@@ -1,6 +1,9 @@
 .individualGameBannerItem {
   min-width: 100%;
 }
+.individualGameBannerItem:not(:first-child) {
+  margin-left: 20px;
+}
 .coverImg {
   width: 100%;
 }

@@ -9,7 +9,6 @@
   width: 100%;
   border-radius: 5px;
   display: flex;
-  transition: translate 500ms;
 }
 
 .individualGameBannerItemsContainer:hover .prev {

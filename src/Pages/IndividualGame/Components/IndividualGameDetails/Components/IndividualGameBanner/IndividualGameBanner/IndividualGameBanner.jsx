@@ -80,9 +80,13 @@ const items = [
 ];
 
 export default function IndividualGameBanner() {
-  const { reducer, initialState } = useIndividualGameBannerLogics();
+  const { reducer, initialState, timerFunction } =
+    useIndividualGameBannerLogics();
 
-  const [{ data, active }, dispatch] = useReducer(reducer, initialState);
+  const [{ data, active, coverTransition }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
 
   useEffect(() => {
     dispatch({ type: 'fetch', data: items });
@@ -92,13 +96,16 @@ export default function IndividualGameBanner() {
     <section className={styles.banner}>
       <IndividualGameBannerItems
         active={active}
+        transition={coverTransition}
         items={data}
         dispatch={dispatch}
+        timerFunction={timerFunction}
       />
       <IndividualGameBannerCards
         active={active}
         items={data}
         dispatch={dispatch}
+        timerFunction={timerFunction}
       />
     </section>
   );

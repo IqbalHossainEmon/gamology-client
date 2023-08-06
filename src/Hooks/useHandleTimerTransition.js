@@ -1,9 +1,15 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 export default function useHandleTimerTransition(setState, time = 200) {
+  const timerId = useRef(null);
   return useCallback(() => {
-    const timerId = setTimeout(() => {
-      clearTimeout(timerId);
+    if (timerId.current) {
+      clearTimeout(timerId.current);
+      timerId.current = null;
+    }
+    timerId.current = setTimeout(() => {
+      clearTimeout(timerId.current);
+      timerId.current = null;
       setState((prev) => ({ ...prev, transition: false }));
     }, time);
   }, [setState, time]);
