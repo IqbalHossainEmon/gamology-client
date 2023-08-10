@@ -46,7 +46,18 @@ export default function VideoPlayer({
     }
   }, [changePause]);
 
+  const handleMouseUp = useCallback(() => {
+    videoContainerRef?.current.addEventListener('mousemove', handleMouseMove);
+    handleShowHide();
+    document.removeEventListener('mouseup', handleMouseUp);
+  }, [handleMouseMove, handleShowHide]);
+
+  const handleLoadedMetaData = useCallback(() => {
+    onLoadedRef.current = true;
+  }, []);
+
   const handleMouseDown = useCallback(() => {
+    document.addEventListener('mouseup', handleMouseUp);
     if (mouseMoveTimerId.current) {
       clearTimeout(mouseMoveTimerId.current);
       mouseMoveTimerId.current = null;
@@ -55,21 +66,11 @@ export default function VideoPlayer({
       'mousemove',
       handleMouseMove,
     );
-  }, [handleMouseMove]);
-
-  const handleMouseUp = useCallback(() => {
-    videoContainerRef?.current.addEventListener('mousemove', handleMouseMove);
-    handleShowHide();
-  }, [handleMouseMove, handleShowHide]);
-
-  const handleLoadedMetaData = useCallback(() => {
-    onLoadedRef.current = true;
-  }, []);
+  }, [handleMouseMove, handleMouseUp]);
 
   useEffect(() => {
     videoContainerRef?.current.addEventListener('mousemove', handleMouseMove);
     videoContainerRef?.current.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
 
     videoRef?.current.addEventListener('loadedmetadata', handleLoadedMetaData);
 
@@ -78,7 +79,6 @@ export default function VideoPlayer({
     return () => {
       videoContainer.removeEventListener('mousemove', handleMouseMove);
       videoContainer.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [
     handleLoadedMetaData,

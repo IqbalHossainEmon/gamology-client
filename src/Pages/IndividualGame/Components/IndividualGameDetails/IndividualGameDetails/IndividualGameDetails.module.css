@@ -2,3 +2,9 @@
   width: 70%;
   padding: 20px 0px 0px;
 }
+@media (max-width: 1023px) {
+  .individualGameDetails {
+    width: 100%;
+    padding: 20px 0px 0px;
+  }
+}

@@ -12,7 +12,7 @@ export default function IndividualGameBannerItems({
   timerFunction,
 }) {
   const containerRef = useRef(null);
-  const handleDebounce = useHandleDebouncing(400);
+  const handleDebounce = useHandleDebouncing(300);
 
   return (
     <div className={styles.individualGameBannerItemsContainer}>
@@ -21,7 +21,8 @@ export default function IndividualGameBannerItems({
         handleClick={() =>
           handleDebounce(() => {
             dispatch({ type: 'prevBanner' });
-            timerFunction(true, dispatch);
+            timerFunction(true, dispatch, 300);
+            timerFunction(false, dispatch, 250);
           })
         }
       />
@@ -33,7 +34,7 @@ export default function IndividualGameBannerItems({
                 translate: containerRef.current
                   ? `calc(-${active * 100}% - ${active * 20}px)`
                   : '0px',
-                transition: 'translate 500ms',
+                transition: 'translate 250ms linear',
               }
             : {
                 translate: containerRef.current
@@ -58,7 +59,8 @@ export default function IndividualGameBannerItems({
         handleClick={() =>
           handleDebounce(() => {
             dispatch({ type: 'nextBanner' });
-            timerFunction(true, dispatch);
+            timerFunction(true, dispatch, 300);
+            timerFunction(false, dispatch, 250);
           })
         }
       />

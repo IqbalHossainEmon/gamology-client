@@ -1,4 +1,69 @@
+.individualGameBannerCard {
+  max-width: 103px;
+  min-width: 103px;
+  aspect-ratio: 1.77777778;
+}
+
+.individualGameBannerCard:not(:first-child) {
+  margin-left: 15px;
+}
+
 .button {
   background-color: transparent;
   border: none;
+  width: 100%;
+  cursor: default;
+  position: relative;
+}
+
+.notActive {
+  cursor: pointer;
+}
+
+.notActive .thumbImage {
+  opacity: 0.5;
+}
+
+.button:hover .thumbImage {
+  opacity: 1;
+}
+
+.videoLogo {
+  position: absolute;
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  transition: opacity 300ms;
+}
+
+.videoLogo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.thumbImage {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 300ms;
+}
+
+.active {
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 1439px) {
+  .individualGameBannerCard {
+    max-width: 90px;
+    min-width: 90px;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  .individualGameBannerCard:not(:first-child) {
+    margin-left: 0;
+  }
 }

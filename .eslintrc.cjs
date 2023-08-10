@@ -34,6 +34,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'no-param-reassign': 0,
     'no-plusplus': 0,
+    'no-nested-ternary': 0,
     'prettier/prettier': [
       'error',
       {

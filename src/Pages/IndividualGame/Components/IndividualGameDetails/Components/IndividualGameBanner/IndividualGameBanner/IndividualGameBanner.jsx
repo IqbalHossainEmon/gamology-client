@@ -48,16 +48,16 @@ const items = [
     thumb: `/assets/images/IndividualGameBannerCards/spiderman-carousel-card-7.avif`,
   },
   {
-    id: 7,
-    type: 'photo',
-    cover: `/assets/images/IndividualGameBanner/spider-carousel-5.jpg`,
-    thumb: `/assets/images/IndividualGameBannerCards/spiderman-carousel-card-8.avif`,
-  },
-  {
     id: 8,
     type: 'photo',
     cover: `/assets/images/IndividualGameBanner/spider-carousel-6.jpg`,
     thumb: `/assets/images/IndividualGameBannerCards/spiderman-carousel-card-9.avif`,
+  },
+  {
+    id: 7,
+    type: 'photo',
+    cover: `/assets/images/IndividualGameBanner/spider-carousel-5.jpg`,
+    thumb: `/assets/images/IndividualGameBannerCards/spiderman-carousel-card-8.avif`,
   },
   {
     id: 9,
@@ -83,10 +83,10 @@ export default function IndividualGameBanner() {
   const { reducer, initialState, timerFunction } =
     useIndividualGameBannerLogics();
 
-  const [{ data, active, coverTransition }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [
+    { data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(() => {
     dispatch({ type: 'fetch', data: items });
@@ -102,6 +102,9 @@ export default function IndividualGameBanner() {
         timerFunction={timerFunction}
       />
       <IndividualGameBannerCards
+        cardActive={cardActive}
+        thumbTransition={thumbTransition}
+        cardsOnDeck={cardsOnDeck}
         active={active}
         items={data}
         dispatch={dispatch}

@@ -3,3 +3,10 @@
   position: sticky;
   padding: 20px 0 0 5%;
 }
+@media (max-width: 1023px) {
+  .individualGameDetailAside {
+    width: 100%;
+    position: static;
+    padding: 20px 0 0 0;
+  }
+}

@@ -1,12 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import {
+  AutoPlayContext,
+  SetAutoPlayContext,
+} from '../../../../../../../Contexts/AutoPlayContext';
+import withAutoPlayProvider from '../../../../../../../HOC/withAutoPlayProvider';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
 import Switch from '../Switch/Switch';
 import styles from './GearButton.module.css';
 
-export default function GearButton({ gearRef, videoContainer }) {
+function GearButton({ gearRef, videoContainer }) {
   const [autoplay, setAutoplay] = useState(false);
 
-  const [show, setShow] = useState(false);
+  const show = useContext(AutoPlayContext);
+  const setShow = useContext(SetAutoPlayContext);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
@@ -35,7 +41,6 @@ export default function GearButton({ gearRef, videoContainer }) {
         onClick={() =>
           setShow((prev) => {
             showMenu();
-
             return !prev;
           })
         }
@@ -81,3 +86,5 @@ export default function GearButton({ gearRef, videoContainer }) {
     </>
   );
 }
+
+export default withAutoPlayProvider(GearButton);

@@ -25,6 +25,8 @@ export default function VideoProgressBar({
   const isPlaying = useRef(false);
   const isMouseDown = useRef(false);
 
+  const shouldPlay = useRef(false);
+
   const progressBufferUpdate = useCallback(
     ({ target: { buffered, duration } }) => {
       if (buffered.length > 0) {
@@ -63,21 +65,19 @@ export default function VideoProgressBar({
     }
   }, []);
 
-  const handlePlay = useCallback(() => {
+  const handlePlaying = useCallback(() => {
     if (isMouseDown.current) {
       videoRef.current.pause();
+      shouldPlay.current = true;
     } else {
       isPlaying.current = true;
+      isSeekedRef.current = true;
     }
-  }, []);
+  }, [isSeekedRef]);
 
   const handlePause = useCallback(() => {
     isPlaying.current = false;
   }, []);
-
-  const handleSeeked = useCallback(() => {
-    isSeekedRef.current = true;
-  }, [isSeekedRef]);
 
   useEffect(() => {
     if (video.current) {
@@ -86,9 +86,8 @@ export default function VideoProgressBar({
       videoRef.current.addEventListener('timeupdate', progressUpdate);
       videoRef.current.addEventListener('progress', progressBufferUpdate);
       videoRef.current.addEventListener('error', handleError);
-      videoRef.current.addEventListener('playing', handlePlay);
+      videoRef.current.addEventListener('playing', handlePlaying);
       videoRef.current.addEventListener('pause', handlePause);
-      videoRef.current.addEventListener('seeked', handleSeeked);
 
       if (!interval.current) {
         interval.count = 0;
@@ -114,15 +113,13 @@ export default function VideoProgressBar({
       videoRef.current.removeEventListener('timeupdate', progressUpdate);
       videoRef.current.removeEventListener('progress', progressBufferUpdate);
       videoRef.current.removeEventListener('error', handleError);
-      videoRef.current.removeEventListener('playing', handlePlay);
+      videoRef.current.removeEventListener('playing', handlePlaying);
       videoRef.current.removeEventListener('pause', handlePause);
-      videoRef.current.removeEventListener('seeked', handleSeeked);
     };
   }, [
     handleError,
     handlePause,
-    handlePlay,
-    handleSeeked,
+    handlePlaying,
     progressBufferUpdate,
     progressUpdate,
     src,
@@ -146,8 +143,9 @@ export default function VideoProgressBar({
 
     setCurrentTime(progressRef.current);
 
-    if (!isPlaying.current) {
+    if (!isPlaying.current && shouldPlay.current) {
       videoRef.current.play();
+      shouldPlay.current = false;
     }
   }, [setCurrentTime]);
 
@@ -160,6 +158,7 @@ export default function VideoProgressBar({
 
     if (isPlaying.current) {
       videoRef.current.pause();
+      shouldPlay.current = true;
     }
   }, [isSeekedRef]);
 

@@ -1,9 +1,16 @@
 .individualGameBannerItem {
   min-width: 100%;
+  aspect-ratio: 1.77777778;
+  position: relative;
 }
 .individualGameBannerItem:not(:first-child) {
   margin-left: 20px;
 }
 .coverImg {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
 }
