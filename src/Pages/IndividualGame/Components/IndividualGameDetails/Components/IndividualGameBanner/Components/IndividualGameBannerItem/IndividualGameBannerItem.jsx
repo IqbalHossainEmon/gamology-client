@@ -16,7 +16,7 @@ export default function IndividualGameBannerItem({ data, active, index }) {
           setShouldShow(true);
           shouldShowRef.current = true;
           clearTimeout(id);
-        }, 600);
+        }, 250);
       }
     }
   }, [active, data, index]);

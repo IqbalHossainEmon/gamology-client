@@ -21,8 +21,7 @@ export default function IndividualGameBannerItems({
         handleClick={() =>
           handleDebounce(() => {
             dispatch({ type: 'prevBanner' });
-            timerFunction(true, dispatch, 300);
-            timerFunction(false, dispatch, 250);
+            timerFunction(null, dispatch, 300);
           })
         }
       />
@@ -34,7 +33,7 @@ export default function IndividualGameBannerItems({
                 translate: containerRef.current
                   ? `calc(-${active * 100}% - ${active * 20}px)`
                   : '0px',
-                transition: 'translate 250ms linear',
+                transition: 'translate 250ms ease-in-out',
               }
             : {
                 translate: containerRef.current
@@ -59,8 +58,7 @@ export default function IndividualGameBannerItems({
         handleClick={() =>
           handleDebounce(() => {
             dispatch({ type: 'nextBanner' });
-            timerFunction(true, dispatch, 300);
-            timerFunction(false, dispatch, 250);
+            timerFunction(null, dispatch, 300);
           })
         }
       />

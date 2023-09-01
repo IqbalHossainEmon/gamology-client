@@ -1,0 +1,48 @@
+.individualGameWriteReviewContainer {
+  transition: height 300ms;
+  overflow: hidden;
+}
+.individualGameWriteReview {
+  padding: 24px;
+  background: #303030;
+  display: flex;
+}
+.userIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.userDetails {
+  width: 20%;
+}
+
+.name {
+  font-size: 16px;
+}
+
+.details {
+  color: #a0a0a0;
+  font-size: small;
+}
+
+.writingField {
+  width: 80%;
+}
+
+.individualGameWriteReview {
+  border-radius: 4px;
+}
+.reviewStarsContainer {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.reviewTitleContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+.writingField {
+  padding-bottom: 40px;
+  position: relative;
+}

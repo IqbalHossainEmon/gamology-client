@@ -111,6 +111,7 @@ export default function VideoPlayer({
         videoContainer={videoContainerRef}
         video={videoRef}
         isChanging={isChanging}
+        changePause={changePause}
       />
     </div>
   );

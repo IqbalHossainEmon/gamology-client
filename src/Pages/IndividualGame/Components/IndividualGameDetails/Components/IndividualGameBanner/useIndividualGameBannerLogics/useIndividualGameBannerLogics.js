@@ -68,8 +68,14 @@ const reducer = (state, action) => {
       return { ...state, active: action.active, coverTransition: true };
 
     case 'transitionStop':
-      return { ...state, [action.transitionType]: false };
-
+      switch (action.transitionType) {
+        case 'cover':
+          return { ...state, coverTransition: false };
+        case 'thumb':
+          return { ...state, thumbTransition: false };
+        default:
+          return { ...state, thumbTransition: false, coverTransition: false };
+      }
     case 'nextCards':
       return {
         ...state,
@@ -112,7 +118,7 @@ const reducer = (state, action) => {
 export default function useIndividualGameBannerLogics() {
   const timeId = useRef(null);
 
-  const timerFunction = useCallback((isCover, dispatch, time = 500) => {
+  const timerFunction = useCallback((transitionType, dispatch, time = 500) => {
     if (timeId.current) {
       clearTimeout(timeId.current);
       timeId.current = null;
@@ -121,7 +127,7 @@ export default function useIndividualGameBannerLogics() {
     timeId.current = setTimeout(() => {
       dispatch({
         type: 'transitionStop',
-        transitionType: isCover ? 'coverTransition' : 'thumbTransition',
+        transitionType,
       });
       clearTimeout(timeId.current);
       timeId.current = null;

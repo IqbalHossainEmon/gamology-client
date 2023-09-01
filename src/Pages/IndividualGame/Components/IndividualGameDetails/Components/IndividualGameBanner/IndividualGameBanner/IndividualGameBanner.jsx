@@ -101,15 +101,17 @@ export default function IndividualGameBanner() {
         dispatch={dispatch}
         timerFunction={timerFunction}
       />
-      <IndividualGameBannerCards
-        cardActive={cardActive}
-        thumbTransition={thumbTransition}
-        cardsOnDeck={cardsOnDeck}
-        active={active}
-        items={data}
-        dispatch={dispatch}
-        timerFunction={timerFunction}
-      />
+      {data.length > 1 && (
+        <IndividualGameBannerCards
+          cardActive={cardActive}
+          thumbTransition={thumbTransition}
+          cardsOnDeck={cardsOnDeck}
+          active={active}
+          items={data}
+          dispatch={dispatch}
+          timerFunction={timerFunction}
+        />
+      )}
     </section>
   );
 }

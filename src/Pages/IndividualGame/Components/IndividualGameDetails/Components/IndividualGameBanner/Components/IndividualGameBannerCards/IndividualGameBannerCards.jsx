@@ -53,7 +53,6 @@ export default function IndividualGameBannerCards({
       dispatch({ type: 'screenSizeChange', cardsOnDeck: cards });
     }
   }, [dispatch, screenWidth]);
-  console.log(cardsOnDeck);
 
   return (
     <div className={styles.cardsContainer}>

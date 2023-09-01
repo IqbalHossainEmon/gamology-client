@@ -1,0 +1,50 @@
+.individualGameTakeReview {
+  display: flex;
+  justify-content: space-between;
+}
+.userStarContainer {
+  display: flex;
+  align-items: center;
+}
+.userIcon {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+.addReviewButton {
+  background: none;
+  color: #c9c9c9;
+  border: none;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 300ms;
+}
+.addReviewButton:hover,
+.active {
+  color: #aaa;
+}
+.addReviewButton:disabled {
+  color: #aaa;
+  cursor: default;
+}
+.overAllRatingContainer {
+  display: flex;
+  align-items: center;
+}
+.overAllRating {
+  font-size: 40px;
+}
+
+.fullStar {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

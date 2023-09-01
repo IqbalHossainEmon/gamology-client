@@ -10,6 +10,7 @@ export default function VideoProgressBar({
   videoContainer,
   src,
   isSeekedRef,
+  changePause,
 }) {
   const interval = useRef(null);
   const [buffer, setBuffer] = useState(0);
@@ -164,6 +165,7 @@ export default function VideoProgressBar({
 
   return (
     <VideoSlider
+      changePause={changePause}
       videoContainer={videoContainer}
       isBuffer
       position={progress}

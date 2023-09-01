@@ -1,0 +1,11 @@
+.individualGameReview {
+  margin-top: 50px;
+}
+.reviewContainer {
+  background: #252525;
+  padding: 60px 90px;
+}
+.reviewMainHeader {
+  margin-bottom: 10px;
+  font-weight: 500;
+}

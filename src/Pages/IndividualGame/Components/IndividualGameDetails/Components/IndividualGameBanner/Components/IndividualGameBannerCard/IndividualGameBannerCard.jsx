@@ -19,7 +19,7 @@ export default function IndividualGameBannerCard({
         {...(active !== index && {
           onClick: () => {
             dispatch({ type: 'setBanner', active: index });
-            timerFunction(false, dispatch, 300);
+            timerFunction('cover', dispatch, 300);
           },
         })}
       >

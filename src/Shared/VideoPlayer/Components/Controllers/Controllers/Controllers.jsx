@@ -17,6 +17,7 @@ function Controllers({
   src,
   isControllerShowing,
   isChanging,
+  changePause,
 }) {
   const gearRef = useRef(null);
   const clickTimerId = useRef(null);
@@ -101,6 +102,7 @@ function Controllers({
       >
         <li className={styles.videoProgressSlider}>
           <VideoProgressBar
+            changePause={changePause}
             isSeekedRef={isSeekedRef}
             video={video}
             videoContainer={videoContainer}
@@ -116,7 +118,11 @@ function Controllers({
           />
         </li>
         <li>
-          <VideoVolume video={video} videoContainer={videoContainer} />
+          <VideoVolume
+            changePause={changePause}
+            video={video}
+            videoContainer={videoContainer}
+          />
         </li>
         <li>
           <ProgressTimeShow video={video} />

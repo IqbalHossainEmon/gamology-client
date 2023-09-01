@@ -4,7 +4,7 @@ import VideoSlider from '../VideoSlider/VideoSlider';
 import VolumeButton from '../VolumeButton/VolumeButton';
 import styles from './VideoVolume.module.css';
 
-export default function VideoVolume({ video, videoContainer }) {
+export default function VideoVolume({ video, videoContainer, changePause }) {
   const [volume, setVolume] = useState(0);
 
   const videoRef = useRef(video.current);
@@ -35,6 +35,7 @@ export default function VideoVolume({ video, videoContainer }) {
             videoContainer={videoContainer}
             setPosition={handleSetValue}
             position={volume}
+            changePause={changePause}
           />
         </div>
       </div>

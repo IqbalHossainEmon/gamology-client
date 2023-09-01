@@ -1,0 +1,32 @@
+.descriptionContainer {
+  width: 100%;
+  position: relative;
+}
+.description {
+  resize: none;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #2e2e2e;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.678);
+  border-radius: 3px;
+  background-color: #181818;
+  color: #ffffff;
+}
+.description:focus {
+  outline: none;
+}
+.remainingWords {
+  color: rgb(187, 187, 187);
+  position: absolute;
+  font-size: x-small;
+  bottom: 10px;
+  right: 12px;
+}
+
+.warning {
+  color: #e98900;
+}
+
+.negative {
+  color: #f25100;
+}

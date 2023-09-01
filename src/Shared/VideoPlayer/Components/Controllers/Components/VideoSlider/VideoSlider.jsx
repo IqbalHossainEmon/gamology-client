@@ -10,6 +10,7 @@ export default function VideoSlider({
   isBuffer,
   buffer,
   videoContainer,
+  changePause,
   handleMouseUp = () => {},
   handleMouseDown = () => {},
 }) {
@@ -26,6 +27,13 @@ export default function VideoSlider({
   useEffect(() => {
     handleResize();
   }, [handleResize, screenWidth]);
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      handleResize();
+      clearTimeout(timeId);
+    }, 250);
+  }, [changePause, handleResize]);
 
   useEffect(() => {
     let videoContainerRef;
