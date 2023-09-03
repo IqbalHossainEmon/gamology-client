@@ -4,8 +4,12 @@ import styles from './ReviewStar.module.css';
 const emptyStar = 'assets/images/icons/star-empty.png';
 const fullStar = 'assets/images/icons/star-full.png';
 
-export default function ReviewStar({ setValue, disabled, newValue = 0 }) {
-  const [star, setStar] = useState({ active: 0, show: 0 });
+export default function ReviewStar({
+  setValue = () => {},
+  disabled,
+  newValue = 0,
+}) {
+  const [star, setStar] = useState({ active: newValue, show: newValue });
 
   const handleMouseOver = useCallback((index) => {
     setStar((prev) => ({ ...prev, show: index }));
@@ -27,13 +31,10 @@ export default function ReviewStar({ setValue, disabled, newValue = 0 }) {
     >
       {[0, 1, 2, 3, 4].map((s, i) => (
         <button
-          className={
-            disabled
-              ? `${styles.disabled} ${styles.starButton}`
-              : styles.starButton
-          }
+          className={styles.starButton}
           type="button"
           key={s}
+          {...(disabled && { disabled: true })}
           {...(disabled || {
             onMouseOver: () => handleMouseOver(i),
             onFocus: () => handleMouseOver(i),

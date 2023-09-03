@@ -9,8 +9,9 @@
   padding: 3px;
   cursor: pointer;
 }
-.disabled {
+.starButton:disabled {
   cursor: default;
+  user-select: none;
 }
 .starButton img {
   width: 20px;

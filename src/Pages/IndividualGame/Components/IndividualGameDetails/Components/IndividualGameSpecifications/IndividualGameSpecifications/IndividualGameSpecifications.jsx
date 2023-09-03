@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import LineBreak from '../../../../../../../Shared/LineBreak/LineBreak';
 import IndividualGameMultipleSpecification from '../Components/IndividualGameMultipleSpecification/IndividualGameMultipleSpecification';
 import IndividualGameSpecification from '../Components/IndividualGameSpecification/IndividualGameSpecification';
 import styles from './IndividualGameSpecifications.module.css';
@@ -154,7 +155,7 @@ export default function IndividualGameSpecifications() {
             <IndividualGameSpecification spec={spec.spec} />
           )}
         </div>
-        <div className={styles.line} />
+        <LineBreak />
         <div>
           <p className={styles.copyWrite}>{spec.copyWrite}</p>
         </div>

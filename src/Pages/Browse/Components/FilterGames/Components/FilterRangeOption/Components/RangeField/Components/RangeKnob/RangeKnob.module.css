@@ -13,6 +13,7 @@
   height: 15px;
   left: -7.5px;
   width: 15px;
+  translate: 0 -1px;
   border-radius: 50%;
   cursor: grab;
   background-color: rgb(0, 104, 202);

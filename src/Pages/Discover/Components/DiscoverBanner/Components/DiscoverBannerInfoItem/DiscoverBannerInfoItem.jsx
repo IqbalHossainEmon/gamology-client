@@ -10,7 +10,7 @@ export default function DiscoverBannerInfoItem({
   const idState = activeBanner(id, bannerState, styles);
 
   return (
-    <div className={styles.itemInfo} id={idState || ''}>
+    <div className={styles.itemInfo} id={idState}>
       <img
         className={styles.logoImg}
         src={logoImg}

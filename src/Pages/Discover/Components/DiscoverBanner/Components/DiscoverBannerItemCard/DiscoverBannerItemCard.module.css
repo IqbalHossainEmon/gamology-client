@@ -72,7 +72,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  translate: calc(-100% + 0.5px) 0px;
+  translate: -100% 0px;
   transition: translate 200ms;
   border-radius: 0 5px 5px 0;
   font-size: 14px;

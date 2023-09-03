@@ -52,7 +52,7 @@ function RangeKnob({
     [getLeftRightStep, name, setState],
   );
 
-  const onStart = useDragStartStop(handleMove, handleSetValue, true);
+  const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
 
   return (
     <div

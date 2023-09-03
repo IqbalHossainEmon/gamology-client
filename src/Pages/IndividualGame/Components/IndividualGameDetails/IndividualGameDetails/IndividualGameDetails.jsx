@@ -1,6 +1,6 @@
 import IndividualGameBanner from '../Components/IndividualGameBanner/IndividualGameBanner/IndividualGameBanner';
 import IndividualGameDescription from '../Components/IndividualGameDescription/IndividualGameDescription/IndividualGameDescription';
-import IndividualGameReview from '../Components/IndividualGameReview/IndividualGameReview/IndividualGameReview';
+import IndividualGameReviewSection from '../Components/IndividualGameReviewSection/IndividualGameReviewSection/IndividualGameReviewSection';
 import IndividualGameSpecifications from '../Components/IndividualGameSpecifications/IndividualGameSpecifications/IndividualGameSpecifications';
 import styles from './IndividualGameDetails.module.css';
 
@@ -10,7 +10,7 @@ export default function IndividualGameDetails() {
       <IndividualGameBanner />
       <IndividualGameDescription />
       <IndividualGameSpecifications />
-      <IndividualGameReview />
+      <IndividualGameReviewSection />
     </div>
   );
 }

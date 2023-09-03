@@ -7,7 +7,13 @@ export default function IndividualGameReviewTextField({ setData }) {
   return (
     <div className={styles.descriptionContainer}>
       <textarea
-        onBlur={(e) => setData((prev) => ({ ...prev, text: e.target.value }))}
+        onBlur={(e) => {
+          if (value.length <= 40) {
+            setData((prev) => ({ ...prev, text: e.target.value }));
+          } else {
+            setData((prev) => ({ ...prev, text: '' }));
+          }
+        }}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className={styles.description}

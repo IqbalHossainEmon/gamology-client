@@ -2,14 +2,18 @@
   transition: height 300ms;
   overflow: hidden;
 }
+
 .individualGameWriteReview {
   padding: 24px;
   background: #303030;
   display: flex;
+  margin-bottom: 40px;
 }
+
 .userIcon {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
 }
 
 .userDetails {

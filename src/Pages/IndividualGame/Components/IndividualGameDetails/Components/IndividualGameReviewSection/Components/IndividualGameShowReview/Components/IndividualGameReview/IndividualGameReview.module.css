@@ -1,0 +1,58 @@
+.individualGameReview {
+  display: flex;
+  padding: 24px;
+}
+.userDetails {
+  width: 20%;
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.userDetails {
+  width: 20%;
+}
+
+.name {
+  font-size: 16px;
+}
+
+.details {
+  color: #a0a0a0;
+  font-size: small;
+}
+
+.reviewContainer {
+  width: 80%;
+}
+
+.titleStarDateContainer {
+  margin-bottom: 20px;
+}
+
+.titleStarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  margin-left: 10px;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.reviewDescription {
+  white-space: pre-line;
+  word-break: break-word;
+  hyphens: auto;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.date {
+  color: #797878;
+  font-size: 16px;
+  margin-left: 3px;
+}

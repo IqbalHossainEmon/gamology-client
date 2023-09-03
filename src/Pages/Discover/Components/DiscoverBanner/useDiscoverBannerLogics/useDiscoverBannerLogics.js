@@ -2,6 +2,8 @@ import { useCallback, useRef, useState } from 'react';
 
 // this two function calculates the next state of the active item, the item will fade out and the item will fade in.
 const increaseByOne = (state, fadeIn) => ({
+  ...state,
+  active: undefined,
   fadeIn: (fadeIn + 1) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
@@ -9,6 +11,8 @@ const increaseByOne = (state, fadeIn) => ({
   ),
 });
 const decreaseByOne = (state, fadeIn) => ({
+  ...state,
+  active: undefined,
   fadeIn: (fadeIn + (5 - 1)) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
@@ -36,17 +40,18 @@ function reducer(state, action) {
 function activeBanner(bannerId, bannerState, styles) {
   const { fadeIn, fadeOut, active } = bannerState;
 
-  if (bannerId === active) {
-    return styles.initialBanner;
-  }
-  if (fadeIn === bannerId) {
-    return styles.bannerFadeIn;
-  }
-  if (fadeOut === bannerId) {
-    return styles.bannerFadeOut;
-  }
+  console.log(active);
 
-  return '';
+  switch (bannerId) {
+    case active:
+      return styles.initialBanner;
+    case fadeIn:
+      return styles.bannerFadeIn;
+    case fadeOut:
+      return styles.bannerFadeOut;
+    default:
+      return '';
+  }
 }
 
 // initial state of banner, The active state is for initial state.

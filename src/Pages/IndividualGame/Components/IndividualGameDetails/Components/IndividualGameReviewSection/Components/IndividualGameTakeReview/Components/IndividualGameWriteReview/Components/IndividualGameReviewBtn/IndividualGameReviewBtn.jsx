@@ -3,6 +3,7 @@ import styles from './IndividualGameReviewBtn.module.css';
 export default function IndividualGameReviewButtons({
   setWriteReviewShow,
   handleSubmit,
+  cantSubmit,
 }) {
   return (
     <div className={styles.IndividualGameReviewButtons}>
@@ -13,7 +14,15 @@ export default function IndividualGameReviewButtons({
       >
         Close
       </button>
-      <button type="button" onClick={handleSubmit} className={styles.submitBtn}>
+      <button
+        type="button"
+        {...(cantSubmit && { onClick: handleSubmit })}
+        className={
+          cantSubmit
+            ? styles.submitBtn
+            : [styles.submitBtn, styles.cantSubmit].join(' ')
+        }
+      >
         Submit my review
       </button>
     </div>
