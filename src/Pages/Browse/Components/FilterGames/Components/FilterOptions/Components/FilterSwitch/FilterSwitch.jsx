@@ -6,7 +6,7 @@ import usePointersEveryStep from '../../../../../../../../Hooks/usePointersEvery
 import styles from './FilterSwitch.module.css';
 
 function FilterSwitch({ state, setState, name, event }) {
-  const rangePathRef = useRef();
+  const rangePathRef = useRef(null);
   const [circlePosition, setCirclePosition] = useState({
     translate: 0,
     transition: false,

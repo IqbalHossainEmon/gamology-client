@@ -1,23 +1,10 @@
 .Games {
-    margin-bottom: 3rem;
-    width: 75vw;
-    max-width: 1600px;
-    position: relative;
+  margin-bottom: 3rem;
+  width: 100%;
+  position: relative;
 }
 
 .sectionName {
-    position: absolute;
-    top: 0;
-}
-
-@media (max-width: 1023px) and (min-width: 766px) {
-    .Games {
-        width: 97vw;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .Games {
-        width: 98vw;
-    }
+  position: absolute;
+  top: 0;
 }

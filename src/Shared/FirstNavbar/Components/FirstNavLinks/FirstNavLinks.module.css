@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
   color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
   transition: color 200ms;
@@ -29,12 +30,13 @@
 .navOption {
   cursor: pointer;
   height: 100%;
-  width: 100%;
+  flex-shrink: 0;
+  padding: 0 1.5rem;
+  white-space: nowrap;
   position: relative;
   overflow: hidden;
 }
 .navOption a {
-  padding: 0 1rem;
   transition: color 200ms;
 }
 
@@ -60,11 +62,13 @@
     display: flex;
     z-index: 1;
     flex-direction: column;
+    flex-shrink: 1;
   }
   .navOption::after {
     content: none;
   }
   .navOption {
+    height: auto;
     padding: 0;
     margin-top: 1rem;
   }

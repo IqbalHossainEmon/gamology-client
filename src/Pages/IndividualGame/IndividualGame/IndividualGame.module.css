@@ -1,12 +1,4 @@
 .individualGame {
-  width: 75vw;
-  max-width: 1600px;
+  width: 100%;
   display: flex;
-}
-
-@media (max-width: 1023px) {
-  .individualGame {
-    width: 97vw;
-    flex-direction: column-reverse;
-  }
 }

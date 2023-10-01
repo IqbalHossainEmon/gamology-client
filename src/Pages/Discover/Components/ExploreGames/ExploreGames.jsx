@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useScreenWidth from '../../../../Hooks/useScreenWidth';
 import styles from './ExploreGames.module.css';
 
@@ -11,6 +11,8 @@ const fetched = {
 };
 
 export default function ExploreGames() {
+  const contentRef = useRef(null);
+
   const screenWidth = useScreenWidth();
   const [data, setData] = useState({});
 
@@ -20,19 +22,25 @@ export default function ExploreGames() {
 
   return (
     <section
+      style={{ height: contentRef.current?.offsetHeight }}
       className={styles.ExploreGames}
-      style={
-        screenWidth >= 768
-          ? { backgroundImage: `url(${fetched.backgroundDesktop})` }
-          : { backgroundImage: `url(${fetched.backgroundPhone})` }
-      }
     >
-      <div className={styles.ExploreTexts}>
-        <h4>{data.heading}</h4>
-        <p>{data.details}</p>
-        <a href="#d" type="button">
-          Learn More
-        </a>
+      <div
+        ref={contentRef}
+        className={styles.exploreGamesBackground}
+        style={
+          screenWidth >= 768
+            ? { backgroundImage: `url(${fetched.backgroundDesktop})` }
+            : { backgroundImage: `url(${fetched.backgroundPhone})` }
+        }
+      >
+        <div className={styles.ExploreTexts}>
+          <h4>{data.heading}</h4>
+          <p>{data.details}</p>
+          <a href="#d" type="button">
+            Learn More
+          </a>
+        </div>
       </div>
     </section>
   );

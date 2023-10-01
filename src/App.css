@@ -48,15 +48,14 @@ body {
   overflow-y: hidden;
 }
 
-main {
-  width: 100%;
+.grabbing {
+  cursor: grabbing;
+}
+
+#root {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.grabbing {
-  cursor: grabbing;
 }
 
 /* Common css */

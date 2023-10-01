@@ -8,15 +8,17 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
   const screenWidth = useScreenWidth();
 
   useEffect(() => {
-    pathInfoRef.width = rangePathRef.current?.offsetWidth;
+    pathInfoRef.width = rangePathRef.current.offsetWidth;
     pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
+    console.log(pathInfoRef.offsetLeft);
   }, [rangePathRef, screenWidth]);
 
   return useCallback(
     (e) => {
-      const cursorInEle = e?.touches
-        ? e.touches[0].pageX - pathInfoRef.offsetLeft
-        : e.pageX - pathInfoRef.offsetLeft;
+      const cursorInEle =
+        (e?.touches ? e.touches[0].pageX : e.pageX) - pathInfoRef.offsetLeft;
+
+      console.log(e.pageX);
 
       const cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
