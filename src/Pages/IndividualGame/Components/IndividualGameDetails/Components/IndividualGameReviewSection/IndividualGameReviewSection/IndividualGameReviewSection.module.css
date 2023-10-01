@@ -9,3 +9,15 @@
   margin-bottom: 10px;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 1252px) and (min-width: 616px) {
+  .reviewContainer {
+    padding: 50px 30px;
+  }
+}
+
+@media only screen and (max-width: 615px) {
+  .reviewContainer {
+    padding: 10px;
+  }
+}

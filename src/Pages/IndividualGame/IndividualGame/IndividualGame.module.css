@@ -2,7 +2,6 @@
   width: 75vw;
   max-width: 1600px;
   display: flex;
-  position: relative;
 }
 
 @media (max-width: 1023px) {

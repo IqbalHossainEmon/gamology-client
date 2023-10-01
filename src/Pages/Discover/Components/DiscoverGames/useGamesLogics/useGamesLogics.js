@@ -112,7 +112,6 @@ export default function useGamesLogics() {
     referenceRef.timerId = setTimeout(() => {
       referenceRef.dispatch({ type: 'transitionStop' });
       referenceRef.timerId = null;
-      clearTimeout(referenceRef.timerId);
     }, 400);
   }, []);
 

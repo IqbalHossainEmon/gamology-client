@@ -40,9 +40,8 @@ export default function DiscoverBannerItemCard({
   const handleCardClick = () => {
     if (cardsPosition[id] === 2 || cardsPosition[id] === 3) {
       handleClick({ type: handleOnClickParam(cardsPosition[id]) });
-      const timerId = setTimeout(() => {
+      setTimeout(() => {
         handleClick({ type: handleOnClickParam(cardsPosition[id]) });
-        clearTimeout(timerId);
       }, 500);
     } else {
       handleClick({ type: handleOnClickParam(cardsPosition[id]) });

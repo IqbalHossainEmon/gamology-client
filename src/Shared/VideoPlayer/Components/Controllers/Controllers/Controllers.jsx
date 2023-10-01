@@ -53,7 +53,6 @@ function Controllers({
     } else {
       clickTimerId.current = setTimeout(() => {
         togglePausePlay();
-        clearTimeout(clickTimerId.current);
         clickTimerId.current = null;
       }, 200);
     }

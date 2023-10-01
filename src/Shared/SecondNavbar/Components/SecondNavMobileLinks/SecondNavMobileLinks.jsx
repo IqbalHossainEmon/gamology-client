@@ -23,12 +23,19 @@ export default function SecondNavMobileLinks({ setNavShow }) {
 
   const handleClick = (no) => {
     setShowState(false);
-    if (no === 1) {
-      setNavTextState(styles.browse);
-    } else if (no === 2) {
-      setNavTextState(styles.news);
-    } else {
-      setNavTextState(styles.discover);
+    switch (no) {
+      case 1:
+        setNavTextState(styles.browse);
+        break;
+      case 2:
+        setNavTextState(styles.news);
+        break;
+      case 3:
+        setNavTextState(styles.insertGame);
+        break;
+      default:
+        setNavTextState(styles.discover);
+        break;
     }
   };
 

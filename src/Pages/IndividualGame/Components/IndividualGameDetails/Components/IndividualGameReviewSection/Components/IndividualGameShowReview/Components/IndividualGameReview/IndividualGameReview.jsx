@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import LineBreak from '../../../../../../../../../../Shared/LineBreak/LineBreak';
 import ReviewStar from '../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import styles from './IndividualGameReview.module.css';
@@ -20,8 +21,14 @@ const month = [
 ];
 
 export default function IndividualGameReview({ review, index, length }) {
-  const { user } = review;
-  const time = new Date();
+  const [feedbackState, setFeedbackState] = useState({ state: 0 });
+
+  const { user, feedback } = review;
+
+  const handleReport = () => {
+    setFeedbackState({ state: -1 });
+  };
+
   return (
     <>
       <div className={styles.individualGameReview}>
@@ -39,11 +46,56 @@ export default function IndividualGameReview({ review, index, length }) {
             </div>
             <div>
               <p className={styles.date}>
-                {month[time.getMonth()]} {time.getDate()}, {time.getFullYear()}
+                {month[review.date.getMonth()]} {review.date.getDate()},{' '}
+                {review.date.getFullYear()}
               </p>
             </div>
           </div>
           <p className={styles.reviewDescription}>{review.text}</p>
+          <div className={styles.feedbackContainer}>
+            <div
+              className={
+                feedbackState.state === 0
+                  ? styles.giveFeedback
+                  : [styles.notGiven, styles.giveFeedback].join(' ')
+              }
+            >
+              {feedbackState.state === 0 ? (
+                <div className={styles.interactionContainer}>
+                  <p>Is this Helpful to you?</p>
+                  <button
+                    onClick={() => setFeedbackState({ state: -1 })}
+                    className={styles.feedbackBtn}
+                    type="button"
+                  >
+                    yes
+                  </button>
+                  <button
+                    onClick={() => setFeedbackState({ state: 1 })}
+                    className={styles.feedbackBtn}
+                    type="button"
+                  >
+                    no
+                  </button>
+                </div>
+              ) : (
+                <p>Thanks for your vote!</p>
+              )}
+              <p className={styles.usersFeedback}>
+                ({feedback.goodFeedback} of {feedback.totalFeedback} users found
+                this helpful)
+              </p>
+            </div>
+            {feedbackState.state > 0 && (
+              <button
+                onClick={handleReport}
+                type="button"
+                className={styles.reportBtn}
+              >
+                report
+              </button>
+            )}
+          </div>
         </div>
       </div>
       {index !== length - 1 && <LineBreak />}

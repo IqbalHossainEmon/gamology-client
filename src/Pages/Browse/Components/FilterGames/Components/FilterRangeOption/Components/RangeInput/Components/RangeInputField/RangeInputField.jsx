@@ -11,6 +11,7 @@ export default function RangeInputField({
   step = 1,
   lowerLim,
   setMainValue,
+  inputRef,
 }) {
   const [value, setValue] = useState(0);
 
@@ -73,6 +74,7 @@ export default function RangeInputField({
   };
   return (
     <input
+      ref={inputRef}
       className={styles.input}
       value={value}
       type="text"

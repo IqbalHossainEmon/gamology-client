@@ -1,41 +1,37 @@
 .cardImg {
-    width: 100%;
-    aspect-ratio: 0.7/1;
-}
-
-.category {
-    color: rgb(158, 158, 158);
+  width: 100%;
+  aspect-ratio: 0.7/1;
 }
 
 .name {
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .card {
-    width: 100%;
-    position: relative;
-    padding: 0 0 20px 0;
-    flex: 0 0 auto;
-    cursor: pointer;
-    transition: filter 300ms;
+  width: 100%;
+  position: relative;
+  padding: 0 0 20px 0;
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: filter 300ms;
 }
 .card img {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 .price {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .slider {
-    margin: 0 5px;
+  margin: 0 5px;
 }

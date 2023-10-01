@@ -41,7 +41,11 @@ export default function ReviewStar({
             onClick: () => handleClick(i),
           })}
         >
-          <img src={star.show >= i ? fullStar : emptyStar} alt="" />
+          <img
+            draggable="false"
+            src={star.show >= i ? fullStar : emptyStar}
+            alt=""
+          />
         </button>
       ))}
     </div>

@@ -4,7 +4,6 @@ const initialState = {
   sortBy: 'New Release',
   filterState: {
     showOnlyDiscounted: false,
-    HideDLCsAndExtras: false,
     hideAllOwnedProducts: false,
     price: { lower: 7.35, higher: 148.18 },
     ShowOnlyFreeGames: false,

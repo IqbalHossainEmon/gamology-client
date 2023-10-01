@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 // this two function calculates the next state of the active item, the item will fade out and the item will fade in.
 const increaseByOne = (state, fadeIn) => ({
   ...state,
-  active: undefined,
+  active: null,
   fadeIn: (fadeIn + 1) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
@@ -12,7 +12,7 @@ const increaseByOne = (state, fadeIn) => ({
 });
 const decreaseByOne = (state, fadeIn) => ({
   ...state,
-  active: undefined,
+  active: null,
   fadeIn: (fadeIn + (5 - 1)) % 5,
   fadeOut: fadeIn,
   cardsPosition: state.cardsPosition.map((cardPosition) =>
@@ -40,8 +40,6 @@ function reducer(state, action) {
 function activeBanner(bannerId, bannerState, styles) {
   const { fadeIn, fadeOut, active } = bannerState;
 
-  console.log(active);
-
   switch (bannerId) {
     case active:
       return styles.initialBanner;
@@ -65,7 +63,7 @@ const initialState = {
 
 // this function just returns every functions.
 export default function useDiscoverBannerLogics() {
-  const timerRef = useRef(undefined);
+  const timerRef = useRef(null);
   const timerState = useRef(false);
   const [isPause, setIsPause] = useState(false);
 
@@ -79,7 +77,7 @@ export default function useDiscoverBannerLogics() {
   const stopTimer = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
-      timerRef.current = undefined;
+      timerRef.current = null;
     }
   }, []);
 
@@ -102,7 +100,7 @@ export default function useDiscoverBannerLogics() {
         stopTimer();
       } else if (timerRef.pauseTimer) {
         clearTimeout(timerRef.pauseTimer);
-        timerRef.pauseTimer = undefined;
+        timerRef.pauseTimer = null;
       }
       timerState.current = true;
       timerState.remain =
@@ -119,8 +117,7 @@ export default function useDiscoverBannerLogics() {
       timerState.timeStartAt = new Date().getTime();
       timerState.currentTotalTime = timerState.remain - 100;
       timerRef.pauseTimer = setTimeout(() => {
-        clearTimeout(timerRef.pauseTimer);
-        timerRef.pauseTimer = undefined;
+        timerRef.pauseTimer = null;
         run();
         startTimer();
       }, timerState.remain);
@@ -145,7 +142,7 @@ export default function useDiscoverBannerLogics() {
     stopTimer();
     if (timerRef.pauseTimer) {
       clearTimeout(timerRef.pauseTimer);
-      timerRef.pauseTimer = undefined;
+      timerRef.pauseTimer = null;
     }
 
     window.removeEventListener('blur', pause);
@@ -158,7 +155,7 @@ export default function useDiscoverBannerLogics() {
     startTimer();
     if (timerRef.pauseTimer) {
       clearTimeout(timerRef.pauseTimer);
-      timerRef.pauseTimer = undefined;
+      timerRef.pauseTimer = null;
     }
   }, [startTimer, stopTimer]);
 

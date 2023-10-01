@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import RotateArrow from '../../../../../../../Shared/RotateArrow/RotateArrow';
+import FilterRangeOption from '../../FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import FilterOption from '../Components/FilterOption/FilterOption';
 import styles from './FilterOptions.module.css';
 
-export default function FilterOptions({ option, state, setState }) {
+export default function FilterOptions({ option, state, setState, limits }) {
   const { title, optionList } = option;
   const optionRef = useRef(0);
   const [show, setShow] = useState({
@@ -45,16 +46,32 @@ export default function FilterOptions({ option, state, setState }) {
             : { height: '0px' },
         })}
       >
-        {optionList.map((op) => (
-          <FilterOption
-            key={op.id}
-            text={op.text}
-            border={op.id !== optionList.length - 1}
-            state={state[op.filter]}
-            name={op.filter}
-            setState={setState}
-          />
-        ))}
+        {optionList.map((op, i) => {
+          switch (op.type) {
+            case 'switch':
+              return (
+                <FilterOption
+                  key={op.id}
+                  text={op.text}
+                  border={i !== optionList.length - 1}
+                  state={state[op.filter]}
+                  name={op.filter}
+                  setState={setState}
+                />
+              );
+            default:
+              return (
+                <FilterRangeOption
+                  key={op.id}
+                  limit={limits[op.rangeName]}
+                  setState={setState}
+                  option={op}
+                  {...(state.ShowOnlyFreeGames &&
+                    op.rangeName === 'price' && { disabled: true })}
+                />
+              );
+          }
+        })}
       </div>
     </div>
   );

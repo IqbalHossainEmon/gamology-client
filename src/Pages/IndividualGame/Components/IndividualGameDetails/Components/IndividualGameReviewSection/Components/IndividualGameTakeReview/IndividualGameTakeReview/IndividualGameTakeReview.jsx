@@ -29,7 +29,7 @@ export default function IndividualGameTakeReview() {
 
   const overAllRating = 4.5;
 
-  const userReviewDone = true;
+  const userReviewDone = false;
 
   return (
     <>

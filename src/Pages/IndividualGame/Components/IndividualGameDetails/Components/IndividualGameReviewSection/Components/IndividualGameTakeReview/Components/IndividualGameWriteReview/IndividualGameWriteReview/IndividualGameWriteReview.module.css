@@ -22,15 +22,12 @@
 
 .name {
   font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .details {
   color: #a0a0a0;
   font-size: small;
-}
-
-.writingField {
-  width: 80%;
 }
 
 .individualGameWriteReview {
@@ -47,6 +44,30 @@
   margin-bottom: 20px;
 }
 .writingField {
+  width: 80%;
   padding-bottom: 40px;
   position: relative;
+}
+
+@media only screen and (max-width: 512px) {
+  .individualGameWriteReview {
+    flex-direction: column;
+  }
+  .userDetails {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .writingField {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+}
+@media only screen and (max-width: 376px) {
+  .reviewTitleContainer {
+    flex-direction: column;
+  }
+  .writingField {
+    width: 100%;
+    padding-bottom: 80px;
+  }
 }

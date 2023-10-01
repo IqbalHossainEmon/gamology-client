@@ -34,7 +34,7 @@ export default function SecondNavDesktopLinks({
       id={styles[id]}
     >
       <LinksList
-        active={0}
+        active={3}
         styles={styles}
         links={links}
         onclick={setNavTextState}

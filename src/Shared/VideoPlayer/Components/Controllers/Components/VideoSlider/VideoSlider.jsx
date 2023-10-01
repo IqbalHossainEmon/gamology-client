@@ -29,9 +29,8 @@ export default function VideoSlider({
   }, [handleResize, screenWidth]);
 
   useEffect(() => {
-    const timeId = setTimeout(() => {
+    setTimeout(() => {
       handleResize();
-      clearTimeout(timeId);
     }, 250);
   }, [changePause, handleResize]);
 

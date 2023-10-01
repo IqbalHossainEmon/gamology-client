@@ -1,34 +1,35 @@
 .FirstNavbar {
-    display: flex;
-    align-items: stretch;
-    width: 100%;
-    background-color: #222222;
-    position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  background-color: #222222;
+  position: relative;
+  z-index: 6;
 }
 .navOptions {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .gamologyLogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: filter 300ms;
-    padding: 0 1rem;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 300ms;
+  padding: 0 1rem;
+  cursor: pointer;
 }
 .gamologyLogo:hover {
-    filter: brightness(1.5);
+  filter: brightness(1.5);
 }
 .gamologyLogo img {
-    width: 60px;
+  width: 60px;
 }
 
 @media only screen and (max-width: 8px) {
-    .FirstNavbar {
-        position: relative;
-        justify-content: space-between;
-    }
+  .FirstNavbar {
+    position: relative;
+    justify-content: space-between;
+  }
 }

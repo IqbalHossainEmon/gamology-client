@@ -27,9 +27,7 @@ export default function VideoPlayer({
         setIsControllerShowing(true);
       }
       mouseMoveTimerId.current = setTimeout(() => {
-        clearTimeout(mouseMoveTimerId.current);
         mouseMoveTimerId.current = null;
-
         setIsControllerShowing(false);
       }, 5000);
     }

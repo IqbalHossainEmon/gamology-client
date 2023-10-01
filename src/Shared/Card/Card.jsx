@@ -2,8 +2,7 @@ import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceW
 import styles from './Card.module.css';
 
 export default function Card({ cardInfo, cardsWidth, slider }) {
-  const { id, name, carouselThumb, category, price } = cardInfo;
-  const { card } = category;
+  const { id, name, carouselThumb, price } = cardInfo;
 
   return (
     <li
@@ -15,9 +14,6 @@ export default function Card({ cardInfo, cardsWidth, slider }) {
         src={carouselThumb}
         alt={`${name}-cardThum-${id + 1}`}
       />
-      <p className={styles.category}>
-        <small>{card}</small>
-      </p>
       <h4 className={styles.name}>{name}</h4>
       <div className={styles.price}>
         <DiscountPriceWithPercent price={price} />

@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../../../../../../../../../Hooks/useScreenWidth';
 import LineBreak from '../../../../../../../../../../../Shared/LineBreak/LineBreak';
 import ReviewStar from '../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndividualGameReviewBtn from '../Components/IndividualGameReviewBtn/IndividualGameReviewBtn';
@@ -17,6 +18,12 @@ export default function IndividualGameWriteReview({
 
   const elementRef = useRef(null);
 
+  const screenWidth = useScreenWidth();
+
+  useEffect(() => {
+    elementRef.width = elementRef.current.clientHeight;
+  }, [elementRef, screenWidth]);
+
   const handleSubmit = () => {
     console.log({
       star: data.active + 1,
@@ -30,9 +37,7 @@ export default function IndividualGameWriteReview({
     <div
       className={styles.individualGameWriteReviewContainer}
       style={
-        writeReviewShow
-          ? { height: elementRef.current.clientHeight + 60 }
-          : { height: 0 }
+        writeReviewShow ? { height: elementRef.width + 60 } : { height: 0 }
       }
     >
       <div ref={elementRef} className={styles.individualGameWriteReview}>

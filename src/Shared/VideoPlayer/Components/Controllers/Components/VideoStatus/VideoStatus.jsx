@@ -17,7 +17,6 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
   const handleTransition = () => {
     if (!timerId.current) {
       timerId.current = setTimeout(() => {
-        clearTimeout(timerId);
         timerId.current = null;
         setStatus((prev) => ({ ...prev, animation: false }));
       }, 500);

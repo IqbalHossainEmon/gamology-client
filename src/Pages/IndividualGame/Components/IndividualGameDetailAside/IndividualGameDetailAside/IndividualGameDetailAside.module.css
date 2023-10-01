@@ -1,7 +1,10 @@
 .individualGameDetailAside {
   width: 30%;
-  position: sticky;
   padding: 20px 0 0 5%;
+}
+.asideContainer {
+  position: sticky;
+  top: 100px;
 }
 @media (max-width: 1023px) {
   .individualGameDetailAside {

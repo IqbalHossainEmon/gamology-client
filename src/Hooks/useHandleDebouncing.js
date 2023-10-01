@@ -7,9 +7,7 @@ const useHandleDebouncing = (seconds = 500) => {
     (handleClick) => {
       if (!timeOutRef.current) {
         handleClick();
-        timeOutRef.current = true;
         timeOutRef.current = setTimeout(() => {
-          clearTimeout(timeOutRef.current);
           timeOutRef.current = null;
         }, seconds);
       }

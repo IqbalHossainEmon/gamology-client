@@ -7,13 +7,13 @@
 .navLinkOverFlow {
   display: flex;
   z-index: 5;
-  width: 65px;
   flex-direction: column;
   transition: 300ms;
 }
 .navLinksContainer {
   position: absolute;
   width: 100%;
+  display: flex;
   overflow: hidden;
   top: 100%;
 }
@@ -21,7 +21,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 95px;
+  width: 120px;
   height: 20px;
   translate: -50% -10px;
   border: 1px solid rgba(255, 255, 255, 0.425);
@@ -62,4 +62,31 @@
 
 .navLinks p {
   color: rgba(255, 255, 255, 0.6);
+}
+
+@media only screen and (max-width: 375px) {
+  .navLinkOverFlow {
+    width: 52px;
+  }
+  .navLinks {
+    height: 14px;
+    padding: 0 2px;
+    width: 75px;
+  }
+  .navLinks p {
+    font-size: 10px;
+  }
+  .navArrow {
+    scale: 0.5;
+    top: -5px;
+  }
+  #discover {
+    translate: 0 -1px;
+  }
+  #browse {
+    translate: 0 -12px;
+  }
+  #news {
+    translate: 0 -24px;
+  }
 }

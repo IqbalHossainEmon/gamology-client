@@ -5,10 +5,8 @@ export default function useHandleTimerTransition(setState, time = 200) {
   return useCallback(() => {
     if (timerId.current) {
       clearTimeout(timerId.current);
-      timerId.current = null;
     }
     timerId.current = setTimeout(() => {
-      clearTimeout(timerId.current);
       timerId.current = null;
       setState((prev) => ({ ...prev, transition: false }));
     }, time);

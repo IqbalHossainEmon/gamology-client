@@ -30,7 +30,6 @@ export default function useDragStartStop(
     (e) => {
       handleMouseDown(e);
       if (!isTouchAble() && grab) {
-        console.log(grab);
         e.preventDefault();
         document.getElementById('root').classList.add('grabbing');
       }

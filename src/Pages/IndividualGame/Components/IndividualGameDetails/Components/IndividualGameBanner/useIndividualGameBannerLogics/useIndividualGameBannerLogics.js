@@ -121,7 +121,6 @@ export default function useIndividualGameBannerLogics() {
   const timerFunction = useCallback((transitionType, dispatch, time = 500) => {
     if (timeId.current) {
       clearTimeout(timeId.current);
-      timeId.current = null;
     }
 
     timeId.current = setTimeout(() => {
@@ -129,7 +128,6 @@ export default function useIndividualGameBannerLogics() {
         type: 'transitionStop',
         transitionType,
       });
-      clearTimeout(timeId.current);
       timeId.current = null;
     }, time);
   }, []);

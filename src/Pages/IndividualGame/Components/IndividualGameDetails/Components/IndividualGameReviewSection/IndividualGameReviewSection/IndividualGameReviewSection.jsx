@@ -4,12 +4,12 @@ import styles from './IndividualGameReviewSection.module.css';
 
 export default function IndividualGameReviewSection() {
   return (
-    <div className={styles.individualGameReview}>
+    <section className={styles.individualGameReview}>
       <h2 className={styles.reviewMainHeader}>Reviews</h2>
       <div className={styles.reviewContainer}>
         <IndividualGameTakeReview />
         <IndividualGameShowReview />
       </div>
-    </div>
+    </section>
   );
 }

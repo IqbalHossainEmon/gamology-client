@@ -9,6 +9,8 @@ export default function RangeField({
   setState,
   everyStep = 0,
   handleSetValue,
+  inputRefLeft,
+  inputRefRight,
 }) {
   const rangePathRef = useRef();
   const activePathRef = useRef();
@@ -22,6 +24,9 @@ export default function RangeField({
 
   // set click value in the path of slider depending on steps
   const handlePathClick = (e) => {
+    inputRefLeft.current.blur();
+    inputRefRight.current.blur();
+
     if (
       e.target === rangePathRef.current ||
       e.target === activePathRef.current

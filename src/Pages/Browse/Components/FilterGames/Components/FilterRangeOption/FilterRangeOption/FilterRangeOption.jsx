@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import RotateArrow from '../../../../../../../Shared/RotateArrow/RotateArrow';
 import RangeField from '../Components/RangeField/RangeField/RangeField';
 import RangeInput from '../Components/RangeInput/RangeInput/RangeInput';
 import styles from './FilterRangeOption.module.css';
 
-export default function FilterRangeOption({ option, limit, setState }) {
+export default function FilterRangeOption({
+  option,
+  limit,
+  setState,
+  disabled,
+}) {
   const [knobState, setKnobState] = useState({
     knob1: 0,
     knob2: 100,
@@ -14,17 +18,25 @@ export default function FilterRangeOption({ option, limit, setState }) {
     transition: false,
   });
 
-  const optionRef = useRef();
   const everyStep = useRef(0);
   const stateRef = useRef(knobState);
   stateRef.current = knobState;
-
-  const { title } = option;
+  const inputRefLeft = useRef(null);
+  const inputRefRight = useRef(null);
 
   useEffect(() => {
-    if (typeof limit !== 'object' || limit.higher <= limit.lower) {
+    if (typeof limit !== 'object' || limit.higher <= limit.lower || disabled) {
       setKnobState((prev) => ({ ...prev, disabled: true }));
+    } else {
+      setKnobState((prev) => {
+        const prevState = { ...prev };
+        delete prevState.disabled;
+        return prevState;
+      });
     }
+  }, [disabled, limit]);
+
+  useEffect(() => {
     if (typeof limit === 'object') {
       const step = 100 / Math.ceil((limit.higher - limit.lower) / option.steps);
 
@@ -41,7 +53,7 @@ export default function FilterRangeOption({ option, limit, setState }) {
 
   // set value after re-render and value change
   const handleSetValue = useCallback(() => {
-    const timerId = setTimeout(() => {
+    setTimeout(() => {
       const { knob1, knob2 } = stateRef.current;
       let higher;
       let lower;
@@ -63,61 +75,35 @@ export default function FilterRangeOption({ option, limit, setState }) {
         ...prev,
         [option.rangeName]: { lower, higher },
       }));
-      clearTimeout(timerId);
     }, 0);
   }, [limit, option, setState]);
-
-  useEffect(() => {
-    setKnobState((prev) => ({
-      ...prev,
-      height: optionRef.current.offsetHeight,
-    }));
-  }, [optionRef]);
 
   return (
     <div
       className={styles.filterRange}
       {...(knobState.disabled && { disabled: 'disabled' })}
     >
-      <div
-        tabIndex={0}
-        role="button"
-        onClick={() => setKnobState((prev) => ({ ...prev, show: !prev.show }))}
-        className={`${styles.rangeTitle} hover-shadow`}
-      >
-        <h3>{title}</h3>
-        <div className={styles.downArrow}>
-          <RotateArrow state={knobState.show} />
-        </div>
-      </div>
-      <div
-        className={styles.sliderInputs}
-        ref={optionRef}
-        {...(title && {
-          style: knobState.show
-            ? {
-                height: `${knobState.height}px`,
-              }
-            : { height: '0px' },
-        })}
-      >
-        <RangeField
-          setState={setKnobState}
-          handleSetValue={handleSetValue}
-          everyStep={everyStep}
-          state={knobState}
-        />
-        <RangeInput
-          setValue={setKnobState}
-          handleSetValue={handleSetValue}
-          everyStep={everyStep.stepForInput}
-          lowerLim={everyStep.lowerForInput}
-          value={knobState}
-          step={option.steps}
-          float={option.float}
-          limit={limit}
-        />
-      </div>
+      <RangeField
+        inputRefLeft={inputRefLeft}
+        inputRefRight={inputRefRight}
+        className={styles.rangeField}
+        setState={setKnobState}
+        handleSetValue={handleSetValue}
+        everyStep={everyStep}
+        state={knobState}
+      />
+      <RangeInput
+        inputRefLeft={inputRefLeft}
+        inputRefRight={inputRefRight}
+        setValue={setKnobState}
+        handleSetValue={handleSetValue}
+        everyStep={everyStep.stepForInput}
+        lowerLim={everyStep.lowerForInput}
+        value={knobState}
+        step={option.steps}
+        float={option.float}
+        limit={limit}
+      />
     </div>
   );
 }
