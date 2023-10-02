@@ -52,12 +52,6 @@ body {
   cursor: grabbing;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* Common css */
 
 @media (hover: hover) and (pointer: fine) {

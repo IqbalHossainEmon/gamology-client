@@ -16,7 +16,7 @@ export default function FirstNavLinks({ setNavState }) {
   return (
     <ul className={styles.FirstNavLinks}>
       <LinksList
-        active={0}
+        active={3}
         styles={styles}
         links={links}
         onclick={setNavState}
