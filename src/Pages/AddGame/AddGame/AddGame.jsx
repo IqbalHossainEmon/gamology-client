@@ -1,6 +1,6 @@
-import AddGameBanner from '../Components/AddGameBanner/AddGameBanner';
+import AddGameBanner from '../Components/AddGameBanner/AddGameBanner/AddGameBanner';
 import AddGameDetails from '../Components/AddGameDetails/AddGameDetails';
-import AddGamesDetailsInfo from '../Components/AddGamesDetailsInfo/AddGamesDetailsInfo';
+import AddGamesDetailsInfo from '../Components/AddGamesDetailsInfo/AddGamesDetailsInfo/AddGamesDetailsInfo';
 import styles from './AddGame.module.css';
 
 export default function AddGame() {

@@ -1,0 +1,87 @@
+.priceReleaseDateContainer {
+  display: flex;
+}
+.priceContainer,
+.releaseContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  border-radius: 4px;
+}
+.priceContainer label,
+.releaseContainer label {
+  margin-right: 20px;
+}
+.releaseContainer {
+  margin-left: 30px;
+}
+.inputContainer {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.priceContainer input {
+  width: 100px;
+}
+
+.priceContainer input::-webkit-outer-spin-button,
+.priceContainer input::-webkit-inner-spin-button,
+.releaseContainer input::-webkit-outer-spin-button,
+.releaseContainer input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.priceContainer input,
+.releaseContainer input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  -moz-appearance: textfield;
+  outline: none;
+  font-size: medium;
+  background: transparent;
+  padding: 10px;
+  color: rgb(173, 173, 173);
+}
+.releaseContainer input {
+  width: 50px;
+  text-align: center;
+}
+.releaseContainer input:last-child {
+  width: 70px;
+}
+
+@media screen and (max-width: 768px) and (min-width: 273px) {
+  .priceReleaseDateContainer {
+    display: block;
+  }
+  .releaseContainer {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 272px) {
+  .priceReleaseDateContainer {
+    display: block;
+  }
+  .releaseContainer {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .priceContainer input,
+  .releaseContainer input {
+    font-size: 12px;
+  }
+  .priceContainer label,
+  .releaseContainer label {
+    margin-right: 10px;
+  }
+
+  .releaseContainer input {
+    width: 35px;
+  }
+  .releaseContainer input:last-child {
+    width: 50px;
+  }
+}

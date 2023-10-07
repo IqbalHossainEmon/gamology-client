@@ -2,3 +2,15 @@
   width: 75vw;
   margin: 2rem auto;
 }
+
+@media (max-width: 1023px) and (min-width: 766px) {
+  .addGame {
+    width: 97vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .addGame {
+    width: 98vw;
+  }
+}

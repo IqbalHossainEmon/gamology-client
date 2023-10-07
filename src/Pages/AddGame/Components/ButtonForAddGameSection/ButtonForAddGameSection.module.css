@@ -3,7 +3,7 @@
   position: relative;
   color: rgb(173, 173, 173);
   height: 100%;
-  padding: 20px 40px 20px 20px;
+  padding: 20px;
   font-size: medium;
   display: flex;
   justify-content: center;
@@ -21,12 +21,11 @@
 .btn:active {
   background-color: rgba(255, 255, 255, 0.05);
 }
-
-.plus {
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  color: aliceblue;
-  right: 15px;
+@media screen and (max-width: 768px) {
+  .btn {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

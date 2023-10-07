@@ -1,0 +1,15 @@
+.addGameBanner {
+  margin: 3rem 0;
+}
+.btnContainer {
+  display: flex;
+  margin: 10px 0;
+}
+
+.btn {
+  margin: 10px 0;
+}
+
+.btn:last-child {
+  margin-left: 10px;
+}

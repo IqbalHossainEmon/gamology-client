@@ -1,10 +1,10 @@
-import styles from './AddMoreButton.module.css';
+import styles from './ButtonForAddGameSection.module.css';
 
-export default function AddMoreButton({ onClick }) {
+export default function ButtonForAddGameSection({ onClick, text }) {
   return (
     <div className={styles.addMoreButton}>
       <button className={styles.btn} onClick={onClick} type="button">
-        Add More <span className={styles.plus}>+</span>
+        {text}
       </button>
     </div>
   );

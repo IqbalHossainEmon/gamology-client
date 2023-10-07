@@ -1,0 +1,24 @@
+.addGamesDetailsInfo {
+  width: 100%;
+}
+.optionsContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+}
+.options {
+  width: 100%;
+}
+.options:last-child {
+  margin-left: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .optionsContainer {
+    display: block;
+  }
+  .options:last-child {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+}

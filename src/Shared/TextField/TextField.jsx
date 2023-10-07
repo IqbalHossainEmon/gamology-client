@@ -6,6 +6,7 @@ export default function TextField({
   className,
   empty,
   placeholder,
+  htmlFor = 0,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
@@ -20,14 +21,14 @@ export default function TextField({
                 ? [styles.focused, styles.label].join(' ')
                 : styles.label
             }
-            htmlFor={styles.input}
+            htmlFor={`${placeholder}_${htmlFor}`}
           >
             {placeholder}
           </label>
           <input
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            id={styles.input}
+            id={`${placeholder}_${htmlFor}`}
             className={[styles.input, styles.field].join(' ')}
             {...rest}
           />

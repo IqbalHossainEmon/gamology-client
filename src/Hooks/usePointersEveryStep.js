@@ -17,8 +17,6 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
       const cursorInEle =
         (e?.touches ? e.touches[0].pageX : e.pageX) - pathInfoRef.offsetLeft;
 
-      console.log(e.pageX);
-
       const cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
       const pointerLeftStep =

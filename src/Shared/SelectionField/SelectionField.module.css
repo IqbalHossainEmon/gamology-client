@@ -41,13 +41,14 @@
   width: 100%;
   top: calc(100% + 1px);
   border-radius: 4px;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0px 10px 10px 10px;
+  background-color: rgb(37, 37, 37);
   cursor: default;
   list-style: none;
   opacity: 0;
   pointer-events: none;
   transition: opacity 200ms;
+  z-index: 1;
 }
 
 .show {
@@ -56,12 +57,13 @@
 }
 
 .item {
-  margin: 5px 0;
-  padding: 5px 0;
   position: relative;
 }
 .item button {
   width: 100%;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
   cursor: pointer;
   height: 100%;
   background-color: transparent;
@@ -70,14 +72,14 @@
   text-align: left;
   transition: color 200ms;
 }
-.item:hover button {
+.item button:hover button {
   color: rgb(196, 196, 196);
 }
-.item:hover::after {
+.item button:hover::after {
   background-color: rgb(196, 196, 196);
 }
 
-.item::after {
+.item button::after {
   content: ' ';
   position: absolute;
   width: 100%;
@@ -89,10 +91,21 @@
 }
 
 .rotateArrow {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   position: absolute;
   right: 10px;
-  translate: 0 -50%;
-  top: 50%;
+  bottom: 60%;
+  translate: 0 50%;
+}
+@media screen and (max-width: 768px) {
+  .label {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .focused {
+    font-size: 10px;
+  }
 }

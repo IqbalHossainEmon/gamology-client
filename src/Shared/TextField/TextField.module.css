@@ -4,8 +4,10 @@
   background-color: rgba(255, 255, 255, 0.05);
   height: 100%;
   border-radius: 4px;
+  overflow: hidden;
 }
 .label {
+  width: 100%;
   position: absolute;
   top: 28px;
   translate: 0 -50%;
@@ -34,4 +36,15 @@
 .textarea {
   resize: vertical;
   overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  .label {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .focused {
+    font-size: 10px;
+  }
 }
