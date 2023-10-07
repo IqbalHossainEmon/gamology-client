@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import useScreenWidth from '../../../../../../../../Hooks/useScreenWidth';
-import ArrowButton from '../../../../../../../../Shared/ArrowButton/ArrowButton';
+import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
+import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowButton';
 import IndividualGameBannerCard from '../IndividualGameBannerCard/IndividualGameBannerCard';
 import styles from './IndividualGameBannerCards.module.css';
 

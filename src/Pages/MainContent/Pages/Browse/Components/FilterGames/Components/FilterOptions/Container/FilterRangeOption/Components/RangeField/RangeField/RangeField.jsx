@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import usePointersEveryStep from '../../../../../../../../../Hooks/usePointersEveryStep';
+import usePointersEveryStep from '../../../../../../../../../../../../../Hooks/usePointersEveryStep';
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 

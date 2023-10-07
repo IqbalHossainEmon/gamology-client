@@ -1,5 +1,5 @@
-import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
-import DiscountPriceWithPercent from '../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
+import useScreenWidth from '../../../../../../../../Hooks/useScreenWidth';
+import DiscountPriceWithPercent from '../../../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
 import styles from './IndividualGameAsideHeader.module.css';
 
 export default function IndividualGameAsideHeader({

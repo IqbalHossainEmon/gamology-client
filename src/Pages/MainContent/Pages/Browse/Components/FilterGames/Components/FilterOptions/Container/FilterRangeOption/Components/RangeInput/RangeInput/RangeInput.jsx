@@ -1,4 +1,4 @@
-import useHandleTimerTransition from '../../../../../../../../../Hooks/useHandleTimerTransition';
+import useHandleTimerTransition from '../../../../../../../../../../../../../Hooks/useHandleTimerTransition';
 import RangeInputField from '../Components/RangeInputField/RangeInputField';
 import styles from './RangeInput.module.css';
 

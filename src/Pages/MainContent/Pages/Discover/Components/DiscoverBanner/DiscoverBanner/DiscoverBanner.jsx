@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerButtons';
 import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
 import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards';

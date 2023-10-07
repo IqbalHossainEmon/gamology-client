@@ -10,7 +10,6 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
   useEffect(() => {
     pathInfoRef.width = rangePathRef.current.offsetWidth;
     pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
-    console.log(pathInfoRef.offsetLeft);
   }, [rangePathRef, screenWidth]);
 
   return useCallback(

@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import RotateArrow from '../../../../../../../Shared/RotateArrow/RotateArrow';
-import FilterRangeOption from '../../FilterRangeOption/FilterRangeOption/FilterRangeOption';
-import FilterOption from '../Components/FilterOption/FilterOption';
+import FilterOption from '../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
+import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArrow';
+import FilterRangeOption from '../Container/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptions.module.css';
 
-export default function FilterOptions({ option, state, setState, limits }) {
+export default function FilterOptions({
+  option,
+  state,
+  setState,
+  limits = {},
+}) {
   const { title, optionList } = option;
   const optionRef = useRef(0);
   const [show, setShow] = useState({

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import LineBreak from '../../../../../../../../../Shared/LineBreak/LineBreak';
-import ReviewStar from '../../../../../../../../../Shared/ReviewStar/ReviewStar';
+import LineBreak from '../../../../../../../../../../../Shared/LineBreak/LineBreak';
+import ReviewStar from '../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndividualGameOwnReview from '../Components/IndividualGameOwnReview/IndividualGameOwnReview';
 import IndividualGameWriteReview from '../Components/IndividualGameWriteReview/IndividualGameWriteReview/IndividualGameWriteReview';
 import styles from './IndividualGameTakeReview.module.css';

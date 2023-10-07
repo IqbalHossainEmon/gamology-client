@@ -1,4 +1,4 @@
-import DiscountPrice from '../../../../../../Shared/DiscountPrice/DiscountPrice';
+import DiscountPrice from '../../../../../../../../Shared/DiscountPrice/DiscountPrice';
 import styles from './DiscoverBannerInfoItem.module.css';
 
 export default function DiscoverBannerInfoItem({

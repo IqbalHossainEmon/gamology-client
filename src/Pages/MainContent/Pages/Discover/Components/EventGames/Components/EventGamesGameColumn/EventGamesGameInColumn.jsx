@@ -1,4 +1,4 @@
-import DiscountPriceWithPercent from '../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
+import DiscountPriceWithPercent from '../../../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
 import styles from './EventGamesGameInColumn.module.css';
 
 export default function EventGamesGameColumn({ game }) {

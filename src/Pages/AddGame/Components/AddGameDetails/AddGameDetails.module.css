@@ -1,0 +1,11 @@
+.gameDetails {
+  margin: 3rem 0;
+}
+.textFieldContainer {
+  display: flex;
+  margin: 10px 0;
+}
+
+.field:last-child {
+  margin-left: 10px;
+}

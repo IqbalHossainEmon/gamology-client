@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import LineBreak from '../../../../../../../../../../Shared/LineBreak/LineBreak';
-import ReviewStar from '../../../../../../../../../../Shared/ReviewStar/ReviewStar';
+import LineBreak from '../../../../../../../../../../../../Shared/LineBreak/LineBreak';
+import ReviewStar from '../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import styles from './IndividualGameReview.module.css';
 
 const userIcon = 'assets/images/icons/user.png';

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import useHandleDebouncing from '../../../../../../../../Hooks/useHandleDebouncing';
-import ArrowButton from '../../../../../../../../Shared/ArrowButton/ArrowButton';
+import useHandleDebouncing from '../../../../../../../../../../Hooks/useHandleDebouncing';
+import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowButton';
 import IndividualGameBannerItem from '../IndividualGameBannerItem/IndividualGameBannerItem';
 import styles from './IndividualGameBannerItems.module.css';
 

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import Card from '../../../../../../Shared/Card/Card';
+import Card from '../../../../../../../../Shared/Card/Card';
 import styles from './DiscoverGamesCards.module.css';
 
 function DiscoverGamesCards({ data, style, cardsWidth }, ref) {

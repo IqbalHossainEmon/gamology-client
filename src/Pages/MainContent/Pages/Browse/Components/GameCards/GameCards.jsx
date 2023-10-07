@@ -1,5 +1,5 @@
-import Card from '../../../../Shared/Card/Card';
-import Pagination from '../../../../Shared/Pagination/Pagination';
+import Card from '../../../../../../Shared/Card/Card';
+import Pagination from '../../../../../../Shared/Pagination/Pagination';
 import styles from './GameCards.module.css';
 
 export default function GameCards({ state, dispatch }) {

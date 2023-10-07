@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import LineBreak from '../../../../../../../Shared/LineBreak/LineBreak';
+import LineBreak from '../../../../../../../../../Shared/LineBreak/LineBreak';
 import IndividualGameMultipleSpecification from '../Components/IndividualGameMultipleSpecification/IndividualGameMultipleSpecification';
 import IndividualGameSpecification from '../Components/IndividualGameSpecification/IndividualGameSpecification';
 import styles from './IndividualGameSpecifications.module.css';

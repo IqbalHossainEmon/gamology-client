@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../../../../../../../Hooks/useScreenWidth';
-import LineBreak from '../../../../../../../../../../../Shared/LineBreak/LineBreak';
-import ReviewStar from '../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
+import useScreenWidth from '../../../../../../../../../../../../../Hooks/useScreenWidth';
+import LineBreak from '../../../../../../../../../../../../../Shared/LineBreak/LineBreak';
+import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndividualGameReviewBtn from '../Components/IndividualGameReviewBtn/IndividualGameReviewBtn';
 import IndividualGameReviewInputField from '../Components/IndividualGameReviewInputField/IndividualGameReviewInputField';
 import IndividualGameReviewTextField from '../Components/IndividualGameReviewTextField/IndividualGameReviewTextField';

@@ -1,0 +1,32 @@
+.btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  position: relative;
+  color: rgb(173, 173, 173);
+  height: 100%;
+  padding: 20px 40px 20px 20px;
+  font-size: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: color 200ms, background-color 200ms;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(201, 201, 201);
+}
+
+.btn:active {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.plus {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  color: aliceblue;
+  right: 15px;
+}

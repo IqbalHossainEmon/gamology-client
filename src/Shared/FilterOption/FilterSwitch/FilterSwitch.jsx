@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useDragStartStop from '../../../../../../../../Hooks/useDragStartStop';
-import useHandleTimerTransition from '../../../../../../../../Hooks/useHandleTimerTransition';
-
-import usePointersEveryStep from '../../../../../../../../Hooks/usePointersEveryStep';
+import useDragStartStop from '../../../Hooks/useDragStartStop';
+import useHandleTimerTransition from '../../../Hooks/useHandleTimerTransition';
+import usePointersEveryStep from '../../../Hooks/usePointersEveryStep';
 import styles from './FilterSwitch.module.css';
 
 function FilterSwitch({ state, setState, name, event }) {

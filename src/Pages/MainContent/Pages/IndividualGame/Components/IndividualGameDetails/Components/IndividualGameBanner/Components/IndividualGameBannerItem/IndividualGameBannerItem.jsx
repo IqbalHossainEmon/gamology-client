@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import VideoPlayer from '../../../../../../../../Shared/VideoPlayer/VideoPlayer/VideoPlayer';
+import VideoPlayer from '../../../../../../../../../../Shared/VideoPlayer/VideoPlayer/VideoPlayer';
 import styles from './IndividualGameBannerItem.module.css';
 
 export default function IndividualGameBannerItem({ data, active, index }) {

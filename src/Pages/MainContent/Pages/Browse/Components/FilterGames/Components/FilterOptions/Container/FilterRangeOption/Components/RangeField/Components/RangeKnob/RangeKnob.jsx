@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import useDragStartStop from '../../../../../../../../../../Hooks/useDragStartStop';
+import useDragStartStop from '../../../../../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
 function RangeKnob({

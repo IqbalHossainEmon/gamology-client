@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 import ChangeEventButtons from '../Components/ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../Components/EventGamesGamesColumn/EventGamesGamesColumn';
 import styles from './EventGames.module.css';

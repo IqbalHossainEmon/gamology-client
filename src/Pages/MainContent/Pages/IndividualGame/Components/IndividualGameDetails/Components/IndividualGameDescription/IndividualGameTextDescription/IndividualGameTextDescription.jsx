@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import RotateArrow from '../../../../../../../Shared/RotateArrow/RotateArrow';
+import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './IndividualGameTextDescription.module.css';
 
 export default function IndividualGameTextDescription({ descriptions }) {

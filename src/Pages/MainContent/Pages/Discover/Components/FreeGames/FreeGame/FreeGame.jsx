@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 import styles from './FreeGame.module.css';
 
 export default function FreeGame({ data, today, length }) {

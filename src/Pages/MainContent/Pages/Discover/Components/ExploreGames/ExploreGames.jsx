@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import styles from './ExploreGames.module.css';
 
 const fetched = {

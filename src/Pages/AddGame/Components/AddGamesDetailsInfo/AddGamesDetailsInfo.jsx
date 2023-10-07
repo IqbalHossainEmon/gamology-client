@@ -1,13 +1,7 @@
-import { useState } from 'react';
-import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
-import CloseButton from '../../Shared/CloseButton/CloseButton';
-import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
+import FilterOptions from '../../../../Shared/FilterOptions/FilterOptions/FilterOptions';
+import styles from './AddGamesDetailsInfo.module.css';
 
-import ApplyButton from '../Components/ApplyButton/ApplyButton';
-import FilterOptionList from '../Components/FilterOptionList/FilterOptionList';
-import styles from './FilterGames.module.css';
-
-const options = [
+const option = [
   {
     id: 0,
     optionList: [
@@ -100,42 +94,10 @@ const options = [
   },
 ];
 
-export default function FilterGames({ filterState, dispatch, limits }) {
-  const [state, setState] = useState(filterState);
-
-  const { filterSortState, setFilterSort, filterSortRef } =
-    useFilterSortState();
-  const { filter } = filterSortState;
-
-  const screenWidth = useScreenWidth();
-
+export default function AddGamesDetailsInfo() {
   return (
-    <aside
-      ref={filterSortRef}
-      className={`${styles.FilterGames} ${
-        filter && screenWidth < 769 ? styles.hidden : styles.show
-      }`}
-    >
-      <div className={styles.filterContainer}>
-        {screenWidth < 769 && <h2>Filters</h2>}
-        <FilterOptionList
-          options={options}
-          state={state}
-          setState={setState}
-          limits={limits}
-        />
-        <ApplyButton
-          setShow={setFilterSort}
-          dispatch={dispatch}
-          filterState={filterState}
-          state={state}
-        />
-      </div>
-      {screenWidth < 769 && (
-        <div className={styles.closeButton}>
-          <CloseButton setState={setFilterSort} state="filter" />
-        </div>
-      )}
-    </aside>
+    <div className={styles.addGamesDetailsInfo}>
+      <FilterOptions option={option} />
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../../../../../../Hooks/useDropDownHide';
-import RotateArrow from '../../../../../../../../../../Shared/RotateArrow/RotateArrow';
+import useDropDownHide from '../../../../../../../../../../../../Hooks/useDropDownHide';
+import RotateArrow from '../../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './IndividualGameOrderBy.module.css';
 
 export default function IndividualGameOrderBy({ handleSort }) {
