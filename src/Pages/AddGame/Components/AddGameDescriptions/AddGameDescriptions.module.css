@@ -1,0 +1,24 @@
+.addGameDescriptions {
+  margin: 3rem 0;
+}
+.sortDescription {
+  margin: 20px 0;
+}
+.mainHeader {
+  margin-top: 40px;
+}
+
+.mainHeader,
+.subHeader {
+  margin-bottom: 20px;
+}
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn,
+.mainBtn {
+  margin-right: 20px;
+  margin-top: 20px;
+}

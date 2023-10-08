@@ -1,0 +1,34 @@
+.systemReq {
+  margin-top: 30px;
+}
+.type {
+  margin-bottom: 20px;
+}
+
+.selectionField {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.switch p {
+  font-size: 20px;
+}
+
+.specsContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.textField {
+  width: 100%;
+  margin-left: 10px;
+}
+.btnContainer {
+  margin-top: 20px;
+}
+@media screen and (max-width: 768px) {
+  .selectionField {
+    width: 100px;
+  }
+}

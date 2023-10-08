@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddGameSection';
-import TextFieldContainer from '../Components/TextFieldContainer/TextFieldContainer';
+import TextFieldContainer from '../TextFieldContainer/TextFieldContainer';
 import styles from './AddGameBanner.module.css';
 
 export default function AddGameBanner() {
   const [fieldCount, setFieldCount] = useState(1);
 
   return (
-    <div className={styles.addGameBanner}>
+    <section className={styles.addGameBanner}>
       <h3>Add Game&#39;s Banner Images or Videos</h3>
       <div className={styles.textFieldContainer}>
         {[...Array(fieldCount).keys()].map((arr) => (
@@ -32,6 +32,6 @@ export default function AddGameBanner() {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -21,14 +21,14 @@ export default function TextField({
                 ? [styles.focused, styles.label].join(' ')
                 : styles.label
             }
-            htmlFor={`${placeholder}_${htmlFor}`}
+            htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
           >
             {placeholder}
           </label>
           <input
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            id={`${placeholder}_${htmlFor}`}
+            id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
             className={[styles.input, styles.field].join(' ')}
             {...rest}
           />

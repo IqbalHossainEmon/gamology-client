@@ -11,7 +11,8 @@
   position: absolute;
   top: 28px;
   translate: 0 -50%;
-  left: 10px;
+  left: 0px;
+  padding: 0 10px;
   pointer-events: none;
   color: rgb(173, 173, 173);
   transition: top 0.2s ease, font-size 0.2s ease, translate 0.2s ease, color 0.2s ease;
@@ -35,6 +36,7 @@
 
 .textarea {
   resize: vertical;
+  min-height: 150px;
   overflow: hidden;
 }
 @media screen and (max-width: 768px) {

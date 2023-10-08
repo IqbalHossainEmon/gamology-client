@@ -3,7 +3,7 @@ import styles from './AddGameDetails.module.css';
 
 export default function AddGameDetails() {
   return (
-    <div className={styles.gameDetails}>
+    <section className={styles.gameDetails}>
       <h3>Add Game&apos;s Details</h3>
       <div>
         <div className={styles.textFieldContainer}>
@@ -43,6 +43,6 @@ export default function AddGameDetails() {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,5 +1,5 @@
-import SelectionField from '../../../../../../Shared/SelectionField/SelectionField';
-import TextField from '../../../../../../Shared/TextField/TextField';
+import SelectionField from '../../../../../Shared/SelectionField/SelectionField';
+import TextField from '../../../../../Shared/TextField/TextField';
 import styles from './TextFieldContainer.module.css';
 
 export default function TextFieldContainer({ number }) {

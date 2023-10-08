@@ -31,7 +31,7 @@ const options = [
 
 export default function AddGamesDetailsInfo() {
   return (
-    <div className={styles.addGamesDetailsInfo}>
+    <section className={styles.addGamesDetailsInfo}>
       <h3>Add New Game to the collection</h3>
       <div className={styles.optionsContainer}>
         <div className={styles.options}>
@@ -44,6 +44,6 @@ export default function AddGamesDetailsInfo() {
       <div>
         <PriceReleaseDate />
       </div>
-    </div>
+    </section>
   );
 }

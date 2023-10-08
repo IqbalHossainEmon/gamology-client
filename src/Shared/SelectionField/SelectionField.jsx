@@ -41,14 +41,14 @@ export default function SelectionField({
             ? [styles.focused, styles.label].join(' ')
             : styles.label
         }
-        htmlFor={`${placeholder}_${htmlFor}`}
+        htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
       >
         type
       </label>
       <input
         value={value}
         readOnly
-        id={`${placeholder}_${htmlFor}`}
+        id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         className={[styles.input, styles.field].join(' ')}
         {...rest}
       />

@@ -1,0 +1,22 @@
+.addGameSpecifications {
+  margin: 3rem 0;
+}
+.specsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.specs {
+  width: 48%;
+}
+
+.textField {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .specs {
+    width: 100%;
+  }
+}
