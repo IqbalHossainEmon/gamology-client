@@ -1,16 +1,20 @@
-.addGameBanner {
+.addGameDescriptions {
   margin: 3rem 0;
 }
-.btnContainer {
+.sortDescription {
+  margin: 20px 0;
+}
+
+.buttonContainer {
   display: flex;
   flex-wrap: wrap;
 }
 
-.btn {
-  margin-right: 10px;
-  margin-top: 30px;
+.btn,
+.mainBtn {
+  margin-right: 20px;
+  margin-top: 20px;
 }
-
 .header {
   font-size: 1.3rem;
 }

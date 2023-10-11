@@ -46,6 +46,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .field {
+    font-size: 12px;
+  }
   .focused {
     font-size: 10px;
   }

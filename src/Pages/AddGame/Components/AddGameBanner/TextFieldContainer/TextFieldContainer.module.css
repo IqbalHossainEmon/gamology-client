@@ -1,23 +1,11 @@
 .textFieldContainer {
   display: flex;
-  margin: 10px 0;
+  flex-direction: column;
+  margin-top: 40px;
 }
 .selectContainer {
-  width: 10%;
-  margin-left: 10px;
+  width: 150px;
 }
-@media screen and (max-width: 1600px) and (min-width: 1023px) {
-  .selectContainer {
-    width: 15%;
-  }
-}
-@media screen and (max-width: 1022px) and (min-width: 768px) {
-  .selectContainer {
-    width: 20%;
-  }
-}
-@media screen and (max-width: 768px) {
-  .selectContainer {
-    width: 130px;
-  }
+.thumbField {
+  margin: 10px 0;
 }

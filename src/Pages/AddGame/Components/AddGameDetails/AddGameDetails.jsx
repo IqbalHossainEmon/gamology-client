@@ -1,48 +1,51 @@
 import TextField from '../../../../Shared/TextField/TextField';
 import styles from './AddGameDetails.module.css';
 
-export default function AddGameDetails() {
+export default function AddGameDetails({ gameData }) {
+  const handleSetValue = (value, name) => {
+    gameData.current.gameInfo[name] = value;
+    console.log(value, name);
+  };
+
   return (
     <section className={styles.gameDetails}>
-      <h3>Add Game&apos;s Details</h3>
-      <div>
-        <div className={styles.textFieldContainer}>
-          <TextField
-            className={styles.field}
-            field="input"
-            placeholder="Game's Name"
-          />
-          <TextField
-            className={styles.field}
-            field="input"
-            placeholder="Release Date"
-          />
-        </div>
-        <div className={styles.textFieldContainer}>
-          <TextField
-            className={styles.field}
-            field="input"
-            placeholder="Developer"
-          />
-          <TextField
-            className={styles.field}
-            field="input"
-            placeholder="Publisher"
-          />
-        </div>
-        <div className={styles.textFieldContainer}>
-          <TextField
-            className={styles.field}
-            field="input"
-            placeholder="Portrait Cover image’s Link"
-          />
-          <TextField
-            className={styles.field}
-            field="input"
-            placeholder="Landscape Cover image’s link"
-          />
-        </div>
+      <h3 className={styles.header}>Add Game&apos;s Details</h3>
+      <TextField
+        setState={handleSetValue}
+        field="input"
+        name="name"
+        placeholder="Game's Name"
+      />
+
+      <div className={styles.textFieldContainer}>
+        <TextField
+          setState={handleSetValue}
+          field="input"
+          name="developer"
+          placeholder="Developer"
+        />
+        <TextField
+          setState={handleSetValue}
+          className={styles.rightFlex}
+          name="publisher"
+          field="input"
+          placeholder="Publisher"
+        />
       </div>
+
+      <TextField
+        setState={handleSetValue}
+        className={styles.marginTop}
+        name="logo"
+        field="input"
+        placeholder="Portrait Cover image’s Link"
+      />
+      <TextField
+        setState={handleSetValue}
+        field="input"
+        name="phoneLogo"
+        placeholder="Landscape Cover image’s link"
+      />
     </section>
   );
 }

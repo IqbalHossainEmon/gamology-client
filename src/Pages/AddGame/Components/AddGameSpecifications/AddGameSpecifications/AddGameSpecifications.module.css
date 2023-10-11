@@ -4,15 +4,31 @@
 .specsContainer {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
   justify-content: space-between;
 }
 .specs {
   width: 48%;
+  margin-top: 30px;
 }
 
 .textField {
   margin-top: 20px;
+}
+
+.header {
+  font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 769px) {
+  .header {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 768px) {

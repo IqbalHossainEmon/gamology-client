@@ -108,4 +108,7 @@
   .focused {
     font-size: 10px;
   }
+  .input {
+    font-size: 12px;
+  }
 }

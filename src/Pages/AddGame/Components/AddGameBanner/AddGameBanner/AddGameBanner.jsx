@@ -3,15 +3,15 @@ import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddG
 import TextFieldContainer from '../TextFieldContainer/TextFieldContainer';
 import styles from './AddGameBanner.module.css';
 
-export default function AddGameBanner() {
+export default function AddGameBanner({ gameData }) {
   const [fieldCount, setFieldCount] = useState(1);
 
   return (
     <section className={styles.addGameBanner}>
-      <h3>Add Game&#39;s Banner Images or Videos</h3>
+      <h3 className={styles.header}>Add Game&#39;s Banner Images or Videos</h3>
       <div className={styles.textFieldContainer}>
         {[...Array(fieldCount).keys()].map((arr) => (
-          <TextFieldContainer key={arr} number={arr} />
+          <TextFieldContainer key={arr} number={arr} gameData={gameData} />
         ))}
       </div>
       <div className={styles.btnContainer}>

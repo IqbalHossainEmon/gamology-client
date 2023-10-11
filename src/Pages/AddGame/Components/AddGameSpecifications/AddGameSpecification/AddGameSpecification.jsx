@@ -11,7 +11,7 @@ export default function AddGameSpecification({ state }) {
   return (
     <div className={styles.addGameSpecification}>
       <div className={styles.switch}>
-        <FilterOption text={state.name} />
+        <FilterOption border text={state.name} />
       </div>
       <div className={styles.systemReq}>
         <h4 className={styles.type}>Minimum</h4>
@@ -63,11 +63,23 @@ export default function AddGameSpecification({ state }) {
           </div>
         ))}
       </div>
-      <div className={styles.btnContainer}>
-        <ButtonForAddGameSection
-          text="Add More +"
-          onClick={() => setRequiredLength((prev) => prev + 1)}
-        />
+      <div className={styles.btnsContainer}>
+        <div className={styles.btnContainer}>
+          <ButtonForAddGameSection
+            text="Add More +"
+            onClick={() => setRequiredLength((prev) => prev + 1)}
+          />
+        </div>
+        <div className={styles.btnContainer}>
+          <ButtonForAddGameSection
+            text="Remove one -"
+            onClick={() => {
+              if (requiredLength > 1) {
+                setRequiredLength((prev) => prev - 1);
+              }
+            }}
+          />
+        </div>
       </div>
     </div>
   );

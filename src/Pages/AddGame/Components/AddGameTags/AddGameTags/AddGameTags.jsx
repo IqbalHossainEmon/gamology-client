@@ -1,6 +1,6 @@
 import OptionsContainer from '../Components/OptionsContainer/OptionsContainer';
 import PriceReleaseDate from '../Components/PriceReleaseDate/PriceReleaseDate';
-import styles from './AddGamesDetailsInfo.module.css';
+import styles from './AddGameTags.module.css';
 
 const options = [
   [
@@ -29,10 +29,10 @@ const options = [
   ],
 ];
 
-export default function AddGamesDetailsInfo() {
+export default function AddGameTags() {
   return (
-    <section className={styles.addGamesDetailsInfo}>
-      <h3>Add New Game to the collection</h3>
+    <section className={styles.addGameTags}>
+      <h3 className={styles.header}>Add Game&apos;s tags</h3>
       <div className={styles.optionsContainer}>
         <div className={styles.options}>
           <OptionsContainer options={options[1]} title="Genres" />

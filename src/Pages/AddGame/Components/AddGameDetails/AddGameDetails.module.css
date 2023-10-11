@@ -6,15 +6,36 @@
   margin: 10px 0;
 }
 
-.field:last-child {
+.rightFlex {
   margin-left: 10px;
+}
+
+.marginTop {
+  margin-bottom: 10px;
+}
+
+.header {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 769px) {
+  .header {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 1023px) {
   .textFieldContainer {
     display: block;
   }
-  .field:last-child {
+  .rightFlex {
     margin-left: 0px;
     margin-top: 10px;
   }

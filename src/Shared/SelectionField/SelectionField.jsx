@@ -4,11 +4,12 @@ import RotateArrow from '../RotateArrow/RotateArrow';
 import styles from './SelectionField.module.css';
 
 export default function SelectionField({
-  empty,
   placeholder = 'Type',
   className,
   htmlFor,
+  setState,
   list = [],
+  name = '',
   ...rest
 }) {
   const [value, setValue] = useState('');
@@ -60,6 +61,7 @@ export default function SelectionField({
               onClick={() => {
                 setShow(false);
                 setValue(item);
+                setState(item, name);
               }}
             >
               {item}

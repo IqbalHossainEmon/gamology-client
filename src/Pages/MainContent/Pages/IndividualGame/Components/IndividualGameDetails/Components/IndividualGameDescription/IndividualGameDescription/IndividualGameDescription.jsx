@@ -8,7 +8,7 @@ const sortDesc =
 const genes = ['Action', 'Adventure'];
 const features = ['Cloud Saves', 'Controller Support', 'Single Player'];
 
-const description = [
+const descriptions = [
   { mainHeader: "Marvel's Spider-Man Remastered Available Now on PC" },
   {
     description:
@@ -70,7 +70,7 @@ export default function IndividualGameDescription() {
     <section className={styles.individualGameDescription}>
       <IndividualGameSortDescription desc={sortDesc} />
       <IndividualGameTags genes={genes} features={features} />
-      <IndividualGameTextDescription descriptions={description} />
+      <IndividualGameTextDescription descriptions={descriptions} />
     </section>
   );
 }

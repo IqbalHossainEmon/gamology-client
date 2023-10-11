@@ -8,9 +8,15 @@
     width: 97vw;
   }
 }
+.header {
+  font-size: 1.5rem;
+}
 
 @media only screen and (max-width: 768px) {
   .addGame {
     width: 98vw;
+  }
+  .header {
+    font-size: 1.2rem;
   }
 }

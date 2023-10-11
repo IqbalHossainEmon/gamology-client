@@ -1,20 +1,35 @@
+import { useRef } from 'react';
 import AddGameBanner from '../Components/AddGameBanner/AddGameBanner/AddGameBanner';
-import AddGameDescriptions from '../Components/AddGameDescriptions/AddGameDescriptions';
+import AddGameDescriptions from '../Components/AddGameDescriptions/AddGameDescriptions/AddGameDescriptions';
 import AddGameDetails from '../Components/AddGameDetails/AddGameDetails';
 import AddGameSpecifications from '../Components/AddGameSpecifications/AddGameSpecifications/AddGameSpecifications';
-import AddGamesDetailsInfo from '../Components/AddGamesDetailsInfo/AddGamesDetailsInfo/AddGamesDetailsInfo';
+import AddGameTags from '../Components/AddGameTags/AddGameTags/AddGameTags';
+import ButtonForAddGameSection from '../Components/ButtonForAddGameSection/ButtonForAddGameSection';
 import styles from './AddGame.module.css';
 
 export default function AddGame() {
+  const gameData = useRef({
+    gameInfo: {},
+    gameBanner: [],
+    gameDescriptions: { descriptions: [] },
+    gameSpecifications: {},
+    gameTags: {},
+  });
+
+  const handleSubmit = () => {
+    console.log(gameData);
+  };
+
   return (
     <div className={styles.addGame}>
-      <h1>Add New Game to the collection</h1>
+      <h1 className={styles.header}>Add New Game to the collection</h1>
       <form>
-        <AddGameDetails />
-        <AddGameBanner />
-        <AddGamesDetailsInfo />
-        <AddGameDescriptions />
-        <AddGameSpecifications/>
+        <AddGameDetails gameData={gameData} />
+        <AddGameBanner gameData={gameData} />
+        <AddGameTags gameData={gameData} />
+        <AddGameDescriptions gameData={gameData} />
+        <AddGameSpecifications gameData={gameData} />
+        <ButtonForAddGameSection text="Submit" onClick={handleSubmit} />
       </form>
     </div>
   );

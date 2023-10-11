@@ -3,15 +3,12 @@
 }
 .type {
   margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .selectionField {
   width: 200px;
   margin-right: 10px;
-}
-
-.switch p {
-  font-size: 20px;
 }
 
 .specsContainer {
@@ -24,11 +21,21 @@
   width: 100%;
   margin-left: 10px;
 }
+
+.btnsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .btnContainer {
   margin-top: 20px;
+  margin-right: 20px;
 }
 @media screen and (max-width: 768px) {
   .selectionField {
     width: 100px;
+  }
+  .type {
+    font-size: 0.8rem;
   }
 }
