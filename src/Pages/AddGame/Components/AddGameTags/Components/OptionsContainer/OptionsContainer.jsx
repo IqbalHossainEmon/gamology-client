@@ -1,7 +1,16 @@
+import { useState } from 'react';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import styles from './OptionsContainer.module.css';
 
-export default function OptionsContainer({ title, options, setState, state }) {
+export default function OptionsContainer({
+  title,
+  options,
+  state,
+  gameData,
+  initialState = {},
+}) {
+  const [optionSates, setOptionSates] = useState(initialState);
+
   return (
     <div className={styles.optionsContainer}>
       <h4>{title}</h4>

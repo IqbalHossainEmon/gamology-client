@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import FilterOption from '../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArrow';
-import FilterRangeOption from '../Container/FilterRangeOption/FilterRangeOption/FilterRangeOption';
+import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({

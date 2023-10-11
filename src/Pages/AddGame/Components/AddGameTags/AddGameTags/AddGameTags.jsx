@@ -29,16 +29,44 @@ const options = [
   ],
 ];
 
-export default function AddGameTags() {
+export default function AddGameTags({ gameData }) {
   return (
     <section className={styles.addGameTags}>
       <h3 className={styles.header}>Add Game&apos;s tags</h3>
       <div className={styles.optionsContainer}>
         <div className={styles.options}>
-          <OptionsContainer options={options[1]} title="Genres" />
+          <OptionsContainer
+            initialState={{
+              Action: false,
+              Adventure: false,
+              Racing: false,
+              Shooter: false,
+              Role: false,
+              Sports: false,
+              Strategy: false,
+              Simulation: false,
+            }}
+            options={options[1]}
+            title="Genres"
+            gameData={gameData}
+          />
         </div>
         <div className={styles.options}>
-          <OptionsContainer options={options[0]} title="Features" />
+          <OptionsContainer
+            initialState={{
+              SinglePlayer: true,
+              MultiPlayer: true,
+              CoOp: true,
+              Achievements: true,
+              LeaderBoards: true,
+              ControllerSupport: true,
+              CloudSaves: true,
+              Overlay: true,
+            }}
+            options={options[0]}
+            title="Features"
+            gameData={gameData}
+          />
         </div>
       </div>
       <div>
