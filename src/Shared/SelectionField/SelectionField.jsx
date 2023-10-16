@@ -37,11 +37,7 @@ export default function SelectionField({
       }}
     >
       <label
-        className={
-          value.length || show
-            ? [styles.focused, styles.label].join(' ')
-            : styles.label
-        }
+        className={value.length || show ? [styles.focused, styles.label].join(' ') : styles.label}
         htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
       >
         type
@@ -54,7 +50,7 @@ export default function SelectionField({
         {...rest}
       />
       <ul className={show ? [styles.list, styles.show].join(' ') : styles.list}>
-        {list.map((item) => (
+        {list.map(item => (
           <li className={styles.item} key={item}>
             <button
               type="button"

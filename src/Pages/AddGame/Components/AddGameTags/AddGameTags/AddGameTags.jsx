@@ -37,31 +37,31 @@ export default function AddGameTags({ gameData }) {
         <div className={styles.options}>
           <OptionsContainer
             initialState={{
-              Action: false,
-              Adventure: false,
-              Racing: false,
-              Shooter: false,
-              Role: false,
-              Sports: false,
-              Strategy: false,
-              Simulation: false,
+              action: false,
+              adventure: false,
+              racing: false,
+              shooter: false,
+              rolePlaying: false,
+              sports: false,
+              strategy: false,
+              simulation: false,
             }}
             options={options[1]}
-            title="Genres"
+            title="Genre"
             gameData={gameData}
           />
         </div>
         <div className={styles.options}>
           <OptionsContainer
             initialState={{
-              SinglePlayer: true,
-              MultiPlayer: true,
-              CoOp: true,
-              Achievements: true,
-              LeaderBoards: true,
-              ControllerSupport: true,
-              CloudSaves: true,
-              Overlay: true,
+              singlePlayer: false,
+              multiPlayer: false,
+              coOp: false,
+              achievements: false,
+              leaderBoards: false,
+              controllerSupport: false,
+              cloudSaves: false,
+              overlay: false,
             }}
             options={options[0]}
             title="Features"
@@ -70,7 +70,7 @@ export default function AddGameTags({ gameData }) {
         </div>
       </div>
       <div>
-        <PriceReleaseDate />
+        <PriceReleaseDate gameData={gameData} />
       </div>
     </section>
   );

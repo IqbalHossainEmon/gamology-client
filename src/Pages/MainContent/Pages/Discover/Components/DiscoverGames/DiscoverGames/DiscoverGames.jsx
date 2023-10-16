@@ -16,8 +16,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -52,8 +51,7 @@ const items = [
     name: 'Fortnite',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
     coverMobile: '/assets/images/6X04C8f/fortnite-carousel-mobile.jpg',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
     logoImg: '/assets/images/SyGvndD/fortnite-carousel-logo.png',
     price: { regular: 34.99, discount: 25.99 },
   },
@@ -64,12 +62,9 @@ const items = [
     },
     name: 'A Plague Tale Requiem',
     logoImg: '/assets/images/D4XXzTW/a-plague-tale-requiem-logo.png',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
-    carouselThumb:
-      '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
+    carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
+    coverMobile: '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
     price: { regular: 36.99, discount: 24.99 },
   },
   {
@@ -81,8 +76,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -117,8 +111,7 @@ const items = [
     name: 'Fortnite',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
     coverMobile: '/assets/images/6X04C8f/fortnite-carousel-mobile.jpg',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
     logoImg: '/assets/images/SyGvndD/fortnite-carousel-logo.png',
     price: { regular: 34.99, discount: 25.99 },
   },
@@ -129,12 +122,9 @@ const items = [
     },
     name: 'A Plague Tale Requiem',
     logoImg: '/assets/images/D4XXzTW/a-plague-tale-requiem-logo.png',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
-    carouselThumb:
-      '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
+    carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
+    coverMobile: '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
     price: { regular: 36.99, discount: 24.99 },
   },
   {
@@ -146,8 +136,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -182,8 +171,7 @@ const items = [
     name: 'Fortnite',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
     coverMobile: '/assets/images/6X04C8f/fortnite-carousel-mobile.jpg',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
     logoImg: '/assets/images/SyGvndD/fortnite-carousel-logo.png',
     price: { regular: 34.99, discount: 25.99 },
   },
@@ -194,12 +182,9 @@ const items = [
     },
     name: 'A Plague Tale Requiem',
     logoImg: '/assets/images/D4XXzTW/a-plague-tale-requiem-logo.png',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
-    carouselThumb:
-      '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
+    carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
+    coverMobile: '/assets/images/25xZ0tJ/a-plague-tale-requiem-carousel-mobile.jpg',
     price: { regular: 36.99, discount: 24.99 },
   },
   {
@@ -211,8 +196,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -247,8 +231,7 @@ const items = [
     name: 'Fortnite',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
     coverMobile: '/assets/images/6X04C8f/fortnite-carousel-mobile.jpg',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
     logoImg: '/assets/images/SyGvndD/fortnite-carousel-logo.png',
     price: { regular: 34.99, discount: 25.99 },
   },
@@ -257,18 +240,13 @@ const items = [
 export default function DiscoverGames() {
   const cardsContainer = useRef();
   const screenWidth = useScreenWidth();
-  const {
-    initialState,
-    reducer,
-    handleClick,
-    setReference,
-    setCardsOnScreenWidthChange,
-  } = useGamesLogics();
+  const { initialState, reducer, handleClick, setReference, setCardsOnScreenWidthChange } =
+    useGamesLogics();
 
-  const [
-    { data, translateStyle, cardActive, cardsWidth, cardOnDeck },
-    dispatch,
-  ] = useReducer(reducer, initialState);
+  const [{ data, translateStyle, cardActive, cardsWidth, cardOnDeck }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   useEffect(() => {
     dispatch({ type: 'fetch', data: items, dataLength: items.length });
@@ -285,7 +263,7 @@ export default function DiscoverGames() {
       <GamesButton
         cardActive={cardActive}
         length={data.length - cardOnDeck}
-        handleClick={(click) => handleClick(click, cardActive, cardOnDeck)}
+        handleClick={click => handleClick(click, cardActive, cardOnDeck)}
       />
       <DiscoverGamesCards
         style={translateStyle}

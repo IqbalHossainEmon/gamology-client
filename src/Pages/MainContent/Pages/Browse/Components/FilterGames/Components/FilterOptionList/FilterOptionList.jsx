@@ -4,7 +4,7 @@ import FilterOptions from '../FilterOptions/FilterOptions/FilterOptions';
 function FilterOptionList({ options, state, setState, limits }) {
   return (
     <div>
-      {options.map((option) => (
+      {options.map(option => (
         <FilterOptions
           key={option.id}
           option={option}

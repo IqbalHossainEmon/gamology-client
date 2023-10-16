@@ -7,11 +7,7 @@ export default function MobileSortAndFilterButton() {
   return (
     <div className={styles.buttonPosition}>
       <div className={styles.buttonContainer}>
-        <button
-          onClick={() => setFilterSort('sort')}
-          className={styles.sortButton}
-          type="button"
-        >
+        <button onClick={() => setFilterSort('sort')} className={styles.sortButton} type="button">
           <img src="/assets/images/sortButton.png" alt="sort button" />
           <span>Sort</span>
         </button>

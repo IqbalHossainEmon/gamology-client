@@ -20,9 +20,7 @@ export default function RangeInput({
     const { knob1, knob2 } = value;
 
     let newVal =
-      float === 0
-        ? (Math.round(val) - lowerLim) / everyStep
-        : (val - lowerLim) / everyStep;
+      float === 0 ? (Math.round(val) - lowerLim) / everyStep : (val - lowerLim) / everyStep;
 
     if (newVal > 100) {
       newVal = 100;
@@ -33,16 +31,16 @@ export default function RangeInput({
     switch (knob) {
       case 'knob1':
         if (knob1 <= knob2) {
-          setValue((prev) => ({ ...prev, knob1: newVal, transition: true }));
+          setValue(prev => ({ ...prev, knob1: newVal, transition: true }));
         } else {
-          setValue((prev) => ({ ...prev, knob2: newVal, transition: true }));
+          setValue(prev => ({ ...prev, knob2: newVal, transition: true }));
         }
         break;
       case 'knob2':
         if (knob1 >= knob2) {
-          setValue((prev) => ({ ...prev, knob1: newVal, transition: true }));
+          setValue(prev => ({ ...prev, knob1: newVal, transition: true }));
         } else {
-          setValue((prev) => ({ ...prev, knob2: newVal, transition: true }));
+          setValue(prev => ({ ...prev, knob2: newVal, transition: true }));
         }
         break;
       default:

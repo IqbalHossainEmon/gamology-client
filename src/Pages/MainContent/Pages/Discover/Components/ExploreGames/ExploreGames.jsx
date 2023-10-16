@@ -4,8 +4,7 @@ import styles from './ExploreGames.module.css';
 
 const fetched = {
   heading: 'Explore Our Catalog',
-  details:
-    'Browse by genre, features, price, and more to find your next favorite game.',
+  details: 'Browse by genre, features, price, and more to find your next favorite game.',
   backgroundDesktop: '/assets/images/hitmanBackgound/hitman.png',
   backgroundPhone: '/assets/images/hitmanBackgound/hitman-mobile.jpg',
 };
@@ -21,10 +20,7 @@ export default function ExploreGames() {
   }, []);
 
   return (
-    <section
-      style={{ height: contentRef.current?.offsetHeight }}
-      className={styles.ExploreGames}
-    >
+    <section style={{ height: contentRef.current?.offsetHeight }} className={styles.ExploreGames}>
       <div
         ref={contentRef}
         className={styles.exploreGamesBackground}

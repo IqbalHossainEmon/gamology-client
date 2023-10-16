@@ -3,12 +3,7 @@ import Controllers from '../Components/Controllers/Controllers/Controllers';
 import Video from '../Components/Video/Video';
 import styles from './VideoPlayer.module.css';
 
-export default function VideoPlayer({
-  src,
-  captions,
-  sizeClassName,
-  changePause,
-}) {
+export default function VideoPlayer({ src, captions, sizeClassName, changePause }) {
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
   const mouseMoveTimerId = useRef(null);
@@ -60,10 +55,7 @@ export default function VideoPlayer({
       clearTimeout(mouseMoveTimerId.current);
       mouseMoveTimerId.current = null;
     }
-    videoContainerRef?.current.removeEventListener(
-      'mousemove',
-      handleMouseMove,
-    );
+    videoContainerRef?.current.removeEventListener('mousemove', handleMouseMove);
   }, [handleMouseMove, handleMouseUp]);
 
   useEffect(() => {
@@ -78,21 +70,13 @@ export default function VideoPlayer({
       videoContainer.removeEventListener('mousemove', handleMouseMove);
       videoContainer.removeEventListener('mousedown', handleMouseDown);
     };
-  }, [
-    handleLoadedMetaData,
-    handleMouseDown,
-    handleMouseMove,
-    handleMouseUp,
-    videoContainerRef,
-  ]);
+  }, [handleLoadedMetaData, handleMouseDown, handleMouseMove, handleMouseUp, videoContainerRef]);
 
   return (
     <div
       ref={videoContainerRef}
       className={
-        sizeClassName
-          ? [styles.videoContainer, sizeClassName].join(' ')
-          : styles.videoContainer
+        sizeClassName ? [styles.videoContainer, sizeClassName].join(' ') : styles.videoContainer
       }
     >
       <Video

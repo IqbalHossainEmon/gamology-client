@@ -15,10 +15,7 @@ function FilterSwitch({ state, setState, name, event }) {
   stateRef.current = circlePosition.translate;
 
   const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, 0, false);
-  const handleTimerTransition = useHandleTimerTransition(
-    setCirclePosition,
-    100,
-  );
+  const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
   useEffect(() => {
     if (state) {
@@ -31,7 +28,7 @@ function FilterSwitch({ state, setState, name, event }) {
   }, [handleTimerTransition, state]);
 
   const handleMove = useCallback(
-    (e) => {
+    e => {
       document.removeEventListener('mouseup', event);
 
       const { cursorInPercent } = getLeftRightPointerStep(e);
@@ -39,28 +36,28 @@ function FilterSwitch({ state, setState, name, event }) {
 
       if (cursorInPercent > 0 && cursorInPercent < 100) {
         // check and set value depend on step
-        setCirclePosition((prev) => ({ ...prev, translate: cursorInPercent }));
+        setCirclePosition(prev => ({ ...prev, translate: cursorInPercent }));
       } else if (cursorInPercent <= 0 && stateRef.current !== 0) {
-        setCirclePosition((prev) => ({ ...prev, translate: 0 }));
+        setCirclePosition(prev => ({ ...prev, translate: 0 }));
       } else if (cursorInPercent >= 100 && stateRef.current !== 100) {
-        setCirclePosition((prev) => ({ ...prev, translate: 100 }));
+        setCirclePosition(prev => ({ ...prev, translate: 100 }));
       }
     },
-    [event, getLeftRightPointerStep],
+    [event, getLeftRightPointerStep]
   );
 
   const handleSetValue = useCallback(() => {
     // if switch is below 50
     if (stateRef.current < 50) {
       if (state) {
-        setState((prev) => ({ ...prev, [name]: false }));
+        setState(prev => ({ ...prev, [name]: false }), name);
       } else if (stateRef.current !== 0) {
         setCirclePosition({ translate: 0, transition: true });
         handleTimerTransition();
       }
     } else if (stateRef.current >= 50) {
       if (!state) {
-        setState((prev) => ({ ...prev, [name]: true }));
+        setState(prev => ({ ...prev, [name]: true }), name);
       } else if (stateRef.current !== 100) {
         setCirclePosition({ translate: 100, transition: true });
         handleTimerTransition();
@@ -103,15 +100,15 @@ function FilterSwitch({ state, setState, name, event }) {
           style={
             circlePosition.transition
               ? {
-                  backgroundColor: `rgb(${
-                    (circlePosition.translate / 100) * 202
-                  }, ${(circlePosition.translate / 100) * 150}, 0)`,
+                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
+                    (circlePosition.translate / 100) * 150
+                  }, 0)`,
                   transition: 'translate linear 100ms',
                 }
               : {
-                  backgroundColor: `rgb(${
-                    (circlePosition.translate / 100) * 202
-                  }, ${(circlePosition.translate / 100) * 150}, 0)`,
+                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
+                    (circlePosition.translate / 100) * 150
+                  }, 0)`,
                 }
           }
           onTouchStart={onStart}

@@ -4,7 +4,5 @@ import {
   VideoPlayerSetProgressContext,
 } from '../Contexts/VideoPlayerProgressContext';
 
-export const useVideoPlayerProgress = () =>
-  useContext(VideoPlayerProgressContext);
-export const useVideoPlayerSetProgress = () =>
-  useContext(VideoPlayerSetProgressContext);
+export const useVideoPlayerProgress = () => useContext(VideoPlayerProgressContext);
+export const useVideoPlayerSetProgress = () => useContext(VideoPlayerSetProgressContext);

@@ -12,11 +12,7 @@ const links = [
   { no: 2, name: 'News', URL: '#news' },
 ];
 
-export default function SecondNavDesktopLinks({
-  navMidShow,
-  id,
-  setNavTextState,
-}) {
+export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState }) {
   const [style, setStyle] = useState({});
   const sliderElementRef = useRef();
 
@@ -33,12 +29,7 @@ export default function SecondNavDesktopLinks({
       className={styles.SecondNavLinks}
       id={styles[id]}
     >
-      <LinksList
-        active={3}
-        styles={styles}
-        links={links}
-        onclick={setNavTextState}
-      />
+      <LinksList active={3} styles={styles} links={links} onclick={setNavTextState} />
     </ul>
   );
 }

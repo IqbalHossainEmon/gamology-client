@@ -1,8 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import {
-  AutoPlayContext,
-  SetAutoPlayContext,
-} from '../../../../../../../Contexts/AutoPlayContext';
+import { AutoPlayContext, SetAutoPlayContext } from '../../../../../../../Contexts/AutoPlayContext';
 import withAutoPlayProvider from '../../../../../../../HOC/withAutoPlayProvider';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
 import Switch from '../Switch/Switch';
@@ -24,7 +21,7 @@ function GearButton({ gearRef, videoContainer }) {
   }, [gearRef, setElement]);
 
   const handleClick = () => {
-    setAutoplay((prev) => {
+    setAutoplay(prev => {
       if (prev) {
         localStorage.removeItem('autoplay');
       } else {
@@ -39,7 +36,7 @@ function GearButton({ gearRef, videoContainer }) {
     <>
       <button
         onClick={() =>
-          setShow((prev) => {
+          setShow(prev => {
             showMenu();
             return !prev;
           })
@@ -64,9 +61,7 @@ function GearButton({ gearRef, videoContainer }) {
             className={styles.menu}
             role="button"
             tabIndex={0}
-            onMouseDown={() =>
-              document.addEventListener('mouseup', handleClick)
-            }
+            onMouseDown={() => document.addEventListener('mouseup', handleClick)}
           >
             <div>
               <h5>Autoplay</h5>

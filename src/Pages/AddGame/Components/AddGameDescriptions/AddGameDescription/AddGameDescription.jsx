@@ -22,15 +22,13 @@ export default function AddGameDescription({ item, index, gameData }) {
             setState={handleSetValues}
             placeholder="Add a Main Header"
             name="mainHeader"
-            htmlFor={`main_header_${index}`}
+            htmlFor={`main_header_${index}${item.id}`}
           />
         </div>
       )}
       <div
         className={
-          item.onlySubHeader
-            ? [styles.subHeader, styles.onlySubHeader].join(' ')
-            : styles.subHeader
+          item.onlySubHeader ? [styles.subHeader, styles.onlySubHeader].join(' ') : styles.subHeader
         }
       >
         <TextField
@@ -38,7 +36,7 @@ export default function AddGameDescription({ item, index, gameData }) {
           setState={handleSetValues}
           name="subHeader"
           placeholder="Add a Sub Header"
-          htmlFor={`sub_header_${index}`}
+          htmlFor={`sub_header_${index}${item.id}`}
         />
       </div>
       {item.onlySubHeader || (
@@ -48,7 +46,7 @@ export default function AddGameDescription({ item, index, gameData }) {
             setState={handleSetValues}
             name="description"
             placeholder="Add a Sub Header"
-            htmlFor={`sub_header_${index}`}
+            htmlFor={`description_${index}${item.id}`}
           />
         </div>
       )}

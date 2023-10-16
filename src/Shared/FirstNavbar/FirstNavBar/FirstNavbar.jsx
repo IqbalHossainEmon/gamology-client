@@ -29,10 +29,7 @@ export default function FirstNavbar() {
           <NavProfileInfo />
         </div>
       ) : (
-        <MobileBurgerMenu
-          hideBodyOverflow={hideBodyOverflow}
-          showBodyOverflow={showBodyOverflow}
-        />
+        <MobileBurgerMenu hideBodyOverflow={hideBodyOverflow} showBodyOverflow={showBodyOverflow} />
       )}
     </nav>
   );

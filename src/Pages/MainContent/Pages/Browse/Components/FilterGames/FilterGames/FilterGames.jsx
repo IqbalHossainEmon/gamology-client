@@ -46,7 +46,7 @@ const options = [
 
   {
     id: 2,
-    title: 'Genres',
+    title: 'Genre',
     optionList: [
       { id: 0, type: 'switch', text: 'Action', filter: 'action' },
       { id: 1, type: 'switch', text: 'Adventure', filter: 'adventure' },
@@ -103,8 +103,7 @@ const options = [
 export default function FilterGames({ filterState, dispatch, limits }) {
   const [state, setState] = useState(filterState);
 
-  const { filterSortState, setFilterSort, filterSortRef } =
-    useFilterSortState();
+  const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
   const { filter } = filterSortState;
 
   const screenWidth = useScreenWidth();
@@ -118,12 +117,7 @@ export default function FilterGames({ filterState, dispatch, limits }) {
     >
       <div className={styles.filterContainer}>
         {screenWidth < 769 && <h2>Filters</h2>}
-        <FilterOptionList
-          options={options}
-          state={state}
-          setState={setState}
-          limits={limits}
-        />
+        <FilterOptionList options={options} state={state} setState={setState} limits={limits} />
         <ApplyButton
           setShow={setFilterSort}
           dispatch={dispatch}

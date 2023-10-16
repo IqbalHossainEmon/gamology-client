@@ -23,7 +23,7 @@ export default function RangeInputField({
 
     let val;
 
-    const checkKnob = (kn) => {
+    const checkKnob = kn => {
       switch (kn) {
         case 100:
           val = higher;
@@ -59,7 +59,7 @@ export default function RangeInputField({
     setValue(val.toFixed(float));
   }, [everyStep, float, knob, limit, lowerLim, setMainValue, state, step]);
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
       let val = value;
       const { lower, higher } = limit;
@@ -78,11 +78,8 @@ export default function RangeInputField({
       className={styles.input}
       value={value}
       type="text"
-      onChange={(e) => {
-        if (
-          e.target.value === '' ||
-          /^\d{1,}(\.\d{0,2})?$/.test(e.target.value)
-        ) {
+      onChange={e => {
+        if (e.target.value === '' || /^\d{1,}(\.\d{0,2})?$/.test(e.target.value)) {
           setValue(e.target.value);
         }
       }}

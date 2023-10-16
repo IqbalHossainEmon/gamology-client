@@ -5,13 +5,7 @@ import {
 } from '../../../../../../Hooks/useVideoPlayerProgress';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
-export default function VideoProgressBar({
-  video,
-  videoContainer,
-  src,
-  isSeekedRef,
-  changePause,
-}) {
+export default function VideoProgressBar({ video, videoContainer, src, isSeekedRef, changePause }) {
   const interval = useRef(null);
   const [buffer, setBuffer] = useState(0);
 
@@ -28,27 +22,21 @@ export default function VideoProgressBar({
 
   const shouldPlay = useRef(false);
 
-  const progressBufferUpdate = useCallback(
-    ({ target: { buffered, duration } }) => {
-      if (buffered.length > 0) {
-        if (buffered.length === 1) {
-          setBuffer((buffered.end(buffered.length - 1) / duration) * 100);
-        } else {
-          const { currentTime } = videoRef.current;
-          for (let i = 0; i < buffered.length; i++) {
-            if (
-              buffered.end(i) >= currentTime &&
-              currentTime >= buffered.start(i)
-            ) {
-              setBuffer((buffered.end(i) / duration) * 100);
-              break;
-            }
+  const progressBufferUpdate = useCallback(({ target: { buffered, duration } }) => {
+    if (buffered.length > 0) {
+      if (buffered.length === 1) {
+        setBuffer((buffered.end(buffered.length - 1) / duration) * 100);
+      } else {
+        const { currentTime } = videoRef.current;
+        for (let i = 0; i < buffered.length; i++) {
+          if (buffered.end(i) >= currentTime && currentTime >= buffered.start(i)) {
+            setBuffer((buffered.end(i) / duration) * 100);
+            break;
           }
         }
       }
-    },
-    [],
-  );
+    }
+  }, []);
 
   const progressUpdate = useCallback(
     ({ target: { duration, currentTime } }) => {
@@ -56,7 +44,7 @@ export default function VideoProgressBar({
         setProgress((currentTime / duration) * 100);
       }
     },
-    [setProgress],
+    [setProgress]
   );
 
   const handleError = useCallback(() => {
@@ -117,26 +105,18 @@ export default function VideoProgressBar({
       videoRef.current.removeEventListener('playing', handlePlaying);
       videoRef.current.removeEventListener('pause', handlePause);
     };
-  }, [
-    handleError,
-    handlePause,
-    handlePlaying,
-    progressBufferUpdate,
-    progressUpdate,
-    src,
-    video,
-  ]);
+  }, [handleError, handlePause, handlePlaying, progressBufferUpdate, progressUpdate, src, video]);
 
   // set current time but after 100ms of mouse move else clear the timer
-  const setCurrentTime = useCallback((val) => {
+  const setCurrentTime = useCallback(val => {
     videoRef.current.currentTime = (val / 100) * videoRef.current.duration;
   }, []);
 
   const handleSetProgression = useCallback(
-    (val) => {
+    val => {
       setProgress(val);
     },
-    [setProgress],
+    [setProgress]
   );
 
   const handleMouseUp = useCallback(() => {

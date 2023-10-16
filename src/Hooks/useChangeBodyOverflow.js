@@ -22,9 +22,7 @@ export default function useChangeBodyOverflow() {
   }, [isTouchable]);
 
   const showBodyOverflow = useCallback(() => {
-    if (
-      document.getElementById('root').classList.contains('margin-right-8px')
-    ) {
+    if (document.getElementById('root').classList.contains('margin-right-8px')) {
       document.getElementById('root').removeAttribute('class');
     }
     if (document.body.classList.contains('overflow-y-hidden')) {

@@ -8,8 +8,7 @@ import SortList from '../SortList/SortList';
 import styles from './SortContainer.module.css';
 
 export default function SortContainer({ state, handleChange }) {
-  const { filterSortState, setFilterSort, filterSortRef } =
-    useFilterSortState();
+  const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
   const { sort: show } = filterSortState;
 
   const dropDownRef = useRef();
@@ -24,9 +23,7 @@ export default function SortContainer({ state, handleChange }) {
     <>
       <div
         ref={dropDownRef}
-        className={`${styles.sortContainer} ${
-          show && screenWidth < 769 ? styles.hidden : ''
-        }`}
+        className={`${styles.sortContainer} ${show && screenWidth < 769 ? styles.hidden : ''}`}
       >
         {screenWidth > 768 && (
           <SortButton
@@ -38,21 +35,13 @@ export default function SortContainer({ state, handleChange }) {
         )}
         {!show && screenWidth > 768 && (
           <div className={styles.sortLists}>
-            <SortList
-              state={state}
-              setShow={setFilterSort}
-              handleChange={handleChange}
-            />
+            <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
           </div>
         )}
         {screenWidth < 769 && (
           <div className={styles.sortLists}>
             <h2>Sort by</h2>
-            <SortList
-              state={state}
-              setShow={setFilterSort}
-              handleChange={handleChange}
-            />
+            <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
           </div>
         )}
         {screenWidth < 769 && (

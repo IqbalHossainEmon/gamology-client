@@ -10,7 +10,7 @@ export default function SecondNavMobileLinks({ setNavShow }) {
   const [navMidShow, setNavMidShow] = useState();
   const midSliderElement = useRef();
 
-  const setShowState = (state) => {
+  const setShowState = state => {
     setNavShow(state);
     setNavMidShow(state);
   };
@@ -21,7 +21,7 @@ export default function SecondNavMobileLinks({ setNavShow }) {
     setElement(midSliderElement.current);
   }, [setElement, midSliderElement]);
 
-  const handleClick = (no) => {
+  const handleClick = no => {
     setShowState(false);
     switch (no) {
       case 1:
@@ -42,9 +42,7 @@ export default function SecondNavMobileLinks({ setNavShow }) {
   return (
     <div ref={midSliderElement} className={styles.mobileLinks}>
       <div
-        style={
-          navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }
-        }
+        style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }}
         className={styles.navLinksContainer}
       >
         <SecondNavLinkLists
@@ -57,7 +55,7 @@ export default function SecondNavMobileLinks({ setNavShow }) {
         role="button"
         tabIndex="0"
         onClick={() => {
-          setShowState((prev) => !prev);
+          setShowState(prev => !prev);
           showMenu();
         }}
         className={styles.navLinks}

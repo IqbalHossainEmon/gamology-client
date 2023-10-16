@@ -18,8 +18,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -31,8 +30,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: 59.99,
   },
   {
@@ -44,8 +42,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: 'Free',
   },
   {
@@ -57,8 +54,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -70,8 +66,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -83,8 +78,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -96,8 +90,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -109,8 +102,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -122,8 +114,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -135,8 +126,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -148,8 +138,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -161,8 +150,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -174,8 +162,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -187,8 +174,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -200,8 +186,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -213,8 +198,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -226,8 +210,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -239,8 +222,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
   {
@@ -252,8 +234,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
     price: { regular: 59.99, discount: 29.99 },
   },
 
@@ -266,8 +247,7 @@ const items = [
     coverImg: '/assets/images/CarouselCoverDesktop/fortnite.png',
     logoImg: '/assets/images/CarouselInfo/fortnite-logo.png',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
+    coverMobile: '/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
     price: { regular: 49.99, discount: 15.99 },
   },
 ];

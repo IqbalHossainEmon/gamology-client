@@ -4,7 +4,7 @@ import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddG
 import AddGameDescription from '../AddGameDescription/AddGameDescription';
 import styles from './AddGameDescriptions.module.css';
 
-export default function AddGameDescriptions({ gameData }) {
+const AddGameDescriptions = ({ gameData }) => {
   const [array, setArray] = useState([{ id: 0, main: true }]);
 
   const handleSetSortDescription = (value, name) => {
@@ -17,7 +17,6 @@ export default function AddGameDescriptions({ gameData }) {
       <div className={styles.sortDescription}>
         <TextField
           field="textarea"
-          empty={0}
           setState={handleSetSortDescription}
           placeholder="Add some sort description..."
           htmlFor="sort_description"
@@ -26,61 +25,57 @@ export default function AddGameDescriptions({ gameData }) {
       </div>
       <div>
         {array.map((item, index) => (
-          <AddGameDescription
-            key={item.id}
-            item={item}
-            index={index}
-            gameData={gameData}
-          />
+          <AddGameDescription key={item.id} item={item} index={index} gameData={gameData} />
         ))}
       </div>
       <div className={styles.buttonContainer}>
         <div className={styles.btn}>
           <ButtonForAddGameSection
             onClick={() => {
-              setArray((prev) => [...prev, { id: prev.length }]);
+              setArray(prev => [...prev, { id: prev.length }]);
             }}
             text="Add more +"
           />
         </div>
         <div className={styles.btn}>
           <ButtonForAddGameSection
+            {...(array.length === 1 && { disabled: true })}
             onClick={() => {
-              if (array.length > 1) {
-                setArray((prev) => {
-                  const prevState = [...prev];
-                  delete prevState[prevState.length - 1];
-                  return prevState.filter((state) => state);
-                });
-              }
+              setArray(prev => {
+                const prevState = [...prev];
+                prevState.pop();
+                return prevState;
+              });
             }}
             text="Remove last one -"
           />
         </div>
         <div className={styles.mainBtn}>
           <ButtonForAddGameSection
+            {...(array[array.length - 1].main === true && {
+              disabled: true,
+            })}
             onClick={() => {
-              if (array[array.length - 1].main !== true) {
-                setArray((prev) => {
-                  const prevState = [...prev];
-                  prevState[prevState.length - 1].main = true;
-                  return prevState;
-                });
-              }
+              setArray(prev => {
+                const prevState = [...prev];
+                prevState[prevState.length - 1].main = true;
+                return prevState;
+              });
             }}
             text="Add Main Header +"
           />
         </div>
         <div className={styles.mainBtn}>
           <ButtonForAddGameSection
+            {...((array.length === 1 || !array[array.length - 1].main) && {
+              disabled: true,
+            })}
             onClick={() => {
-              if (array.length > 1 && array[array.length - 1].main !== false) {
-                setArray((prev) => {
-                  const prevState = [...prev];
-                  delete prevState[prevState.length - 1].main;
-                  return prevState;
-                });
-              }
+              setArray(prev => {
+                const prevState = [...prev];
+                delete prevState[prevState.length - 1].main;
+                return prevState;
+              });
             }}
             text="Remove Main Header -"
           />
@@ -88,29 +83,14 @@ export default function AddGameDescriptions({ gameData }) {
         <div className={styles.mainBtn}>
           <ButtonForAddGameSection
             onClick={() => {
-              setArray((prev) => [
-                ...prev,
-                { id: prev.length + 1, onlySubHeader: true },
-              ]);
+              setArray(prev => [...prev, { id: prev.length + 1, onlySubHeader: true }]);
             }}
             text="Add Only Sub Header +"
-          />
-        </div>
-        <div className={styles.mainBtn}>
-          <ButtonForAddGameSection
-            onClick={() => {
-              if (array.length > 1 && !!array[array.length - 1].onlySubHeader) {
-                setArray((prev) => {
-                  const prevState = [...prev];
-                  prevState.pop();
-                  return prevState;
-                });
-              }
-            }}
-            text="Remove Only Sub Header -"
           />
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default AddGameDescriptions;

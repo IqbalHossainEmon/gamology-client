@@ -4,12 +4,7 @@ import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArr
 import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptions.module.css';
 
-export default function FilterOptions({
-  option,
-  state,
-  setState,
-  limits = {},
-}) {
+export default function FilterOptions({ option, state, setState, limits = {} }) {
   const { title, optionList } = option;
   const optionRef = useRef(0);
   const [show, setShow] = useState({
@@ -18,7 +13,7 @@ export default function FilterOptions({
   });
 
   useEffect(() => {
-    setShow((prev) => ({
+    setShow(prev => ({
       ...prev,
       height: optionRef.current.offsetHeight,
     }));
@@ -30,7 +25,7 @@ export default function FilterOptions({
         <div
           tabIndex="0"
           role="button"
-          onClick={() => setShow((prev) => ({ ...prev, show: !prev.show }))}
+          onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
           className={styles.filterTitle}
         >
           <h3>{title}</h3>
@@ -71,8 +66,7 @@ export default function FilterOptions({
                   limit={limits[op.rangeName]}
                   setState={setState}
                   option={op}
-                  {...(state.ShowOnlyFreeGames &&
-                    op.rangeName === 'price' && { disabled: true })}
+                  {...(state.ShowOnlyFreeGames && op.rangeName === 'price' && { disabled: true })}
                 />
               );
           }

@@ -32,8 +32,7 @@ const newGames = [
   {
     id: 1100,
     name: 'A Plague Tale Requiem',
-    carouselThumb:
-      '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
+    carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
     price: { regular: 59.99, discount: 29.99 },
   },
 ];
@@ -75,10 +74,7 @@ export default function EventGames() {
         />
       </ul>
       {screenWidth <= 768 && (
-        <ChangeEventButtons
-          cardPosition={cardPosition}
-          setCardPosition={setCardPosition}
-        />
+        <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
       )}
     </section>
   );

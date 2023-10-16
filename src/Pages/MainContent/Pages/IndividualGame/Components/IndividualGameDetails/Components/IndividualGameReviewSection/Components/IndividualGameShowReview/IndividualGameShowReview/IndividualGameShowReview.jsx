@@ -69,7 +69,7 @@ export default function IndividualGameShowReview() {
     setReviews(data);
   }, []);
 
-  const handleChange = (type) => {
+  const handleChange = type => {
     console.log(type);
   };
 

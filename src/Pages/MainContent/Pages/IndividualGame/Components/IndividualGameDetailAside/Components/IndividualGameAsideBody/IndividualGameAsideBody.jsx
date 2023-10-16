@@ -30,13 +30,7 @@ export default function IndividualGameAsideBody({ info }) {
           <>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
               <g fill="none" fillRule="evenodd">
-                <circle
-                  cx="11"
-                  cy="11"
-                  r="9"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
+                <circle cx="11" cy="11" r="9" stroke="currentColor" strokeWidth="2" />
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -58,9 +52,7 @@ export default function IndividualGameAsideBody({ info }) {
       >
         <div
           className={
-            wishListState <= 0
-              ? styles.outerCircle
-              : [styles.rotate, styles.outerCircle].join(' ')
+            wishListState <= 0 ? styles.outerCircle : [styles.rotate, styles.outerCircle].join(' ')
           }
         >
           {wishListState >= 0 ? (
@@ -82,7 +74,7 @@ export default function IndividualGameAsideBody({ info }) {
         </div>
         Add to Wishlist
       </button>
-      {info.map((information) => (
+      {info.map(information => (
         <div className={styles.gameInfo} key={information.id}>
           <p className={styles.key}>{information.key}</p>
           <div className={styles.value}>

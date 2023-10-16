@@ -65,8 +65,7 @@ export default function IndividualGameTakeReview() {
           <div className={styles.overAllRatingContainer}>
             <img className={styles.fullStar} src={fullStar} alt="full star" />
             <p>
-              <span className={styles.overAllRating}>{overAllRating}</span>/
-              <span>5</span>
+              <span className={styles.overAllRating}>{overAllRating}</span>/<span>5</span>
             </p>
           </div>
           <div>

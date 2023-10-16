@@ -18,10 +18,7 @@ export default function SecondNavbar() {
           {...(screenWidth <= 768 && { setNavShow })}
           screenWidth={screenWidth}
         />
-        <SecondNavLeftLinks
-          {...(screenWidth <= 768 && { setNavShow })}
-          screenWidth={screenWidth}
-        />
+        <SecondNavLeftLinks {...(screenWidth <= 768 && { setNavShow })} screenWidth={screenWidth} />
         <SecondNavRightLinks screenWidth={screenWidth} />
       </div>
       <ScreenShadow show={navShow} />

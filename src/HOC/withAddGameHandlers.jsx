@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const withAddGameHandlers =
-  (Component) =>
+  Component =>
   ({ setMainState }) => {
     const [value, setValue] = useState({});
 
@@ -10,12 +10,10 @@ const withAddGameHandlers =
     };
 
     const handleSetValue = (v, name) => {
-      setValue((prev) => ({ ...prev, [name]: v }));
+      setValue(prev => ({ ...prev, [name]: v }));
     };
 
-    return (
-      <Component handleSetValue={handleSetValue} handleBlur={handleBlur} />
-    );
+    return <Component handleSetValue={handleSetValue} handleBlur={handleBlur} />;
   };
 
 export default withAddGameHandlers;

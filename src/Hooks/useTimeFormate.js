@@ -1,5 +1,5 @@
 export default function useTimeFormat() {
-  return (second) => {
+  return second => {
     let time;
     if (second < 3600) {
       time = new Date(second * 1000).toISOString().substring(14, 19);

@@ -13,11 +13,11 @@ export default function AddGame() {
     gameBanner: [],
     gameDescriptions: { descriptions: [] },
     gameSpecifications: {},
-    gameTags: {},
+    gameTags: { genre: {}, features: {} },
   });
 
   const handleSubmit = () => {
-    console.log(gameData);
+    console.log(gameData.current);
   };
 
   return (

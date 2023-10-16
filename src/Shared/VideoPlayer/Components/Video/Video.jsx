@@ -32,48 +32,24 @@ function Video({ videoContainer, src, captions, className }, ref) {
       handleSetFullscreenSize();
       window.addEventListener('resize', handleSetFullscreenSize);
     } else {
-      setFullscreenSize((prev) => ({ ...prev, isFullScreen: false }));
+      setFullscreenSize(prev => ({ ...prev, isFullScreen: false }));
       window.removeEventListener('resize', handleSetFullscreenSize);
     }
   }, []);
 
   useEffect(() => {
-    videoContainer?.current.addEventListener(
-      'fullscreenchange',
-      handleFullscreenChange,
-    );
-    videoContainer?.current.addEventListener(
-      'mozfullscreenchange',
-      handleFullscreenChange,
-    );
-    videoContainer?.current.addEventListener(
-      'MSFullscreenChange',
-      handleFullscreenChange,
-    );
-    videoContainer?.current.addEventListener(
-      'webkitfullscreenchange',
-      handleFullscreenChange,
-    );
+    videoContainer?.current.addEventListener('fullscreenchange', handleFullscreenChange);
+    videoContainer?.current.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    videoContainer?.current.addEventListener('MSFullscreenChange', handleFullscreenChange);
+    videoContainer?.current.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
     const videoContainerRef = videoContainer?.current;
 
     return () => {
-      videoContainerRef.removeEventListener(
-        'fullscreenchange',
-        handleFullscreenChange,
-      );
-      videoContainerRef.removeEventListener(
-        'mozfullscreenchange',
-        handleFullscreenChange,
-      );
-      videoContainerRef.removeEventListener(
-        'MSFullscreenChange',
-        handleFullscreenChange,
-      );
-      videoContainerRef.removeEventListener(
-        'webkitfullscreenchange',
-        handleFullscreenChange,
-      );
+      videoContainerRef.removeEventListener('fullscreenchange', handleFullscreenChange);
+      videoContainerRef.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      videoContainerRef.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+      videoContainerRef.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
     };
   }, [handleFullscreenChange, videoContainer]);
 

@@ -1,15 +1,10 @@
 import styles from './DiscoverBannerItemCard.module.css';
 
-export default function DiscoverBannerItemCard({
-  banner,
-  handleClick,
-  cardsPosition,
-  isPause,
-}) {
+export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosition, isPause }) {
   const { carouselThumb, id, name } = banner;
 
   // this function takes card positions in the screen and returns a object where cards position styles and function is added as element
-  const handleCardPosition = (num) => {
+  const handleCardPosition = num => {
     switch (num) {
       case 0:
         return styles.first;
@@ -26,7 +21,7 @@ export default function DiscoverBannerItemCard({
     }
   };
 
-  const handleOnClickParam = (num) => {
+  const handleOnClickParam = num => {
     if (num > 2) {
       return 'prev';
     }
@@ -49,14 +44,8 @@ export default function DiscoverBannerItemCard({
   };
 
   return (
-    <li
-      className={`${styles.cards} hover-shadow`}
-      id={handleCardPosition(cardsPosition[id])}
-    >
-      <button
-        type="button"
-        {...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}
-      >
+    <li className={`${styles.cards} hover-shadow`} id={handleCardPosition(cardsPosition[id])}>
+      <button type="button" {...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}>
         <img src={carouselThumb} alt={`${name} card-${id}`} />
       </button>
       <div className={styles.cardNameContainer}>
@@ -64,10 +53,7 @@ export default function DiscoverBannerItemCard({
           <p>{name}</p>
           {cardsPosition[id] === 0 && (
             <div className={styles.shadowContainer}>
-              <div
-                id={isPause ? styles.pause : styles.play}
-                className={styles.shadow}
-              />
+              <div id={isPause ? styles.pause : styles.play} className={styles.shadow} />
             </div>
           )}
         </div>

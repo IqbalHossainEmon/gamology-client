@@ -4,7 +4,7 @@ import {
   VideoPlayerSetProgressContext,
 } from '../Contexts/VideoPlayerProgressContext';
 
-const withVideoPlayerProgress = (Component) => (props) => {
+const withVideoPlayerProgress = Component => props => {
   const [progress, setProgress] = useState(0);
 
   return (

@@ -34,29 +34,17 @@ function Switch({ state, setState, event, videoContainer }) {
       videoContainerRef.addEventListener('fullscreenchange', handleResize);
       videoContainerRef.addEventListener('mozfullscreenchange', handleResize);
       videoContainerRef.addEventListener('MSFullscreenChange', handleResize);
-      videoContainerRef.addEventListener(
-        'webkitfullscreenchange',
-        handleResize,
-      );
+      videoContainerRef.addEventListener('webkitfullscreenchange', handleResize);
     }
     return () => {
       videoContainerRef.removeEventListener('fullscreenchange', handleResize);
-      videoContainerRef.removeEventListener(
-        'mozfullscreenchange',
-        handleResize,
-      );
+      videoContainerRef.removeEventListener('mozfullscreenchange', handleResize);
       videoContainerRef.removeEventListener('MSFullscreenChange', handleResize);
-      videoContainerRef.removeEventListener(
-        'webkitfullscreenchange',
-        handleResize,
-      );
+      videoContainerRef.removeEventListener('webkitfullscreenchange', handleResize);
     };
   }, [handleResize, videoContainer]);
 
-  const handleTimerTransition = useHandleTimerTransition(
-    setCirclePosition,
-    100,
-  );
+  const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
   useEffect(() => {
     if (state) {
@@ -69,7 +57,7 @@ function Switch({ state, setState, event, videoContainer }) {
   }, [handleTimerTransition, state]);
 
   const handleMove = useCallback(
-    (e) => {
+    e => {
       document.removeEventListener('mouseup', event);
 
       const cursorInEle = e?.touches
@@ -81,14 +69,14 @@ function Switch({ state, setState, event, videoContainer }) {
 
       if (cursorInPercent > 0 && cursorInPercent < 100) {
         // check and set value depend on step
-        setCirclePosition((prev) => ({ ...prev, translate: cursorInPercent }));
+        setCirclePosition(prev => ({ ...prev, translate: cursorInPercent }));
       } else if (cursorInPercent <= 0 && stateRef.current !== 0) {
-        setCirclePosition((prev) => ({ ...prev, translate: 0 }));
+        setCirclePosition(prev => ({ ...prev, translate: 0 }));
       } else if (cursorInPercent >= 100 && stateRef.current !== 100) {
-        setCirclePosition((prev) => ({ ...prev, translate: 100 }));
+        setCirclePosition(prev => ({ ...prev, translate: 100 }));
       }
     },
-    [event],
+    [event]
   );
 
   const handleSetValue = useCallback(() => {
@@ -151,15 +139,15 @@ function Switch({ state, setState, event, videoContainer }) {
           style={
             circlePosition.transition
               ? {
-                  backgroundColor: `rgb(${
-                    (circlePosition.translate / 100) * 202
-                  }, ${(circlePosition.translate / 100) * 150}, 0)`,
+                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
+                    (circlePosition.translate / 100) * 150
+                  }, 0)`,
                   transition: 'translate linear 100ms',
                 }
               : {
-                  backgroundColor: `rgb(${
-                    (circlePosition.translate / 100) * 202
-                  }, ${(circlePosition.translate / 100) * 150}, 0)`,
+                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
+                    (circlePosition.translate / 100) * 150
+                  }, 0)`,
                 }
           }
           onTouchStart={onStart}

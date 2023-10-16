@@ -10,9 +10,7 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
       <li className={styles.number}>
         <button
           type="button"
-          onClick={() =>
-            setActivePage({ type: 'pageChange', activePage: activePage - 1 })
-          }
+          onClick={() => setActivePage({ type: 'pageChange', activePage: activePage - 1 })}
           disabled={activePage === 1}
           className={`${styles.paginationButton} ${styles.prevButton} ${styles.number}`}
         >
@@ -32,9 +30,7 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
           ) : (
             <button
               type="button"
-              onClick={() =>
-                setActivePage({ type: 'pageChange', activePage: page })
-              }
+              onClick={() => setActivePage({ type: 'pageChange', activePage: page })}
               className={`${styles.paginationButton} ${styles.numberButton}`}
               {...(activePage === page && { id: styles.active })}
             >
@@ -46,9 +42,7 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
       <li className={styles.number}>
         <button
           type="button"
-          onClick={() =>
-            setActivePage({ type: 'pageChange', activePage: activePage + 1 })
-          }
+          onClick={() => setActivePage({ type: 'pageChange', activePage: activePage + 1 })}
           disabled={activePage === totalPage}
           className={`${styles.paginationButton} ${styles.nextButton} ${styles.number}`}
         >

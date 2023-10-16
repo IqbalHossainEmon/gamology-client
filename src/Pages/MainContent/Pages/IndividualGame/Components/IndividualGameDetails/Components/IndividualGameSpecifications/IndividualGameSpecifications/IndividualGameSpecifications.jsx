@@ -39,14 +39,12 @@ const data = {
           {
             id: 11000,
             key: 'Graphics',
-            value:
-              'NVIDIA® GeForce® GTX 1050 Ti / AMD Radeon™ RX 560 (4GB VRAM)',
+            value: 'NVIDIA® GeForce® GTX 1050 Ti / AMD Radeon™ RX 560 (4GB VRAM)',
           },
           {
             id: 11001,
             key: 'Graphics',
-            value:
-              'NVIDIA® GeForce RTX™ 2060 6GB or AMD RX Vega 56 8GB or newer.',
+            value: 'NVIDIA® GeForce RTX™ 2060 6GB or AMD RX Vega 56 8GB or newer.',
           },
         ],
       ],
@@ -136,9 +134,7 @@ export default function IndividualGameSpecifications() {
               <button
                 type="button"
                 onClick={() => setToggle(i)}
-                className={`${styles.mainHeaderBtn} ${
-                  toggle === i && styles.active
-                }`}
+                className={`${styles.mainHeaderBtn} ${toggle === i && styles.active}`}
               >
                 {s.for}
               </button>
@@ -147,10 +143,7 @@ export default function IndividualGameSpecifications() {
         </div>
         <div>
           {Array.isArray(spec.spec) ? (
-            <IndividualGameMultipleSpecification
-              spec={spec.spec}
-              active={toggle}
-            />
+            <IndividualGameMultipleSpecification spec={spec.spec} active={toggle} />
           ) : (
             <IndividualGameSpecification spec={spec.spec} />
           )}

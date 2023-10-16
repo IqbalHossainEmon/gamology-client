@@ -7,15 +7,15 @@ export default function IndividualGameReviewInputField({ setData }) {
   return (
     <div className={styles.titleContainer}>
       <input
-        onBlur={(e) => {
+        onBlur={e => {
           if (value.length <= 40) {
-            setData((prev) => ({ ...prev, title: e.target.value }));
+            setData(prev => ({ ...prev, title: e.target.value }));
           } else {
-            setData((prev) => ({ ...prev, title: '' }));
+            setData(prev => ({ ...prev, title: '' }));
           }
         }}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         placeholder="Review Title..."
         className={styles.reviewTitle}
         type="text"

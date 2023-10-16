@@ -12,8 +12,7 @@ const data = [
     coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
     logoImg: '/assets/images/CarouselInfo/spiderman-logo.png',
     carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-    coverMobile:
-      '/assets/images/CarouselCoverMobile/spider-man-remaster-carousel-mobile.png',
+    coverMobile: '/assets/images/CarouselCoverMobile/spider-man-remaster-carousel-mobile.png',
     price: 'Comming soon',
     saleTill: [
       [12, 12, 2022],
@@ -29,8 +28,7 @@ const data = [
     coverImg: '/assets/images/CarouselCoverDesktop/fortnite.png',
     logoImg: '/assets/images/CarouselInfo/fortnite-logo.png',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
+    coverMobile: '/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
     price: 'Free',
     saleTill: [
       [2, 11, 2022],
@@ -46,8 +44,7 @@ const data = [
     coverImg: '/assets/images/CarouselCoverDesktop/fall-guy.png',
     logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
     carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
+    coverMobile: '/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
     price: 'Free',
     saleTill: [
       [11, 12, 2024],
@@ -61,10 +58,8 @@ const data = [
     },
     name: 'Fortnite',
     carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-    coverMobile:
-      '/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
-    coverImg:
-      '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
+    coverMobile: '/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
+    coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
     logoImg: '/assets/images/CarouselInfo/fortnite-carousel-logo.png',
     price: 'Free',
     saleTill: [
@@ -91,13 +86,8 @@ export default function FreeGames() {
         <h3>Free games</h3>
       </div>
       <div className={styles.games}>
-        {data.map((game) => (
-          <FreeGame
-            key={game.id}
-            length={dataLength.current}
-            data={game}
-            today={today.current}
-          />
+        {data.map(game => (
+          <FreeGame key={game.id} length={dataLength.current} data={game} today={today.current} />
         ))}
       </div>
     </section>

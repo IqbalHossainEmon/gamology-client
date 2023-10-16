@@ -4,7 +4,7 @@ const useHandleDebouncing = (seconds = 500) => {
   const timeOutRef = useRef(null);
   // handle multiple click.
   return useCallback(
-    (handleClick) => {
+    handleClick => {
       if (!timeOutRef.current) {
         handleClick();
         timeOutRef.current = setTimeout(() => {
@@ -12,7 +12,7 @@ const useHandleDebouncing = (seconds = 500) => {
         }, seconds);
       }
     },
-    [seconds],
+    [seconds]
   );
 };
 

@@ -18,13 +18,13 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
     if (!timerId.current) {
       timerId.current = setTimeout(() => {
         timerId.current = null;
-        setStatus((prev) => ({ ...prev, animation: false }));
+        setStatus(prev => ({ ...prev, animation: false }));
       }, 500);
     }
   };
 
   const loadMetaDataUpdate = useCallback(({ target: { duration } }) => {
-    setStatus((prev) => ({ ...prev, duration }));
+    setStatus(prev => ({ ...prev, duration }));
   }, []);
 
   const loadUpdate = useCallback(() => {
@@ -35,7 +35,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 
   const handlePlay = useCallback(() => {
     if (isSeekedRef.current) {
-      setStatus((prev) => {
+      setStatus(prev => {
         if (!prev.initialShow) {
           return { play: true, animation: true, loading: false };
         }
@@ -62,11 +62,11 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
   }, []);
 
   const handlePlaying = useCallback(() => {
-    setStatus((prev) => ({ ...prev, loading: false }));
+    setStatus(prev => ({ ...prev, loading: false }));
   }, []);
 
   const handleWaiting = useCallback(() => {
-    setStatus((prev) => ({ ...prev, loading: true }));
+    setStatus(prev => ({ ...prev, loading: true }));
   }, []);
 
   useEffect(() => {
@@ -82,10 +82,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
     }
 
     return () => {
-      videoRef.current.removeEventListener(
-        'loadedmetadata',
-        loadMetaDataUpdate,
-      );
+      videoRef.current.removeEventListener('loadedmetadata', loadMetaDataUpdate);
       videoRef.current.removeEventListener('loadeddata', loadUpdate);
       videoRef.current.removeEventListener('play', handlePlay);
       videoRef.current.removeEventListener('pause', handlePause);
@@ -112,19 +109,13 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
       {!status.initialShow && (
         <div
           className={
-            status.animation
-              ? [styles.videoStatus, styles.fadeOut].join(' ')
-              : styles.videoStatus
+            status.animation ? [styles.videoStatus, styles.fadeOut].join(' ') : styles.videoStatus
           }
         >
           <span {...(!status.play && { className: styles.marginLeft })}>
             <svg viewBox={status.play ? '0 0 10 14' : '0 0 11 14'}>
               <path
-                d={
-                  status.play
-                    ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z'
-                    : 'M0 0v14l11-7z'
-                }
+                d={status.play ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'}
                 fill="white"
               />
             </svg>
@@ -143,9 +134,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
                 <path d="M0 0v14l11-7z" fill="black" fillRule="nonzero" />
               </svg>
             </span>
-            <span>
-              {status.duration ? formatTime(status.duration) : '0:00'}
-            </span>
+            <span>{status.duration ? formatTime(status.duration) : '0:00'}</span>
           </button>
         </div>
       )}

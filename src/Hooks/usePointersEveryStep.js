@@ -13,14 +13,12 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
   }, [rangePathRef, screenWidth]);
 
   return useCallback(
-    (e) => {
-      const cursorInEle =
-        (e?.touches ? e.touches[0].pageX : e.pageX) - pathInfoRef.offsetLeft;
+    e => {
+      const cursorInEle = (e?.touches ? e.touches[0].pageX : e.pageX) - pathInfoRef.offsetLeft;
 
       const cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
-      const pointerLeftStep =
-        Math.round(cursorInPercent / everyStep) * everyStep;
+      const pointerLeftStep = Math.round(cursorInPercent / everyStep) * everyStep;
 
       const pointerRightStep = pointerLeftStep + everyStep;
 
@@ -35,6 +33,6 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
         rightDiff,
       };
     },
-    [everyStep],
+    [everyStep]
   );
 }

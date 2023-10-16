@@ -8,7 +8,7 @@ export default function GameCards({ state, dispatch }) {
   return (
     <section className={styles.gameCards}>
       <ul>
-        {items.map((item) => (
+        {items.map(item => (
           <Card key={item.id} cardInfo={item} />
         ))}
       </ul>

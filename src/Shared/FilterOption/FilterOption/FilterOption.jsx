@@ -4,7 +4,7 @@ import styles from './FilterOption.module.css';
 
 function FilterOption({ text, setState, border, state, name }) {
   const handleClick = useCallback(() => {
-    setState((prev) => ({ ...prev, [name]: !prev[name] }));
+    setState(prev => ({ ...prev, [name]: !prev[name] }), name);
     document.removeEventListener('mouseup', handleClick);
   }, [name, setState]);
   return (
@@ -22,12 +22,7 @@ function FilterOption({ text, setState, border, state, name }) {
     >
       <p className={styles.text}>{text}</p>
       <div className={styles.toggleButtonContainer}>
-        <FilterSwitch
-          event={handleClick}
-          state={state}
-          setState={setState}
-          name={name}
-        />
+        <FilterSwitch event={handleClick} state={state} setState={setState} name={name} />
       </div>
     </div>
   );

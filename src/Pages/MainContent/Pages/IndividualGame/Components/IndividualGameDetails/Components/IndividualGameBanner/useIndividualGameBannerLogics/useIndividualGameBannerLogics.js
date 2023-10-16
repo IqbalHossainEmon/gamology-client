@@ -17,18 +17,15 @@ const reducer = (state, action) => {
     case 'nextBanner':
       return state.active !== state.data.length - 1 &&
         state.cardActive * state.cardsOnDeck <= state.active + 1 &&
-        state.cardActive * state.cardsOnDeck + state.cardsOnDeck - 1 >=
-          state.active + 1
+        state.cardActive * state.cardsOnDeck + state.cardsOnDeck - 1 >= state.active + 1
         ? {
             ...state,
-            active:
-              state.active === state.data.length - 1 ? 0 : state.active + 1,
+            active: state.active === state.data.length - 1 ? 0 : state.active + 1,
             coverTransition: true,
           }
         : {
             ...state,
-            active:
-              state.active === state.data.length - 1 ? 0 : state.active + 1,
+            active: state.active === state.data.length - 1 ? 0 : state.active + 1,
             coverTransition: true,
             cardActive:
               state.active === state.data.length - 1
@@ -40,22 +37,15 @@ const reducer = (state, action) => {
     case 'prevBanner':
       return state.active - 1 !== -1 &&
         state.cardActive * state.cardsOnDeck <= state.active - 1 &&
-        state.cardActive * state.cardsOnDeck + state.cardsOnDeck - 1 >=
-          state.active - 1
+        state.cardActive * state.cardsOnDeck + state.cardsOnDeck - 1 >= state.active - 1
         ? {
             ...state,
-            active:
-              state.active - 1 === -1
-                ? state.data.length - 1
-                : state.active - 1,
+            active: state.active - 1 === -1 ? state.data.length - 1 : state.active - 1,
             coverTransition: true,
           }
         : {
             ...state,
-            active:
-              state.active - 1 === -1
-                ? state.data.length - 1
-                : state.active - 1,
+            active: state.active - 1 === -1 ? state.data.length - 1 : state.active - 1,
             coverTransition: true,
             cardActive:
               state.active - 1 === -1
@@ -80,8 +70,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         cardActive:
-          (state.cardActive + 1) * 100 <
-          Math.ceil(state.data.length / state.cardsOnDeck) * 100
+          (state.cardActive + 1) * 100 < Math.ceil(state.data.length / state.cardsOnDeck) * 100
             ? state.cardActive + 1
             : 0,
         thumbTransition: true,
@@ -99,8 +88,7 @@ const reducer = (state, action) => {
 
     case 'screenSizeChange':
       return state.cardActive * action.cardsOnDeck <= state.active &&
-        state.cardActive * action.cardsOnDeck + action.cardsOnDeck - 1 >=
-          state.active
+        state.cardActive * action.cardsOnDeck + action.cardsOnDeck - 1 >= state.active
         ? {
             ...state,
             cardsOnDeck: action.cardsOnDeck,

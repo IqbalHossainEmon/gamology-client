@@ -5,12 +5,12 @@ export default function useDragStartStop(
   handleMove,
   handleMouseUp = () => {},
   handleMouseDown = () => {},
-  grab = false,
+  grab = false
 ) {
   const isTouchAble = useIsTouchAble();
 
   const onStop = useCallback(
-    (e) => {
+    e => {
       handleMouseUp(e);
 
       if (document.getElementById('root').classList.contains('grabbing')) {
@@ -23,11 +23,11 @@ export default function useDragStartStop(
       document.removeEventListener('touchend', onStop);
       window.removeEventListener('blur', onStop);
     },
-    [handleMove, handleMouseUp],
+    [handleMove, handleMouseUp]
   );
 
   const onStart = useCallback(
-    (e) => {
+    e => {
       handleMouseDown(e);
       if (!isTouchAble() && grab) {
         e.preventDefault();
@@ -40,7 +40,7 @@ export default function useDragStartStop(
       document.addEventListener('touchend', onStop);
       window.addEventListener('blur', onStop);
     },
-    [grab, handleMouseDown, handleMove, isTouchAble, onStop],
+    [grab, handleMouseDown, handleMove, isTouchAble, onStop]
   );
   return onStart;
 }

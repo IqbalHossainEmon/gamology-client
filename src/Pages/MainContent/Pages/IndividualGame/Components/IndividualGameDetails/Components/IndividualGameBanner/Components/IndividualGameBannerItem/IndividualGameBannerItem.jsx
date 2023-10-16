@@ -24,11 +24,7 @@ export default function IndividualGameBannerItem({ data, active, index }) {
     <li className={styles.individualGameBannerItem}>
       {shouldShow &&
         (data.type === 'photo' ? (
-          <img
-            className={styles.coverImg}
-            src={data.cover}
-            alt={`Carousel number-${index}`}
-          />
+          <img className={styles.coverImg} src={data.cover} alt={`Carousel number-${index}`} />
         ) : (
           <VideoPlayer
             changePause={active}

@@ -11,14 +11,7 @@ import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
-function Controllers({
-  video,
-  videoContainer,
-  src,
-  isControllerShowing,
-  isChanging,
-  changePause,
-}) {
+function Controllers({ video, videoContainer, src, isControllerShowing, isChanging, changePause }) {
   const gearRef = useRef(null);
   const clickTimerId = useRef(null);
   const videoRef = useRef(video);
@@ -76,10 +69,7 @@ function Controllers({
     if (video.current) {
       videoRef.current = video.current;
       videoRef.current.addEventListener('playing', handlePlaying);
-      videoRef.current.addEventListener(
-        'canplaythrough',
-        handleCanPlayPlayThorough,
-      );
+      videoRef.current.addEventListener('canplaythrough', handleCanPlayPlayThorough);
       videoRef.current.addEventListener('waiting', handleWaiting);
     }
     return () => {
@@ -90,15 +80,8 @@ function Controllers({
 
   return (
     <>
-      <button
-        onClick={handleClick}
-        type="button"
-        className={styles.fullDisplayPlayPauseBtn}
-      />
-      <ul
-        id={isControllerShowing ? styles.show : styles.hide}
-        className={styles.controllers}
-      >
+      <button onClick={handleClick} type="button" className={styles.fullDisplayPlayPauseBtn} />
+      <ul id={isControllerShowing ? styles.show : styles.hide} className={styles.controllers}>
         <li className={styles.videoProgressSlider}>
           <VideoProgressBar
             changePause={changePause}
@@ -117,11 +100,7 @@ function Controllers({
           />
         </li>
         <li>
-          <VideoVolume
-            changePause={changePause}
-            video={video}
-            videoContainer={videoContainer}
-          />
+          <VideoVolume changePause={changePause} video={video} videoContainer={videoContainer} />
         </li>
         <li>
           <ProgressTimeShow video={video} />
@@ -133,11 +112,7 @@ function Controllers({
           <FullScreenButton videoContainer={videoContainer} />
         </li>
       </ul>
-      <VideoStatus
-        isChanging={isChanging}
-        isSeekedRef={isSeekedRef}
-        video={video}
-      />
+      <VideoStatus isChanging={isChanging} isSeekedRef={isSeekedRef} video={video} />
     </>
   );
 }

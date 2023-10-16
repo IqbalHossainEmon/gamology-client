@@ -12,9 +12,7 @@ export default function EventGamesGamesColumn({
   return (
     <li
       className={
-        colNum === cardPosition
-          ? styles.GameColumn
-          : [styles.GameColumn, styles.Opacity0].join(' ')
+        colNum === cardPosition ? styles.GameColumn : [styles.GameColumn, styles.Opacity0].join(' ')
       }
       {...(screenWidth < 768 && { style: { width: `${screenWidth}px` } })}
     >
@@ -23,7 +21,7 @@ export default function EventGamesGamesColumn({
         <button type="button">View More</button>
       </div>
       <ul className={`${border && styles.rightBorder} ${styles.column}`}>
-        {games.map((game) => (
+        {games.map(game => (
           <GameInColumn key={game.id} length={games.length} game={game} />
         ))}
       </ul>

@@ -46,8 +46,7 @@ export default function IndividualGameReview({ review, index, length }) {
             </div>
             <div>
               <p className={styles.date}>
-                {month[review.date.getMonth()]} {review.date.getDate()},{' '}
-                {review.date.getFullYear()}
+                {month[review.date.getMonth()]} {review.date.getDate()}, {review.date.getFullYear()}
               </p>
             </div>
           </div>
@@ -82,16 +81,11 @@ export default function IndividualGameReview({ review, index, length }) {
                 <p>Thanks for your vote!</p>
               )}
               <p className={styles.usersFeedback}>
-                ({feedback.goodFeedback} of {feedback.totalFeedback} users found
-                this helpful)
+                ({feedback.goodFeedback} of {feedback.totalFeedback} users found this helpful)
               </p>
             </div>
             {feedbackState.state > 0 && (
-              <button
-                onClick={handleReport}
-                type="button"
-                className={styles.reportBtn}
-              >
+              <button onClick={handleReport} type="button" className={styles.reportBtn}>
                 report
               </button>
             )}

@@ -15,7 +15,7 @@ export default function VideoVolume({ video, videoContainer, changePause }) {
     }
   }, [video]);
 
-  const handleSetValue = useCallback((val) => {
+  const handleSetValue = useCallback(val => {
     setVolume(val);
     if (val > 0) {
       videoRef.current.muted = false;

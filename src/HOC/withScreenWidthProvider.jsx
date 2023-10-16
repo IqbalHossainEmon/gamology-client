@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
-const withScreenWidthProvider = (Component) => () => {
+const withScreenWidthProvider = Component => () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const handleChange = useCallback(() => {

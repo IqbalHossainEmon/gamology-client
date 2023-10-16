@@ -2,12 +2,7 @@ import useHandleDebouncing from '../../../../../../../../Hooks/useHandleDebounci
 import DiscoverBannerItemCard from '../DiscoverBannerItemCard/DiscoverBannerItemCard';
 import styles from './DiscoverBannerItemCards.module.css';
 
-export default function DiscoverBannerItemCards({
-  data,
-  handleClick,
-  cardsPosition,
-  isPause,
-}) {
+export default function DiscoverBannerItemCards({ data, handleClick, cardsPosition, isPause }) {
   const handleDebouncing = useHandleDebouncing(400);
 
   return (
@@ -17,7 +12,7 @@ export default function DiscoverBannerItemCards({
           key={id}
           isPause={isPause}
           banner={{ carouselThumb, id: index, name }}
-          handleClick={(prop) => handleDebouncing(() => handleClick(prop))}
+          handleClick={prop => handleDebouncing(() => handleClick(prop))}
           cardsPosition={cardsPosition}
         />
       ))}

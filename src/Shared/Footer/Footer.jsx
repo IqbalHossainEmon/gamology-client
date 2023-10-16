@@ -5,10 +5,7 @@ export default function Footer() {
     <footer id={styles.footer}>
       <div className={styles.header}>
         <a href="/">
-          <img
-            src="/assets/images/game-controller.png"
-            alt="game-controller-logo"
-          />
+          <img src="/assets/images/game-controller.png" alt="game-controller-logo" />
           <h2>Gamology</h2>
         </a>
       </div>
@@ -20,7 +17,7 @@ export default function Footer() {
             { text: 'Terms of Service', link: 'termsOfService' },
             { text: 'IR Contacts', link: 'IRContacts' },
             { text: 'Information Security', link: 'informationSecurity' },
-          ].map((link) => (
+          ].map(link => (
             <li key={link.link}>
               <a href={link.link}>{link.text}</a>
             </li>
@@ -30,15 +27,14 @@ export default function Footer() {
       <div className={styles.description}>
         <p>
           <small>
-            Share capital: 500,698,500 PLN paid in full; National Court Register
-            (KRS) number: 1269691510; District Court for the City of Dhaka, 14th
-            Commercial;
+            Share capital: 500,698,500 PLN paid in full; National Court Register (KRS) number:
+            1269691510; District Court for the City of Dhaka, 14th Commercial;
           </small>
         </p>
         <p>
           <small>
-            All trademarks referenced herein are the properties of their
-            respective owners. ©2023 Gamology All rights reserved
+            All trademarks referenced herein are the properties of their respective owners. ©2023
+            Gamology All rights reserved
           </small>
         </p>
       </div>

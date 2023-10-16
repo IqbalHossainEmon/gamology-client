@@ -41,7 +41,7 @@ const links = [
 export default function SortList({ state, setShow, handleChange }) {
   return (
     <ol className={styles.listContainer}>
-      {links.map((link) => (
+      {links.map(link => (
         <li key={link.no}>
           <button
             {...(link.name === state.sortBy

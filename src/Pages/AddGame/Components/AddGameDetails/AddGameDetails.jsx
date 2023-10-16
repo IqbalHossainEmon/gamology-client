@@ -4,7 +4,6 @@ import styles from './AddGameDetails.module.css';
 export default function AddGameDetails({ gameData }) {
   const handleSetValue = (value, name) => {
     gameData.current.gameInfo[name] = value;
-    console.log(value, name);
   };
 
   return (
@@ -15,6 +14,7 @@ export default function AddGameDetails({ gameData }) {
         field="input"
         name="name"
         placeholder="Game's Name"
+        autoComplete
       />
 
       <div className={styles.textFieldContainer}>

@@ -39,43 +39,26 @@ export default function VideoSlider({
 
     if (videoContainer.current) {
       videoContainer.current.addEventListener('fullscreenchange', handleResize);
-      videoContainer.current.addEventListener(
-        'mozfullscreenchange',
-        handleResize,
-      );
-      videoContainer.current.addEventListener(
-        'MSFullscreenChange',
-        handleResize,
-      );
-      videoContainer.current.addEventListener(
-        'webkitfullscreenchange',
-        handleResize,
-      );
+      videoContainer.current.addEventListener('mozfullscreenchange', handleResize);
+      videoContainer.current.addEventListener('MSFullscreenChange', handleResize);
+      videoContainer.current.addEventListener('webkitfullscreenchange', handleResize);
 
       videoContainerRef = videoContainer.current;
     }
 
     return () => {
       videoContainerRef.removeEventListener('fullscreenchange', handleResize);
-      videoContainerRef.removeEventListener(
-        'mozfullscreenchange',
-        handleResize,
-      );
+      videoContainerRef.removeEventListener('mozfullscreenchange', handleResize);
       videoContainerRef.removeEventListener('MSFullscreenChange', handleResize);
-      videoContainerRef.removeEventListener(
-        'webkitfullscreenchange',
-        handleResize,
-      );
+      videoContainerRef.removeEventListener('webkitfullscreenchange', handleResize);
     };
   }, [handleResize, videoContainer]);
 
   // get cursor position while dragging
   const onMouseEvent = useCallback(
-    (e) => {
+    e => {
       let cursorInPercent =
-        ((e?.touches
-          ? e.touches[0].pageX - pathRef.offsetLeft
-          : e.pageX - pathRef.offsetLeft) /
+        ((e?.touches ? e.touches[0].pageX - pathRef.offsetLeft : e.pageX - pathRef.offsetLeft) /
           pathRef.width) *
         100;
 
@@ -84,30 +67,22 @@ export default function VideoSlider({
       } else if (cursorInPercent > 100) {
         cursorInPercent = 100;
       }
-      if (
-        parseFloat(cursorInPercent.toFixed(3)) !==
-        parseFloat(stateRef.current.toFixed(3))
-      ) {
+      if (parseFloat(cursorInPercent.toFixed(3)) !== parseFloat(stateRef.current.toFixed(3))) {
         setPosition(cursorInPercent);
       }
     },
-    [setPosition],
+    [setPosition]
   );
 
   const handleMouseDownClick = useCallback(
-    (e) => {
+    e => {
       onMouseEvent(e);
       handleMouseDown();
     },
-    [handleMouseDown, onMouseEvent],
+    [handleMouseDown, onMouseEvent]
   );
 
-  const onStart = useDragStartStop(
-    onMouseEvent,
-    handleMouseUp,
-    handleMouseDownClick,
-    false,
-  );
+  const onStart = useDragStartStop(onMouseEvent, handleMouseUp, handleMouseDownClick, false);
 
   return (
     <div
@@ -119,20 +94,9 @@ export default function VideoSlider({
       className={styles.videoSliderPath}
     >
       <div className={styles.path} />
-      <div
-        style={{ scale: `${position / 100} 1` }}
-        className={styles.activePath}
-      />
-      {isBuffer && (
-        <div
-          style={{ scale: `${buffer / 100} 1` }}
-          className={styles.bufferPath}
-        />
-      )}
-      <div
-        style={{ translate: `${position}%` }}
-        className={styles.knobContainer}
-      >
+      <div style={{ scale: `${position / 100} 1` }} className={styles.activePath} />
+      {isBuffer && <div style={{ scale: `${buffer / 100} 1` }} className={styles.bufferPath} />}
+      <div style={{ translate: `${position}%` }} className={styles.knobContainer}>
         <div className={styles.knob} />
       </div>
     </div>

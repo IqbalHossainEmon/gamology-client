@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import {
-  AutoPlayContext,
-  SetAutoPlayContext,
-} from '../Contexts/AutoPlayContext';
+import { AutoPlayContext, SetAutoPlayContext } from '../Contexts/AutoPlayContext';
 
-const withAutoPlayProvider = (Component) => (props) => {
+const withAutoPlayProvider = Component => props => {
   const [show, setShow] = useState(false);
 
   return (

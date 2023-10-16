@@ -1,0 +1,18 @@
+.selectionField {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.specsContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+.textField {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .selectionField {
+    width: 100px;
+  }
+}

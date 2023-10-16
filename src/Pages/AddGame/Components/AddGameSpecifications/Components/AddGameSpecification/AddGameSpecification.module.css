@@ -6,25 +6,24 @@
   font-weight: 400;
 }
 
-.selectionField {
-  width: 200px;
-  margin-right: 10px;
-}
-
-.specsContainer {
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-}
-
 .textField {
   width: 100%;
   margin-left: 10px;
 }
 
-.btnsContainer {
+.buttonsContainer {
   display: flex;
   flex-wrap: wrap;
+}
+
+.systemReqContainer {
+  transition: opacity 0.3s ease-in-out;
+  user-select: none;
+}
+
+.systemReqContainer[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .btnContainer {

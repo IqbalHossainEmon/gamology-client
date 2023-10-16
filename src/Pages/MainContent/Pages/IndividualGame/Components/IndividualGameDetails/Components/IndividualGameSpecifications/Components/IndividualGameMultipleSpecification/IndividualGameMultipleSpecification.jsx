@@ -8,7 +8,7 @@ export default function IndividualGameMultipleSpecification({ spec, active }) {
         className={styles.individualGameMultipleSpecification}
         style={{ translate: `-${active * 100}%` }}
       >
-        {spec.map((specs) => (
+        {spec.map(specs => (
           <div className={styles.specs} key={specs.id}>
             <IndividualGameSpecification spec={specs} />
           </div>

@@ -6,8 +6,8 @@ const increaseByOne = (state, fadeIn) => ({
   active: null,
   fadeIn: (fadeIn + 1) % 5,
   fadeOut: fadeIn,
-  cardsPosition: state.cardsPosition.map((cardPosition) =>
-    cardPosition > 0 ? cardPosition - 1 : 5 - 1,
+  cardsPosition: state.cardsPosition.map(cardPosition =>
+    cardPosition > 0 ? cardPosition - 1 : 5 - 1
   ),
 });
 const decreaseByOne = (state, fadeIn) => ({
@@ -15,8 +15,8 @@ const decreaseByOne = (state, fadeIn) => ({
   active: null,
   fadeIn: (fadeIn + (5 - 1)) % 5,
   fadeOut: fadeIn,
-  cardsPosition: state.cardsPosition.map((cardPosition) =>
-    cardPosition < 5 - 1 ? cardPosition + 1 : 0,
+  cardsPosition: state.cardsPosition.map(cardPosition =>
+    cardPosition < 5 - 1 ? cardPosition + 1 : 0
   ),
 });
 
@@ -104,8 +104,7 @@ export default function useDiscoverBannerLogics() {
       }
       timerState.current = true;
       timerState.remain =
-        timerState.currentTotalTime -
-        (new Date().getTime() - timerState.timeStartAt);
+        timerState.currentTotalTime - (new Date().getTime() - timerState.timeStartAt);
     }
   }, [stopTimer]);
 
@@ -126,7 +125,7 @@ export default function useDiscoverBannerLogics() {
 
   // this function start the timer and set all the listeners and functions
   const start = useCallback(
-    (dispatch) => {
+    dispatch => {
       if (!timerRef.dispatch) {
         timerRef.dispatch = dispatch;
       }
@@ -134,7 +133,7 @@ export default function useDiscoverBannerLogics() {
       window.addEventListener('blur', pause);
       window.addEventListener('focus', resume);
     },
-    [pause, resume, startTimer],
+    [pause, resume, startTimer]
   );
 
   // this function stops the timer and removes the listeners

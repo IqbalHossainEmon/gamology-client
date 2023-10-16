@@ -2,12 +2,7 @@ import useScreenWidth from '../../../../../../../../Hooks/useScreenWidth';
 import DiscountPriceWithPercent from '../../../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
 import styles from './IndividualGameAsideHeader.module.css';
 
-export default function IndividualGameAsideHeader({
-  src,
-  name,
-  price,
-  phoneSrc,
-}) {
+export default function IndividualGameAsideHeader({ src, name, price, phoneSrc }) {
   const screenWidth = useScreenWidth();
 
   return (

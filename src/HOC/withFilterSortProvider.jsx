@@ -8,7 +8,7 @@ import useChangeBodyOverflow from '../Hooks/useChangeBodyOverflow';
 import useDropDownHide from '../Hooks/useDropDownHide';
 import useScreenWidth from '../Hooks/useScreenWidth';
 
-const withFilterSortProvider = (Component) => () => {
+const withFilterSortProvider = Component => () => {
   const [filterSortState, setFilterSortState] = useState({
     filter: true,
     sort: true,
@@ -25,18 +25,15 @@ const withFilterSortProvider = (Component) => () => {
   });
 
   useEffect(() => {
-    if (
-      screenWidth < 769 &&
-      (!filterSortState.sort || !filterSortState.filter)
-    ) {
+    if (screenWidth < 769 && (!filterSortState.sort || !filterSortState.filter)) {
       hideBodyOverflow();
     }
   }, [filterSortState, screenWidth, hideBodyOverflow]);
 
   const setFilterSort = useCallback(
-    (prop) => {
+    prop => {
       if (prop === 'filter') {
-        setFilterSortState((prev) => {
+        setFilterSortState(prev => {
           if (prev.filter && screenWidth < 769) {
             hideBodyOverflow();
           } else {
@@ -50,7 +47,7 @@ const withFilterSortProvider = (Component) => () => {
       } else if (prop === 'sort') {
         setElement(filterSortRef.sort);
         showMenu();
-        setFilterSortState((prev) => {
+        setFilterSortState(prev => {
           if (prev.sort && screenWidth < 769) {
             hideBodyOverflow();
           } else {
@@ -62,7 +59,7 @@ const withFilterSortProvider = (Component) => () => {
         setFilterSortState({ sort: true, filter: true });
       }
     },
-    [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu],
+    [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu]
   );
 
   return (

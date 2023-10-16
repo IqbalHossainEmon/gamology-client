@@ -10,7 +10,7 @@ export default function AddGameBanner({ gameData }) {
     <section className={styles.addGameBanner}>
       <h3 className={styles.header}>Add Game&#39;s Banner Images or Videos</h3>
       <div className={styles.textFieldContainer}>
-        {[...Array(fieldCount).keys()].map((arr) => (
+        {[...Array(fieldCount).keys()].map(arr => (
           <TextFieldContainer key={arr} number={arr} gameData={gameData} />
         ))}
       </div>
@@ -18,16 +18,15 @@ export default function AddGameBanner({ gameData }) {
         <div className={styles.btn}>
           <ButtonForAddGameSection
             text="Add More +"
-            onClick={() => setFieldCount((prev) => prev + 1)}
+            onClick={() => setFieldCount(prev => prev + 1)}
           />
         </div>
         <div className={styles.btn}>
           <ButtonForAddGameSection
+            {...(fieldCount === 1 && { disabled: true })}
             text="Remove One -"
             onClick={() => {
-              if (fieldCount > 1) {
-                setFieldCount((prev) => prev - 1);
-              }
+              setFieldCount(prev => prev - 1);
             }}
           />
         </div>

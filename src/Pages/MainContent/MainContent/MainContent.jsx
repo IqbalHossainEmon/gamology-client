@@ -1,5 +1,5 @@
 import SecondNavbar from '../../../Shared/SecondNavbar/SecondNavBar/SecondNavbar';
-import IndividualGame from '../Pages/IndividualGame/IndividualGame/IndividualGame';
+import Browse from '../Pages/Browse/Browse/Browse';
 import styles from './MainContent.module.css';
 
 export default function MainContent() {
@@ -7,7 +7,7 @@ export default function MainContent() {
     <>
       <SecondNavbar />
       <main className={styles.main}>
-        <IndividualGame />
+        <Browse />
       </main>
     </>
   );

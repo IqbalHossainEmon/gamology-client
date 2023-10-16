@@ -8,7 +8,7 @@ export default function SecondNavSearchField({ screenWidth, setNavShow }) {
   const searchInputRef = useRef();
   const [show, setShow] = useState(false);
 
-  const setShowState = (state) => {
+  const setShowState = state => {
     if (typeof setNavShow === 'function') {
       setNavShow(state);
     }
@@ -21,7 +21,7 @@ export default function SecondNavSearchField({ screenWidth, setNavShow }) {
     setElement(searchRef.current);
   }, [setElement, searchRef]);
 
-  const handleBlurEsc = (e) => {
+  const handleBlurEsc = e => {
     if (e.key === 'Escape') {
       setShowState(false);
       searchInputRef.current.blur();

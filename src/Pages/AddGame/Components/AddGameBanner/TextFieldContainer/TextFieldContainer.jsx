@@ -4,7 +4,6 @@ import styles from './TextFieldContainer.module.css';
 
 export default function TextFieldContainer({ number, gameData }) {
   const handleSetValues = (value, name) => {
-    console.log(value, name);
     gameData.current.gameBanner[number] = { [name]: value };
   };
 

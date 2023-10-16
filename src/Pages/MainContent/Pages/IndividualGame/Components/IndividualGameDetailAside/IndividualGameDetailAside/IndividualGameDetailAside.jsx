@@ -16,14 +16,22 @@ const data = {
   ],
 };
 
-export default function IndividualGameDetailAside() {
+export default function IndividualGameDetailAside({ reviewContainerRef }) {
   const [gameInfo, setGameInfo] = useState({});
+  const [paddingBottom, setPaddingBottom] = useState(90);
+
   useEffect(() => {
     setGameInfo(data);
   }, []);
 
+  useEffect(() => {
+    setPaddingBottom(
+      90 + (reviewContainerRef.current?.clientHeight ? reviewContainerRef.current.clientHeight : 0)
+    );
+  }, [reviewContainerRef, reviewContainerRef.current?.clientHeight]);
+
   return (
-    <aside className={styles.individualGameDetailAside}>
+    <aside style={{ paddingBottom }} className={styles.individualGameDetailAside}>
       <div className={styles.asideContainer}>
         <IndividualGameAsideHeader
           name={gameInfo.name}

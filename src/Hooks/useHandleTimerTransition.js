@@ -8,7 +8,7 @@ export default function useHandleTimerTransition(setState, time = 200) {
     }
     timerId.current = setTimeout(() => {
       timerId.current = null;
-      setState((prev) => ({ ...prev, transition: false }));
+      setState(prev => ({ ...prev, transition: false }));
     }, time);
   }, [setState, time]);
 }

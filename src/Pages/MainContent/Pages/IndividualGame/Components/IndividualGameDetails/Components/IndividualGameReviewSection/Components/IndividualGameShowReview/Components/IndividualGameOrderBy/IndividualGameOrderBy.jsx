@@ -35,7 +35,7 @@ export default function IndividualGameOrderBy({ handleSort }) {
         <p className={styles.activeOrder}>
           Order By:{' '}
           <span className={styles.orderChangeablePart}>
-            {orderBy.filter((order) => order.active)[0].name}
+            {orderBy.filter(order => order.active)[0].name}
           </span>
         </p>
         <div className={styles.rotateArrow}>
@@ -55,7 +55,7 @@ export default function IndividualGameOrderBy({ handleSort }) {
                 type="button"
                 {...(orderBy[index].active || {
                   onClick: () => {
-                    setOrderBy((prev) => {
+                    setOrderBy(prev => {
                       const prevOrderBy = [...prev];
                       for (let i = 0; i < 3; i++) {
                         if (i === index) {

@@ -36,9 +36,7 @@ export default function IndividualGameWriteReview({
   return (
     <div
       className={styles.individualGameWriteReviewContainer}
-      style={
-        writeReviewShow ? { height: elementRef.width + 60 } : { height: 0 }
-      }
+      style={writeReviewShow ? { height: elementRef.width + 60 } : { height: 0 }}
     >
       <div ref={elementRef} className={styles.individualGameWriteReview}>
         <div className={styles.userDetails}>

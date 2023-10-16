@@ -6,7 +6,7 @@ export default function ChangeEventButtons({ setCardPosition, cardPosition }) {
   return (
     <div className={styles.ChangeEventButtons}>
       <div>
-        {Buttons.map((Button) => (
+        {Buttons.map(Button => (
           <button
             key={Button}
             {...(cardPosition === Button && { id: styles.active })}

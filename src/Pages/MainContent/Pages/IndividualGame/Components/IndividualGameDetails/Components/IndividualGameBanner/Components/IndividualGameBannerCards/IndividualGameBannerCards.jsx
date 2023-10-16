@@ -72,8 +72,7 @@ export default function IndividualGameBannerCards({
                   width: `${Math.ceil(items.length / cardsOnDeck) * 100}%`,
                   translate: `calc(-${
                     Math.ceil(items.length / cardsOnDeck)
-                      ? (100 / Math.ceil(items.length / cardsOnDeck)) *
-                        cardActive
+                      ? (100 / Math.ceil(items.length / cardsOnDeck)) * cardActive
                       : 0
                   }% - ${cardsOnDeck > 1 ? cardActive * 15 : 0}px)`,
                   transition: 'translate 250ms',
@@ -82,8 +81,7 @@ export default function IndividualGameBannerCards({
                   width: `${Math.ceil(items.length / cardsOnDeck) * 100}%`,
                   translate: `calc(-${
                     Math.ceil(items.length / cardsOnDeck)
-                      ? (100 / Math.ceil(items.length / cardsOnDeck)) *
-                        cardActive
+                      ? (100 / Math.ceil(items.length / cardsOnDeck)) * cardActive
                       : 0
                   }% - ${cardsOnDeck > 1 ? cardActive * 15 : 0}px)`,
                 }

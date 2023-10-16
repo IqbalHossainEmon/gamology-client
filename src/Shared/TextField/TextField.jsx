@@ -6,6 +6,7 @@ export default function TextField({
   className,
   placeholder,
   htmlFor = 0,
+  autoComplete,
   setState,
   ...rest
 }) {
@@ -18,19 +19,18 @@ export default function TextField({
         <div className={[styles.container, className].join(' ')}>
           <label
             className={
-              focused || value.length
-                ? [styles.focused, styles.label].join(' ')
-                : styles.label
+              focused || value.length ? [styles.focused, styles.label].join(' ') : styles.label
             }
             htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
           >
             {placeholder}
           </label>
           <input
+            {...(autoComplete && { autoComplete: 'on' })}
             onFocus={() => setFocused(true)}
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onBlur={(e) => {
+            onChange={e => setValue(e.target.value)}
+            onBlur={e => {
               setState(e.target.value, e.target.name);
               setFocused(false);
             }}
@@ -45,23 +45,21 @@ export default function TextField({
         <div className={[styles.container, className].join(' ')}>
           <label
             className={
-              focused || value.length
-                ? [styles.focused, styles.label].join(' ')
-                : styles.label
+              focused || value.length ? [styles.focused, styles.label].join(' ') : styles.label
             }
-            htmlFor={styles.textarea}
+            htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
           >
             {placeholder}
           </label>
           <textarea
             onFocus={() => setFocused(true)}
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onBlur={(e) => {
+            onChange={e => setValue(e.target.value)}
+            onBlur={e => {
               setState(e.target.value, e.target.name);
               setFocused(false);
             }}
-            id={styles.textarea}
+            id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
             className={[styles.textarea, styles.field].join(' ')}
             rows={10}
             {...rest}
