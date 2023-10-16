@@ -11,15 +11,17 @@ export default function AddGameSpecification({ state, gameData }) {
   const enabledRef = useRef(enabled);
   enabledRef.current = enabled.enabled;
 
+  const specificationRef = useRef([]);
+
   const handleSetValue = useCallback(() => {
     setTimeout(() => {
       if (enabledRef.current) {
-        gameData.current.gameSpecifications[state.name.toLowerCase()] = {};
+        gameData.current.gameSpecifications[state.name.toLowerCase()] = specificationRef.current;
       } else {
         delete gameData.current.gameSpecifications[state.name.toLowerCase()];
       }
     }, 0);
-  }, [gameData, state.name]);
+  }, [gameData, state]);
 
   const handleSetEnable = useCallback(
     props => {
@@ -46,6 +48,7 @@ export default function AddGameSpecification({ state, gameData }) {
           <SectionFieldContainer
             name={`${state.name.toLowerCase()}_min`}
             index={0}
+            specificationRef={specificationRef}
             requiredLength={requiredLength}
           />
         </div>
@@ -54,6 +57,7 @@ export default function AddGameSpecification({ state, gameData }) {
           <SectionFieldContainer
             name={`${state.name.toLowerCase()}_rec`}
             index={1}
+            specificationRef={specificationRef}
             requiredLength={requiredLength}
           />
         </div>

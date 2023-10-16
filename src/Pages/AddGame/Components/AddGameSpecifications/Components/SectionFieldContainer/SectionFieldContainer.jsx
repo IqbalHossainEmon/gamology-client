@@ -2,15 +2,35 @@ import SelectionField from '../../../../../../Shared/SelectionField/SelectionFie
 import TextField from '../../../../../../Shared/TextField/TextField';
 import styles from './SectionFieldContainer.module.css';
 
-export default function SectionFieldContainer({ requiredLength, index, name }) {
+export default function SectionFieldContainer({ requiredLength, index, name, specificationRef }) {
+  const handleSetState = (value, i, isKey) => {
+    if (!specificationRef.current[i]) {
+      specificationRef.current[i] = [];
+    }
+    if (!specificationRef.current[i][index]) {
+      specificationRef.current[i][index] = {};
+    }
+
+    switch (isKey) {
+      case true:
+        specificationRef.current[i][index].key = value;
+        break;
+      default:
+        specificationRef.current[i][index].value = value;
+        break;
+    }
+  };
+
   return (
     <>
-      {[...Array(requiredLength).keys()].map(length => (
+      {[...Array(requiredLength).keys()].map((length, i) => (
         <div key={length} className={styles.specsContainer}>
           <div className={styles.selectionField}>
             <SelectionField
+              name="Key Type"
               placeholder={`${name}_system_req_`}
-              htmlFor={`${length}${index}`}
+              htmlFor={`${length}${i}`}
+              setState={value => handleSetState(value, i, true)}
               list={[
                 'OS',
                 'CPU',
@@ -26,7 +46,12 @@ export default function SectionFieldContainer({ requiredLength, index, name }) {
             />
           </div>
           <div className={styles.textField}>
-            <TextField field="input" htmlFor={`${name}_${length}`} placeholder="Required Specs" />
+            <TextField
+              setState={value => handleSetState(value, i)}
+              field="input"
+              htmlFor={`${name}_${length}`}
+              placeholder="Required Specs"
+            />
           </div>
         </div>
       ))}

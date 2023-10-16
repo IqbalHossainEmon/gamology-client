@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import LineBreak from '../../../../../../../../../Shared/LineBreak/LineBreak';
 import IndividualGameMultipleSpecification from '../Components/IndividualGameMultipleSpecification/IndividualGameMultipleSpecification';
-import IndividualGameSpecification from '../Components/IndividualGameSpecification/IndividualGameSpecification';
+import IndividualGameSpecificationOther from '../Components/IndividualGameSpecificationOther/IndividualGameSpecificationOther';
 import styles from './IndividualGameSpecifications.module.css';
 
 const data = {
@@ -48,13 +48,6 @@ const data = {
           },
         ],
       ],
-      others: {
-        key: 'Language Supported',
-        value: [
-          `AUDIO: English, Russian, Polish, French, German, Spanish - Spain, Spanish - Latin America, Portuguese - Brazil, Japanese, Chinese - Simplified`,
-          `TEXT: English, French, Italian, German, Spanish - Spain, Korean, Polish, Portuguese - Brazil, Russian, Spanish - Latin America, Arabic, Chinese - Simplified, Chinese - Traditional, Japanese, Portuguese, Turkish, Czech}`,
-        ],
-      },
     },
     {
       id: 1,
@@ -101,15 +94,15 @@ const data = {
           },
         ],
       ],
-      others: {
-        key: 'Language Supported',
-        value: [
-          `AUDIO: English, Russian, Polish, French, German, Spanish - Spain, Spanish - Latin America, Portuguese - Brazil, Japanese, Chinese - Simplified`,
-          `TEXT: English, French, Italian, German, Spanish - Spain, Korean, Polish, Portuguese - Brazil, Russian, Spanish - Latin America, Arabic, Chinese - Simplified, Chinese - Traditional, Japanese, Portuguese, Turkish, Czech}`,
-        ],
-      },
     },
   ],
+  others: {
+    key: 'Language Supported',
+    value: [
+      `AUDIO: English, Russian, Polish, French, German, Spanish - Spain, Spanish - Latin America, Portuguese - Brazil, Japanese, Chinese - Simplified`,
+      `TEXT: English, French, Italian, German, Spanish - Spain, Korean, Polish, Portuguese - Brazil, Russian, Spanish - Latin America, Arabic, Chinese - Simplified, Chinese - Traditional, Japanese, Portuguese, Turkish, Czech}`,
+    ],
+  },
   copyWrite:
     '© 2022 MARVEL © 2022 Sony Interactive Entertainment LLC Created and developed by Insomniac Games, Inc. PC version by Nixxes Software BV',
   policy: 'https://www.playstation.com/country-selector/index.html',
@@ -142,11 +135,8 @@ export default function IndividualGameSpecifications() {
           ))}
         </div>
         <div>
-          {Array.isArray(spec.spec) ? (
-            <IndividualGameMultipleSpecification spec={spec.spec} active={toggle} />
-          ) : (
-            <IndividualGameSpecification spec={spec.spec} />
-          )}
+          <IndividualGameMultipleSpecification spec={spec.spec} active={toggle} />
+          {spec.others && <IndividualGameSpecificationOther others={spec.others} />}
         </div>
         <LineBreak />
         <div>

@@ -1,5 +1,6 @@
 import TextField from '../../../../../Shared/TextField/TextField';
 import AddGameSpecification from '../Components/AddGameSpecification/AddGameSpecification';
+import AddGameSpecificationLanguagesSupported from '../Components/AddGameSpecificationLanguagesSupported/AddGameSpecificationLanguagesSupported';
 import styles from './AddGameSpecifications.module.css';
 
 export default function AddGameSpecifications({ gameData }) {
@@ -18,8 +19,17 @@ export default function AddGameSpecifications({ gameData }) {
         </div>
       </div>
       <div>
+        <AddGameSpecificationLanguagesSupported />
         <div className={styles.textField}>
-          <TextField field="textarea" htmlFor="lang_support" placeholder="Languages Supported" />
+          <TextField name="copyWrite" field="input" htmlFor="copyright" placeholder="Copyright" />
+        </div>
+        <div className={styles.textField}>
+          <TextField
+            name="policy"
+            field="input"
+            htmlFor="privacy"
+            placeholder="Privacy Policy Link"
+          />
         </div>
       </div>
     </div>

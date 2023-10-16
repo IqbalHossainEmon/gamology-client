@@ -19,16 +19,6 @@ export default function IndividualGameSpecification({ spec }) {
           </div>
         ))}
       </div>
-      {spec?.others && (
-        <div className={styles.others}>
-          <h5 className={styles.header}>{spec.others?.key}</h5>
-          {Array.isArray(spec.others?.value) ? (
-            spec.others?.value.map(val => <p key={val}>{val}</p>)
-          ) : (
-            <p>{spec.others?.value}</p>
-          )}
-        </div>
-      )}
     </div>
   );
 }
