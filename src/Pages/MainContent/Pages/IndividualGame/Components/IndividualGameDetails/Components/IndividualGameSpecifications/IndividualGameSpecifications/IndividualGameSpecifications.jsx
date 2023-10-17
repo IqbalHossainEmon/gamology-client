@@ -100,7 +100,7 @@ const data = {
     key: 'Language Supported',
     value: [
       `AUDIO: English, Russian, Polish, French, German, Spanish - Spain, Spanish - Latin America, Portuguese - Brazil, Japanese, Chinese - Simplified`,
-      `TEXT: English, French, Italian, German, Spanish - Spain, Korean, Polish, Portuguese - Brazil, Russian, Spanish - Latin America, Arabic, Chinese - Simplified, Chinese - Traditional, Japanese, Portuguese, Turkish, Czech}`,
+      `TEXT: English, French, Italian, German, Spanish - Spain, Korean, Polish, Portuguese - Brazil, Russian, Spanish - Latin America, Arabic, Chinese - Simplified, Chinese - Traditional, Japanese, Portuguese, Turkish, Czech`,
     ],
   },
   copyWrite:

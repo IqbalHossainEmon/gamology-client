@@ -12,12 +12,12 @@ export default function AddGame() {
     gameInfo: {},
     gameBanner: [],
     gameDescriptions: { descriptions: [] },
-    gameSpecifications: {},
+    gameSpecifications: { spec: [] },
     gameTags: { genre: {}, features: {} },
   });
 
   const handleSubmit = () => {
-    console.log(gameData.current);
+    console.log(gameData.current.gameSpecifications);
   };
 
   return (

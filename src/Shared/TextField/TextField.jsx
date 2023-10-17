@@ -26,7 +26,7 @@ export default function TextField({
             {placeholder}
           </label>
           <input
-            {...(autoComplete && { autoComplete: 'on' })}
+            autoComplete={autoComplete ? 'on' : 'off'}
             onFocus={() => setFocused(true)}
             value={value}
             onChange={e => setValue(e.target.value)}
