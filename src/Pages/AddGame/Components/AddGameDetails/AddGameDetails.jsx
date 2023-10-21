@@ -33,19 +33,21 @@ export default function AddGameDetails({ gameData }) {
           placeholder="Publisher"
         />
       </div>
-      <FileUploadButton
-        setState={handleSetValue}
-        className={styles.marginTop}
-        name="logo"
-        accept="image/*"
-        placeholder="Choose cover image"
-      />
-      <FileUploadButton
-        setState={handleSetValue}
-        accept="image/*"
-        name="phoneLogo"
-        placeholder="Choose portrait cover image"
-      />
+      <div className={styles.textFieldContainer}>
+        <FileUploadButton
+          setState={handleSetValue}
+          name="logo"
+          accept="image/*"
+          placeholder="Choose cover image"
+        />
+        <FileUploadButton
+          className={styles.rightFlex}
+          setState={handleSetValue}
+          accept="image/*"
+          name="phoneLogo"
+          placeholder="Choose portrait cover image"
+        />
+      </div>
     </section>
   );
 }
