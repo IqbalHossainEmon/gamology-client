@@ -6,24 +6,18 @@ import styles from './AddGameSpecificationLanguagesSupported.module.css';
 const AddGameSpecificationLanguagesSupported = ({ handleValue }) => {
   const [separate, setSeparate] = useState({ separate: false });
 
-  const LanguageRef = useRef('');
-  const LanguageAudioRef = useRef('');
+  const language = useRef({ text: '' });
 
   const handleLanguagesSupported = () => {
-    switch (separate.separate) {
-      case false:
-        handleValue({ key: 'Language Supported', value: LanguageRef.current }, 'others');
-        break;
-      default:
-        handleValue(
-          {
-            key: 'Language Supported',
-            value: [`AUDIO: ${LanguageAudioRef.current}`, `TEXT: ${LanguageRef.current}`],
-          },
-          'others'
-        );
-        break;
-    }
+    handleValue(
+      {
+        key: 'Language Supported',
+        value: separate.separate
+          ? [language.current.text, language.current.audio]
+          : language.current.text,
+      },
+      'others'
+    );
   };
 
   return (
@@ -33,27 +27,27 @@ const AddGameSpecificationLanguagesSupported = ({ handleValue }) => {
     >
       <div className={styles.textField}>
         <TextField
-          setState={value => {
-            LanguageRef.current = value;
+          setState={(value, name) => {
+            language.current[name] = value;
           }}
           rows="3"
           field="textarea"
           name="text"
           htmlFor="lang_support"
-          placeholder={separate.separate ? 'TEXT: (Languages Supported)' : 'Languages Supported'}
+          placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
         />
       </div>
       {separate.separate && (
         <div className={styles.textField}>
           <TextField
-            setState={value => {
-              LanguageAudioRef.current = value;
+            setState={(value, name) => {
+              language.current[name] = value;
             }}
             rows="3"
             field="textarea"
             name="audio"
             htmlFor="lang_support"
-            placeholder="AUDIO: (Languages Supported)"
+            placeholder="Audio Languages Supported"
           />
         </div>
       )}

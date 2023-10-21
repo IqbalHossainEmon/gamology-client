@@ -4,7 +4,7 @@ import ButtonForAddGameSection from '../../../ButtonForAddGameSection/ButtonForA
 import SectionFieldContainer from '../SectionFieldContainer/SectionFieldContainer';
 import styles from './AddGameSpecification.module.css';
 
-export default function AddGameSpecification({ state, gameData, index }) {
+export default function AddGameSpecification({ state, gameData }) {
   const [requiredLength, setRequiredLength] = useState(1);
   const [enabled, setEnabled] = useState({ enabled: false });
 
@@ -16,16 +16,18 @@ export default function AddGameSpecification({ state, gameData, index }) {
   const handleSetValue = useCallback(() => {
     setTimeout(() => {
       if (enabledRef.current) {
-        gameData.current.gameSpecifications.spec[index] = {};
+        enabledRef.index = gameData.current.gameSpecifications.spec.length;
 
-        gameData.current.gameSpecifications.spec[index].systemReq = specificationRef.current;
+        gameData.current.gameSpecifications.spec[enabledRef.index] = {};
+        gameData.current.gameSpecifications.spec[enabledRef.index].systemReq =
+          specificationRef.current;
 
-        gameData.current.gameSpecifications.spec[index].for = state.name;
+        gameData.current.gameSpecifications.spec[enabledRef.index].for = state.name;
       } else {
-        delete gameData.current.gameSpecifications.spec[index];
+        delete gameData.current.gameSpecifications.spec[enabledRef.index];
       }
     }, 0);
-  }, [gameData, index, state]);
+  }, [gameData, state]);
 
   const handleSetEnable = useCallback(
     props => {

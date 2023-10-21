@@ -1,5 +1,5 @@
 import FirstNavbar from '../FirstNavbar/FirstNavBar/FirstNavbar';
-import styles from './Header.module.css';
+import styles from './MainHeader.module.css';
 
 export default function Header() {
   return (

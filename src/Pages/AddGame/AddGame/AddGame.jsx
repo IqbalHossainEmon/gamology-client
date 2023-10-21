@@ -17,7 +17,7 @@ export default function AddGame() {
   });
 
   const handleSubmit = () => {
-    console.log(gameData.current.gameSpecifications);
+    console.log(gameData.current);
   };
 
   return (

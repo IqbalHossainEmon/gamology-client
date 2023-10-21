@@ -1,3 +1,4 @@
+import FileUploadButton from '../../../../Shared/FileUploadButton/FileUploadButton';
 import TextField from '../../../../Shared/TextField/TextField';
 import styles from './AddGameDetails.module.css';
 
@@ -32,19 +33,18 @@ export default function AddGameDetails({ gameData }) {
           placeholder="Publisher"
         />
       </div>
-
-      <TextField
+      <FileUploadButton
         setState={handleSetValue}
         className={styles.marginTop}
         name="logo"
-        field="input"
-        placeholder="Portrait Cover image’s Link"
+        accept="image/*"
+        placeholder="Choose cover image"
       />
-      <TextField
+      <FileUploadButton
         setState={handleSetValue}
-        field="input"
+        accept="image/*"
         name="phoneLogo"
-        placeholder="Landscape Cover image’s link"
+        placeholder="Choose portrait cover image"
       />
     </section>
   );

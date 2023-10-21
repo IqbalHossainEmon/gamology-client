@@ -13,13 +13,13 @@ export default function AddGameSpecifications({ gameData }) {
       <h3 className={styles.header}>Add Game&#39;s System Requirement</h3>
       <div className={styles.specsContainer}>
         <div className={styles.specs}>
-          <AddGameSpecification index={0} gameData={gameData} state={{ name: 'Windows' }} />
+          <AddGameSpecification gameData={gameData} state={{ name: 'Windows' }} />
         </div>
         <div className={styles.specs}>
-          <AddGameSpecification index={1} gameData={gameData} state={{ name: 'MacOs' }} />
+          <AddGameSpecification gameData={gameData} state={{ name: 'MacOs' }} />
         </div>
         <div className={styles.specs}>
-          <AddGameSpecification index={2} gameData={gameData} state={{ name: 'Linux' }} />
+          <AddGameSpecification gameData={gameData} state={{ name: 'Linux' }} />
         </div>
       </div>
       <div>
