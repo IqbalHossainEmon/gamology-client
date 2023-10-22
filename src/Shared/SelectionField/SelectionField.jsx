@@ -40,7 +40,7 @@ export default function SelectionField({
         className={value.length || show ? [styles.focused, styles.label].join(' ') : styles.label}
         htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
       >
-        type
+        {placeholder}
       </label>
       <input
         value={value}

@@ -28,8 +28,8 @@ export default function SectionFieldContainer({ requiredLength, index, name, spe
           <div className={styles.selectionField}>
             <SelectionField
               name="Key Type"
-              placeholder={`${name}_system_req_`}
-              htmlFor={`${length}${i}`}
+              placeholder="Required"
+              htmlFor={`${name}${length}${i}${index}`}
               setState={value => handleSetState(value, i, true)}
               list={[
                 'OS',

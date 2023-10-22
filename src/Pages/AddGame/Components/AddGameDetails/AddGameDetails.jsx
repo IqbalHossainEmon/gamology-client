@@ -18,7 +18,7 @@ export default function AddGameDetails({ gameData }) {
         autoComplete
       />
 
-      <div className={styles.textFieldContainer}>
+      <div className={styles.flexContainer}>
         <TextField
           setState={handleSetValue}
           field="input"
@@ -27,13 +27,13 @@ export default function AddGameDetails({ gameData }) {
         />
         <TextField
           setState={handleSetValue}
-          className={styles.rightFlex}
+          className={styles.marginRight}
           name="publisher"
           field="input"
           placeholder="Publisher"
         />
       </div>
-      <div className={styles.textFieldContainer}>
+      <div className={styles.flexContainer}>
         <FileUploadButton
           setState={handleSetValue}
           name="logo"
@@ -41,7 +41,7 @@ export default function AddGameDetails({ gameData }) {
           placeholder="Choose cover image"
         />
         <FileUploadButton
-          className={styles.rightFlex}
+          className={styles.marginRight}
           setState={handleSetValue}
           accept="image/*"
           name="phoneLogo"

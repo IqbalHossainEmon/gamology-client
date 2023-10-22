@@ -1,12 +1,12 @@
 .gameDetails {
   margin: 3rem 0;
 }
-.textFieldContainer {
+.flexContainer {
   display: flex;
   margin: 10px 0;
 }
 
-.rightFlex {
+.marginRight {
   margin-left: 10px;
 }
 
@@ -28,10 +28,10 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .textFieldContainer {
+  .flexContainer {
     display: block;
   }
-  .rightFlex {
+  .marginRight {
     margin-left: 0px;
     margin-top: 10px;
   }

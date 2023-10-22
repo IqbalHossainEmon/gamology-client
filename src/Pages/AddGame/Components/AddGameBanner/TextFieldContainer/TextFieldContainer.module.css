@@ -6,6 +6,6 @@
 .selectContainer {
   width: 150px;
 }
-.thumbField {
-  margin: 10px 0;
+.marginBot {
+  margin-bottom: 10px;
 }
