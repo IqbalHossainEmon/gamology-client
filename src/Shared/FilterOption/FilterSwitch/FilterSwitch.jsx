@@ -68,52 +68,54 @@ function FilterSwitch({ state, setState, name, event }) {
   const onStart = useDragStartStop(handleMove, handleSetValue);
 
   return (
-    <div ref={rangePathRef} className={styles.toggleButton}>
-      <div className={styles.activePathContainer}>
+    <div className={styles.toggleButtonContainer}>
+      <div ref={rangePathRef} className={styles.toggleButton}>
+        <div className={styles.activePathContainer}>
+          <div
+            className={styles.activePath}
+            style={
+              circlePosition.transition
+                ? {
+                    scale: `${circlePosition.translate / 100} 1`,
+                    transition: 'scale linear 100ms',
+                  }
+                : { scale: `${circlePosition.translate / 100} 1` }
+            }
+          />
+        </div>
         <div
-          className={styles.activePath}
+          className={styles.roundContainer}
           style={
             circlePosition.transition
               ? {
-                  scale: `${circlePosition.translate / 100} 1`,
-                  transition: 'scale linear 100ms',
-                }
-              : { scale: `${circlePosition.translate / 100} 1` }
-          }
-        />
-      </div>
-      <div
-        className={styles.roundContainer}
-        style={
-          circlePosition.transition
-            ? {
-                translate: `${circlePosition.translate}%`,
-                transition: 'translate linear 100ms',
-              }
-            : { translate: `${circlePosition.translate}%` }
-        }
-      >
-        <div
-          tabIndex="0"
-          role="button"
-          className={styles.round}
-          style={
-            circlePosition.transition
-              ? {
-                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
-                    (circlePosition.translate / 100) * 150
-                  }, 0)`,
+                  translate: `${circlePosition.translate}%`,
                   transition: 'translate linear 100ms',
                 }
-              : {
-                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
-                    (circlePosition.translate / 100) * 150
-                  }, 0)`,
-                }
+              : { translate: `${circlePosition.translate}%` }
           }
-          onTouchStart={onStart}
-          onMouseDown={onStart}
-        />
+        >
+          <div
+            tabIndex="0"
+            role="button"
+            className={styles.round}
+            style={
+              circlePosition.transition
+                ? {
+                    backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
+                      (circlePosition.translate / 100) * 150
+                    }, 0)`,
+                    transition: 'translate linear 100ms',
+                  }
+                : {
+                    backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
+                      (circlePosition.translate / 100) * 150
+                    }, 0)`,
+                  }
+            }
+            onTouchStart={onStart}
+            onMouseDown={onStart}
+          />
+        </div>
       </div>
     </div>
   );
