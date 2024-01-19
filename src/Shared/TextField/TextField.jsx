@@ -18,9 +18,9 @@ export default function TextField({
       return (
         <div className={[styles.container, className].join(' ')}>
           <label
-            className={
-              focused || value.length ? [styles.focused, styles.label].join(' ') : styles.label
-            }
+            className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label} ${
+              styles.inputLabel
+            }`}
             htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
           >
             {placeholder}
@@ -44,9 +44,9 @@ export default function TextField({
       return (
         <div className={[styles.container, className].join(' ')}>
           <label
-            className={
-              focused || value.length ? [styles.focused, styles.label].join(' ') : styles.label
-            }
+            className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label} ${
+              styles.textareaLabel
+            }`}
             htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
           >
             {placeholder}

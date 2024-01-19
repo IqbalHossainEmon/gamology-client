@@ -3,6 +3,9 @@
   flex-direction: column;
   margin-top: 40px;
 }
+.placeholderTag {
+  width: 100%;
+}
 .selectContainer {
   width: 150px;
 }

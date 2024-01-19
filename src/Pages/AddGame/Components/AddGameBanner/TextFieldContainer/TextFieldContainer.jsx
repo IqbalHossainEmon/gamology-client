@@ -23,6 +23,7 @@ export default function TextFieldContainer({ number, gameData }) {
           {...(type || { disabled: true })}
           className={styles.marginBot}
           field="input"
+          accept="image/*"
           setState={handleSetValues}
           placeholder="Choose Game's Banner Image"
           name="cover"
@@ -42,6 +43,7 @@ export default function TextFieldContainer({ number, gameData }) {
         {...(type || { disabled: true })}
         className={styles.marginBot}
         field="input"
+        accept={type.type === 'Image' ? 'image/*' : 'video/*'}
         setState={handleSetValues}
         placeholder={
           type.type ? `Choose Game's Banner ${type.type}'s thumbnail` : 'Select Content Type First'

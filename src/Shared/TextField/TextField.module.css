@@ -4,18 +4,25 @@
   background-color: rgba(255, 255, 255, 0.05);
   height: 100%;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 .label {
   width: 100%;
   position: absolute;
-  top: 28px;
-  translate: 0 -50%;
   left: 0px;
   padding: 0 10px;
   pointer-events: none;
   color: rgb(173, 173, 173);
-  transition: top 0.2s ease, font-size 0.2s ease, translate 0.2s ease, color 0.2s ease;
+  transition: top 200ms ease, font-size 0.2s ease, translate 200ms ease, color 0.2s ease;
+}
+.inputLabel {
+  top: 50%;
+  translate: 0 -50%;
+}
+.textareaLabel {
+  top: 20px;
 }
 .field {
   width: 100%;

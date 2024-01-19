@@ -101,14 +101,14 @@ function FilterSwitch({ state, setState, name, event }) {
             style={
               circlePosition.transition
                 ? {
-                    backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
-                      (circlePosition.translate / 100) * 150
+                    backgroundColor: `rgb(${(circlePosition.translate / 100) * 255}, ${
+                      (circlePosition.translate / 100) * 100
                     }, 0)`,
                     transition: 'translate linear 100ms',
                   }
                 : {
-                    backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
-                      (circlePosition.translate / 100) * 150
+                    backgroundColor: `rgb(${(circlePosition.translate / 100) * 255}, ${
+                      (circlePosition.translate / 100) * 100
                     }, 0)`,
                   }
             }

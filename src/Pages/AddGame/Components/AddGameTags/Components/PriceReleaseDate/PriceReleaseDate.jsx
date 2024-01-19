@@ -20,12 +20,12 @@ export default function PriceReleaseDate({ gameData }) {
   return (
     <div className={styles.priceReleaseDateContainer}>
       <div className={styles.priceContainer}>
-        <label htmlFor="price">Price</label>
+        <label htmlFor="price">Price $</label>
         <div className={styles.inputContainer}>
           <input
             onBlur={handleSetValue}
             name="price"
-            placeholder="$"
+            placeholder="0.00"
             value={price}
             onChange={e => setPrice(e.target.value)}
             type="number"

@@ -49,9 +49,11 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
         >
           {placeholder || 'Browse'}
         </div>
-        <div className={styles.uploadImage}>
-          <img src="/assets/images/upload.png" alt="upload" />
-        </div>
+        {disabled || (
+          <div className={styles.uploadImage}>
+            <img src="/assets/images/upload.png" alt="upload" />
+          </div>
+        )}
         <div
           className={
             selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName
