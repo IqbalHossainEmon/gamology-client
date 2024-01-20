@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './TextField.module.css';
 
 export default function TextField({
@@ -8,23 +9,28 @@ export default function TextField({
   htmlFor = 0,
   autoComplete,
   setState,
+  errorMessage,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
 
-  switch (field) {
-    case 'input':
-      return (
-        <div className={[styles.container, className].join(' ')}>
-          <label
-            className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label} ${
-              styles.inputLabel
-            }`}
-            htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-          >
-            {placeholder}
-          </label>
+  return (
+    <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}>
+      <div
+        className={`${errorMessage ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${
+          styles.container
+        }`}
+      >
+        <label
+          className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label} ${
+            field === 'input' ? styles.inputLabel : styles.textareaLabel
+          }`}
+          htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+        >
+          {placeholder}
+        </label>
+        {field === 'input' ? (
           <input
             autoComplete={autoComplete ? 'on' : 'off'}
             onFocus={() => setFocused(true)}
@@ -38,19 +44,7 @@ export default function TextField({
             className={[styles.input, styles.field].join(' ')}
             {...rest}
           />
-        </div>
-      );
-    default:
-      return (
-        <div className={[styles.container, className].join(' ')}>
-          <label
-            className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label} ${
-              styles.textareaLabel
-            }`}
-            htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-          >
-            {placeholder}
-          </label>
+        ) : (
           <textarea
             onFocus={() => setFocused(true)}
             value={value}
@@ -64,7 +58,9 @@ export default function TextField({
             rows={10}
             {...rest}
           />
-        </div>
-      );
-  }
+        )}
+      </div>
+      <ErrorMessage errorMessage={errorMessage} />
+    </div>
+  );
 }

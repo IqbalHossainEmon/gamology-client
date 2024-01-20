@@ -21,6 +21,7 @@ const AddGameDescriptions = ({ gameData }) => {
           placeholder="Add some sort description..."
           htmlFor="sort_description"
           name="sortDesc"
+          errorMessage="Sort description is required"
         />
       </div>
       <div>

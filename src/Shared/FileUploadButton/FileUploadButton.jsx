@@ -1,7 +1,16 @@
 import { useRef, useState } from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
 
-const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled }) => {
+const FileUploadButton = ({
+  placeholder,
+  accept,
+  className,
+  setState,
+  name,
+  disabled,
+  errorMessage,
+}) => {
   const [selected, setSelected] = useState({ selected: false, name: 'browse' });
   const inputRef = useRef(null);
 
@@ -28,7 +37,7 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
   };
 
   return (
-    <>
+    <div className={styles.fileUploadContainer}>
       <input
         {...(disabled && { disabled })}
         ref={inputRef}
@@ -41,7 +50,9 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
       <button
         {...(disabled && { disabled })}
         onClick={handleClick}
-        className={[styles.fileUploadButton, className].join(' ')}
+        className={`${errorMessage ? `${styles.errorBorder} ` : ''}${
+          className ? `${className} ` : ''
+        }${styles.fileUploadButton}`}
         type="button"
       >
         <div
@@ -62,7 +73,8 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
           {selected.name}
         </div>
       </button>
-    </>
+      <ErrorMessage errorMessage={errorMessage} />
+    </div>
   );
 };
 export default FileUploadButton;
