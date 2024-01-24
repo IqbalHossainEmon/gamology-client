@@ -33,6 +33,9 @@ export default function SelectionField({
         if (!show) {
           showMenu(true);
           setShow(true);
+        } else {
+          showMenu(false);
+          setShow(false);
         }
       }}
     >

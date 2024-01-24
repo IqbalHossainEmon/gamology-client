@@ -1,3 +1,4 @@
+import ErrorMessage from '../../../../../Shared/ErrorMessage/ErrorMessage';
 import OptionsContainer from '../Components/OptionsContainer/OptionsContainer';
 import PriceReleaseDate from '../Components/PriceReleaseDate/PriceReleaseDate';
 import styles from './AddGameTags.module.css';
@@ -69,6 +70,7 @@ export default function AddGameTags({ gameData }) {
           />
         </div>
       </div>
+      <ErrorMessage errorMessage="Required at least one tag" />
       <div>
         <PriceReleaseDate gameData={gameData} />
       </div>

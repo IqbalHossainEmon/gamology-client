@@ -6,20 +6,23 @@
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
 }
 .label {
   position: absolute;
-  top: 50%;
-  translate: 0 -50%;
   left: 10px;
+  top: 0;
+  scale: 1;
+  translate: 0 18px;
+  transform-origin: 0 0;
   pointer-events: none;
   color: rgb(173, 173, 173);
-  transition: top 0.2s ease, font-size 0.2s ease, translate 0.2s ease, color 0.2s ease;
+  transition: scale 200ms cubic-bezier(0, 0, 0.2, 1), translate 200ms cubic-bezier(0, 0, 0.2, 1),
+    color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 .field {
   width: 100%;
   outline: none;
-  font-size: medium;
   background: transparent;
   padding: 25px 10px 15px 10px;
   color: rgb(173, 173, 173);
@@ -27,9 +30,8 @@
 }
 
 .focused {
-  top: 0%;
   translate: 0 5px;
-  font-size: 12px;
+  scale: 0.75;
   color: rgb(140, 140, 140);
 }
 
@@ -79,7 +81,7 @@
   background-color: rgb(196, 196, 196);
 }
 
-.item button::after {
+.item button::after :not(:last-child) {
   content: ' ';
   position: absolute;
   width: 100%;

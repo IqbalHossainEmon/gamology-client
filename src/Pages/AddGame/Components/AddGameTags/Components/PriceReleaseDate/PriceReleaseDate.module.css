@@ -1,13 +1,16 @@
 .priceReleaseDateContainer {
   display: flex;
+  flex-wrap: wrap;
 }
 .priceContainer,
 .releaseContainer {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   position: relative;
   height: 100%;
   border-radius: 4px;
+  max-width: 251px;
 }
 
 .releaseContainer label {
@@ -81,9 +84,6 @@
     margin-right: 10px;
   }
 
-  .releaseContainer input {
-    width: 35px;
-  }
   .releaseContainer input:last-child {
     width: 50px;
   }

@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import ButtonForAddGameSection from '../../../ButtonForAddGameSection/ButtonForAddGameSection';
 import SectionFieldContainer from '../SectionFieldContainer/SectionFieldContainer';
@@ -85,6 +86,7 @@ export default function AddGameSpecification({ state, gameData }) {
           </div>
         </div>
       </div>
+      <ErrorMessage errorMessage={"There's a problem with the specifications"} />
     </div>
   );
 }

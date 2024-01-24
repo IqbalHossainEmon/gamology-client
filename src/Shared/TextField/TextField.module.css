@@ -8,8 +8,9 @@
   background-color: rgba(255, 255, 255, 0.05);
   border: 2px solid transparent;
   border-radius: 4px;
+  font-size: 1rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   transition: border 0.2s ease;
   overflow: hidden;
 }
@@ -17,28 +18,22 @@
   border: 2px solid #cc2a24;
 }
 .label {
-  width: 100%;
   position: absolute;
-  left: 0px;
-  padding: 0 10px;
-  font-weight: 400;
   pointer-events: none;
   color: rgb(173, 173, 173);
   user-select: none;
-  transition: top 200ms ease, font-size 0.2s ease, translate 200ms ease, color 0.2s ease,
-    font-weight 0.2s ease;
+  left: 10px;
+  top: 0;
+  scale: 1;
+  translate: 0 18px;
+  transform-origin: 0 0;
+  transition: scale 200ms cubic-bezier(0, 0, 0.2, 1), translate 200ms cubic-bezier(0, 0, 0.2, 1),
+    color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
-.inputLabel {
-  top: 50%;
-  translate: 0 -50%;
-}
-.textareaLabel {
-  top: 20px;
-}
+
 .field {
   width: 100%;
   outline: none;
-  font-size: medium;
   background: transparent;
   padding: 25px 10px 15px 10px;
   color: rgb(173, 173, 173);
@@ -47,10 +42,8 @@
 }
 
 .focused {
-  top: 0%;
   translate: 0 5px;
-  font-weight: 600;
-  font-size: 12px;
+  scale: 0.75;
   color: rgb(140, 140, 140);
 }
 

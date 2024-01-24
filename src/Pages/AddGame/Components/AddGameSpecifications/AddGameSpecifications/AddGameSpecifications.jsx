@@ -3,6 +3,8 @@ import AddGameSpecification from '../Components/AddGameSpecification/AddGameSpec
 import AddGameSpecificationLanguagesSupported from '../Components/AddGameSpecificationLanguagesSupported/AddGameSpecificationLanguagesSupported';
 import styles from './AddGameSpecifications.module.css';
 
+const specs = ['Windows', 'MacOs', 'Linux'];
+
 export default function AddGameSpecifications({ gameData }) {
   const handleValue = (value, name) => {
     gameData.current.gameSpecifications[name] = value;
@@ -12,15 +14,11 @@ export default function AddGameSpecifications({ gameData }) {
     <div className={styles.addGameSpecifications}>
       <h3 className={styles.header}>Add Game&#39;s System Requirement</h3>
       <div className={styles.specsContainer}>
-        <div className={styles.specs}>
-          <AddGameSpecification gameData={gameData} state={{ name: 'Windows' }} />
-        </div>
-        <div className={styles.specs}>
-          <AddGameSpecification gameData={gameData} state={{ name: 'MacOs' }} />
-        </div>
-        <div className={styles.specs}>
-          <AddGameSpecification gameData={gameData} state={{ name: 'Linux' }} />
-        </div>
+        {specs.map(spec => (
+          <div key={spec} className={styles.specs}>
+            <AddGameSpecification gameData={gameData} state={{ name: spec }} />
+          </div>
+        ))}
       </div>
       <div>
         <AddGameSpecificationLanguagesSupported handleValue={handleValue} />

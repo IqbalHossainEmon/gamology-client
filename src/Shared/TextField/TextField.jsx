@@ -23,9 +23,7 @@ export default function TextField({
         }`}
       >
         <label
-          className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label} ${
-            field === 'input' ? styles.inputLabel : styles.textareaLabel
-          }`}
+          className={`${focused || value.length ? `${styles.focused} ` : ''}${styles.label}`}
           htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         >
           {placeholder}

@@ -59,20 +59,21 @@
 .label {
   width: 100%;
   position: absolute;
-  top: 28px;
-  translate: 0 -50%;
-  left: 0px;
-  padding: 0 10px;
-  font-size: medium;
+  left: 10px;
+  top: 0;
+  scale: 1;
+  translate: 0 18px;
+  transform-origin: 0 0;
+  font-size: 1rem;
   pointer-events: none;
   color: rgb(173, 173, 173);
-  transition: top 0.2s ease, font-size 0.2s ease, translate 0.2s ease, color 0.2s ease;
+  transition: scale 200ms cubic-bezier(0, 0, 0.2, 1), translate 200ms cubic-bezier(0, 0, 0.2, 1),
+    color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .focused {
-  top: 0%;
   translate: 0 5px;
-  font-size: 12px;
+  scale: 0.75;
   color: rgb(140, 140, 140);
 }
 
