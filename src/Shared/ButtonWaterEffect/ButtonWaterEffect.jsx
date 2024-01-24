@@ -10,7 +10,7 @@ const ButtonWaterEffect = ({ btnRef, backGround }) => {
 
   const removeWaterDrop = useCallback(() => {
     setTimeout(() => {
-      setEle(ele => ele.slice(1));
+      setEle(e => e.slice(1));
     }, 1800);
   }, []);
 
@@ -18,8 +18,8 @@ const ButtonWaterEffect = ({ btnRef, backGround }) => {
     if (check.current) {
       check.current = false;
       btnRef.current.addEventListener('click', e => {
-        const x = e.clientX - btnRef.current.offsetLeft;
-        const y = e.clientY - btnRef.current.offsetTop;
+        const x = e.pageX - btnRef.current.offsetLeft;
+        const y = e.pageY - btnRef.current.offsetTop;
         const width = btnRef.current.offsetWidth;
         const height = btnRef.current.offsetHeight;
         const halfWidth = width / 2;
@@ -28,17 +28,17 @@ const ButtonWaterEffect = ({ btnRef, backGround }) => {
         let length;
 
         if (x <= halfWidth && y <= halfHeight) {
-          length = Math.sqrt(Math.pow(width - x, 2) + Math.pow(height - y, 2));
+          length = Math.sqrt((width - x) ** 2 + (height - y) ** 2);
         } else if (x > halfWidth && y < halfHeight) {
-          length = Math.sqrt(Math.pow(x, 2) + Math.pow(height - y, 2));
+          length = Math.sqrt(x ** 2 + (height - y) ** 2);
         } else if (x < halfWidth && y > halfHeight) {
-          length = Math.sqrt(Math.pow(width - x, 2) + Math.pow(y, 2));
+          length = Math.sqrt((width - x) ** 2 + y ** 2);
         } else {
-          length = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+          length = Math.sqrt(x ** 2 + y ** 2);
         }
 
-        setEle(ele => [
-          ...ele,
+        setEle(el => [
+          ...el,
           <span
             key={key.current++}
             className={styles.waterDrop}
@@ -58,7 +58,7 @@ const ButtonWaterEffect = ({ btnRef, backGround }) => {
 
   return (
     <span className={styles.btnWaterEffect}>
-      <span></span>
+      <span />
       {ele}
     </span>
   );

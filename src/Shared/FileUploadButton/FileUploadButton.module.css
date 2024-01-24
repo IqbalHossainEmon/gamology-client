@@ -26,13 +26,6 @@
   cursor: default;
 }
 
-.fileUploadButton:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.fileUploadButton:hover:disabled {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
 .fileName {
   opacity: 0;
   font-size: medium;
@@ -67,7 +60,9 @@
   font-size: 1rem;
   pointer-events: none;
   color: rgb(173, 173, 173);
-  transition: scale 200ms cubic-bezier(0, 0, 0.2, 1), translate 200ms cubic-bezier(0, 0, 0.2, 1),
+  transition:
+    scale 200ms cubic-bezier(0, 0, 0.2, 1),
+    translate 200ms cubic-bezier(0, 0, 0.2, 1),
     color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 

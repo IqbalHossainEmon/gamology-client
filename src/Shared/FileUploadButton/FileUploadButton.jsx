@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
 
@@ -13,6 +14,7 @@ const FileUploadButton = ({
 }) => {
   const [selected, setSelected] = useState({ selected: false, name: 'browse' });
   const inputRef = useRef(null);
+  const btnRef = useRef(null);
 
   const handleClick = () => {
     inputRef.current.click();
@@ -48,6 +50,7 @@ const FileUploadButton = ({
         className={styles.fileUploadField}
       />
       <button
+        ref={btnRef}
         {...(disabled && { disabled })}
         onClick={handleClick}
         className={`${errorMessage ? `${styles.errorBorder} ` : ''}${
@@ -72,6 +75,7 @@ const FileUploadButton = ({
         >
           {selected.name}
         </div>
+        <ButtonWaterEffect btnRef={btnRef} />
       </button>
       <ErrorMessage errorMessage={errorMessage} />
     </div>

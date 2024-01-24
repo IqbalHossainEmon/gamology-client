@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
+import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../RotateArrow/RotateArrow';
 import styles from './SelectionField.module.css';
 
@@ -71,6 +72,7 @@ export default function SelectionField({
       <div className={styles.rotateArrow}>
         <RotateArrow state={show} />
       </div>
+      <ButtonWaterEffect btnRef={elementRef} />
     </div>
   );
 }

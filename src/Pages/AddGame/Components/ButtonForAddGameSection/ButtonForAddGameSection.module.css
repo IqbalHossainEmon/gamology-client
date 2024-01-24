@@ -10,28 +10,14 @@
   align-items: center;
   border: none;
   cursor: pointer;
-  transition: color 200ms, background-color 200ms;
+  position: relative;
 }
 
 .btn:disabled {
   cursor: default;
   background-color: rgba(255, 255, 255, 0.02);
-  color: rgba(173, 173, 173, 0.164);
-  transition: color 0, background-color 0;
 }
 
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: rgb(201, 201, 201);
-}
-.btn:hover:disabled {
-  background-color: rgba(255, 255, 255, 0.02);
-  color: rgba(173, 173, 173, 0.164);
-}
-
-.btn:active {
-  background-color: rgba(255, 255, 255, 0.05);
-}
 @media screen and (max-width: 768px) {
   .btn {
     font-size: 12px;
