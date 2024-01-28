@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
-
 import useDragStartStop from '../../../../../../Hooks/useDragStartStop';
+import useGetCoords from '../../../../../../Hooks/useGetCoords';
 import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import styles from './VideoSlider.module.css';
 
@@ -18,11 +18,12 @@ export default function VideoSlider({
   stateRef.current = position;
   const pathRef = useRef(null);
   const screenWidth = useScreenWidth();
+  const getCoords = useGetCoords();
 
   const handleResize = useCallback(() => {
     pathRef.width = pathRef.current?.offsetWidth;
-    pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
-  }, []);
+    pathRef.offsetLeft = getCoords(pathRef.current).left;
+  }, [getCoords]);
 
   useEffect(() => {
     handleResize();

@@ -25,34 +25,39 @@ export default function SelectionField({
   }, [setElement]);
 
   return (
-    <div
-      ref={elementRef}
-      className={[styles.container, className].join(' ')}
-      role="button"
-      tabIndex={0}
-      onClick={() => {
-        if (!show) {
-          showMenu(true);
-          setShow(true);
-        } else {
-          showMenu(false);
-          setShow(false);
-        }
-      }}
-    >
-      <label
-        className={value.length || show ? [styles.focused, styles.label].join(' ') : styles.label}
-        htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+    <div className={styles.container}>
+      <button
+        type="button"
+        ref={elementRef}
+        className={`${show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
+        onClick={() => {
+          if (!show) {
+            showMenu(true);
+            setShow(true);
+          } else {
+            showMenu(false);
+            setShow(false);
+          }
+        }}
       >
-        {placeholder}
-      </label>
-      <input
-        value={value}
-        readOnly
-        id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-        className={[styles.input, styles.field].join(' ')}
-        {...rest}
-      />
+        <label
+          className={value.length || show ? [styles.focused, styles.label].join(' ') : styles.label}
+          htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+        >
+          {placeholder}
+        </label>
+        <input
+          value={value}
+          readOnly
+          id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+          className={[styles.input, styles.field].join(' ')}
+          {...rest}
+        />
+        <div className={styles.rotateArrow}>
+          <RotateArrow state={show} />
+        </div>
+        <ButtonWaterEffect btnRef={elementRef} />
+      </button>
       <ul className={show ? [styles.list, styles.show].join(' ') : styles.list}>
         {list.map(item => (
           <li className={styles.item} key={item}>
@@ -69,10 +74,6 @@ export default function SelectionField({
           </li>
         ))}
       </ul>
-      <div className={styles.rotateArrow}>
-        <RotateArrow state={show} />
-      </div>
-      <ButtonWaterEffect btnRef={elementRef} />
     </div>
   );
 }

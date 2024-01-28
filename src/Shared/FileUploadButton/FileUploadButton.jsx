@@ -75,7 +75,7 @@ const FileUploadButton = ({
         >
           {selected.name}
         </div>
-        <ButtonWaterEffect btnRef={btnRef} />
+        <ButtonWaterEffect btnRef={btnRef} long />
       </button>
       <ErrorMessage errorMessage={errorMessage} />
     </div>

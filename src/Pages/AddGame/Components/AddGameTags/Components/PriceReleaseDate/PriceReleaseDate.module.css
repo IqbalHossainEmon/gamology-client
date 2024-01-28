@@ -10,7 +10,7 @@
   position: relative;
   height: 100%;
   border-radius: 4px;
-  max-width: 251px;
+  max-width: 500px;
 }
 
 .releaseContainer label {
@@ -21,6 +21,9 @@
 }
 .releaseContainer {
   margin-left: 30px;
+}
+.releaseDay {
+  position: relative;
 }
 .inputContainer {
   background-color: rgba(255, 255, 255, 0.05);
@@ -36,8 +39,7 @@
   -webkit-appearance: none;
   margin: 0;
 }
-.priceContainer input,
-.releaseContainer input {
+.priceContainer input {
   border: none;
   outline: none;
   background-color: transparent;
@@ -49,11 +51,7 @@
   color: rgb(173, 173, 173);
 }
 .releaseContainer input {
-  width: 50px;
-  text-align: center;
-}
-.releaseContainer input:last-child {
-  width: 70px;
+  width: 300px;
 }
 
 @media screen and (max-width: 768px) and (min-width: 273px) {

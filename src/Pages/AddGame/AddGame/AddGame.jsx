@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import AddGameBanner from '../Components/AddGameBanner/AddGameBanner/AddGameBanner';
 import AddGameDescriptions from '../Components/AddGameDescriptions/AddGameDescriptions/AddGameDescriptions';
 import AddGameDetails from '../Components/AddGameDetails/AddGameDetails';
@@ -15,9 +15,20 @@ export default function AddGame() {
     gameSpecifications: { spec: [] },
     gameTags: { genre: {}, features: {} },
   });
+  const [customError, setCustomError] = useState({
+    gameDetails: {},
+    gameBanner: [],
+    gameDescriptions: {},
+    gameSpecifications: {},
+    gameTags: {},
+  });
+
+  const checkValidation = () => {
+    console.log('checking...');
+  };
 
   const handleSubmit = () => {
-    console.log(gameData.current);
+    checkValidation();
   };
 
   return (

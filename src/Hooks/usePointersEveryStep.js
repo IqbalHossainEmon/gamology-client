@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+import useGetCoords from './useGetCoords';
 import useScreenWidth from './useScreenWidth';
 
 export default function usePointersEveryStep(rangePathRef, everyStep) {
@@ -6,11 +7,12 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
 
   const pathInfoRef = useRef();
   const screenWidth = useScreenWidth();
+  const getCoords = useGetCoords();
 
   useEffect(() => {
     pathInfoRef.width = rangePathRef.current.offsetWidth;
-    pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
-  }, [rangePathRef, screenWidth]);
+    pathInfoRef.offsetLeft = getCoords(rangePathRef.current).left;
+  }, [getCoords, rangePathRef, screenWidth]);
 
   return useCallback(
     e => {

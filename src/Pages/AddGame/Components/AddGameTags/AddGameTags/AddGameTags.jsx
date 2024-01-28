@@ -70,10 +70,9 @@ export default function AddGameTags({ gameData }) {
           />
         </div>
       </div>
-      <ErrorMessage errorMessage="Required at least one tag" />
-      <div>
-        <PriceReleaseDate gameData={gameData} />
-      </div>
+      <ErrorMessage errorMessage="" />
+
+      <PriceReleaseDate gameData={gameData} />
     </section>
   );
 }

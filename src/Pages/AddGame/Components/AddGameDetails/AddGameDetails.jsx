@@ -16,7 +16,6 @@ export default function AddGameDetails({ gameData }) {
         name="name"
         placeholder="Game's Name"
         autoComplete
-        errorMessage="Game name is required"
       />
 
       <div className={styles.flexContainer}>
@@ -25,7 +24,6 @@ export default function AddGameDetails({ gameData }) {
           field="input"
           name="developer"
           placeholder="Developer"
-          errorMessage="Developer is required"
         />
         <TextField
           setState={handleSetValue}
@@ -41,7 +39,6 @@ export default function AddGameDetails({ gameData }) {
           name="logo"
           accept="image/*"
           placeholder="Choose cover image"
-          errorMessage={"Game's logo is required"}
         />
         <FileUploadButton
           className={styles.marginRight}

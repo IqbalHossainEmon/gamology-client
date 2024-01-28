@@ -17,6 +17,9 @@
 .error {
   border: 2px solid #cc2a24;
 }
+#errorColor {
+  color: #cc2a24 !important;
+}
 .label {
   position: absolute;
   pointer-events: none;
@@ -27,7 +30,9 @@
   scale: 1;
   translate: 0 18px;
   transform-origin: 0 0;
-  transition: scale 200ms cubic-bezier(0, 0, 0.2, 1), translate 200ms cubic-bezier(0, 0, 0.2, 1),
+  transition:
+    scale 200ms cubic-bezier(0, 0, 0.2, 1),
+    translate 200ms cubic-bezier(0, 0, 0.2, 1),
     color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -41,10 +46,15 @@
   user-select: none;
 }
 
+.textFilled {
+  translate: 0 5px;
+  scale: 0.75;
+  color: rgb(173, 173, 173);
+}
 .focused {
   translate: 0 5px;
   scale: 0.75;
-  color: rgb(140, 140, 140);
+  color: rgb(7, 115, 255);
 }
 
 .focusBorder {
