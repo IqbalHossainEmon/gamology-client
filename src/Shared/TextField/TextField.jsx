@@ -23,7 +23,7 @@ export default function TextField({
         }`}
       >
         <label
-          className={`${focused ? `${styles.focused} ` : value.length ? `${styles.textFilled} ` : ''}${styles.label}`}
+          className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
           {...(errorMessage && { id: styles.errorColor })}
           htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         >

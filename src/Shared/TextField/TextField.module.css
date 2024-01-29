@@ -27,8 +27,7 @@
   user-select: none;
   left: 10px;
   top: 0;
-  scale: 1;
-  translate: 0 18px;
+  translate: 0 20px;
   transform-origin: 0 0;
   transition:
     scale 200ms cubic-bezier(0, 0, 0.2, 1),
@@ -39,6 +38,7 @@
 .field {
   width: 100%;
   outline: none;
+  font-size: 1rem;
   background: transparent;
   padding: 25px 10px 15px 10px;
   color: rgb(173, 173, 173);
@@ -48,13 +48,13 @@
 
 .textFilled {
   translate: 0 5px;
-  scale: 0.75;
+  scale: 0.7;
   color: rgb(173, 173, 173);
 }
 .focused {
   translate: 0 5px;
-  scale: 0.75;
-  color: rgb(7, 115, 255);
+  scale: 0.7;
+  color: rgb(2, 99, 224);
 }
 
 .focusBorder {

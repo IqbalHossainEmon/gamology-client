@@ -1,32 +1,51 @@
-.priceReleaseDateContainer {
+.priceReleaseDateContainer,
+.priceContainer {
   display: flex;
   flex-wrap: wrap;
-}
-.priceContainer,
-.releaseContainer {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  position: relative;
-  height: 100%;
-  border-radius: 4px;
-  max-width: 500px;
 }
 
-.releaseContainer label {
-  margin-right: 10px;
+.releaseContainer,
+.priceContainer {
+  position: relative;
+  height: 100%;
 }
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+}
+
 .priceContainer label {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .releaseContainer {
   margin-left: 30px;
+  width: fit-content;
+}
+.releaseComponent:not(:last-child) {
+  margin-right: 10px;
+}
+.releaseDateWidthText {
+  display: flex;
+  align-items: center;
+}
+.releaseDate {
+  display: flex;
+  margin-left: 10px;
+  width: 100%;
 }
 .releaseDay {
-  position: relative;
+  width: 100px;
+}
+.releaseMonth {
+  width: 150px;
+}
+.releaseYear {
+  width: 100px;
 }
 .inputContainer {
   background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px 10px;
 }
 .priceContainer input {
   width: 100px;
@@ -47,20 +66,31 @@
   outline: none;
   font-size: medium;
   background: transparent;
-  padding: 10px;
   color: rgb(173, 173, 173);
 }
-.releaseContainer input {
-  width: 300px;
-}
 
-@media screen and (max-width: 768px) and (min-width: 273px) {
+@media screen and (max-width: 612px) {
   .priceReleaseDateContainer {
     display: block;
+  }
+  .releaseContainer,
+  .releaseDate,
+  .releaseDateWidthText {
+    align-items: start;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .releaseComponent {
+    margin-top: 10px;
+    margin-right: 0px;
   }
   .releaseContainer {
     margin-left: 0;
     margin-top: 20px;
+  }
+  .releaseDate {
+    margin: 0;
   }
 }
 

@@ -1,8 +1,8 @@
 .container {
   position: relative;
+  width: 100%;
 }
 .button {
-  position: relative;
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.05);
@@ -22,33 +22,40 @@
   pointer-events: none;
   color: rgb(173, 173, 173);
   transition:
-    top 200ms cubic-bezier(0, 0, 0.2, 1),
     scale 200ms cubic-bezier(0, 0, 0.2, 1),
     translate 200ms cubic-bezier(0, 0, 0.2, 1),
     color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
+#selected,
+#selected button {
+  opacity: 0.5;
+  cursor: default;
+}
 .field {
   width: 100%;
   outline: none;
+  font-size: 1rem;
   background: transparent;
   padding: 25px 10px 15px 10px;
   color: rgb(173, 173, 173);
   border: none;
+  pointer-events: none;
 }
 
 .focused {
-  top: 0%;
-  translate: 0 5px;
-  scale: 0.75;
+  translate: 0 -25px;
+  scale: 0.7;
+  color: rgb(2, 99, 224);
+}
+.textFilled {
+  translate: 0 -25px;
+  scale: 0.7;
   color: rgb(140, 140, 140);
 }
 .focusBorder {
   border: 2px solid rgba(1, 81, 185, 0.733);
 }
 
-.input {
-  pointer-events: none;
-}
 .list {
   position: absolute;
   width: 100%;
@@ -62,6 +69,31 @@
   pointer-events: none;
   transition: opacity 200ms;
   z-index: 1;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: rgb(37, 37, 37);
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #474747;
+  border-radius: 5px;
+  opacity: 0;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: rgb(82, 82, 82);
+  opacity: 0;
+}
+
+.list::-webkit-scrollbar-thumb:active {
+  background: rgb(114, 114, 114);
 }
 
 .show {
@@ -72,6 +104,7 @@
 .item {
   position: relative;
 }
+
 .item button {
   width: 100%;
   margin-top: 5px;
@@ -82,7 +115,8 @@
   background-color: transparent;
   color: rgb(140, 140, 140);
   border: none;
-  text-align: left;
+  font-size: 1rem;
+  text-align: center;
   transition: color 200ms;
 }
 .item button:hover button {
@@ -92,12 +126,12 @@
   background-color: rgb(196, 196, 196);
 }
 
-.item button::after :not(:last-child) {
+.item:not(:last-child)::after {
   content: ' ';
   position: absolute;
   width: 100%;
   height: 1px;
-  background-color: rgb(133, 133, 133);
+  background-color: rgba(255, 255, 255, 0.3);
   left: 0;
   bottom: 0;
   transition: background-color 200ms;

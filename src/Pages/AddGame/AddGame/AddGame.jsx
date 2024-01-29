@@ -25,6 +25,7 @@ export default function AddGame() {
 
   const checkValidation = () => {
     console.log('checking...');
+    console.log(gameData.current);
   };
 
   const handleSubmit = () => {

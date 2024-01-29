@@ -46,6 +46,7 @@ export default function AddGameDetails({ gameData }) {
           accept="image/*"
           name="phoneLogo"
           placeholder="Choose portrait cover image"
+          // errorMessage={"This image's ratio is not 9:16"}
         />
       </div>
     </section>

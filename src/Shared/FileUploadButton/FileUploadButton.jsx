@@ -39,7 +39,7 @@ const FileUploadButton = ({
   };
 
   return (
-    <div className={styles.fileUploadContainer}>
+    <div className={`${className ? `${className} ` : ''}${styles.fileUploadContainer}`}>
       <input
         {...(disabled && { disabled })}
         ref={inputRef}
@@ -53,9 +53,7 @@ const FileUploadButton = ({
         ref={btnRef}
         {...(disabled && { disabled })}
         onClick={handleClick}
-        className={`${errorMessage ? `${styles.errorBorder} ` : ''}${
-          className ? `${className} ` : ''
-        }${styles.fileUploadButton}`}
+        className={`${errorMessage ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
         type="button"
       >
         <div

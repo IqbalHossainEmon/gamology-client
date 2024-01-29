@@ -1,6 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useGetCoords from '../../Hooks/useGetCoords';
-import useScreenWidth from '../../Hooks/useScreenWidth';
 import styles from './ButtonWaterEffect.module.css';
 
 const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
@@ -9,34 +7,30 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
   eleRef.current = ele;
   const check = useRef(true);
   const key = useRef(0);
-  const getCoords = useGetCoords();
-  const screenWidth = useScreenWidth();
 
   const removeWaterDrop = useCallback(() => {
     setTimeout(
       () => {
         setEle(e => e.slice(1));
       },
-      long ? 1550 : 750
+      long ? 1550 : 7500
     );
   }, [long]);
-
-  useEffect(() => {
-    eleRef.left = getCoords(btnRef.current).left;
-    eleRef.top = getCoords(btnRef.current).top;
-  }, [screenWidth, getCoords, btnRef]);
 
   useEffect(() => {
     if (check.current) {
       check.current = false;
       btnRef.current.addEventListener('click', e => {
-        const x = e.pageX - eleRef.left;
-        const y = e.pageY - eleRef.top;
+        const x =
+          (e.touches ? e.touches[0].clientX : e.clientX) -
+          btnRef.current.getBoundingClientRect().left;
+        const y =
+          (e.touches ? e.touches[0].clientY : e.clientY) -
+          btnRef.current.getBoundingClientRect().top;
         const width = btnRef.current.offsetWidth;
         const height = btnRef.current.offsetHeight;
         const halfWidth = width / 2;
         const halfHeight = height / 2;
-        console.log(x, y, width, height, halfWidth, halfHeight);
 
         let length;
 
@@ -67,13 +61,8 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
         removeWaterDrop();
       });
     }
-  }, [backGround, btnRef, getCoords, long, removeWaterDrop]);
+  }, [backGround, btnRef, long, removeWaterDrop]);
 
-  return (
-    <span className={styles.btnWaterEffect}>
-      <span />
-      {ele}
-    </span>
-  );
+  return <span className={styles.btnWaterEffect}>{ele}</span>;
 };
 export default ButtonWaterEffect;

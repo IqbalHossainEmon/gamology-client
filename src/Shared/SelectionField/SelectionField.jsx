@@ -17,15 +17,16 @@ export default function SelectionField({
   const [show, setShow] = useState(false);
 
   const elementRef = useRef(null);
+  const containerRef = useRef(null);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
   useEffect(() => {
-    setElement(elementRef.current);
+    setElement(containerRef.current);
   }, [setElement]);
 
   return (
-    <div className={styles.container}>
+    <div ref={containerRef} className={styles.container}>
       <button
         type="button"
         ref={elementRef}
@@ -41,7 +42,7 @@ export default function SelectionField({
         }}
       >
         <label
-          className={value.length || show ? [styles.focused, styles.label].join(' ') : styles.label}
+          className={`${show ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
           htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         >
           {placeholder}
@@ -50,7 +51,7 @@ export default function SelectionField({
           value={value}
           readOnly
           id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-          className={[styles.input, styles.field].join(' ')}
+          className={styles.field}
           {...rest}
         />
         <div className={styles.rotateArrow}>
@@ -58,10 +59,11 @@ export default function SelectionField({
         </div>
         <ButtonWaterEffect btnRef={elementRef} />
       </button>
-      <ul className={show ? [styles.list, styles.show].join(' ') : styles.list}>
+      <ul className={`${show ? `${styles.show} ` : ''}${styles.list}`}>
         {list.map(item => (
-          <li className={styles.item} key={item}>
+          <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
             <button
+              {...(value === item && { disabled: true })}
               type="button"
               onClick={() => {
                 setShow(false);

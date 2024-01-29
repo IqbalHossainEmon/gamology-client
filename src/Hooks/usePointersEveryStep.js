@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef } from 'react';
-import useGetCoords from './useGetCoords';
 import useScreenWidth from './useScreenWidth';
 
 export default function usePointersEveryStep(rangePathRef, everyStep) {
@@ -7,16 +6,15 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
 
   const pathInfoRef = useRef();
   const screenWidth = useScreenWidth();
-  const getCoords = useGetCoords();
 
   useEffect(() => {
     pathInfoRef.width = rangePathRef.current.offsetWidth;
-    pathInfoRef.offsetLeft = getCoords(rangePathRef.current).left;
-  }, [getCoords, rangePathRef, screenWidth]);
+    pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
+  }, [rangePathRef, screenWidth]);
 
   return useCallback(
     e => {
-      const cursorInEle = (e?.touches ? e.touches[0].pageX : e.pageX) - pathInfoRef.offsetLeft;
+      const cursorInEle = (e?.touches ? e.touches[0].clientX : e.clientX) - pathInfoRef.offsetLeft;
 
       const cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
