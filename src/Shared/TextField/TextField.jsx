@@ -10,10 +10,12 @@ export default function TextField({
   autoComplete,
   setState,
   errorMessage,
+  error,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
+  const [errorShow, setErrorShow] = useState(false);
 
   return (
     <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}>

@@ -1,11 +1,16 @@
+import { useEffect } from 'react';
 import FileUploadButton from '../../../../Shared/FileUploadButton/FileUploadButton';
 import TextField from '../../../../Shared/TextField/TextField';
 import styles from './AddGameDetails.module.css';
 
-export default function AddGameDetails({ gameData }) {
+export default function AddGameDetails({ gameData, customError }) {
   const handleSetValue = (value, name) => {
     gameData.current.gameInfo[name] = value;
   };
+
+  useEffect(() => {
+    console.log(customError.current.name);
+  }, [customError, customError.current.name]);
 
   return (
     <section className={styles.gameDetails}>

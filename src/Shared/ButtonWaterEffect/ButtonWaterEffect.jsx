@@ -13,7 +13,7 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
       () => {
         setEle(e => e.slice(1));
       },
-      long ? 1550 : 7500
+      long ? 1550 : 750
     );
   }, [long]);
 
