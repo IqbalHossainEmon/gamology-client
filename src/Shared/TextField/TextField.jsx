@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './TextField.module.css';
 
@@ -10,29 +10,42 @@ export default function TextField({
   autoComplete,
   setState,
   errorMessage,
-  error,
+  errorChange,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
   const [errorShow, setErrorShow] = useState(false);
 
+  const fieldRef = useRef(null);
+
+  useEffect(() => {
+    if (errorChange && errorMessage) {
+      setErrorShow(true);
+      fieldRef.current.addEventListener('keydown', e => {
+        setErrorShow(false);
+        fieldRef.current.removeEventListener('keydown', e);
+      });
+    }
+  }, [errorChange, errorMessage]);
+
   return (
     <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}>
       <div
-        className={`${errorMessage ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${
+        className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${
           styles.container
         }`}
       >
         <label
           className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
-          {...(errorMessage && { id: styles.errorColor })}
+          {...(errorShow && { id: styles.errorColor })}
           htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         >
           {placeholder}
         </label>
         {field === 'input' ? (
           <input
+            ref={fieldRef}
             autoComplete={autoComplete ? 'on' : 'off'}
             onFocus={() => setFocused(true)}
             value={value}
@@ -47,6 +60,7 @@ export default function TextField({
           />
         ) : (
           <textarea
+            ref={fieldRef}
             onFocus={() => setFocused(true)}
             value={value}
             onChange={e => setValue(e.target.value)}
@@ -61,7 +75,7 @@ export default function TextField({
           />
         )}
       </div>
-      <ErrorMessage errorMessage={errorMessage} />
+      <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
     </div>
   );
 }

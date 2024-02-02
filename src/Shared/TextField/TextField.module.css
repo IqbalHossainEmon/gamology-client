@@ -48,12 +48,12 @@
 
 .textFilled {
   translate: 0 5px;
-  scale: 0.7;
+  scale: 0.8;
   color: rgb(173, 173, 173);
 }
 .focused {
   translate: 0 5px;
-  scale: 0.7;
+  scale: 0.8;
   color: rgb(2, 99, 224);
 }
 
@@ -77,6 +77,6 @@
     font-size: 12px;
   }
   .focused {
-    font-size: 10px;
+    scale: 0.8;
   }
 }

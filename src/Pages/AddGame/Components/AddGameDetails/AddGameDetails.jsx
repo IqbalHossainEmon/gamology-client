@@ -1,16 +1,11 @@
-import { useEffect } from 'react';
 import FileUploadButton from '../../../../Shared/FileUploadButton/FileUploadButton';
 import TextField from '../../../../Shared/TextField/TextField';
 import styles from './AddGameDetails.module.css';
 
-export default function AddGameDetails({ gameData, customError }) {
+export default function AddGameDetails({ gameData, errorChange, errorMessages }) {
   const handleSetValue = (value, name) => {
     gameData.current.gameInfo[name] = value;
   };
-
-  useEffect(() => {
-    console.log(customError.current.name);
-  }, [customError, customError.current.name]);
 
   return (
     <section className={styles.gameDetails}>
@@ -20,7 +15,8 @@ export default function AddGameDetails({ gameData, customError }) {
         field="input"
         name="name"
         placeholder="Game's Name"
-        autoComplete
+        errorChange={errorChange}
+        errorMessage={errorMessages.current.gameInfo.name}
       />
 
       <div className={styles.flexContainer}>
@@ -29,6 +25,8 @@ export default function AddGameDetails({ gameData, customError }) {
           field="input"
           name="developer"
           placeholder="Developer"
+          errorChange={errorChange}
+          errorMessage={errorMessages.current.gameInfo.name}
         />
         <TextField
           setState={handleSetValue}
@@ -36,6 +34,8 @@ export default function AddGameDetails({ gameData, customError }) {
           name="publisher"
           field="input"
           placeholder="Publisher"
+          errorChange={errorChange}
+          errorMessage={errorMessages.current.gameInfo.name}
         />
       </div>
       <div className={styles.flexContainer}>

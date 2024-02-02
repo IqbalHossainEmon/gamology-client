@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
 import styles from './ErrorMessage.module.css';
 
-const ErrorMessage = ({ errorMessage }) => {
+const ErrorMessage = ({ errorMessage, enable }) => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    if (errorMessage) {
+    if (enable) {
       setShow(true);
     } else {
       setTimeout(() => {
         setShow(false);
       }, 250);
     }
-  }, [errorMessage]);
+  }, [enable]);
 
   return show ? (
-    <div
-      className={`${styles.ErrorMessageContainer}`}
-      id={`${errorMessage ? styles.show : styles.hide}`}
-    >
+    <div className={`${styles.ErrorMessageContainer}`} id={`${enable ? styles.show : styles.hide}`}>
       <div className={styles.ErrorMessage}>
         <p>{errorMessage || 'There is a problem'}</p>
         <div className={styles.info}>

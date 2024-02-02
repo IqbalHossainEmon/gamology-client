@@ -70,7 +70,7 @@ export default function AddGameTags({ gameData }) {
           />
         </div>
       </div>
-      <ErrorMessage errorMessage="" />
+      <ErrorMessage errorMessage="Add game tags" />
 
       <PriceReleaseDate gameData={gameData} />
     </section>

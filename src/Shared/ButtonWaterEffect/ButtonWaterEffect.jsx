@@ -44,6 +44,8 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
           length = Math.sqrt(x ** 2 + y ** 2);
         }
 
+        if (eleRef.current.length === 0) key.current = 0;
+
         setEle(el => [
           ...el,
           <span
