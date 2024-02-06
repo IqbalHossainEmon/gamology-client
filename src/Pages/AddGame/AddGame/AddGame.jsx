@@ -9,8 +9,15 @@ import styles from './AddGame.module.css';
 
 export default function AddGame() {
   const gameData = useRef({
-    gameInfo: {},
-    gameBanner: [],
+    gameInfo: {
+      name: '',
+      developer: '',
+      publisher: '',
+      logo: {},
+      phoneLogo: {},
+      releaseDate: { day: '', month: '', year: '' },
+    },
+    gameBanner: [{ cover: '', thumb: '', type: '' }],
     gameDescriptions: { descriptions: [] },
     gameSpecifications: { spec: [] },
     gameTags: { genre: {}, features: {} },
@@ -19,15 +26,23 @@ export default function AddGame() {
   const [errorChange, setErrorChange] = useState(0);
 
   const errorMessages = useRef({
-    gameInfo: {},
-    gameBanner: [],
+    gameInfo: {
+      name: '',
+      developer: '',
+      publisher: '',
+      logo: '',
+      phoneLogo: '',
+      releaseDate: '',
+    },
+    gameBanner: [{ cover: '', thumb: '', type: '' }],
     gameDescriptions: { descriptions: [] },
     gameSpecifications: { spec: [] },
-    gameTags: { genre: {}, features: {} },
+    gameTags: {},
   });
 
   const checkValidation = () => {
     let error = false;
+    // Game Info
     if (!gameData.current.gameInfo.name) {
       errorMessages.current.gameInfo.name = 'Title is required';
       error = true;
@@ -46,6 +61,58 @@ export default function AddGame() {
     } else {
       errorMessages.current.gameInfo.publisher = '';
     }
+    if (!gameData.current.gameInfo.logo?.file) {
+      errorMessages.current.gameInfo.logo = 'Cover Image is required';
+      error = true;
+    } else {
+      errorMessages.current.gameInfo.logo = '';
+    }
+    if (!gameData.current.gameInfo.phoneLogo?.file) {
+      errorMessages.current.gameInfo.phoneLogo = 'Portrait Cover Image is required';
+      error = true;
+    } else {
+      errorMessages.current.gameInfo.phoneLogo = '';
+    }
+    // Game Banner
+    if (gameData.current.gameBanner.length !== 0) {
+      errorMessages.current.gameBanner = gameData.current.gameBanner.map(banner => {
+        const obj = {};
+        if (!banner.cover) {
+          error = true;
+          obj.cover = 'Cover Image is required';
+        } else {
+          obj.cover = '';
+        }
+        if (!banner.thumb) {
+          error = true;
+          obj.thumb = 'Thumbnail is required';
+        } else {
+          obj.thumb = '';
+        }
+        return obj;
+      });
+    }
+    // Game Tags
+    if (Object.keys(gameData.current.gameTags.genre).length === 0) {
+      errorMessages.current.gameTags.genre = 'Genre is required';
+      error = true;
+    } else {
+      errorMessages.current.gameTags.genre = '';
+    }
+    if (Object.keys(gameData.current.gameTags.features).length === 0) {
+      errorMessages.current.gameTags.features = 'Features is required';
+      error = true;
+    } else {
+      errorMessages.current.gameTags.features = '';
+    }
+    if (
+      !gameData.current.gameInfo.releaseDate.day ||
+      !gameData.current.gameInfo.releaseDate.month ||
+      !gameData.current.gameInfo.releaseDate.year
+    ) {
+      errorMessages.current.gameInfo.releaseDate = 'Release Date is required';
+      error = true;
+    }
     return error;
   };
 
@@ -53,9 +120,8 @@ export default function AddGame() {
     e.preventDefault();
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
-      return;
+      console.log('data', gameData.current);
     }
-    console.log(gameData.current);
   };
 
   return (
@@ -67,8 +133,12 @@ export default function AddGame() {
           errorMessages={errorMessages}
           errorChange={errorChange}
         />
-        <AddGameBanner gameData={gameData} />
-        <AddGameTags gameData={gameData} />
+        <AddGameBanner
+          gameData={gameData}
+          errorMessages={errorMessages}
+          errorChange={errorChange}
+        />
+        <AddGameTags gameData={gameData} errorMessages={errorMessages} errorChange={errorChange} />
         <AddGameDescriptions gameData={gameData} />
         <AddGameSpecifications gameData={gameData} />
         <ButtonForAddGameSection submit text="Submit" />

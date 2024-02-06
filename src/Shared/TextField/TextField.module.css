@@ -18,7 +18,7 @@
   border: 2px solid #cc2a24;
 }
 #errorColor {
-  color: #cc2a24 !important;
+  color: #cc2a24;
 }
 .label {
   position: absolute;

@@ -1,9 +1,21 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import styles from './OptionsContainer.module.css';
 
-export default function OptionsContainer({ title, options, gameData, initialState = {} }) {
+export default function OptionsContainer({
+  title,
+  options,
+  gameData,
+  initialState = {},
+  errorChange,
+  errorMessage,
+}) {
   const [optionSates, setOptionSates] = useState(initialState);
+  const [errorShow, setErrorShow] = useState(false);
+
+  const errorShowRef = useRef(errorShow);
+  errorShowRef.current = errorShow;
 
   const optionStatesRef = useRef(optionSates);
   optionStatesRef.current = optionSates;
@@ -21,10 +33,17 @@ export default function OptionsContainer({ title, options, gameData, initialStat
     [gameData, title]
   );
 
+  useEffect(() => {
+    if (errorChange && errorMessage) setErrorShow(true);
+  }, [errorChange, errorMessage]);
+
   const setState = useCallback(
     (props, name) => {
       setOptionSates(props);
       setValue(name);
+      if (errorShowRef.current) {
+        setErrorShow(false);
+      }
     },
     [setValue]
   );
@@ -44,6 +63,7 @@ export default function OptionsContainer({ title, options, gameData, initialStat
           />
         ))}
       </ul>
+      <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
     </div>
   );
 }

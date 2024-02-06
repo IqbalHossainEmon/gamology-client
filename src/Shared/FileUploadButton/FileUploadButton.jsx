@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
@@ -11,10 +11,23 @@ const FileUploadButton = ({
   name,
   disabled,
   errorMessage,
+  errorChange,
 }) => {
   const [selected, setSelected] = useState({ selected: false, name: 'browse' });
   const inputRef = useRef(null);
   const btnRef = useRef(null);
+
+  const [errorShow, setErrorShow] = useState(!!errorMessage);
+
+  useEffect(() => {
+    if (errorChange && errorMessage) {
+      setErrorShow(true);
+      inputRef.current.addEventListener('change', e => {
+        setErrorShow(false);
+        inputRef.current.removeEventListener('change', e);
+      });
+    }
+  }, [errorChange, errorMessage]);
 
   const handleClick = () => {
     inputRef.current.click();
@@ -53,19 +66,17 @@ const FileUploadButton = ({
         ref={btnRef}
         {...(disabled && { disabled })}
         onClick={handleClick}
-        className={`${errorMessage ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
+        className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
         type="button"
       >
         <div
           className={selected.selected ? [styles.label, styles.focused].join(' ') : styles.label}
         >
-          {placeholder || 'Browse'}
+          <p {...(errorShow && { className: styles.errorColor })}>
+            {placeholder || selected.name || 'Browse'}
+          </p>
         </div>
-        {disabled || (
-          <div className={styles.uploadImage}>
-            <img src="/assets/images/upload.png" alt="upload" />
-          </div>
-        )}
+
         <div
           className={
             selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName
@@ -75,7 +86,7 @@ const FileUploadButton = ({
         </div>
         <ButtonWaterEffect btnRef={btnRef} long />
       </button>
-      <ErrorMessage errorMessage={errorMessage} />
+      <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
     </div>
   );
 };

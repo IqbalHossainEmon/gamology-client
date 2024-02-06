@@ -31,6 +31,9 @@
   opacity: 0.5;
   cursor: default;
 }
+.listContainer {
+  padding-bottom: 0px;
+}
 .field {
   width: 100%;
   outline: none;

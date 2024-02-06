@@ -15,18 +15,12 @@ export default function TextField({
 }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
-  const [errorShow, setErrorShow] = useState(false);
+  const [errorShow, setErrorShow] = useState(!!errorMessage);
 
   const fieldRef = useRef(null);
 
   useEffect(() => {
-    if (errorChange && errorMessage) {
-      setErrorShow(true);
-      fieldRef.current.addEventListener('keydown', e => {
-        setErrorShow(false);
-        fieldRef.current.removeEventListener('keydown', e);
-      });
-    }
+    if (errorChange && errorMessage) setErrorShow(true);
   }, [errorChange, errorMessage]);
 
   return (
@@ -49,7 +43,10 @@ export default function TextField({
             autoComplete={autoComplete ? 'on' : 'off'}
             onFocus={() => setFocused(true)}
             value={value}
-            onChange={e => setValue(e.target.value)}
+            onChange={e => {
+              setValue(e.target.value);
+              if (errorShow) setErrorShow(false);
+            }}
             onBlur={e => {
               setState(e.target.value, e.target.name);
               setFocused(false);
@@ -63,7 +60,10 @@ export default function TextField({
             ref={fieldRef}
             onFocus={() => setFocused(true)}
             value={value}
-            onChange={e => setValue(e.target.value)}
+            onChange={e => {
+              setValue(e.target.value);
+              if (errorShow) setErrorShow(false);
+            }}
             onBlur={e => {
               setState(e.target.value, e.target.name);
               setFocused(false);

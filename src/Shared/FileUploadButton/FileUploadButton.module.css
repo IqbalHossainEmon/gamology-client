@@ -35,7 +35,9 @@
   text-overflow: ellipsis;
   color: rgb(173, 173, 173);
 }
-
+.errorColor {
+  color: #cc2a24;
+}
 .uploadImage {
   height: 20px;
   position: absolute;

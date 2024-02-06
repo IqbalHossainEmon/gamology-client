@@ -3,7 +3,7 @@ import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddG
 import TextFieldContainer from '../TextFieldContainer/TextFieldContainer';
 import styles from './AddGameBanner.module.css';
 
-export default function AddGameBanner({ gameData }) {
+export default function AddGameBanner({ gameData, errorChange, errorMessages }) {
   const [fieldCount, setFieldCount] = useState(1);
 
   return (
@@ -11,14 +11,23 @@ export default function AddGameBanner({ gameData }) {
       <h3 className={styles.header}>Add Game&#39;s Banner Images or Videos</h3>
       <div className={styles.textFieldContainer}>
         {[...Array(fieldCount).keys()].map(arr => (
-          <TextFieldContainer key={arr} number={arr} gameData={gameData} />
+          <TextFieldContainer
+            errorChange={errorChange}
+            key={arr}
+            number={arr}
+            gameData={gameData}
+            errorMessages={errorMessages}
+          />
         ))}
       </div>
       <div className={styles.btnContainer}>
         <div className={styles.btn}>
           <ButtonForAddGameSection
             text="Add More +"
-            onClick={() => setFieldCount(prev => prev + 1)}
+            onClick={() => {
+              setFieldCount(prev => ++prev);
+              gameData.current.gameBanner.push({ cover: '', thumb: '', type: '' });
+            }}
           />
         </div>
         <div className={styles.btn}>
@@ -26,7 +35,8 @@ export default function AddGameBanner({ gameData }) {
             {...(fieldCount === 1 && { disabled: true })}
             text="Remove One -"
             onClick={() => {
-              setFieldCount(prev => prev - 1);
+              setFieldCount(prev => --prev);
+              gameData.current.gameBanner.pop();
             }}
           />
         </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import SelectionField from '../../../../../../Shared/SelectionField/SelectionField';
 import styles from './PriceReleaseDate.module.css';
@@ -18,23 +18,26 @@ const months = [
   'December',
 ];
 
-export default function PriceReleaseDate({ gameData }) {
-  const [release, setRelease] = useState({ day: '', month: '', year: '' });
+export default function PriceReleaseDate({ gameData, errorChange, errorMessage }) {
+  const [errorShow, setErrorShow] = useState(false);
+
+  useEffect(() => {
+    if (errorChange && errorMessage) setErrorShow(true);
+  }, [errorChange, errorMessage]);
 
   const [price, setPrice] = useState('0.00');
 
   const handleSetValue = e => {
     gameData.current.gameInfo[e.target.name] = e.target.value;
   };
-  const handleSetReleaseValue = () => {
-    handleSetValue({ target: { name: 'releaseDate', value: release } });
-  };
 
   const handleReleaseValue = (value, name) => {
     if (name === 'month') {
       value = months.indexOf(value) + 1;
     }
-    setRelease(prev => ({ ...prev, [name]: value }));
+    if (errorShow) {
+      setErrorShow(false);
+    }
     gameData.current.gameInfo.releaseDate[name] = value;
   };
 
@@ -56,7 +59,7 @@ export default function PriceReleaseDate({ gameData }) {
           />
         </div>
       </div>
-      <div onBlur={handleSetReleaseValue} className={styles.releaseContainer}>
+      <div className={styles.releaseContainer}>
         <div className={styles.releaseDateWidthText}>
           <p>Release</p>
           <div className={styles.releaseDate}>
@@ -90,7 +93,7 @@ export default function PriceReleaseDate({ gameData }) {
           </div>
         </div>
         <div className={styles.errorContainer}>
-          <ErrorMessage errorMessage="Required Release date" />
+          <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
         </div>
       </div>
     </div>

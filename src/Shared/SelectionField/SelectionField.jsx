@@ -59,7 +59,7 @@ export default function SelectionField({
         </div>
         <ButtonWaterEffect btnRef={elementRef} />
       </button>
-      <ul className={`${show ? `${styles.show} ` : ''}${styles.list}`}>
+      <ul className={`${show ? `${styles.show} ` : ''}${styles.list} ${styles.listContainer}`}>
         {list.map(item => (
           <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
             <button

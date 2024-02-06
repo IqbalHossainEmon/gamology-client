@@ -1,4 +1,3 @@
-import ErrorMessage from '../../../../../Shared/ErrorMessage/ErrorMessage';
 import OptionsContainer from '../Components/OptionsContainer/OptionsContainer';
 import PriceReleaseDate from '../Components/PriceReleaseDate/PriceReleaseDate';
 import styles from './AddGameTags.module.css';
@@ -30,7 +29,7 @@ const options = [
   ],
 ];
 
-export default function AddGameTags({ gameData }) {
+export default function AddGameTags({ gameData, errorChange, errorMessages }) {
   return (
     <section className={styles.addGameTags}>
       <h3 className={styles.header}>Add Game&apos;s tags</h3>
@@ -50,6 +49,8 @@ export default function AddGameTags({ gameData }) {
             options={options[1]}
             title="Genre"
             gameData={gameData}
+            errorMessage={errorMessages.current.gameTags.genre}
+            errorChange={errorChange}
           />
         </div>
         <div className={styles.options}>
@@ -67,12 +68,16 @@ export default function AddGameTags({ gameData }) {
             options={options[0]}
             title="Features"
             gameData={gameData}
+            errorMessage={errorMessages.current.gameTags.features}
+            errorChange={errorChange}
           />
         </div>
       </div>
-      <ErrorMessage errorMessage="Add game tags" />
-
-      <PriceReleaseDate gameData={gameData} />
+      <PriceReleaseDate
+        gameData={gameData}
+        errorMessage={errorMessages.current.gameInfo.releaseDate}
+        errorChange={errorChange}
+      />
     </section>
   );
 }

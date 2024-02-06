@@ -44,6 +44,8 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           name="logo"
           accept="image/*"
           placeholder="Choose cover image"
+          errorChange={errorChange}
+          errorMessage={errorMessages.current.gameInfo.logo}
         />
         <FileUploadButton
           className={styles.marginRight}
@@ -51,7 +53,8 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           accept="image/*"
           name="phoneLogo"
           placeholder="Choose portrait cover image"
-          // errorMessage={"This image's ratio is not 9:16"}
+          errorChange={errorChange}
+          errorMessage={errorMessages.current.gameInfo.phoneLogo}
         />
       </div>
     </section>
