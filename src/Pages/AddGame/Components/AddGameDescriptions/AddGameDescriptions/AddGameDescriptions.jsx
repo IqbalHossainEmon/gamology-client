@@ -18,15 +18,18 @@ const AddGameDescriptions = ({ gameData }) => {
         <TextField
           field="textarea"
           setState={handleSetSortDescription}
-          placeholder="Add some sort description..."
+          placeholder="Add some short description..."
           htmlFor="sort_description"
           name="sortDesc"
         />
       </div>
       <div>
-        {array.map((item, index) => (
-          <AddGameDescription key={item.id} item={item} index={index} gameData={gameData} />
-        ))}
+        {array.map((item, index) => {
+          console.log(item.id);
+          return (
+            <AddGameDescription key={`${item.id}`} item={item} index={index} gameData={gameData} />
+          );
+        })}
       </div>
       <div className={styles.buttonContainer}>
         <div className={styles.btn}>
@@ -83,7 +86,7 @@ const AddGameDescriptions = ({ gameData }) => {
         <div className={styles.mainBtn}>
           <ButtonForAddGameSection
             onClick={() => {
-              setArray(prev => [...prev, { id: prev.length + 1, onlySubHeader: true }]);
+              setArray(prev => [...prev, { id: prev.length, onlySubHeader: true }]);
             }}
             text="Add Only Sub Header +"
           />

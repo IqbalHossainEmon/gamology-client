@@ -12,6 +12,7 @@ const FileUploadButton = ({
   disabled,
   errorMessage,
   errorChange,
+  noMessage,
 }) => {
   const [selected, setSelected] = useState({ selected: false, name: 'browse' });
   const inputRef = useRef(null);
@@ -86,7 +87,7 @@ const FileUploadButton = ({
         </div>
         <ButtonWaterEffect btnRef={btnRef} long />
       </button>
-      <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
+      {noMessage || <ErrorMessage enable={errorShow} errorMessage={errorMessage} />}
     </div>
   );
 };

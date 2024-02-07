@@ -26,7 +26,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           name="developer"
           placeholder="Developer"
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameInfo.name}
+          errorMessage={errorMessages.current.gameInfo.developer}
         />
         <TextField
           setState={handleSetValue}
@@ -35,7 +35,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           field="input"
           placeholder="Publisher"
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameInfo.name}
+          errorMessage={errorMessages.current.gameInfo.publisher}
         />
       </div>
       <div className={styles.flexContainer}>

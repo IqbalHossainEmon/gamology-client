@@ -35,10 +35,10 @@ export default function PriceReleaseDate({ gameData, errorChange, errorMessage }
     if (name === 'month') {
       value = months.indexOf(value) + 1;
     }
+    gameData.current.gameInfo.releaseDate[name] = value;
     if (errorShow) {
       setErrorShow(false);
     }
-    gameData.current.gameInfo.releaseDate[name] = value;
   };
 
   return (

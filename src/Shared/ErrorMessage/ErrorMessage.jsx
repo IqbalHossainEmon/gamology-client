@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './ErrorMessage.module.css';
 
 const ErrorMessage = ({ errorMessage, enable }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(enable);
 
   useEffect(() => {
     if (enable) {

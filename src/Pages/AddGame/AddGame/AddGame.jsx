@@ -73,6 +73,7 @@ export default function AddGame() {
     } else {
       errorMessages.current.gameInfo.phoneLogo = '';
     }
+
     // Game Banner
     if (gameData.current.gameBanner.length !== 0) {
       errorMessages.current.gameBanner = gameData.current.gameBanner.map(banner => {
@@ -92,6 +93,7 @@ export default function AddGame() {
         return obj;
       });
     }
+
     // Game Tags
     if (Object.keys(gameData.current.gameTags.genre).length === 0) {
       errorMessages.current.gameTags.genre = 'Genre is required';
@@ -113,6 +115,12 @@ export default function AddGame() {
       errorMessages.current.gameInfo.releaseDate = 'Release Date is required';
       error = true;
     }
+    if (!gameData.current.gameInfo.price) {
+      gameData.current.gameInfo.price = 0;
+    }
+
+    // Game Descriptions
+
     return error;
   };
 
@@ -127,7 +135,7 @@ export default function AddGame() {
   return (
     <div className={styles.addGame}>
       <h1 className={styles.header}>Add New Game to the collection</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <AddGameDetails
           gameData={gameData}
           errorMessages={errorMessages}
@@ -141,7 +149,7 @@ export default function AddGame() {
         <AddGameTags gameData={gameData} errorMessages={errorMessages} errorChange={errorChange} />
         <AddGameDescriptions gameData={gameData} />
         <AddGameSpecifications gameData={gameData} />
-        <ButtonForAddGameSection submit text="Submit" />
+        <ButtonForAddGameSection text="Submit" onClick={handleSubmit} />
       </form>
     </div>
   );

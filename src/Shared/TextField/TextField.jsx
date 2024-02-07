@@ -11,6 +11,7 @@ export default function TextField({
   setState,
   errorMessage,
   errorChange,
+  handleChange = () => {},
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
@@ -18,6 +19,15 @@ export default function TextField({
   const [errorShow, setErrorShow] = useState(!!errorMessage);
 
   const fieldRef = useRef(null);
+
+  useEffect(() => {
+    if (field === 'textarea') {
+      fieldRef.current.addEventListener('input', () => {
+        fieldRef.current.style.height = 'auto';
+        fieldRef.current.style.height = `${fieldRef.current.scrollHeight}px`;
+      });
+    }
+  }, [field]);
 
   useEffect(() => {
     if (errorChange && errorMessage) setErrorShow(true);
@@ -46,6 +56,7 @@ export default function TextField({
             onChange={e => {
               setValue(e.target.value);
               if (errorShow) setErrorShow(false);
+              handleChange(e.target.value);
             }}
             onBlur={e => {
               setState(e.target.value, e.target.name);
@@ -63,6 +74,7 @@ export default function TextField({
             onChange={e => {
               setValue(e.target.value);
               if (errorShow) setErrorShow(false);
+              handleChange(e.target.value);
             }}
             onBlur={e => {
               setState(e.target.value, e.target.name);

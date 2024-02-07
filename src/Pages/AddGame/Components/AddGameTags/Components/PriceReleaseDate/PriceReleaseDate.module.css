@@ -11,20 +11,18 @@
 }
 
 .priceContainer {
-  display: flex;
   align-items: center;
 }
 
-.priceContainer label {
+.priceContainer label,
+.releaseComponent:not(:last-child) {
   margin-right: 10px;
 }
 .releaseContainer {
   margin-left: 30px;
   width: fit-content;
 }
-.releaseComponent:not(:last-child) {
-  margin-right: 10px;
-}
+
 .releaseDateWidthText {
   display: flex;
   align-items: center;
@@ -43,7 +41,7 @@
 .releaseYear {
   width: 100px;
 }
-.inputContainer {
+.inputContainer input {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 20px 10px;
 }
@@ -61,11 +59,7 @@
 .priceContainer input {
   border: none;
   outline: none;
-  background-color: transparent;
-  -moz-appearance: textfield;
-  outline: none;
   font-size: medium;
-  background: transparent;
   color: rgb(173, 173, 173);
 }
 

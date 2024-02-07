@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import FileUploadButton from '../../../../../Shared/FileUploadButton/FileUploadButton';
 import SelectionField from '../../../../../Shared/SelectionField/SelectionField';
-import TextField from '../../../../../Shared/TextField/TextField';
+import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVideoContainer';
 import styles from './TextFieldContainer.module.css';
 
 export default function TextFieldContainer({ number, gameData, errorChange, errorMessages }) {
@@ -16,31 +16,13 @@ export default function TextFieldContainer({ number, gameData, errorChange, erro
 
   return (
     <div className={styles.textFieldContainer}>
-      {type.type === 'Image' ? (
-        <FileUploadButton
-          {...(type || { disabled: true })}
-          className={styles.marginBot}
-          field="input"
-          accept="image/*"
-          setState={handleSetValues}
-          placeholder="Choose Game's Banner Image"
-          name="cover"
-          errorChange={errorChange}
-          errorMessage={errorMessages.current.gameBanner[number]?.cover}
-        />
-      ) : (
-        <TextField
-          {...(!type && { disabled: true })}
-          className={styles.marginBot}
-          field="input"
-          htmlFor={number}
-          setState={handleSetValues}
-          placeholder={type ? "Add Game's Banner Video's Link" : 'Select Content Type First'}
-          name="cover"
-          errorChange={errorChange}
-          errorMessage={errorMessages.current.gameBanner[number]?.cover}
-        />
-      )}
+      <CoverImageVideoContainer
+        type={typeRef.current}
+        handleSetValues={handleSetValues}
+        errorChange={errorChange}
+        errorMessages={errorMessages}
+        number={number}
+      />
       <FileUploadButton
         {...(type || { disabled: true })}
         field="input"
