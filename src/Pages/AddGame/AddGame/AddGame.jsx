@@ -84,21 +84,22 @@ export default function AddGame() {
         } else if (
           banner.type === 'Video' &&
           !(
-            banner.cover.includes('.mp4') ||
-            banner.cover.includes('.webm') ||
-            banner.cover.includes('.ogg') ||
-            banner.cover.includes('.mkv') ||
-            banner.cover.includes('.avi') ||
-            banner.cover.includes('.flv') ||
-            banner.cover.includes('.wmv') ||
-            banner.cover.includes('.mov') ||
-            banner.cover.includes('.m4v')
+            banner.cover?.includes('.mp4') ||
+            banner.cover?.includes('.webm') ||
+            banner.cover?.includes('.ogg') ||
+            banner.cover?.includes('.mkv') ||
+            banner.cover?.includes('.avi') ||
+            banner.cover?.includes('.flv') ||
+            banner.cover?.includes('.wmv') ||
+            banner.cover?.includes('.mov') ||
+            banner.cover?.includes('.m4v')
           )
         ) {
-          console.log(banner);
           obj.cover = "Only video file's URL is allowed";
+          error = true;
         } else if (banner.type === 'Image') {
           obj.cover = 'Image file is required';
+          error = true;
         } else obj.cover = '';
         if (!banner.thumb) {
           error = true;
