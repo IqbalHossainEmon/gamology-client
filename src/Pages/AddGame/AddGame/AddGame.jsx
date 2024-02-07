@@ -78,12 +78,28 @@ export default function AddGame() {
     if (gameData.current.gameBanner.length !== 0) {
       errorMessages.current.gameBanner = gameData.current.gameBanner.map(banner => {
         const obj = {};
-        if (!banner.cover) {
+        if (!banner.cover && !banner.type) {
           error = true;
-          obj.cover = 'Cover Image is required';
-        } else {
-          obj.cover = '';
-        }
+          obj.cover = 'Cover Image/Video is required';
+        } else if (
+          banner.type === 'Video' &&
+          !(
+            banner.cover.includes('.mp4') ||
+            banner.cover.includes('.webm') ||
+            banner.cover.includes('.ogg') ||
+            banner.cover.includes('.mkv') ||
+            banner.cover.includes('.avi') ||
+            banner.cover.includes('.flv') ||
+            banner.cover.includes('.wmv') ||
+            banner.cover.includes('.mov') ||
+            banner.cover.includes('.m4v')
+          )
+        ) {
+          console.log(banner);
+          obj.cover = "Only video file's URL is allowed";
+        } else if (banner.type === 'Image') {
+          obj.cover = 'Image file is required';
+        } else obj.cover = '';
         if (!banner.thumb) {
           error = true;
           obj.thumb = 'Thumbnail is required';
@@ -129,6 +145,7 @@ export default function AddGame() {
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
       console.log('data', gameData.current);
+      console.log('error', errorMessages.current);
     }
   };
 

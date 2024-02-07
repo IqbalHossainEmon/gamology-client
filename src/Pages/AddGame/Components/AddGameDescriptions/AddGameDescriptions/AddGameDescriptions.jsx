@@ -24,12 +24,9 @@ const AddGameDescriptions = ({ gameData }) => {
         />
       </div>
       <div>
-        {array.map((item, index) => {
-          console.log(item.id);
-          return (
-            <AddGameDescription key={`${item.id}`} item={item} index={index} gameData={gameData} />
-          );
-        })}
+        {array.map((item, index) => (
+          <AddGameDescription key={`${item.id}`} item={item} index={index} gameData={gameData} />
+        ))}
       </div>
       <div className={styles.buttonContainer}>
         <div className={styles.btn}>

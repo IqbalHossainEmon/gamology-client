@@ -62,6 +62,7 @@ const CoverImageVideoContainer = ({
             autoComplete="off"
             onFocus={() => setFocused(true)}
             value={value}
+            name="cover"
             onChange={e => {
               setValue(e.target.value);
               if (errorShow) setErrorShow(false);
