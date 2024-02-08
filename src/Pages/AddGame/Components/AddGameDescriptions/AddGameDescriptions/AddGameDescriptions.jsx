@@ -4,7 +4,7 @@ import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddG
 import AddGameDescription from '../AddGameDescription/AddGameDescription';
 import styles from './AddGameDescriptions.module.css';
 
-const AddGameDescriptions = ({ gameDescriptions }) => {
+const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) => {
   const [array, setArray] = useState([{ id: 0, main: true }]);
 
   const handleSetSortDescription = (value, name) => {
@@ -21,6 +21,8 @@ const AddGameDescriptions = ({ gameDescriptions }) => {
           placeholder="Add some short description..."
           htmlFor="sort_description"
           name="sortDesc"
+          errorChange={errorChange}
+          errorMessage={errorMessages.sortDesc}
         />
       </div>
       <div>
@@ -30,6 +32,8 @@ const AddGameDescriptions = ({ gameDescriptions }) => {
             item={item}
             index={index}
             gameDescriptions={gameDescriptions}
+            errorChange={errorChange}
+            errorMessages={errorMessages.descriptions}
           />
         ))}
       </div>

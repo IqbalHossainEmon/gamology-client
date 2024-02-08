@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './ButtonForAddGameSection.module.css';
 
-export default function ButtonForAddGameSection({ onClick, text, disabled = false, submit }) {
+export default function ButtonForAddGameSection({ onClick, text, disabled = false }) {
   const btnRef = useRef(null);
 
   return (
@@ -11,7 +11,7 @@ export default function ButtonForAddGameSection({ onClick, text, disabled = fals
         ref={btnRef}
         className={styles.btn}
         onClick={onClick}
-        type={submit ? 'submit' : 'button'}
+        type="button"
         {...(disabled && { disabled })}
       >
         {text}

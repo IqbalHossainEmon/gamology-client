@@ -2,7 +2,13 @@ import { useRef } from 'react';
 import TextField from '../../../../../Shared/TextField/TextField';
 import styles from './AddGameDescription.module.css';
 
-export default function AddGameDescription({ item, index, gameDescriptions }) {
+export default function AddGameDescription({
+  item,
+  index,
+  gameDescriptions,
+  errorChange,
+  errorMessages,
+}) {
   const valueRef = useRef({});
 
   const handleSetValues = (value, name) => {
@@ -23,6 +29,8 @@ export default function AddGameDescription({ item, index, gameDescriptions }) {
             placeholder="Add a Main Header"
             name="mainHeader"
             htmlFor={`main_header_${index}${item.id}`}
+            errorChange={errorChange}
+            errorMessage={errorMessages[index]?.mainHeader}
           />
         </div>
       )}
@@ -37,6 +45,8 @@ export default function AddGameDescription({ item, index, gameDescriptions }) {
           name="subHeader"
           placeholder="Add a Sub Header"
           htmlFor={`sub_header_${index}${item.id}`}
+          errorChange={errorChange}
+          errorMessage={errorMessages[index]?.subHeader}
         />
       </div>
       {item.onlySubHeader || (
@@ -47,6 +57,8 @@ export default function AddGameDescription({ item, index, gameDescriptions }) {
             name="description"
             placeholder="Add a Sub Header"
             htmlFor={`description_${index}${item.id}`}
+            errorChange={errorChange}
+            errorMessage={errorMessages[index]?.description}
           />
         </div>
       )}

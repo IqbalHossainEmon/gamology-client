@@ -23,6 +23,7 @@ export default function AddGameBanner({ gameBanner, errorChange, errorMessages }
       <div className={styles.btnContainer}>
         <div className={styles.btn}>
           <ButtonForAddGameSection
+            {...(fieldCount === 15 && { disabled: true })}
             text="Add More +"
             onClick={() => {
               setFieldCount(prev => ++prev);

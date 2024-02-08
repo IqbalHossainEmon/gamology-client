@@ -18,7 +18,7 @@ export default function AddGame() {
       releaseDate: { day: '', month: '', year: '' },
     },
     gameBanner: [{ cover: '', thumb: '', type: '' }],
-    gameDescriptions: { descriptions: [] },
+    gameDescriptions: { descriptions: [{ mainHeader: '', subHeader: '', description: '' }] },
     gameSpecifications: { spec: [] },
     gameTags: { genre: {}, features: {} },
   });
@@ -85,41 +85,39 @@ export default function AddGame() {
     }
 
     // Game Banner
-    if (gameBanner.length !== 0) {
-      errorMessages.current.gameBannerError = gameBanner.map(banner => {
-        const obj = {};
-        if (!banner.cover && !banner.type) {
-          error = true;
-          obj.cover = 'Cover Image/Video is required';
-        } else if (
-          banner.type === 'Video' &&
-          !(
-            banner.cover?.includes('.mp4') ||
-            banner.cover?.includes('.webm') ||
-            banner.cover?.includes('.ogg') ||
-            banner.cover?.includes('.mkv') ||
-            banner.cover?.includes('.avi') ||
-            banner.cover?.includes('.flv') ||
-            banner.cover?.includes('.wmv') ||
-            banner.cover?.includes('.mov') ||
-            banner.cover?.includes('.m4v')
-          )
-        ) {
-          obj.cover = "Only video file's URL is allowed";
-          error = true;
-        } else if (banner.type === 'Image') {
-          obj.cover = 'Image file is required';
-          error = true;
-        } else obj.cover = '';
-        if (!banner.thumb) {
-          error = true;
-          obj.thumb = 'Thumbnail is required';
-        } else {
-          obj.thumb = '';
-        }
-        return obj;
-      });
-    }
+    errorMessages.current.gameBannerError = gameBanner.map(banner => {
+      const obj = {};
+      if (!banner.cover && !banner.type) {
+        error = true;
+        obj.cover = 'Cover Image/Video is required';
+      } else if (
+        banner.type === 'Video' &&
+        !(
+          banner.cover?.includes('.mp4') ||
+          banner.cover?.includes('.webm') ||
+          banner.cover?.includes('.ogg') ||
+          banner.cover?.includes('.mkv') ||
+          banner.cover?.includes('.avi') ||
+          banner.cover?.includes('.flv') ||
+          banner.cover?.includes('.wmv') ||
+          banner.cover?.includes('.mov') ||
+          banner.cover?.includes('.m4v')
+        )
+      ) {
+        obj.cover = "Only video file's URL is allowed";
+        error = true;
+      } else if (banner.type === 'Image') {
+        obj.cover = 'Image file is required';
+        error = true;
+      } else obj.cover = '';
+      if (!banner.thumb) {
+        error = true;
+        obj.thumb = 'Thumbnail is required';
+      } else {
+        obj.thumb = '';
+      }
+      return obj;
+    });
 
     // Game Tags
     if (Object.keys(gameTags.genre).length === 0) {
@@ -143,6 +141,35 @@ export default function AddGame() {
     }
 
     // Game Descriptions
+    if (!gameDescriptions.sortDesc) {
+      gameDescriptionsError.sortDesc = 'Short Description is required';
+      error = true;
+    }
+    errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
+      desc => {
+        const obj = {};
+        console.log(desc);
+        if (!desc.mainHeader) {
+          obj.mainHeader = 'Main Header is required';
+          error = true;
+        } else {
+          obj.mainHeader = '';
+        }
+        if (!desc.subHeader) {
+          obj.subHeader = 'Sub Header is required';
+          error = true;
+        } else {
+          obj.subHeader = '';
+        }
+        if (!desc.description) {
+          obj.description = 'Description is required';
+          error = true;
+        } else {
+          obj.description = '';
+        }
+        return obj;
+      }
+    );
 
     return error;
   };
@@ -176,8 +203,16 @@ export default function AddGame() {
           errorMessages={gameTagsError}
           errorChange={errorChange}
         />
-        <AddGameDescriptions gameDescriptions={gameDescriptions} />
-        <AddGameSpecifications gameSpecifications={gameSpecifications} />
+        <AddGameDescriptions
+          gameDescriptions={gameDescriptions}
+          errorChange={errorChange}
+          errorMessages={gameDescriptionsError}
+        />
+        <AddGameSpecifications
+          gameSpecifications={gameSpecifications}
+          errorMessages={gameSpecificationsError}
+          errorChange={errorChange}
+        />
         <ButtonForAddGameSection text="Submit" onClick={handleSubmit} />
       </form>
     </div>

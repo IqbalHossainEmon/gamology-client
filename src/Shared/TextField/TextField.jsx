@@ -31,7 +31,6 @@ export default function TextField({
 
   useEffect(() => {
     if (errorChange && errorMessage) setErrorShow(true);
-    console.log(errorMessage);
   }, [errorChange, errorMessage]);
 
   return (

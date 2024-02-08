@@ -12,7 +12,7 @@ const CoverImageVideoContainer = ({
 }) => {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
-  const [errorShow, setErrorShow] = useState(!!errorChange);
+  const [errorShow, setErrorShow] = useState(!!errorMessages[number]?.cover);
 
   const fieldRef = useRef(null);
 
@@ -48,7 +48,7 @@ const CoverImageVideoContainer = ({
           <label
             className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
             {...(errorShow && { id: styles.errorColor })}
-            htmlFor="bannerImageInputField"
+            htmlFor={`bannerImageInputField_${number}`}
           >
             {type
               ? type === 'Image'
@@ -71,7 +71,7 @@ const CoverImageVideoContainer = ({
               handleSetValues(e.target.value, e.target.name);
               setFocused(false);
             }}
-            id="bannerImageInputField"
+            id={`bannerImageInputField_${number}`}
             className={[styles.input, styles.field].join(' ')}
           />
         </div>
