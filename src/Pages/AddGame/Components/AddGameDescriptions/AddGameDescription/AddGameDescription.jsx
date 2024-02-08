@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import TextField from '../../../../../Shared/TextField/TextField';
 import styles from './AddGameDescription.module.css';
 
-export default function AddGameDescription({ item, index, gameData }) {
+export default function AddGameDescription({ item, index, gameDescriptions }) {
   const valueRef = useRef({});
 
   const handleSetValues = (value, name) => {
@@ -10,7 +10,7 @@ export default function AddGameDescription({ item, index, gameData }) {
   };
 
   const handleSetDescription = () => {
-    gameData.current.gameDescriptions.descriptions[index] = valueRef.current;
+    gameDescriptions.descriptions[index] = valueRef.current;
   };
 
   return (

@@ -18,7 +18,7 @@ const months = [
   'December',
 ];
 
-export default function PriceReleaseDate({ gameData, errorChange, errorMessage }) {
+export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }) {
   const [errorShow, setErrorShow] = useState(false);
 
   useEffect(() => {
@@ -28,14 +28,14 @@ export default function PriceReleaseDate({ gameData, errorChange, errorMessage }
   const [price, setPrice] = useState('0.00');
 
   const handleSetValue = e => {
-    gameData.current.gameInfo[e.target.name] = e.target.value;
+    gameInfo[e.target.name] = e.target.value;
   };
 
   const handleReleaseValue = (value, name) => {
     if (name === 'month') {
       value = months.indexOf(value) + 1;
     }
-    gameData.current.gameInfo.releaseDate[name] = value;
+    gameInfo.releaseDate[name] = value;
     if (errorShow) {
       setErrorShow(false);
     }

@@ -4,14 +4,14 @@ import SelectionField from '../../../../../Shared/SelectionField/SelectionField'
 import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVideoContainer';
 import styles from './TextFieldContainer.module.css';
 
-export default function TextFieldContainer({ number, gameData, errorChange, errorMessages }) {
+export default function TextFieldContainer({ number, gameBanner, errorChange, errorMessages }) {
   const [type, setType] = useState('');
 
   const typeRef = useRef(type);
   typeRef.current = type;
 
   const handleSetValues = (value, name) => {
-    gameData.current.gameBanner[number][name] = value;
+    gameBanner[number][name] = value;
   };
 
   return (
@@ -33,7 +33,7 @@ export default function TextFieldContainer({ number, gameData, errorChange, erro
         }
         name="thumb"
         errorChange={errorChange}
-        errorMessage={errorMessages.current.gameBanner[number]?.thumb}
+        errorMessage={errorMessages[number]?.thumb}
       />
 
       <div className={styles.selectContainer}>

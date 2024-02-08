@@ -26,7 +26,7 @@ export default function AddGame() {
   const [errorChange, setErrorChange] = useState(0);
 
   const errorMessages = useRef({
-    gameInfo: {
+    gameInfoError: {
       name: '',
       developer: '',
       publisher: '',
@@ -34,49 +34,59 @@ export default function AddGame() {
       phoneLogo: '',
       releaseDate: '',
     },
-    gameBanner: [{ cover: '', thumb: '', type: '' }],
-    gameDescriptions: { descriptions: [] },
-    gameSpecifications: { spec: [] },
-    gameTags: {},
+    gameBannerError: [{ cover: '', thumb: '', type: '' }],
+    gameDescriptionsError: { descriptions: [] },
+    gameSpecificationsError: { spec: [] },
+    gameTagsError: {},
   });
+
+  const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
+
+  const {
+    gameInfoError,
+    gameBannerError,
+    gameDescriptionsError,
+    gameSpecificationsError,
+    gameTagsError,
+  } = errorMessages.current;
 
   const checkValidation = () => {
     let error = false;
     // Game Info
-    if (!gameData.current.gameInfo.name) {
-      errorMessages.current.gameInfo.name = 'Title is required';
+    if (!gameInfo.name) {
+      gameInfoError.name = 'Title is required';
       error = true;
     } else {
-      errorMessages.current.gameInfo.name = '';
+      gameInfoError.name = '';
     }
-    if (!gameData.current.gameInfo.developer) {
-      errorMessages.current.gameInfo.developer = 'Developer is required';
+    if (!gameInfo.developer) {
+      gameInfoError.developer = 'Developer is required';
       error = true;
     } else {
-      errorMessages.current.gameInfo.developer = '';
+      gameInfoError.developer = '';
     }
-    if (!gameData.current.gameInfo.publisher) {
-      errorMessages.current.gameInfo.publisher = 'Publisher is required';
+    if (!gameInfo.publisher) {
+      gameInfoError.publisher = 'Publisher is required';
       error = true;
     } else {
-      errorMessages.current.gameInfo.publisher = '';
+      gameInfoError.publisher = '';
     }
-    if (!gameData.current.gameInfo.logo?.file) {
-      errorMessages.current.gameInfo.logo = 'Cover Image is required';
+    if (!gameInfo.logo?.file) {
+      gameInfoError.logo = 'Cover Image is required';
       error = true;
     } else {
-      errorMessages.current.gameInfo.logo = '';
+      gameInfoError.logo = '';
     }
-    if (!gameData.current.gameInfo.phoneLogo?.file) {
-      errorMessages.current.gameInfo.phoneLogo = 'Portrait Cover Image is required';
+    if (!gameInfo.phoneLogo?.file) {
+      gameInfoError.phoneLogo = 'Portrait Cover Image is required';
       error = true;
     } else {
-      errorMessages.current.gameInfo.phoneLogo = '';
+      gameInfoError.phoneLogo = '';
     }
 
     // Game Banner
-    if (gameData.current.gameBanner.length !== 0) {
-      errorMessages.current.gameBanner = gameData.current.gameBanner.map(banner => {
+    if (gameBanner.length !== 0) {
+      errorMessages.current.gameBannerError = gameBanner.map(banner => {
         const obj = {};
         if (!banner.cover && !banner.type) {
           error = true;
@@ -112,28 +122,24 @@ export default function AddGame() {
     }
 
     // Game Tags
-    if (Object.keys(gameData.current.gameTags.genre).length === 0) {
-      errorMessages.current.gameTags.genre = 'Genre is required';
+    if (Object.keys(gameTags.genre).length === 0) {
+      gameTagsError.genre = 'Genre is required';
       error = true;
     } else {
-      errorMessages.current.gameTags.genre = '';
+      gameTagsError.genre = '';
     }
-    if (Object.keys(gameData.current.gameTags.features).length === 0) {
-      errorMessages.current.gameTags.features = 'Features is required';
+    if (Object.keys(gameTags.features).length === 0) {
+      gameTagsError.features = 'Features is required';
       error = true;
     } else {
-      errorMessages.current.gameTags.features = '';
+      gameTagsError.features = '';
     }
-    if (
-      !gameData.current.gameInfo.releaseDate.day ||
-      !gameData.current.gameInfo.releaseDate.month ||
-      !gameData.current.gameInfo.releaseDate.year
-    ) {
-      errorMessages.current.gameInfo.releaseDate = 'Release Date is required';
+    if (!gameInfo.releaseDate.day || !gameInfo.releaseDate.month || !gameInfo.releaseDate.year) {
+      gameTagsError.releaseDate = 'Release Date is required';
       error = true;
     }
-    if (!gameData.current.gameInfo.price) {
-      gameData.current.gameInfo.price = 0;
+    if (!gameInfo.price) {
+      gameInfo.price = 0;
     }
 
     // Game Descriptions
@@ -146,7 +152,7 @@ export default function AddGame() {
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
       console.log('data', gameData.current);
-      console.log('error', errorMessages.current);
+      // console.log('error', errorMessages.current);
     }
   };
 
@@ -155,18 +161,23 @@ export default function AddGame() {
       <h1 className={styles.header}>Add New Game to the collection</h1>
       <form>
         <AddGameDetails
-          gameData={gameData}
-          errorMessages={errorMessages}
+          gameInfo={gameInfo}
+          errorMessages={gameInfoError}
           errorChange={errorChange}
         />
         <AddGameBanner
-          gameData={gameData}
-          errorMessages={errorMessages}
+          gameBanner={gameBanner}
+          errorMessages={gameBannerError}
           errorChange={errorChange}
         />
-        <AddGameTags gameData={gameData} errorMessages={errorMessages} errorChange={errorChange} />
-        <AddGameDescriptions gameData={gameData} />
-        <AddGameSpecifications gameData={gameData} />
+        <AddGameTags
+          gameTags={gameTags}
+          gameInfo={gameInfo}
+          errorMessages={gameTagsError}
+          errorChange={errorChange}
+        />
+        <AddGameDescriptions gameDescriptions={gameDescriptions} />
+        <AddGameSpecifications gameSpecifications={gameSpecifications} />
         <ButtonForAddGameSection text="Submit" onClick={handleSubmit} />
       </form>
     </div>

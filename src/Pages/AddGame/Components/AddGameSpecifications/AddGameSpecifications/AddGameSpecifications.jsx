@@ -5,9 +5,9 @@ import styles from './AddGameSpecifications.module.css';
 
 const specs = ['Windows', 'MacOs', 'Linux'];
 
-export default function AddGameSpecifications({ gameData }) {
+export default function AddGameSpecifications({ gameSpecifications }) {
   const handleValue = (value, name) => {
-    gameData.current.gameSpecifications[name] = value;
+    gameSpecifications[name] = value;
   };
 
   return (
@@ -16,7 +16,7 @@ export default function AddGameSpecifications({ gameData }) {
       <div className={styles.specsContainer}>
         {specs.map(spec => (
           <div key={spec} className={styles.specs}>
-            <AddGameSpecification gameData={gameData} state={{ name: spec }} />
+            <AddGameSpecification gameSpecifications={gameSpecifications} state={{ name: spec }} />
           </div>
         ))}
       </div>

@@ -2,9 +2,9 @@ import FileUploadButton from '../../../../Shared/FileUploadButton/FileUploadButt
 import TextField from '../../../../Shared/TextField/TextField';
 import styles from './AddGameDetails.module.css';
 
-export default function AddGameDetails({ gameData, errorChange, errorMessages }) {
+export default function AddGameDetails({ gameInfo, errorChange, errorMessages }) {
   const handleSetValue = (value, name) => {
-    gameData.current.gameInfo[name] = value;
+    gameInfo[name] = value;
   };
 
   return (
@@ -16,7 +16,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
         name="name"
         placeholder="Game's Name"
         errorChange={errorChange}
-        errorMessage={errorMessages.current.gameInfo.name}
+        errorMessage={errorMessages.name}
       />
 
       <div className={styles.flexContainer}>
@@ -26,7 +26,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           name="developer"
           placeholder="Developer"
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameInfo.developer}
+          errorMessage={errorMessages.developer}
         />
         <TextField
           setState={handleSetValue}
@@ -35,7 +35,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           field="input"
           placeholder="Publisher"
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameInfo.publisher}
+          errorMessage={errorMessages.publisher}
         />
       </div>
       <div className={styles.flexContainer}>
@@ -45,7 +45,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           accept="image/*"
           placeholder="Choose cover image"
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameInfo.logo}
+          errorMessage={errorMessages.logo}
         />
         <FileUploadButton
           className={styles.marginRight}
@@ -54,7 +54,7 @@ export default function AddGameDetails({ gameData, errorChange, errorMessages })
           name="phoneLogo"
           placeholder="Choose portrait cover image"
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameInfo.phoneLogo}
+          errorMessage={errorMessages.phoneLogo}
         />
       </div>
     </section>

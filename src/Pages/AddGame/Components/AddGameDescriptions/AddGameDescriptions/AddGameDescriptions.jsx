@@ -4,11 +4,11 @@ import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddG
 import AddGameDescription from '../AddGameDescription/AddGameDescription';
 import styles from './AddGameDescriptions.module.css';
 
-const AddGameDescriptions = ({ gameData }) => {
+const AddGameDescriptions = ({ gameDescriptions }) => {
   const [array, setArray] = useState([{ id: 0, main: true }]);
 
   const handleSetSortDescription = (value, name) => {
-    gameData.current.gameDescriptions[name] = value;
+    gameDescriptions[name] = value;
   };
 
   return (
@@ -25,7 +25,12 @@ const AddGameDescriptions = ({ gameData }) => {
       </div>
       <div>
         {array.map((item, index) => (
-          <AddGameDescription key={`${item.id}`} item={item} index={index} gameData={gameData} />
+          <AddGameDescription
+            key={`${item.id}`}
+            item={item}
+            index={index}
+            gameDescriptions={gameDescriptions}
+          />
         ))}
       </div>
       <div className={styles.buttonContainer}>

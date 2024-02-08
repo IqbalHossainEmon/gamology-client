@@ -29,7 +29,7 @@ const options = [
   ],
 ];
 
-export default function AddGameTags({ gameData, errorChange, errorMessages }) {
+export default function AddGameTags({ gameTags, gameInfo, errorChange, errorMessages }) {
   return (
     <section className={styles.addGameTags}>
       <h3 className={styles.header}>Add Game&apos;s tags</h3>
@@ -48,8 +48,8 @@ export default function AddGameTags({ gameData, errorChange, errorMessages }) {
             }}
             options={options[1]}
             title="Genre"
-            gameData={gameData}
-            errorMessage={errorMessages.current.gameTags.genre}
+            gameTags={gameTags}
+            errorMessage={errorMessages.genre}
             errorChange={errorChange}
           />
         </div>
@@ -67,15 +67,15 @@ export default function AddGameTags({ gameData, errorChange, errorMessages }) {
             }}
             options={options[0]}
             title="Features"
-            gameData={gameData}
-            errorMessage={errorMessages.current.gameTags.features}
+            gameTags={gameTags}
+            errorMessage={errorMessages.features}
             errorChange={errorChange}
           />
         </div>
       </div>
       <PriceReleaseDate
-        gameData={gameData}
-        errorMessage={errorMessages.current.gameInfo.releaseDate}
+        gameInfo={gameInfo}
+        errorMessage={errorMessages.releaseDate}
         errorChange={errorChange}
       />
     </section>

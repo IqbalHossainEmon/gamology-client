@@ -17,7 +17,7 @@ const CoverImageVideoContainer = ({
   const fieldRef = useRef(null);
 
   useEffect(() => {
-    if (errorChange && errorMessages.current.gameBanner[number]?.cover) setErrorShow(true);
+    if (errorChange && errorMessages[number]?.cover) setErrorShow(true);
   }, [errorChange, errorMessages, number]);
 
   return (
@@ -37,7 +37,7 @@ const CoverImageVideoContainer = ({
           name="cover"
           noMessage
           errorChange={errorChange}
-          errorMessage={errorMessages.current.gameBanner[number]?.cover}
+          errorMessage={errorMessages[number]?.cover}
         />
       ) : (
         <div
@@ -76,10 +76,7 @@ const CoverImageVideoContainer = ({
           />
         </div>
       )}
-      <ErrorMessage
-        enable={errorShow}
-        errorMessage={errorMessages.current.gameBanner[number]?.cover}
-      />
+      <ErrorMessage enable={errorShow} errorMessage={errorMessages[number]?.cover} />
     </div>
   );
 };

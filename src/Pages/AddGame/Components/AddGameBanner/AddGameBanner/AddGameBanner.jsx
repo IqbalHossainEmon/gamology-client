@@ -3,7 +3,7 @@ import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddG
 import TextFieldContainer from '../TextFieldContainer/TextFieldContainer';
 import styles from './AddGameBanner.module.css';
 
-export default function AddGameBanner({ gameData, errorChange, errorMessages }) {
+export default function AddGameBanner({ gameBanner, errorChange, errorMessages }) {
   const [fieldCount, setFieldCount] = useState(1);
 
   return (
@@ -15,7 +15,7 @@ export default function AddGameBanner({ gameData, errorChange, errorMessages }) 
             errorChange={errorChange}
             key={arr}
             number={arr}
-            gameData={gameData}
+            gameBanner={gameBanner}
             errorMessages={errorMessages}
           />
         ))}
@@ -26,7 +26,7 @@ export default function AddGameBanner({ gameData, errorChange, errorMessages }) 
             text="Add More +"
             onClick={() => {
               setFieldCount(prev => ++prev);
-              gameData.current.gameBanner.push({ cover: '', thumb: '', type: '' });
+              gameBanner.push({ cover: '', thumb: '', type: '' });
             }}
           />
         </div>
@@ -36,7 +36,7 @@ export default function AddGameBanner({ gameData, errorChange, errorMessages }) 
             text="Remove One -"
             onClick={() => {
               setFieldCount(prev => --prev);
-              gameData.current.gameBanner.pop();
+              gameBanner.pop();
             }}
           />
         </div>
