@@ -149,19 +149,19 @@ export default function AddGame() {
       desc => {
         const obj = {};
         console.log(desc);
-        if (!desc.mainHeader) {
+        if (desc.mainHeader === '') {
           obj.mainHeader = 'Main Header is required';
           error = true;
         } else {
           obj.mainHeader = '';
         }
-        if (!desc.subHeader) {
+        if (desc.subHeader === '') {
           obj.subHeader = 'Sub Header is required';
           error = true;
         } else {
           obj.subHeader = '';
         }
-        if (!desc.description) {
+        if (desc.description === '') {
           obj.description = 'Description is required';
           error = true;
         } else {

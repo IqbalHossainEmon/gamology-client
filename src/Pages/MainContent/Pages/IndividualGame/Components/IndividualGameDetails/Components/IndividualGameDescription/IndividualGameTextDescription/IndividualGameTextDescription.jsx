@@ -18,7 +18,7 @@ export default function IndividualGameTextDescription({ descriptions }) {
       >
         <div ref={elementRef} className={styles.individualGameDetailDescription}>
           {descriptions.map(description => (
-            <div key={description.id}>
+            <div key={description.id} className={styles.descriptionContainer}>
               {description.mainHeader && (
                 <h2 className={styles.mainHeader}>{description.mainHeader}</h2>
               )}

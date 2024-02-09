@@ -54,6 +54,7 @@
 
 .label {
   position: absolute;
+  user-select: none;
   left: 10px;
   top: 0;
   scale: 1;

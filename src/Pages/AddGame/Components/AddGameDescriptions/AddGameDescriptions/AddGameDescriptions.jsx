@@ -42,6 +42,7 @@ const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) =
           <ButtonForAddGameSection
             onClick={() => {
               setArray(prev => [...prev, { id: prev.length }]);
+              gameDescriptions.descriptions.push({ subHeader: '', description: '' });
             }}
             text="Add more +"
           />
@@ -70,6 +71,8 @@ const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) =
                 prevState[prevState.length - 1].main = true;
                 return prevState;
               });
+              gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader =
+                '';
             }}
             text="Add Main Header +"
           />
@@ -85,6 +88,8 @@ const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) =
                 delete prevState[prevState.length - 1].main;
                 return prevState;
               });
+              delete gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1]
+                .mainHeader;
             }}
             text="Remove Main Header -"
           />
@@ -93,6 +98,7 @@ const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) =
           <ButtonForAddGameSection
             onClick={() => {
               setArray(prev => [...prev, { id: prev.length, onlySubHeader: true }]);
+              gameDescriptions.descriptions.push({ subHeader: '' });
             }}
             text="Add Only Sub Header +"
           />
