@@ -5,7 +5,7 @@ import styles from './AddGameSpecifications.module.css';
 
 const specs = ['Windows', 'MacOs', 'Linux'];
 
-export default function AddGameSpecifications({ gameSpecifications }) {
+export default function AddGameSpecifications({ gameSpecifications, errorMessages, errorChange }) {
   const handleValue = (value, name) => {
     gameSpecifications[name] = value;
   };
@@ -14,14 +14,23 @@ export default function AddGameSpecifications({ gameSpecifications }) {
     <div className={styles.addGameSpecifications}>
       <h3 className={styles.header}>Add Game&#39;s System Requirement</h3>
       <div className={styles.specsContainer}>
-        {specs.map(spec => (
+        {specs.map((spec, i) => (
           <div key={spec} className={styles.specs}>
-            <AddGameSpecification gameSpecifications={gameSpecifications} state={{ name: spec }} />
+            <AddGameSpecification
+              gameSpecifications={gameSpecifications}
+              state={{ name: spec }}
+              index={i}
+            />
           </div>
         ))}
       </div>
       <div>
-        <AddGameSpecificationLanguagesSupported handleValue={handleValue} />
+        <AddGameSpecificationLanguagesSupported
+          handleValue={handleValue}
+          errorMessages={errorMessages}
+          errorChange={errorChange}
+          gameSpecifications={gameSpecifications}
+        />
         <div className={styles.textField}>
           <TextField
             setState={handleValue}
@@ -29,6 +38,8 @@ export default function AddGameSpecifications({ gameSpecifications }) {
             field="input"
             htmlFor="copyright"
             placeholder="Copyright"
+            errorChange={errorChange}
+            errorMessage={errorMessages.copyWrite}
           />
         </div>
         <div className={styles.textField}>
@@ -38,6 +49,8 @@ export default function AddGameSpecifications({ gameSpecifications }) {
             field="input"
             htmlFor="privacy"
             placeholder="Privacy Policy Link"
+            errorChange={errorChange}
+            errorMessage={errorMessages.policy}
           />
         </div>
       </div>

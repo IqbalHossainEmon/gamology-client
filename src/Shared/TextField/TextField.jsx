@@ -9,7 +9,7 @@ export default function TextField({
   htmlFor = 0,
   autoComplete,
   setState,
-  errorMessage,
+  errorMessage = '',
   errorChange,
   handleChange = () => {},
   ...rest

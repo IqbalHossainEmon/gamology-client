@@ -19,7 +19,7 @@ export default function AddGame() {
     },
     gameBanner: [{ cover: '', thumb: '', type: '' }],
     gameDescriptions: { descriptions: [{ mainHeader: '', subHeader: '', description: '' }] },
-    gameSpecifications: { spec: [] },
+    gameSpecifications: { spec: [], others: { key: '', value: '' }, copyWrite: '', policy: '' },
     gameTags: { genre: {}, features: {} },
   });
 
@@ -35,9 +35,9 @@ export default function AddGame() {
       releaseDate: '',
     },
     gameBannerError: [{ cover: '', thumb: '', type: '' }],
+    gameTagsError: {},
     gameDescriptionsError: { descriptions: [] },
     gameSpecificationsError: { spec: [] },
-    gameTagsError: {},
   });
 
   const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
@@ -144,32 +144,61 @@ export default function AddGame() {
     if (!gameDescriptions.sortDesc) {
       gameDescriptionsError.sortDesc = 'Short Description is required';
       error = true;
+    } else {
+      gameDescriptionsError.sortDesc = '';
+      errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
+        desc => {
+          const obj = {};
+          if (desc.mainHeader === '') {
+            obj.mainHeader = 'Main Header is required';
+            error = true;
+          } else {
+            obj.mainHeader = '';
+          }
+          if (desc.subHeader === '') {
+            obj.subHeader = 'Sub Header is required';
+            error = true;
+          } else {
+            obj.subHeader = '';
+          }
+          if (desc.description === '') {
+            obj.description = 'Description is required';
+            error = true;
+          } else {
+            obj.description = '';
+          }
+          return obj;
+        }
+      );
     }
-    errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
-      desc => {
-        const obj = {};
-        console.log(desc);
-        if (desc.mainHeader === '') {
-          obj.mainHeader = 'Main Header is required';
-          error = true;
-        } else {
-          obj.mainHeader = '';
-        }
-        if (desc.subHeader === '') {
-          obj.subHeader = 'Sub Header is required';
-          error = true;
-        } else {
-          obj.subHeader = '';
-        }
-        if (desc.description === '') {
-          obj.description = 'Description is required';
-          error = true;
-        } else {
-          obj.description = '';
-        }
-        return obj;
+
+    // Game Specifications
+    if (gameSpecifications.spec.length === 0) {
+      gameSpecificationsError.spec = 'System Requirements is required';
+      error = true;
+    }
+    if (Array.isArray(gameSpecifications.others.value)) {
+      gameSpecificationsError.others = [];
+      if (!gameSpecifications.others.value[0]) {
+        gameSpecificationsError.others[0] = 'Text Language Supported is required';
+      } else if (!gameSpecifications.others.value[1]) {
+        gameSpecificationsError.others[1] = 'Audio Language Supported is required';
+      } else {
+        delete gameSpecificationsError.others;
       }
-    );
+    } else if (gameSpecifications.others.value === '') {
+      gameSpecificationsError.others = 'Language Support is required';
+    } else {
+      delete gameSpecificationsError.others;
+    }
+    if (!gameSpecifications.copyWrite) {
+      gameSpecificationsError.copyWrite = 'CopyWrite is required';
+      error = true;
+    }
+    if (!gameSpecifications.policy) {
+      gameSpecificationsError.policy = 'Policy is required';
+      error = true;
+    }
 
     return error;
   };
@@ -178,7 +207,7 @@ export default function AddGame() {
     e.preventDefault();
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
-      console.log('data', gameData.current);
+      console.log(gameSpecifications);
       // console.log('error', errorMessages.current);
     }
   };

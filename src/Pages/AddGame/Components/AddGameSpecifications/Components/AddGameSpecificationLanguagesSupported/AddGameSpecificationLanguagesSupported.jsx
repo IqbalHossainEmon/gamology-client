@@ -3,27 +3,25 @@ import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/Fil
 import TextField from '../../../../../../Shared/TextField/TextField';
 import styles from './AddGameSpecificationLanguagesSupported.module.css';
 
-const AddGameSpecificationLanguagesSupported = ({ handleValue }) => {
+const AddGameSpecificationLanguagesSupported = ({ handleValue, errorMessages, errorChange }) => {
   const [separate, setSeparate] = useState({ separate: false });
 
-  const language = useRef({ text: '' });
-
-  const handleLanguagesSupported = () => {
-    handleValue(
-      {
-        key: 'Language Supported',
-        value: separate.separate
-          ? [language.current.text, language.current.audio]
-          : language.current.text,
-      },
-      'others'
-    );
-  };
+  const language = useRef({ text: '', audio: '' });
 
   return (
     <div
       className={styles.addGameSpecificationLanguagesSupported}
-      onBlur={handleLanguagesSupported}
+      onBlur={() =>
+        handleValue(
+          {
+            key: 'Language Supported',
+            value: separate.separate
+              ? [language.current.text, language.current.audio]
+              : language.current.text,
+          },
+          'others'
+        )
+      }
     >
       <div className={styles.textField}>
         <TextField
@@ -35,6 +33,8 @@ const AddGameSpecificationLanguagesSupported = ({ handleValue }) => {
           name="text"
           htmlFor="lang_support"
           placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
+          errorMessage={errorMessages.text}
+          errorChange={errorChange}
         />
       </div>
       {separate.separate && (
@@ -48,13 +48,17 @@ const AddGameSpecificationLanguagesSupported = ({ handleValue }) => {
             name="audio"
             htmlFor="lang_support"
             placeholder="Audio Languages Supported"
+            errorMessage={errorMessages.audio}
+            errorChange={errorChange}
           />
         </div>
       )}
       <div className={styles.switch}>
         <FilterOption
           text="Show Audio"
-          setState={setSeparate}
+          setState={obj => {
+            setSeparate(obj);
+          }}
           name="separate"
           state={separate.separate}
         />
