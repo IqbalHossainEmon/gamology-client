@@ -1,5 +1,5 @@
 import TextField from '../../../../../Shared/TextField/TextField';
-import AddGameSpecification from '../Components/AddGameSpecification/AddGameSpecification';
+import AddGameSpecificationContainer from '../Components/AddGameSpecificationContainer/AddGameSpecificationContainer';
 import AddGameSpecificationLanguagesSupported from '../Components/AddGameSpecificationLanguagesSupported/AddGameSpecificationLanguagesSupported';
 import styles from './AddGameSpecifications.module.css';
 
@@ -13,21 +13,16 @@ export default function AddGameSpecifications({ gameSpecifications, errorMessage
   return (
     <div className={styles.addGameSpecifications}>
       <h3 className={styles.header}>Add Game&#39;s System Requirement</h3>
-      <div className={styles.specsContainer}>
-        {specs.map((spec, i) => (
-          <div key={spec} className={styles.specs}>
-            <AddGameSpecification
-              gameSpecifications={gameSpecifications}
-              state={{ name: spec }}
-              index={i}
-            />
-          </div>
-        ))}
-      </div>
+      <AddGameSpecificationContainer
+        specs={specs}
+        gameSpecifications={gameSpecifications}
+        errorMessages={errorMessages.spec}
+        errorChange={errorChange}
+      />
       <div>
         <AddGameSpecificationLanguagesSupported
           handleValue={handleValue}
-          errorMessages={errorMessages}
+          errorMessages={errorMessages.others}
           errorChange={errorChange}
           gameSpecifications={gameSpecifications}
         />

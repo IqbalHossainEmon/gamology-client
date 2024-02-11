@@ -37,7 +37,7 @@ export default function AddGame() {
     gameBannerError: [{ cover: '', thumb: '', type: '' }],
     gameTagsError: {},
     gameDescriptionsError: { descriptions: [] },
-    gameSpecificationsError: { spec: [] },
+    gameSpecificationsError: { spec: [], others: [] },
   });
 
   const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
@@ -146,58 +146,69 @@ export default function AddGame() {
       error = true;
     } else {
       gameDescriptionsError.sortDesc = '';
-      errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
-        desc => {
-          const obj = {};
-          if (desc.mainHeader === '') {
-            obj.mainHeader = 'Main Header is required';
-            error = true;
-          } else {
-            obj.mainHeader = '';
-          }
-          if (desc.subHeader === '') {
-            obj.subHeader = 'Sub Header is required';
-            error = true;
-          } else {
-            obj.subHeader = '';
-          }
-          if (desc.description === '') {
-            obj.description = 'Description is required';
-            error = true;
-          } else {
-            obj.description = '';
-          }
-          return obj;
-        }
-      );
     }
+    errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
+      desc => {
+        const obj = {};
+        console.log(desc);
+        if (desc.mainHeader === '') {
+          obj.mainHeader = 'Main Header is required';
+          error = true;
+        } else {
+          obj.mainHeader = '';
+        }
+        if (desc.subHeader === '') {
+          obj.subHeader = 'Sub Header is required';
+          error = true;
+        } else {
+          obj.subHeader = '';
+        }
+        if (desc.description === '') {
+          obj.description = 'Description is required';
+          error = true;
+        } else {
+          obj.description = '';
+        }
+        return obj;
+      }
+    );
 
     // Game Specifications
     if (gameSpecifications.spec.length === 0) {
-      gameSpecificationsError.spec = 'System Requirements is required';
+      gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
       error = true;
+    } else {
+      // if (gameSpecificationsError.spec[3]) delete gameSpecificationsError.spec[3];
+      // if (gameSpecificationsError.spec[0]) {
+      // }
     }
     if (Array.isArray(gameSpecifications.others.value)) {
-      gameSpecificationsError.others = [];
       if (!gameSpecifications.others.value[0]) {
         gameSpecificationsError.others[0] = 'Text Language Supported is required';
-      } else if (!gameSpecifications.others.value[1]) {
+      } else {
+        gameSpecificationsError.others[0] = '';
+      }
+      if (!gameSpecifications.others.value[1]) {
         gameSpecificationsError.others[1] = 'Audio Language Supported is required';
       } else {
-        delete gameSpecificationsError.others;
+        gameSpecificationsError.others[1] = '';
       }
-    } else if (gameSpecifications.others.value === '') {
-      gameSpecificationsError.others = 'Language Support is required';
+    } else if (!gameSpecifications.others.value) {
+      gameSpecificationsError.others[0] = 'Language Support is required';
     } else {
-      delete gameSpecificationsError.others;
+      gameSpecificationsError.others[0] = '';
     }
     if (!gameSpecifications.copyWrite) {
       gameSpecificationsError.copyWrite = 'CopyWrite is required';
       error = true;
+    } else {
+      gameSpecificationsError.copyWrite = '';
     }
     if (!gameSpecifications.policy) {
       gameSpecificationsError.policy = 'Policy is required';
       error = true;
+    } else {
+      gameSpecificationsError.policy = '';
     }
 
     return error;
@@ -207,7 +218,7 @@ export default function AddGame() {
     e.preventDefault();
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
-      console.log(gameSpecifications);
+      console.log(gameSpecificationsError);
       // console.log('error', errorMessages.current);
     }
   };

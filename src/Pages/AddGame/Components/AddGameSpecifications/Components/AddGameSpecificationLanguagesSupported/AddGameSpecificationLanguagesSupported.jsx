@@ -33,7 +33,7 @@ const AddGameSpecificationLanguagesSupported = ({ handleValue, errorMessages, er
           name="text"
           htmlFor="lang_support"
           placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
-          errorMessage={errorMessages.text}
+          errorMessage={errorMessages[0]}
           errorChange={errorChange}
         />
       </div>
@@ -48,7 +48,7 @@ const AddGameSpecificationLanguagesSupported = ({ handleValue, errorMessages, er
             name="audio"
             htmlFor="lang_support"
             placeholder="Audio Languages Supported"
-            errorMessage={errorMessages.audio}
+            errorMessage={errorMessages[1]}
             errorChange={errorChange}
           />
         </div>

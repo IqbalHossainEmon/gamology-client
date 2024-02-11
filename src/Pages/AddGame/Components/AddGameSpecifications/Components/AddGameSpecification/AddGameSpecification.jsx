@@ -1,16 +1,27 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import ButtonForAddGameSection from '../../../ButtonForAddGameSection/ButtonForAddGameSection';
 import SectionFieldContainer from '../SectionFieldContainer/SectionFieldContainer';
 import styles from './AddGameSpecification.module.css';
 
-export default function AddGameSpecification({ state, gameSpecifications, index }) {
+export default function AddGameSpecification({
+  state,
+  gameSpecifications,
+  index,
+  errorMessages,
+  errorChange,
+}) {
   const [requiredLength, setRequiredLength] = useState(1);
   const [enabled, setEnabled] = useState({ enabled: false });
+  const [errorShow, setErrorShow] = useState(!!errorMessages);
 
   const enabledRef = useRef(enabled);
   enabledRef.current = enabled.enabled;
+
+  useEffect(() => {
+    if (errorChange && errorMessages) setErrorShow(true);
+  }, [errorChange, errorMessages]);
 
   const specificationRef = useRef([]);
 
@@ -83,7 +94,7 @@ export default function AddGameSpecification({ state, gameSpecifications, index 
           </div>
         </div>
       </div>
-      <ErrorMessage errorMessage={"There's a problem with the specifications"} />
+      <ErrorMessage enable={errorShow} errorMessage={errorMessages} />
     </div>
   );
 }
