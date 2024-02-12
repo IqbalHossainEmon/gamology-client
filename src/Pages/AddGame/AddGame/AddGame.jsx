@@ -19,7 +19,16 @@ export default function AddGame() {
     },
     gameBanner: [{ cover: '', thumb: '', type: '' }],
     gameDescriptions: { descriptions: [{ mainHeader: '', subHeader: '', description: '' }] },
-    gameSpecifications: { spec: [], others: { key: '', value: '' }, copyWrite: '', policy: '' },
+    gameSpecifications: {
+      spec: [
+        { for: 'Windows', systemReq: [{}, {}], isActive: false },
+        { for: 'MacOs', systemReq: [{}, {}], isActive: false },
+        { for: 'Linux', systemReq: [{}, {}], isActive: false },
+      ],
+      others: { key: '', value: '' },
+      copyWrite: '',
+      policy: '',
+    },
     gameTags: { genre: {}, features: {} },
   });
 
@@ -150,7 +159,6 @@ export default function AddGame() {
     errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
       desc => {
         const obj = {};
-        console.log(desc);
         if (desc.mainHeader === '') {
           obj.mainHeader = 'Main Header is required';
           error = true;
@@ -174,14 +182,14 @@ export default function AddGame() {
     );
 
     // Game Specifications
-    if (gameSpecifications.spec.length === 0) {
+    if (
+      !gameSpecifications.spec[0].isActive &&
+      !gameSpecifications.spec[1].isActive &&
+      !gameSpecifications.spec[2].isActive
+    ) {
       gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
       error = true;
-    } else {
-      // if (gameSpecificationsError.spec[3]) delete gameSpecificationsError.spec[3];
-      // if (gameSpecificationsError.spec[0]) {
-      // }
-    }
+    } else if (gameSpecificationsError.spec[3]) delete gameSpecificationsError.spec[3];
     if (Array.isArray(gameSpecifications.others.value)) {
       if (!gameSpecifications.others.value[0]) {
         gameSpecificationsError.others[0] = 'Text Language Supported is required';
@@ -218,6 +226,7 @@ export default function AddGame() {
     e.preventDefault();
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
+      console.log(gameSpecifications);
       console.log(gameSpecificationsError);
       // console.log('error', errorMessages.current);
     }

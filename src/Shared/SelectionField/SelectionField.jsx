@@ -26,7 +26,7 @@ export default function SelectionField({
   }, [setElement]);
 
   return (
-    <div ref={containerRef} className={styles.container}>
+    <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
       <button
         type="button"
         ref={elementRef}

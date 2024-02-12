@@ -2,23 +2,28 @@ import SelectionField from '../../../../../../Shared/SelectionField/SelectionFie
 import TextField from '../../../../../../Shared/TextField/TextField';
 import styles from './SectionFieldContainer.module.css';
 
-export default function SectionFieldContainer({ requiredLength, index, name, specificationRef }) {
-  const handleSetState = (value, i, isKey) => {
-    if (!specificationRef.current[i]) {
-      specificationRef.current[i] = [];
-    }
-    if (!specificationRef.current[i][index]) {
-      specificationRef.current[i][index] = {};
-    }
+const listArr = [
+  'CPU',
+  'Memory',
+  'GPU',
+  'Storage',
+  'OS',
+  'DirectX',
+  'Resolution',
+  'Preset / Target',
+  'Peripherals',
+  'Others',
+];
 
-    switch (isKey) {
-      case true:
-        specificationRef.current[i][index].key = value;
-        break;
-      default:
-        specificationRef.current[i][index].value = value;
-        break;
-    }
+export default function SectionFieldContainer({
+  requiredLength,
+  index,
+  parentIndex,
+  name,
+  gameSpecifications,
+}) {
+  const handleSetState = (n, value) => {
+    gameSpecifications[parentIndex].systemReq[index][n] = value;
   };
 
   return (
@@ -30,19 +35,8 @@ export default function SectionFieldContainer({ requiredLength, index, name, spe
               name="Key Type"
               placeholder="Required"
               htmlFor={`${name}${length}${i}${index}`}
-              setState={value => handleSetState(value, i, true)}
-              list={[
-                'OS',
-                'CPU',
-                'GPU',
-                'Memory',
-                'Storage',
-                'DirectX',
-                'Resolution',
-                'Preset / Target',
-                'Peripherals',
-                'Others',
-              ]}
+              setState={(value, n) => handleSetState(n, value)}
+              list={listArr}
             />
           </div>
           <div className={styles.textField}>

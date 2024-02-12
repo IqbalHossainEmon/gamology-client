@@ -15,4 +15,10 @@
   .selectionField {
     width: 100px;
   }
+  .specsContainer {
+    flex-direction: column;
+  }
+  .selectionField {
+    margin-bottom: 10px;
+  }
 }

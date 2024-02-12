@@ -9,8 +9,8 @@
 .options {
   width: 100%;
 }
-.options:last-child {
-  margin-left: 40px;
+.options {
+  padding: 0 10px;
 }
 
 .header {

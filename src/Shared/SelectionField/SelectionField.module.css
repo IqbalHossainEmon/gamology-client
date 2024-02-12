@@ -2,6 +2,9 @@
   position: relative;
   width: 100%;
 }
+.overflow {
+  overflow: hidden;
+}
 .button {
   width: 100%;
   height: 100%;
@@ -73,7 +76,7 @@
   pointer-events: none;
   transition: opacity 200ms;
   z-index: 1;
-  max-height: 400px;
+  max-height: 410px;
   overflow-y: auto;
 }
 
@@ -159,6 +162,7 @@
   .focused {
     font-size: 10px;
   }
+  .item button,
   .input {
     font-size: 12px;
   }
