@@ -25,8 +25,8 @@ export default function IndividualGameReviewInputField({ setData }) {
           value.length <= 40 && value.length >= 20
             ? [styles.remainingWords, styles.warning].join(' ')
             : value.length > 40
-            ? [styles.remainingWords, styles.negative].join(' ')
-            : styles.remainingWords
+              ? [styles.remainingWords, styles.negative].join(' ')
+              : styles.remainingWords
         }
       >
         <small>{40 - value.length}</small>

@@ -2,13 +2,7 @@ import { useRef } from 'react';
 import TextField from '../../../../../Shared/TextField/TextField';
 import styles from './AddGameDescription.module.css';
 
-export default function AddGameDescription({
-  item,
-  index,
-  gameDescriptions,
-  errorChange,
-  errorMessages,
-}) {
+export default function AddGameDescription({ item, index, gameDescriptions, errorChange, errorMessages }) {
   const valueRef = useRef({});
 
   const handleSetValues = (value, name) => {
@@ -34,11 +28,7 @@ export default function AddGameDescription({
           />
         </div>
       )}
-      <div
-        className={
-          item.onlySubHeader ? [styles.subHeader, styles.onlySubHeader].join(' ') : styles.subHeader
-        }
-      >
+      <div className={item.onlySubHeader ? [styles.subHeader, styles.onlySubHeader].join(' ') : styles.subHeader}>
         <TextField
           field="input"
           setState={handleSetValues}

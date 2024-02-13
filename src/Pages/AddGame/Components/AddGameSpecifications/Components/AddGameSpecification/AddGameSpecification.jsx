@@ -1,21 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import ButtonForAddGameSection from '../../../ButtonForAddGameSection/ButtonForAddGameSection';
-import SectionFieldContainer from '../SectionFieldContainer/SectionFieldContainer';
+import SectionFieldTextFieldContainer from '../SectionFieldTextFieldContainer/SectionFieldTextFieldContainer';
 import styles from './AddGameSpecification.module.css';
 
-export default function AddGameSpecification({
-  state,
-  gameSpecifications,
-  index,
-  errorMessages,
-  errorChange,
-  handleSetValue,
-}) {
+export default function AddGameSpecification({ state, gameSpecifications, index, errorMessages, errorChange, handleSetValue }) {
   const [requiredLength, setRequiredLength] = useState(1);
   const [enabled, setEnabled] = useState({ enabled: false });
   const [errorShow, setErrorShow] = useState(!!errorMessages);
+  const keysRef = useRef({ min: [], rec: [] });
 
   useEffect(() => {
     if (errorChange && errorMessages) setErrorShow(true);
@@ -32,18 +26,13 @@ export default function AddGameSpecification({
   return (
     <div className={styles.addGameSpecification}>
       <div className={styles.switch}>
-        <FilterOption
-          setState={handleSetEnable}
-          name="enabled"
-          state={enabled.enabled}
-          border
-          text={state.name}
-        />
+        <FilterOption setState={handleSetEnable} name="enabled" state={enabled.enabled} border text={state.name} />
       </div>
       <div className={styles.systemReqContainer} {...(!enabled.enabled && { disabled: true })}>
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Minimum</h4>
-          <SectionFieldContainer
+          <SectionFieldTextFieldContainer
+            keysRef={keysRef.current.min}
             name={`${state.name.toLowerCase()}_min`}
             parentIndex={index}
             index={0}
@@ -53,7 +42,8 @@ export default function AddGameSpecification({
         </div>
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Recommended</h4>
-          <SectionFieldContainer
+          <SectionFieldTextFieldContainer
+            keysRef={keysRef.current.rec}
             name={`${state.name.toLowerCase()}_rec`}
             parentIndex={index}
             index={1}
@@ -65,7 +55,13 @@ export default function AddGameSpecification({
           <div className={styles.btnContainer}>
             <ButtonForAddGameSection
               text="Add More +"
-              onClick={() => setRequiredLength(prev => prev + 1)}
+              onClick={() => {
+                setRequiredLength(prev => prev + 1);
+                gameSpecifications[index].systemReq.push([
+                  { key: '', value: '' },
+                  { key: '', value: '' },
+                ]);
+              }}
             />
           </div>
           <div className={styles.btnContainer}>
@@ -74,9 +70,9 @@ export default function AddGameSpecification({
               {...(requiredLength === 1 && { disabled: true })}
               onClick={() => {
                 setRequiredLength(prev => prev - 1);
-                gameSpecifications[index].systemReq[
-                  gameSpecifications[index].systemReq.length - 1
-                ].pop();
+                gameSpecifications[index].systemReq[gameSpecifications[index].systemReq.length - 1].pop();
+                keysRef.current.min.pop();
+                keysRef.current.rec.pop();
               }}
             />
           </div>

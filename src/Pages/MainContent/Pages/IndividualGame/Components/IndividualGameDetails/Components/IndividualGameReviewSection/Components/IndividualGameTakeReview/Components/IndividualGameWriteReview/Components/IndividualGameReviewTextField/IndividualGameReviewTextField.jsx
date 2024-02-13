@@ -26,8 +26,8 @@ export default function IndividualGameReviewTextField({ setData }) {
           value.length <= 2000 && value.length >= 1800
             ? [styles.remainingWords, styles.warning].join(' ')
             : value.length > 2000
-            ? [styles.remainingWords, styles.negative].join(' ')
-            : styles.remainingWords
+              ? [styles.remainingWords, styles.negative].join(' ')
+              : styles.remainingWords
         }
       >
         <small>{2000 - value.length}</small>

@@ -27,10 +27,7 @@ const reducer = (state, action) => {
             ...state,
             active: state.active === state.data.length - 1 ? 0 : state.active + 1,
             coverTransition: true,
-            cardActive:
-              state.active === state.data.length - 1
-                ? 0
-                : Math.floor((state.active + 1) / state.cardsOnDeck),
+            cardActive: state.active === state.data.length - 1 ? 0 : Math.floor((state.active + 1) / state.cardsOnDeck),
             thumbTransition: true,
           };
 
@@ -80,9 +77,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         cardActive:
-          state.cardActive - 1 >= 0
-            ? state.cardActive - 1
-            : Math.ceil(state.data.length / state.cardsOnDeck) - 1,
+          state.cardActive - 1 >= 0 ? state.cardActive - 1 : Math.ceil(state.data.length / state.cardsOnDeck) - 1,
         thumbTransition: true,
       };
 

@@ -89,15 +89,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
       videoRef.current.removeEventListener('playing', handlePlaying);
       videoRef.current.removeEventListener('waiting', handleWaiting);
     };
-  }, [
-    handlePlaying,
-    handlePause,
-    handlePlay,
-    handleWaiting,
-    loadMetaDataUpdate,
-    loadUpdate,
-    video,
-  ]);
+  }, [handlePlaying, handlePause, handlePlay, handleWaiting, loadMetaDataUpdate, loadUpdate, video]);
 
   return (
     <>
@@ -107,28 +99,17 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
         </div>
       )}
       {!status.initialShow && (
-        <div
-          className={
-            status.animation ? [styles.videoStatus, styles.fadeOut].join(' ') : styles.videoStatus
-          }
-        >
+        <div className={status.animation ? [styles.videoStatus, styles.fadeOut].join(' ') : styles.videoStatus}>
           <span {...(!status.play && { className: styles.marginLeft })}>
             <svg viewBox={status.play ? '0 0 10 14' : '0 0 11 14'}>
-              <path
-                d={status.play ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'}
-                fill="white"
-              />
+              <path d={status.play ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'} fill="white" />
             </svg>
           </span>
         </div>
       )}
       {status.initialShow && status.duration > 0 && (
         <div className={styles.initialPlaceholder}>
-          <button
-            onClick={initialBtnPlay}
-            type="button"
-            className={styles.initialPlaceholderButton}
-          >
+          <button onClick={initialBtnPlay} type="button" className={styles.initialPlaceholderButton}>
             <span className={styles.svgContainer}>
               <svg viewBox="0 0 11 14">
                 <path d="M0 0v14l11-7z" fill="black" fillRule="nonzero" />

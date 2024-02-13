@@ -70,19 +70,11 @@ const FileUploadButton = ({
         className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
         type="button"
       >
-        <div
-          className={selected.selected ? [styles.label, styles.focused].join(' ') : styles.label}
-        >
-          <p {...(errorShow && { className: styles.errorColor })}>
-            {placeholder || selected.name || 'Browse'}
-          </p>
+        <div className={selected.selected ? [styles.label, styles.focused].join(' ') : styles.label}>
+          <p {...(errorShow && { className: styles.errorColor })}>{placeholder || selected.name || 'Browse'}</p>
         </div>
 
-        <div
-          className={
-            selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName
-          }
-        >
+        <div className={selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName}>
           {selected.name}
         </div>
         <ButtonWaterEffect btnRef={btnRef} long />

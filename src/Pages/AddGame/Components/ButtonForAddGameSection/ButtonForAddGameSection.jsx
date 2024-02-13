@@ -7,13 +7,7 @@ export default function ButtonForAddGameSection({ onClick, text, disabled = fals
 
   return (
     <div className={styles.addMoreButton}>
-      <button
-        ref={btnRef}
-        className={styles.btn}
-        onClick={onClick}
-        type="button"
-        {...(disabled && { disabled })}
-      >
+      <button ref={btnRef} className={styles.btn} onClick={onClick} type="button" {...(disabled && { disabled })}>
         {text}
         <ButtonWaterEffect btnRef={btnRef} />
       </button>

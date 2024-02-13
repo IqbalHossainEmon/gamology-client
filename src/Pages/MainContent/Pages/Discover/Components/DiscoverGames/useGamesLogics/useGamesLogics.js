@@ -11,16 +11,12 @@ const reducer = (state, action) => {
         cardsWidth: action.width,
         cardOnDeck: action.cardOnDeck,
         cardActive:
-          action.cardOnDeck !== state.cardOnDeck &&
-          state.cardOnDeck &&
-          state.cardActive % action.cardOnDeck !== 0
+          action.cardOnDeck !== state.cardOnDeck && state.cardOnDeck && state.cardActive % action.cardOnDeck !== 0
             ? state.cardActive - (state.cardActive % action.cardOnDeck)
             : state.cardActive,
         translateStyle: {
           translate:
-            action.cardOnDeck !== state.cardOnDeck &&
-            state.cardOnDeck &&
-            state.cardActive % action.cardOnDeck !== 0
+            action.cardOnDeck !== state.cardOnDeck && state.cardOnDeck && state.cardActive % action.cardOnDeck !== 0
               ? `${action.width * (state.cardActive - (state.cardActive % action.cardOnDeck))}px`
               : `${action.width * state.cardActive}px`,
           transitionDuration: '0ms',
@@ -38,9 +34,7 @@ const reducer = (state, action) => {
         translateStyle:
           state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
             ? {
-                translate: `${
-                  state.cardsWidth * (state.cardActive - (state.dataLength % state.cardOnDeck))
-                }px`,
+                translate: `${state.cardsWidth * (state.cardActive - (state.dataLength % state.cardOnDeck))}px`,
                 transitionDuration: '300ms',
               }
             : {

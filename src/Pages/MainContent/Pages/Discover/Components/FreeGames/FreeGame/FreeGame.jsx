@@ -29,12 +29,8 @@ export default function FreeGame({ data, today, length }) {
   // Finding todays date and comparing the upcoming / expire date and setting styles
   useEffect(() => {
     const todayDate = new Date(`${today[2]}-${today[1]}-${today[0]}`);
-    const firstDay = new Date(
-      `${data.saleTill[0][2]}-${data.saleTill[0][1]}-${data.saleTill[0][0]}`
-    );
-    const lastDay = new Date(
-      `${data.saleTill[1][2]}-${data.saleTill[1][1]}-${data.saleTill[1][0]}`
-    );
+    const firstDay = new Date(`${data.saleTill[0][2]}-${data.saleTill[0][1]}-${data.saleTill[0][0]}`);
+    const lastDay = new Date(`${data.saleTill[1][2]}-${data.saleTill[1][1]}-${data.saleTill[1][0]}`);
     if (todayDate < firstDay) {
       setDateState(0);
     } else if (todayDate >= firstDay && todayDate < lastDay) {
@@ -52,9 +48,7 @@ export default function FreeGame({ data, today, length }) {
           {dateState !== -1 && (
             <p
               className={
-                dateState === 1
-                  ? [styles.common, styles.freeNow].join(' ')
-                  : [styles.common, styles.coming].join(' ')
+                dateState === 1 ? [styles.common, styles.freeNow].join(' ') : [styles.common, styles.coming].join(' ')
               }
             >
               {dateState === 1 ? 'FREE GAME' : 'COMMING SOON'}

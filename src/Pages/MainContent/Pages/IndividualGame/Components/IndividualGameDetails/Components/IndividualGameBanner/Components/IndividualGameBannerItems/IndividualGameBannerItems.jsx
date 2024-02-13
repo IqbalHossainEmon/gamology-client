@@ -4,13 +4,7 @@ import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowB
 import IndividualGameBannerItem from '../IndividualGameBannerItem/IndividualGameBannerItem';
 import styles from './IndividualGameBannerItems.module.css';
 
-export default function IndividualGameBannerItems({
-  active,
-  items,
-  dispatch,
-  transition,
-  timerFunction,
-}) {
+export default function IndividualGameBannerItems({ active, items, dispatch, transition, timerFunction }) {
   const containerRef = useRef(null);
   const handleDebounce = useHandleDebouncing(300);
 
@@ -30,27 +24,17 @@ export default function IndividualGameBannerItems({
         style={
           transition
             ? {
-                translate: containerRef.current
-                  ? `calc(-${active * 100}% - ${active * 20}px)`
-                  : '0px',
+                translate: containerRef.current ? `calc(-${active * 100}% - ${active * 20}px)` : '0px',
                 transition: 'translate 250ms ease-in-out',
               }
             : {
-                translate: containerRef.current
-                  ? `calc(-${active * 100}% - ${active * 20}px)`
-                  : '0px',
+                translate: containerRef.current ? `calc(-${active * 100}% - ${active * 20}px)` : '0px',
               }
         }
         className={styles.individualGameBannerItems}
       >
         {items.map((item, index) => (
-          <IndividualGameBannerItem
-            key={item.id}
-            data={item}
-            active={active}
-            index={index}
-            transition={transition}
-          />
+          <IndividualGameBannerItem key={item.id} data={item} active={active} index={index} transition={transition} />
         ))}
       </ul>
       <ArrowButton

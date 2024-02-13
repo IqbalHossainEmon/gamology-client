@@ -19,8 +19,7 @@ export default function RangeInput({
   const handleSetValue = (val, knob) => {
     const { knob1, knob2 } = value;
 
-    let newVal =
-      float === 0 ? (Math.round(val) - lowerLim) / everyStep : (val - lowerLim) / everyStep;
+    let newVal = float === 0 ? (Math.round(val) - lowerLim) / everyStep : (val - lowerLim) / everyStep;
 
     if (newVal > 100) {
       newVal = 100;

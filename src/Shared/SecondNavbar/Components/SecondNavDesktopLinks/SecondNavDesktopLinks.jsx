@@ -23,12 +23,7 @@ export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState 
   }, [sliderElementRef]);
 
   return (
-    <ul
-      ref={sliderElementRef}
-      {...(!navMidShow && { style })}
-      className={styles.SecondNavLinks}
-      id={styles[id]}
-    >
+    <ul ref={sliderElementRef} {...(!navMidShow && { style })} className={styles.SecondNavLinks} id={styles[id]}>
       <LinksList active={3} styles={styles} links={links} onclick={setNavTextState} />
     </ul>
   );

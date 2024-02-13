@@ -1,8 +1,6 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
 import withVideoPlayerProgress from '../../../../../HOC/withVideoPlayerProgress';
-import FullScreenButton, {
-  handleFullScreen,
-} from '../Components/FullScreenButton/FullScreenButton';
+import FullScreenButton, { handleFullScreen } from '../Components/FullScreenButton/FullScreenButton';
 import GearButton from '../Components/GearButton/GearButton/GearButton';
 import PlayPauseButton from '../Components/PlayPauseButton/PlayPauseButton';
 import ProgressTimeShow from '../Components/ProgressTimeShow/ProgressTimeShow';

@@ -23,8 +23,7 @@ const data = {
           {
             id: 10011,
             key: 'Processor',
-            value:
-              'AMD / Intel CPU running at 3.6 GHz or higher: AMD Ryzen 5 3600X or Intel i5-8600K or newer',
+            value: 'AMD / Intel CPU running at 3.6 GHz or higher: AMD Ryzen 5 3600X or Intel i5-8600K or newer',
           },
         ],
         [
@@ -124,11 +123,7 @@ export default function IndividualGameSpecifications() {
         <div className={styles.mainHeadersContainer}>
           {spec.spec?.map((s, i) => (
             <div className={styles.mainHeader} key={s.id}>
-              <button
-                type="button"
-                onClick={() => setToggle(i)}
-                className={`${styles.mainHeaderBtn} ${toggle === i && styles.active}`}
-              >
+              <button type="button" onClick={() => setToggle(i)} className={`${styles.mainHeaderBtn} ${toggle === i && styles.active}`}>
                 {s.for}
               </button>
             </div>

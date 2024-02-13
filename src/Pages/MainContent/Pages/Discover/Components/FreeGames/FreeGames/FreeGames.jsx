@@ -73,11 +73,7 @@ export default function FreeGames() {
   const dataLength = useRef(data.length);
 
   const date = useRef(new Date());
-  const today = useRef([
-    date.current.getDate(),
-    date.current.getMonth() + 1,
-    date.current.getFullYear(),
-  ]);
+  const today = useRef([date.current.getDate(), date.current.getMonth() + 1, date.current.getFullYear()]);
 
   return (
     <section className={styles.freeGames}>

@@ -15,9 +15,7 @@ const AddGameSpecificationLanguagesSupported = ({ handleValue, errorMessages, er
         handleValue(
           {
             key: 'Language Supported',
-            value: separate.separate
-              ? [language.current.text, language.current.audio]
-              : language.current.text,
+            value: separate.separate ? [language.current.text, language.current.audio] : language.current.text,
           },
           'others'
         )

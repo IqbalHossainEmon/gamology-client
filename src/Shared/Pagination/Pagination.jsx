@@ -14,17 +14,11 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
           disabled={activePage === 1}
           className={`${styles.paginationButton} ${styles.prevButton} ${styles.number}`}
         >
-          <ArrowIcon
-            className={styles.arrowIcon}
-            {...(activePage === 1 && { stroke: 'rgba(255, 255, 255, 0.3)' })}
-          />
+          <ArrowIcon className={styles.arrowIcon} {...(activePage === 1 && { stroke: 'rgba(255, 255, 255, 0.3)' })} />
         </button>
       </li>
       {paginationRange.map((page, i) => (
-        <li
-          key={page === DOTS ? `...${i}` : page}
-          className={page === DOTS ? styles.ellipsis : styles.number}
-        >
+        <li key={page === DOTS ? `...${i}` : page} className={page === DOTS ? styles.ellipsis : styles.number}>
           {page === DOTS ? (
             DOTS
           ) : (

@@ -14,11 +14,9 @@
 @media screen and (max-width: 768px) {
   .selectionField {
     width: 100px;
+    margin-bottom: 10px;
   }
   .specsContainer {
     flex-direction: column;
-  }
-  .selectionField {
-    margin-bottom: 10px;
   }
 }

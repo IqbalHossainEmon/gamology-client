@@ -27,14 +27,14 @@ export default function Footer() {
       <div className={styles.description}>
         <p>
           <small>
-            Share capital: 500,698,500 PLN paid in full; National Court Register (KRS) number:
-            1269691510; District Court for the City of Dhaka, 14th Commercial;
+            Share capital: 500,698,500 PLN paid in full; National Court Register (KRS) number: 1269691510; District
+            Court for the City of Dhaka, 14th Commercial;
           </small>
         </p>
         <p>
           <small>
-            All trademarks referenced herein are the properties of their respective owners. ©2023
-            Gamology All rights reserved
+            All trademarks referenced herein are the properties of their respective owners. ©2023 Gamology All rights
+            reserved
           </small>
         </p>
       </div>

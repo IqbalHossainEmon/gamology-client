@@ -14,11 +14,7 @@ export default function GameCards({ state, dispatch }) {
       </ul>
       {pageCount > 2 && (
         <div className={styles.pagination}>
-          <Pagination
-            activePage={state?.activePage}
-            totalPage={pageCount}
-            setActivePage={dispatch}
-          />
+          <Pagination activePage={state?.activePage} totalPage={pageCount} setActivePage={dispatch} />
         </div>
       )}
     </section>

@@ -13,9 +13,7 @@ export default function ApplyButton({ filterState, state, dispatch, setShow }) {
     <div className={styles.buttonContainer}>
       <button
         className={`${styles.applyButton} ${
-          JSON.stringify(newFilterState) !== JSON.stringify(newState)
-            ? styles.activeButton
-            : styles.disableButton
+          JSON.stringify(newFilterState) !== JSON.stringify(newState) ? styles.activeButton : styles.disableButton
         }`}
         type="button"
         onClick={() => {

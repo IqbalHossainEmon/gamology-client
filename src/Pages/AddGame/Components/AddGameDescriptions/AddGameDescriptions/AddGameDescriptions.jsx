@@ -71,8 +71,7 @@ const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) =
                 prevState[prevState.length - 1].main = true;
                 return prevState;
               });
-              gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader =
-                '';
+              gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader = '';
             }}
             text="Add Main Header +"
           />
@@ -88,8 +87,7 @@ const AddGameDescriptions = ({ gameDescriptions, errorChange, errorMessages }) =
                 delete prevState[prevState.length - 1].main;
                 return prevState;
               });
-              delete gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1]
-                .mainHeader;
+              delete gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader;
             }}
             text="Remove Main Header -"
           />

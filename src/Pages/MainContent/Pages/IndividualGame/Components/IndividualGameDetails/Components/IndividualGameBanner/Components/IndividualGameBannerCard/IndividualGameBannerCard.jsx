@@ -14,11 +14,7 @@ export default function IndividualGameBannerCard({ data, active, dispatch, index
         })}
       >
         {data.type === 'video' && (
-          <div
-            className={
-              active === index ? [styles.videoLogo, styles.active].join(' ') : styles.videoLogo
-            }
-          >
+          <div className={active === index ? [styles.videoLogo, styles.active].join(' ') : styles.videoLogo}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 14">
               <path d="M0 0v14l11-7z" fill="white" fillRule="nonzero" />
             </svg>

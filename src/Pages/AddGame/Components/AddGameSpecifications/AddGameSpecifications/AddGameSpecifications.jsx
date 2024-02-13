@@ -3,8 +3,6 @@ import AddGameSpecificationContainer from '../Components/AddGameSpecificationCon
 import AddGameSpecificationLanguagesSupported from '../Components/AddGameSpecificationLanguagesSupported/AddGameSpecificationLanguagesSupported';
 import styles from './AddGameSpecifications.module.css';
 
-const specs = ['Windows', 'MacOs', 'Linux'];
-
 export default function AddGameSpecifications({ gameSpecifications, errorMessages, errorChange }) {
   const handleValue = (value, name) => {
     gameSpecifications[name] = value;
@@ -13,12 +11,7 @@ export default function AddGameSpecifications({ gameSpecifications, errorMessage
   return (
     <div className={styles.addGameSpecifications}>
       <h3 className={styles.header}>Add Game&#39;s System Requirement</h3>
-      <AddGameSpecificationContainer
-        specs={specs}
-        gameSpecifications={gameSpecifications}
-        errorMessages={errorMessages.spec}
-        errorChange={errorChange}
-      />
+      <AddGameSpecificationContainer gameSpecifications={gameSpecifications} errorMessages={errorMessages.spec} errorChange={errorChange} />
       <div>
         <AddGameSpecificationLanguagesSupported
           handleValue={handleValue}

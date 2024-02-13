@@ -21,9 +21,36 @@ export default function AddGame() {
     gameDescriptions: { descriptions: [{ mainHeader: '', subHeader: '', description: '' }] },
     gameSpecifications: {
       spec: [
-        { for: 'Windows', systemReq: [{}, {}], isActive: false },
-        { for: 'MacOs', systemReq: [{}, {}], isActive: false },
-        { for: 'Linux', systemReq: [{}, {}], isActive: false },
+        {
+          for: 'Windows',
+          systemReq: [
+            [
+              { key: '', value: '' },
+              { key: '', value: '' },
+            ],
+          ],
+          isActive: false,
+        },
+        {
+          for: 'MacOs',
+          systemReq: [
+            [
+              { key: '', value: '' },
+              { key: '', value: '' },
+            ],
+          ],
+          isActive: false,
+        },
+        {
+          for: 'Linux',
+          systemReq: [
+            [
+              { key: '', value: '' },
+              { key: '', value: '' },
+            ],
+          ],
+          isActive: false,
+        },
       ],
       others: { key: '', value: '' },
       copyWrite: '',
@@ -51,13 +78,7 @@ export default function AddGame() {
 
   const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
 
-  const {
-    gameInfoError,
-    gameBannerError,
-    gameDescriptionsError,
-    gameSpecificationsError,
-    gameTagsError,
-  } = errorMessages.current;
+  const { gameInfoError, gameBannerError, gameDescriptionsError, gameSpecificationsError, gameTagsError } = errorMessages.current;
 
   const checkValidation = () => {
     let error = false;
@@ -156,40 +177,44 @@ export default function AddGame() {
     } else {
       gameDescriptionsError.sortDesc = '';
     }
-    errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(
-      desc => {
-        const obj = {};
-        if (desc.mainHeader === '') {
-          obj.mainHeader = 'Main Header is required';
-          error = true;
-        } else {
-          obj.mainHeader = '';
-        }
-        if (desc.subHeader === '') {
-          obj.subHeader = 'Sub Header is required';
-          error = true;
-        } else {
-          obj.subHeader = '';
-        }
-        if (desc.description === '') {
-          obj.description = 'Description is required';
-          error = true;
-        } else {
-          obj.description = '';
-        }
-        return obj;
+    errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(desc => {
+      const obj = {};
+      if (desc.mainHeader === '') {
+        obj.mainHeader = 'Main Header is required';
+        error = true;
+      } else {
+        obj.mainHeader = '';
       }
-    );
+      if (desc.subHeader === '') {
+        obj.subHeader = 'Sub Header is required';
+        error = true;
+      } else {
+        obj.subHeader = '';
+      }
+      if (desc.description === '') {
+        obj.description = 'Description is required';
+        error = true;
+      } else {
+        obj.description = '';
+      }
+      return obj;
+    });
 
     // Game Specifications
-    if (
-      !gameSpecifications.spec[0].isActive &&
-      !gameSpecifications.spec[1].isActive &&
-      !gameSpecifications.spec[2].isActive
-    ) {
+    if (!gameSpecifications.spec[0].isActive && !gameSpecifications.spec[1].isActive && !gameSpecifications.spec[2].isActive) {
       gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
       error = true;
-    } else if (gameSpecificationsError.spec[3]) delete gameSpecificationsError.spec[3];
+    } else {
+      if (gameSpecificationsError.spec[3]) delete gameSpecificationsError.spec[3];
+      if (gameSpecifications.spec[0].isActive) {
+        if (gameSpecifications.spec[0].systemReq[0][0].key === '') {
+          gameSpecificationsError.spec[0] = 'Minimum System Requirements is required';
+          error = true;
+        } else {
+          gameSpecificationsError.spec[0] = '';
+        }
+      }
+    }
     if (Array.isArray(gameSpecifications.others.value)) {
       if (!gameSpecifications.others.value[0]) {
         gameSpecificationsError.others[0] = 'Text Language Supported is required';
@@ -236,32 +261,11 @@ export default function AddGame() {
     <div className={styles.addGame}>
       <h1 className={styles.header}>Add New Game to the collection</h1>
       <form>
-        <AddGameDetails
-          gameInfo={gameInfo}
-          errorMessages={gameInfoError}
-          errorChange={errorChange}
-        />
-        <AddGameBanner
-          gameBanner={gameBanner}
-          errorMessages={gameBannerError}
-          errorChange={errorChange}
-        />
-        <AddGameTags
-          gameTags={gameTags}
-          gameInfo={gameInfo}
-          errorMessages={gameTagsError}
-          errorChange={errorChange}
-        />
-        <AddGameDescriptions
-          gameDescriptions={gameDescriptions}
-          errorChange={errorChange}
-          errorMessages={gameDescriptionsError}
-        />
-        <AddGameSpecifications
-          gameSpecifications={gameSpecifications}
-          errorMessages={gameSpecificationsError}
-          errorChange={errorChange}
-        />
+        <AddGameDetails gameInfo={gameInfo} errorMessages={gameInfoError} errorChange={errorChange} />
+        <AddGameBanner gameBanner={gameBanner} errorMessages={gameBannerError} errorChange={errorChange} />
+        <AddGameTags gameTags={gameTags} gameInfo={gameInfo} errorMessages={gameTagsError} errorChange={errorChange} />
+        <AddGameDescriptions gameDescriptions={gameDescriptions} errorChange={errorChange} errorMessages={gameDescriptionsError} />
+        <AddGameSpecifications gameSpecifications={gameSpecifications} errorMessages={gameSpecificationsError} errorChange={errorChange} />
         <ButtonForAddGameSection text="Submit" onClick={handleSubmit} />
       </form>
     </div>

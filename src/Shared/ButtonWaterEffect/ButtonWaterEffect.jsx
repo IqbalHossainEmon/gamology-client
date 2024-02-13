@@ -21,12 +21,8 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
     if (check.current) {
       check.current = false;
       btnRef.current.addEventListener('click', e => {
-        const x =
-          (e.touches ? e.touches[0].clientX : e.clientX) -
-          btnRef.current.getBoundingClientRect().left;
-        const y =
-          (e.touches ? e.touches[0].clientY : e.clientY) -
-          btnRef.current.getBoundingClientRect().top;
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - btnRef.current.getBoundingClientRect().left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - btnRef.current.getBoundingClientRect().top;
         const width = btnRef.current.offsetWidth;
         const height = btnRef.current.offsetHeight;
         const halfWidth = width / 2;

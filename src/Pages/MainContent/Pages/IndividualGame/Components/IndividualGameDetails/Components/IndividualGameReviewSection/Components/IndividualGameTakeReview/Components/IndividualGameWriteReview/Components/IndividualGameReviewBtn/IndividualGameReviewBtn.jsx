@@ -1,10 +1,6 @@
 import styles from './IndividualGameReviewBtn.module.css';
 
-export default function IndividualGameReviewButtons({
-  setWriteReviewShow,
-  handleSubmit,
-  cantSubmit,
-}) {
+export default function IndividualGameReviewButtons({ setWriteReviewShow, handleSubmit, cantSubmit }) {
   return (
     <div className={styles.IndividualGameReviewButtons}>
       <button onClick={() => setWriteReviewShow(false)} type="button" className={styles.closeBtn}>

@@ -54,26 +54,16 @@ export default function IndividualGameReview({ review, index, length }) {
           <div className={styles.feedbackContainer}>
             <div
               className={
-                feedbackState.state === 0
-                  ? styles.giveFeedback
-                  : [styles.notGiven, styles.giveFeedback].join(' ')
+                feedbackState.state === 0 ? styles.giveFeedback : [styles.notGiven, styles.giveFeedback].join(' ')
               }
             >
               {feedbackState.state === 0 ? (
                 <div className={styles.interactionContainer}>
                   <p>Is this Helpful to you?</p>
-                  <button
-                    onClick={() => setFeedbackState({ state: -1 })}
-                    className={styles.feedbackBtn}
-                    type="button"
-                  >
+                  <button onClick={() => setFeedbackState({ state: -1 })} className={styles.feedbackBtn} type="button">
                     yes
                   </button>
-                  <button
-                    onClick={() => setFeedbackState({ state: 1 })}
-                    className={styles.feedbackBtn}
-                    type="button"
-                  >
+                  <button onClick={() => setFeedbackState({ state: 1 })} className={styles.feedbackBtn} type="button">
                     no
                   </button>
                 </div>

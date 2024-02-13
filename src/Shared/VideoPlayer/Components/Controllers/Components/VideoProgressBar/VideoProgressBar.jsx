@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  useVideoPlayerProgress,
-  useVideoPlayerSetProgress,
-} from '../../../../../../Hooks/useVideoPlayerProgress';
+import { useVideoPlayerProgress, useVideoPlayerSetProgress } from '../../../../../../Hooks/useVideoPlayerProgress';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
 export default function VideoProgressBar({ video, videoContainer, src, isSeekedRef, changePause }) {

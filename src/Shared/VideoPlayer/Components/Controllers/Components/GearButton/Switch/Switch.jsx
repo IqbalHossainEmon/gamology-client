@@ -60,9 +60,7 @@ function Switch({ state, setState, event, videoContainer }) {
     e => {
       document.removeEventListener('mouseup', event);
 
-      const cursorInEle = e?.touches
-        ? e.touches[0].pageX - pathInfoRef.offsetLeft
-        : e.pageX - pathInfoRef.offsetLeft;
+      const cursorInEle = e?.touches ? e.touches[0].pageX - pathInfoRef.offsetLeft : e.pageX - pathInfoRef.offsetLeft;
 
       const cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
       // if cursors position is inside the slider range;

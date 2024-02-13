@@ -3,12 +3,8 @@ import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import AddGameSpecification from '../AddGameSpecification/AddGameSpecification';
 import styles from './AddGameSpecificationContainer.module.css';
 
-const AddGameSpecificationContainer = ({
-  specs,
-  gameSpecifications,
-  errorMessages,
-  errorChange,
-}) => {
+const specs = ['Windows', 'MacOs', 'Linux'];
+const AddGameSpecificationContainer = ({ gameSpecifications, errorMessages, errorChange }) => {
   const [errorShow, setErrorShow] = useState(!!errorMessages[4]);
 
   const errorShowRef = useRef(errorShow);

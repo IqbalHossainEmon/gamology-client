@@ -73,9 +73,7 @@ export default function EventGames() {
           colNum={2}
         />
       </ul>
-      {screenWidth <= 768 && (
-        <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
-      )}
+      {screenWidth <= 768 && <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />}
     </section>
   );
 }

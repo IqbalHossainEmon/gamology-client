@@ -25,9 +25,7 @@ export default function IndividualGameDetailAside({ reviewContainerRef }) {
   }, []);
 
   useEffect(() => {
-    setPaddingBottom(
-      90 + (reviewContainerRef.current?.clientHeight ? reviewContainerRef.current.clientHeight : 0)
-    );
+    setPaddingBottom(90 + (reviewContainerRef.current?.clientHeight ? reviewContainerRef.current.clientHeight : 0));
   }, [reviewContainerRef, reviewContainerRef.current?.clientHeight]);
 
   return (

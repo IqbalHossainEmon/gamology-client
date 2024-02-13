@@ -7,12 +7,7 @@ function DiscoverGamesCards({ data, style, cardsWidth }, ref) {
     <div ref={ref} className={styles.Cards}>
       <ul className={styles.CardSlider} style={style}>
         {data.map(({ id, name, carouselThumb, price, category }) => (
-          <Card
-            cardsWidth={cardsWidth}
-            key={id}
-            cardInfo={{ id, name, carouselThumb, price, category }}
-            slider
-          />
+          <Card cardsWidth={cardsWidth} key={id} cardInfo={{ id, name, carouselThumb, price, category }} slider />
         ))}
       </ul>
     </div>

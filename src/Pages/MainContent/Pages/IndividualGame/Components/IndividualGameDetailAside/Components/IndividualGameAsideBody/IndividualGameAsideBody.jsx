@@ -45,24 +45,12 @@ export default function IndividualGameAsideBody({ info }) {
           'Add to Cart'
         )}
       </button>
-      <button
-        className={[styles.btn, styles.wishlistBtn].join(' ')}
-        type="button"
-        onClick={handleAddingWishList}
-      >
-        <div
-          className={
-            wishListState <= 0 ? styles.outerCircle : [styles.rotate, styles.outerCircle].join(' ')
-          }
-        >
+      <button className={[styles.btn, styles.wishlistBtn].join(' ')} type="button" onClick={handleAddingWishList}>
+        <div className={wishListState <= 0 ? styles.outerCircle : [styles.rotate, styles.outerCircle].join(' ')}>
           {wishListState >= 0 ? (
             <div className={styles.plus} />
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="svg css-uwwqev"
-              viewBox="-10 -10 468.8 468.8"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" className="svg css-uwwqev" viewBox="-10 -10 468.8 468.8">
               <path
                 fill="currentColor"
                 strokeWidth="10"
@@ -80,24 +68,14 @@ export default function IndividualGameAsideBody({ info }) {
           <div className={styles.value}>
             {information.key === 'Platform' ? (
               information.value === 'windows' ? (
-                <svg
-                  width="25"
-                  height="25"
-                  viewBox="0 0 25 25"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M0.00854492 12.5L0 4.88101L9.375 3.60796V12.5H0.00854492ZM10.9375 3.38091L23.4344 1.5625V12.5H10.9375V3.38091ZM23.4375 14.0625L23.4344 25L10.9375 23.2418V14.0625H23.4375ZM9.375 23.0429L0.00761719 21.7588L0.00712891 14.0625H9.375V23.0429Z"
                     fill="white"
                   />
                 </svg>
               ) : information.value === 'macOs' ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="svg css-uwwqev"
-                  viewBox="0 0 105 43"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="svg css-uwwqev" viewBox="0 0 105 43">
                   <title>Mac OS</title>
                   <g>
                     <path
@@ -116,23 +94,13 @@ export default function IndividualGameAsideBody({ info }) {
                 </svg>
               ) : (
                 <div className={styles.logos}>
-                  <svg
-                    width="25"
-                    height="25"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M0.00854492 12.5L0 4.88101L9.375 3.60796V12.5H0.00854492ZM10.9375 3.38091L23.4344 1.5625V12.5H10.9375V3.38091ZM23.4375 14.0625L23.4344 25L10.9375 23.2418V14.0625H23.4375ZM9.375 23.0429L0.00761719 21.7588L0.00712891 14.0625H9.375V23.0429Z"
                       fill="white"
                     />
                   </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="svg css-uwwqev"
-                    viewBox="0 0 105 43"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="svg css-uwwqev" viewBox="0 0 105 43">
                     <title>Mac OS</title>
                     <g>
                       <path
@@ -153,8 +121,7 @@ export default function IndividualGameAsideBody({ info }) {
               )
             ) : information.key === 'Release Date' ? (
               <p>
-                {information.value.getDate()}/{information.value.getMonth()}/
-                {information.value.getFullYear()}
+                {information.value.getDate()}/{information.value.getMonth()}/{information.value.getFullYear()}
               </p>
             ) : (
               <p>{information.value}</p>

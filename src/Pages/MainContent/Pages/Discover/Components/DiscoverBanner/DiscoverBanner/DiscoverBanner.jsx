@@ -56,13 +56,9 @@ const items = [
 ];
 
 export default function DiscoverBanner() {
-  const { reducer, initialState, reset, start, stop, activeBanner, isPause } =
-    useDiscoverBannerLogics();
+  const { reducer, initialState, reset, start, stop, activeBanner, isPause } = useDiscoverBannerLogics();
 
-  const [{ data, active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ data, active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initialState);
   const screenWidth = useScreenWidth();
 
   useEffect(() => {
@@ -88,11 +84,7 @@ export default function DiscoverBanner() {
           bannerState={{ active, fadeOut, fadeIn }}
           data={data}
         />
-        <DiscoverBannerInfoItems
-          data={data}
-          activeBanner={activeBanner}
-          bannerState={{ active, fadeOut, fadeIn }}
-        />
+        <DiscoverBannerInfoItems data={data} activeBanner={activeBanner} bannerState={{ active, fadeOut, fadeIn }} />
       </div>
       <BannerButtons handleClick={handleClick} />
       {screenWidth > 768 && (

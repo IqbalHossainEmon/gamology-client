@@ -21,10 +21,7 @@ export default function ReviewStar({ setValue = () => {}, disabled, newValue = 0
   };
 
   return (
-    <div
-      onMouseLeave={() => setStar(prev => ({ ...prev, show: prev.active }))}
-      className={styles.reviewStar}
-    >
+    <div onMouseLeave={() => setStar(prev => ({ ...prev, show: prev.active }))} className={styles.reviewStar}>
       {[0, 1, 2, 3, 4].map((s, i) => (
         <button
           className={styles.starButton}

@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  VideoPlayerProgressContext,
-  VideoPlayerSetProgressContext,
-} from '../Contexts/VideoPlayerProgressContext';
+import { VideoPlayerProgressContext, VideoPlayerSetProgressContext } from '../Contexts/VideoPlayerProgressContext';
 
 const withVideoPlayerProgress = Component => props => {
   const [progress, setProgress] = useState(0);

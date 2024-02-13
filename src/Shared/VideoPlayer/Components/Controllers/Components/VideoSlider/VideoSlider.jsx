@@ -57,8 +57,7 @@ export default function VideoSlider({
   const onMouseEvent = useCallback(
     e => {
       let cursorInPercent =
-        ((e?.touches ? e.touches[0].clientX - pathRef.offsetLeft : e.clientX - pathRef.offsetLeft) /
-          pathRef.width) *
+        ((e?.touches ? e.touches[0].clientX - pathRef.offsetLeft : e.clientX - pathRef.offsetLeft) / pathRef.width) *
         100;
 
       if (cursorInPercent < 0) {

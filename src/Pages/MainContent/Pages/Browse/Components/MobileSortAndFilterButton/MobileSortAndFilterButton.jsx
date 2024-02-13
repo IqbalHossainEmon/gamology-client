@@ -12,11 +12,7 @@ export default function MobileSortAndFilterButton() {
           <span>Sort</span>
         </button>
         <div className={styles.verticalLine} />
-        <button
-          onClick={() => setFilterSort('filter')}
-          className={styles.filterButton}
-          type="button"
-        >
+        <button onClick={() => setFilterSort('filter')} className={styles.filterButton} type="button">
           <img src="/assets/images/filterButton.png" alt="filter button" />
           <span>Filter</span>
         </button>

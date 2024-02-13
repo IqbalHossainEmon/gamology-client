@@ -47,6 +47,8 @@
   color: rgb(173, 173, 173);
   border: none;
   pointer-events: none;
+  padding-right: 30px;
+  text-overflow: ellipsis;
 }
 
 .focused {

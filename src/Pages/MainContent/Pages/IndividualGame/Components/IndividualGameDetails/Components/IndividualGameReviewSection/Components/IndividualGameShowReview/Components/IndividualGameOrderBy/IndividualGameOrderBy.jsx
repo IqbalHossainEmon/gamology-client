@@ -33,10 +33,7 @@ export default function IndividualGameOrderBy({ handleSort }) {
         })}
       >
         <p className={styles.activeOrder}>
-          Order By:{' '}
-          <span className={styles.orderChangeablePart}>
-            {orderBy.filter(order => order.active)[0].name}
-          </span>
+          Order By: <span className={styles.orderChangeablePart}>{orderBy.filter(order => order.active)[0].name}</span>
         </p>
         <div className={styles.rotateArrow}>
           <RotateArrow state={show} />
@@ -47,11 +44,7 @@ export default function IndividualGameOrderBy({ handleSort }) {
           {orderBy.map((order, index) => (
             <li className={styles.orderOption} key={order.id}>
               <button
-                className={
-                  orderBy[index].active
-                    ? [styles.optionBtn, styles.activeBtn].join(' ')
-                    : styles.optionBtn
-                }
+                className={orderBy[index].active ? [styles.optionBtn, styles.activeBtn].join(' ') : styles.optionBtn}
                 type="button"
                 {...(orderBy[index].active || {
                   onClick: () => {

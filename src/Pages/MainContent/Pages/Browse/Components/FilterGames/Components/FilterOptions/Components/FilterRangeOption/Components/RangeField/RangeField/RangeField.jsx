@@ -4,14 +4,7 @@ import usePointersEveryStep from '../../../../../../../../../../../../../Hooks/u
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
-export default function RangeField({
-  state,
-  setState,
-  everyStep = 0,
-  handleSetValue,
-  inputRefLeft,
-  inputRefRight,
-}) {
+export default function RangeField({ state, setState, everyStep = 0, handleSetValue, inputRefLeft, inputRefRight }) {
   const rangePathRef = useRef();
   const activePathRef = useRef();
   const stateRef = useRef(state);
@@ -50,13 +43,7 @@ export default function RangeField({
 
   return (
     <div className={styles.rangeFieldContainer}>
-      <div
-        tabIndex="0"
-        role="button"
-        ref={rangePathRef}
-        onMouseDown={handlePathClick}
-        className={styles.rangeField}
-      >
+      <div tabIndex="0" role="button" ref={rangePathRef} onMouseDown={handlePathClick} className={styles.rangeField}>
         <div
           className={styles.activePath}
           ref={activePathRef}

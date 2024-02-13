@@ -73,11 +73,7 @@ export default function AddGameTags({ gameTags, gameInfo, errorChange, errorMess
           />
         </div>
       </div>
-      <PriceReleaseDate
-        gameInfo={gameInfo}
-        errorMessage={errorMessages.releaseDate}
-        errorChange={errorChange}
-      />
+      <PriceReleaseDate gameInfo={gameInfo} errorMessage={errorMessages.releaseDate} errorChange={errorChange} />
     </section>
   );
 }

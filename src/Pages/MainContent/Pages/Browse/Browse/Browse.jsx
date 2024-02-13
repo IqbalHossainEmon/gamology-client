@@ -267,11 +267,7 @@ function Browse() {
     <section className={styles.browse}>
       <BrowseHeader state={state} handleChange={dispatch} />
       <div className={styles.mainContent}>
-        <FilterGames
-          limits={state.rangeLimits}
-          filterState={state.filterState}
-          dispatch={dispatch}
-        />
+        <FilterGames limits={state.rangeLimits} filterState={state.filterState} dispatch={dispatch} />
         <GameCards state={state} dispatch={dispatch} />
       </div>
       {screenWidth < 769 && <MobileSortAndFilterButton />}

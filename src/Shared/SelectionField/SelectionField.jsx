@@ -4,15 +4,7 @@ import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../RotateArrow/RotateArrow';
 import styles from './SelectionField.module.css';
 
-export default function SelectionField({
-  placeholder = 'Type',
-  className,
-  htmlFor,
-  setState,
-  list = [],
-  name = '',
-  ...rest
-}) {
+export default function SelectionField({ placeholder = 'Type', className, htmlFor, setState, list = [], name = '', ...rest }) {
   const [value, setValue] = useState('');
   const [show, setShow] = useState(false);
 
@@ -47,13 +39,7 @@ export default function SelectionField({
         >
           {placeholder}
         </label>
-        <input
-          value={value}
-          readOnly
-          id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-          className={styles.field}
-          {...rest}
-        />
+        <input value={value} readOnly id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor} className={styles.field} {...rest} />
         <div className={styles.rotateArrow}>
           <RotateArrow state={show} />
         </div>

@@ -7,13 +7,7 @@ import IndividualGameReviewInputField from '../Components/IndividualGameReviewIn
 import IndividualGameReviewTextField from '../Components/IndividualGameReviewTextField/IndividualGameReviewTextField';
 import styles from './IndividualGameWriteReview.module.css';
 
-export default function IndividualGameWriteReview({
-  userIcon,
-  writeReviewShow,
-  setWriteReviewShow,
-  reviewStar,
-  user,
-}) {
+export default function IndividualGameWriteReview({ userIcon, writeReviewShow, setWriteReviewShow, reviewStar, user }) {
   const [data, setData] = useState({ active: 0, title: '', text: '' });
 
   const elementRef = useRef(null);

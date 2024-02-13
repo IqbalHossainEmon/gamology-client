@@ -28,9 +28,7 @@ export default function TextFieldContainer({ number, gameBanner, errorChange, er
         field="input"
         accept="image/*"
         setState={handleSetValues}
-        placeholder={
-          type.type ? `Choose Game's Banner ${type.type}'s thumbnail` : 'Select Content Type First'
-        }
+        placeholder={type.type ? `Choose Game's Banner ${type.type}'s thumbnail` : 'Select Content Type First'}
         name="thumb"
         errorChange={errorChange}
         errorMessage={errorMessages[number]?.thumb}

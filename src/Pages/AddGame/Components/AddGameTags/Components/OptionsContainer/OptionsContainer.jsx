@@ -3,14 +3,7 @@ import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import styles from './OptionsContainer.module.css';
 
-export default function OptionsContainer({
-  title,
-  options,
-  gameTags,
-  initialState = {},
-  errorChange,
-  errorMessage,
-}) {
+export default function OptionsContainer({ title, options, gameTags, initialState = {}, errorChange, errorMessage }) {
   const [optionSates, setOptionSates] = useState(initialState);
   const [errorShow, setErrorShow] = useState(false);
 

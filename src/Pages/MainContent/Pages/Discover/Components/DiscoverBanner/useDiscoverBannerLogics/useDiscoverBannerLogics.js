@@ -6,18 +6,14 @@ const increaseByOne = (state, fadeIn) => ({
   active: null,
   fadeIn: (fadeIn + 1) % 5,
   fadeOut: fadeIn,
-  cardsPosition: state.cardsPosition.map(cardPosition =>
-    cardPosition > 0 ? cardPosition - 1 : 5 - 1
-  ),
+  cardsPosition: state.cardsPosition.map(cardPosition => (cardPosition > 0 ? cardPosition - 1 : 5 - 1)),
 });
 const decreaseByOne = (state, fadeIn) => ({
   ...state,
   active: null,
   fadeIn: (fadeIn + (5 - 1)) % 5,
   fadeOut: fadeIn,
-  cardsPosition: state.cardsPosition.map(cardPosition =>
-    cardPosition < 5 - 1 ? cardPosition + 1 : 0
-  ),
+  cardsPosition: state.cardsPosition.map(cardPosition => (cardPosition < 5 - 1 ? cardPosition + 1 : 0)),
 });
 
 // reducer function take's the state and active to return the new state of the items.
@@ -103,8 +99,7 @@ export default function useDiscoverBannerLogics() {
         timerRef.pauseTimer = null;
       }
       timerState.current = true;
-      timerState.remain =
-        timerState.currentTotalTime - (new Date().getTime() - timerState.timeStartAt);
+      timerState.remain = timerState.currentTotalTime - (new Date().getTime() - timerState.timeStartAt);
     }
   }, [stopTimer]);
 

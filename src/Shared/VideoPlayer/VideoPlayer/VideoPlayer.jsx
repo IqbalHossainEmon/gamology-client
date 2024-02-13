@@ -75,17 +75,9 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
   return (
     <div
       ref={videoContainerRef}
-      className={
-        sizeClassName ? [styles.videoContainer, sizeClassName].join(' ') : styles.videoContainer
-      }
+      className={sizeClassName ? [styles.videoContainer, sizeClassName].join(' ') : styles.videoContainer}
     >
-      <Video
-        videoContainer={videoContainerRef}
-        ref={videoRef}
-        className={styles.video}
-        src={src}
-        captions={captions}
-      />
+      <Video videoContainer={videoContainerRef} ref={videoRef} className={styles.video} src={src} captions={captions} />
 
       <Controllers
         isControllerShowing={isControllerShowing}

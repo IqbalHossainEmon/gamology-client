@@ -3,13 +3,7 @@ import ErrorMessage from '../../../../../Shared/ErrorMessage/ErrorMessage';
 import FileUploadButton from '../../../../../Shared/FileUploadButton/FileUploadButton';
 import styles from './CoverImageVideoContainer.module.css';
 
-const CoverImageVideoContainer = ({
-  type,
-  handleSetValues,
-  errorChange,
-  errorMessages,
-  number,
-}) => {
+const CoverImageVideoContainer = ({ type, handleSetValues, errorChange, errorMessages, number }) => {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
   const [errorShow, setErrorShow] = useState(!!errorMessages[number]?.cover);
@@ -40,21 +34,13 @@ const CoverImageVideoContainer = ({
           errorMessage={errorMessages[number]?.cover}
         />
       ) : (
-        <div
-          className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${
-            styles.container
-          }`}
-        >
+        <div className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}`}>
           <label
             className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
             {...(errorShow && { id: styles.errorColor })}
             htmlFor={`bannerImageInputField_${number}`}
           >
-            {type
-              ? type === 'Image'
-                ? "Add Game's Banner Image"
-                : "Add Game's Banner Video's Link"
-              : 'Select Content Type First'}
+            {type ? (type === 'Image' ? "Add Game's Banner Image" : "Add Game's Banner Video's Link") : 'Select Content Type First'}
           </label>
           <input
             disabled={!type}
