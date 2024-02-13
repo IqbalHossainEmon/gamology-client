@@ -49,29 +49,9 @@ export default function EventGames() {
           style: { translate: `-${cardPosition * screenWidth}px` },
         })}
       >
-        <GamesColumn
-          cardPosition={cardPosition}
-          screenWidth={screenWidth}
-          games={newGames}
-          border
-          colNum={0}
-          header="New Releases"
-        />
-        <GamesColumn
-          cardPosition={cardPosition}
-          screenWidth={screenWidth}
-          games={newGames}
-          border
-          colNum={1}
-          header="Top Rated"
-        />
-        <GamesColumn
-          cardPosition={cardPosition}
-          screenWidth={screenWidth}
-          games={newGames}
-          header="Comming Soon"
-          colNum={2}
-        />
+        <GamesColumn cardPosition={cardPosition} screenWidth={screenWidth} games={newGames} border colNum={0} header="New Releases" />
+        <GamesColumn cardPosition={cardPosition} screenWidth={screenWidth} games={newGames} border colNum={1} header="Top Rated" />
+        <GamesColumn cardPosition={cardPosition} screenWidth={screenWidth} games={newGames} header="Comming Soon" colNum={2} />
       </ul>
       {screenWidth <= 768 && <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />}
     </section>

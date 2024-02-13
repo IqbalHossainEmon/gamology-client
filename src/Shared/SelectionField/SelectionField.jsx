@@ -1,15 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
+import useScreenWidth from '../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../RotateArrow/RotateArrow';
 import styles from './SelectionField.module.css';
 
+const ctx = document.createElement('canvas').getContext('2d');
+
 export default function SelectionField({ placeholder = 'Type', className, htmlFor, setState, list = [], name = '', ...rest }) {
   const [value, setValue] = useState('');
   const [show, setShow] = useState(false);
+  const screenWidth = useScreenWidth();
 
   const elementRef = useRef(null);
   const containerRef = useRef(null);
+  const inputRef = useRef(null);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
@@ -17,10 +22,20 @@ export default function SelectionField({ placeholder = 'Type', className, htmlFo
     setElement(containerRef.current);
   }, [setElement]);
 
+  useEffect(() => {
+    if (inputRef.current)
+      ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;
+  }, [screenWidth]);
+
   return (
     <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
       <button
         type="button"
+        {...(inputRef.current &&
+          ctx.measureText(value).width >
+            inputRef.current.offsetWidth -
+              parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
+              parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && { title: value })}
         ref={elementRef}
         className={`${show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
         onClick={() => {
@@ -39,7 +54,14 @@ export default function SelectionField({ placeholder = 'Type', className, htmlFo
         >
           {placeholder}
         </label>
-        <input value={value} readOnly id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor} className={styles.field} {...rest} />
+        <input
+          ref={inputRef}
+          value={value}
+          readOnly
+          id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+          className={styles.field}
+          {...rest}
+        />
         <div className={styles.rotateArrow}>
           <RotateArrow state={show} />
         </div>

@@ -73,7 +73,7 @@ export default function AddGame() {
     gameBannerError: [{ cover: '', thumb: '', type: '' }],
     gameTagsError: {},
     gameDescriptionsError: { descriptions: [] },
-    gameSpecificationsError: { spec: [], others: [] },
+    gameSpecificationsError: { spec: [{}, {}, {}], others: [] },
   });
 
   const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
@@ -205,16 +205,47 @@ export default function AddGame() {
       gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
       error = true;
     } else {
-      if (gameSpecificationsError.spec[3]) delete gameSpecificationsError.spec[3];
-      if (gameSpecifications.spec[0].isActive) {
-        if (gameSpecifications.spec[0].systemReq[0][0].key === '') {
-          gameSpecificationsError.spec[0] = 'Minimum System Requirements is required';
-          error = true;
-        } else {
-          gameSpecificationsError.spec[0] = '';
+      if (gameSpecificationsError.spec[3]) gameSpecificationsError.spec.pop();
+      const specLength = gameSpecifications.spec.length;
+      for (let i = 0; i < specLength; i++) {
+        const spec = gameSpecifications.spec[i];
+        if (spec.isActive) {
+          const { systemReq } = spec;
+          const systemReqLength = systemReq.length;
+          const recommended = [];
+          const minimum = [];
+          for (let j = 0; j < systemReqLength; j++) {
+            recommended.push(systemReq[j][0].key);
+            minimum.push(systemReq[j][1].key);
+          }
+          const systemReqMustArr = ['CPU', 'Memory', 'GPU', 'Storage'];
+          const checkRec = systemReqMustArr.filter(la => !recommended.includes(la));
+          const checkMin = systemReqMustArr.filter(la => !minimum.includes(la));
+
+          const setValueFunc = (checkArr, setLoc) => {
+            let result = '';
+            const { length } = checkArr;
+            if (length > 2) {
+              const lastItem = checkArr.pop();
+              const joined = checkArr.join(', ');
+              result = `${joined}, and ${lastItem}`;
+            } else {
+              result = checkArr.join(' and ');
+            }
+            gameSpecificationsError.spec[i][setLoc] = `${result} ${length > 1 ? 'are' : 'is'} must be filled`;
+          };
+
+          if (checkRec.length) {
+            setValueFunc(checkRec, 'rec');
+          }
+          if (checkMin.length) {
+            setValueFunc(checkMin, 'min');
+          }
         }
       }
     }
+
+    const systemReqArr = ['CPU', 'Memory', 'GPU', 'Storage', 'OS', 'DirectX', 'Resolution', 'Preset / Target', 'Peripherals', 'Others'];
     if (Array.isArray(gameSpecifications.others.value)) {
       if (!gameSpecifications.others.value[0]) {
         gameSpecificationsError.others[0] = 'Text Language Supported is required';

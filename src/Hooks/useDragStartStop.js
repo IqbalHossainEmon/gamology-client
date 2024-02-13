@@ -1,12 +1,7 @@
 import { useCallback } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
-export default function useDragStartStop(
-  handleMove,
-  handleMouseUp = () => {},
-  handleMouseDown = () => {},
-  grab = false
-) {
+export default function useDragStartStop(handleMove, handleMouseUp = () => {}, handleMouseDown = () => {}, grab = false) {
   const isTouchAble = useIsTouchAble();
 
   const onStop = useCallback(

@@ -42,9 +42,7 @@ const reducer = (state, action) => {
                 transitionDuration: '300ms',
               },
         extraCard:
-          state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1
-            ? state.dataLength % state.cardOnDeck
-            : 0,
+          state.dataLength - (state.dataLength % state.cardOnDeck) === action.nextActiveCard * -1 ? state.dataLength % state.cardOnDeck : 0,
       };
     case 'prev':
       // if previous cards is added as reminder and extra card, then prev button will be move just the extra cards.

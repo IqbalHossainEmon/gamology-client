@@ -8,11 +8,13 @@ import styles from './AddGameSpecification.module.css';
 export default function AddGameSpecification({ state, gameSpecifications, index, errorMessages, errorChange, handleSetValue }) {
   const [requiredLength, setRequiredLength] = useState(1);
   const [enabled, setEnabled] = useState({ enabled: false });
-  const [errorShow, setErrorShow] = useState(!!errorMessages);
+  const [errorShow, setErrorShow] = useState({ min: !!errorMessages.min, rec: !!errorMessages.rec });
+
   const keysRef = useRef({ min: [], rec: [] });
 
   useEffect(() => {
-    if (errorChange && errorMessages) setErrorShow(true);
+    if (errorChange && errorMessages.rec) setErrorShow(prev => ({ ...prev, rec: true }));
+    if (errorChange && errorMessages.min) setErrorShow(prev => ({ ...prev, min: true }));
   }, [errorChange, errorMessages]);
 
   const handleSetEnable = useCallback(
@@ -23,6 +25,19 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
     [handleSetValue, index]
   );
 
+  const handleHideErrorShow = () => {
+    if (errorShow.rec) setErrorShow(prev => ({ ...prev, rec: false }));
+    if (errorShow.min) setErrorShow(prev => ({ ...prev, min: false }));
+  };
+
+  const handleSetState = (value, i, childIndex, keyType) => {
+    if (keyType) {
+      gameSpecifications[index].systemReq[i][childIndex].key = value;
+      keyType[i] = value;
+      handleHideErrorShow();
+    } else gameSpecifications[index].systemReq[i][childIndex].value = value;
+  };
+
   return (
     <div className={styles.addGameSpecification}>
       <div className={styles.switch}>
@@ -32,24 +47,30 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Minimum</h4>
           <SectionFieldTextFieldContainer
+            parentErrorShow={errorShow.min}
             keysRef={keysRef.current.min}
             name={`${state.name.toLowerCase()}_min`}
             parentIndex={index}
             index={0}
-            gameSpecifications={gameSpecifications}
+            keyType="min"
+            handleSetState={handleSetState}
             requiredLength={requiredLength}
           />
+          <ErrorMessage enable={errorShow.rec} errorMessage={errorMessages.rec} />
         </div>
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Recommended</h4>
           <SectionFieldTextFieldContainer
+            parentErrorShow={errorShow.rec}
             keysRef={keysRef.current.rec}
             name={`${state.name.toLowerCase()}_rec`}
             parentIndex={index}
             index={1}
-            gameSpecifications={gameSpecifications}
+            keyType="rec"
+            handleSetState={handleSetState}
             requiredLength={requiredLength}
           />
+          <ErrorMessage enable={errorShow.min} errorMessage={errorMessages.min} />
         </div>
         <div className={styles.buttonsContainer}>
           <div className={styles.btnContainer}>
@@ -78,7 +99,6 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
           </div>
         </div>
       </div>
-      <ErrorMessage enable={errorShow} errorMessage={errorMessages} />
     </div>
   );
 }

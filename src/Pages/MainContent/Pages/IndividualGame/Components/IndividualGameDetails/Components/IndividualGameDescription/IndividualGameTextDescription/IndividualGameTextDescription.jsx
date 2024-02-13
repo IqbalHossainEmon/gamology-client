@@ -12,10 +12,7 @@ export default function IndividualGameTextDescription({ descriptions }) {
 
   return (
     <div>
-      <div
-        className={styles.individualGameDetailDescriptionContainer}
-        style={show.show ? { height: show.height + 40 } : { height: 500 }}
-      >
+      <div className={styles.individualGameDetailDescriptionContainer} style={show.show ? { height: show.height + 40 } : { height: 500 }}>
         <div ref={elementRef} className={styles.individualGameDetailDescription}>
           {descriptions.map(description => (
             <div key={description.id} className={styles.descriptionContainer}>
@@ -32,11 +29,7 @@ export default function IndividualGameTextDescription({ descriptions }) {
         </div>
       </div>
       <div className={styles.showHideButtonContainer}>
-        <button
-          type="button"
-          className={styles.showHideButton}
-          onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
-        >
+        <button type="button" className={styles.showHideButton} onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}>
           {show.show ? 'Show Less' : 'Show More'}
           <div className={styles.downArrow}>
             <RotateArrow state={show.show} />

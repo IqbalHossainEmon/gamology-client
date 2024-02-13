@@ -3,20 +3,7 @@ import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import SelectionField from '../../../../../../Shared/SelectionField/SelectionField';
 import styles from './PriceReleaseDate.module.css';
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }) {
   const [errorShow, setErrorShow] = useState(false);
@@ -73,13 +60,7 @@ export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }
               />
             </div>
             <div className={`${styles.releaseMonth} ${styles.releaseComponent}`}>
-              <SelectionField
-                list={months}
-                htmlFor={2}
-                placeholder="Month"
-                setState={handleReleaseValue}
-                name="month"
-              />
+              <SelectionField list={months} htmlFor={2} placeholder="Month" setState={handleReleaseValue} name="month" />
             </div>
             <div className={`${styles.releaseYear} ${styles.releaseComponent}`}>
               <SelectionField

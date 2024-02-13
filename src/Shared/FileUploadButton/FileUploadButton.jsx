@@ -3,17 +3,7 @@ import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
 
-const FileUploadButton = ({
-  placeholder,
-  accept,
-  className,
-  setState,
-  name,
-  disabled,
-  errorMessage,
-  errorChange,
-  noMessage,
-}) => {
+const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, noMessage }) => {
   const [selected, setSelected] = useState({ selected: false, name: 'browse' });
   const inputRef = useRef(null);
   const btnRef = useRef(null);
@@ -74,9 +64,7 @@ const FileUploadButton = ({
           <p {...(errorShow && { className: styles.errorColor })}>{placeholder || selected.name || 'Browse'}</p>
         </div>
 
-        <div className={selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName}>
-          {selected.name}
-        </div>
+        <div className={selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName}>{selected.name}</div>
         <ButtonWaterEffect btnRef={btnRef} long />
       </button>
       {noMessage || <ErrorMessage enable={errorShow} errorMessage={errorMessage} />}

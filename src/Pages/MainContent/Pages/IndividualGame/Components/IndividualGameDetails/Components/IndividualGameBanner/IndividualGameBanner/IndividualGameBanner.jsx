@@ -82,10 +82,7 @@ const items = [
 export default function IndividualGameBanner() {
   const { reducer, initialState, timerFunction } = useIndividualGameBannerLogics();
 
-  const [{ data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     dispatch({ type: 'fetch', data: items });

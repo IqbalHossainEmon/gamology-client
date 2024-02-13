@@ -5,20 +5,7 @@ import styles from './IndividualGameReview.module.css';
 
 const userIcon = 'assets/images/icons/user.png';
 
-const month = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export default function IndividualGameReview({ review, index, length }) {
   const [feedbackState, setFeedbackState] = useState({ state: 0 });
@@ -52,11 +39,7 @@ export default function IndividualGameReview({ review, index, length }) {
           </div>
           <p className={styles.reviewDescription}>{review.text}</p>
           <div className={styles.feedbackContainer}>
-            <div
-              className={
-                feedbackState.state === 0 ? styles.giveFeedback : [styles.notGiven, styles.giveFeedback].join(' ')
-              }
-            >
+            <div className={feedbackState.state === 0 ? styles.giveFeedback : [styles.notGiven, styles.giveFeedback].join(' ')}>
               {feedbackState.state === 0 ? (
                 <div className={styles.interactionContainer}>
                   <p>Is this Helpful to you?</p>

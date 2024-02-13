@@ -57,8 +57,7 @@ export default function VideoSlider({
   const onMouseEvent = useCallback(
     e => {
       let cursorInPercent =
-        ((e?.touches ? e.touches[0].clientX - pathRef.offsetLeft : e.clientX - pathRef.offsetLeft) / pathRef.width) *
-        100;
+        ((e?.touches ? e.touches[0].clientX - pathRef.offsetLeft : e.clientX - pathRef.offsetLeft) / pathRef.width) * 100;
 
       if (cursorInPercent < 0) {
         cursorInPercent = 0;
@@ -83,14 +82,7 @@ export default function VideoSlider({
   const onStart = useDragStartStop(onMouseEvent, handleMouseUp, handleMouseDownClick, false);
 
   return (
-    <div
-      ref={pathRef}
-      tabIndex="0"
-      role="button"
-      onMouseDown={onStart}
-      onTouchStart={onStart}
-      className={styles.videoSliderPath}
-    >
+    <div ref={pathRef} tabIndex="0" role="button" onMouseDown={onStart} onTouchStart={onStart} className={styles.videoSliderPath}>
       <div className={styles.path} />
       <div style={{ scale: `${position / 100} 1` }} className={styles.activePath} />
       {isBuffer && <div style={{ scale: `${buffer / 100} 1` }} className={styles.bufferPath} />}

@@ -137,15 +137,11 @@ function Switch({ state, setState, event, videoContainer }) {
           style={
             circlePosition.transition
               ? {
-                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
-                    (circlePosition.translate / 100) * 150
-                  }, 0)`,
+                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${(circlePosition.translate / 100) * 150}, 0)`,
                   transition: 'translate linear 100ms',
                 }
               : {
-                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${
-                    (circlePosition.translate / 100) * 150
-                  }, 0)`,
+                  backgroundColor: `rgb(${(circlePosition.translate / 100) * 202}, ${(circlePosition.translate / 100) * 150}, 0)`,
                 }
           }
           onTouchStart={onStart}

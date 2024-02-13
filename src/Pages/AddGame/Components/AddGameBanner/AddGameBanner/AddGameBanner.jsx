@@ -11,13 +11,7 @@ export default function AddGameBanner({ gameBanner, errorChange, errorMessages }
       <h3 className={styles.header}>Add Game&#39;s Banner Images or Videos</h3>
       <div className={styles.textFieldContainer}>
         {[...Array(fieldCount).keys()].map(arr => (
-          <TextFieldContainer
-            errorChange={errorChange}
-            key={arr}
-            number={arr}
-            gameBanner={gameBanner}
-            errorMessages={errorMessages}
-          />
+          <TextFieldContainer errorChange={errorChange} key={arr} number={arr} gameBanner={gameBanner} errorMessages={errorMessages} />
         ))}
       </div>
       <div className={styles.btnContainer}>

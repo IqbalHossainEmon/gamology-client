@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-const withAddGameHandlers =
-  Component =>
-  ({ setMainState }) => {
+const withAddGameHandlers = Component =>
+  function InnerComponent({ setMainState }) {
     const [value, setValue] = useState({});
 
     const handleBlur = () => {

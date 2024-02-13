@@ -81,21 +81,10 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
       <button onClick={handleClick} type="button" className={styles.fullDisplayPlayPauseBtn} />
       <ul id={isControllerShowing ? styles.show : styles.hide} className={styles.controllers}>
         <li className={styles.videoProgressSlider}>
-          <VideoProgressBar
-            changePause={changePause}
-            isSeekedRef={isSeekedRef}
-            video={video}
-            videoContainer={videoContainer}
-            src={src}
-          />
+          <VideoProgressBar changePause={changePause} isSeekedRef={isSeekedRef} video={video} videoContainer={videoContainer} src={src} />
         </li>
         <li>
-          <PlayPauseButton
-            canPlay={canPlay}
-            isSeekedRef={isSeekedRef}
-            video={video}
-            togglePausePlay={togglePausePlay}
-          />
+          <PlayPauseButton canPlay={canPlay} isSeekedRef={isSeekedRef} video={video} togglePausePlay={togglePausePlay} />
         </li>
         <li>
           <VideoVolume changePause={changePause} video={video} videoContainer={videoContainer} />

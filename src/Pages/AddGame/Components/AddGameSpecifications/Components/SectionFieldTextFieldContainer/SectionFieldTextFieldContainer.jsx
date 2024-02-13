@@ -6,20 +6,16 @@ import styles from './SectionFieldTextFieldContainer.module.css';
 
 const listArr = ['CPU', 'Memory', 'GPU', 'Storage', 'OS', 'DirectX', 'Resolution', 'Preset / Target', 'Peripherals', 'Others'];
 
-export default function SectionFieldTextFieldContainer({ requiredLength, index, parentIndex, name, gameSpecifications, keysRef = [] }) {
+export default function SectionFieldTextFieldContainer({
+  requiredLength,
+  index,
+  parentIndex,
+  name,
+  handleSetState,
+  keysRef,
+  parenterrorShow,
+}) {
   const [, setVal] = useState(false);
-  const handleSetState = (value, i, isKey) => {
-    switch (isKey) {
-      case true:
-        gameSpecifications[parentIndex].systemReq[i][index].key = value;
-        keysRef[i] = value;
-        setVal(prev => !prev);
-        break;
-      default:
-        gameSpecifications[parentIndex].systemReq[i][index].value = value;
-        break;
-    }
-  };
 
   return (
     <>
@@ -30,13 +26,16 @@ export default function SectionFieldTextFieldContainer({ requiredLength, index, 
               name="Key Type"
               placeholder="Required"
               htmlFor={`${parentIndex}${name}${length}${i}${index}`}
-              setState={value => handleSetState(value, i, true)}
+              setState={value => {
+                handleSetState(value, i, index, keysRef);
+                setVal(prev => !prev);
+              }}
               list={listArr.filter(la => !keysRef.includes(la))}
             />
           </div>
           <div className={styles.textField}>
             <TextField
-              setState={value => handleSetState(value, i)}
+              setState={value => handleSetState(value, i, index)}
               field="input"
               htmlFor={`${name}_${length}`}
               placeholder="Required Specs"

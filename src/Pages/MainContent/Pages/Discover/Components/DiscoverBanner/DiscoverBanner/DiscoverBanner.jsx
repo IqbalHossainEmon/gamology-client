@@ -88,12 +88,7 @@ export default function DiscoverBanner() {
       </div>
       <BannerButtons handleClick={handleClick} />
       {screenWidth > 768 && (
-        <DiscoverBannerItemCards
-          handleClick={handleClick}
-          data={data}
-          cardsPosition={cardsPosition}
-          isPause={isPause}
-        />
+        <DiscoverBannerItemCards handleClick={handleClick} data={data} cardsPosition={cardsPosition} isPause={isPause} />
       )}
     </section>
   );

@@ -28,10 +28,7 @@ export default function IndividualGameWriteReview({ userIcon, writeReviewShow, s
   };
 
   return (
-    <div
-      className={styles.individualGameWriteReviewContainer}
-      style={writeReviewShow ? { height: elementRef.width + 60 } : { height: 0 }}
-    >
+    <div className={styles.individualGameWriteReviewContainer} style={writeReviewShow ? { height: elementRef.width + 60 } : { height: 0 }}>
       <div ref={elementRef} className={styles.individualGameWriteReview}>
         <div className={styles.userDetails}>
           <img className={styles.userIcon} src={userIcon} alt="" />

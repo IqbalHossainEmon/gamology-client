@@ -31,12 +31,7 @@ export default function VideoVolume({ video, videoContainer, changePause }) {
       <VolumeButton setVolume={setVolume} volume={volume} videoRef={videoRef} />
       <div className={styles.volumeSliderContainer}>
         <div className={styles.volumeSlider}>
-          <VideoSlider
-            videoContainer={videoContainer}
-            setPosition={handleSetValue}
-            position={volume}
-            changePause={changePause}
-          />
+          <VideoSlider videoContainer={videoContainer} setPosition={handleSetValue} position={volume} changePause={changePause} />
         </div>
       </div>
     </div>

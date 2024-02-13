@@ -66,18 +66,14 @@ const reducer = (state, action) => {
     case 'nextCards':
       return {
         ...state,
-        cardActive:
-          (state.cardActive + 1) * 100 < Math.ceil(state.data.length / state.cardsOnDeck) * 100
-            ? state.cardActive + 1
-            : 0,
+        cardActive: (state.cardActive + 1) * 100 < Math.ceil(state.data.length / state.cardsOnDeck) * 100 ? state.cardActive + 1 : 0,
         thumbTransition: true,
       };
 
     case 'prevCards':
       return {
         ...state,
-        cardActive:
-          state.cardActive - 1 >= 0 ? state.cardActive - 1 : Math.ceil(state.data.length / state.cardsOnDeck) - 1,
+        cardActive: state.cardActive - 1 >= 0 ? state.cardActive - 1 : Math.ceil(state.data.length / state.cardsOnDeck) - 1,
         thumbTransition: true,
       };
 

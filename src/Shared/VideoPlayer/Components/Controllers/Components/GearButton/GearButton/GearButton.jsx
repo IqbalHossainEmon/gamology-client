@@ -57,12 +57,7 @@ function GearButton({ gearRef, videoContainer }) {
       </button>
       {show && (
         <div className={styles.menuContainer}>
-          <div
-            className={styles.menu}
-            role="button"
-            tabIndex={0}
-            onMouseDown={() => document.addEventListener('mouseup', handleClick)}
-          >
+          <div className={styles.menu} role="button" tabIndex={0} onMouseDown={() => document.addEventListener('mouseup', handleClick)}>
             <div>
               <h5>Autoplay</h5>
               <p>Applies to all videos</p>
