@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import ButtonForAddGameSection from '../../../ButtonForAddGameSection/ButtonForAddGameSection';
@@ -10,11 +10,13 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
   const [enabled, setEnabled] = useState({ enabled: false });
   const [errorShow, setErrorShow] = useState({ min: !!errorMessages.min, rec: !!errorMessages.rec });
 
-  const keysRef = useRef({ min: [], rec: [] });
+  const [selectedKeys, setSelectedKeys] = useState({ min: [], rec: [] });
 
   useEffect(() => {
     if (errorChange && errorMessages.rec) setErrorShow(prev => ({ ...prev, rec: true }));
     if (errorChange && errorMessages.min) setErrorShow(prev => ({ ...prev, min: true }));
+
+    console.log(errorMessages.req?.min);
   }, [errorChange, errorMessages]);
 
   const handleSetEnable = useCallback(
@@ -25,16 +27,22 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
     [handleSetValue, index]
   );
 
-  const handleHideErrorShow = () => {
-    if (errorShow.rec) setErrorShow(prev => ({ ...prev, rec: false }));
-    if (errorShow.min) setErrorShow(prev => ({ ...prev, min: false }));
+  const handleHideErrorShow = childIndex => {
+    console.log(childIndex);
+    if (errorShow.rec && childIndex) setErrorShow(prev => ({ ...prev, rec: false }));
+    if (errorShow.min && !childIndex) setErrorShow(prev => ({ ...prev, min: false }));
   };
 
-  const handleSetState = (value, i, childIndex, keyType) => {
-    if (keyType) {
+  const handleSetState = (value, i, childIndex, isKey) => {
+    console.log(childIndex);
+    if (isKey) {
       gameSpecifications[index].systemReq[i][childIndex].key = value;
-      keyType[i] = value;
-      handleHideErrorShow();
+      setSelectedKeys(prev => {
+        const newSelectedKeys = prev[childIndex ? 'rec' : 'min'];
+        newSelectedKeys[i] = value;
+        return { ...prev, [childIndex ? 'rec' : 'min']: newSelectedKeys };
+      });
+      handleHideErrorShow(childIndex);
     } else gameSpecifications[index].systemReq[i][childIndex].value = value;
   };
 
@@ -48,29 +56,31 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
           <h4 className={styles.type}>Minimum</h4>
           <SectionFieldTextFieldContainer
             parentErrorShow={errorShow.min}
-            keysRef={keysRef.current.min}
+            selectedKeys={selectedKeys.min}
             name={`${state.name.toLowerCase()}_min`}
             parentIndex={index}
             index={0}
-            keyType="min"
             handleSetState={handleSetState}
             requiredLength={requiredLength}
+            errorMessage={errorMessages.req?.min}
+            errorChange={errorChange}
           />
-          <ErrorMessage enable={errorShow.rec} errorMessage={errorMessages.rec} />
+          <ErrorMessage enable={errorShow.min} errorMessage={errorMessages.min} />
         </div>
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Recommended</h4>
           <SectionFieldTextFieldContainer
             parentErrorShow={errorShow.rec}
-            keysRef={keysRef.current.rec}
+            selectedKeys={selectedKeys.rec}
             name={`${state.name.toLowerCase()}_rec`}
             parentIndex={index}
             index={1}
-            keyType="rec"
             handleSetState={handleSetState}
             requiredLength={requiredLength}
+            errorMessage={errorMessages.req?.rec}
+            errorChange={errorChange}
           />
-          <ErrorMessage enable={errorShow.min} errorMessage={errorMessages.min} />
+          <ErrorMessage enable={errorShow.rec} errorMessage={errorMessages.rec} />
         </div>
         <div className={styles.buttonsContainer}>
           <div className={styles.btnContainer}>
@@ -91,9 +101,8 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
               {...(requiredLength === 1 && { disabled: true })}
               onClick={() => {
                 setRequiredLength(prev => prev - 1);
-                gameSpecifications[index].systemReq[gameSpecifications[index].systemReq.length - 1].pop();
-                keysRef.current.min.pop();
-                keysRef.current.rec.pop();
+                gameSpecifications[index].systemReq.pop();
+                setSelectedKeys(prev => ({ min: prev.min.slice(0, -1), rec: prev.rec.slice(0, -1) }));
               }}
             />
           </div>

@@ -7,6 +7,8 @@ import AddGameTags from '../Components/AddGameTags/AddGameTags/AddGameTags';
 import ButtonForAddGameSection from '../Components/ButtonForAddGameSection/ButtonForAddGameSection';
 import styles from './AddGame.module.css';
 
+const systemReqMustArr = ['CPU', 'Memory', 'GPU', 'Storage'];
+
 export default function AddGame() {
   const gameData = useRef({
     gameInfo: {
@@ -73,7 +75,10 @@ export default function AddGame() {
     gameBannerError: [{ cover: '', thumb: '', type: '' }],
     gameTagsError: {},
     gameDescriptionsError: { descriptions: [] },
-    gameSpecificationsError: { spec: [{}, {}, {}], others: [] },
+    gameSpecificationsError: {
+      spec: [{}, {}, {}],
+      others: [],
+    },
   });
 
   const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
@@ -206,46 +211,47 @@ export default function AddGame() {
       error = true;
     } else {
       if (gameSpecificationsError.spec[3]) gameSpecificationsError.spec.pop();
-      const specLength = gameSpecifications.spec.length;
-      for (let i = 0; i < specLength; i++) {
+
+      for (let i = 0; i < 3; i++) {
         const spec = gameSpecifications.spec[i];
+        gameSpecificationsError.spec[i] = { req: { min: [], rec: [] } };
+
         if (spec.isActive) {
           const { systemReq } = spec;
           const systemReqLength = systemReq.length;
-          const recommended = [];
-          const minimum = [];
-          for (let j = 0; j < systemReqLength; j++) {
-            recommended.push(systemReq[j][0].key);
-            minimum.push(systemReq[j][1].key);
-          }
-          const systemReqMustArr = ['CPU', 'Memory', 'GPU', 'Storage'];
-          const checkRec = systemReqMustArr.filter(la => !recommended.includes(la));
-          const checkMin = systemReqMustArr.filter(la => !minimum.includes(la));
 
-          const setValueFunc = (checkArr, setLoc) => {
-            let result = '';
-            const { length } = checkArr;
-            if (length > 2) {
-              const lastItem = checkArr.pop();
-              const joined = checkArr.join(', ');
-              result = `${joined}, and ${lastItem}`;
-            } else {
-              result = checkArr.join(' and ');
+          for (let k = 0; k < 2; k++) {
+            const mustReqARr = [];
+            for (let j = 0; j < systemReqLength; j++) {
+              mustReqARr.push(systemReq[j][k].key);
             }
-            gameSpecificationsError.spec[i][setLoc] = `${result} ${length > 1 ? 'are' : 'is'} must be filled`;
-          };
+            const check = systemReqMustArr.filter(la => !mustReqARr.includes(la));
 
-          if (checkRec.length) {
-            setValueFunc(checkRec, 'rec');
-          }
-          if (checkMin.length) {
-            setValueFunc(checkMin, 'min');
+            if (check.length) {
+              let result = '';
+              const { length } = check;
+              if (length > 2) {
+                const lastItem = check.pop();
+                const joined = check.join(', ');
+                result = `${joined}, and ${lastItem}`;
+              } else {
+                result = check.join(' and ');
+              }
+              gameSpecificationsError.spec[i][k ? 'rec' : 'min'] = `${result} ${length > 1 ? 'are' : 'is'} must be filled`;
+            } else {
+              gameSpecificationsError.spec[i].req[k ? 'rec' : 'min'] = mustReqARr.map((rec, index) => {
+                if (!rec || !systemReq[index][k].value) {
+                  return "Any Required field can't be empty";
+                }
+                return '';
+              });
+            }
           }
         }
       }
     }
 
-    const systemReqArr = ['CPU', 'Memory', 'GPU', 'Storage', 'OS', 'DirectX', 'Resolution', 'Preset / Target', 'Peripherals', 'Others'];
+    const systemReqArr = ['CPU', 'Memory', 'GPU', 'VRM', 'Storage', 'DirectX', 'Resolution', 'Preset / Target', 'Peripherals', 'Others'];
     if (Array.isArray(gameSpecifications.others.value)) {
       if (!gameSpecifications.others.value[0]) {
         gameSpecificationsError.others[0] = 'Text Language Supported is required';
@@ -282,8 +288,8 @@ export default function AddGame() {
     e.preventDefault();
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
-      console.log(gameSpecifications);
-      console.log(gameSpecificationsError);
+      console.log(gameSpecifications.spec);
+      // console.log(gameSpecificationsError);
       // console.log('error', errorMessages.current);
     }
   };
