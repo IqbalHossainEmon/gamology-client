@@ -7,7 +7,16 @@ import styles from './SelectionField.module.css';
 
 const ctx = document.createElement('canvas').getContext('2d');
 
-export default function SelectionField({ placeholder = 'Type', className, htmlFor, setState, list = [], name = '', ...rest }) {
+export default function SelectionField({
+  placeholder = 'Type',
+  className,
+  htmlFor,
+  setState,
+  list = [],
+  name = '',
+  onFocusClick,
+  ...rest
+}) {
   const [value, setValue] = useState('');
   const [show, setShow] = useState(false);
   const screenWidth = useScreenWidth();
@@ -45,6 +54,9 @@ export default function SelectionField({ placeholder = 'Type', className, htmlFo
           } else {
             showMenu(false);
             setShow(false);
+          }
+          if (onFocusClick) {
+            onFocusClick();
           }
         }}
       >

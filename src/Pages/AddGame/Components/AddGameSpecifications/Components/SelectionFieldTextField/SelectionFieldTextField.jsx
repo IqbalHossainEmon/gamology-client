@@ -16,6 +16,7 @@ const SelectionFieldTextField = ({
   errorMessage,
   parentErrorShow,
   errorChange,
+  setHideParentErrorShow,
 }) => {
   const [errorShow, setErrorShow] = useState(!!errorMessage);
 
@@ -32,26 +33,25 @@ const SelectionFieldTextField = ({
       <div className={styles.specsContainer}>
         <div className={styles.selectionField}>
           <SelectionField
+            onFocusClick={() => setHideParentErrorShow()}
             name="Key Type"
             placeholder="Required"
             htmlFor={`${parentIndex}${name}${length}${i}${index}`}
             setState={value => {
               handleSetState(value, i, index, true);
-              handleHideErrorShow();
             }}
             list={listArr.filter(la => !selectedKeys.includes(la))}
           />
         </div>
         <div className={styles.textField}>
           <TextField
+            onFocusClick={() => handleHideErrorShow()}
             setState={value => {
               handleSetState(value, i, index);
-              handleHideErrorShow();
             }}
             field="input"
             htmlFor={`${name}_${length}`}
             placeholder="Required Specs"
-            handleChange={handleHideErrorShow}
           />
         </div>
       </div>

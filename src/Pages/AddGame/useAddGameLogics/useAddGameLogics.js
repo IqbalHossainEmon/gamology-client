@@ -104,8 +104,11 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
       gameTagsError.features = '';
     }
     if (!gameInfo.releaseDate.day || !gameInfo.releaseDate.month || !gameInfo.releaseDate.year) {
+      console.log('releaseDate', gameInfo.releaseDate);
       gameTagsError.releaseDate = 'Release Date is required';
       error = true;
+    } else {
+      gameTagsError.releaseDate = '';
     }
     if (!gameInfo.price) {
       gameInfo.price = 0;
@@ -142,6 +145,15 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
     });
 
     // Game Specifications
+
+    const handleFieldCheck = (systemReq, k, rec, index) => {
+      if (!rec || !systemReq[index][k].value) {
+        error = true;
+        return "Any Required field can't be empty";
+      }
+      return '';
+    };
+
     if (!gameSpecifications.spec[0].isActive && !gameSpecifications.spec[1].isActive && !gameSpecifications.spec[2].isActive) {
       gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
       error = true;
@@ -173,14 +185,10 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
               } else {
                 result = check.join(' and ');
               }
+              error = true;
               gameSpecificationsError.spec[i][k ? 'rec' : 'min'] = `${result} ${length > 1 ? 'are' : 'is'} must be filled`;
             } else {
-              gameSpecificationsError.spec[i].req[k ? 'rec' : 'min'] = mustReqARr.map((rec, index) => {
-                if (!rec || !systemReq[index][k].value) {
-                  return "Any Required field can't be empty";
-                }
-                return '';
-              });
+              gameSpecificationsError.spec[i].req[k ? 'rec' : 'min'] = mustReqARr.map((...rest) => handleFieldCheck(systemReq, k, ...rest));
             }
           }
         }
@@ -189,29 +197,33 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
 
     if (Array.isArray(gameSpecifications.others.value)) {
       if (!gameSpecifications.others.value[0]) {
+        error = true;
         gameSpecificationsError.others[0] = 'Text Language Supported is required';
       } else {
         gameSpecificationsError.others[0] = '';
       }
       if (!gameSpecifications.others.value[1]) {
+        error = true;
         gameSpecificationsError.others[1] = 'Audio Language Supported is required';
       } else {
         gameSpecificationsError.others[1] = '';
       }
     } else if (!gameSpecifications.others.value) {
+      error = true;
       gameSpecificationsError.others[0] = 'Language Support is required';
     } else {
       gameSpecificationsError.others[0] = '';
     }
     if (!gameSpecifications.copyWrite) {
+      error = true;
       gameSpecificationsError.copyWrite = 'CopyWrite is required';
       error = true;
     } else {
       gameSpecificationsError.copyWrite = '';
     }
     if (!gameSpecifications.policy) {
-      gameSpecificationsError.policy = 'Policy is required';
       error = true;
+      gameSpecificationsError.policy = 'Policy is required';
     } else {
       gameSpecificationsError.policy = '';
     }

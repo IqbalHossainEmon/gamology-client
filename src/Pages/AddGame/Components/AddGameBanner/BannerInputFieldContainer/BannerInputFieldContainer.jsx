@@ -27,6 +27,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
         type={typeRef.current}
         handleSetValues={handleSetValues}
         errorChange={errorChange}
+        name="cover"
         errorMessage={errorMessages[number]?.cover}
         number={number}
       />

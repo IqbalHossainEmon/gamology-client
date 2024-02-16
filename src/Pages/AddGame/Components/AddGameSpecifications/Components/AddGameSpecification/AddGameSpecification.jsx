@@ -60,6 +60,9 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
             requiredLength={requiredLength}
             errorMessage={errorMessages.req?.min}
             errorChange={errorChange}
+            setHideParentErrorShow={() => {
+              if (errorShow.min) setErrorShow(prev => ({ ...prev, min: false }));
+            }}
           />
           <ErrorMessage enable={errorShow.min} errorMessage={errorMessages.min} />
         </div>
@@ -75,6 +78,9 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
             requiredLength={requiredLength}
             errorMessage={errorMessages.req?.rec}
             errorChange={errorChange}
+            setHideParentErrorShow={() => {
+              if (errorShow.rec) setErrorShow(prev => ({ ...prev, rec: false }));
+            }}
           />
           <ErrorMessage enable={errorShow.rec} errorMessage={errorMessages.rec} />
         </div>
@@ -84,6 +90,7 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
               text="Add More +"
               onClick={() => {
                 setRequiredLength(prev => prev + 1);
+                if (errorShow.rec) setErrorShow({ min: false, rec: false });
                 gameSpecifications[index].systemReq.push([
                   { key: '', value: '' },
                   { key: '', value: '' },

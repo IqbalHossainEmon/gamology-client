@@ -36,6 +36,9 @@ export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }
           <input
             step="1"
             min={0}
+            onFocus={e => {
+              if (e.target.value === '0.00') e.target.select();
+            }}
             onBlur={handleSetValue}
             name="price"
             placeholder="0.00"

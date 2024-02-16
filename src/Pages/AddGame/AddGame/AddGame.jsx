@@ -89,9 +89,9 @@ export default function AddGame() {
     e.preventDefault();
     if (checkValidation()) {
       setErrorChange(prev => ++prev);
-      console.log(gameData.current.gameBanner);
       return;
     }
+    console.log(gameData.current);
     console.log('submitted');
     handleUnnecessaryRemove();
   };
@@ -99,9 +99,6 @@ export default function AddGame() {
   return (
     <div className={styles.addGame}>
       <h1 className={styles.header}>Add New Game to the collection</h1>
-      <button type="button" onClick={() => console.log(gameData.current.gameBanner)}>
-        print
-      </button>
       <form>
         <AddGameDetails gameInfo={gameInfo} errorMessages={gameInfoError} errorChange={errorChange} />
         <AddGameBanner gameBanner={gameBanner} errorMessages={gameBannerError} errorChange={errorChange} />
