@@ -3,8 +3,8 @@ import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
 
-const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, noMessage }) => {
-  const [selected, setSelected] = useState({ selected: false, name: 'browse' });
+const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, htmlFor }) => {
+  const [selected, setSelected] = useState({ selected: false, name: 'name' });
   const inputRef = useRef(null);
   const btnRef = useRef(null);
 
@@ -26,9 +26,8 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
 
   const handleSelect = e => {
     if (e.target.files) {
-      setSelected(prev => ({ ...prev, selected: true }));
       const { name: fileName } = e.target.files[0];
-      setSelected(prev => ({ ...prev, name: fileName }));
+      setSelected({ selected: true, name: fileName });
 
       const object = {
         type: 'FormData',
@@ -37,8 +36,7 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
 
       setState(object, name);
     } else {
-      setSelected(prev => ({ ...prev, selected: false }));
-      setSelected(prev => ({ ...prev, name: 'browse' }));
+      setSelected({ selected: false, name: 'browse' });
     }
   };
 
@@ -51,6 +49,7 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
         type="file"
         accept={accept}
         name={name}
+        id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         className={styles.fileUploadField}
       />
       <button
@@ -60,14 +59,17 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
         className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
         type="button"
       >
-        <div className={selected.selected ? [styles.label, styles.focused].join(' ') : styles.label}>
-          <p {...(errorShow && { className: styles.errorColor })}>{placeholder || selected.name || 'Browse'}</p>
-        </div>
+        <label
+          htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+          className={`${selected.selected ? `${styles.focused} ` : ''}${errorShow ? `${styles.errorColor} ` : ''}${styles.label}`}
+        >
+          {placeholder || 'Browse'}
+        </label>
 
-        <div className={selected.selected ? [styles.fileName, styles.selected].join(' ') : styles.fileName}>{selected.name}</div>
+        <p className={`${selected.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>{selected.name}</p>
         <ButtonWaterEffect btnRef={btnRef} long />
       </button>
-      {noMessage || <ErrorMessage enable={errorShow} errorMessage={errorMessage} />}
+      <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
     </div>
   );
 };

@@ -34,6 +34,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: rgb(173, 173, 173);
+  line-height: 20px;
 }
 .errorColor {
   color: #cc2a24;
@@ -58,7 +59,7 @@
   left: 10px;
   top: 0;
   scale: 1;
-  translate: 0 18px;
+  translate: 0 20px;
   transform-origin: 0 0;
   font-size: 1rem;
   pointer-events: none;

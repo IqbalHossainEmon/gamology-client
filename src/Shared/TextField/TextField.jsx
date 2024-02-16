@@ -7,7 +7,6 @@ export default function TextField({
   className,
   placeholder,
   htmlFor = 0,
-  autoComplete,
   setState,
   errorMessage = '',
   errorChange,
@@ -46,7 +45,6 @@ export default function TextField({
         {field === 'input' ? (
           <input
             ref={fieldRef}
-            autoComplete={autoComplete ? 'on' : 'off'}
             onFocus={() => setFocused(true)}
             value={value}
             onChange={e => {

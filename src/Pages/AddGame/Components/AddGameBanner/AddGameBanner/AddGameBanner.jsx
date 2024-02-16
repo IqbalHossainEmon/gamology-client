@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import ButtonForAddGameSection from '../../ButtonForAddGameSection/ButtonForAddGameSection';
-import TextFieldContainer from '../TextFieldContainer/TextFieldContainer';
+import BannerInputFieldContainer from '../BannerInputFieldContainer/BannerInputFieldContainer';
 import styles from './AddGameBanner.module.css';
 
-export default function AddGameBanner({ gameBanner, errorChange, errorMessages }) {
+export default function AddGameBanner({ gameBanner, errorMessages, errorChange }) {
   const [fieldCount, setFieldCount] = useState(1);
 
   return (
@@ -11,9 +11,16 @@ export default function AddGameBanner({ gameBanner, errorChange, errorMessages }
       <h3 className={styles.header}>Add Game&#39;s Banner Images or Videos</h3>
       <div className={styles.textFieldContainer}>
         {[...Array(fieldCount).keys()].map(arr => (
-          <TextFieldContainer errorChange={errorChange} key={arr} number={arr} gameBanner={gameBanner} errorMessages={errorMessages} />
+          <BannerInputFieldContainer
+            key={arr}
+            number={arr}
+            gameBanner={gameBanner}
+            errorMessages={errorMessages}
+            errorChange={errorChange}
+          />
         ))}
       </div>
+
       <div className={styles.btnContainer}>
         <div className={styles.btn}>
           <ButtonForAddGameSection

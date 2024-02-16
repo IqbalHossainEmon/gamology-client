@@ -3,58 +3,16 @@
 }
 .container {
   width: 100%;
-  position: relative;
   background-color: rgba(255, 255, 255, 0.05);
   border: 2px solid transparent;
   border-radius: 4px;
   font-size: 1rem;
-  display: flex;
-  flex-direction: column;
   transition: border 0.2s ease;
-  overflow: hidden;
+  padding: 20px 10px;
+  color: rgb(173, 173, 173);
 }
 .error {
   border: 2px solid #cc2a24;
-}
-#errorColor {
   color: #cc2a24;
-}
-.focusBorder {
-  border: 2px solid rgba(1, 81, 185, 0.733);
-}
-.label {
-  position: absolute;
-  pointer-events: none;
-  color: rgb(173, 173, 173);
-  user-select: none;
-  left: 10px;
-  top: 0;
-  translate: 0 20px;
-  transform-origin: 0 0;
-  transition:
-    scale 200ms cubic-bezier(0, 0, 0.2, 1),
-    translate 200ms cubic-bezier(0, 0, 0.2, 1),
-    color 200ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.textFilled {
-  translate: 0 5px;
-  scale: 0.8;
-  color: rgb(173, 173, 173);
-}
-.focused {
-  translate: 0 5px;
-  scale: 0.8;
-  color: rgb(2, 99, 224);
-}
-.field {
-  width: 100%;
-  outline: none;
-  font-size: 1rem;
-  background: transparent;
-  padding: 25px 10px 15px 10px;
-  color: rgb(173, 173, 173);
-  border: none;
-  user-select: none;
 }
 

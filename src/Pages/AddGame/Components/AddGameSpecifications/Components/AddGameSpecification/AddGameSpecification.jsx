@@ -15,8 +15,6 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
   useEffect(() => {
     if (errorChange && errorMessages.rec) setErrorShow(prev => ({ ...prev, rec: true }));
     if (errorChange && errorMessages.min) setErrorShow(prev => ({ ...prev, min: true }));
-
-    console.log(errorMessages.req?.min);
   }, [errorChange, errorMessages]);
 
   const handleSetEnable = useCallback(
@@ -28,17 +26,15 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
   );
 
   const handleHideErrorShow = childIndex => {
-    console.log(childIndex);
     if (errorShow.rec && childIndex) setErrorShow(prev => ({ ...prev, rec: false }));
     if (errorShow.min && !childIndex) setErrorShow(prev => ({ ...prev, min: false }));
   };
 
   const handleSetState = (value, i, childIndex, isKey) => {
-    console.log(childIndex);
     if (isKey) {
       gameSpecifications[index].systemReq[i][childIndex].key = value;
       setSelectedKeys(prev => {
-        const newSelectedKeys = prev[childIndex ? 'rec' : 'min'];
+        const newSelectedKeys = [...prev[childIndex ? 'rec' : 'min']];
         newSelectedKeys[i] = value;
         return { ...prev, [childIndex ? 'rec' : 'min']: newSelectedKeys };
       });

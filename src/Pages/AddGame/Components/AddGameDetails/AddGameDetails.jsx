@@ -40,6 +40,7 @@ export default function AddGameDetails({ gameInfo, errorChange, errorMessages })
       </div>
       <div className={styles.flexContainer}>
         <FileUploadButton
+          htmlFor={1}
           setState={handleSetValue}
           name="logo"
           accept="image/*"
@@ -48,6 +49,7 @@ export default function AddGameDetails({ gameInfo, errorChange, errorMessages })
           errorMessage={errorMessages.logo}
         />
         <FileUploadButton
+          htmlFor={2}
           className={styles.marginRight}
           setState={handleSetValue}
           accept="image/*"
