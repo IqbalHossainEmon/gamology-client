@@ -23,6 +23,9 @@
 .errorBorder {
   border: 2px solid #cc2a24;
 }
+.activeBorder {
+  border: 2px solid rgba(1, 81, 185, 0.733);
+}
 .fileUploadButton:disabled {
   cursor: default;
 }
@@ -36,7 +39,7 @@
   color: rgb(173, 173, 173);
   line-height: 20px;
 }
-.errorColor {
+#errorColor {
   color: #cc2a24;
 }
 .uploadImage {
@@ -68,6 +71,10 @@
     scale 200ms cubic-bezier(0, 0, 0.2, 1),
     translate 200ms cubic-bezier(0, 0, 0.2, 1),
     color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+#active {
+  color: rgb(2, 99, 224);
 }
 
 .focused {

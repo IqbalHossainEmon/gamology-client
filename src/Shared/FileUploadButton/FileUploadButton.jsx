@@ -3,31 +3,35 @@ import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
 
-const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, htmlFor }) => {
+const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, htmlFor = '' }) => {
   const [selected, setSelected] = useState({ selected: false, name: 'name' });
+  const [active, setActive] = useState(false);
+
   const inputRef = useRef(null);
   const btnRef = useRef(null);
 
   const [errorShow, setErrorShow] = useState(!!errorMessage);
 
   useEffect(() => {
-    if (errorChange && errorMessage) {
-      setErrorShow(true);
-      inputRef.current.addEventListener('change', e => {
-        setErrorShow(false);
-        inputRef.current.removeEventListener('change', e);
-      });
-    }
+    if (errorChange && errorMessage) setErrorShow(true);
+    else setErrorShow(false);
   }, [errorChange, errorMessage]);
 
-  const handleClick = () => {
-    inputRef.current.click();
-  };
+  useEffect(() => {
+    inputRef.current.addEventListener('cancel', () => {
+      setActive(false);
+    });
+  }, []);
 
   const handleSelect = e => {
+    setActive(false);
     if (e.target.files) {
-      const { name: fileName } = e.target.files[0];
-      setSelected({ selected: true, name: fileName });
+      if (e.target.files[0]) {
+        const { name: fileName } = e.target.files[0] || {};
+        setSelected({ selected: true, name: fileName });
+      } else {
+        setSelected({ selected: false, name: 'name' });
+      }
 
       const object = {
         type: 'FormData',
@@ -35,8 +39,6 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
       };
 
       setState(object, name);
-    } else {
-      setSelected({ selected: false, name: 'browse' });
     }
   };
 
@@ -55,13 +57,20 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
       <button
         ref={btnRef}
         {...(disabled && { disabled })}
-        onClick={handleClick}
-        className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
+        onClick={() => {
+          inputRef.current.click();
+          setActive(true);
+          if (errorShow) {
+            setErrorShow(false);
+          }
+        }}
+        className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}${active ? ` ${styles.activeBorder}` : ''}`}
         type="button"
       >
         <label
           htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-          className={`${selected.selected ? `${styles.focused} ` : ''}${errorShow ? `${styles.errorColor} ` : ''}${styles.label}`}
+          className={`${active ? `${styles.active} ` : ''}${selected.selected ? `${styles.focused} ` : ''}${errorShow ? `${styles.errorColor} ` : ''}${styles.label}`}
+          {...(active ? { id: styles.active } : errorShow && { id: styles.errorColor })}
         >
           {placeholder || 'Browse'}
         </label>

@@ -30,6 +30,7 @@ export default function TextField({
 
   useEffect(() => {
     if (errorChange && errorMessage) setErrorShow(true);
+    else setErrorShow(false);
   }, [errorChange, errorMessage]);
 
   return (
@@ -45,11 +46,14 @@ export default function TextField({
         {field === 'input' ? (
           <input
             ref={fieldRef}
-            onFocus={() => setFocused(true)}
+            onFocus={() => {
+              setFocused(true);
+              if (errorShow) setErrorShow(false);
+            }}
             value={value}
             onChange={e => {
               setValue(e.target.value);
-              if (errorShow) setErrorShow(false);
+
               handleChange(e.target.value);
             }}
             onBlur={e => {
@@ -57,17 +61,20 @@ export default function TextField({
               setFocused(false);
             }}
             id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-            className={[styles.input, styles.field].join(' ')}
+            className={styles.field}
+            autoComplete="off"
             {...rest}
           />
         ) : (
           <textarea
             ref={fieldRef}
-            onFocus={() => setFocused(true)}
+            onFocus={() => {
+              setFocused(true);
+              if (errorShow) setErrorShow(false);
+            }}
             value={value}
             onChange={e => {
               setValue(e.target.value);
-              if (errorShow) setErrorShow(false);
               handleChange(e.target.value);
             }}
             onBlur={e => {

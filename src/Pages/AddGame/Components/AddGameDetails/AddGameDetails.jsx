@@ -4,7 +4,11 @@ import styles from './AddGameDetails.module.css';
 
 export default function AddGameDetails({ gameInfo, errorChange, errorMessages }) {
   const handleSetValue = (value, name) => {
-    gameInfo[name] = value;
+    if (value.type === 'FormData' && !value.file) {
+      delete gameInfo[name];
+    } else {
+      gameInfo[name] = value;
+    }
   };
 
   return (

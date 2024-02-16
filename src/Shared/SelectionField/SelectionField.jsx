@@ -72,6 +72,7 @@ export default function SelectionField({ placeholder = 'Type', className, htmlFo
           <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
             <button
               {...(value === item && { disabled: true })}
+              {...(show || { tabIndex: '-1' })}
               type="button"
               onClick={() => {
                 setShow(false);

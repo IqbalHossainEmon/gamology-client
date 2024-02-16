@@ -43,8 +43,6 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
     errorMessages.current.gameBannerError = gameBanner.map(banner => {
       const obj = {};
 
-      console.log(banner, 'banner');
-
       if (!banner.type && !banner.cover && !banner.thumb) {
         error = true;
         obj.cover = 'Cover image/video is required';
