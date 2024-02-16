@@ -17,6 +17,7 @@ const SelectionFieldTextField = ({
   parentErrorShow,
   errorChange,
   setHideParentErrorShow,
+  enabled,
 }) => {
   const [errorShow, setErrorShow] = useState(!!errorMessage);
 
@@ -33,6 +34,7 @@ const SelectionFieldTextField = ({
       <div className={styles.specsContainer}>
         <div className={styles.selectionField}>
           <SelectionField
+            enabled={enabled}
             onFocusClick={() => setHideParentErrorShow()}
             name="Key Type"
             placeholder="Required"
@@ -45,6 +47,7 @@ const SelectionFieldTextField = ({
         </div>
         <div className={styles.textField}>
           <TextField
+            enabled={enabled}
             onFocusClick={() => handleHideErrorShow()}
             setState={value => {
               handleSetState(value, i, index);

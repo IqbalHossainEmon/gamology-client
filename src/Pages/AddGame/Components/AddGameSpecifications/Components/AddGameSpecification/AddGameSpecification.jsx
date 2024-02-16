@@ -47,10 +47,11 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
       <div className={styles.switch}>
         <FilterOption setState={handleSetEnable} name="enabled" state={enabled.enabled} border text={state.name} />
       </div>
-      <div className={styles.systemReqContainer} {...(!enabled.enabled && { disabled: true })}>
+      <div className={styles.systemReqContainer} {...(!enabled.enabled && { disabled: true, tabIndex: '-1' })}>
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Minimum</h4>
           <SectionFieldTextFieldContainer
+            enabled={enabled.enabled}
             parentErrorShow={errorShow.min}
             selectedKeys={selectedKeys.min}
             name={`${state.name.toLowerCase()}_min`}
@@ -69,6 +70,7 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
         <div className={styles.systemReq}>
           <h4 className={styles.type}>Recommended</h4>
           <SectionFieldTextFieldContainer
+            enabled={enabled.enabled}
             parentErrorShow={errorShow.rec}
             selectedKeys={selectedKeys.rec}
             name={`${state.name.toLowerCase()}_rec`}
@@ -88,6 +90,8 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
           <div className={styles.btnContainer}>
             <ButtonForAddGameSection
               text="Add More +"
+              {...(requiredLength === 10 && { disabled: true })}
+              {...(enabled.enabled || { tabIndexOff: true })}
               onClick={() => {
                 setRequiredLength(prev => prev + 1);
                 if (errorShow.rec) setErrorShow({ min: false, rec: false });

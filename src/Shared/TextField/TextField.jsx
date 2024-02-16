@@ -12,6 +12,7 @@ export default function TextField({
   errorChange,
   handleChange = () => {},
   onFocusClick,
+  enabled = true,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
@@ -46,6 +47,7 @@ export default function TextField({
         </label>
         {field === 'input' ? (
           <input
+            {...(enabled || { disabled: true })}
             ref={fieldRef}
             onFocus={() => {
               setFocused(true);

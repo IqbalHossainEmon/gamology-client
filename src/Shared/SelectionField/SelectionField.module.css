@@ -49,6 +49,7 @@
   pointer-events: none;
   padding-right: 30px;
   text-overflow: ellipsis;
+  user-select: none;
 }
 
 .focused {

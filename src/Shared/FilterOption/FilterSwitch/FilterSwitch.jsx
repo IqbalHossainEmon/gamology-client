@@ -95,7 +95,7 @@ function FilterSwitch({ state, setState, name, event }) {
           }
         >
           <div
-            tabIndex="0"
+            tabIndex="-1"
             role="button"
             className={styles.round}
             style={

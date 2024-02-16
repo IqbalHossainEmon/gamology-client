@@ -81,7 +81,6 @@
 .focused {
   translate: 0 5px;
   scale: 0.75;
-  color: rgb(140, 140, 140);
 }
 
 @media screen and (max-width: 768px) {

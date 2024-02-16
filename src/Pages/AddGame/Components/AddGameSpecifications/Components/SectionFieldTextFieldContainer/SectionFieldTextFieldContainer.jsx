@@ -13,6 +13,7 @@ export default function SectionFieldTextFieldContainer({
   errorMessage = [],
   errorChange,
   setHideParentErrorShow,
+  enabled,
 }) {
   return (
     <>
@@ -31,6 +32,7 @@ export default function SectionFieldTextFieldContainer({
           parentErrorShow={parentErrorShow}
           errorChange={errorChange}
           setHideParentErrorShow={setHideParentErrorShow}
+          enabled={enabled}
         />
       ))}
     </>

@@ -15,6 +15,7 @@ export default function SelectionField({
   list = [],
   name = '',
   onFocusClick,
+  enabled = true,
   ...rest
 }) {
   const [value, setValue] = useState('');
@@ -40,6 +41,7 @@ export default function SelectionField({
     <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
       <button
         type="button"
+        {...(enabled || { tabIndex: '-1' })}
         {...(inputRef.current &&
           ctx.measureText(value).width >
             inputRef.current.offsetWidth -
@@ -67,6 +69,7 @@ export default function SelectionField({
           {placeholder}
         </label>
         <input
+          tabIndex="-1"
           ref={inputRef}
           value={value}
           readOnly
