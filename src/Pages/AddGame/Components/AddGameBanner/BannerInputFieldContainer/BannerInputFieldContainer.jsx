@@ -11,10 +11,9 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
   typeRef.current = type;
 
   const handleSetValues = (value, name) => {
-    console.log('handleSetValues', value, name);
     gameBanner[number][name] = value;
 
-    if (errorMessages[number].type) {
+    if (errorMessages[number]?.type) {
       delete errorMessages[number].type;
       delete errorMessages[number].thumb;
       delete errorMessages[number].cover;

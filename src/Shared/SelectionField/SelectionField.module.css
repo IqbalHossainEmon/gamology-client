@@ -35,9 +35,7 @@
   opacity: 0.5;
   cursor: default;
 }
-.listContainer {
-  padding-bottom: 0px;
-}
+
 .field {
   width: 100%;
   outline: none;
@@ -71,7 +69,7 @@
   width: 100%;
   top: 100%;
   border-radius: 4px;
-  padding: 0px 10px 10px 10px;
+  padding: 10px 10px 0px 10px;
   background-color: rgb(37, 37, 37);
   cursor: default;
   list-style: none;
@@ -117,9 +115,7 @@
 
 .item button {
   width: 100%;
-  margin-top: 5px;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding: 10px 0;
   cursor: pointer;
   height: 100%;
   background-color: transparent;
@@ -129,6 +125,15 @@
   text-align: center;
   transition: color 200ms;
 }
+
+.noDataItem {
+  width: 100%;
+  text-align: center;
+  color: rgb(140, 140, 140);
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
 .item button:hover button {
   color: rgb(196, 196, 196);
 }
