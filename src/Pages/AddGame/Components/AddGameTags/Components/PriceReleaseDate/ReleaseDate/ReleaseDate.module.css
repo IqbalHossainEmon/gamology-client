@@ -1,0 +1,38 @@
+.releaseDate {
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+  width: 100%;
+}
+.DateContainer {
+  display: flex;
+  align-items: center;
+}
+.releaseDay {
+  width: 100px;
+}
+.releaseMonth {
+  width: 150px;
+}
+.releaseYear {
+  width: 100px;
+}
+.releaseComponent {
+  margin-left: 10px;
+}
+@media screen and (max-width: 645px) {
+  .releaseDate {
+    margin: 0;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 396px) {
+  .releaseDate {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .releaseComponent {
+    margin-bottom: 10px;
+  }
+}

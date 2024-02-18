@@ -231,7 +231,9 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
     return error;
   };
 
-  const handleUnnecessaryRemove = () => {};
+  const handleUnnecessaryRemove = () => {
+    console.log(gameData.current);
+  };
 
   return { checkValidation, handleUnnecessaryRemove };
 }

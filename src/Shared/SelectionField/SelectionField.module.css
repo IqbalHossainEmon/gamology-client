@@ -174,4 +174,7 @@
   .input {
     font-size: 12px;
   }
+  .list {
+    max-height: 360px;
+  }
 }

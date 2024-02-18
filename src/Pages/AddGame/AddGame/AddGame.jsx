@@ -92,7 +92,6 @@ export default function AddGame() {
       return;
     }
     console.log(gameData.current);
-    console.log('submitted');
     handleUnnecessaryRemove();
   };
 
