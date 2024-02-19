@@ -30,7 +30,7 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
     <div>
       <div className={styles.releaseDate}>
         <p>Release</p>
-        <div className={styles.DateContainer}>
+        <div className={styles.dateContainer}>
           <div className={`${styles.releaseDay} ${styles.releaseComponent}`}>
             <SelectionField
               list={Array.from(Array(getDaysInMonth(gameInfo.year, 0) || 0), (_, idx) => ++idx)}

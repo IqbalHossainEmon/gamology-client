@@ -6,12 +6,15 @@
   cursor: pointer;
   position: relative;
   margin: 20px 0;
-  padding-right: 20%;
   transition: filter 200ms;
 }
 .text {
   user-select: none;
+  width: calc(100% - 70px);
   -webkit-user-select: none;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 14px;
   line-height: 18px;
 }
