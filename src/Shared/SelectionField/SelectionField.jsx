@@ -16,17 +16,32 @@ export default function SelectionField({
   name = '',
   onFocusClick,
   enabled = true,
+  parentSetValue = '',
   ...rest
 }) {
   const [value, setValue] = useState('');
   const [show, setShow] = useState(false);
   const screenWidth = useScreenWidth();
 
+  const valueRef = useRef(value);
+  valueRef.current = value;
   const elementRef = useRef(null);
   const containerRef = useRef(null);
   const inputRef = useRef(null);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
+
+  useEffect(() => {
+    let isFirst = true;
+    console.log(parentSetValue, valueRef.current, !isFirst);
+    console.log(parentSetValue !== valueRef.current && !isFirst);
+    console.log(parentSetValue !== valueRef.current);
+    if (parentSetValue !== valueRef.current && !isFirst) {
+      setValue(parentSetValue);
+    } else {
+      isFirst = false;
+    }
+  }, [parentSetValue]);
 
   useEffect(() => {
     setElement(containerRef.current);

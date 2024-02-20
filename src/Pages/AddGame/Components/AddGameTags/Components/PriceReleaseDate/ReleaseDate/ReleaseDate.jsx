@@ -11,7 +11,14 @@ function getDaysInMonth(year, month) {
 const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
   const [errorShow, setErrorShow] = useState(false);
 
-  console.log(getDaysInMonth(gameInfo.releaseDate.year, gameInfo.releaseDate.month));
+  const [day, setDay] = useState({ day: 0, max: 31 });
+
+  useEffect(() => {
+    if (gameInfo.releaseDate.day > day.max) {
+      setDay(prev => ({ ...prev, day: day.max }));
+      gameInfo.releaseDate.day = day.day;
+    }
+  }, [day.day, day.max, gameInfo.releaseDate]);
 
   useEffect(() => {
     if (errorChange && errorMessage) setErrorShow(true);
@@ -20,6 +27,10 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
   const handleReleaseValue = (value, name) => {
     if (name === 'month') {
       value = months.indexOf(value) + 1;
+      setDay(prev => ({ ...prev, max: getDaysInMonth(gameInfo.releaseDate.year || new Date().getFullYear(), value) }));
+    }
+    if (name === 'year') {
+      setDay(prev => ({ ...prev, max: getDaysInMonth(value, gameInfo.releaseDate.month || new Date().getMonth() + 1) }));
     }
     gameInfo.releaseDate[name] = value;
     if (errorShow) {
@@ -33,11 +44,12 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
         <div className={styles.dateContainer}>
           <div className={`${styles.releaseDay} ${styles.releaseComponent}`}>
             <SelectionField
-              list={Array.from(Array(getDaysInMonth(gameInfo.year, 0) || 0), (_, idx) => ++idx)}
+              list={Array.from(Array(day.max), (_, idx) => ++idx)}
               htmlFor={1}
               placeholder="Day"
               setState={handleReleaseValue}
               name="day"
+              parentSetValue={day.day}
             />
           </div>
           <div className={`${styles.releaseMonth} ${styles.releaseComponent}`}>
