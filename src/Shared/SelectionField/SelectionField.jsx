@@ -32,14 +32,8 @@ export default function SelectionField({
   const { showMenu, setElement } = useDropDownHide(setShow);
 
   useEffect(() => {
-    let isFirst = true;
-    console.log(parentSetValue, valueRef.current, !isFirst);
-    console.log(parentSetValue !== valueRef.current && !isFirst);
-    console.log(parentSetValue !== valueRef.current);
-    if (parentSetValue !== valueRef.current && !isFirst) {
+    if (parentSetValue) {
       setValue(parentSetValue);
-    } else {
-      isFirst = false;
     }
   }, [parentSetValue]);
 

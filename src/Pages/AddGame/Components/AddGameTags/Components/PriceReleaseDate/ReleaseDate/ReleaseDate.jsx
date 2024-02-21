@@ -14,29 +14,40 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
   const [day, setDay] = useState({ day: 0, max: 31 });
 
   useEffect(() => {
-    if (gameInfo.releaseDate.day > day.max) {
-      setDay(prev => ({ ...prev, day: day.max }));
-      gameInfo.releaseDate.day = day.day;
-    }
-  }, [day.day, day.max, gameInfo.releaseDate]);
-
-  useEffect(() => {
     if (errorChange && errorMessage) setErrorShow(true);
   }, [errorChange, errorMessage]);
 
   const handleReleaseValue = (value, name) => {
     if (name === 'month') {
       value = months.indexOf(value) + 1;
-      setDay(prev => ({ ...prev, max: getDaysInMonth(gameInfo.releaseDate.year || new Date().getFullYear(), value) }));
     }
-    if (name === 'year') {
-      setDay(prev => ({ ...prev, max: getDaysInMonth(value, gameInfo.releaseDate.month || new Date().getMonth() + 1) }));
+
+    if (name !== 'day') {
+      let max;
+      if (name === 'month') {
+        max = getDaysInMonth(gameInfo.releaseDate.year || new Date().getFullYear(), value);
+      } else {
+        max = getDaysInMonth(value, gameInfo.releaseDate.month || 1);
+      }
+      if (day.max !== max) {
+        if (gameInfo.releaseDate.day > max) {
+          gameInfo.releaseDate.day = max;
+          setDay({ max, day: max });
+        } else {
+          setDay(prev => ({ ...prev, max }));
+        }
+      }
+    } else {
+      setDay(prev => ({ ...prev, day: value }));
     }
+
     gameInfo.releaseDate[name] = value;
+
     if (errorShow) {
       setErrorShow(false);
     }
   };
+
   return (
     <div>
       <div className={styles.releaseDate}>
