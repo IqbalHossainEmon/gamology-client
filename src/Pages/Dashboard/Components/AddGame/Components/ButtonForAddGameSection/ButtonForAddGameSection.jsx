@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import ButtonWaterEffect from '../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './ButtonForAddGameSection.module.css';
 
 export default function ButtonForAddGameSection({ onClick, text, disabled = false, tabIndexOff }) {

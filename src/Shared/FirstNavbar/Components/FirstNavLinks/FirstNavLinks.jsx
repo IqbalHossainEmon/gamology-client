@@ -9,7 +9,7 @@ const links = [
   },
   { no: 1, name: 'FAQ', URL: '#faq' },
   { no: 2, name: 'Help', URL: '#Help' },
-  { no: 3, name: 'ADD GAME', URL: '#addGame' },
+  { no: 3, name: 'Dashboard', URL: '#dashboard' },
 ];
 
 export default function FirstNavLinks({ setNavState }) {

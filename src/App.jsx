@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import './App.css';
 import withScreenWidthProvider from './HOC/withScreenWidthProvider';
-import AddGame from './Pages/AddGame/AddGame/AddGame';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import Footer from './Shared/Footer/Footer';
 import MainHeader from './Shared/MainHeader/MainHeader';
 
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <MainHeader />
-      <AddGame />
+      <Dashboard />
       <Footer />
     </>
   );
