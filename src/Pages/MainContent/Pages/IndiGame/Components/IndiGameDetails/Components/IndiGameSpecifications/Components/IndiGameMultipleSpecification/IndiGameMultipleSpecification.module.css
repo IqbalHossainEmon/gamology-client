@@ -1,0 +1,10 @@
+.individualGameMultipleSpecificationContainer {
+  overflow: hidden;
+}
+.individualGameMultipleSpecification {
+  display: flex;
+  transition: translate 200ms;
+}
+.specs {
+  min-width: 100%;
+}

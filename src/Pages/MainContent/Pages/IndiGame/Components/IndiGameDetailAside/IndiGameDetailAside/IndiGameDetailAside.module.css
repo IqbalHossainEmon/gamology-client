@@ -1,0 +1,15 @@
+.individualGameDetailAside {
+  width: 30%;
+  padding: 20px 0 0 5%;
+}
+.asideContainer {
+  position: sticky;
+  top: 100px;
+}
+@media (max-width: 1023px) {
+  .individualGameDetailAside {
+    width: 100%;
+    position: static;
+    padding: 20px 0 0 0;
+  }
+}

@@ -1,0 +1,56 @@
+.individualGameTakeReview {
+  display: flex;
+  justify-content: space-between;
+}
+.userStarContainer {
+  display: flex;
+  align-items: center;
+}
+.userIcon {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.addReviewButton {
+  background: none;
+  color: #696969;
+  border: none;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 300ms;
+}
+.addReviewButton:hover,
+.active {
+  color: #aaa;
+}
+.addReviewButton:disabled {
+  color: #555555;
+  cursor: default;
+}
+.overAllRatingContainer {
+  display: flex;
+  align-items: center;
+  color: #919191;
+}
+.overAllRating {
+  font-size: 40px;
+}
+
+.overallRatingText {
+  color: #919191;
+  font-size: large;
+}
+
+.fullStar {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+@media only screen and (max-width: 376px) {
+  .individualGameTakeReview {
+    flex-direction: column;
+    align-items: center;
+  }
+}
