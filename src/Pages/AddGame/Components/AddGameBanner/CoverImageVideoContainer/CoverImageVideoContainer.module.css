@@ -22,6 +22,7 @@
   text-overflow: ellipsis;
   color: rgb(173, 173, 173);
   line-height: 20px;
+  padding-top: 2px;
 }
 
 .label {
@@ -70,7 +71,7 @@
 #active {
   color: rgb(2, 99, 224);
 }
-.defaultCursor {
+.defaultText {
   cursor: default;
   user-select: none;
 }
@@ -89,7 +90,7 @@
   width: 100%;
   height: 100%;
   border: none;
-  padding: 20px 40px 20px 10px;
+  padding: 20px 40px 18px 10px;
   text-align: left;
   position: relative;
   font-size: 1rem;
@@ -99,6 +100,19 @@
   overflow: hidden;
   transition: background-color 0.2s ease;
 }
+
+.uploadImage {
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.uploadImage img {
+  height: 100%;
+}
+
 .selected {
   opacity: 1;
   padding-top: 2px;

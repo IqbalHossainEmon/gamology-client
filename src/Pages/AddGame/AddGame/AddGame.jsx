@@ -91,8 +91,8 @@ export default function AddGame() {
       setErrorChange(prev => ++prev);
       return;
     }
-    console.log(gameData.current);
     handleUnnecessaryRemove();
+    console.log(gameData.current, errorMessages.current);
   };
 
   return (

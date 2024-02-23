@@ -113,12 +113,15 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                 className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}`}
               >
                 <p className={`${selected.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>{selected.name}</p>
+                <div className={styles.uploadImage}>
+                  <img src="/assets/images/upload.png" alt="upload" />
+                </div>
                 <ButtonWaterEffect btnRef={btnRef} long />
               </button>
             </>
           )
         ) : (
-          <p className={`${errorShow ? `${styles.errorColor} ` : ''}${styles.defaultCursor}`}>Select Content Type First</p>
+          <p className={`${errorShow ? `${styles.errorColor} ` : ''}${styles.defaultText}`}>Select Content Type First</p>
         )}
       </div>
       <ErrorMessage enable={errorShow} errorMessage={errorMessage} />

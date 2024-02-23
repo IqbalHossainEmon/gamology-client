@@ -232,7 +232,8 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
   };
 
   const handleUnnecessaryRemove = () => {
-    console.log(gameData.current);
+    gameSpecifications.spec = gameSpecifications.spec.filter(spec => spec.isActive);
+    gameSpecifications.spec = gameSpecifications.spec.map(spec => delete spec.isActive);
   };
 
   return { checkValidation, handleUnnecessaryRemove };

@@ -76,6 +76,11 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
         </label>
 
         <p className={`${selected.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>{selected.name}</p>
+        {disabled || (
+          <div className={styles.uploadImage}>
+            <img src="/assets/images/upload.png" alt="upload" />
+          </div>
+        )}
         <ButtonWaterEffect btnRef={btnRef} long />
       </button>
       <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
