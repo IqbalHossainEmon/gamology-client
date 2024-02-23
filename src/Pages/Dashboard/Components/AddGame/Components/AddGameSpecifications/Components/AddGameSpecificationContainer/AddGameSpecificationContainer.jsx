@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import AddGameSpecification from '../AddGameSpecification/AddGameSpecification';
 import styles from './AddGameSpecificationContainer.module.css';
 

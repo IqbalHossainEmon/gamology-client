@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import ErrorMessage from '../../../../../../Shared/ErrorMessage/ErrorMessage';
-import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
+import ErrorMessage from '../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import FilterOption from '../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import styles from './OptionsContainer.module.css';
 
 export default function OptionsContainer({ title, options, gameTags, initialState = {}, errorChange, errorMessage }) {

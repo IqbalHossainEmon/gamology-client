@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import FilterOption from '../../../../../../Shared/FilterOption/FilterOption/FilterOption';
-import TextField from '../../../../../../Shared/TextField/TextField';
+import FilterOption from '../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
+import TextField from '../../../../../../../../Shared/TextField/TextField';
 import styles from './AddGameSpecificationLanguagesSupported.module.css';
 
 const AddGameSpecificationLanguagesSupported = ({ handleValue, errorMessages, errorChange }) => {

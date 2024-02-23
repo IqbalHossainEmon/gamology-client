@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
-import FileUploadButton from '../../../../../Shared/FileUploadButton/FileUploadButton';
-import SelectionField from '../../../../../Shared/SelectionField/SelectionField';
+
+import FileUploadButton from '../../../../../../../Shared/FileUploadButton/FileUploadButton';
+import SelectionField from '../../../../../../../Shared/SelectionField/SelectionField';
 import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVideoContainer';
 import styles from './BannerInputFieldContainer.module.css';
 

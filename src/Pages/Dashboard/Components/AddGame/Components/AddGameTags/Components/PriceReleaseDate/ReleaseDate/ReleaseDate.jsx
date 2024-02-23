@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import ErrorMessage from '../../../../../../../Shared/ErrorMessage/ErrorMessage';
-import SelectionField from '../../../../../../../Shared/SelectionField/SelectionField';
+import ErrorMessage from '../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField';
 import styles from './ReleaseDate.module.css';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

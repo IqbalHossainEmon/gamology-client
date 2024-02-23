@@ -1,5 +1,5 @@
-import FileUploadButton from '../../../../Shared/FileUploadButton/FileUploadButton';
-import TextField from '../../../../Shared/TextField/TextField';
+import FileUploadButton from '../../../../../../Shared/FileUploadButton/FileUploadButton';
+import TextField from '../../../../../../Shared/TextField/TextField';
 import styles from './AddGameDetails.module.css';
 
 export default function AddGameDetails({ gameInfo, errorChange, errorMessages }) {
