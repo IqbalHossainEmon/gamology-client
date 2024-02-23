@@ -28,6 +28,7 @@ export default function SelectionField({
   const elementRef = useRef(null);
   const containerRef = useRef(null);
   const inputRef = useRef(null);
+  const positionRef = useRef({ height: 0, bottom: true });
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
@@ -46,6 +47,28 @@ export default function SelectionField({
       ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;
   }, [screenWidth]);
 
+  const handleClick = () => {
+    const { height, y } = elementRef.current.getBoundingClientRect();
+
+    const bottomRemain = window.innerHeight - y - height;
+    console.log(bottomRemain);
+    if (bottomRemain < 170) {
+      positionRef.current.bottom = false;
+      if (y < 420) {
+        positionRef.current.height = y;
+      } else {
+        positionRef.current.height = 0;
+      }
+    } else {
+      positionRef.current.bottom = true;
+      if (bottomRemain < 420) {
+        positionRef.current.height = bottomRemain;
+      } else {
+        positionRef.current.height = 0;
+      }
+    }
+  };
+
   return (
     <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
       <button
@@ -59,6 +82,7 @@ export default function SelectionField({
         ref={elementRef}
         className={`${show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
         onClick={() => {
+          handleClick();
           if (!show) {
             showMenu(true);
             setShow(true);
@@ -91,7 +115,10 @@ export default function SelectionField({
         </div>
         <ButtonWaterEffect btnRef={elementRef} />
       </button>
-      <ul className={`${show ? `${styles.show} ` : ''}${styles.list}`}>
+      <ul
+        {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
+        className={`${show ? `${styles.show} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}` : ''}${styles.list}`}
+      >
         {list.map(item => (
           <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
             <button

@@ -67,7 +67,6 @@
 .list {
   position: absolute;
   width: 100%;
-  top: 100%;
   border-radius: 4px;
   padding: 10px 10px 0px 10px;
   background-color: rgb(37, 37, 37);
@@ -79,6 +78,14 @@
   z-index: 1;
   max-height: 410px;
   overflow-y: auto;
+}
+
+.showBottom {
+  top: 100%;
+}
+
+.showAbove {
+  bottom: 100%;
 }
 
 .list::-webkit-scrollbar {
