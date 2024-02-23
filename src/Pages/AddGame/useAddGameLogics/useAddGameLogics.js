@@ -104,7 +104,6 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
       gameTagsError.features = '';
     }
     if (!gameInfo.releaseDate.day || !gameInfo.releaseDate.month || !gameInfo.releaseDate.year) {
-      console.log('releaseDate', gameInfo.releaseDate);
       gameTagsError.releaseDate = 'Release Date is required';
       error = true;
     } else {
@@ -233,7 +232,11 @@ export default function useAddGameLogics({ gameData, errorMessages }) {
 
   const handleUnnecessaryRemove = () => {
     gameSpecifications.spec = gameSpecifications.spec.filter(spec => spec.isActive);
-    gameSpecifications.spec = gameSpecifications.spec.map(spec => delete spec.isActive);
+    gameSpecifications.spec = gameSpecifications.spec.map(spec => {
+      const newSpec = { ...spec };
+      delete newSpec.isActive;
+      return newSpec;
+    });
   };
 
   return { checkValidation, handleUnnecessaryRemove };
