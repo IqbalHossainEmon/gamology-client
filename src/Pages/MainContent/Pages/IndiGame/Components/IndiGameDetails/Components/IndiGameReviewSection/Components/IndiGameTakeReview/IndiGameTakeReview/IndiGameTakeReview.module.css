@@ -13,6 +13,7 @@
   border-radius: 50%;
 }
 .addReviewButton {
+  position: relative;
   background: none;
   color: #696969;
   border: none;

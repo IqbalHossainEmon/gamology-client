@@ -1,0 +1,15 @@
+.textFieldContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.placeholderTag {
+  width: 100%;
+}
+.selectContainer {
+  width: 150px;
+  margin-top: 10px;
+}
+.marginBot {
+  margin-bottom: 10px;
+}

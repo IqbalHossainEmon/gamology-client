@@ -3,6 +3,7 @@ import useScreenWidth from '../../../../../../../../../../../../../Hooks/useScre
 import LineBreak from '../../../../../../../../../../../../../Shared/LineBreak/LineBreak';
 import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn';
+import IndiGameReviewInput from '../Components/IndiGameReviewInput/IndiGameReviewInput';
 import styles from './IndiGameWriteReview.module.css';
 
 export default function IndiGameWriteReview({ userIcon, writeReviewShow, setWriteReviewShow, reviewStar, user }) {
@@ -39,9 +40,9 @@ export default function IndiGameWriteReview({ userIcon, writeReviewShow, setWrit
             <div className={styles.reviewStarsContainer}>
               <ReviewStar setValue={setData} name="active" newValue={reviewStar} />
             </div>
-            {/* <IndiGameReviewInputField field="text" setData={setData} /> */}
+            <IndiGameReviewInput setData={setData} />
           </div>
-          {/* <IndiGameReviewTextField setData={setData} /> */}
+          <IndiGameReviewInput isTextArea setData={setData} />
           <IndiGameReviewBtn canSubmit={data.title && data.text} handleSubmit={handleSubmit} setWriteReviewShow={setWriteReviewShow} />
         </div>
       </div>
