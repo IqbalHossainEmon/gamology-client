@@ -39,13 +39,13 @@ export default function IndividualGameWriteReview({ userIcon, writeReviewShow, s
         <div className={styles.writingField}>
           <div className={styles.reviewTitleContainer}>
             <div className={styles.reviewStarsContainer}>
-              <ReviewStar setValue={setData} newValue={reviewStar} />
+              <ReviewStar setValue={setData} name="active" newValue={reviewStar} />
             </div>
-            <IndividualGameReviewInputField setData={setData} />
+            <IndividualGameReviewInputField field="text" setData={setData} />
           </div>
           <IndividualGameReviewTextField setData={setData} />
           <IndividualGameReviewBtn
-            cantSubmit={data.title && data.text}
+            canSubmit={data.title && data.text}
             handleSubmit={handleSubmit}
             setWriteReviewShow={setWriteReviewShow}
           />

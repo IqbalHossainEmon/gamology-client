@@ -4,7 +4,7 @@ import styles from './ReviewStar.module.css';
 const emptyStar = 'assets/images/icons/star-empty.png';
 const fullStar = 'assets/images/icons/star-full.png';
 
-export default function ReviewStar({ setValue = () => {}, disabled, newValue = 0 }) {
+export default function ReviewStar({ setValue = () => {}, disabled, newValue = 0, name }) {
   const [star, setStar] = useState({ active: newValue, show: newValue });
 
   const handleMouseOver = useCallback(index => {
@@ -16,8 +16,8 @@ export default function ReviewStar({ setValue = () => {}, disabled, newValue = 0
   }, [handleMouseOver, newValue]);
 
   const handleClick = active => {
-    setStar(prev => ({ ...prev, active }));
-    setValue(prev => ({ ...prev, active }));
+    setStar(prev => ({ ...prev, [name]: active }));
+    setValue(prev => ({ ...prev, [name]: active }));
   };
 
   return (

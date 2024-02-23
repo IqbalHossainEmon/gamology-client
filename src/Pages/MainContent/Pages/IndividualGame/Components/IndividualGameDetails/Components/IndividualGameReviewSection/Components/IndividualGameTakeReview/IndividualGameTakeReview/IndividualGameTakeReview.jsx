@@ -38,6 +38,7 @@ export default function IndividualGameTakeReview() {
           <div className={styles.userStarContainer}>
             <img className={styles.userIcon} src={user.current.src ? user.current.src : userIcon} alt="user_icon" />
             <ReviewStar
+              name="active"
               {...((writeReviewShow || userReviewDone) && { disabled: true })}
               setValue={setReviewStar}
               {...(userReviewDone && { newValue: review.star - 1 })}

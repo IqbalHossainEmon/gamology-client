@@ -51,21 +51,26 @@ export default function SelectionField({
     const { height, y } = elementRef.current.getBoundingClientRect();
 
     const bottomRemain = window.innerHeight - y - height;
-    console.log(bottomRemain);
-    if (bottomRemain < 170) {
-      positionRef.current.bottom = false;
-      if (y < 420) {
-        positionRef.current.height = y;
+    if (list.length > 4) {
+      if (bottomRemain < 170) {
+        positionRef.current.bottom = false;
+        if (y < 420) {
+          positionRef.current.height = y;
+        } else {
+          positionRef.current.height = 0;
+        }
       } else {
-        positionRef.current.height = 0;
+        positionRef.current.bottom = true;
+        if (bottomRemain < 420) {
+          positionRef.current.height = bottomRemain;
+        } else {
+          positionRef.current.height = 0;
+        }
       }
+    } else if (bottomRemain < list.length * 40 + 10) {
+      positionRef.current.bottom = false;
     } else {
       positionRef.current.bottom = true;
-      if (bottomRemain < 420) {
-        positionRef.current.height = bottomRemain;
-      } else {
-        positionRef.current.height = 0;
-      }
     }
   };
 

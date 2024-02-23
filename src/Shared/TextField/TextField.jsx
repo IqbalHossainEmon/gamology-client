@@ -59,7 +59,6 @@ export default function TextField({
             value={value}
             onChange={e => {
               setValue(e.target.value);
-
               handleChange(e.target.value);
             }}
             onBlur={e => {

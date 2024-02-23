@@ -6,7 +6,7 @@ export default function IndividualGameReviewTextField({ setData }) {
 
   return (
     <div className={styles.descriptionContainer}>
-      <textarea
+        <textarea
         onBlur={e => {
           if (value.length <= 40) {
             setData(prev => ({ ...prev, text: e.target.value }));

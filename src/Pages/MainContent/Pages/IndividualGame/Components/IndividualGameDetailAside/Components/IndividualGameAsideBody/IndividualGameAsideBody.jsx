@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import ButtonWaterEffect from '../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './IndividualGameAsideBody.module.css';
 
 export default function IndividualGameAsideBody({ info }) {
+  const cartButtonRef = useRef(null);
+  const wishlistBtnRef = useRef(null);
+
   const [addedToCart, setAddedToCart] = useState(false);
 
   const [wishListState, setWishListState] = useState(0);
@@ -21,6 +25,7 @@ export default function IndividualGameAsideBody({ info }) {
   return (
     <div className={styles.individualGameAsideBody}>
       <button
+        ref={cartButtonRef}
         onClick={handleAddingCart}
         className={[styles.btn, styles.cartBtn].join(' ')}
         {...(addedToCart && { disabled: true })}
@@ -38,14 +43,15 @@ export default function IndividualGameAsideBody({ info }) {
                   fill="currentColor"
                 />
               </g>
-            </svg>{' '}
+            </svg>
             In Library
           </>
         ) : (
           'Add to Cart'
         )}
+        <ButtonWaterEffect btnRef={cartButtonRef} backGround="rgb(5 132 255)" long />
       </button>
-      <button className={[styles.btn, styles.wishlistBtn].join(' ')} type="button" onClick={handleAddingWishList}>
+      <button ref={wishlistBtnRef} className={[styles.btn, styles.wishlistBtn].join(' ')} type="button" onClick={handleAddingWishList}>
         <div className={wishListState <= 0 ? styles.outerCircle : [styles.rotate, styles.outerCircle].join(' ')}>
           {wishListState >= 0 ? (
             <div className={styles.plus} />
@@ -61,6 +67,7 @@ export default function IndividualGameAsideBody({ info }) {
           )}
         </div>
         Add to Wishlist
+        <ButtonWaterEffect btnRef={wishlistBtnRef} backGround="grey" long />
       </button>
       {info.map(information => (
         <div className={styles.gameInfo} key={information.id}>

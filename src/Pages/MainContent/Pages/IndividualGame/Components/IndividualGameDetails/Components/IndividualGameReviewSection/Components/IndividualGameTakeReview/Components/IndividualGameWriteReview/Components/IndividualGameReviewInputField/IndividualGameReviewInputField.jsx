@@ -1,24 +1,21 @@
 import { useState } from 'react';
+import TextField from '../../../../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './IndividualGameReviewInputField.module.css';
 
-export default function IndividualGameReviewInputField({ setData }) {
+export default function IndividualGameReviewInputField({ field }) {
   const [value, setValue] = useState('');
 
   return (
     <div className={styles.titleContainer}>
-      <input
-        onBlur={e => {
-          if (value.length <= 40) {
-            setData(prev => ({ ...prev, title: e.target.value }));
-          } else {
-            setData(prev => ({ ...prev, title: '' }));
-          }
-        }}
+      <TextField
+        field='input'
+        className={styles.title}
+        placeholder='Review title...'
+        setState={setData}
+        handleChange={val => {
+          setValue(val);
+        }}dfasdfsdf
         value={value}
-        onChange={e => setValue(e.target.value)}
-        placeholder="Review Title..."
-        className={styles.reviewTitle}
-        type="text"
       />
       <p
         className={

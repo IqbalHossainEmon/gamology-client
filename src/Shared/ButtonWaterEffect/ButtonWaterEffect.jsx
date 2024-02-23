@@ -28,7 +28,7 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
         const halfWidth = width / 2;
         const halfHeight = height / 2;
 
-        if (x < 0 || y < 0) {
+        if (x < -2 || y < -2) {
           x = halfWidth;
           y = halfHeight;
         }

@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .cartBtn:disabled {
@@ -39,13 +40,6 @@
   background-color: rgba(0, 118, 228, 0.6);
 }
 
-.cartBtn:active {
-  background-color: rgb(70, 159, 243);
-}
-.cartBtn:active:disabled {
-  background-color: rgba(0, 118, 228, 0.6);
-}
-
 .wishlistBtn {
   padding: 10px 0;
   margin-top: 10px;
@@ -57,13 +51,11 @@
   cursor: pointer;
   transition: background-color 200ms;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .wishlistBtn:hover {
   background-color: rgb(18, 18, 18);
-}
-.wishlistBtn:active {
-  background-color: rgb(59, 59, 59);
 }
 
 .outerCircle {

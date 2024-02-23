@@ -13,6 +13,7 @@
   margin-left: 10px;
   cursor: pointer;
   transition: background-color 200ms;
+  position: relative;
 }
 
 .submitBtn:hover {
@@ -29,7 +30,9 @@
   padding: 8px;
   border: none;
   border-radius: 3px;
-  transition: background-color 200ms, color 200ms;
+  transition:
+    background-color 200ms,
+    color 200ms;
   cursor: pointer;
 }
 
