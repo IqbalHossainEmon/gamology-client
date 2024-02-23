@@ -108,8 +108,12 @@ export default function AddGameSpecification({ state, gameSpecifications, index,
               {...(requiredLength === 1 && { disabled: true })}
               onClick={() => {
                 setRequiredLength(prev => prev - 1);
-                gameSpecifications[index].systemReq.pop();
-                setSelectedKeys(prev => ({ min: prev.min.slice(0, -1), rec: prev.rec.slice(0, -1) }));
+                const pop = gameSpecifications[index].systemReq.pop();
+                if (pop[0].key === selectedKeys.min[selectedKeys.min.length - 1]) {
+                  setSelectedKeys(prev => ({ ...prev, min: prev.min.slice(0, -1) }));
+                } else if (pop[0].key === selectedKeys.rec[selectedKeys.rec.length - 1]) {
+                  setSelectedKeys(prev => ({ ...prev, rec: prev.rec.slice(0, -1) }));
+                }
               }}
             />
           </div>
