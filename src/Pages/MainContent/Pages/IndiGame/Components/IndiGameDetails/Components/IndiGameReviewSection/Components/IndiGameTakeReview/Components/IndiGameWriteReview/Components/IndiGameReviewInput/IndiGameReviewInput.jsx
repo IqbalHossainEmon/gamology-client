@@ -5,8 +5,6 @@ const IndiGameReviewInput = ({ setData, isTextArea }) => {
   const [value, setValue] = useState('');
   const [scrollable, setScrollable] = useState(false);
 
-  console.log(scrollable);
-
   return (
     <div className={styles.container}>
       {isTextArea ? (

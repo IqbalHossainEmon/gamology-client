@@ -8,9 +8,12 @@
 .individualGameViewMoreButton button {
   background-color: rgb(119, 119, 119);
   border: none;
+  position: relative;
   padding: 20px 30px;
   border-radius: 4px;
-  transition: background-color 200ms, color 200ms;
+  transition:
+    background-color 200ms,
+    color 200ms;
   cursor: pointer;
 }
 
