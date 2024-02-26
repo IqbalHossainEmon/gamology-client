@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../../../../../../Hooks/useDropDownHide';
 import RotateArrow from '../../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './IndiGameOrderBy.module.css';
 
 export default function IndiGameOrderBy({ handleSort }) {
-  const elementRef = useRef(null);
+  const elementRef1 = useRef(null);
+  const elementRef2 = useRef(null);
 
   const [orderBy, setOrderBy] = useState([
     { id: 0, name: 'Most positive', link: 'most-positive', active: true },
@@ -16,19 +17,19 @@ export default function IndiGameOrderBy({ handleSort }) {
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
-  useEffect(() => {
-    setElement(elementRef.current);
-  }, [setElement]);
+  console.log(elementRef1, elementRef2);
 
   return (
-    <div ref={elementRef} className={styles.individualGameOrderBy}>
+    <div className={styles.individualGameOrderBy}>
       <button
+        ref={elementRef1}
         type="button"
         className={styles.activeOrderContainer}
         {...(show || {
           onClick: () => {
             setShow(true);
             showMenu();
+            setElement([elementRef1.current, elementRef2.current]);
           },
         })}
       >
@@ -39,37 +40,39 @@ export default function IndiGameOrderBy({ handleSort }) {
           <RotateArrow state={show} />
         </div>
       </button>
-      {show && (
-        <ul className={styles.orderOptions}>
-          {orderBy.map((order, index) => (
-            <li className={styles.orderOption} key={order.id}>
-              <button
-                className={orderBy[index].active ? [styles.optionBtn, styles.activeBtn].join(' ') : styles.optionBtn}
-                type="button"
-                {...(orderBy[index].active || {
-                  onClick: () => {
-                    setOrderBy(prev => {
-                      const prevOrderBy = [...prev];
-                      for (let i = 0; i < 3; i++) {
-                        if (i === index) {
-                          prevOrderBy[i].active = true;
-                        } else {
-                          prevOrderBy[i].active = false;
+      <div ref={elementRef2}>
+        {show && (
+          <ul className={styles.orderOptions}>
+            {orderBy.map((order, index) => (
+              <li className={styles.orderOption} key={order.id}>
+                <button
+                  className={orderBy[index].active ? [styles.optionBtn, styles.activeBtn].join(' ') : styles.optionBtn}
+                  type="button"
+                  {...(orderBy[index].active || {
+                    onClick: () => {
+                      setOrderBy(prev => {
+                        const prevOrderBy = [...prev];
+                        for (let i = 0; i < 3; i++) {
+                          if (i === index) {
+                            prevOrderBy[i].active = true;
+                          } else {
+                            prevOrderBy[i].active = false;
+                          }
                         }
-                      }
-                      return prevOrderBy;
-                    });
-                    setShow(false);
-                    handleSort({ link: order.link, type: 'sort' });
-                  },
-                })}
-              >
-                {order.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+                        return prevOrderBy;
+                      });
+                      setShow(false);
+                      handleSort({ link: order.link, type: 'sort' });
+                    },
+                  })}
+                >
+                  {order.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

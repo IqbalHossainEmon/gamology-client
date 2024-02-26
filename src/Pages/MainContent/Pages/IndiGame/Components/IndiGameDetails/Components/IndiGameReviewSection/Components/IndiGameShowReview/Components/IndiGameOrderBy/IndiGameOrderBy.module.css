@@ -41,7 +41,9 @@
   border: none;
   padding: 3px 5px;
   color: #969696;
-  transition: color 200ms, background-color 200ms;
+  transition:
+    color 200ms,
+    background-color 200ms;
   cursor: pointer;
 }
 .activeBtn {
@@ -57,5 +59,6 @@
 .rotateArrow {
   margin-left: 5px;
   width: 10px;
-  translate: 0px 1px;
+  height: 10px;
+  position: relative;
 }

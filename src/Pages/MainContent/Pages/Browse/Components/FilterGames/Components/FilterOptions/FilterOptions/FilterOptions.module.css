@@ -11,10 +11,11 @@
 
 .downArrow {
   position: absolute;
-  width: 23px;
-  scale: 0.5;
+  width: 0.7rem;
+  height: 0.7rem;
   right: 0;
-  top: -3px;
+  top: 50%;
+  translate: 0 -50%;
   rotate: 180deg;
   transform: rotateY(180deg);
 }

@@ -5,6 +5,7 @@
   display: flex;
   font-size: 20px;
   font-weight: 500;
+  padding-right: 1.5rem;
   font-family: 'Inter';
   position: relative;
   cursor: pointer;
@@ -17,10 +18,13 @@
 }
 
 .downArrow {
-  width: 24px;
-  height: 24px;
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  top: 50%;
+  right: 5px;
+  translate: 0 -50%;
   margin-left: 5px;
-  scale: 0.4;
 }
 
 @media only screen and (max-width: 768px) {
