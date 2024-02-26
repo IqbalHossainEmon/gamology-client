@@ -1,5 +1,16 @@
-.links {
-    display: flex;
-    align-items: center;
+.middleLinks {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+@media only screen and (max-width: 768px) {
+  .middleLinks {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 50%;
+    translate: 0 -50%;
     width: 100%;
+    z-index: 1;
+  }
 }

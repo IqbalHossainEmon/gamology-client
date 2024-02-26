@@ -40,28 +40,33 @@ export default function SecondNavMobileLinks({ setNavShow }) {
   };
 
   return (
-    <div ref={midSliderElement} className={styles.mobileLinks}>
-      <div style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }} className={styles.navLinksContainer}>
-        <SecondNavLinkLists navMidShow={navMidShow} setNavTextState={handleClick} id={navMidShow ? 'navShow' : 'navHide'} />
+    <div className={styles.mobileLinks}>
+      <div ref={midSliderElement} className={styles.navLinkButtonContainer}>
+        <div style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }} className={styles.navLinksContainer}>
+          <SecondNavLinkLists navMidShow={navMidShow} setNavTextState={handleClick} id={navMidShow ? 'navShow' : 'navHide'} />
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setShowState(prev => {
+              if (!prev) {
+                showMenu();
+              }
+              return !prev;
+            });
+          }}
+          className={styles.navLinkToggleButton}
+        >
+          <div id={navTextState} className={styles.navLinkOverFlow}>
+            <p>Discover</p>
+            <p>Browse</p>
+            <p>News</p>
+          </div>
+          <div className={styles.navArrow}>
+            <RotateArrow state={navMidShow} />
+          </div>
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={() => {
-          setShowState(prev => !prev);
-          showMenu();
-        }}
-        className={styles.navLinks}
-        id={navMidShow ? styles.zUp : styles.zDown}
-      >
-        <div id={navTextState} className={styles.navLinkOverFlow}>
-          <p>Discover</p>
-          <p>Browse</p>
-          <p>News</p>
-        </div>
-        <div className={styles.navArrow}>
-          <RotateArrow state={navMidShow} />
-        </div>
-      </button>
     </div>
   );
 }

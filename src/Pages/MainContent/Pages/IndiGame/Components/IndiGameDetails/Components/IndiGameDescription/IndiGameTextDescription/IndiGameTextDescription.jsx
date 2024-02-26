@@ -37,7 +37,7 @@ export default function IndiGameTextDescription({ descriptions }) {
             </div>
           </div>
         </button>
-        <div className={show.show ? styles.hide : styles.show} />
+        <div className={`${show.show ? styles.hide : styles.show} ${styles.darkShadow}`} />
       </div>
     </div>
   );

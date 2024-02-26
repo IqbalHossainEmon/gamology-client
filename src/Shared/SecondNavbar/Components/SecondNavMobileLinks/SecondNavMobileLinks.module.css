@@ -1,9 +1,14 @@
 .mobileLinks {
   width: 100%;
-  z-index: 1;
+  height: 100%;
+}
+.navLinkButtonContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center;
   display: flex;
   justify-content: center;
-  user-select: none;
 }
 .navLinkOverFlow {
   height: 300%;
@@ -24,7 +29,7 @@
   overflow: hidden;
   top: 100%;
 }
-.navLinks {
+.navLinkToggleButton {
   position: relative;
   width: 120px;
   height: 20px;
@@ -34,13 +39,9 @@
   padding: 0 5px;
   overflow: hidden;
   cursor: pointer;
+  z-index: 1;
 }
-#zUp {
-  z-index: 3;
-}
-#zDown {
-  z-index: 0;
-}
+
 #discover {
   translate: 0 0;
 }
@@ -63,7 +64,7 @@
   align-items: center;
 }
 
-.navLinks p {
+.navLinkToggleButton p {
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -71,12 +72,12 @@
   .navLinkOverFlow {
     width: 52px;
   }
-  .navLinks {
+  .navLinkToggleButton {
     height: 14px;
     padding: 0 2px;
     width: 75px;
   }
-  .navLinks p {
+  .navLinkToggleButton p {
     font-size: 10px;
   }
   .navArrow {

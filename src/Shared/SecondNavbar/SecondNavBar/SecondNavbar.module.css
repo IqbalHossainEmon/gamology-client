@@ -17,6 +17,11 @@
   display: flex;
   align-items: center;
 }
+.screenShadowContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 @media (max-width: 1023px) and (min-width: 769px) {
   .SecondNavbar {

@@ -13,13 +13,21 @@ export default function IndiGameBannerCards({ active, items, dispatch, timerFunc
   useEffect(() => {
     let cards = 8;
 
-    if ((screenWidth <= 2134 && screenWidth >= 1700) || (screenWidth <= 963 && screenWidth >= 844)) {
+    if (screenWidth <= 2134 && screenWidth >= 1700) {
       cards = 7;
-    } else if ((screenWidth <= 1699 && screenWidth >= 1464) || (screenWidth <= 843 && screenWidth >= 741)) {
+    } else if (screenWidth <= 1699 && screenWidth >= 1464) {
       cards = 6;
-    } else if ((screenWidth <= 1463 && screenWidth >= 1260) || (screenWidth <= 740 && screenWidth >= 612)) {
+    } else if (
+      (screenWidth <= 1463 && screenWidth >= 1260) ||
+      (screenWidth <= 1023 && screenWidth >= 860) ||
+      (screenWidth <= 768 && screenWidth >= 612)
+    ) {
       cards = 5;
-    } else if ((screenWidth <= 1259 && screenWidth >= 1024) || (screenWidth <= 611 && screenWidth >= 530)) {
+    } else if (
+      (screenWidth <= 1259 && screenWidth >= 1024) ||
+      (screenWidth <= 859 && screenWidth >= 769) ||
+      (screenWidth <= 611 && screenWidth >= 530)
+    ) {
       cards = 4;
     } else if (screenWidth <= 529 && screenWidth >= 381) {
       cards = 3;

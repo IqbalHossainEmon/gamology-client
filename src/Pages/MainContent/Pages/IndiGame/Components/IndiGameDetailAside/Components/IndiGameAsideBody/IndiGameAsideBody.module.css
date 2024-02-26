@@ -11,7 +11,7 @@
 }
 .cartBtn {
   padding: 20px;
-  font-size: 18px;
+  font-size: 1rem;
   background-color: rgb(0, 116, 228);
   color: white;
   cursor: pointer;
@@ -42,6 +42,7 @@
 
 .wishlistBtn {
   padding: 10px 0;
+  font-size: 12px;
   margin-top: 10px;
   background-color: black;
   display: flex;
@@ -157,5 +158,68 @@
   }
   100% {
     rotate: 360deg;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 900px) {
+  .cartBtn {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+  .wishlistBtn {
+    font-size: 10px;
+    padding: 8px 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .outerCircle {
+    height: 18px;
+    width: 18px;
+    margin-right: 5px;
+  }
+  .outerCircle svg {
+    width: 9px;
+  }
+  .plus {
+    line-height: 13px;
+    font-size: 12px;
+    height: 10px;
+    width: 10px;
+  }
+  .plus:before,
+  .plus:after {
+    height: 6px;
+    width: 2px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cartBtn {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+  .wishlistBtn {
+    padding: 6px 0;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .outerCircle {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+  .outerCircle svg {
+    width: 8px;
+  }
+  .plus {
+    line-height: 11px;
+    font-size: 10px;
+    height: 8px;
+    width: 8px;
+  }
+  .plus:before,
+  .plus:after {
+    height: 5px;
+    width: 2px;
   }
 }
