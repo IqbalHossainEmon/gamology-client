@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
+import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './ExploreGames.module.css';
 
 const fetched = {
@@ -11,6 +12,8 @@ const fetched = {
 
 export default function ExploreGames() {
   const contentRef = useRef(null);
+
+  const buttonRef = useRef(null);
 
   const screenWidth = useScreenWidth();
   const [data, setData] = useState({});
@@ -33,8 +36,9 @@ export default function ExploreGames() {
         <div className={styles.ExploreTexts}>
           <h4>{data.heading}</h4>
           <p>{data.details}</p>
-          <a href="#d" type="button">
+          <a href="#d" ref={buttonRef} type="button">
             Learn More
+            <ButtonWaterEffect btnRef={buttonRef} backGround="white" long />
           </a>
         </div>
       </div>

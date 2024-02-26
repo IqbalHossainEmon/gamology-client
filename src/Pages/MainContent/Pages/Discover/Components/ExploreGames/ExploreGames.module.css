@@ -4,7 +4,7 @@
 
 .exploreGamesBackground {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   margin-bottom: 3rem;
   background-position: center;
   background-size: cover;
@@ -19,7 +19,7 @@
 }
 
 .ExploreTexts {
-  position: relative;
+  position: absolute;
   width: 20%;
   left: 20%;
 }
@@ -32,6 +32,7 @@
 }
 
 .ExploreTexts a {
+  position: relative;
   padding: 1rem 2rem;
   border-radius: 5px;
   margin-top: 1rem;
@@ -53,6 +54,9 @@
   background-color: rgb(78, 78, 78);
 }
 @media only screen and (max-width: 1024px) and (min-width: 357px) {
+  .exploreGamesBackground {
+    aspect-ratio: 2/3;
+  }
   .ExploreGames {
     clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
   }
@@ -72,18 +76,28 @@
     aspect-ratio: 1/1;
   }
 }
-@media only screen and (max-width: 355px) {
+@media only screen and (max-width: 356px) {
+  .exploreGamesBackground {
+    aspect-ratio: 2/3;
+  }
   .ExploreGames {
     clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
   }
   .ExploreTexts {
-    width: 55%;
+    width: 80%;
+    left: 10px;
+  }
+}
+@media only screen and (max-width: 267px) {
+  .ExploreTexts a {
+    padding: 0.5rem 1rem;
   }
 }
 @media only screen and (min-width: 2134px) {
   .ExploreGames {
     aspect-ratio: 5/3;
   }
+
   .ExploreTexts h4 {
     font-size: 18px;
   }

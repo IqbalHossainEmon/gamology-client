@@ -7,14 +7,8 @@
   margin: 0 auto;
 }
 
-@media (max-width: 1023px) and (min-width: 766px) {
+@media (max-width: 1023px) {
   .main {
-    width: 97%;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .main {
-    width: 98%;
+    width: 100%;
   }
 }
