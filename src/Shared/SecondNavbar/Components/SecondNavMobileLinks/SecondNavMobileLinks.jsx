@@ -8,7 +8,8 @@ import styles from './SecondNavMobileLinks.module.css';
 export default function SecondNavMobileLinks({ setNavShow }) {
   const [navTextState, setNavTextState] = useState(styles.discover);
   const [navMidShow, setNavMidShow] = useState();
-  const midSliderElement = useRef();
+  const midSliderElement1 = useRef();
+  const midSliderElement2 = useRef();
 
   const setShowState = state => {
     setNavShow(state);
@@ -18,8 +19,8 @@ export default function SecondNavMobileLinks({ setNavShow }) {
   const { showMenu, setElement } = useDropDownHide(setShowState);
 
   useEffect(() => {
-    setElement(midSliderElement.current);
-  }, [setElement, midSliderElement]);
+    setElement([midSliderElement1.current, midSliderElement2.current]);
+  }, [setElement, midSliderElement1]);
 
   const handleClick = no => {
     setShowState(false);
@@ -41,32 +42,31 @@ export default function SecondNavMobileLinks({ setNavShow }) {
 
   return (
     <div className={styles.mobileLinks}>
-      <div ref={midSliderElement} className={styles.navLinkButtonContainer}>
-        <div style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }} className={styles.navLinksContainer}>
-          <SecondNavLinkLists navMidShow={navMidShow} setNavTextState={handleClick} id={navMidShow ? 'navShow' : 'navHide'} />
-        </div>
-        <button
-          type="button"
-          onClick={() => {
-            setShowState(prev => {
-              if (!prev) {
-                showMenu();
-              }
-              return !prev;
-            });
-          }}
-          className={styles.navLinkToggleButton}
-        >
-          <div id={navTextState} className={styles.navLinkOverFlow}>
-            <p>Discover</p>
-            <p>Browse</p>
-            <p>News</p>
-          </div>
-          <div className={styles.navArrow}>
-            <RotateArrow state={navMidShow} />
-          </div>
-        </button>
+      <div
+        ref={midSliderElement1}
+        style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }}
+        className={styles.navLinksContainer}
+      >
+        <SecondNavLinkLists navMidShow={navMidShow} setNavTextState={handleClick} id={navMidShow ? 'navShow' : 'navHide'} />
       </div>
+      <button
+        ref={midSliderElement2}
+        type="button"
+        onClick={() => {
+          setShowState(prev => !prev);
+          showMenu();
+        }}
+        className={styles.navLinkToggleButton}
+      >
+        <div id={navTextState} className={styles.navLinkOverFlow}>
+          <p>Discover</p>
+          <p>Browse</p>
+          <p>News</p>
+        </div>
+        <div className={styles.navArrow}>
+          <RotateArrow state={navMidShow} />
+        </div>
+      </button>
     </div>
   );
 }

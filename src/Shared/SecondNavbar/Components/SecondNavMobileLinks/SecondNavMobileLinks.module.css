@@ -1,15 +1,12 @@
 .mobileLinks {
   width: 100%;
   height: 100%;
-}
-.navLinkButtonContainer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  align-items: center;
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+
 .navLinkOverFlow {
   height: 300%;
   display: flex;
@@ -81,16 +78,7 @@
     font-size: 10px;
   }
   .navArrow {
-    scale: 0.5;
-    top: -5px;
-  }
-  #discover {
-    translate: 0 -1px;
-  }
-  #browse {
-    translate: 0 -12px;
-  }
-  #news {
-    translate: 0 -24px;
+    width: 0.5rem;
+    height: 0.5rem;
   }
 }

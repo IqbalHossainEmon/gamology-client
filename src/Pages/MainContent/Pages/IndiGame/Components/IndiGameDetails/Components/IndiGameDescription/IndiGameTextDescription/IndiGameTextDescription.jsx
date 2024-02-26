@@ -1,18 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../../../../../../../Hooks/useScreenWidth';
 import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './IndiGameTextDescription.module.css';
 
 export default function IndiGameTextDescription({ descriptions }) {
   const elementRef = useRef(null);
-  const [show, setShow] = useState({ show: false, height: NaN });
+  const [show, setShow] = useState({ show: false, height: NaN, transition: false });
+
+  const screenWidth = useScreenWidth();
 
   useEffect(() => {
     setShow(prev => ({ ...prev, height: elementRef.current.offsetHeight }));
-  }, [elementRef]);
+  }, [elementRef, screenWidth]);
 
   return (
     <div>
-      <div className={styles.individualGameDetailDescriptionContainer} style={show.show ? { height: show.height + 40 } : { height: 500 }}>
+      <div
+        className={`${show.transition ? `${styles.showTransition} ` : ''}${styles.individualGameDetailDescriptionContainer}`}
+        style={show.show ? { height: show.height + 40 } : { height: 500 }}
+      >
         <div ref={elementRef} className={styles.individualGameDetailDescription}>
           {descriptions.map(description => (
             <div key={description.id} className={styles.descriptionContainer}>
@@ -29,8 +35,17 @@ export default function IndiGameTextDescription({ descriptions }) {
         </div>
       </div>
       <div className={styles.showHideButtonContainer}>
-        <button type="button" className={styles.showHideButton} onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}>
-          {show.show ? 'Show Less' : 'Show More'}
+        <button
+          type="button"
+          className={styles.showHideButton}
+          onClick={() => {
+            setShow(prev => ({ ...prev, show: !prev.show, transition: true }));
+            setTimeout(() => {
+              setShow(prev => ({ ...prev, transition: false }));
+            }, 300);
+          }}
+        >
+          Show {show.show ? 'Less' : 'More'}
           <div className={styles.rotateArrowContainer}>
             <div className={styles.rotateArrow}>
               <RotateArrow state={show.show} />

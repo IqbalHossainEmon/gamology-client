@@ -1,5 +1,7 @@
 .individualGameDetailDescriptionContainer {
   overflow: hidden;
+}
+.showTransition {
   transition: height 300ms;
 }
 
@@ -34,11 +36,13 @@
 }
 
 .showHideButtonContainer {
+  position: relative;
   width: 100%;
   height: 50px;
 }
 
 .showHideButton {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +53,7 @@
   border: none;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
-  z-index: 2;
+  z-index: 1;
   cursor: pointer;
 }
 
@@ -81,7 +85,6 @@
   transition:
     opacity 300ms,
     top 300ms;
-  z-index: 1;
 }
 .show {
   top: -100px;

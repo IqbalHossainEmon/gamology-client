@@ -5,9 +5,19 @@ const useDropDownHide = setState => {
 
   const closeMenu = useCallback(
     e => {
-      if (element.current && e && !element.current.contains(e.target)) {
-        setState(false);
-        document.removeEventListener('mousedown', closeMenu);
+      switch (Array.isArray(element.current)) {
+        case true:
+          if (!element.current.some(ele => ele?.contains(e.target)) && e) {
+            setState(false);
+            document.removeEventListener('mousedown', closeMenu);
+          }
+          break;
+        default:
+          if (element.current && e && !element.current.contains(e.target)) {
+            setState(false);
+            document.removeEventListener('mousedown', closeMenu);
+          }
+          break;
       }
     },
     [setState]
