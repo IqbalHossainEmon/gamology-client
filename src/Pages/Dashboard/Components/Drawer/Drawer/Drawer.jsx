@@ -1,4 +1,4 @@
-import OuterOptions from '../Components/OuterOptions/OuterOptions';
+import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
 import styles from './Drawer.module.css';
 
 const drawers = [
@@ -7,10 +7,9 @@ const drawers = [
     id: '0001',
     name: 'Games',
     icon: 'games',
-    link: '/games',
     subDrawer: [
-      { id: '01', name: 'Add Game', icon: 'add', link: '/games/add' },
-      { id: '02', name: 'All Games', icon: 'all', link: '/games/all' },
+      { id: '01', name: 'All Games', icon: 'all', link: '/games/all' },
+      { id: '02', name: 'Add Game', icon: 'add', link: '/games/add' },
     ],
   },
   { id: '0002', name: 'Users', icon: 'user', link: '/users' },
@@ -20,9 +19,9 @@ const drawers = [
 ];
 const Drawer = () => (
   <div className={styles.drawer}>
-    <ul className={styles.outerOptionContainer}>
+    <ul className={styles.optionContainer}>
       {drawers.map(drawer => (
-        <OuterOptions key={drawer.id} option={drawer} />
+        <DrawerOptions key={drawer.id} option={drawer} />
       ))}
     </ul>
   </div>

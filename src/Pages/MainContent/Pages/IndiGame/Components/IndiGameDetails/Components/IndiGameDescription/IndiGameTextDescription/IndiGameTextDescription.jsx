@@ -31,8 +31,10 @@ export default function IndiGameTextDescription({ descriptions }) {
       <div className={styles.showHideButtonContainer}>
         <button type="button" className={styles.showHideButton} onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}>
           {show.show ? 'Show Less' : 'Show More'}
-          <div className={styles.downArrow}>
-            <RotateArrow state={show.show} />
+          <div className={styles.rotateArrowContainer}>
+            <div className={styles.rotateArrow}>
+              <RotateArrow state={show.show} />
+            </div>
           </div>
         </button>
         <div className={show.show ? styles.hide : styles.show} />

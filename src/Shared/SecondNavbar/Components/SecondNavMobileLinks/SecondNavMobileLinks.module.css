@@ -1,14 +1,21 @@
 .mobileLinks {
-  left: 0;
-  top: 0;
+  width: 100%;
   z-index: 1;
+  display: flex;
+  justify-content: center;
   user-select: none;
 }
 .navLinkOverFlow {
+  height: 300%;
   display: flex;
   z-index: 5;
   flex-direction: column;
   transition: 300ms;
+}
+.navLinkOverFlow p {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .navLinksContainer {
   position: absolute;
@@ -18,13 +25,12 @@
   top: 100%;
 }
 .navLinks {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  position: relative;
   width: 120px;
   height: 20px;
-  translate: -50% -10px;
   border: 1px solid rgba(255, 255, 255, 0.425);
+  background-color: transparent;
+  text-align: left;
   padding: 0 5px;
   overflow: hidden;
   cursor: pointer;
@@ -36,28 +42,25 @@
   z-index: 0;
 }
 #discover {
-  translate: 0 -1px;
+  translate: 0 0;
 }
 #browse {
-  translate: 0 -21px;
+  translate: 0 -33.33333333%;
 }
 #news {
-  translate: 0 -41px;
+  translate: 0 -66.66666666%;
 }
 
 .navArrow {
+  width: 0.7rem;
+  height: 0.7rem;
   position: absolute;
-  scale: 0.7;
-  top: -2px;
-  right: -2px;
+  top: 50%;
+  translate: 0 -50%;
+  right: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.navArrow svg {
-  width: 24px;
-  height: 24px;
-  scale: 0.59;
 }
 
 .navLinks p {

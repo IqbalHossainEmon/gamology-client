@@ -4,11 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 1rem 30px;
+  padding: 1rem 0;
   background-color: #18181c;
 }
-.outerOptionContainer {
+.optionContainer {
   list-style-type: none;
+  width: 100%;
 }
 @media (max-width: 1023px) and (min-width: 766px) {
   .drawer {

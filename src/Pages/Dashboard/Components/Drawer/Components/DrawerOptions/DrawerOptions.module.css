@@ -1,0 +1,53 @@
+.outerOptionContainer {
+  cursor: pointer;
+}
+.outerOptionContainer:not(:last-child) {
+  border-bottom: 1px solid rgba(196, 196, 196, 0.2);
+}
+
+.optionButton {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  position: relative;
+}
+
+.outerOption {
+  padding: 5px 1rem;
+}
+
+.innerOption {
+  padding: 5px 2rem;
+}
+
+.outerOption,
+.innerOption {
+  font-size: 1rem;
+  color: rgb(196, 196, 196);
+  width: 100%;
+  transition: background-color 100ms;
+}
+
+.outerOption:hover,
+.innerOption:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.innerOptionContainer {
+  list-style-type: none;
+}
+
+.innerOptionContainer:not(:last-child) {
+  border-bottom: 1px solid rgba(196, 196, 196, 0.1);
+}
+
+.arrowButton {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
