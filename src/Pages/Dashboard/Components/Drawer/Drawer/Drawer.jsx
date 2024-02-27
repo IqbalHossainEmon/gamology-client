@@ -15,6 +15,16 @@ const drawers = [
   { id: '0002', name: 'Users', icon: 'user', link: '/users' },
   { id: '0003', name: 'Game Tags', icon: 'tag', link: '/tags' },
   { id: '0004', name: 'Admins', icon: 'admin', link: '/admins' },
+  {
+    id: '0004',
+    name: 'Events',
+    icon: 'admin',
+    subDrawer: [
+      { id: '01', name: 'Slider', icon: 'all', link: '/games/all' },
+      { id: '02', name: 'Game on sale', icon: 'add', link: '/games/add' },
+      { id: '03', name: 'Free Games', icon: 'add', link: '/games/add' },
+    ],
+  },
   { id: '0005', name: 'Orders', icon: 'order', link: '/orders' },
 ];
 const Drawer = () => (

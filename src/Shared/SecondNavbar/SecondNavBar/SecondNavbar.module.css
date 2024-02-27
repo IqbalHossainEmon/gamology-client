@@ -3,7 +3,7 @@
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  padding: 10px 0;
+  padding: 1rem 0;
   z-index: 1;
   background-color: #121212;
   display: flex;
@@ -11,7 +11,6 @@
 }
 .SecondNavbar {
   width: 75vw;
-  padding: 1rem 0;
   position: relative;
   max-width: 1600px;
   display: flex;
@@ -30,6 +29,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .SecondNavContainer {
+    padding: 0.5rem 0;
+  }
   .SecondNavbar {
     width: 100%;
     padding: 0;
