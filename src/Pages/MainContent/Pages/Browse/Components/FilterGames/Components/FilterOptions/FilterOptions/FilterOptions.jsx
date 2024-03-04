@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../../../../../../../Hooks/useScreenWidth';
 import FilterOption from '../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({ option, state, setState, limits = {} }) {
+  const screenWidth = useScreenWidth();
+
   const { title, optionList } = option;
-  const optionRef = useRef(0);
+  const optionRef = useRef(null);
   const [show, setShow] = useState({
     show: true,
     height: NaN,
@@ -15,9 +18,9 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
   useEffect(() => {
     setShow(prev => ({
       ...prev,
-      height: optionRef.current.offsetHeight,
+      height: optionRef.current.scrollHeight,
     }));
-  }, []);
+  }, [screenWidth]);
 
   return (
     <div className={styles.filterOptions}>

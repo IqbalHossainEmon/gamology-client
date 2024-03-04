@@ -36,6 +36,8 @@
 
 .innerOptionContainer {
   list-style-type: none;
+  transition: height 300ms;
+  overflow: hidden;
 }
 
 .innerOptionContainer:not(:last-child) {
@@ -50,4 +52,3 @@
   top: 50%;
   transform: translateY(-50%);
 }
-

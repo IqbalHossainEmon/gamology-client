@@ -1,19 +1,35 @@
-import {useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import RotateArrow from '../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './DrawerOptions.module.css';
 
-const DrawerOptions = ({ option }) =>{
-const [show, setShow] = useState(false);
+const DrawerOptions = ({ option }) => {
+  const screenWidth = useScreenWidth();
+  const [show, setShow] = useState({ show: false, height: NaN });
+  const containerRef = useRef(null);
 
- return option.subDrawer ? 
+  useEffect(() => {
+    setShow(prev => ({ ...prev, height: containerRef.current?.scrollHeight }));
+  }, [screenWidth]);
+
+  return option.subDrawer ? (
     <li className={styles.outerOptionContainer}>
-      <button onClick={() => setShow(prev=> !prev)} className={`${styles.outerOption} ${styles.optionButton}`} type="button">
+      <button
+        onClick={() =>
+          setShow(prev => ({
+            ...prev,
+            show: !prev.show,
+          }))
+        }
+        className={`${styles.outerOption} ${styles.optionButton}`}
+        type="button"
+      >
         {option.name}
         <div className={styles.arrowButton}>
-          <RotateArrow state={show} />
+          <RotateArrow state={show.show} />
         </div>
       </button>
-      <ul className={styles.innerOptionContainer}>
+      <ul ref={containerRef} className={styles.innerOptionContainer} style={show.show ? { height: `${show.height}px` } : { height: '0px' }}>
         {option.subDrawer.map(subOption => (
           <li className={styles.innerOptionContainer} key={subOption.id}>
             <p className={styles.innerOption}>{subOption.name}</p>
@@ -21,9 +37,10 @@ const [show, setShow] = useState(false);
         ))}
       </ul>
     </li>
-  : (
+  ) : (
     <li className={styles.outerOptionContainer}>
       <p className={styles.outerOption}>{option.name}</p>
     </li>
-  )};
+  );
+};
 export default DrawerOptions;
