@@ -16,7 +16,7 @@ const drawers = [
   { id: '0003', name: 'Game Tags', icon: 'tag', link: '/tags' },
   { id: '0004', name: 'Admins', icon: 'admin', link: '/admins' },
   {
-    id: '0004',
+    id: '0005',
     name: 'Events',
     icon: 'admin',
     subDrawer: [
@@ -25,7 +25,7 @@ const drawers = [
       { id: '03', name: 'Free Games', icon: 'add', link: '/games/add' },
     ],
   },
-  { id: '0005', name: 'Orders', icon: 'order', link: '/orders' },
+  { id: '0006', name: 'Orders', icon: 'order', link: '/orders' },
 ];
 const Drawer = () => (
   <div className={styles.drawer}>

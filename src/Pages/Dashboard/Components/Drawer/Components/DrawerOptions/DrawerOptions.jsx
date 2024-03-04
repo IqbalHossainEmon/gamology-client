@@ -1,13 +1,16 @@
+import {useState} from 'react';
 import RotateArrow from '../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './DrawerOptions.module.css';
 
-const DrawerOptions = ({ option }) =>
-  option.subDrawer ? (
+const DrawerOptions = ({ option }) =>{
+const [show, setShow] = useState(false);
+
+ return option.subDrawer ? 
     <li className={styles.outerOptionContainer}>
-      <button className={`${styles.outerOption} ${styles.optionButton}`} type="button">
+      <button onClick={() => setShow(prev=> !prev)} className={`${styles.outerOption} ${styles.optionButton}`} type="button">
         {option.name}
         <div className={styles.arrowButton}>
-          <RotateArrow />
+          <RotateArrow state={show} />
         </div>
       </button>
       <ul className={styles.innerOptionContainer}>
@@ -18,9 +21,9 @@ const DrawerOptions = ({ option }) =>
         ))}
       </ul>
     </li>
-  ) : (
+  : (
     <li className={styles.outerOptionContainer}>
       <p className={styles.outerOption}>{option.name}</p>
     </li>
-  );
+  )};
 export default DrawerOptions;
