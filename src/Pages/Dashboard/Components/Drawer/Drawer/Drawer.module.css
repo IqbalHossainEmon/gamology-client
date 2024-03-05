@@ -1,11 +1,13 @@
 .drawer {
   width: 100%;
   max-width: 240px;
+  height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   align-items: start;
   padding: 1rem 0;
   background-color: #18181c;
+  overflow-y: auto;
 }
 .optionContainer {
   list-style-type: none;
