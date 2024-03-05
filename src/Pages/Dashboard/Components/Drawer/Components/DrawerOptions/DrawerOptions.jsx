@@ -14,7 +14,9 @@ const DrawerOptions = ({ option }) => {
 
   return option.subDrawer ? (
     <li className={styles.outerOptionContainer}>
-      <img src={`/assets/images/icons/${option.icon}.svg`} alt={option.icon} />
+      <div>
+        <img src={`/assets/images/icons/${option.icon}.svg`} alt={option.icon} />
+      </div>
       <button
         onClick={() =>
           setShow(prev => ({
