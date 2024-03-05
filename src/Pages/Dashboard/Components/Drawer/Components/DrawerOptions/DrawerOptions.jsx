@@ -24,7 +24,7 @@ const DrawerOptions = ({ option }) => {
         className={`${styles.outerOption} ${styles.optionButton}`}
         type="button"
       >
-        <div className={styles.iconContainer}>{option.icon}</div>
+        <span className={styles.iconContainer}>{option.icon}</span>
         {option.name}
         <div className={styles.arrowButton}>
           <RotateArrow state={show.show} />
@@ -45,7 +45,7 @@ const DrawerOptions = ({ option }) => {
   ) : (
     <li className={styles.outerOptionContainer}>
       <p className={styles.outerOption}>
-        <div className={styles.iconContainer}>{option.icon}</div>
+        <span className={styles.iconContainer}>{option.icon}</span>
         {option.name}
       </p>
     </li>

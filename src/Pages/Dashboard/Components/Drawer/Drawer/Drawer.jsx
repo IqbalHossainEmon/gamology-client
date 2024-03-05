@@ -149,7 +149,19 @@ C20.296,39.899,19.65,40.986,18.613,41.552z"
     ),
     link: '/users',
   },
-  { id: '0003', name: 'Game Tags', icon: 'tag', link: '/tags' },
+  {
+    id: '0003',
+    name: 'Game Tags',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
+        <path
+          fill="#d3d4ed"
+          d="M39,0H22.86a5,5,0,0,0-3.54,1.46L1.46,19.32a5,5,0,0,0,0,7.07L15.61,40.54a5,5,0,0,0,7.07,0L40.54,22.68A5,5,0,0,0,42,19.14V3A3,3,0,0,0,39,0ZM31,15a4,4,0,1,1,4-4A4,4,0,0,1,31,15Z"
+        />
+      </svg>
+    ),
+    link: '/tags',
+  },
   {
     id: '0004',
     name: 'Admins',
@@ -307,15 +319,29 @@ C20.296,39.899,19.65,40.986,18.613,41.552z"
       { id: '03', name: 'Free Games', link: '/games/add' },
     ],
   },
-  { id: '0006', name: 'Orders', icon: 'order', link: '/orders' },
+  {
+    id: '0006',
+    name: 'Orders',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M14.2,10.3c-0.1,0.4-0.5,0.7-0.9,0.7H4.8c-0.5,0-0.9-0.3-1-0.8L2.2,4C2.1,3.4,1.6,3,1,3H0.4C0.2,3,0,2.8,0,2.6V1.4C0,1.2,0.2,1,0.4,1h1.4c1,0,1.9,0.7,2.1,1.7l1.5,6.1C5.5,8.9,5.7,9,5.8,9h6.5c0.1,0,0.2-0.1,0.3-0.2l1.1-3.4C13.8,5.2,13.7,5,13.5,5H7.4C7.2,5,7,4.8,7,4.6V3.4C7,3.2,7.2,3,7.4,3H15c0.6,0,1,0.4,1,1v1L14.2,10.3z M4.5,13C5.3,13,6,13.7,6,14.5C6,15.3,5.3,16,4.5,16S3,15.3,3,14.5C3,13.7,3.7,13,4.5,13z M11.5,13c0.8,0,1.5,0.7,1.5,1.5c0,0.8-0.7,1.5-1.5,1.5S10,15.3,10,14.5C10,13.7,10.7,13,11.5,13z" />
+      </svg>
+    ),
+    link: '/orders',
+  },
 ];
 const Drawer = () => (
-  <div className={styles.drawer}>
-    <ul className={styles.optionContainer}>
-      {drawers.map(drawer => (
-        <DrawerOptions key={drawer.id} option={drawer} />
-      ))}
-    </ul>
+  <div className={styles.drawerContainer}>
+    <div className={styles.drawer}>
+      <ul className={styles.optionContainer}>
+        {drawers.map(drawer => (
+          <DrawerOptions key={drawer.id} option={drawer} />
+        ))}
+      </ul>
+    </div>
+    <button type="button" className={styles.collapseButton}>
+      <span />
+    </button>
   </div>
 );
 export default Drawer;
