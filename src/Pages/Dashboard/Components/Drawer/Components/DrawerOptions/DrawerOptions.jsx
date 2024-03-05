@@ -14,6 +14,7 @@ const DrawerOptions = ({ option }) => {
 
   return option.subDrawer ? (
     <li className={styles.outerOptionContainer}>
+      <img src={`/assets/images/icons/${option.icon}.svg`} alt={option.icon} />
       <button
         onClick={() =>
           setShow(prev => ({
@@ -29,7 +30,11 @@ const DrawerOptions = ({ option }) => {
           <RotateArrow state={show.show} />
         </div>
       </button>
-      <ul ref={containerRef} className={styles.innerOptionContainer} style={show.show ? { height: `${show.height}px` } : { height: '0px' }}>
+      <ul
+        ref={containerRef}
+        className={styles.innerOptionsContainer}
+        style={show.show ? { height: `${show.height}px` } : { height: '0px' }}
+      >
         {option.subDrawer.map(subOption => (
           <li className={styles.innerOptionContainer} key={subOption.id}>
             <p className={styles.innerOption}>{subOption.name}</p>
@@ -39,6 +44,7 @@ const DrawerOptions = ({ option }) => {
     </li>
   ) : (
     <li className={styles.outerOptionContainer}>
+      <img src={`/assets/images/icons/${option.icon}.svg`} alt={option.icon} />
       <p className={styles.outerOption}>{option.name}</p>
     </li>
   );

@@ -1,6 +1,6 @@
 .drawer {
-  width: 25vw;
-  max-width: 534px;
+  width: 100%;
+  max-width: 240px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -20,4 +20,3 @@
   .drawer {
   }
 }
-

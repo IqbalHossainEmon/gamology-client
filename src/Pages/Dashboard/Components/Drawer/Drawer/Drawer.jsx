@@ -6,10 +6,10 @@ const drawers = [
   {
     id: '0001',
     name: 'Games',
-    icon: 'games',
+    icon: 'game',
     subDrawer: [
-      { id: '01', name: 'All Games', icon: 'all', link: '/games/all' },
-      { id: '02', name: 'Add Game', icon: 'add', link: '/games/add' },
+      { id: '01', name: 'All Games', link: '/games/all' },
+      { id: '02', name: 'Add Game', link: '/games/add' },
     ],
   },
   { id: '0002', name: 'Users', icon: 'user', link: '/users' },
@@ -18,11 +18,11 @@ const drawers = [
   {
     id: '0005',
     name: 'Events',
-    icon: 'admin',
+    icon: 'event',
     subDrawer: [
-      { id: '01', name: 'Slider', icon: 'all', link: '/games/all' },
-      { id: '02', name: 'Game on sale', icon: 'add', link: '/games/add' },
-      { id: '03', name: 'Free Games', icon: 'add', link: '/games/add' },
+      { id: '01', name: 'Slider', link: '/games/all' },
+      { id: '02', name: 'Game on sale', link: '/games/add' },
+      { id: '03', name: 'Free Games', link: '/games/add' },
     ],
   },
   { id: '0006', name: 'Orders', icon: 'order', link: '/orders' },

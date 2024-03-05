@@ -1,9 +1,6 @@
 .outerOptionContainer {
   cursor: pointer;
 }
-.outerOptionContainer:not(:last-child) {
-  border-bottom: 1px solid rgba(196, 196, 196, 0.2);
-}
 
 .optionButton {
   cursor: pointer;
@@ -14,11 +11,11 @@
 }
 
 .outerOption {
-  padding: 5px 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .innerOption {
-  padding: 5px 2rem;
+  padding: 0.5rem 2rem;
 }
 
 .outerOption,
@@ -34,14 +31,10 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.innerOptionContainer {
+.innerOptionsContainer {
   list-style-type: none;
   transition: height 300ms;
   overflow: hidden;
-}
-
-.innerOptionContainer:not(:last-child) {
-  border-bottom: 1px solid rgba(196, 196, 196, 0.1);
 }
 
 .arrowButton {
