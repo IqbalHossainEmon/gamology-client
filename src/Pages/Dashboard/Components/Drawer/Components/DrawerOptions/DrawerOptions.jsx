@@ -44,7 +44,9 @@ const DrawerOptions = ({ option }) => {
     </li>
   ) : (
     <li className={styles.outerOptionContainer}>
-      <img src={`/assets/images/icons/${option.icon}.svg`} alt={option.icon} />
+      <div>
+        <img src={`/assets/images/icons/${option.icon}.svg`} alt={option.icon} />
+      </div>
       <p className={styles.outerOption}>{option.name}</p>
     </li>
   );
