@@ -1,9 +1,8 @@
 .drawerContainer {
   position: relative;
-  width: 100%;
-  max-width: 240px;
+  width: 240px;
   height: calc(100vh - 72px);
-  transition: width 3000ms linear;
+  transition: width 300ms linear;
 }
 .drawerImmediateContainer {
   width: 100%;
@@ -48,7 +47,7 @@
   height: 2rem;
   position: absolute;
   top: 1rem;
-  transition: left 3000ms linear;
+  transition: left 300ms linear;
 }
 
 @media (max-width: 1023px) and (min-width: 766px) {
@@ -60,4 +59,3 @@
   .drawer {
   }
 }
-

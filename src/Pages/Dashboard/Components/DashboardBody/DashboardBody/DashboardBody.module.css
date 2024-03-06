@@ -1,5 +1,5 @@
 .dashboardBodyContainer {
-  width: 100%;
+  flex-grow: 1;
   overflow-y: auto;
   padding: 1rem 0;
 }
@@ -35,4 +35,3 @@
 .dashboardBodyContainer::-webkit-scrollbar-thumb:active {
   background: rgb(114, 114, 114);
 }
-
