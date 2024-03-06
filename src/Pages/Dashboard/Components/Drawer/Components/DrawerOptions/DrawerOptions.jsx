@@ -3,7 +3,7 @@ import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import RotateArrow from '../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './DrawerOptions.module.css';
 
-const DrawerOptions = ({ option }) => {
+const DrawerOptions = ({ option, parentState }) => {
   const screenWidth = useScreenWidth();
   const [show, setShow] = useState({ show: false, height: NaN });
   const containerRef = useRef(null);
@@ -27,13 +27,13 @@ const DrawerOptions = ({ option }) => {
         <span className={styles.iconContainer}>{option.icon}</span>
         {option.name}
         <div className={styles.arrowButton}>
-          <RotateArrow state={show.show} />
+          <RotateArrow state={show.show && parentState} />
         </div>
       </button>
       <ul
         ref={containerRef}
         className={styles.innerOptionsContainer}
-        style={show.show ? { height: `${show.height}px` } : { height: '0px' }}
+        style={show.show && parentState ? { height: `${show.height}px` } : { height: '0px' }}
       >
         {option.subDrawer.map(subOption => (
           <li className={styles.innerOptionContainer} key={subOption.id}>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
 import styles from './Drawer.module.css';
 
@@ -330,18 +331,28 @@ C20.296,39.899,19.65,40.986,18.613,41.552z"
     link: '/orders',
   },
 ];
-const Drawer = () => (
-  <div className={styles.drawerContainer}>
-    <div className={styles.drawer}>
-      <ul className={styles.optionContainer}>
-        {drawers.map(drawer => (
-          <DrawerOptions key={drawer.id} option={drawer} />
-        ))}
-      </ul>
+const Drawer = () => {
+  const [collapse, setCollapse] = useState(false);
+
+  return (
+    <div className={`${collapse ? `${styles.containerCollapse} ` : ''}${styles.drawerContainer}`}>
+      <div className={styles.drawerImmediateContainer}>
+        <div className={styles.drawer}>
+          <ul className={styles.optionContainer}>
+            {drawers.map(drawer => (
+              <DrawerOptions parentState={!collapse} key={drawer.id} option={drawer} />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setCollapse(prev => !prev)}
+        className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
+      >
+        <span />
+      </button>
     </div>
-    <button type="button" className={styles.collapseButton}>
-      <span />
-    </button>
-  </div>
-);
+  );
+};
 export default Drawer;

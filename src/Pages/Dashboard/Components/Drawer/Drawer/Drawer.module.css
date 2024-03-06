@@ -3,11 +3,24 @@
   width: 100%;
   max-width: 240px;
   height: calc(100vh - 72px);
+  transition: width 3000ms linear;
+}
+.drawerImmediateContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.containerCollapse {
+  width: 3.2rem;
 }
 
 .drawer {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -15,11 +28,19 @@
   background-color: #18181c;
   overflow-y: auto;
   overflow-x: visible;
-  position: relative;
 }
 .optionContainer {
   list-style-type: none;
+  margin-top: 2rem;
   width: 100%;
+}
+
+.expandedPosition {
+  left: calc(100% - 1rem);
+}
+
+.collapsePosition {
+  left: 100%;
 }
 
 .collapseButton {
@@ -27,7 +48,7 @@
   height: 2rem;
   position: absolute;
   top: 1rem;
-  left: calc(100% - 1rem);
+  transition: left 3000ms linear;
 }
 
 @media (max-width: 1023px) and (min-width: 766px) {
@@ -39,3 +60,4 @@
   .drawer {
   }
 }
+
