@@ -10,7 +10,8 @@
   position: relative;
 }
 
-.outerOption {
+.outerOption,
+.innerOption {
   padding: 0.6rem 0 0.6rem 0;
   display: flex;
   align-items: center;
@@ -28,10 +29,6 @@
   width: 100%;
   height: 100%;
   fill: rgb(196, 196, 196);
-}
-
-.innerOption {
-  padding: 0.5rem 3rem;
 }
 
 .outerOption,

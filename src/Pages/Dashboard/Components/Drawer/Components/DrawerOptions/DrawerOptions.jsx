@@ -37,7 +37,10 @@ const DrawerOptions = ({ option, parentState }) => {
       >
         {option.subDrawer.map(subOption => (
           <li className={styles.innerOptionContainer} key={subOption.id}>
-            <p className={styles.innerOption}>{subOption.name}</p>
+            <p className={styles.innerOption}>
+              <span className={styles.iconContainer}>{subOption.icon}</span>
+              {subOption.name}
+            </p>
           </li>
         ))}
       </ul>
