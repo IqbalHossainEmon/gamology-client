@@ -543,10 +543,24 @@ C20.296,39.899,19.65,40.986,18.613,41.552z"
 ];
 const Drawer = () => {
   const [collapse, setCollapse] = useState(false);
-  const elementRef = useRef(null);
+  const [transition, setTransition] = useState(false);
+
   const screenWidth = useScreenWidth();
 
+  const elementRef = useRef(null);
+  const transitionId = useRef(null);
+
   const { showMenu, setElement } = useDropDownHide(setCollapse);
+
+  const handleTransition = () => {
+    setTransition(true);
+    if (transitionId.current) {
+      clearTimeout(transitionId.current);
+    }
+    transitionId.current = setTimeout(() => {
+      setTransition(false);
+    }, 300);
+  };
 
   useEffect(() => {
     setElement(elementRef.current);
@@ -559,7 +573,10 @@ const Drawer = () => {
           <ScreenShadow show={collapse} />
         </div>
       )}
-      <div ref={elementRef} className={`${collapse ? `${styles.containerCollapse} ` : ''}${styles.drawerContainer}`}>
+      <div
+        ref={elementRef}
+        className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawerContainer}`}
+      >
         <div className={styles.drawerImmediateContainer}>
           <div className={styles.drawer}>
             <ul className={styles.optionContainer}>
@@ -600,6 +617,7 @@ const Drawer = () => {
               }
               return !prev;
             });
+            handleTransition();
           }}
           className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
         >

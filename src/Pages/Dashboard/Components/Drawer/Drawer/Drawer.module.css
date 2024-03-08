@@ -2,8 +2,10 @@
   position: relative;
   width: 240px;
   height: calc(100vh - 72px);
-  transition: width 300ms linear;
   background-color: #18181c;
+}
+.containerTransition {
+  transition: width 300ms linear;
 }
 .drawerImmediateContainer {
   width: 100%;
@@ -47,13 +49,16 @@
   height: 2rem;
   position: absolute;
   top: 0.5rem;
-  transition: right 300ms linear;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 50%;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
+.containerTransition .collapseButton {
+  transition: right 300ms linear;
+}
+
 .arrowBtn {
   width: 100%;
   height: 100%;
@@ -73,6 +78,9 @@
   background-image: linear-gradient(to right, #8200ff, #df00ff);
   border-radius: 0.5rem;
   rotate: 45deg;
+}
+
+.containerTransition .arrowBtn::before {
   transition: rotate 300ms linear;
 }
 
@@ -87,6 +95,9 @@
   background-image: linear-gradient(to right, #8200ff, #df00ff);
   rotate: -45deg;
   border-radius: 0.5rem;
+}
+
+.containerTransition .arrowBtn::after {
   transition: rotate 300ms linear;
 }
 
@@ -106,18 +117,24 @@
   height: 81px;
   flex-shrink: 0;
   padding-bottom: 1rem;
-  transition:
-    opacity 200ms,
-    height 200ms 0ms,
-    margin-top 200ms 0ms;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
+
+.containerTransition .footer {
+  transition:
+    opacity 200ms,
+    height 200ms 0ms,
+    margin-top 200ms 0ms;
+}
+
 .footerHide {
   opacity: 0;
   height: 0px;
   margin-top: 0;
+}
+.containerTransition .footerHide {
   transition:
     opacity 200ms,
     height 0ms 200ms,
@@ -161,8 +178,10 @@
     background-color: #18181c;
     z-index: 1;
     transform-origin: 0 0;
-    transition: translate 300ms linear;
     translate: -100%;
+  }
+  .containerTransition {
+    transition: translate 300ms linear;
   }
   .drawer {
     width: 100%;
