@@ -22,7 +22,6 @@
   width: 240px;
   margin-top: 3rem;
   height: calc(100vh - 72px - 3rem);
-  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -104,8 +103,9 @@
   margin-top: 2rem;
   padding: 0 1rem;
   width: 100%;
-  height: 65px;
+  height: 81px;
   flex-shrink: 0;
+  padding-bottom: 1rem;
   transition:
     opacity 200ms,
     height 200ms 0ms,
@@ -150,12 +150,60 @@
   font-weight: 600;
 }
 
-@media (max-width: 1023px) and (min-width: 766px) {
-  .drawer {
+@media only screen and (max-width: 1099px) {
+  .drawerContainer {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    max-width: 240px;
+    width: 100%;
+    height: calc(100vh - 72px);
+    background-color: #18181c;
+    z-index: 1;
+    transform-origin: 0 0;
+    transition: translate 300ms linear;
   }
-}
-
-@media only screen and (max-width: 768px) {
   .drawer {
+    width: 100%;
+  }
+  .containerCollapse {
+    width: 100%;
+    translate: -100%;
+  }
+
+  .expandedPosition {
+    right: 0.65rem;
+  }
+
+  .collapsePosition {
+    right: -2rem;
+  }
+
+  .arrowBtn::before {
+    rotate: -45deg;
+  }
+  .arrowBtn::after {
+    rotate: 45deg;
+  }
+  .collapsePosition .arrowBtn::before {
+    rotate: 45deg;
+  }
+  .collapsePosition .arrowBtn::after {
+    rotate: -45deg;
+  }
+  .footer {
+    height: auto;
+  }
+  .footerHide {
+    margin-top: 2rem;
+    padding: 0 1rem;
+    width: 100%;
+    height: 65px;
+    flex-shrink: 0;
+    opacity: 1;
+    transition:
+      opacity 200ms,
+      height 0ms 200ms,
+      margin-top 0ms 200ms;
   }
 }

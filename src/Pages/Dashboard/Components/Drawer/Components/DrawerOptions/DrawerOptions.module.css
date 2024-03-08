@@ -77,3 +77,13 @@
   top: calc(100% - 4px);
   transition-delay: 0ms;
 }
+
+@media only screen and (max-width: 1099px) and (min-width: 766px) {
+  .btnBottom {
+    right: 1rem;
+    top: 50%;
+  }
+  .outerOptionCollapse {
+    padding: 0.6rem 0 0.6rem 0;
+  }
+}
