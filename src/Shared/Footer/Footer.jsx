@@ -32,7 +32,9 @@ export default function Footer() {
           </small>
         </p>
         <p>
-          <small>All trademarks referenced herein are the properties of their respective owners. ©2023 Gamology All rights reserved</small>
+          <small>
+            All trademarks referenced herein are the properties of their respective owners. &copy;2023 Gamology All rights reserved
+          </small>
         </p>
       </div>
     </footer>

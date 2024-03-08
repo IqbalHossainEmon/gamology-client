@@ -3,6 +3,7 @@
   width: 240px;
   height: calc(100vh - 72px);
   transition: width 300ms linear;
+  background-color: #18181c;
 }
 .drawerImmediateContainer {
   width: 100%;
@@ -19,18 +20,18 @@
   top: 0;
   left: 0;
   width: 240px;
-  height: calc(100vh - 72px);
+  margin-top: 3rem;
+  height: calc(100vh - 72px - 3rem);
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 1rem 0;
-  background-color: #18181c;
   overflow-y: auto;
   overflow-x: visible;
 }
 .optionContainer {
+  flex-grow: 1;
   list-style-type: none;
-  margin-top: 2rem;
   width: 100%;
 }
 
@@ -46,7 +47,7 @@
   width: 2rem;
   height: 2rem;
   position: absolute;
-  top: 1rem;
+  top: 0.5rem;
   transition: right 300ms linear;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.2);
@@ -97,6 +98,56 @@
 .collapsePosition .arrowBtn::after {
   rotate: 45deg;
   background-image: linear-gradient(to left, #8200ff, #df00ff);
+}
+
+.footer {
+  margin-top: 2rem;
+  padding: 0 1rem;
+  width: 100%;
+  height: 65px;
+  flex-shrink: 0;
+  transition:
+    opacity 200ms,
+    height 200ms 0ms,
+    margin-top 200ms 0ms;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.footerHide {
+  opacity: 0;
+  height: 0px;
+  margin-top: 0;
+  transition:
+    opacity 200ms,
+    height 0ms 200ms,
+    margin-top 0ms 200ms;
+}
+.footerLinks {
+  list-style: none;
+  font-size: 12px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+.footerLink {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footerCopyWrite {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+}
+
+.gamologyText {
+  background: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
 }
 
 @media (max-width: 1023px) and (min-width: 766px) {

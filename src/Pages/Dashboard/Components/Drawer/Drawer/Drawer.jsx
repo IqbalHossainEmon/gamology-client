@@ -550,6 +550,28 @@ const Drawer = () => {
               <DrawerOptions parentState={collapse} key={drawer.id} option={drawer} />
             ))}
           </ul>
+          <footer className={`${collapse ? `${styles.footerHide} ` : ''}${styles.footer}`}>
+            <ol className={styles.footerLinks}>
+              {[
+                { text: 'Privacy Policy', link: 'privacyPolicy' },
+                { text: 'Cookie Policy', link: 'cookiePolicy' },
+                { text: 'Terms of Service', link: 'termsOfService' },
+                { text: 'IR Contacts', link: 'IRContacts' },
+                { text: 'Information Security', link: 'informationSecurity' },
+              ].map(link => (
+                <li key={link.link} className={styles.footerLinkContainer}>
+                  <a href={link.link} className={styles.footerLink}>
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <p className={styles.footerCopyWrite}>
+              <small>
+                &copy;2024 <span className={styles.gamologyText}>Gamology</span>
+              </small>
+            </p>
+          </footer>
         </div>
       </div>
       <button
