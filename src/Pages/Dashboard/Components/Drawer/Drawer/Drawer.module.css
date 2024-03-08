@@ -162,48 +162,28 @@
     z-index: 1;
     transform-origin: 0 0;
     transition: translate 300ms linear;
+    translate: -100%;
   }
   .drawer {
     width: 100%;
   }
   .containerCollapse {
     width: 100%;
-    translate: -100%;
+    translate: 0%;
   }
 
   .expandedPosition {
-    right: 0.65rem;
+    right: -1.6rem;
   }
 
   .collapsePosition {
-    right: -2rem;
+    right: 0.65rem;
   }
 
-  .arrowBtn::before {
-    rotate: -45deg;
-  }
-  .arrowBtn::after {
-    rotate: 45deg;
-  }
-  .collapsePosition .arrowBtn::before {
-    rotate: 45deg;
-  }
-  .collapsePosition .arrowBtn::after {
-    rotate: -45deg;
-  }
-  .footer {
-    height: auto;
-  }
-  .footerHide {
-    margin-top: 2rem;
-    padding: 0 1rem;
-    width: 100%;
-    height: 65px;
-    flex-shrink: 0;
-    opacity: 1;
-    transition:
-      opacity 200ms,
-      height 0ms 200ms,
-      margin-top 0ms 200ms;
+  .shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 }

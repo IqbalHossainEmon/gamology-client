@@ -21,12 +21,12 @@ const DrawerOptions = ({ option, parentState }) => {
             show: !prev.show,
           }))
         }
-        className={`${parentState && screenWidth > 1099 ? `${styles.outerOptionCollapse} ` : ''}${styles.outerOption} ${styles.optionButton}`}
+        className={`${parentState ? `${styles.outerOptionCollapse} ` : ''}${styles.outerOption} ${styles.optionButton}`}
         type="button"
       >
         <span className={styles.iconContainer}>{option.icon}</span>
         {option.name}
-        <div className={`${parentState && screenWidth > 1099 ? `${styles.btnBottom} ` : ''}${styles.arrowButton}`}>
+        <div className={`${parentState ? `${styles.btnBottom} ` : ''}${styles.arrowButton}`}>
           <RotateArrow state={show.show} />
         </div>
       </button>

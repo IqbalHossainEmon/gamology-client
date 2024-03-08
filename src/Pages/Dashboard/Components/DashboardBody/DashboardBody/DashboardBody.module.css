@@ -34,3 +34,12 @@
 .dashboardBodyContainer::-webkit-scrollbar-thumb:active {
   background: rgb(114, 114, 114);
 }
+@media only screen and (max-width: 1099px) {
+  .dashboardBodyContainer {
+    width: 100%;
+  }
+  .dashboardBody {
+    width: 100%;
+    padding: 0 1rem;
+  }
+}

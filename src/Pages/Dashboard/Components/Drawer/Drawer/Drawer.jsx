@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useDropDownHide from '../../../../../Hooks/useDropDownHide';
+import useScreenWidth from '../../../../../Hooks/useScreenWidth';
+import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
 import styles from './Drawer.module.css';
 
@@ -540,48 +543,70 @@ C20.296,39.899,19.65,40.986,18.613,41.552z"
 ];
 const Drawer = () => {
   const [collapse, setCollapse] = useState(false);
+  const elementRef = useRef(null);
+  const screenWidth = useScreenWidth();
+
+  const { showMenu, setElement } = useDropDownHide(setCollapse);
+
+  useEffect(() => {
+    setElement(elementRef.current);
+  }, [setElement]);
 
   return (
-    <div className={`${collapse ? `${styles.containerCollapse} ` : ''}${styles.drawerContainer}`}>
-      <div className={styles.drawerImmediateContainer}>
-        <div className={styles.drawer}>
-          <ul className={styles.optionContainer}>
-            {drawers.map(drawer => (
-              <DrawerOptions parentState={collapse} key={drawer.id} option={drawer} />
-            ))}
-          </ul>
-          <footer className={`${collapse ? `${styles.footerHide} ` : ''}${styles.footer}`}>
-            <ol className={styles.footerLinks}>
-              {[
-                { text: 'Privacy Policy', link: 'privacyPolicy' },
-                { text: 'Cookie Policy', link: 'cookiePolicy' },
-                { text: 'Terms of Service', link: 'termsOfService' },
-                { text: 'IR Contacts', link: 'IRContacts' },
-                { text: 'Information Security', link: 'informationSecurity' },
-              ].map(link => (
-                <li key={link.link} className={styles.footerLinkContainer}>
-                  <a href={link.link} className={styles.footerLink}>
-                    {link.text}
-                  </a>
-                </li>
-              ))}
-            </ol>
-            <p className={styles.footerCopyWrite}>
-              <small>
-                &copy;2024 <span className={styles.gamologyText}>Gamology</span>
-              </small>
-            </p>
-          </footer>
+    <>
+      {screenWidth < 1100 && (
+        <div className={styles.shadow}>
+          <ScreenShadow show={collapse} />
         </div>
+      )}
+      <div ref={elementRef} className={`${collapse ? `${styles.containerCollapse} ` : ''}${styles.drawerContainer}`}>
+        <div className={styles.drawerImmediateContainer}>
+          <div className={styles.drawer}>
+            <ul className={styles.optionContainer}>
+              {drawers.map(drawer => (
+                <DrawerOptions {...(screenWidth > 1099 && { parentState: collapse })} key={drawer.id} option={drawer} />
+              ))}
+            </ul>
+            <footer className={`${collapse && screenWidth > 1099 ? `${styles.footerHide} ` : ''}${styles.footer}`}>
+              <ol className={styles.footerLinks}>
+                {[
+                  { text: 'Privacy Policy', link: 'privacyPolicy' },
+                  { text: 'Cookie Policy', link: 'cookiePolicy' },
+                  { text: 'Terms of Service', link: 'termsOfService' },
+                  { text: 'IR Contacts', link: 'IRContacts' },
+                  { text: 'Information Security', link: 'informationSecurity' },
+                ].map(link => (
+                  <li key={link.link} className={styles.footerLinkContainer}>
+                    <a href={link.link} className={styles.footerLink}>
+                      {link.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+              <p className={styles.footerCopyWrite}>
+                <small>
+                  &copy;2024 <span className={styles.gamologyText}>Gamology</span>
+                </small>
+              </p>
+            </footer>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setCollapse(prev => {
+              if (!prev && screenWidth < 1100) {
+                showMenu();
+              }
+              return !prev;
+            });
+          }}
+          className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
+        >
+          <span className={styles.arrowBtn} />
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={() => setCollapse(prev => !prev)}
-        className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
-      >
-        <span className={styles.arrowBtn} />
-      </button>
-    </div>
+    </>
   );
 };
 export default Drawer;

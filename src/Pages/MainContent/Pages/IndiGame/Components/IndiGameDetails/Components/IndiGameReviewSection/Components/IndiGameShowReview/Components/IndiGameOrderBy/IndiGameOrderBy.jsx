@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../../../../../../Hooks/useDropDownHide';
 import RotateArrow from '../../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './IndiGameOrderBy.module.css';
@@ -17,7 +17,9 @@ export default function IndiGameOrderBy({ handleSort }) {
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
-  console.log(elementRef1, elementRef2);
+  useEffect(() => {
+    setElement([elementRef1.current, elementRef2.current]);
+  }, [setElement]);
 
   return (
     <div className={styles.individualGameOrderBy}>
@@ -25,13 +27,10 @@ export default function IndiGameOrderBy({ handleSort }) {
         ref={elementRef1}
         type="button"
         className={styles.activeOrderContainer}
-        {...(show || {
-          onClick: () => {
-            setShow(true);
-            showMenu();
-            setElement([elementRef1.current, elementRef2.current]);
-          },
-        })}
+        onClick={() => {
+          setShow(prev => !prev);
+          showMenu();
+        }}
       >
         <p className={styles.activeOrder}>
           Order By: <span className={styles.orderChangeablePart}>{orderBy.filter(order => order.active)[0].name}</span>
