@@ -21,19 +21,19 @@ const DrawerOptions = ({ option, parentState }) => {
             show: !prev.show,
           }))
         }
-        className={`${styles.outerOption} ${styles.optionButton}`}
+        className={`${parentState ? `${styles.outerOptionCollapse} ` : ''}${styles.outerOption} ${styles.optionButton}`}
         type="button"
       >
         <span className={styles.iconContainer}>{option.icon}</span>
         {option.name}
-        <div className={styles.arrowButton}>
-          <RotateArrow state={show.show && parentState} />
+        <div className={`${parentState ? `${styles.btnBottom} ` : ''}${styles.arrowButton}`}>
+          <RotateArrow state={show.show} />
         </div>
       </button>
       <ul
         ref={containerRef}
         className={styles.innerOptionsContainer}
-        style={show.show && parentState ? { height: `${show.height}px` } : { height: '0px' }}
+        style={show.show ? { height: `${show.height}px` } : { height: '0px' }}
       >
         {option.subDrawer.map(subOption => (
           <li className={styles.innerOptionContainer} key={subOption.id}>

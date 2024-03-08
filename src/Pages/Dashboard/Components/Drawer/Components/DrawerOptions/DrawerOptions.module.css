@@ -8,6 +8,16 @@
   border: none;
   text-align: left;
   position: relative;
+  transition: padding 300ms;
+}
+
+.outerOption {
+  transition:
+    padding 300ms,
+    background-color 200ms;
+}
+.innerOption {
+  transition: background-color 200ms;
 }
 
 .outerOption,
@@ -15,6 +25,13 @@
   padding: 0.6rem 0 0.6rem 0;
   display: flex;
   align-items: center;
+  font-size: 1rem;
+  color: rgb(196, 196, 196);
+  width: 100%;
+}
+
+.outerOptionCollapse {
+  padding-bottom: 1rem;
 }
 
 .iconContainer {
@@ -29,14 +46,6 @@
   width: 100%;
   height: 100%;
   fill: rgb(196, 196, 196);
-}
-
-.outerOption,
-.innerOption {
-  font-size: 1rem;
-  color: rgb(196, 196, 196);
-  width: 100%;
-  transition: background-color 100ms;
 }
 
 .outerOption:hover,
@@ -57,4 +66,14 @@
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
+  transition:
+    top 300ms linear,
+    right 300ms linear;
+  transition-delay: 20ms;
+}
+
+.btnBottom {
+  right: calc(100% - 1.9rem);
+  top: calc(100% - 4px);
+  transition-delay: 0ms;
 }

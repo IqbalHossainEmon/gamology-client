@@ -547,7 +547,7 @@ const Drawer = () => {
         <div className={styles.drawer}>
           <ul className={styles.optionContainer}>
             {drawers.map(drawer => (
-              <DrawerOptions parentState={!collapse} key={drawer.id} option={drawer} />
+              <DrawerOptions parentState={collapse} key={drawer.id} option={drawer} />
             ))}
           </ul>
         </div>
@@ -557,7 +557,7 @@ const Drawer = () => {
         onClick={() => setCollapse(prev => !prev)}
         className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
       >
-        <span />
+        <span className={styles.arrowBtn} />
       </button>
     </div>
   );
