@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../Hooks/useDropDownHide';
 import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
+import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
 import styles from './Drawer.module.css';
 
@@ -606,6 +607,7 @@ const Drawer = () => {
                 </small>
               </p>
             </footer>
+            <ScrollBar />
           </div>
         </div>
         <button
