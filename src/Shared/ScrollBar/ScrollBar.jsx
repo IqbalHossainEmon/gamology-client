@@ -28,8 +28,6 @@ const ScrollBar = ({ parentRef, childRef }) => {
     setHeight((parentRef.current.scrollHeight / childRef.current.scrollHeight) * 100);
   }, [childRef, parentRef]);
 
-  console.log(parentRef, childRef, childRef.current?.scrollHeight, parentRef.current?.scrollHeight);
-
   return !parentRef || !childRef || childRef.current?.scrollHeight <= parentRef.current?.scrollHeight ? null : (
     <div className={styles.scrollBarContainer}>
       <button
