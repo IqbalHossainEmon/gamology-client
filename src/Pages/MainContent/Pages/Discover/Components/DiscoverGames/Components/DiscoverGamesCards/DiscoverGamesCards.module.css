@@ -1,12 +1,19 @@
 .Cards {
-    margin-top: 2rem;
-    padding: 20px 0;
-    overflow: hidden;
-    width: 100%;
+  margin-top: 2rem;
+  padding: 20px 0;
+  overflow: hidden;
+  width: 100%;
 }
 
 .CardSlider {
-    list-style: none;
-    position: relative;
-    display: flex;
+  list-style: none;
+  position: relative;
+  display: flex;
+}
+.transition {
+  transition: translate 300ms;
+}
+
+.card {
+  flex-shrink: 0;
 }

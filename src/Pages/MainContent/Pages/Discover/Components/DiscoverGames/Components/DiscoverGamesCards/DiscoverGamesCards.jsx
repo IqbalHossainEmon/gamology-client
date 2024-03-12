@@ -5,9 +5,17 @@ import styles from './DiscoverGamesCards.module.css';
 function DiscoverGamesCards({ data, style, cardsWidth }, ref) {
   return (
     <div ref={ref} className={styles.Cards}>
-      <ul className={styles.CardSlider} style={style}>
+      <ul
+        className={`${style.transition ? `${styles.transition} ` : ''}${styles.CardSlider}`}
+        style={{ translate: `${style.translate}px` }}
+      >
         {data.map(({ id, name, carouselThumb, price, category }) => (
-          <Card cardsWidth={cardsWidth} key={id} cardInfo={{ id, name, carouselThumb, price, category }} slider />
+          <Card
+            className={styles.card}
+            style={{ width: `${cardsWidth}px`, marginRight: `${style.margin}px` }}
+            key={id}
+            cardInfo={{ id, name, carouselThumb, price, category }}
+          />
         ))}
       </ul>
     </div>

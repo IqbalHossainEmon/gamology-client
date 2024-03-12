@@ -242,7 +242,7 @@ export default function DiscoverGames() {
   const screenWidth = useScreenWidth();
   const { initialState, reducer, handleClick, setReference, setCardsOnScreenWidthChange } = useGamesLogics();
 
-  const [{ data, translateStyle, cardActive, cardsWidth, cardOnDeck }, dispatch] = useReducer(reducer, initialState);
+  const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     dispatch({ type: 'fetch', data: items, dataLength: items.length });
@@ -261,7 +261,7 @@ export default function DiscoverGames() {
         length={data.length - cardOnDeck}
         handleClick={click => handleClick(click, cardActive, cardOnDeck)}
       />
-      <DiscoverGamesCards style={translateStyle} cardsWidth={cardsWidth} ref={cardsContainer} data={data} />
+      <DiscoverGamesCards style={{ translate, transition, margin }} cardsWidth={cardsWidth} ref={cardsContainer} data={data} />
     </section>
   );
 }
