@@ -1,3 +1,7 @@
+.mainContent {
+  width: 100%;
+  height: calc(100vh - 72px);
+}
 .main {
   width: 75%;
   max-width: 1600px;

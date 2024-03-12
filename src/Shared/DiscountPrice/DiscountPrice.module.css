@@ -1,19 +1,18 @@
 .DiscountPrice {
-    width: 100%;
-    height: 100%;
-    color: rgb(226, 226, 226);
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-left: 10px;
+  width: 100%;
+  height: 100%;
+  color: rgb(226, 226, 226);
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .regular {
-    color: rgb(145, 145, 145);
-    display: inline-block;
+  color: rgb(145, 145, 145);
+  display: inline-block;
 }
 .discount {
-    margin-left: 10px;
+  margin-left: 5px;
 }

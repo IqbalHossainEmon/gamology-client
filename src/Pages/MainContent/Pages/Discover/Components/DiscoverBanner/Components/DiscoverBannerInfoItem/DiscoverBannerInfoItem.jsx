@@ -9,10 +9,10 @@ export default function DiscoverBannerInfoItem({ banner, bannerState, activeBann
     <div className={styles.itemInfo} id={idState}>
       <img className={styles.logoImg} src={logoImg} alt={`${name} Logo-${id + 1}`} />
       {price === 'Free' || price === 'free' ? (
-        <div className={styles.price}>Free</div>
+        <div className={styles.priceContainer}>Free</div>
       ) : (
-        <div className={styles.price}>
-          <span className={styles.space}>Starts at </span>
+        <div className={styles.priceContainer}>
+          <span>Starts at </span>
           <DiscountPrice className={styles.price} price={price} />
         </div>
       )}

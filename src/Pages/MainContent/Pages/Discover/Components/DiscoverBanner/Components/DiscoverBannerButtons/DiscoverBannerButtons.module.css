@@ -28,12 +28,12 @@
 
   .nextBtn {
     left: auto;
-    right: 0%;
+    right: 5px;
     rotate: 90deg;
   }
 
   .prevBtn {
-    left: 0%;
+    left: 5px;
     rotate: -90deg;
   }
 }
