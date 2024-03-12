@@ -7,7 +7,6 @@ const reducer = (state, action) => {
       return { ...state, data: action.data, dataLength: action.dataLength };
     case 'screenWidthChange':
       // calculate cards depend on screen width
-      console.log(action.cardOnDeck !== state.cardOnDeck && state.cardOnDeck && state.cardActive % action.cardOnDeck !== 0);
       return {
         ...state,
         cardsWidth: action.width,
@@ -27,7 +26,6 @@ const reducer = (state, action) => {
       };
     case 'next':
       // if cards number is not equal to cards showing on one time and there is a reminder, then the reminder will be added with previous number and they added as extra cards.
-      console.log(state.cardActive - (state.dataLength % state.cardOnDeck));
       return {
         ...state,
         cardActive:

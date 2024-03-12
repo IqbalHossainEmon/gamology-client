@@ -3,6 +3,7 @@ import useIsTouchAble from './useIsTouchable';
 
 export default function useChangeBodyOverflow() {
   const touchAble = useRef();
+  const root = useRef(document.getElementById('root'));
 
   const isTouchable = useIsTouchAble();
 
@@ -11,19 +12,20 @@ export default function useChangeBodyOverflow() {
 
     if (
       !touchAble.current &&
-      !document.getElementById('root').classList.contains('margin-right-8px') &&
-      !document.body.classList.contains('overflow-y-hidden')
+      !root.current.classList.contains('margin-right-8px') &&
+      !document.body.classList.contains('overflow-y-hidden') &&
+      root.current.scrollHeight > root.current.clientHeight
     ) {
       document.body.classList.add('overflow-y-hidden');
-      document.getElementById('root').classList.add('margin-right-8px');
+      root.current.classList.add('margin-right-8px');
     } else if (touchAble.current) {
       document.body.classList.add('overflow-y-hidden');
     }
   }, [isTouchable]);
 
   const showBodyOverflow = useCallback(() => {
-    if (document.getElementById('root').classList.contains('margin-right-8px')) {
-      document.getElementById('root').removeAttribute('class');
+    if (root.current.classList.contains('margin-right-8px')) {
+      root.current.removeAttribute('class');
     }
     if (document.body.classList.contains('overflow-y-hidden')) {
       document.body.removeAttribute('class');
