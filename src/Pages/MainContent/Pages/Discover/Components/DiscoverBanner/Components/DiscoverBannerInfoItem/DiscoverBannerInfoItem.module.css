@@ -19,7 +19,7 @@
 .priceContainer {
   display: flex;
   white-space: nowrap;
-  font-size: 1vw;
+  font-size: 12px;
 }
 .price {
   margin-left: 5px;
@@ -74,6 +74,9 @@
   .logoImg {
     width: 30vw;
     height: auto;
+    .price {
+      font-size: 16px;
+    }
   }
 
   .itemInfo {
@@ -83,10 +86,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .price {
-    font-size: 14px;
   }
 
   @keyframes fadeout {
@@ -111,7 +110,4 @@
 }
 
 @media (min-width: 2134px) {
-  .price {
-    font-size: 16px;
-  }
 }
