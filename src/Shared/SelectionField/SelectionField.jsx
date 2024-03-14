@@ -3,6 +3,7 @@ import useDropDownHide from '../../Hooks/useDropDownHide';
 import useScreenWidth from '../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../RotateArrow/RotateArrow';
+import ScrollBar from '../ScrollBar/ScrollBar';
 import styles from './SelectionField.module.css';
 
 const ctx = document.createElement('canvas').getContext('2d');
@@ -29,6 +30,8 @@ export default function SelectionField({
   const containerRef = useRef(null);
   const inputRef = useRef(null);
   const positionRef = useRef({ height: 0, bottom: true });
+  const parentRef = useRef(null);
+  const childRef = useRef(null);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
@@ -122,25 +125,30 @@ export default function SelectionField({
       </button>
       <ul
         {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
-        className={`${show ? `${styles.show} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}` : ''}${styles.list}`}
+        className={`${show ? `${styles.show} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}` : ''}${styles.listContainer}`}
       >
-        {list.map(item => (
-          <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
-            <button
-              {...(value === item && { disabled: true })}
-              {...(show || { tabIndex: '-1' })}
-              type="button"
-              onClick={() => {
-                setShow(false);
-                setValue(item);
-                setState(item, name);
-              }}
-            >
-              {item}
-            </button>
-          </li>
-        ))}
-        {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
+        <div ref={parentRef} className={styles.listScrollContainer}>
+          <div ref={childRef}>
+            {list.map(item => (
+              <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
+                <button
+                  {...(value === item && { disabled: true })}
+                  {...(show || { tabIndex: '-1' })}
+                  type="button"
+                  onClick={() => {
+                    setShow(false);
+                    setValue(item);
+                    setState(item, name);
+                  }}
+                >
+                  {item}
+                </button>
+              </li>
+            ))}
+            {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
+          </div>
+        </div>
+        <ScrollBar parentRef={parentRef} childRef={childRef} />
       </ul>
     </div>
   );

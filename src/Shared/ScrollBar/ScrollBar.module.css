@@ -10,6 +10,7 @@
 }
 .noHeight {
   display: none;
+  pointer-events: none;
 }
 .scrollThumb {
   width: 8px;

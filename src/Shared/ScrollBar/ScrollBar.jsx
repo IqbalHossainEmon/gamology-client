@@ -75,13 +75,21 @@ const ScrollBar = ({ parentRef, childRef }) => {
     new ResizeObserver(() => {
       setHeight(() => {
         const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
-
         if (heightCheck > 100) {
           return 100;
         }
         return heightCheck;
       });
     }).observe(childRef.current);
+    new ResizeObserver(() => {
+      setHeight(() => {
+        const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
+        if (heightCheck > 100) {
+          return 100;
+        }
+        return heightCheck;
+      });
+    }).observe(parentRef.current);
     parentRef.current.addEventListener('scroll', () => {
       setShow(true);
       handleScrollHide();
