@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import AllGamesHeader from '../Components/AllGamesHeader/AllGamesHeader';
 import styles from './AllGames.module.css';
 
 const AllGames = () => {
-  const [games, setGames] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   return (
     <div className={styles.allGames}>
-      <h1>All Games</h1>
+      <AllGamesHeader change={setSearchText} />
     </div>
   );
 };

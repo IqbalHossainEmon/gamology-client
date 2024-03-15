@@ -577,11 +577,6 @@ const Drawer = () => {
 
   return (
     <>
-      {screenWidth < 1100 && (
-        <div className={styles.shadow}>
-          <ScreenShadow show={collapse} />
-        </div>
-      )}
       <div
         ref={elementRef}
         className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawerContainer}`}
@@ -636,6 +631,11 @@ const Drawer = () => {
           <span className={styles.arrowBtn} />
         </button>
       </div>
+      {screenWidth < 1100 && (
+        <div className={styles.shadow}>
+          <ScreenShadow show={collapse} />
+        </div>
+      )}
     </>
   );
 };

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import useScreenWidth from '../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../ScreenShadow/ScreenShadow';
+import SearchField from '../../SearchField/SearchField';
 import SecondNavLeftLinks from '../Components/SecondNavLeftLinks/SecondNavLeftLinks';
 import SecondNavRightLinks from '../Components/SecondNavRightLinks/SecondNavRightLinks';
-import SecondNavSearchField from '../Components/SecondNavSearchField/SecondNavSearchField';
 
 import styles from './SecondNavbar.module.css';
 
@@ -14,7 +14,7 @@ export default function SecondNavbar() {
   return (
     <section className={styles.SecondNavContainer}>
       <div className={styles.SecondNavbar}>
-        <SecondNavSearchField {...(screenWidth <= 768 && { setNavShow })} screenWidth={screenWidth} />
+        <SearchField {...(screenWidth <= 768 && { setNavShow })} change={e => console.log(e)} />
         <SecondNavLeftLinks {...(screenWidth <= 768 && { setNavShow })} screenWidth={screenWidth} />
         <SecondNavRightLinks screenWidth={screenWidth} />
       </div>
