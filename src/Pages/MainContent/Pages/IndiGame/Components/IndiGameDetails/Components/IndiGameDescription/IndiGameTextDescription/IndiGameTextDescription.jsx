@@ -17,7 +17,7 @@ export default function IndiGameTextDescription({ descriptions }) {
     <div>
       <div
         className={`${show.transition ? `${styles.showTransition} ` : ''}${styles.individualGameDetailDescriptionContainer}`}
-        style={show.show ? { height: show.height + 40 } : { height: 500 }}
+        style={show.show && show.height ? { height: show.height + 40 } : { height: 500 }}
       >
         <div ref={elementRef} className={styles.individualGameDetailDescription}>
           {descriptions.map(description => (
@@ -34,26 +34,28 @@ export default function IndiGameTextDescription({ descriptions }) {
           ))}
         </div>
       </div>
-      <div className={styles.showHideButtonContainer}>
-        <button
-          type="button"
-          className={styles.showHideButton}
-          onClick={() => {
-            setShow(prev => ({ ...prev, show: !prev.show, transition: true }));
-            setTimeout(() => {
-              setShow(prev => ({ ...prev, transition: false }));
-            }, 300);
-          }}
-        >
-          Show {show.show ? 'Less' : 'More'}
-          <div className={styles.rotateArrowContainer}>
-            <div className={styles.rotateArrow}>
-              <RotateArrow state={show.show} />
+      {show.height > 500 && (
+        <div className={styles.showHideButtonContainer}>
+          <button
+            type="button"
+            className={styles.showHideButton}
+            onClick={() => {
+              setShow(prev => ({ ...prev, show: !prev.show, transition: true }));
+              setTimeout(() => {
+                setShow(prev => ({ ...prev, transition: false }));
+              }, 300);
+            }}
+          >
+            Show {show.show ? 'Less' : 'More'}
+            <div className={styles.rotateArrowContainer}>
+              <div className={styles.rotateArrow}>
+                <RotateArrow state={show.show} />
+              </div>
             </div>
-          </div>
-        </button>
-        <div className={`${show.show ? styles.hide : styles.show} ${styles.darkShadow}`} />
-      </div>
+          </button>
+          <div className={`${show.show ? styles.hide : styles.show} ${styles.darkShadow}`} />
+        </div>
+      )}
     </div>
   );
 }

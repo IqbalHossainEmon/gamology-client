@@ -1,6 +1,6 @@
 import Footer from '../../../Shared/Footer/Footer';
 import SecondNavbar from '../../../Shared/SecondNavbar/SecondNavBar/SecondNavbar';
-import Discover from '../Pages/Discover/Discover/Discover';
+import IndiGame from '../Pages/IndiGame/IndiGame/IndiGame';
 import styles from './MainContent.module.css';
 
 export default function MainContent() {
@@ -8,7 +8,7 @@ export default function MainContent() {
     <>
       <SecondNavbar />
       <main className={styles.main}>
-        <Discover />
+        <IndiGame />
       </main>
       <Footer />
     </>
