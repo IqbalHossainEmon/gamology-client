@@ -10,8 +10,14 @@ const AllGamesHeader = ({ setSearchText }) => {
 
   return (
     <div className={styles.allGamesHeader}>
-      <SearchField setNavShow={setNavShow} change={setSearchText} />
-      {screenWidth < 769 && <ScreenShadow show={navShow} />}
+      <div className={`${navShow ? `${styles.searchShow} ` : ''}${styles.searchField}`}>
+        <SearchField setNavShow={setNavShow} change={setSearchText} />
+      </div>
+      {screenWidth < 769 && (
+        <div className={`${navShow ? `${styles.shadowShow} ` : ''}${styles.shadow}`}>
+          <ScreenShadow show={navShow} />
+        </div>
+      )}
     </div>
   );
 };
