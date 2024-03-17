@@ -3,7 +3,7 @@
   margin-bottom: 3rem;
 }
 
-.gameCards > ul {
+.cardsContainer {
   list-style: none;
   display: grid;
   padding: 10px 5px;
@@ -19,7 +19,7 @@
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 865px) {
-  .gameCards > ul {
+  .cardsContainer {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -27,22 +27,22 @@
   .gameCards {
     width: 70%;
   }
-  .gameCards > ul {
+  .cardsContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media only screen and (max-width: 768px) and (min-width: 553px) {
-  .gameCards > ul {
+  .cardsContainer {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 @media only screen and (max-width: 552px) and (min-width: 250px) {
-  .gameCards > ul {
+  .cardsContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media only screen and (max-width: 250px) {
-  .gameCards > ul {
+  .cardsContainer {
     grid-template-columns: repeat(1, 1fr);
   }
 }

@@ -7,14 +7,18 @@ export default function GameCards({ state, dispatch }) {
   const { pageCount } = state;
   return (
     <section className={styles.gameCards}>
-      <ul>
+      <ul className={styles.cardsContainer}>
         {items.map(item => (
           <Card key={item.id} cardInfo={item} />
         ))}
       </ul>
       {pageCount > 2 && (
         <div className={styles.pagination}>
-          <Pagination activePage={state?.activePage} totalPage={pageCount} setActivePage={dispatch} />
+          <Pagination
+            activePage={state?.activePage}
+            totalPage={pageCount}
+            setActivePage={newPage => dispatch({ type: 'pageChange', activePage: newPage })}
+          />
         </div>
       )}
     </section>

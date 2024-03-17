@@ -1,3 +1,7 @@
+.allGamesHeader {
+  margin-bottom: 2rem;
+  height: 40px;
+}
 .searchField {
   position: relative;
   z-index: 1;
@@ -9,8 +13,8 @@
   position: absolute;
   visibility: hidden;
   width: 100%;
-  height: 100%;
-  top: -2rem;
+  height: 100vh;
+  top: -1rem;
   z-index: 2;
   overflow: hidden;
 }
