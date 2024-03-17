@@ -1,7 +1,7 @@
 import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import styles from './Card.module.css';
 
-export default function Card({ cardInfo, style, className }) {
+export default function Card({ cardInfo, style, className, children }) {
   const { id, name, carouselThumb, price } = cardInfo;
 
   return (
@@ -11,6 +11,7 @@ export default function Card({ cardInfo, style, className }) {
       <div className={styles.price}>
         <DiscountPriceWithPercent price={price} />
       </div>
+      {children && children}
     </li>
   );
 }

@@ -5,6 +5,21 @@
   grid-template-columns: repeat(6, 1fr);
   gap: 3rem 1rem;
 }
+.list {
+  position: relative;
+}
+.cardDots {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+.list:hover .cardDots {
+  opacity: 1;
+}
 
 @media only screen and (max-width: 1600px) and (min-width: 769px) {
   .cardsContainer {
