@@ -24,7 +24,7 @@ const useDropDownHide = setState => {
   );
   const closeMenuBlur = useCallback(() => {
     setState(false);
-    window.addEventListener('blur', closeMenuBlur);
+    window.removeEventListener('blur', closeMenuBlur);
   }, [setState]);
 
   const setElement = useCallback(ele => {

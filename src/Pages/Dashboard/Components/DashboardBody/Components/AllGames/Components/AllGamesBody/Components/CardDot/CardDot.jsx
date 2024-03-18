@@ -1,14 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useDropDownHide from '../../../../../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ className }) => {
   const [show, setShow] = useState(false);
 
+  const elementRef = useRef(null);
+
+  const { showMenu, setElement } = useDropDownHide(setShow);
+
+  useEffect(() => {
+    setElement(elementRef.current);
+  }, [setElement]);
+
   return (
-    <div className={className}>
+    <div ref={elementRef} className={className} {...(show && { id: styles.show })}>
       <button
         onClick={() => {
           setShow(prev => !prev);
+          showMenu(true);
         }}
         className={styles.btnDot}
         type="button"
@@ -64,10 +74,10 @@ const CardDot = ({ className }) => {
         </svg>
       </button>
       {show && (
-        <ul>
-          <li />
-          <li />
-          <li />
+        <ul className={styles.listContainer}>
+          <li>Edit</li>
+          <li>Price</li>
+          <li>Delete</li>
         </ul>
       )}
     </div>
