@@ -21,6 +21,12 @@
   opacity: 1;
 }
 
+@media only screen and (hover: none) {
+  .cardDots {
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width: 1600px) and (min-width: 769px) {
   .cardsContainer {
     grid-template-columns: repeat(4, 1fr);

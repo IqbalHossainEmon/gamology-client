@@ -85,9 +85,9 @@
   translate: 0 -2px;
   width: 50%;
   height: 2px;
-  background-image: linear-gradient(to right, #8200ff, #df00ff);
+  background-image: linear-gradient(to left, #8200ff, #df00ff);
   border-radius: 0.5rem;
-  rotate: 45deg;
+  rotate: -45deg;
 }
 
 .containerTransition .arrowBtn::before {
@@ -102,8 +102,8 @@
   width: 50%;
   height: 2px;
   translate: 0 -2px;
-  background-image: linear-gradient(to right, #8200ff, #df00ff);
-  rotate: -45deg;
+  background-image: linear-gradient(to left, #8200ff, #df00ff);
+  rotate: 45deg;
   border-radius: 0.5rem;
 }
 
@@ -112,12 +112,12 @@
 }
 
 .collapsePosition .arrowBtn::before {
-  rotate: -45deg;
-  background-image: linear-gradient(to left, #8200ff, #df00ff);
+  rotate: 45deg;
+  background-image: linear-gradient(to right, #8200ff, #df00ff);
 }
 .collapsePosition .arrowBtn::after {
-  rotate: 45deg;
-  background-image: linear-gradient(to left, #8200ff, #df00ff);
+  rotate: -45deg;
+  background-image: linear-gradient(to right, #8200ff, #df00ff);
 }
 
 .footer {
@@ -192,6 +192,22 @@
   }
   .containerTransition {
     transition: translate 300ms linear;
+  }
+  .arrowBtn::before {
+    rotate: 45deg;
+    background-image: linear-gradient(to right, #8200ff, #df00ff);
+  }
+  .arrowBtn::after {
+    rotate: -45deg;
+    background-image: linear-gradient(to right, #8200ff, #df00ff);
+  }
+  .collapsePosition .arrowBtn::before {
+    rotate: -45deg;
+    background-image: linear-gradient(to left, #8200ff, #df00ff);
+  }
+  .collapsePosition .arrowBtn::after {
+    rotate: 45deg;
+    background-image: linear-gradient(to left, #8200ff, #df00ff);
   }
   .drawer {
     width: 100%;
