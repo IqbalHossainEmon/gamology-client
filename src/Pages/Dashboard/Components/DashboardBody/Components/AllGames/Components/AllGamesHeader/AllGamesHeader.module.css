@@ -1,6 +1,11 @@
+.headerText {
+  padding: 1rem 0;
+}
+.searchFieldContainer {
+  height: 40px;
+}
 .allGamesHeader {
   margin-bottom: 2rem;
-  height: 40px;
 }
 .searchField {
   position: relative;

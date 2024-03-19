@@ -51,3 +51,9 @@
     width: 100%;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .card {
+    cursor: pointer;
+  }
+}

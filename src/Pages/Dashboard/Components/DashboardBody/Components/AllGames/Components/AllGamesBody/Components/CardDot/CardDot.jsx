@@ -75,9 +75,15 @@ const CardDot = ({ className }) => {
       </button>
       {show && (
         <ul className={styles.listContainer}>
-          <li>Edit</li>
-          <li>Price</li>
-          <li>Delete</li>
+          <li>
+            <button type="button">Edit</button>
+          </li>
+          <li>
+            <button type="button">Price</button>
+          </li>
+          <li>
+            <button type="button">Delete</button>
+          </li>
         </ul>
       )}
     </div>

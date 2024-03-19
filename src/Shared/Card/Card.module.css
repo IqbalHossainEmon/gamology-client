@@ -20,7 +20,6 @@
   position: relative;
   padding: 0 0 20px 0;
   flex: 0 0 auto;
-  cursor: pointer;
   transition: filter 300ms;
 }
 .card img {

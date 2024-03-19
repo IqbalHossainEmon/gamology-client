@@ -548,6 +548,9 @@ const Drawer = () => {
   const [collapse, setCollapse] = useState(false);
   const [transition, setTransition] = useState(false);
 
+  const collapseRef = useRef(collapse);
+  collapseRef.current = collapse;
+
   const screenWidth = useScreenWidth();
 
   const scrollParentRef = useRef(null);
@@ -570,6 +573,12 @@ const Drawer = () => {
     setCollapse(false);
     handleTransition();
   });
+
+  useEffect(() => {
+    if (screenWidth < 1100 && collapseRef.current) {
+      setCollapse(false);
+    }
+  }, [screenWidth]);
 
   useEffect(() => {
     setElement(elementRef.current);

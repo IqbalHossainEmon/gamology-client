@@ -9,7 +9,7 @@ export default function GameCards({ state, dispatch }) {
     <section className={styles.gameCards}>
       <ul className={styles.cardsContainer}>
         {items.map(item => (
-          <Card key={item.id} cardInfo={item} />
+          <Card key={item.id} cardInfo={item} className={styles.card} />
         ))}
       </ul>
       {pageCount > 2 && (
