@@ -32,7 +32,7 @@ const DashboardBody = () => {
         </div>
       </div>
       <ScrollBar parentRef={parentRef} childRef={childRef} />
-      <DashboardModal type={type} detail={detail} show={show} setShow={prop => setModal(prev => ({ ...prev, show: prop }))} />
+      {show && <DashboardModal type={type} detail={detail} setShow={prop => setModal(prev => ({ ...prev, show: prop }))} />}
     </div>
   );
 };

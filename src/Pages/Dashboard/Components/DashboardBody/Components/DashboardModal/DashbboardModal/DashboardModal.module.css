@@ -9,6 +9,12 @@
   padding: 2rem;
   z-index: 3;
   border-radius: 0.5rem;
+  box-shadow: 0 0 10px 0 #000000;
+  animation: show 200ms forwards;
+}
+.hide {
+  animation: hide 200ms forwards;
+  pointer-events: none;
 }
 .header {
   text-align: center;
@@ -78,6 +84,26 @@
 .category {
   font-size: small;
   color: #949494;
+}
+@keyframes hide {
+  from {
+    scale: 1;
+    opacity: 1;
+  }
+  to {
+    scale: 0;
+    opacity: 0;
+  }
+}
+@keyframes show {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .crossBtn {
