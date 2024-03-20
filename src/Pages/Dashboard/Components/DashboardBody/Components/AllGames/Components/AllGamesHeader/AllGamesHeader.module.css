@@ -1,6 +1,10 @@
 .headerText {
   padding: 1rem 0;
 }
+.headerText h2 {
+  font-weight: 400;
+  font-size: 2rem;
+}
 .searchFieldContainer {
   height: 40px;
 }
