@@ -1,23 +1,14 @@
-import { useState } from 'react';
+import Modal from '../../../../../../../Shared/Modal/Modal';
 import DashboardDeleteModal from '../Container/DashboardDeleteModal/DashboardDeleteModal';
 import DashboardPriceChangeModal from '../Container/DashboardPriceChangeModal/DashboardPriceChangeModal';
 import styles from './DashboardModal.module.css';
 
 const DashboardModal = ({ type, detail, setShow }) => {
   const { name, price, carouselThumb, category } = detail;
-  const [hideAnimation, setHideAnimation] = useState(false);
-
-  const handleModalClose = () => {
-    setHideAnimation(true);
-
-    setTimeout(() => {
-      setShow(false);
-    }, 300);
-  };
 
   if (type === null) return null;
   return (
-    <div className={`${hideAnimation ? `${styles.hide} ` : ''}${styles.dashboardModal}`}>
+    <Modal setShow={setShow}>
       <h2 className={styles.header}>{type === 'price' ? 'Change Price' : 'Delete'}</h2>
       <h3 className={styles.headerQuestion}>
         {type === 'price' ? (
@@ -30,9 +21,6 @@ const DashboardModal = ({ type, detail, setShow }) => {
           </>
         )}
       </h3>
-      <button onClick={handleModalClose} type="button" className={styles.crossBtn}>
-        <span className={styles.cross} />
-      </button>
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <img src={carouselThumb} alt={name} />
@@ -48,7 +36,7 @@ const DashboardModal = ({ type, detail, setShow }) => {
       ) : (
         <DashboardDeleteModal detail={detail} />
       )}
-    </div>
+    </Modal>
   );
 };
 export default DashboardModal;
