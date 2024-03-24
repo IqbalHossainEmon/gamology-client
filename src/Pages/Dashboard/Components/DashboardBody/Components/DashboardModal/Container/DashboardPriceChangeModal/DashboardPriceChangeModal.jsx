@@ -1,10 +1,15 @@
 import { useRef } from 'react';
+import ButtonWaterEffect from '../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../Shared/TextField/TextField';
 import styles from './DashboardPriceChangeModal.module.css';
-import ButtonWaterEffect from '../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 
 const DashboardPriceChangeModal = ({ price }) => {
   const btnRef = useRef(null);
+  const newPrice = useRef(null);
+
+  const handleSubmit = () => {
+    console.log('Price Submitted');
+  };
 
   return (
     <div className={styles.priceChange}>
@@ -44,9 +49,16 @@ const DashboardPriceChangeModal = ({ price }) => {
             </g>
           </svg>
         </div>
-        <TextField className={styles.input} placeholder="New Price" field="input" setState={() => {}} />
+        <TextField
+          className={styles.input}
+          placeholder="New Price"
+          field="input"
+          setState={val => {
+            newPrice.current = val;
+          }}
+        />
       </div>
-      <button ref={btnRef} type="button" className={styles.submitBtn}>
+      <button onClick={handleSubmit} ref={btnRef} type="button" className={styles.submitBtn}>
         Submit
         <ButtonWaterEffect btnRef={btnRef} backGround="#3e9c35" long />
       </button>

@@ -8,7 +8,7 @@ const DashboardBody = () => {
   const parentRef = useRef(null);
   const childRef = useRef(null);
   const [{ show, detail, type }, setModal] = useState({
-    type: 'price',
+    type: 'delete',
     detail: {
       id: 23,
       name: 'UNCHARTED™: Legacy of Thieves Collection',
