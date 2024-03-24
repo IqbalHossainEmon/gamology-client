@@ -13,6 +13,7 @@ export default function TextField({
   handleChange = () => {},
   onFocusClick,
   enabled = true,
+  defaultValue,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
@@ -39,7 +40,7 @@ export default function TextField({
     <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}>
       <div className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}`}>
         <label
-          className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
+          className={`${focused ? `${styles.focused} ` : value || defaultValue ? `${styles.textFilled} ` : ''}${styles.label}`}
           {...(errorShow && { id: styles.errorColor })}
           htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
         >
@@ -47,7 +48,7 @@ export default function TextField({
         </label>
         {field === 'input' ? (
           <input
-            {...(enabled || { disabled: true })}
+            {...(enabled || { disabled: true, readOnly: true })}
             ref={fieldRef}
             onFocus={() => {
               setFocused(true);
@@ -56,7 +57,7 @@ export default function TextField({
                 onFocusClick();
               }
             }}
-            value={value}
+            {...(defaultValue ? { defaultValue } : { value })}
             onChange={e => {
               setValue(e.target.value);
               handleChange(e.target.value);

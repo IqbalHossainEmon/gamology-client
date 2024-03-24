@@ -23,9 +23,6 @@
 }
 
 .drawer {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 240px;
   height: calc(100vh - 72px - 3rem);
   overflow-y: scroll;
