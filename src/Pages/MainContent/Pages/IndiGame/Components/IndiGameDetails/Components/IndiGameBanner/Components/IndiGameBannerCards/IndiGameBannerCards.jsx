@@ -29,11 +29,11 @@ export default function IndiGameBannerCards({ active, items, dispatch, timerFunc
       (screenWidth <= 611 && screenWidth >= 530)
     ) {
       cards = 4;
-    } else if (screenWidth <= 529 && screenWidth >= 381) {
+    } else if (screenWidth <= 529 && screenWidth >= 404) {
       cards = 3;
-    } else if (screenWidth <= 380 && screenWidth >= 271) {
+    } else if (screenWidth <= 403 && screenWidth >= 312) {
       cards = 2;
-    } else if (screenWidth <= 270 && screenWidth >= 0) {
+    } else if (screenWidth <= 311 && screenWidth >= 0) {
       cards = 1;
     }
 
