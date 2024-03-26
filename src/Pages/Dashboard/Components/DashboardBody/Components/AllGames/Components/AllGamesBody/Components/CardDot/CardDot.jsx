@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
-const CardDot = ({ className }) => {
+const CardDot = ({ className, setModal, item }) => {
   const [show, setShow] = useState(false);
 
   const elementRef = useRef(null);
 
   const { showMenu, setElement } = useDropDownHide(setShow);
+
+  console.log();
 
   useEffect(() => {
     setElement(elementRef.current);
@@ -79,10 +81,14 @@ const CardDot = ({ className }) => {
             <button type="button">Edit</button>
           </li>
           <li>
-            <button type="button">Price</button>
+            <button type="button" onClick={() => setModal({ show: true, type: 'price', detail: item })}>
+              Price
+            </button>
           </li>
           <li>
-            <button type="button">Delete</button>
+            <button type="button" onClick={() => setModal({ show: true, type: 'delete', detail: item })}>
+              Delete
+            </button>
           </li>
         </ul>
       )}

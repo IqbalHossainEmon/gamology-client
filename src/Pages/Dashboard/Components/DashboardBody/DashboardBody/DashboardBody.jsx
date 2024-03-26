@@ -7,28 +7,13 @@ import styles from './DashboardBody.module.css';
 const DashboardBody = () => {
   const parentRef = useRef(null);
   const childRef = useRef(null);
-  const [{ show, detail, type }, setModal] = useState({
-    type: 'delete',
-    detail: {
-      id: 23,
-      name: 'UNCHARTED™: Legacy of Thieves Collection',
-      category: {
-        card: 'Base game',
-      },
-      coverImg: '/assets/images/CarouselCoverDesktop/fortnite.png',
-      logoImg: '/assets/images/CarouselInfo/fortnite-logo.png',
-      carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-      coverMobile: '/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
-      price: { regular: 49.99, discount: 15.99 },
-    },
-    show: true,
-  });
+  const [{ show, detail, type }, setModal] = useState({ type: '', detail: {}, show: false });
 
   return (
     <div className={styles.dashboardBodyScrollContainer}>
       <div ref={parentRef} className={styles.dashboardBodyContainer}>
         <div ref={childRef} className={styles.dashboardBody}>
-          <AllGames />
+          <AllGames setModal={setModal} />
         </div>
       </div>
       <ScrollBar parentRef={parentRef} childRef={childRef} />

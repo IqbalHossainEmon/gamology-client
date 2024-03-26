@@ -295,7 +295,7 @@ const data = [
   },
 ];
 
-const AllGames = () => {
+const AllGames = ({ setModal }) => {
   const [searchText, setSearchText] = useState('');
   const [items, setItems] = useState([]);
   const [page, setPage] = useState({ totalPage: 69, active: 1 });
@@ -307,7 +307,7 @@ const AllGames = () => {
   return (
     <div className={styles.allGames}>
       <AllGamesHeader change={setSearchText} />
-      <AllGamesBody items={items} />
+      <AllGamesBody items={items} setModal={setModal} />
       <div className={styles.paginationContainer}>
         <Pagination
           activePage={page.active}
