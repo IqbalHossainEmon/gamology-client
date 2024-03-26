@@ -3,6 +3,9 @@
   position: absolute;
   bottom: 40%;
   left: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .itemInfoHide {
@@ -19,8 +22,9 @@
 .priceContainer {
   display: flex;
   white-space: nowrap;
-  font-size: 12px;
+  margin: 5px 0;
 }
+
 .price {
   margin-left: 5px;
 }
@@ -70,13 +74,16 @@
   }
 }
 
+@media only screen and (max-width: 1023px) {
+  .priceContainer {
+    font-size: 14px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .logoImg {
     width: 30vw;
     height: auto;
-    .price {
-      font-size: 16px;
-    }
   }
 
   .itemInfo {
@@ -86,6 +93,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .priceContainer {
+    font-size: 12px;
   }
 
   @keyframes fadeout {

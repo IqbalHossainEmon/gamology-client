@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 
 // this two function calculates the next state of the active item, the item will fade out and the item will fade in.
 const increaseByOne = (state, fadeIn) => ({
@@ -27,6 +27,8 @@ function reducer(state, action) {
       return increaseByOne(state, fadeIn);
     case 'prev':
       return decreaseByOne(state, fadeIn);
+    case 'pauseState':
+      return { ...state, isPause: action.state };
     default:
       return state;
   }
@@ -55,18 +57,19 @@ const initialState = {
   fadeIn: 0,
   fadeOut: null,
   cardsPosition: [...Array(5).keys()],
+  isPause: false,
 };
 
 // this function just returns every functions.
 export default function useDiscoverBannerLogics() {
   const timerRef = useRef(null);
+  const dispatchRef = useRef(null);
   const timerState = useRef(false);
-  const [isPause, setIsPause] = useState(false);
 
   // this function runs the dispatch function and take the start time.
   const run = useCallback(() => {
     timerState.timeStartAt = new Date().getTime();
-    timerRef.dispatch({ type: 'next' });
+    dispatchRef.current({ type: 'next' });
   }, []);
 
   // this function stops the timer;
@@ -91,7 +94,7 @@ export default function useDiscoverBannerLogics() {
   // this function is called when user leaves the tab(blur) but don't close this function stops the timer
   const pause = useCallback(() => {
     if (!timerState.current) {
-      setIsPause(true);
+      dispatchRef.current({ type: 'pauseState', state: true });
       if (timerRef.current) {
         stopTimer();
       } else if (timerRef.pauseTimer) {
@@ -106,7 +109,7 @@ export default function useDiscoverBannerLogics() {
   // this function is called when user comeback to the tab(focus) after blur the tab
   const resume = useCallback(() => {
     if (timerState.current) {
-      setIsPause(false);
+      dispatchRef.current({ type: 'pauseState', state: false });
       timerState.current = false;
       timerState.timeStartAt = new Date().getTime();
       timerState.currentTotalTime = timerState.remain - 100;
@@ -121,8 +124,8 @@ export default function useDiscoverBannerLogics() {
   // this function start the timer and set all the listeners and functions
   const start = useCallback(
     dispatch => {
-      if (!timerRef.dispatch) {
-        timerRef.dispatch = dispatch;
+      if (!dispatchRef.current) {
+        dispatchRef.current = dispatch;
       }
       startTimer();
       window.addEventListener('blur', pause);
@@ -153,5 +156,5 @@ export default function useDiscoverBannerLogics() {
     }
   }, [startTimer, stopTimer]);
 
-  return { initialState, reducer, activeBanner, reset, start, stop, isPause };
+  return { initialState, reducer, activeBanner, reset, start, stop };
 }

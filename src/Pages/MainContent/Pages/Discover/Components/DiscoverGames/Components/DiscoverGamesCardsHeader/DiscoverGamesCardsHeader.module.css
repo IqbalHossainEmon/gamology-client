@@ -1,16 +1,18 @@
 .CardsHeader {
-    background-color: transparent;
-    display: inline;
-    color: rgb(222, 222, 222);
-    cursor: pointer;
+  background-color: transparent;
+  display: inline;
+  color: rgb(222, 222, 222);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .arrow svg {
-    width: 10px;
-    height: 10px;
-    transition: translate 100ms;
+  width: 10px;
+  height: 10px;
+  transition: translate 100ms;
 }
 
 .CardsHeader:hover .arrow svg {
-    translate: 100%;
+  translate: 100%;
 }

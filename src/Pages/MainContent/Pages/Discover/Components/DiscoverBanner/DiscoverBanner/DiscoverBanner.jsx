@@ -56,9 +56,9 @@ const items = [
 ];
 
 export default function DiscoverBanner() {
-  const { reducer, initialState, reset, start, stop, activeBanner, isPause } = useDiscoverBannerLogics();
+  const { reducer, initialState, reset, start, stop, activeBanner } = useDiscoverBannerLogics();
 
-  const [{ data, active, fadeIn, fadeOut, cardsPosition }, dispatch] = useReducer(reducer, initialState);
+  const [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(reducer, initialState);
   const screenWidth = useScreenWidth();
 
   useEffect(() => {

@@ -47,17 +47,15 @@ export default function FreeGame({ data, today, length }) {
           <img style={{ aspectRatio: `1/1.${length}` }} src={data.carouselThumb} alt="" />
           {dateState !== -1 && (
             <p className={dateState === 1 ? [styles.common, styles.freeNow].join(' ') : [styles.common, styles.coming].join(' ')}>
-              {dateState === 1 ? 'FREE GAME' : 'COMMING SOON'}
+              {dateState === 1 ? 'FREE GAME' : 'COMING SOON'}
             </p>
           )}
         </div>
         <div className={styles.gameDetail}>
           <p className={styles.name}>{data.name}</p>
-          <div className={styles.date}>
-            <p>{`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
-              data.saleTill[0][0]
-            } - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}</p>
-          </div>
+          <p className={styles.date}>{`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
+            data.saleTill[0][0]
+          } - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}</p>
         </div>
       </div>
     )

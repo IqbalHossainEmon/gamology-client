@@ -1,38 +1,35 @@
 .freeGames {
-    margin-bottom: 3rem;
-    width: 75vw;
-    max-width: 1600px;
-    position: relative;
-    background-color: #3d3d3d;
-    padding: 1rem 0;
-    border-radius: 5px;
+  margin-bottom: 3rem;
+  width: 75vw;
+  max-width: 1600px;
+  position: relative;
+  background-color: #3d3d3d;
+  padding: 2rem;
+  border-radius: 5px;
 }
 
 .header {
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .header h3 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .games {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    align-content: stretch;
-    justify-content: space-evenly;
-    padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .header img {
-    width: 2rem;
-    margin-right: 1rem;
+  width: 2rem;
+  margin-right: 1rem;
 }
 
 @media (max-width: 1023px) {
-    .freeGames {
-        width: 98%;
-    }
+  .freeGames {
+    width: 98%;
+    padding: 1rem;
+  }
 }

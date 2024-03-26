@@ -50,7 +50,7 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
       </button>
       <div className={styles.cardNameContainer}>
         <div className={styles.cardName}>
-          <p>{name}</p>
+          <p className={styles.cardNameText}>{name}</p>
           {cardsPosition[id] === 0 && (
             <div className={styles.shadowContainer}>
               <div id={isPause ? styles.pause : styles.play} className={styles.shadow} />
