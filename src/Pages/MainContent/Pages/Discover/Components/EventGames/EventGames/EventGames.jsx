@@ -37,6 +37,8 @@ const newGames = [
   },
 ];
 
+const header = ['New Releases', 'Top Rated', 'Coming Soon'];
+
 export default function EventGames() {
   const screenWidth = useScreenWidth();
   const [cardPosition, setCardPosition] = useState(0);
@@ -46,12 +48,19 @@ export default function EventGames() {
       <ul
         className={styles.EventGames}
         {...(screenWidth < 768 && {
-          style: { translate: `-${cardPosition * screenWidth}px` },
+          style: { translate: `-${100 * cardPosition}%` },
         })}
       >
-        <GamesColumn cardPosition={cardPosition} screenWidth={screenWidth} games={newGames} border colNum={0} header="New Releases" />
-        <GamesColumn cardPosition={cardPosition} screenWidth={screenWidth} games={newGames} border colNum={1} header="Top Rated" />
-        <GamesColumn cardPosition={cardPosition} screenWidth={screenWidth} games={newGames} header="Comming Soon" colNum={2} />
+        {header.map((item, index) => (
+          <GamesColumn
+            key={item}
+            header={item}
+            games={newGames}
+            bar={index !== header.length - 1}
+            colNum={index}
+            cardPosition={cardPosition}
+          />
+        ))}
       </ul>
       {screenWidth <= 768 && <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />}
     </section>

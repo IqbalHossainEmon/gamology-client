@@ -1,20 +1,27 @@
 .GameColumn {
-  width: 32.5%;
+  width: calc(100% / 3);
   transition: opacity 200ms;
+  position: relative;
 }
-.rightBorder {
-  border-right: 1px solid rgba(148, 148, 148, 0.486);
-}
+
 .column {
-  padding: 10px;
   list-style: none;
+  position: relative;
+}
+.bar:after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 100%;
+  width: 1px;
+  top: 0;
+  right: -0.5rem;
 }
 .heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-right: 1rem;
-  margin-bottom: 2rem;
+  padding: 5px;
+  margin-bottom: 1rem;
 }
 .heading button {
   position: relative;
@@ -25,22 +32,29 @@
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: box-shadow 300ms;
-  margin-right: 10px;
+  margin-left: auto;
 }
 .heading button:hover {
   box-shadow: 0 0 10px 0px grey;
 }
 .heading h2 {
   font-size: 1rem;
+  font-weight: 400;
 }
 @media only screen and (max-width: 768px) {
+  .GameColumn {
+    width: 100%;
+  }
   .Opacity0 {
     opacity: 0;
   }
   .GameColumn {
     flex-shrink: 0;
   }
-  .rightBorder {
-    border-right: none;
+  .heading button {
+    margin-right: 3px;
+  }
+  .bar:after {
+    display: none;
   }
 }

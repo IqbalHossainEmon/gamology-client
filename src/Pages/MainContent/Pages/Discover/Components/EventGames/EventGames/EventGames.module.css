@@ -2,12 +2,11 @@
   margin-bottom: 3rem;
   width: 100%;
   max-width: 1600px;
-  display: flex;
-  flex-direction: column;
 }
 .EventGames {
   width: 100%;
   display: flex;
+  gap: 1rem;
   list-style: none;
 }
 
@@ -20,5 +19,6 @@
     left: 5px;
     transition: translate 400ms;
     position: relative;
+    gap: 0rem;
   }
 }
