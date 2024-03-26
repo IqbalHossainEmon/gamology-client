@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import ButtonWaterEffect from '../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
 
@@ -71,7 +72,7 @@ const data = [
 
 export default function FreeGames() {
   const dataLength = useRef(data.length);
-
+  const btnRef = useRef(null);
   const date = useRef(new Date());
   const today = useRef([date.current.getDate(), date.current.getMonth() + 1, date.current.getFullYear()]);
 
@@ -80,6 +81,10 @@ export default function FreeGames() {
       <div className={styles.header}>
         <img src="/assets/images/gift.png" alt="gift" />
         <h3>Free games</h3>
+        <button ref={btnRef} className={styles.viewMoreBtn} type="button">
+          View More
+          <ButtonWaterEffect btnRef={btnRef} />
+        </button>
       </div>
       <div className={styles.games}>
         {data.map(game => (

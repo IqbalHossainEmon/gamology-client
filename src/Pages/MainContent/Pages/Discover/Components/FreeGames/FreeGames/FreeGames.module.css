@@ -13,9 +13,22 @@
   align-items: center;
 }
 .header h3 {
-  font-weight: 500;
+  font-weight: 400;
 }
-
+.viewMoreBtn {
+  margin-left: auto;
+  background-color: #1a1a1a;
+  position: relative;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.viewMoreBtn:hover {
+  background-color: #2a2a2a;
+}
 .games {
   display: flex;
   flex-wrap: wrap;
@@ -31,5 +44,8 @@
   .freeGames {
     width: 98%;
     padding: 1rem;
+  }
+  .header h3 {
+    font-size: 14px;
   }
 }
