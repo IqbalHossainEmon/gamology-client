@@ -30,6 +30,7 @@
   background-color: #2a2a2a;
 }
 .games {
+  padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;

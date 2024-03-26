@@ -85,6 +85,7 @@
   .links li {
     text-align: center;
     margin-top: 5px;
+    font-size: 14px;
   }
   .description {
     padding: 1rem;

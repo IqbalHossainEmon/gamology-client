@@ -14,9 +14,9 @@ export default function Footer() {
           {[
             { text: 'Privacy Policy', link: 'privacyPolicy' },
             { text: 'Cookie Policy', link: 'cookiePolicy' },
-            { text: 'Terms of Service', link: 'termsOfService' },
-            { text: 'IR Contacts', link: 'IRContacts' },
-            { text: 'Information Security', link: 'informationSecurity' },
+            { text: 'Store Refund Policy', link: 'storeRefundPolicy' },
+            { text: 'Contacts', link: 'Contacts' },
+            { text: 'Thanks', link: 'thanks' },
           ].map(link => (
             <li key={link.link}>
               <a href={link.link}>{link.text}</a>

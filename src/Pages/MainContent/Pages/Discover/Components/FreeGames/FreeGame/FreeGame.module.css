@@ -1,7 +1,6 @@
 .freeGame {
   cursor: pointer;
   transition: filter 300ms;
-  margin-top: 20px;
   display: flex;
   flex-grow: 1;
   flex-direction: column;

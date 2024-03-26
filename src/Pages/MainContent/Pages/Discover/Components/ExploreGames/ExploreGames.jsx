@@ -11,8 +11,6 @@ const fetched = {
 };
 
 export default function ExploreGames() {
-  const contentRef = useRef(null);
-
   const buttonRef = useRef(null);
 
   const screenWidth = useScreenWidth();
@@ -23,12 +21,11 @@ export default function ExploreGames() {
   }, []);
 
   return (
-    <section style={{ height: contentRef.current?.offsetHeight }} className={styles.ExploreGames}>
+    <section className={styles.ExploreGames}>
       <div
-        ref={contentRef}
         className={styles.exploreGamesBackground}
         style={
-          screenWidth >= 768
+          screenWidth >= 769
             ? { backgroundImage: `url(${fetched.backgroundDesktop})` }
             : { backgroundImage: `url(${fetched.backgroundPhone})` }
         }
