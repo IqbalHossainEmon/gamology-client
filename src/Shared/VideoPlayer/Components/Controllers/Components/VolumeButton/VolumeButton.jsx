@@ -28,12 +28,12 @@ export default function VolumeButton({ volume, videoRef, setVolume }) {
   }, [videoRef, volume]);
 
   const handleMute = () => {
-    if (videoRef.muted) {
-      setVolume(videoRef.volume * 100);
+    if (videoRef.current.muted) {
+      setVolume(videoRef.current.volume * 100);
     } else {
       setVolume(0);
     }
-    videoRef.muted = !videoRef.muted;
+    videoRef.current.muted = !videoRef.current.muted;
   };
 
   return (
