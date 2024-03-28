@@ -1,0 +1,21 @@
+.individualGameDetailAside {
+  flex-grow: 1;
+}
+.asideContainer {
+  position: sticky;
+  top: 100px;
+}
+
+@media (max-width: 1023px) {
+  .individualGameDetailAside {
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .individualGameDetailAside {
+    width: 100%;
+    position: static;
+    padding: 20px 0 0 0;
+  }
+}

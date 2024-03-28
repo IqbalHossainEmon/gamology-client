@@ -3,8 +3,8 @@ import IndiGameShowReview from '../Components/IndiGameShowReview/IndiGameShowRev
 import IndiGameTakeReview from '../Components/IndiGameTakeReview/IndiGameTakeReview/IndiGameTakeReview';
 import styles from './IndiGameReviewSection.module.css';
 
-const IndiGameReviewSection = (_, ref) => (
-  <section className={styles.individualGameReview} ref={ref}>
+const IndiGameReviewSection = () => (
+  <section className={styles.individualGameReview}>
     <h2 className={styles.reviewMainHeader}>Reviews</h2>
     <div className={styles.reviewContainer}>
       <IndiGameTakeReview />

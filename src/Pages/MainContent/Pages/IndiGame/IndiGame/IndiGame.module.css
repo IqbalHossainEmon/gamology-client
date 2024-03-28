@@ -1,16 +1,3 @@
 .individualGame {
   width: 100%;
-  display: flex;
-}
-
-@media (max-width: 1023px) and (min-width: 769px) {
-  .individualGame {
-    gap: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .individualGame {
-    flex-direction: column-reverse;
-  }
 }
