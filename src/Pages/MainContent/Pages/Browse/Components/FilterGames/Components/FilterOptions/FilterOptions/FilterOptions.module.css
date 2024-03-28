@@ -2,11 +2,19 @@
   margin-bottom: 3rem;
 }
 .filterTitle {
+  width: 100%;
+  background-color: transparent;
+  border: none;
   position: relative;
   cursor: pointer;
   transition: filter 200ms;
   user-select: none;
   -webkit-user-select: none;
+  text-align: left;
+}
+.title {
+  color: rgb(207, 207, 207);
+  font-weight: 400;
 }
 
 .downArrow {

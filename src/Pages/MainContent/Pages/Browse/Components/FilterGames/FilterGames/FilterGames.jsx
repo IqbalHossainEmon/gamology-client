@@ -111,7 +111,7 @@ export default function FilterGames({ filterState, dispatch, limits }) {
   return (
     <aside ref={filterSortRef} className={`${styles.FilterGames} ${filter && screenWidth < 769 ? styles.hidden : styles.show}`}>
       <div className={styles.filterContainer}>
-        {screenWidth < 769 && <h2>Filters</h2>}
+        {screenWidth < 769 && <h2 className={styles.filterText}>Filters</h2>}
         <FilterOptionList options={options} state={state} setState={setState} limits={limits} />
         <ApplyButton setShow={setFilterSort} dispatch={dispatch} filterState={filterState} state={state} />
       </div>
