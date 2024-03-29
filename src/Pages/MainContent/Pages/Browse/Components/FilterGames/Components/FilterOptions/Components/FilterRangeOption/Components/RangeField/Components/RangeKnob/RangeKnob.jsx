@@ -3,54 +3,54 @@ import useDragStartStop from '../../../../../../../../../../../../../../Hooks/us
 import styles from './RangeKnob.module.css';
 
 function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep }) {
-  const stateRef = useRef(state);
-  stateRef.current = state;
+    const stateRef = useRef(state);
+    stateRef.current = state;
 
-  // Calculate move value
-  const handleMove = useCallback(
-    e => {
-      const { cursorInPercent, pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
+    // Calculate move value
+    const handleMove = useCallback(
+        e => {
+            const { cursorInPercent, pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
 
-      // if cursors position is inside the slider range;
-      if (cursorInPercent > 0 && cursorInPercent < 100) {
-        // check and set value depend on step
-        if (leftDiff < rightDiff && stateRef.current[name] !== pointerLeftStep) {
-          setState(prev => ({ ...prev, [name]: pointerLeftStep }));
-          return;
-        }
-        if (leftDiff > rightDiff && stateRef.current[name] !== pointerRightStep) {
-          setState(prev => ({ ...prev, [name]: pointerRightStep }));
-          return;
-        }
-      }
-      if (cursorInPercent <= 0 && stateRef.current[name] !== 0) {
-        setState(prev => ({ ...prev, [name]: 0 }));
-        return;
-      }
-      if (cursorInPercent >= 100 && stateRef.current[name] !== 100) {
-        setState(prev => ({ ...prev, [name]: 100 }));
-      }
-    },
-    [getLeftRightStep, name, setState]
-  );
-
-  const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
-
-  return (
-    <div
-      className={styles.knobContainer}
-      style={
-        state.transition
-          ? {
-              translate: `${state[name]}%`,
-              transition: 'translate linear 200ms',
+            // if cursors position is inside the slider range;
+            if (cursorInPercent > 0 && cursorInPercent < 100) {
+                // check and set value depend on step
+                if (leftDiff < rightDiff && stateRef.current[name] !== pointerLeftStep) {
+                    setState(prev => ({ ...prev, [name]: pointerLeftStep }));
+                    return;
+                }
+                if (leftDiff > rightDiff && stateRef.current[name] !== pointerRightStep) {
+                    setState(prev => ({ ...prev, [name]: pointerRightStep }));
+                    return;
+                }
             }
-          : { translate: `${state[name]}%` }
-      }
-    >
-      <div role="button" onTouchStart={onStart} onMouseDown={onStart} tabIndex={0} className={styles.knop} />
-    </div>
-  );
+            if (cursorInPercent <= 0 && stateRef.current[name] !== 0) {
+                setState(prev => ({ ...prev, [name]: 0 }));
+                return;
+            }
+            if (cursorInPercent >= 100 && stateRef.current[name] !== 100) {
+                setState(prev => ({ ...prev, [name]: 100 }));
+            }
+        },
+        [getLeftRightStep, name, setState]
+    );
+
+    const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
+
+    return (
+        <div
+            className={styles.knobContainer}
+            style={
+                state.transition
+                    ? {
+                          translate: `${state[name]}%`,
+                          transition: 'translate linear 200ms',
+                      }
+                    : { translate: `${state[name]}%` }
+            }
+        >
+            <div role="button" onTouchStart={onStart} onMouseDown={onStart} tabIndex={0} className={styles.knop} />
+        </div>
+    );
 }
 
 export default RangeKnob;

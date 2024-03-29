@@ -2,15 +2,15 @@ import IndiGameSpecification from '../IndiGameSpecification/IndiGameSpecificatio
 import styles from './IndiGameMultipleSpecification.module.css';
 
 export default function IndiGameMultipleSpecification({ spec = [], active }) {
-  return (
-    <div className={styles.individualGameMultipleSpecificationContainer}>
-      <div className={styles.individualGameMultipleSpecification} style={{ translate: `-${active * 100}%` }}>
-        {spec.map(specs => (
-          <div className={styles.specs} key={specs.id}>
-            <IndiGameSpecification spec={specs} others />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.individualGameMultipleSpecificationContainer}>
+            <div className={styles.individualGameMultipleSpecification} style={{ translate: `-${active * 100}%` }}>
+                {spec.map(specs => (
+                    <div className={styles.specs} key={specs.id}>
+                        <IndiGameSpecification spec={specs} others />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }

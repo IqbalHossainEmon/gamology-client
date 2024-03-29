@@ -5,69 +5,69 @@ import useDropDownHide from '../Hooks/useDropDownHide';
 import useScreenWidth from '../Hooks/useScreenWidth';
 
 const withFilterSortProvider = Component =>
-  function InnerComponent() {
-    const [filterSortState, setFilterSortState] = useState({
-      filter: true,
-      sort: true,
-    });
+    function InnerComponent() {
+        const [filterSortState, setFilterSortState] = useState({
+            filter: true,
+            sort: true,
+        });
 
-    const filterSortRef = useRef();
+        const filterSortRef = useRef();
 
-    const screenWidth = useScreenWidth();
-    const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
+        const screenWidth = useScreenWidth();
+        const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
-    const { showMenu, setElement } = useDropDownHide(() => {
-      setFilterSortState({ sort: true, filter: true });
-      showBodyOverflow();
-    });
+        const { showMenu, setElement } = useDropDownHide(() => {
+            setFilterSortState({ sort: true, filter: true });
+            showBodyOverflow();
+        });
 
-    useEffect(() => {
-      if (screenWidth < 769 && (!filterSortState.sort || !filterSortState.filter)) {
-        hideBodyOverflow();
-      }
-    }, [filterSortState, screenWidth, hideBodyOverflow]);
-
-    const setFilterSort = useCallback(
-      prop => {
-        if (prop === 'filter') {
-          setFilterSortState(prev => {
-            if (prev.filter && screenWidth < 769) {
-              hideBodyOverflow();
-            } else {
-              showBodyOverflow();
+        useEffect(() => {
+            if (screenWidth < 769 && (!filterSortState.sort || !filterSortState.filter)) {
+                hideBodyOverflow();
             }
-            return {
-              filter: !prev.filter,
-              sort: true,
-            };
-          });
-        } else if (prop === 'sort') {
-          setElement(filterSortRef.sort);
-          showMenu();
-          setFilterSortState(prev => {
-            if (prev.sort && screenWidth < 769) {
-              hideBodyOverflow();
-            } else {
-              showBodyOverflow();
-            }
-            return { sort: !prev.sort, filter: true };
-          });
-        } else {
-          setFilterSortState({ sort: true, filter: true });
-        }
-      },
-      [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu]
-    );
+        }, [filterSortState, screenWidth, hideBodyOverflow]);
 
-    return (
-      <FilterSortContext.Provider value={filterSortState}>
-        <SetFilterSortContext.Provider value={setFilterSort}>
-          <FilterSortRefContext.Provider value={filterSortRef}>
-            <Component />
-          </FilterSortRefContext.Provider>
-        </SetFilterSortContext.Provider>
-      </FilterSortContext.Provider>
-    );
-  };
+        const setFilterSort = useCallback(
+            prop => {
+                if (prop === 'filter') {
+                    setFilterSortState(prev => {
+                        if (prev.filter && screenWidth < 769) {
+                            hideBodyOverflow();
+                        } else {
+                            showBodyOverflow();
+                        }
+                        return {
+                            filter: !prev.filter,
+                            sort: true,
+                        };
+                    });
+                } else if (prop === 'sort') {
+                    setElement(filterSortRef.sort);
+                    showMenu();
+                    setFilterSortState(prev => {
+                        if (prev.sort && screenWidth < 769) {
+                            hideBodyOverflow();
+                        } else {
+                            showBodyOverflow();
+                        }
+                        return { sort: !prev.sort, filter: true };
+                    });
+                } else {
+                    setFilterSortState({ sort: true, filter: true });
+                }
+            },
+            [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu]
+        );
+
+        return (
+            <FilterSortContext.Provider value={filterSortState}>
+                <SetFilterSortContext.Provider value={setFilterSort}>
+                    <FilterSortRefContext.Provider value={filterSortRef}>
+                        <Component />
+                    </FilterSortRefContext.Provider>
+                </SetFilterSortContext.Provider>
+            </FilterSortContext.Provider>
+        );
+    };
 
 export default withFilterSortProvider;

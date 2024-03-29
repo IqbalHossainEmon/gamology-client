@@ -9,147 +9,147 @@ import styles from './SelectionField.module.css';
 const ctx = document.createElement('canvas').getContext('2d');
 
 export default function SelectionField({
-  placeholder = 'Type',
-  className,
-  htmlFor,
-  setState,
-  list = [],
-  name = '',
-  onFocusClick,
-  enabled = true,
-  parentSetValue = '',
-  ...rest
+    placeholder = 'Type',
+    className,
+    htmlFor,
+    setState,
+    list = [],
+    name = '',
+    onFocusClick,
+    enabled = true,
+    parentSetValue = '',
+    ...rest
 }) {
-  const [value, setValue] = useState('');
-  const [show, setShow] = useState(false);
-  const screenWidth = useScreenWidth();
+    const [value, setValue] = useState('');
+    const [show, setShow] = useState(false);
+    const screenWidth = useScreenWidth();
 
-  const valueRef = useRef(value);
-  valueRef.current = value;
-  const elementRef = useRef(null);
-  const containerRef = useRef(null);
-  const inputRef = useRef(null);
-  const positionRef = useRef({ height: 0, bottom: true });
-  const parentRef = useRef(null);
-  const childRef = useRef(null);
+    const valueRef = useRef(value);
+    valueRef.current = value;
+    const elementRef = useRef(null);
+    const containerRef = useRef(null);
+    const inputRef = useRef(null);
+    const positionRef = useRef({ height: 0, bottom: true });
+    const parentRef = useRef(null);
+    const childRef = useRef(null);
 
-  const { showMenu, setElement } = useDropDownHide(setShow);
+    const { showMenu, setElement } = useDropDownHide(setShow);
 
-  useEffect(() => {
-    if (parentSetValue) {
-      setValue(parentSetValue);
-    }
-  }, [parentSetValue]);
-
-  useEffect(() => {
-    setElement(containerRef.current);
-  }, [setElement]);
-
-  useEffect(() => {
-    if (inputRef.current)
-      ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;
-  }, [screenWidth]);
-
-  const handleClick = () => {
-    const { height, y } = elementRef.current.getBoundingClientRect();
-
-    const bottomRemain = window.innerHeight - y - height;
-    if (list.length > 4) {
-      if (bottomRemain < 170) {
-        positionRef.current.bottom = false;
-        if (y < 420) {
-          positionRef.current.height = y;
-        } else {
-          positionRef.current.height = 0;
+    useEffect(() => {
+        if (parentSetValue) {
+            setValue(parentSetValue);
         }
-      } else {
-        positionRef.current.bottom = true;
-        if (bottomRemain < 420) {
-          positionRef.current.height = bottomRemain;
-        } else {
-          positionRef.current.height = 0;
-        }
-      }
-    } else if (bottomRemain < list.length * 40 + 10) {
-      positionRef.current.bottom = false;
-    } else {
-      positionRef.current.bottom = true;
-    }
-  };
+    }, [parentSetValue]);
 
-  return (
-    <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
-      <button
-        type="button"
-        {...(enabled || { tabIndex: '-1' })}
-        {...(inputRef.current &&
-          ctx.measureText(value).width >
-            inputRef.current.offsetWidth -
-              parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
-              parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && { title: value })}
-        ref={elementRef}
-        className={`${show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
-        onClick={() => {
-          handleClick();
-          if (!show) {
-            showMenu(true);
-            setShow(true);
-          } else {
-            showMenu(false);
-            setShow(false);
-          }
-          if (onFocusClick) {
-            onFocusClick();
-          }
-        }}
-      >
-        <label
-          className={`${show ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
-          htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-        >
-          {placeholder}
-        </label>
-        <input
-          tabIndex="-1"
-          ref={inputRef}
-          value={value}
-          readOnly
-          id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
-          className={styles.field}
-          {...rest}
-        />
-        <div className={styles.rotateArrow}>
-          <RotateArrow state={show} />
-        </div>
-        <ButtonWaterEffect btnRef={elementRef} />
-      </button>
-      <ul
-        {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
-        className={`${show ? `${styles.show} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}` : ''}${styles.listContainer}`}
-      >
-        <div ref={parentRef} className={styles.listScrollContainer}>
-          <div ref={childRef}>
-            {list.map(item => (
-              <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
-                <button
-                  {...(value === item && { disabled: true })}
-                  {...(show || { tabIndex: '-1' })}
-                  type="button"
-                  onClick={() => {
-                    setShow(false);
-                    setValue(item);
-                    setState(item, name);
-                  }}
+    useEffect(() => {
+        setElement(containerRef.current);
+    }, [setElement]);
+
+    useEffect(() => {
+        if (inputRef.current)
+            ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;
+    }, [screenWidth]);
+
+    const handleClick = () => {
+        const { height, y } = elementRef.current.getBoundingClientRect();
+
+        const bottomRemain = window.innerHeight - y - height;
+        if (list.length > 4) {
+            if (bottomRemain < 170) {
+                positionRef.current.bottom = false;
+                if (y < 420) {
+                    positionRef.current.height = y;
+                } else {
+                    positionRef.current.height = 0;
+                }
+            } else {
+                positionRef.current.bottom = true;
+                if (bottomRemain < 420) {
+                    positionRef.current.height = bottomRemain;
+                } else {
+                    positionRef.current.height = 0;
+                }
+            }
+        } else if (bottomRemain < list.length * 40 + 10) {
+            positionRef.current.bottom = false;
+        } else {
+            positionRef.current.bottom = true;
+        }
+    };
+
+    return (
+        <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
+            <button
+                type="button"
+                {...(enabled || { tabIndex: '-1' })}
+                {...(inputRef.current &&
+                    ctx.measureText(value).width >
+                        inputRef.current.offsetWidth -
+                            parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
+                            parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && { title: value })}
+                ref={elementRef}
+                className={`${show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
+                onClick={() => {
+                    handleClick();
+                    if (!show) {
+                        showMenu(true);
+                        setShow(true);
+                    } else {
+                        showMenu(false);
+                        setShow(false);
+                    }
+                    if (onFocusClick) {
+                        onFocusClick();
+                    }
+                }}
+            >
+                <label
+                    className={`${show ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
+                    htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
                 >
-                  {item}
-                </button>
-              </li>
-            ))}
-            {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
-          </div>
+                    {placeholder}
+                </label>
+                <input
+                    tabIndex="-1"
+                    ref={inputRef}
+                    value={value}
+                    readOnly
+                    id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+                    className={styles.field}
+                    {...rest}
+                />
+                <div className={styles.rotateArrow}>
+                    <RotateArrow state={show} />
+                </div>
+                <ButtonWaterEffect btnRef={elementRef} />
+            </button>
+            <ul
+                {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
+                className={`${show ? `${styles.show} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}` : ''}${styles.listContainer}`}
+            >
+                <div ref={parentRef} className={styles.listScrollContainer}>
+                    <div ref={childRef}>
+                        {list.map(item => (
+                            <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
+                                <button
+                                    {...(value === item && { disabled: true })}
+                                    {...(show || { tabIndex: '-1' })}
+                                    type="button"
+                                    onClick={() => {
+                                        setShow(false);
+                                        setValue(item);
+                                        setState(item, name);
+                                    }}
+                                >
+                                    {item}
+                                </button>
+                            </li>
+                        ))}
+                        {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
+                    </div>
+                </div>
+                <ScrollBar parentRef={parentRef} childRef={childRef} />
+            </ul>
         </div>
-        <ScrollBar parentRef={parentRef} childRef={childRef} />
-      </ul>
-    </div>
-  );
+    );
 }

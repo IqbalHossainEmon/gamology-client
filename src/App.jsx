@@ -5,12 +5,12 @@ import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import MainHeader from './Shared/MainHeader/MainHeader';
 
 function App() {
-  return (
-    <>
-      <MainHeader />
-      <Dashboard />
-    </>
-  );
+    return (
+        <>
+            <MainHeader />
+            <Dashboard />
+        </>
+    );
 }
 
 export default withScreenWidthProvider(memo(App));

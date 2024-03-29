@@ -6,13 +6,13 @@ import FreeGames from '../Components/FreeGames/FreeGames/FreeGames';
 import styles from './Discover.module.css';
 
 export default function Discover() {
-  return (
-    <div className={styles.discover}>
-      <DiscoverBanner />
-      <DiscoverGames />
-      <FreeGames />
-      <EventGames />
-      <ExploreGames />
-    </div>
-  );
+    return (
+        <div className={styles.discover}>
+            <DiscoverBanner />
+            <DiscoverGames />
+            <FreeGames />
+            <EventGames />
+            <ExploreGames />
+        </div>
+    );
 }
