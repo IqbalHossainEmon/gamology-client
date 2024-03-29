@@ -123,7 +123,11 @@ export default function IndiGameSpecifications() {
         <div className={styles.mainHeadersContainer}>
           {spec.spec?.map((s, i) => (
             <div className={styles.mainHeader} key={s.id}>
-              <button type="button" onClick={() => setToggle(i)} className={`${styles.mainHeaderBtn} ${toggle === i && styles.active}`}>
+              <button
+                type="button"
+                onClick={() => setToggle(i)}
+                className={`${toggle === i ? `${styles.active} ` : ''}${styles.mainHeaderBtn}`}
+              >
                 {s.for}
               </button>
             </div>

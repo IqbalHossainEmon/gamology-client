@@ -85,7 +85,7 @@
 
 @media only screen and (max-width: 768px) {
   .specificationContainer {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 }
 
@@ -97,7 +97,7 @@
 
 @media only screen and (max-width: 369px) {
   .mainHeaderBtn {
-    padding: 10px;
+    padding: 5px 0;
   }
   .mainHeader:not(:first-child) {
     margin-left: 10px;

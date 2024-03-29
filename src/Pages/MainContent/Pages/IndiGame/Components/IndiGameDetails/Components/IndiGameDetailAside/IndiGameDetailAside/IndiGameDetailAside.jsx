@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import IndiGameAsideBody from '../Components/IndiGameAsideBody/IndiGameAsideBody';
+import IndiGameAsideBody from '../Components/IndiGameAsideBody/IndiGameAsideBody/IndiGameAsideBody';
 import IndiGameAsideHeader from '../Components/IndiGameAsideHeader/IndiGameAsideHeader';
 import styles from './IndiGameDetailAside.module.css';
 
