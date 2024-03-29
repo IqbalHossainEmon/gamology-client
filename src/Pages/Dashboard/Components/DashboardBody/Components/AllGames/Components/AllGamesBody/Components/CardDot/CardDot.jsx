@@ -9,8 +9,6 @@ const CardDot = ({ className, setModal, item }) => {
 
   const { showMenu, setElement } = useDropDownHide(setShow);
 
-  console.log();
-
   useEffect(() => {
     setElement(elementRef.current);
   }, [setElement]);
@@ -81,12 +79,24 @@ const CardDot = ({ className, setModal, item }) => {
             <button type="button">Edit</button>
           </li>
           <li>
-            <button type="button" onClick={() => setModal({ show: true, type: 'price', detail: item })}>
+            <button
+              type="button"
+              onClick={() => {
+                setModal({ show: true, type: 'price', detail: item });
+                setShow(false);
+              }}
+            >
               Price
             </button>
           </li>
           <li>
-            <button type="button" onClick={() => setModal({ show: true, type: 'delete', detail: item })}>
+            <button
+              type="button"
+              onClick={() => {
+                setModal({ show: true, type: 'delete', detail: item });
+                setShow(false);
+              }}
+            >
               Delete
             </button>
           </li>

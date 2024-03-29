@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
-import AllGames from '../Components/AllGames/AllGames/AllGames';
+import AddTags from '../Components/AddTags/AddTags/AddTags';
 import DashboardModal from '../Components/DashboardModal/DashboardModal/DashboardModal';
 import styles from './DashboardBody.module.css';
 
@@ -13,7 +13,7 @@ const DashboardBody = () => {
     <div className={styles.dashboardBodyScrollContainer}>
       <div ref={parentRef} className={styles.dashboardBodyContainer}>
         <div ref={childRef} className={styles.dashboardBody}>
-          <AllGames setModal={setModal} />
+          <AddTags />
         </div>
       </div>
       <ScrollBar parentRef={parentRef} childRef={childRef} />
