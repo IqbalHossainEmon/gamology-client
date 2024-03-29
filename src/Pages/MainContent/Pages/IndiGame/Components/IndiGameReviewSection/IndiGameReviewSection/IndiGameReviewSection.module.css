@@ -3,7 +3,7 @@
 }
 .reviewContainer {
   background: #252525;
-  padding: 60px 90px 0 90px;
+  padding: 35px 60px;
   overflow: auto;
 }
 .reviewMainHeader {
@@ -11,14 +11,8 @@
   font-weight: 500;
 }
 
-@media only screen and (max-width: 1252px) and (min-width: 616px) {
+@media only screen and (max-width: 768px) {
   .reviewContainer {
-    padding: 50px 30px 0 30px;
-  }
-}
-
-@media only screen and (max-width: 615px) {
-  .reviewContainer {
-    padding: 10px 10px 0 10px;
+    padding: 1.5rem;
   }
 }

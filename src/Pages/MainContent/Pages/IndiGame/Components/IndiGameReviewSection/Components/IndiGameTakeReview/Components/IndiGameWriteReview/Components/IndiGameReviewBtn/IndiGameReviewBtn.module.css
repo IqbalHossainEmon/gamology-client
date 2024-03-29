@@ -1,7 +1,9 @@
 .IndiGameReviewButtons {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .submitBtn {
@@ -10,7 +12,6 @@
   padding: 8px;
   border: none;
   border-radius: 3px;
-  margin-left: 10px;
   cursor: pointer;
   transition: background-color 200ms;
   position: relative;
@@ -48,16 +49,4 @@
 
 .cantSubmit:active {
   background-color: rgb(211, 27, 27);
-}
-
-@media only screen and (max-width: 265px) {
-  .IndiGameReviewButtons {
-    left: 0;
-    bottom: 0;
-  }
-  .submitBtn {
-    display: block;
-    margin-top: 10px;
-    margin-left: 0;
-  }
 }
