@@ -4,6 +4,9 @@ import styles from './Pagination.module.css';
 
 export default function Pagination({ activePage, setActivePage, totalPage }) {
   const paginationRange = usePagination(totalPage, activePage);
+  if (totalPage <= 1) {
+    return null;
+  }
 
   return (
     <ul className={styles.pagination}>

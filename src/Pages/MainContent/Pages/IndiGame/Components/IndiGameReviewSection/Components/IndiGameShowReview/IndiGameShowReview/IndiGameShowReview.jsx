@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import Pagination from '../../../../../../../../../Shared/Pagination/Pagination';
 import IndiGameOrderBy from '../Components/IndiGameOrderBy/IndiGameOrderBy';
 import IndiGameReviews from '../Components/IndiGameReviews/IndiGameReviews';
-import IndiGameViewMoreButton from '../Components/IndiGameViewMoreButton/IndiGameViewMoreButton';
 import styles from './IndiGameShowReview.module.css';
 
 const data = [
@@ -64,6 +64,7 @@ const data = [
 
 export default function IndiGameShowReview() {
   const [reviews, setReviews] = useState([]);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     setReviews(data);
@@ -77,7 +78,9 @@ export default function IndiGameShowReview() {
     <div className={styles.individualGameShowReview}>
       <IndiGameOrderBy handleSort={handleChange} />
       <IndiGameReviews reviews={reviews} />
-      <IndiGameViewMoreButton handleChange={handleChange} />
+      <div className={styles.paginationContainer}>
+        <Pagination activePage={activePage} setActivePage={setActivePage} totalPage={1} />
+      </div>
     </div>
   );
 }
