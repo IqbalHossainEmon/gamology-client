@@ -13,7 +13,9 @@ const IndiGameDetails = () => (
         <IndiGameDescription />
         <IndiGameSpecifications />
       </div>
-      <IndiGameDetailAside />
+      <div className={styles.asideDetail}>
+        <IndiGameDetailAside />
+      </div>
     </div>
     <div>
       <IndiGameReviewSection />

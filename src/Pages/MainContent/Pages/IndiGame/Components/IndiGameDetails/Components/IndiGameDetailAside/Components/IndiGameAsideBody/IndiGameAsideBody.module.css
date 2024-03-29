@@ -123,10 +123,11 @@
   align-items: center;
   padding: 10px 0;
   position: relative;
+  gap: 1rem;
 }
 
 .key {
-  margin-right: 30px;
+  word-wrap: break-word;
 }
 
 .gameInfo:not(:last-child)::after {
@@ -145,6 +146,7 @@
 
 .value {
   text-align: right;
+  word-wrap: break-word;
 }
 
 .logos svg {
