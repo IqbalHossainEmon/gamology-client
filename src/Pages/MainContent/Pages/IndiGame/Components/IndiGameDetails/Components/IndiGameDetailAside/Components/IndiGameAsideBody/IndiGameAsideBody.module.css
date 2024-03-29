@@ -225,3 +225,10 @@
     width: 2px;
   }
 }
+
+@media only screen and (max-width: 275px) {
+  .value,
+  .key {
+    font-size: 0.8rem;
+  }
+}
