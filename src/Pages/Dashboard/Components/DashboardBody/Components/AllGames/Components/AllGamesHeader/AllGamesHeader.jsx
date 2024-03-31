@@ -10,9 +10,8 @@ const AllGamesHeader = ({ setSearchText }) => {
 
     return (
         <div className={styles.allGamesHeader}>
-            <div className={styles.headerText}>
-                <h2>Search Any Games</h2>
-            </div>
+            <h2 className={styles.headerText}>Search Any Games</h2>
+
             <div className={styles.searchFieldContainer}>
                 <div className={`${navShow ? `${styles.searchShow} ` : ''}${styles.searchField}`}>
                     <SearchField setNavShow={setNavShow} change={setSearchText} />

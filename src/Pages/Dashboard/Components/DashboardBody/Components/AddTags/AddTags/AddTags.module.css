@@ -1,3 +1,7 @@
 .addTags {
-  width: 100%;
+	width: 100%;
+}
+.tagsHeader {
+	font-weight: 400;
+	font-size: 2rem;
 }

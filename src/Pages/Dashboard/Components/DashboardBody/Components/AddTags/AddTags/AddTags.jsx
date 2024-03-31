@@ -1,19 +1,7 @@
+import TagsContainer from '../Components/TagsContainer/TagsContainer';
 import styles from './AddTags.module.css';
 
 const tags = [
-    {
-        id: 0,
-        optionList: [
-            {
-                id: 0,
-                tags: 'Show only discounted',
-            },
-            {
-                id: 2,
-                tags: 'Hide all owned products',
-            },
-        ],
-    },
     {
         id: 2,
         category: 'Genre',
@@ -58,7 +46,8 @@ const tags = [
 
 const AddTags = () => (
     <div className={styles.addTags}>
-        <p>Add Tags</p>
+        <h2 className={styles.tagsHeader}>Tags</h2>
+        <TagsContainer tags={tags} />
     </div>
 );
 export default AddTags;
