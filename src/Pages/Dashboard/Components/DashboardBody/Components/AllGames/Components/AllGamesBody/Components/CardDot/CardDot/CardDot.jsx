@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../../../../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../../../../../../../../../Hooks/useDropDownHide';
+import CardDotModalBody from '../Components/CardDotModalBodyContainer/CardDotModalBody';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ className, setModal, item }) => {
@@ -82,7 +83,16 @@ const CardDot = ({ className, setModal, item }) => {
                         <button
                             type="button"
                             onClick={() => {
-                                setModal({ show: true, type: 'price', detail: item });
+                                setModal({
+                                    show: true,
+                                    title: 'Edit Price',
+                                    modalQuestion: (
+                                        <>
+                                            What price($) you want to set for <span className={styles.nameContainer}>{item.name}</span>
+                                        </>
+                                    ),
+                                    modalBody: <CardDotModalBody type="price" detail={item} />,
+                                });
                                 setShow(false);
                             }}
                         >
@@ -93,7 +103,16 @@ const CardDot = ({ className, setModal, item }) => {
                         <button
                             type="button"
                             onClick={() => {
-                                setModal({ show: true, type: 'delete', detail: item });
+                                setModal({
+                                    show: true,
+                                    title: 'Delete Game',
+                                    modalQuestion: (
+                                        <>
+                                            Are you sure you want to delete <span className={styles.nameContainer}>{item.name}</span>?
+                                        </>
+                                    ),
+                                    modalBody: <CardDotModalBody type="delete" detail={item} />,
+                                });
                                 setShow(false);
                             }}
                         >
