@@ -4,7 +4,16 @@ import usePointersEveryStep from '../../../../../../../../../../../../../Hooks/u
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
-export default function RangeField({ state, setState, everyStep = 0, handleSetValue, inputRefLeft, inputRefRight, disabled }) {
+export default function RangeField({
+    state,
+    setState,
+    everyStep = 0,
+    handleSetValue,
+    inputRefLeft,
+    inputRefRight,
+    disabled,
+    handleStepChange,
+}) {
     const rangePathRef = useRef();
     const activePathRef = useRef();
     const stateRef = useRef(state);
@@ -16,7 +25,7 @@ export default function RangeField({ state, setState, everyStep = 0, handleSetVa
     const handlePathClick = e => {
         inputRefLeft.current.blur();
         inputRefRight.current.blur();
-
+        handleStepChange(e);
         if (e.target === rangePathRef.current || e.target === activePathRef.current) {
             const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightPointerStep(e);
 

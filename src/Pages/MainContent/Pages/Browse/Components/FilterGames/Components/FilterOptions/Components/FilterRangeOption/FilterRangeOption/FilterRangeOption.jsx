@@ -18,7 +18,6 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
     stateRef.current = knobState;
     const inputRefLeft = useRef(null);
     const inputRefRight = useRef(null);
-    const stepRef = useRef(option.steps);
 
     useEffect(() => {
         if (typeof limit !== 'object' || limit.higher <= limit.lower || disabled) {
@@ -34,7 +33,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
 
     useEffect(() => {
         if (typeof limit === 'object') {
-            const step = 100 / Math.ceil((limit.higher - limit.lower) / stepRef.current);
+            const step = 100 / Math.ceil((limit.higher - limit.lower) / option.steps);
 
             if (step === Infinity) {
                 everyStep.current = 0;
@@ -45,6 +44,10 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
             everyStep.lowerForInput = Math.floor(limit.lower / option.steps) * option.steps;
         }
     }, [limit, option]);
+
+    const handleStepChange = useCallback(e => {
+        console.log(e.target);
+    }, []);
 
     // set value after re-render and value change
     const handleSetValue = useCallback(() => {
@@ -84,6 +87,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
                 handleSetValue={handleSetValue}
                 everyStep={everyStep}
                 state={knobState}
+                handleStepChange={handleStepChange}
             />
             <RangeInput
                 disabled={knobState.disabled}
@@ -96,7 +100,6 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
                 value={knobState}
                 float={option.float}
                 limit={limit}
-                handleStepChange={option.stepChange}
             />
         </div>
     );

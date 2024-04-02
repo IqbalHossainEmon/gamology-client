@@ -11,7 +11,6 @@ export default function RangeInputField({
     lowerLim,
     setMainValue,
     inputRef,
-    handleStepChange,
     disabled,
 }) {
     const [value, setValue] = useState(0);
@@ -57,12 +56,8 @@ export default function RangeInputField({
                 return;
         }
 
-        if (typeof handleStepChange === 'function') {
-            handleStepChange(everyStep, val);
-        }
-
         setValue(val.toFixed(float));
-    }, [everyStep, float, handleStepChange, knob, limit, lowerLim, setMainValue, state]);
+    }, [everyStep, float, knob, limit, lowerLim, setMainValue, state]);
 
     const handleClick = e => {
         if (e.code === 'Enter' || e.code === 'NumpadEnter') {

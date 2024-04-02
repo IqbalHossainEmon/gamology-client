@@ -12,7 +12,6 @@ export default function RangeInput({
     handleSetValue: handleValue,
     inputRefLeft,
     inputRefRight,
-    handleStepChange,
     disabled,
 }) {
     const handleTimerTransition = useHandleTimerTransition(setValue, 250);
@@ -65,7 +64,6 @@ export default function RangeInput({
                 state={value}
                 knob="knob1"
                 limit={limit}
-                handleStepChange={handleStepChange}
             />
             <span className={styles.minus} />
             <RangeInputField

@@ -48,7 +48,14 @@ function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep, di
                     : { translate: `${state[name]}%` }
             }
         >
-            <div role="button" onTouchStart={onStart} onMouseDown={onStart} tabIndex={disabled ? -1 : 0} className={styles.knop} />
+            <div
+                role="button"
+                name={name}
+                onTouchStart={onStart}
+                onMouseDown={onStart}
+                tabIndex={disabled ? -1 : 0}
+                className={styles.knop}
+            />
         </div>
     );
 }
