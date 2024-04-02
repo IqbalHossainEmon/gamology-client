@@ -1,31 +1,32 @@
 .filterRange {
-  width: 100%;
-  margin-bottom: 1.5rem;
+	width: 100%;
+	margin-bottom: 1.5rem;
+	transition: opacity 200ms;
 }
 
 .filterRange[disabled] {
-  opacity: 0.3;
-  pointer-events: none;
-  cursor: default;
+	opacity: 0.3;
+	pointer-events: none;
+	cursor: default;
 }
 
 .downArrow {
-  position: absolute;
-  width: 23px;
-  scale: 0.5;
-  right: 0;
-  top: -3px;
-  rotate: 180deg;
-  transform: rotateY(180deg);
+	position: absolute;
+	width: 23px;
+	scale: 0.5;
+	right: 0;
+	top: -3px;
+	rotate: 180deg;
+	transform: rotateY(180deg);
 }
 .rangeTitle {
-  position: relative;
-  cursor: pointer;
-  transition: filter 200ms;
-  user-select: none;
-  -webkit-user-select: none;
+	position: relative;
+	cursor: pointer;
+	transition: filter 200ms;
+	user-select: none;
+	-webkit-user-select: none;
 }
 .sliderInputs {
-  overflow: hidden;
-  transition: height 300ms;
+	overflow: hidden;
+	transition: height 300ms;
 }

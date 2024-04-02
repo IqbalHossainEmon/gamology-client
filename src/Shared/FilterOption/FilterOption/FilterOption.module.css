@@ -1,42 +1,49 @@
 .filterOption {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  margin: 20px 0;
-  transition: filter 200ms;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	position: relative;
+	margin: 20px 0;
+	transition: filter 200ms;
+	background-color: transparent;
+	text-align: left;
+	border: none;
+	color: white;
 }
 .text {
-  user-select: none;
-  width: calc(100% - 70px);
-  -webkit-user-select: none;
-  overflow-wrap: anywhere;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  line-height: 18px;
+	user-select: none;
+	width: calc(100% - 70px);
+	-webkit-user-select: none;
+	overflow-wrap: anywhere;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 14px;
+	line-height: 18px;
 }
 
 .toggleButtonContainer {
-  position: absolute;
-  right: 30px;
-  width: 36px;
+	position: relative;
+	width: 100%;
+	max-width: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .borderBot::after {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  width: 100%;
-  height: 1px;
-  bottom: -10px;
+	content: '';
+	position: absolute;
+	pointer-events: none;
+	background-color: rgba(255, 255, 255, 0.5);
+	width: 100%;
+	height: 1px;
+	bottom: -10px;
 }
 .shadow > p {
-  transition: filter 200ms;
+	transition: filter 200ms;
 }
 .shadow:hover > p {
-  filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
+	filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
 }

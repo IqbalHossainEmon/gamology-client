@@ -5,26 +5,28 @@ import styles from './FilterOption.module.css';
 function FilterOption({ text, setState, border, state, name }) {
     const handleClick = useCallback(() => {
         setState(prev => ({ ...prev, [name]: !prev[name] }), name);
-        document.removeEventListener('mouseup', handleClick);
     }, [name, setState]);
+
     return (
-        <div
-            tabIndex="0"
-            role="button"
-            onMouseDown={() => {
-                document.addEventListener('mouseup', handleClick);
+        <button
+            type="button"
+            onClick={el => {
+                if (document.activeElement === el.target) {
+                    el.preventDefault();
+                    handleClick();
+                }
             }}
-            className={
-                border && styles.borderBot
-                    ? `${styles.filterOption} ${styles.borderBot} ${styles.shadow}`
-                    : `${styles.filterOption} ${styles.shadow}`
-            }
+            onMouseDownCapture={el => {
+                el.preventDefault();
+                el.target.addEventListener('mouseup', handleClick, { once: true });
+            }}
+            className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${styles.filterOption} ${styles.shadow}`}
         >
             <p className={styles.text}>{text}</p>
             <div className={styles.toggleButtonContainer}>
                 <FilterSwitch event={handleClick} state={state} setState={setState} name={name} />
             </div>
-        </div>
+        </button>
     );
 }
 

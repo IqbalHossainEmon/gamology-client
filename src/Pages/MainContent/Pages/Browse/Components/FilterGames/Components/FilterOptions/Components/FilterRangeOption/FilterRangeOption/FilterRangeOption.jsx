@@ -18,6 +18,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
     stateRef.current = knobState;
     const inputRefLeft = useRef(null);
     const inputRefRight = useRef(null);
+    const stepRef = useRef(option.steps);
 
     useEffect(() => {
         if (typeof limit !== 'object' || limit.higher <= limit.lower || disabled) {
@@ -33,7 +34,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
 
     useEffect(() => {
         if (typeof limit === 'object') {
-            const step = 100 / Math.ceil((limit.higher - limit.lower) / option.steps);
+            const step = 100 / Math.ceil((limit.higher - limit.lower) / stepRef.current);
 
             if (step === Infinity) {
                 everyStep.current = 0;
@@ -73,8 +74,9 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
     }, [limit, option, setState]);
 
     return (
-        <div className={styles.filterRange} {...(knobState.disabled && { disabled: 'disabled' })}>
+        <div className={styles.filterRange} {...(knobState.disabled && { disabled: true })}>
             <RangeField
+                disabled={knobState.disabled}
                 inputRefLeft={inputRefLeft}
                 inputRefRight={inputRefRight}
                 className={styles.rangeField}
@@ -84,6 +86,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
                 state={knobState}
             />
             <RangeInput
+                disabled={knobState.disabled}
                 inputRefLeft={inputRefLeft}
                 inputRefRight={inputRefRight}
                 setValue={setKnobState}
@@ -91,9 +94,9 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
                 everyStep={everyStep.stepForInput}
                 lowerLim={everyStep.lowerForInput}
                 value={knobState}
-                step={option.steps}
                 float={option.float}
                 limit={limit}
+                handleStepChange={option.stepChange}
             />
         </div>
     );
