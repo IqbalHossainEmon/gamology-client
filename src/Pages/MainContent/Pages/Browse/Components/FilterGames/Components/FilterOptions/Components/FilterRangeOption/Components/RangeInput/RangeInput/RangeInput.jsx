@@ -13,6 +13,7 @@ export default function RangeInput({
     inputRefLeft,
     inputRefRight,
     disabled,
+    inputValue,
 }) {
     const handleTimerTransition = useHandleTimerTransition(setValue, 250);
     // set value depending on knobs position
@@ -54,6 +55,7 @@ export default function RangeInput({
     return (
         <div className={styles.rangeInput}>
             <RangeInputField
+                inputValue={inputValue}
                 disabled={disabled}
                 inputRef={inputRefLeft}
                 float={float}
@@ -68,6 +70,7 @@ export default function RangeInput({
             <span className={styles.minus} />
             <RangeInputField
                 disabled={disabled}
+                inputValue={inputValue}
                 inputRef={inputRefRight}
                 float={float}
                 lowerLim={lowerLim}

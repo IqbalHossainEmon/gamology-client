@@ -25,7 +25,7 @@ export default function RangeField({
     const handlePathClick = e => {
         inputRefLeft.current.blur();
         inputRefRight.current.blur();
-        handleStepChange(e);
+
         if (e.target === rangePathRef.current || e.target === activePathRef.current) {
             const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightPointerStep(e);
 
@@ -72,6 +72,7 @@ export default function RangeField({
 
                 {['knob1', 'knob2'].map(rangeKnob => (
                     <RangeKnob
+                        handleStepChange={handleStepChange}
                         key={rangeKnob}
                         getLeftRightStep={getLeftRightPointerStep}
                         setState={setState}

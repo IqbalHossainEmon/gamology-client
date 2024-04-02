@@ -12,6 +12,7 @@ export default function RangeInputField({
     setMainValue,
     inputRef,
     disabled,
+    inputValue,
 }) {
     const [value, setValue] = useState(0);
 
