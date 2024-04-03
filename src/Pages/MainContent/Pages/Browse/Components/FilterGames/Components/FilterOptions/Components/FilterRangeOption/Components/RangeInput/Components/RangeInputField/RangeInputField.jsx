@@ -42,8 +42,10 @@ export default function RangeInputField({
             case 'knob2':
                 if (knob1 <= knob2) {
                     checkKnob(knob2);
+                    inputValue.current.knob2 = val;
                 } else if (knob1 > knob2) {
                     checkKnob(knob1);
+                    inputValue.current.knob1 = val;
                 }
                 break;
             case 'knob1':
@@ -58,7 +60,7 @@ export default function RangeInputField({
         }
 
         setValue(val.toFixed(float));
-    }, [everyStep, float, knob, limit, lowerLim, setMainValue, state]);
+    }, [everyStep, float, inputValue, knob, limit, lowerLim, setMainValue, state]);
 
     const handleClick = e => {
         if (e.code === 'Enter' || e.code === 'NumpadEnter') {

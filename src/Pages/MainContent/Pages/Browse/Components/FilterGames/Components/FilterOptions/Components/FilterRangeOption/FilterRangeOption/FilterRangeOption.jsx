@@ -18,7 +18,8 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
     stateRef.current = knobState;
     const inputRefLeft = useRef(null);
     const inputRefRight = useRef(null);
-    const inputValue = useRef({ left: 0, right: 0 });
+    const stepRef = useRef(option.steps);
+    const inputValue = useRef({ knob1: 0, knob2: 0 });
 
     useEffect(() => {
         if (typeof limit !== 'object' || limit.higher <= limit.lower || disabled) {
@@ -34,20 +35,22 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
 
     useEffect(() => {
         if (typeof limit === 'object') {
-            const step = 100 / Math.ceil((limit.higher - limit.lower) / option.steps);
+            const step = 100 / Math.ceil((limit.higher - limit.lower) / stepRef.current);
 
             if (step === Infinity) {
                 everyStep.current = 0;
             } else {
                 everyStep.current = step;
             }
-            everyStep.stepForInput = option.steps / everyStep.current;
-            everyStep.lowerForInput = Math.floor(limit.lower / option.steps) * option.steps;
+            everyStep.stepForInput = stepRef.current / everyStep.current;
+            everyStep.lowerForInput = Math.floor(limit.lower / stepRef.current) * stepRef.current;
         }
     }, [limit, option]);
 
     const handleStepChange = useCallback(e => {
-        console.log(e.target.getAttribute('name'));
+        if (e.target.getAttribute('data-knob') === 'knob1') {
+            inputValue.current.knob1 = e.target.value;
+        }
     }, []);
 
     // set value after re-render and value change

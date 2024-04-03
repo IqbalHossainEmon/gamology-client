@@ -50,7 +50,7 @@ function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep, di
         >
             <div
                 role="button"
-                name={name}
+                data-knob={name}
                 onTouchStart={onStart}
                 onMouseDown={onStart}
                 tabIndex={disabled ? -1 : 0}
