@@ -47,11 +47,28 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
         }
     }, [limit, option]);
 
-    const handleStepChange = useCallback(e => {
-        if (e.target.getAttribute('data-knob') === 'knob1') {
-            inputValue.current.knob1 = e.target.value;
-        }
-    }, []);
+    const handleStepChange = useCallback(
+        e => {
+            // e.target.getAttribute('data-knob')
+            if (inputValue.current[e.target.getAttribute('data-knob')] > 50 && e.target.getAttribute('data-knob')) {
+                stepRef.current = 10;
+            } else if (inputValue.current[e.target.getAttribute('data-knob')] <= 50 && e.target.getAttribute('data-knob')) {
+                stepRef.current = 5;
+            } else if (e.target.getAttribute('data-knob')) {
+                stepRef.current = 1;
+            }
+            const step = 100 / Math.ceil((limit.higher - limit.lower) / stepRef.current);
+
+            if (step === Infinity) {
+                everyStep.current = 0;
+            } else {
+                everyStep.current = step;
+            }
+            everyStep.stepForInput = stepRef.current / everyStep.current;
+            everyStep.lowerForInput = Math.floor(limit.lower / stepRef.current) * stepRef.current;
+        },
+        [limit]
+    );
 
     // set value after re-render and value change
     const handleSetValue = useCallback(() => {

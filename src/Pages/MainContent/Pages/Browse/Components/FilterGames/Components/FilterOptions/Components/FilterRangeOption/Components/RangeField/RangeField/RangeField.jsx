@@ -19,7 +19,7 @@ export default function RangeField({
     const stateRef = useRef(state);
     stateRef.current = state;
 
-    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, everyStep.current);
+    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, everyStep);
 
     // set click value in the path of slider depending on steps
     const handlePathClick = e => {
