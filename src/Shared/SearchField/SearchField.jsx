@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
 import styles from './SearchField.module.css';
 
-export default function SearchField({ setNavShow = () => {}, change }) {
+export default function SearchField({ setNavShow = () => {}, setChangedValue }) {
     const searchRef = useRef(null);
     const searchInputRef = useRef(null);
     const debounceIdRef = useRef(null);
@@ -15,7 +15,7 @@ export default function SearchField({ setNavShow = () => {}, change }) {
             clearTimeout(debounceIdRef.current);
         }
         debounceIdRef.current = setTimeout(() => {
-            change(e.target.value);
+            setChangedValue(e.target.value);
         }, 500);
     };
 
@@ -77,6 +77,8 @@ export default function SearchField({ setNavShow = () => {}, change }) {
                 onChange={handleChange}
                 onMouseDown={handleSearchClick}
                 placeholder="Search Here"
+                name="search"
+                autoComplete="off"
                 type="text"
             />
         </button>

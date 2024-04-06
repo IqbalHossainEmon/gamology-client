@@ -1,6 +1,19 @@
 .browse {
-  width: 100%;
+	width: 100%;
 }
 .mainContent {
-  display: flex;
+	display: flex;
+	gap: 3rem;
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 769px) {
+	.mainContent {
+		gap: 1rem;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.mainContent {
+		gap: 0;
+	}
 }

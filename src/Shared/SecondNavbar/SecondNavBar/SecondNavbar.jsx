@@ -14,7 +14,7 @@ export default function SecondNavbar() {
     return (
         <section className={styles.SecondNavContainer}>
             <div className={styles.SecondNavbar}>
-                <SearchField {...(screenWidth <= 768 && { setNavShow })} change={e => console.log(e)} />
+                <SearchField {...(screenWidth <= 768 && { setNavShow })} setChangedValue={e => console.log(e)} />
                 <SecondNavLeftLinks {...(screenWidth <= 768 && { setNavShow })} screenWidth={screenWidth} />
                 <SecondNavRightLinks screenWidth={screenWidth} />
             </div>

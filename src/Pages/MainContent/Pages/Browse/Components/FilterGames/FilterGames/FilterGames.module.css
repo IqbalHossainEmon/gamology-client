@@ -1,66 +1,65 @@
 .FilterGames {
-  width: 25%;
-  padding: 10px 15px 0 0;
+	width: 25%;
 }
 .filterText {
-  font-weight: 400;
+	font-weight: 400;
 }
 @media only screen and (max-width: 864px) and (min-width: 769px) {
-  .FilterGames {
-    width: 30%;
-  }
+	.FilterGames {
+		width: 30%;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  .FilterGames {
-    position: fixed;
-    bottom: 0%;
-    width: 100vw;
-    height: 100vh;
-    background-color: #303030;
-    left: 0;
-    z-index: 4;
-    padding: 0;
-    transition: translate 300ms;
-  }
+	.FilterGames {
+		position: fixed;
+		bottom: 0%;
+		width: 100vw;
+		height: 100vh;
+		background-color: #303030;
+		left: 0;
+		z-index: 4;
+		padding: 0;
+		transition: translate 300ms;
+	}
 
-  .show {
-    translate: 0 0%;
-  }
-  .hidden {
-    translate: 0 100%;
-  }
+	.show {
+		translate: 0 0%;
+	}
+	.hidden {
+		translate: 0 100%;
+	}
 
-  .filterContainer {
-    overflow-y: scroll;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    padding: 20px 10px;
-  }
+	.filterContainer {
+		overflow-y: scroll;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		padding: 20px 10px;
+	}
 
-  .filterContainer::-webkit-scrollbar-track {
-    background: #303030;
-  }
+	.filterContainer::-webkit-scrollbar-track {
+		background: #303030;
+	}
 
-  .filterContainer::-webkit-scrollbar-thumb {
-    background: #414141;
-    border-radius: 5px;
-    opacity: 0;
-  }
+	.filterContainer::-webkit-scrollbar-thumb {
+		background: #414141;
+		border-radius: 5px;
+		opacity: 0;
+	}
 
-  .filterContainer::-webkit-scrollbar-thumb:hover {
-    background: #616161;
-    opacity: 0;
-  }
+	.filterContainer::-webkit-scrollbar-thumb:hover {
+		background: #616161;
+		opacity: 0;
+	}
 
-  .filterContainer::-webkit-scrollbar-thumb:active {
-    background: rgb(114, 114, 114);
-  }
+	.filterContainer::-webkit-scrollbar-thumb:active {
+		background: rgb(114, 114, 114);
+	}
 
-  .closeButton {
-    position: fixed;
-    right: 10px;
-    top: 10px;
-  }
+	.closeButton {
+		position: fixed;
+		right: 10px;
+		top: 10px;
+	}
 }
