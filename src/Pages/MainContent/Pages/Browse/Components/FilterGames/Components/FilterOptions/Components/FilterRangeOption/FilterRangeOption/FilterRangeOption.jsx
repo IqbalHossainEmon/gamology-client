@@ -1,39 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import RangeField from '../Components/RangeField/RangeField/RangeField';
-import RangeInput from '../Components/RangeInput/RangeInput/RangeInput';
 import styles from './FilterRangeOption.module.css';
 
 export default function FilterRangeOption({ option, limit, setState, disabled }) {
-    const [knobState, setKnobState] = useState({
-        knob1: 0,
-        knob2: 100,
-        disabled: false,
-        show: true,
-        height: NaN,
-        transition: false,
-    });
-
-    const everyStep = useRef(0);
-    const stateRef = useRef(knobState);
-    stateRef.current = knobState;
-    const inputRefLeft = useRef(null);
-    const inputRefRight = useRef(null);
-    const stepRef = useRef(option.steps);
-    const inputValue = useRef({ knob1: 0, knob2: 0 });
+    const [disableState, setDisableState] = useState(false);
 
     useEffect(() => {
         if (typeof limit !== 'object' || limit.higher <= limit.lower || disabled) {
-            setKnobState(prev => ({ ...prev, disabled: true }));
+            setDisableState(true);
         } else {
-            setKnobState(prev => {
-                const prevState = { ...prev };
-                delete prevState.disabled;
-                return prevState;
-            });
+            setDisableState(false);
         }
     }, [disabled, limit]);
 
-    useEffect(() => {
+    /*   useEffect(() => {
         if (typeof limit === 'object') {
             const step = 100 / Math.ceil((limit.higher - limit.lower) / stepRef.current);
 
@@ -95,22 +75,12 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
                 [option.rangeName]: { lower, higher },
             }));
         }, 0);
-    }, [limit, option, setState]);
+    }, [limit, option, setState]); */
 
     return (
-        <div className={styles.filterRange} {...(knobState.disabled && { disabled: true })}>
-            <RangeField
-                disabled={knobState.disabled}
-                inputRefLeft={inputRefLeft}
-                inputRefRight={inputRefRight}
-                className={styles.rangeField}
-                setState={setKnobState}
-                handleSetValue={handleSetValue}
-                everyStep={everyStep}
-                state={knobState}
-                handleStepChange={handleStepChange}
-            />
-            <RangeInput
+        <div className={styles.filterRange} {...(disableState && { disabled: true })}>
+            <RangeField disabled={disableState} />
+            {/* <RangeInput
                 disabled={knobState.disabled}
                 inputRefLeft={inputRefLeft}
                 inputRefRight={inputRefRight}
@@ -122,7 +92,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
                 float={option.float}
                 limit={limit}
                 inputValue={inputValue}
-            />
+            /> */}
         </div>
     );
 }

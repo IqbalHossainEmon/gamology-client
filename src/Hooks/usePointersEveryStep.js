@@ -18,9 +18,9 @@ export default function usePointersEveryStep(rangePathRef, everyStep) {
 
             const cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
-            const pointerLeftStep = Math.round(cursorInPercent / everyStep.current) * everyStep.current;
+            const pointerLeftStep = Math.round(cursorInPercent / (everyStep || 1)) * (everyStep || 1);
 
-            const pointerRightStep = pointerLeftStep + everyStep.current;
+            const pointerRightStep = pointerLeftStep + (everyStep || 1);
 
             const leftDiff = cursorInPercent - pointerLeftStep;
             const rightDiff = pointerRightStep - cursorInPercent;

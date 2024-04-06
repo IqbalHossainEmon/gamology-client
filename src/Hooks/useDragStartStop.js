@@ -8,15 +8,15 @@ export default function useDragStartStop(handleMove, handleMouseUp = () => {}, h
         e => {
             handleMouseUp(e);
 
-            if (document.getElementById('root').classList.contains('grabbing')) {
-                document.getElementById('root').classList.remove('grabbing');
-            }
-
             document.removeEventListener('mousemove', handleMove);
             document.removeEventListener('touchmove', handleMove);
             document.removeEventListener('mouseup', onStop);
             document.removeEventListener('touchend', onStop);
             window.removeEventListener('blur', onStop);
+
+            if (document.getElementById('root').classList.contains('grabbing')) {
+                document.getElementById('root').classList.remove('grabbing');
+            }
         },
         [handleMove, handleMouseUp]
     );
@@ -24,16 +24,17 @@ export default function useDragStartStop(handleMove, handleMouseUp = () => {}, h
     const onStart = useCallback(
         e => {
             handleMouseDown(e);
-            if (!isTouchAble() && grab) {
-                e.preventDefault();
-                document.getElementById('root').classList.add('grabbing');
-            }
-            document.body.blur();
+
             document.addEventListener('mousemove', handleMove);
             document.addEventListener('touchmove', handleMove);
             document.addEventListener('mouseup', onStop);
             document.addEventListener('touchend', onStop);
             window.addEventListener('blur', onStop);
+
+            if (!isTouchAble() && grab) {
+                e.preventDefault();
+                document.getElementById('root').classList.add('grabbing');
+            }
         },
         [grab, handleMouseDown, handleMove, isTouchAble, onStop]
     );

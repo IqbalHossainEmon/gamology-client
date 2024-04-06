@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep, disabled, handleStepChange }) {
+function RangeKnob({ state, setState, name, getLeftRightStep, disabled }) {
     const stateRef = useRef(state);
     stateRef.current = state;
 
@@ -10,7 +10,7 @@ function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep, di
     const handleMove = useCallback(
         e => {
             const { cursorInPercent, pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
-            handleStepChange(e);
+
             // if cursors position is inside the slider range;
             if (cursorInPercent > 0 && cursorInPercent < 100) {
                 // check and set value depend on step
@@ -31,10 +31,10 @@ function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep, di
                 setState(prev => ({ ...prev, [name]: 100 }));
             }
         },
-        [getLeftRightStep, handleStepChange, name, setState]
+        [getLeftRightStep, name, setState]
     );
 
-    const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
+    const onStart = useDragStartStop(handleMove, undefined, undefined, true);
 
     return (
         <div
@@ -42,10 +42,10 @@ function RangeKnob({ state, setState, name, handleSetValue, getLeftRightStep, di
             style={
                 state.transition
                     ? {
-                          translate: `${state[name]}%`,
+                          translate: `${state}%`,
                           transition: 'translate linear 200ms',
                       }
-                    : { translate: `${state[name]}%` }
+                    : { translate: `${state}%` }
             }
         >
             <div
