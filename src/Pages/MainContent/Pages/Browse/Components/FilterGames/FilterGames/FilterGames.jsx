@@ -32,16 +32,11 @@ const options = [
             {
                 id: 1,
                 rangeName: 'price',
-                steps: 10,
-                stepChange: (currentStep, price) => {
-                    if (price > 50) {
-                        currentStep = 10;
-                    } else if (price > 10) {
-                        currentStep = 5;
-                    } else {
-                        currentStep = 1;
-                    }
-                },
+                stepCondition: [
+                    { ifLess: 10, step: 1 },
+                    { ifLess: 100, step: 10 },
+                    { ifLess: 50, step: 5 },
+                ],
                 float: 2,
             },
             {
@@ -102,7 +97,6 @@ const options = [
             {
                 id: 5,
                 rangeName: 'releaseDate',
-                steps: 1,
                 float: 0,
             },
         ],

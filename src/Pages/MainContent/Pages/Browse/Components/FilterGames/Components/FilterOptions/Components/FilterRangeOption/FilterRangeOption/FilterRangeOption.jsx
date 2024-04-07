@@ -13,21 +13,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
         }
     }, [disabled, limit]);
 
-    /*   useEffect(() => {
-        if (typeof limit === 'object') {
-            const step = 100 / Math.ceil((limit.higher - limit.lower) / stepRef.current);
-
-            if (step === Infinity) {
-                everyStep.current = 0;
-            } else {
-                everyStep.current = step;
-            }
-            everyStep.stepForInput = stepRef.current / everyStep.current;
-            everyStep.lowerForInput = Math.floor(limit.lower / stepRef.current) * stepRef.current;
-        }
-    }, [limit, option]);
-
-    const handleStepChange = useCallback(
+    /*       const handleStepChange = useCallback(
         e => {
             // e.target.getAttribute('data-knob')
             if (inputValue.current[e.target.getAttribute('data-knob')] > 50 && e.target.getAttribute('data-knob')) {
@@ -79,7 +65,7 @@ export default function FilterRangeOption({ option, limit, setState, disabled })
 
     return (
         <div className={styles.filterRange} {...(disableState && { disabled: true })}>
-            <RangeField disabled={disableState} />
+            <RangeField disabled={disableState} conditionStep={option.stepCondition} limit={limit} />
             {/* <RangeInput
                 disabled={knobState.disabled}
                 inputRefLeft={inputRefLeft}

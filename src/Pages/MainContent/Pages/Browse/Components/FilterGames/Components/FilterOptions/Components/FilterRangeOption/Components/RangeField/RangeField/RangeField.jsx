@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import usePointersEveryStep from '../../../../../../../../../../../../../Hooks/usePointersEveryStep';
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
-export default function RangeField({ disabled }) {
+export default function RangeField({ disabled, conditionStep, limit }) {
     const [state, setState] = useState({
         knob1: 0,
         knob2: 100,
@@ -13,11 +13,28 @@ export default function RangeField({ disabled }) {
             knob2: 1,
         },
     });
-
     const { knob1, knob2, transition, everyStep } = state;
 
     const rangePathRef = useRef();
     const activePathRef = useRef();
+    const conditionStepRef = useRef([]);
+    const singleStepRef = useRef(0);
+
+    console.log(knob1 * singleStepRef.current);
+
+    useEffect(() => {
+        singleStepRef.current = 100 / (limit.higher - limit.lower);
+        if (!conditionStep || conditionStep.length === 0) {
+            setState(prev => ({ ...prev, everyStep: { knob1: singleStepRef.current, knob2: singleStepRef.current } }));
+        } else {
+            conditionStep.sort((a, b) => a.ifLess - b.ifLess);
+            conditionStep.forEach(step => {
+                step.ifLess *= singleStepRef.current;
+                step.step *= singleStepRef.current;
+            });
+            conditionStepRef.current = conditionStep;
+        }
+    }, [conditionStep, limit]);
 
     const getLeftRightPointerStep = usePointersEveryStep(rangePathRef);
 
@@ -66,6 +83,7 @@ export default function RangeField({ disabled }) {
                         name={rangeKnob}
                         transition={transition}
                         disabled={disabled}
+                        conditionStep={conditionStepRef.current}
                     />
                 ))}
             </div>

@@ -2,48 +2,53 @@ import { useCallback, useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, everyStep }) {
+function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, everyStep, conditionStep }) {
     const stateRef = useRef(state);
     stateRef.current = state;
     const everyStepRef = useRef(everyStep);
     everyStepRef.current = everyStep;
 
-    const handleSetEveryStep = useCallback(value => {
-        console.log(value);
-        if (value > 50) {
-            return 10;
-        }
-        if (value > 0) {
-            return 1;
-        }
-        return everyStepRef.current;
-    }, []);
+    const handleSetEveryStep = useCallback(
+        value => {
+            const st = conditionStep.find(({ ifLess }) => value <= ifLess);
+
+            if (st) {
+                return st.step;
+            }
+            return conditionStep[conditionStep.length - 1].step;
+        },
+        [conditionStep]
+    );
 
     // Calculate move value
     const handleMove = useCallback(
         e => {
             const { cursorInPercent, pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e, everyStepRef.current);
 
-            let value = stateRef.curren;
+            let value = stateRef.current;
             // if cursors position is inside the slider range;
             if (cursorInPercent > 0 && cursorInPercent < 100) {
                 // check and set value depend on step
-                if (leftDiff < rightDiff && stateRef.current !== pointerLeftStep) {
+                if (leftDiff < rightDiff) {
                     value = pointerLeftStep;
-                } else if (leftDiff > rightDiff && stateRef.current !== pointerRightStep) {
+                } else if (leftDiff > rightDiff) {
                     value = pointerRightStep;
                 }
-            } else if (cursorInPercent <= 0 && stateRef.current !== 0) {
+            } else if (cursorInPercent <= 0) {
                 value = 0;
-            } else if (cursorInPercent >= 100 && stateRef.current !== 100) {
+            } else if (cursorInPercent >= 100) {
                 value = 100;
             }
 
-            everyStepRef.current = handleSetEveryStep(value);
+            if (value !== stateRef.current) {
+                if (conditionStep && conditionStep.length > 0) {
+                    everyStepRef.current = handleSetEveryStep(value);
+                }
 
-            setState(prev => ({ ...prev, [name]: value, everyStep: { ...prev.everyStep, [name]: everyStepRef.current } }));
+                setState(prev => ({ ...prev, [name]: value, everyStep: { ...prev.everyStep, [name]: everyStepRef.current } }));
+            }
         },
-        [getLeftRightStep, handleSetEveryStep, name, setState]
+        [conditionStep, getLeftRightStep, handleSetEveryStep, name, setState]
     );
 
     const onStart = useDragStartStop(handleMove, undefined, undefined, true);
