@@ -1,48 +1,48 @@
 .mainContentContainer {
-  display: flex;
-  gap: 0 4rem;
+	display: flex;
+	column-gap: 4rem;
 }
 .indiGameMainDetail {
-  width: calc(100% - 320px - 4rem);
-  flex-grow: 1;
+	width: calc(100% - 320px - 4rem);
+	flex-grow: 1;
 }
 .asideDetail {
-  width: 320px;
-  display: flex;
+	width: 320px;
+	display: flex;
 }
 
 @media only screen and (max-width: 1279px) {
-  .mainContentContainer {
-    gap: 0 1.5rem;
-  }
-  .indiGameMainDetail {
-    width: calc(100% - 260px - 1.5rem);
-  }
-  .asideDetail {
-    width: 260px;
-  }
+	.mainContentContainer {
+		column-gap: 1.5rem;
+	}
+	.indiGameMainDetail {
+		width: calc(100% - 260px - 1.5rem);
+	}
+	.asideDetail {
+		width: 260px;
+	}
 }
 @media only screen and (max-width: 1023px) {
-  .mainContentContainer {
-    gap: 0 2rem;
-  }
-  .indiGameMainDetail {
-    width: calc(100% - 256px - 2rem);
-  }
-  .asideDetail {
-    width: 256px;
-  }
+	.mainContentContainer {
+		column-gap: 2rem;
+	}
+	.indiGameMainDetail {
+		width: calc(100% - 256px - 2rem);
+	}
+	.asideDetail {
+		width: 256px;
+	}
 }
 
 @media (max-width: 768px) {
-  .mainContentContainer {
-    flex-direction: column-reverse;
-    gap: 4rem 0;
-  }
-  .indiGameMainDetail {
-    width: 100%;
-  }
-  .asideDetail {
-    width: 100%;
-  }
+	.mainContentContainer {
+		flex-direction: column-reverse;
+		column-gap: 0;
+	}
+	.indiGameMainDetail {
+		width: 100%;
+	}
+	.asideDetail {
+		width: 100%;
+	}
 }

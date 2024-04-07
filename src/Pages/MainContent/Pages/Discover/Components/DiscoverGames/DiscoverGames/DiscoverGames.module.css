@@ -1,10 +1,16 @@
 .Games {
-  margin-bottom: 3rem;
-  width: 100%;
-  position: relative;
+	margin-bottom: 3rem;
+	width: 100%;
+	position: relative;
 }
 
-.sectionName {
-  position: absolute;
-  top: 0;
+.headerButtonContainer {
+	display: flex;
+	align-items: center;
+}
+
+@media only screen and (max-width: 1023px) {
+	.Games {
+		padding: 0 1rem;
+	}
 }

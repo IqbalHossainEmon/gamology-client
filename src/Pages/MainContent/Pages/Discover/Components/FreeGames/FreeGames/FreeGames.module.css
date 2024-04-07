@@ -1,52 +1,77 @@
 .freeGames {
-  margin-bottom: 3rem;
-  width: 75vw;
-  max-width: 1600px;
-  position: relative;
-  background-color: #3d3d3d;
-  padding: 2rem;
-  border-radius: 5px;
+	width: 100%;
+	position: relative;
+	background-color: #3d3d3d;
+	padding: 2rem;
+	border-radius: 5px;
+	margin-bottom: 3rem;
 }
 
 .header {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
-.header h3 {
-  font-weight: 400;
+.headerName {
+	font-size: 18px;
+	font-weight: 400;
 }
 .viewMoreBtn {
-  margin-left: auto;
-  background-color: #1a1a1a;
-  position: relative;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+	margin-left: auto;
+	background-color: #1a1a1a;
+	position: relative;
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
 }
 .viewMoreBtn:hover {
-  background-color: #2a2a2a;
+	background-color: #2a2a2a;
 }
 .games {
-  padding-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+	padding-top: 20px;
+	width: 100%;
+	display: grid;
+	gap: 2rem;
+}
+
+.games4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+.games3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+.games2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+.games1 {
+	grid-template-columns: repeat(1, 1fr);
 }
 
 .header img {
-  width: 2rem;
-  margin-right: 1rem;
+	width: 2rem;
+	margin-right: 1rem;
 }
 
-@media (max-width: 1023px) {
-  .freeGames {
-    width: 98%;
-    padding: 1rem;
-  }
-  .header h3 {
-    font-size: 14px;
-  }
+@media only screen and (max-width: 768px) {
+	.games4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media only screen and (max-width: 596px) {
+	.freeGames {
+		padding: 1rem;
+	}
+	.games {
+		gap: 1rem;
+	}
+}
+@media only screen and (max-width: 322px) {
+	.games4,
+	.games3,
+	.games2 {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }

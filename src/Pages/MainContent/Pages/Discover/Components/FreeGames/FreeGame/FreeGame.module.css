@@ -1,61 +1,60 @@
 .freeGame {
-  cursor: pointer;
-  transition: filter 300ms;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+	width: 100%;
+	cursor: pointer;
+	transition: filter 300ms;
+	display: flex;
+	flex-direction: column;
 }
 
 .gameHeader {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .gameHeader img {
-  border-radius: 5px 5px 0 0;
-  width: 100%;
-  aspect-ratio: 1/1.4;
+	border-radius: 5px 5px 0 0;
+	width: 100%;
 }
 
 .freeNow {
-  background-color: rgb(0, 116, 228);
+	background-color: rgb(0, 116, 228);
 }
 
 .coming {
-  background-color: #000;
+	background-color: #000;
 }
 
 .common {
-  font-size: 12px;
-  text-align: center;
-  padding: 10px 0;
-  border-radius: 0 0 5px 5px;
+	font-size: 12px;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 0 0 5px 5px;
 }
 .gameDetail {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
 }
 .date {
-  color: rgb(173, 173, 173);
-  flex-grow: 0;
+	color: rgb(173, 173, 173);
+	flex-grow: 0;
 }
 .name {
-  margin-top: 10px;
-  flex-grow: 1;
+	margin-top: 10px;
+	flex-grow: 1;
 }
 .gameDetail p {
-  font-size: 14px;
+	font-size: 14px;
 }
 @media only screen and (min-width: 1600px) {
-  .gameDetail p {
-    font-size: 16px;
-  }
+	.gameDetail p {
+		font-size: 16px;
+	}
 }
 
 @media only screen and (max-width: 352px) {
-  .gameDetail p {
-    font-size: 12px;
-  }
+	.gameDetail p {
+		font-size: 12px;
+	}
 }

@@ -1,25 +1,19 @@
 .mainContent {
-  width: 100%;
-  height: calc(100vh - 72px);
+	width: 100%;
+	height: calc(100vh - 72px);
 }
 .main {
-  width: 75%;
-  max-width: 1600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  z-index: 0;
+	width: 75%;
+	max-width: 1600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	z-index: 0;
 }
 
 @media only screen and (max-width: 1023px) {
-  .main {
-    width: 100%;
-    padding: 0 1rem;
-  }
-}
-@media only screen and (max-width: 264px) {
-  .main {
-    padding: 0 3px;
-  }
+	.main {
+		width: 100%;
+	}
 }

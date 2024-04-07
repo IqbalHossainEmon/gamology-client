@@ -1,52 +1,52 @@
 .IndiGameReviewButtons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  gap: 1rem;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1rem;
+	column-gap: 1rem;
+	flex-wrap: wrap;
 }
 
 .submitBtn {
-  background-color: rgb(14, 101, 182);
-  color: #ebebeb;
-  padding: 8px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 200ms;
-  position: relative;
+	background-color: rgb(14, 101, 182);
+	color: #ebebeb;
+	padding: 8px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: background-color 200ms;
+	position: relative;
 }
 
 .submitBtn:hover {
-  background-color: rgb(15, 109, 197);
+	background-color: rgb(15, 109, 197);
 }
 
 .submitBtn:active {
-  background-color: rgb(15, 121, 221);
+	background-color: rgb(15, 121, 221);
 }
 
 .closeBtn {
-  background-color: rgb(187, 187, 187);
-  color: #000000;
-  padding: 8px;
-  border: none;
-  border-radius: 3px;
-  transition:
-    background-color 200ms,
-    color 200ms;
-  cursor: pointer;
+	background-color: rgb(187, 187, 187);
+	color: #000000;
+	padding: 8px;
+	border: none;
+	border-radius: 3px;
+	transition:
+		background-color 200ms,
+		color 200ms;
+	cursor: pointer;
 }
 
 .closeBtn:hover {
-  background-color: rgb(24, 24, 24);
-  color: #acacac;
+	background-color: rgb(24, 24, 24);
+	color: #acacac;
 }
 
 .closeBtn:active {
-  background-color: rgb(32, 32, 32);
-  color: #acacac;
+	background-color: rgb(32, 32, 32);
+	color: #acacac;
 }
 
 .cantSubmit:active {
-  background-color: rgb(211, 27, 27);
+	background-color: rgb(211, 27, 27);
 }

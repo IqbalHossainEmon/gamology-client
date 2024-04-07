@@ -1,30 +1,15 @@
 import { useEffect, useState } from 'react';
-import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 import styles from './FreeGame.module.css';
+
+// get the month name depending on given time
+function getMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+    return date.toLocaleString('en-US', { month: 'long' });
+}
 
 export default function FreeGame({ data, today, length }) {
     const [dateState, setDateState] = useState(-1);
-    const screenWidth = useScreenWidth();
-
-    const [gameWidth, setGameWidth] = useState({ width: `${100 / length}%` });
-
-    // get the month name depending on given time
-    function getMonthName(monthNumber) {
-        const date = new Date();
-        date.setMonth(monthNumber - 1);
-        return date.toLocaleString('en-US', { month: 'long' });
-    }
-
-    // sets cards width depending on screen width
-    useEffect(() => {
-        if (screenWidth >= 768) {
-            setGameWidth({ width: `${100 / length - length + 2}%` });
-        } else if (length % 2 === 0) {
-            setGameWidth({ width: '46%' });
-        } else {
-            setGameWidth({ width: '100%' });
-        }
-    }, [screenWidth, length]);
 
     // Finding todays date and comparing the upcoming / expire date and setting styles
     useEffect(() => {
@@ -42,9 +27,9 @@ export default function FreeGame({ data, today, length }) {
 
     return (
         dateState !== -1 && (
-            <div className={[styles.freeGame, 'hover-shadow'].join(' ')} style={gameWidth}>
+            <div className={`${styles.freeGame} hover-shadow`}>
                 <div className={styles.gameHeader}>
-                    <img style={{ aspectRatio: `1/1.${length}` }} src={data.carouselThumb} alt="" />
+                    <img style={{ aspectRatio: `1/1.${length}` }} src={data.carouselThumb} alt={data.name} />
                     {dateState !== -1 && (
                         <p
                             className={

@@ -1,6 +1,6 @@
 import Footer from '../../../Shared/Footer/Footer';
 import SecondNavbar from '../../../Shared/SecondNavbar/SecondNavBar/SecondNavbar';
-import Browse from '../Pages/Browse/Browse/Browse';
+import Discover from '../Pages/Discover/Discover/Discover';
 import styles from './MainContent.module.css';
 
 export default function MainContent() {
@@ -8,7 +8,7 @@ export default function MainContent() {
         <>
             <SecondNavbar />
             <main className={styles.main}>
-                <Browse />
+                <Discover />
             </main>
             <Footer />
         </>

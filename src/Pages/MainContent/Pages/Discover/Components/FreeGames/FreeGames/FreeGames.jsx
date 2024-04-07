@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
@@ -52,7 +52,7 @@ const data = [
             [15, 12, 2025],
         ],
     },
-    {
+    /*     {
         id: 111,
         category: {
             card: 'Base game',
@@ -67,28 +67,47 @@ const data = [
             [1, 11, 2024],
             [23, 12, 2025],
         ],
-    },
+    }, */
 ];
 
+const getClassName = length => {
+    switch (length) {
+        case 4:
+            return styles.games4;
+        case 3:
+            return styles.games3;
+        case 2:
+            return styles.games2;
+        default:
+            return styles.games1;
+    }
+};
+
+const date = new Date();
+const today = [date.getDate(), date.getMonth() + 1, date.getFullYear()];
+
 export default function FreeGames() {
-    const dataLength = useRef(data.length);
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        setItems(data);
+    }, []);
+
     const btnRef = useRef(null);
-    const date = useRef(new Date());
-    const today = useRef([date.current.getDate(), date.current.getMonth() + 1, date.current.getFullYear()]);
 
     return (
         <section className={styles.freeGames}>
             <div className={styles.header}>
                 <img src="/assets/images/gift.png" alt="gift" />
-                <h3>Free games</h3>
+                <h3 className={styles.headerName}>Free games</h3>
                 <button ref={btnRef} className={styles.viewMoreBtn} type="button">
                     View More
                     <ButtonWaterEffect btnRef={btnRef} />
                 </button>
             </div>
-            <div className={styles.games}>
-                {data.map(game => (
-                    <FreeGame key={game.id} length={dataLength.current} data={game} today={today.current} />
+            <div className={`${getClassName(items.length)} ${styles.games}`}>
+                {items.map(item => (
+                    <FreeGame key={item.id} length={items.length} data={item} today={today} />
                 ))}
             </div>
         </section>

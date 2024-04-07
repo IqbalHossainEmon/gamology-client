@@ -255,12 +255,14 @@ export default function DiscoverGames() {
 
     return (
         <section className={styles.Games}>
-            <CardsHeader headerTitle="Game on sale" />
-            <GamesButton
-                cardActive={cardActive}
-                length={data.length - cardOnDeck}
-                handleClick={click => handleClick(click, cardActive, cardOnDeck)}
-            />
+            <div className={styles.headerButtonContainer}>
+                <CardsHeader headerTitle="Game on sale" />
+                <GamesButton
+                    cardActive={cardActive}
+                    length={data.length - cardOnDeck}
+                    handleClick={click => handleClick(click, cardActive, cardOnDeck)}
+                />
+            </div>
             <DiscoverGamesCards style={{ translate, transition, margin }} cardsWidth={cardsWidth} ref={cardsContainer} data={data} />
         </section>
     );
