@@ -52,7 +52,7 @@ const data = [
             [15, 12, 2025],
         ],
     },
-    /*     {
+    {
         id: 111,
         category: {
             card: 'Base game',
@@ -67,7 +67,7 @@ const data = [
             [1, 11, 2024],
             [23, 12, 2025],
         ],
-    }, */
+    },
 ];
 
 const getClassName = length => {
