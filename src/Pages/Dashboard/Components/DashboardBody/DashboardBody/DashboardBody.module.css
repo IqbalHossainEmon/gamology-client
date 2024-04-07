@@ -1,34 +1,40 @@
 .dashboardBodyScrollContainer {
-  flex-grow: 1;
-  position: relative;
-  overflow: hidden;
-  height: 100%;
+	flex-grow: 1;
+	position: relative;
+	overflow: hidden;
+	height: 100%;
 }
 .dashboardBodyContainer {
-  height: 100%;
-  padding: 1rem 0;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+	height: 100%;
+	padding: 1rem 0;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 .dashboardBody {
-  width: 75vw;
-  max-width: 1600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
+	width: 75vw;
+	max-width: 1600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
 }
 
 .dashboardBodyContainer::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 @media only screen and (max-width: 1099px) {
-  .dashboardBodyContainer {
-    width: 100%;
-  }
-  .dashboardBody {
-    width: 100%;
-    margin-top: 1rem;
-  }
+	.dashboardBodyContainer {
+		width: 100%;
+	}
+	.dashboardBody {
+		width: calc(100% - 2rem);
+		margin-top: 1rem;
+	}
+}
+@media only screen and (max-width: 499px) {
+	.dashboardBody {
+		width: calc(100% - 1rem);
+		margin-top: 1rem;
+	}
 }

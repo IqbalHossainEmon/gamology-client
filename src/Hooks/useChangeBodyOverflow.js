@@ -1,9 +1,13 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
 export default function useChangeBodyOverflow() {
     const touchAble = useRef();
-    const root = useRef(document.getElementById('root'));
+    const root = useRef();
+
+    useEffect(() => {
+        root.current = document.getElementById('root');
+    }, []);
 
     const isTouchable = useIsTouchAble();
 
@@ -14,7 +18,7 @@ export default function useChangeBodyOverflow() {
             !touchAble.current &&
             !root.current.classList.contains('margin-right-8px') &&
             !document.body.classList.contains('overflow-y-hidden') &&
-            root.current.scrollHeight > root.current.clientHeight
+            root.current.scrollHeight > window.innerHeight
         ) {
             document.body.classList.add('overflow-y-hidden');
             root.current.classList.add('margin-right-8px');

@@ -79,7 +79,7 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
                 {disabled || (
                     <div className={styles.uploadImage}>
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clipPath="url(#clip0_14_1859)">
+                            <g>
                                 <path
                                     d="M8 46V47.5C8 48.6935 8.47411 49.8381 9.31802 50.682C10.1619 51.5259 11.3065 52 12.5 52H51.5C52.6935 52 53.8381 51.5259 54.682 50.682C55.5259 49.8381 56 48.6935 56 47.5V46"
                                     stroke="#000000"

@@ -8,14 +8,18 @@ export default function RangeField({ disabled }) {
         knob1: 0,
         knob2: 100,
         transition: false,
+        everyStep: {
+            knob1: 1,
+            knob2: 1,
+        },
     });
 
-    const { knob1, knob2, transition } = state;
+    const { knob1, knob2, transition, everyStep } = state;
 
     const rangePathRef = useRef();
     const activePathRef = useRef();
 
-    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, 0.1);
+    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef);
 
     // set click value in the path of slider depending on steps
     const handlePathClick = e => {
@@ -44,20 +48,12 @@ export default function RangeField({ disabled }) {
         <div className={styles.rangeFieldContainer}>
             <div tabIndex="-1" role="button" ref={rangePathRef} onMouseDown={handlePathClick} className={styles.rangeField}>
                 <div
-                    className={styles.activePath}
+                    className={`${transition ? `${styles.activePathTransition} ` : ''}${styles.activePath}`}
                     ref={activePathRef}
-                    style={
-                        transition
-                            ? {
-                                  translate: `${knob1 < knob2 ? knob1 : knob2}%`,
-                                  scale: `${(knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100} 1`,
-                                  transition: 'translate linear 200ms, scale linear 200ms',
-                              }
-                            : {
-                                  translate: `${knob1 < knob2 ? knob1 : knob2}%`,
-                                  scale: `${(knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100} 1.25`,
-                              }
-                    }
+                    style={{
+                        translate: `${knob1 < knob2 ? knob1 : knob2}%`,
+                        scale: `${(knob1 > knob2 ? knob1 - knob2 : knob2 - knob1) / 100} 1.25`,
+                    }}
                 />
 
                 {['knob1', 'knob2'].map(rangeKnob => (
@@ -65,8 +61,10 @@ export default function RangeField({ disabled }) {
                         key={rangeKnob}
                         getLeftRightStep={getLeftRightPointerStep}
                         setState={setState}
+                        everyStep={everyStep[rangeKnob]}
                         state={state[rangeKnob]}
                         name={rangeKnob}
+                        transition={transition}
                         disabled={disabled}
                     />
                 ))}
