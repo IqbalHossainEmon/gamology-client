@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import styles from './RangeInputField.module.css';
 
-export default function RangeInputField({ inputRef, disabled, val, state, handleEnter }) {
-    const [value, setValue] = useState(val);
+export default function RangeInputField({ inputRef, disabled, state, handleEnter, name, float }) {
+    const [value, setValue] = useState(0);
 
     useEffect(() => {
-        setValue(state);
-    }, [state]);
+        setValue(state.toFixed(float));
+    }, [float, state]);
 
     const handleMouseDown = e => {
         if (e.target !== inputRef.current) {
@@ -21,10 +21,11 @@ export default function RangeInputField({ inputRef, disabled, val, state, handle
             ref={inputRef}
             className={styles.input}
             value={value}
+            name={name}
             onFocus={() => {
                 document.addEventListener('mousedown', handleMouseDown);
-                document.addEventListener('keydown', handleEnter);
             }}
+            onKeyDown={handleEnter}
             type="text"
             onChange={e => {
                 if (e.target.value === '' || /^\d{1,}(\.\d{0,2})?$/.test(e.target.value)) {

@@ -73,6 +73,9 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
                 limit={limit}
                 float={float}
                 state={{ bigger, smaller }}
+                setState={setState}
+                singleStepRef={singleStepRef}
+                handleSetValue={handleSetValue}
             />
         </div>
     );
