@@ -3,7 +3,7 @@ import usePointersEveryStep from '../../../../../../../../../../../../../Hooks/u
 import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
-export default function RangeField({ disabled, conditionStep, limit }) {
+export default function RangeField({ disabled, conditionStep, limit, float = 0 }) {
     const [state, setState] = useState({
         knob1: 0,
         knob2: 100,
@@ -18,15 +18,16 @@ export default function RangeField({ disabled, conditionStep, limit }) {
     const rangePathRef = useRef();
     const activePathRef = useRef();
     const conditionStepRef = useRef([]);
-    const singleStepRef = useRef(0);
+    const singleStepRef = useRef(1);
 
-    console.log(knob1 * singleStepRef.current);
+    // console.log(knob2 / singleStepRef.current + limit.lower);
+
+    const once = useRef(true);
 
     useEffect(() => {
         singleStepRef.current = 100 / (limit.higher - limit.lower);
-        if (!conditionStep || conditionStep.length === 0) {
-            setState(prev => ({ ...prev, everyStep: { knob1: singleStepRef.current, knob2: singleStepRef.current } }));
-        } else {
+        if (once.current && conditionStep) {
+            once.current = false;
             conditionStep.sort((a, b) => a.ifLess - b.ifLess);
             conditionStep.forEach(step => {
                 step.ifLess *= singleStepRef.current;
@@ -36,7 +37,7 @@ export default function RangeField({ disabled, conditionStep, limit }) {
         }
     }, [conditionStep, limit]);
 
-    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef);
+    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, conditionStep ? conditionStepRef : singleStepRef);
 
     // set click value in the path of slider depending on steps
     const handlePathClick = e => {
@@ -83,7 +84,7 @@ export default function RangeField({ disabled, conditionStep, limit }) {
                         name={rangeKnob}
                         transition={transition}
                         disabled={disabled}
-                        conditionStep={conditionStepRef.current}
+                        conditionStep={conditionStep}
                     />
                 ))}
             </div>

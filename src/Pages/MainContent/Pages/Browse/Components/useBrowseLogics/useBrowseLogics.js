@@ -31,7 +31,7 @@ const initialState = {
     activePage: 1,
     pageCount: 69,
     rangeLimits: {
-        price: { lower: 7.35, higher: 148.18 },
+        price: { lower: 0, higher: 148.78 },
         releaseDate: { lower: 1980, higher: new Date().getFullYear() },
     },
 };

@@ -34,8 +34,8 @@ const options = [
                 rangeName: 'price',
                 stepCondition: [
                     { ifLess: 10, step: 1 },
-                    { ifLess: 100, step: 10 },
                     { ifLess: 50, step: 5 },
+                    { ifLess: 100, step: 10 },
                 ],
                 float: 2,
             },
