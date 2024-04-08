@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled }) {
+function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, handleSetValue }) {
     const stateRef = useRef(state);
     stateRef.current = state;
 
@@ -36,7 +36,7 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
         [getLeftRightStep, name, setState]
     );
 
-    const onStart = useDragStartStop(handleMove, undefined, undefined, true);
+    const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
 
     return (
         <div className={`${transition ? `${styles.knobTransition} ` : ''}${styles.knobContainer}`} style={{ translate: `${state}%` }}>

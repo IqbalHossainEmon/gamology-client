@@ -5,7 +5,7 @@ const initialState = {
     filterState: {
         showOnlyDiscounted: false,
         hideAllOwnedProducts: false,
-        price: { lower: 7.35, higher: 148.18 },
+        price: { lower: 0, higher: 148.18 },
         ShowOnlyFreeGames: false,
         action: false,
         adventure: false,
@@ -31,7 +31,7 @@ const initialState = {
     activePage: 1,
     pageCount: 69,
     rangeLimits: {
-        price: { lower: 0, higher: 148.78 },
+        price: { lower: 0, higher: 148.18 },
         releaseDate: { lower: 1980, higher: new Date().getFullYear() },
     },
 };

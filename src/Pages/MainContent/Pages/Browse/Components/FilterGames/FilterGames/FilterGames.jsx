@@ -111,6 +111,8 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 
     const screenWidth = useScreenWidth();
 
+    console.log(state);
+
     return (
         <aside ref={filterSortRef} className={`${styles.FilterGames} ${filter && screenWidth < 769 ? styles.hidden : styles.show}`}>
             <div className={styles.filterContainer}>
