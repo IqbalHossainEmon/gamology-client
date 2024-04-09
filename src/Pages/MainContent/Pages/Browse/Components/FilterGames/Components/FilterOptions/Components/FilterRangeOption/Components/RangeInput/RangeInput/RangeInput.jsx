@@ -25,7 +25,7 @@ export default function RangeInput({
                     val = 0;
                 }
             }
-            console.log(val);
+
             setState(prev => {
                 const { knob1, knob2 } = prev;
                 switch (name) {
