@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
-import AddTags from '../Components/AddTags/AddTags/AddTags';
 import DashboardModal from '../Components/DashboardModal/DashboardModal/DashboardModal';
+import AddTags from '../Components/EditTags/EditTags/EditTags';
 import styles from './DashboardBody.module.css';
 
 const DashboardBody = () => {

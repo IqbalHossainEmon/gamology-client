@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import TagsContainer from '../Components/TagsContainer/TagsContainer';
-import styles from './AddTags.module.css';
+import styles from './EditTags.module.css';
 
 const data = [
     {

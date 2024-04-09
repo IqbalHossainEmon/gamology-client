@@ -31,6 +31,9 @@
 .crossBtn:hover {
 	background-color: #ffffff48;
 }
+.crossBtn:active {
+	background-color: #42424248;
+}
 .cross {
 	position: relative;
 	display: inline-block;
