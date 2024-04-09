@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import TagsContainer from '../Components/TagsContainer/TagsContainer';
 import styles from './AddTags.module.css';
 
-const tags = [
+const data = [
     {
         id: 2,
         category: 'Genre',
@@ -44,10 +45,18 @@ const tags = [
     },
 ];
 
-const AddTags = () => (
-    <div className={styles.addTags}>
-        <h2 className={styles.tagsHeader}>Tags</h2>
-        <TagsContainer tags={tags} />
-    </div>
-);
+const AddTags = () => {
+    const [tags, setTags] = useState([]);
+
+    useEffect(() => {
+        setTags(data);
+    }, []);
+
+    return (
+        <div className={styles.addTags}>
+            <h2 className={styles.tagsHeader}>Tags</h2>
+            <TagsContainer tags={tags} />
+        </div>
+    );
+};
 export default AddTags;

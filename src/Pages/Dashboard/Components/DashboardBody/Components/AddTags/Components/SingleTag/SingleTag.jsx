@@ -2,12 +2,10 @@ import styles from './SingleTag.module.css';
 
 const SingleTag = ({ tags }) => (
     <li className={styles.tagListItem}>
-        <p>
-            {tags}
-            <button type="button" className="crossBtn">
-                <span />
-            </button>
-        </p>
+        <p className={styles.tagItem}>{tags}</p>
+        <button type="button" className={styles.crossBtn}>
+            <span className={styles.cross} />
+        </button>
     </li>
 );
 export default SingleTag;

@@ -1,10 +1,57 @@
-.crossBtn {
+.tagListItem {
+	display: flex;
+	padding: 0.5rem 0;
+	position: relative;
+}
+.tagListItem:not(:last-child)::after {
+	content: ' ';
 	position: absolute;
-	right: 0;
-	top: 0;
-	cursor: pointer;
-	font-size: 20px;
-	padding: 5px;
-	background-color: #fff;
+	width: 100%;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0.3);
+	left: 0;
+	bottom: 0;
+	transition: background-color 200ms;
+}
+.tagItem {
+	flex-grow: 1;
+}
+
+.crossBtn {
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: transparent;
+	border: none;
+	background-color: #ffffff2d;
 	border-radius: 50%;
+	overflow: hidden;
+	cursor: pointer;
+	transition: background-color 200ms;
+}
+.crossBtn:hover {
+	background-color: #ffffff48;
+}
+.cross {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+.cross::after,
+.cross::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 0.1rem;
+	background-color: #8b8b8b;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	transition: background-color 200ms;
+}
+.cross::after {
+	rotate: 45deg;
+}
+.cross::before {
+	rotate: -45deg;
 }
