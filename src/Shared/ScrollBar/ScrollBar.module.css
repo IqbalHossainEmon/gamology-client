@@ -1,34 +1,35 @@
 .scrollBarContainers {
-  height: 100%;
-  width: 10%;
-  max-width: 20px;
-  min-width: 8px;
-  position: absolute;
-  user-select: none;
-  top: 0;
-  right: 0;
+	height: 100%;
+	width: 10%;
+	max-width: 20px;
+	min-width: 8px;
+	position: absolute;
+	user-select: none;
+	top: 0;
+	right: 0;
 }
 .noHeight {
-  display: none;
-  pointer-events: none;
+	display: none;
+	pointer-events: none;
 }
 .scrollThumb {
-  width: 8px;
-  background-color: #474747;
-  position: absolute;
-  right: 0;
-  border-radius: 4px;
-  outline: 0;
-  border: 0;
-  user-select: none;
-  opacity: 0;
-  transition:
-    background-color 200ms,
-    opacity 200ms;
+	width: 8px;
+	min-height: 1rem;
+	background-color: #474747;
+	position: absolute;
+	right: 0;
+	border-radius: 4px;
+	outline: 0;
+	border: 0;
+	user-select: none;
+	opacity: 0;
+	transition:
+		background-color 200ms,
+		opacity 200ms;
 }
 .scrollThumb:hover {
-  background-color: rgb(90, 90, 90);
+	background-color: rgb(90, 90, 90);
 }
 .show {
-  opacity: 1;
+	opacity: 1;
 }

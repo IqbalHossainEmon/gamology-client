@@ -6,7 +6,7 @@ export default function ButtonForAddGameSection({ onClick, text, disabled = fals
     const btnRef = useRef(null);
 
     return (
-        <div className={styles.addMoreButton}>
+        <div className={`${disabled ? `${styles.disabled} ` : ''}${styles.addMoreButton}`}>
             <button
                 ref={btnRef}
                 className={styles.btn}

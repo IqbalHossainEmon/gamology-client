@@ -43,7 +43,9 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
     };
 
     return (
-        <div className={`${className ? `${className} ` : ''}${styles.fileUploadContainer}`}>
+        <div
+            className={`${className ? `${className} ` : ''}${disabled ? `${styles.containerDisabled} ` : ''}${styles.fileUploadContainer}`}
+        >
             <input
                 {...(disabled && { disabled })}
                 ref={inputRef}

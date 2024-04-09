@@ -57,7 +57,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     return (
         <div className={styles.marginBot}>
             <div
-                className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type.type ? '' : ` ${styles.padding} `}${active ? ` ${styles.activeBorder}` : ''}`}
+                className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type.type ? '' : ` ${styles.padding} `}${active ? ` ${styles.activeBorder}` : ''}${type.type ? '' : `${styles.disabled}`}`}
             >
                 {type.type && (
                     <label

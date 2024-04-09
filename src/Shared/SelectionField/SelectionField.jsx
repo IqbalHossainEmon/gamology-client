@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
 import useScreenWidth from '../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
@@ -22,7 +22,11 @@ export default function SelectionField({
 }) {
     const [value, setValue] = useState('');
     const [show, setShow] = useState(false);
+    const [opacityShow, setOpacityShow] = useState(false);
+
     const screenWidth = useScreenWidth();
+
+    const timeId = useRef(null);
 
     const valueRef = useRef(value);
     valueRef.current = value;
@@ -33,7 +37,18 @@ export default function SelectionField({
     const parentRef = useRef(null);
     const childRef = useRef(null);
 
-    const { showMenu, setElement } = useDropDownHide(setShow);
+    const handleHide = useCallback(() => {
+        if (timeId.current) {
+            clearTimeout(timeId.current);
+            timeId.current = null;
+        }
+        setOpacityShow(false);
+        timeId.current = setTimeout(() => {
+            setShow(false);
+        }, 200);
+    }, []);
+
+    const { showMenu, setElement } = useDropDownHide(handleHide);
 
     useEffect(() => {
         if (parentSetValue) {
@@ -78,7 +93,7 @@ export default function SelectionField({
     };
 
     return (
-        <div ref={containerRef} className={`${show ? '' : `${styles.overflow} `}${styles.container}`}>
+        <div ref={containerRef} className={styles.container}>
             <button
                 type="button"
                 {...(enabled || { tabIndex: '-1' })}
@@ -94,9 +109,21 @@ export default function SelectionField({
                     if (!show) {
                         showMenu(true);
                         setShow(true);
+                        setOpacityShow(true);
+                        if (timeId.current) {
+                            clearTimeout(timeId.current);
+                            timeId.current = null;
+                        }
                     } else {
-                        showMenu(false);
-                        setShow(false);
+                        setOpacityShow(false);
+                        if (timeId.current) {
+                            clearTimeout(timeId.current);
+                            timeId.current = null;
+                        }
+                        timeId.current = setTimeout(() => {
+                            showMenu(false);
+                            setShow(false);
+                        }, 200);
                     }
                     if (onFocusClick) {
                         onFocusClick();
@@ -123,33 +150,35 @@ export default function SelectionField({
                 </div>
                 <ButtonWaterEffect btnRef={elementRef} />
             </button>
-            <ul
-                {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
-                className={`${show ? `${styles.show} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}` : ''}${styles.listContainer}`}
-            >
-                <div ref={parentRef} className={styles.listScrollContainer}>
-                    <div ref={childRef}>
-                        {list.map(item => (
-                            <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
-                                <button
-                                    {...(value === item && { disabled: true })}
-                                    {...(show || { tabIndex: '-1' })}
-                                    type="button"
-                                    onClick={() => {
-                                        setShow(false);
-                                        setValue(item);
-                                        setState(item, name);
-                                    }}
-                                >
-                                    {item}
-                                </button>
-                            </li>
-                        ))}
-                        {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
+            {show && (
+                <ul
+                    {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
+                    className={`${opacityShow ? '' : styles.hide} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.listContainer}`}
+                >
+                    <div ref={parentRef} className={styles.listScrollContainer}>
+                        <div ref={childRef}>
+                            {list.map(item => (
+                                <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
+                                    <button
+                                        tabIndex={show ? 0 : -1}
+                                        {...(value === item && { disabled: true })}
+                                        type="button"
+                                        onClick={() => {
+                                            setShow(false);
+                                            setValue(item);
+                                            setState(item, name);
+                                        }}
+                                    >
+                                        {item}
+                                    </button>
+                                </li>
+                            ))}
+                            {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
+                        </div>
                     </div>
-                </div>
-                <ScrollBar parentRef={parentRef} childRef={childRef} />
-            </ul>
+                    <ScrollBar parentRef={parentRef} childRef={childRef} />
+                </ul>
+            )}
         </div>
     );
 }

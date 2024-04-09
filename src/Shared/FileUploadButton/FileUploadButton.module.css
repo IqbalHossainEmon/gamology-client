@@ -1,6 +1,10 @@
 .fileUploadContainer {
 	width: 100%;
 	height: 100%;
+	transition: opacity 200ms;
+}
+.containerDisabled {
+	opacity: 0.5;
 }
 .fileUploadField {
 	display: none;
