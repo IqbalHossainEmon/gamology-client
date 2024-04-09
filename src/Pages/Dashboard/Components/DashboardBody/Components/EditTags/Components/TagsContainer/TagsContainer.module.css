@@ -8,6 +8,10 @@
 	flex-grow: 1;
 	min-width: 230px;
 }
+.tagHeader {
+	font-weight: 400;
+	margin: 1rem 0;
+}
 @media only screen and (max-width: 264px) {
 	.tag {
 		min-width: 100%;

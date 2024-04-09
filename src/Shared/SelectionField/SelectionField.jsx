@@ -14,13 +14,15 @@ export default function SelectionField({
     htmlFor,
     setState,
     list = [],
+    defaultValue = '',
     name = '',
     onFocusClick,
     enabled = true,
     parentSetValue = '',
+    none,
     ...rest
 }) {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(defaultValue);
     const [show, setShow] = useState(false);
     const [opacityShow, setOpacityShow] = useState(false);
 
@@ -157,6 +159,21 @@ export default function SelectionField({
                 >
                     <div ref={parentRef} className={styles.listScrollContainer}>
                         <div ref={childRef}>
+                            {none && (
+                                <li className={styles.item} {...(value === '' && { id: styles.selected })}>
+                                    <button
+                                        tabIndex={show ? 0 : -1}
+                                        type="button"
+                                        onClick={() => {
+                                            setShow(false);
+                                            setValue('');
+                                            setState('', name);
+                                        }}
+                                    >
+                                        None
+                                    </button>
+                                </li>
+                            )}
                             {list.map(item => (
                                 <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
                                     <button

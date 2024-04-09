@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import AddTags from '../Components/AddTags/AddTags';
 import TagsContainer from '../Components/TagsContainer/TagsContainer';
 import styles from './EditTags.module.css';
 
@@ -45,7 +46,7 @@ const data = [
     },
 ];
 
-const AddTags = () => {
+const EditTags = () => {
     const [tags, setTags] = useState([]);
 
     useEffect(() => {
@@ -56,7 +57,8 @@ const AddTags = () => {
         <div className={styles.addTags}>
             <h2 className={styles.tagsHeader}>Tags</h2>
             <TagsContainer tags={tags} />
+            <AddTags tags={tags} />
         </div>
     );
 };
-export default AddTags;
+export default EditTags;
