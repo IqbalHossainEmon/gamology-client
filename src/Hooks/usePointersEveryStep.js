@@ -50,10 +50,25 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
                     break;
             }
 
-            const pointerLeftStep = Math.round(cursorInPercent / everyStep) * everyStep;
+            let pointerLeftStep = Math.round(cursorInPercent / everyStep) * everyStep;
 
-            const pointerRightStep = pointerLeftStep + everyStep;
+            let pointerRightStep = pointerLeftStep + everyStep;
 
+            if (pointerLeftStep < 0 || pointerLeftStep > 100) {
+                if (pointerLeftStep < 0) {
+                    pointerLeftStep = 0;
+                } else {
+                    pointerLeftStep = 100;
+                }
+            }
+
+            if (pointerRightStep > 100 || pointerRightStep < 0) {
+                if (pointerRightStep > 100) {
+                    pointerRightStep = 100;
+                } else {
+                    pointerRightStep = 0;
+                }
+            }
             const leftDiff = cursorInPercent - pointerLeftStep;
             const rightDiff = pointerRightStep - cursorInPercent;
 

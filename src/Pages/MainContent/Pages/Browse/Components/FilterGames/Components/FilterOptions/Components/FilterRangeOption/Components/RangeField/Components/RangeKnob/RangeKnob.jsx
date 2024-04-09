@@ -9,24 +9,17 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
     // Calculate move value
     const handleMove = useCallback(
         e => {
-            const { cursorInPercent, pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
+            const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
 
             let value = stateRef.current;
 
             // if cursors position is inside the slider range;
-            if (cursorInPercent >= 0 && cursorInPercent <= 100) {
-                // check and set value depend on step
-                if (leftDiff < rightDiff) {
-                    value = pointerLeftStep;
-                } else if (leftDiff > rightDiff) {
-                    value = pointerRightStep;
-                }
-                if (value < 0) {
-                    value = 0;
-                }
-                if (value > 100) {
-                    value = 100;
-                }
+
+            // check and set value depend on step
+            if (leftDiff < rightDiff) {
+                value = pointerLeftStep;
+            } else if (leftDiff > rightDiff) {
+                value = pointerRightStep;
             }
 
             if (value !== stateRef.current) {

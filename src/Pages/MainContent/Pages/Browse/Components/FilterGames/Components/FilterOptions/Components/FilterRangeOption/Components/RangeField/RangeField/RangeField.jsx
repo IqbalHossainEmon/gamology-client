@@ -8,9 +8,7 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
 
     const rangePathRef = useRef();
     const activePathRef = useRef();
-    const conditionStepRef = useRef([]);
-
-    // console.log(knob2 / singleStepRef.current + limit.lower);
+    const conditionStepRef = useRef(conditionStep?.map(step => ({ ...step })));
 
     const once = useRef(true);
 
@@ -18,12 +16,11 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
         singleStepRef.current = 100 / (limit.higher - limit.lower);
         if (once.current && conditionStep) {
             once.current = false;
-            conditionStep.sort((a, b) => a.ifLess - b.ifLess);
-            conditionStep.forEach(step => {
+            conditionStepRef.current.sort((a, b) => a.ifLess - b.ifLess);
+            conditionStepRef.current.forEach(step => {
                 step.ifLess *= singleStepRef.current;
                 step.step *= singleStepRef.current;
             });
-            conditionStepRef.current = conditionStep;
         }
     }, [conditionStep, limit, singleStepRef]);
 
@@ -75,7 +72,6 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
                         name={rangeKnob}
                         transition={transition}
                         disabled={disabled}
-                        conditionStep={conditionStep}
                         handleSetValue={handleSetValue}
                     />
                 ))}
