@@ -1,0 +1,30 @@
+.addTags {
+	margin-top: 2rem;
+}
+.addHeader {
+	font-weight: 400;
+	margin: 1rem 0;
+}
+.selectionFieldContainer {
+	margin: 1rem 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+.selectionField {
+	width: 200px;
+}
+
+.submitBtn {
+	margin-top: 1rem;
+}
+.submitBtn button {
+	border: none;
+	background-color: rgba(255, 255, 255, 0.05);
+	color: #ffffff9a;
+	padding: 1rem 1rem;
+	font-size: 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+}

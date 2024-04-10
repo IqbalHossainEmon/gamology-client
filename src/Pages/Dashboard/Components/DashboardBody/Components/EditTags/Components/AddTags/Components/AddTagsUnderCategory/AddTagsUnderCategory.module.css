@@ -1,0 +1,34 @@
+.tagsUnderCategory {
+	width: 100%;
+}
+.tagField {
+	width: 100%;
+}
+.btnContainer,
+.tagField:not(:first-child) {
+	margin-top: 1rem;
+}
+
+.btnContainer {
+	display: flex;
+	gap: 1rem;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.addTagBtn button,
+.removeTagBtn button {
+	border: none;
+	background-color: rgba(255, 255, 255, 0.05);
+	color: #ffffff9a;
+	padding: 1rem 1rem;
+	font-size: 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+}
+
+.disabled {
+	pointer-events: none;
+	opacity: 0.5;
+}
