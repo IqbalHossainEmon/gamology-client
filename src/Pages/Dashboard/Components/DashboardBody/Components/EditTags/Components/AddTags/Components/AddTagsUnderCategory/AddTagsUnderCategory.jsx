@@ -3,7 +3,7 @@ import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterE
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './AddTagsUnderCategory.module.css';
 
-const AddTagsUnderCategory = () => {
+const AddTagsUnderCategory = ({ infoRef }) => {
     const [numberOfTags, setNumberOfTags] = useState(1);
 
     const addBtnREf = useRef(null);
@@ -14,7 +14,16 @@ const AddTagsUnderCategory = () => {
             <div>
                 {[...Array(numberOfTags).keys()].map(key => (
                     <div key={key} className={styles.tagField}>
-                        <TextField key={key} field="input" htmlFor={`tagName-${key}`} placeholder="Tag Name" setState={() => {}} />
+                        <TextField
+                            key={key}
+                            field="input"
+                            htmlFor={`tagName-${key}`}
+                            placeholder="Tag Name"
+                            name={key}
+                            setState={(val, name) => {
+                                infoRef.tags[name] = val;
+                            }}
+                        />
                     </div>
                 ))}
             </div>

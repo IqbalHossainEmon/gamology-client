@@ -8,64 +8,80 @@ import styles from './AddTags.module.css';
 const AddTags = ({ tags }) => {
     const [tagOrCategory, setTagOrCategory] = useState(null);
 
-    const addBtnREf = useRef(null);
-    const addInfoRef = useRef(null);
+    const addBtnRef = useRef(null);
+    const addInfoRef = useRef({});
 
     return (
         <div className={styles.addTags}>
             <h3 className={styles.addHeader}>Add {tagOrCategory ? 'Tag' : 'Category'}</h3>
-            <div className={styles.selectionFieldContainer}>
-                <div className={styles.selectionField}>
-                    <SelectionField
-                        name="Add What"
-                        none
-                        htmlFor="add-what"
-                        placeholder="Add What?"
-                        list={['Tags', 'Category']}
-                        setState={val => {
-                            switch (val) {
-                                case 'Tags':
-                                    setTagOrCategory(true);
-                                    break;
-                                case 'Category':
-                                    setTagOrCategory(false);
-                                    break;
-                                default:
-                                    setTagOrCategory(null);
-                                    break;
-                            }
-                        }}
-                    />
-                </div>
-                {tagOrCategory !== null && (
-                    <>
+            <div className={styles.selectionField}>
+                <SelectionField
+                    name="Add What"
+                    none
+                    htmlFor="add-what"
+                    placeholder="Add What?"
+                    list={['Tags', 'Category']}
+                    setState={val => {
+                        switch (val) {
+                            case 'Tags':
+                                setTagOrCategory(true);
+                                addInfoRef.current.tag = { name: '', category: '' };
+                                break;
+                            case 'Category':
+                                setTagOrCategory(false);
+                                addInfoRef.current.category = { name: '', tags: [] };
+                                break;
+                            default:
+                                setTagOrCategory(null);
+                                addInfoRef.current = {};
+                                break;
+                        }
+                    }}
+                />
+            </div>
+
+            {tagOrCategory !== null && (
+                <>
+                    <div>
                         <TextField
                             field="input"
                             placeholder={`Enter New ${tagOrCategory ? 'Tag' : 'Category'} Name`}
-                            setState={() => {}}
+                            name={tagOrCategory ? 'tag' : 'category'}
+                            setState={(val, name) => {
+                                addInfoRef.current[name].name = val;
+                            }}
                             htmlFor={tagOrCategory ? 'tag-name' : 'category-name'}
                         />
                         {tagOrCategory ? (
                             <div className={styles.selectionField}>
                                 <SelectionField
-                                    name="Which Category"
                                     htmlFor="which-category"
                                     placeholder="Which Category?"
                                     list={tags.map(tag => tag.category)}
+                                    name="category"
+                                    setState={(val, name) => {
+                                        addInfoRef.current.tag[name] = val;
+                                    }}
                                 />
                             </div>
                         ) : (
-                            <AddTagsUnderCategory />
+                            <AddTagsUnderCategory infoRef={addInfoRef.current.category} />
                         )}
-                    </>
-                )}
-            </div>
-            <div className={styles.submitBtn}>
-                <button ref={addBtnREf} type="button" onClick={() => {}}>
-                    Submit
-                    <ButtonWaterEffect btnRef={addBtnREf} />
-                </button>
-            </div>
+                    </div>
+                    <div className={styles.submitBtn}>
+                        <button
+                            ref={addBtnRef}
+                            type="button"
+                            onClick={() => {
+                                console.log(addInfoRef.current);
+                            }}
+                        >
+                            Submit
+                            <ButtonWaterEffect btnRef={addBtnRef} />
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
