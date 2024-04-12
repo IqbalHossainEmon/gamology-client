@@ -1,9 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import FilterSwitch from '../FilterSwitch/FilterSwitch';
 import styles from './FilterOption.module.css';
 
 function FilterOption({ text, setState, border, state, name }) {
-    const handleClick = useCallback(() => {
+    const handleClick = useRef(null);
+    handleClick.current = useCallback(() => {
         setState(prev => ({ ...prev, [name]: !prev[name] }), name);
     }, [name, setState]);
 
@@ -13,12 +14,12 @@ function FilterOption({ text, setState, border, state, name }) {
             onClick={el => {
                 if (document.activeElement === el.target) {
                     el.preventDefault();
-                    handleClick();
+                    handleClick.current();
                 }
             }}
             onMouseDownCapture={el => {
                 el.preventDefault();
-                el.target.addEventListener('mouseup', handleClick, { once: true });
+                el.target.addEventListener('mouseup', handleClick.current, { once: true });
             }}
             className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${styles.filterOption} ${styles.shadow}`}
         >

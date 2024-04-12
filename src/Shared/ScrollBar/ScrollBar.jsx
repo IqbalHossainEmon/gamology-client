@@ -11,8 +11,9 @@ const ScrollBar = ({ parentRef, childRef }) => {
     const downElement = useRef(null);
     const containerRef = useRef(null);
     const timerID = useRef(null);
+    const handleMove = useRef(null);
 
-    const handleMove = useCallback(
+    handleMove.current = useCallback(
         e => {
             const cursorInEle = e?.touches
                 ? e.touches[0].pageY - thumbRef.current.getBoundingClientRect().y
@@ -58,55 +59,60 @@ const ScrollBar = ({ parentRef, childRef }) => {
         }, 2000);
     };
 
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            setHeight(() => {
-                const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
+    const handleSetHeight = useRef(null);
 
-                if (heightCheck > 100) {
-                    return 100;
-                }
-                return heightCheck;
-            });
+    handleSetHeight.current = useCallback(() => {
+        setHeight(() => {
+            const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
+
+            if (heightCheck > 100) {
+                return 100;
+            }
+            return heightCheck;
         });
-    }, [childRef, parentRef]);
+    }, [parentRef]);
+
+    const eventRef = useRef(null);
+
+    eventRef.handleScroll = useCallback(() => {
+        setShow(true);
+        handleScrollHide();
+        setScrolled(
+            (parentRef.current.scrollTop / (parentRef.current.scrollHeight - parentRef.current.clientHeight)) *
+                (parentRef.current.clientHeight - thumbRef.current.clientHeight)
+        );
+    }, [parentRef]);
+
+    eventRef.handleMouseMove = useCallback(() => {
+        setShow(true);
+        handleScrollHide();
+    }, []);
 
     useEffect(() => {
-        const childObserve = new ResizeObserver(() => {
-            setHeight(() => {
-                const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
-                if (heightCheck > 100) {
-                    return 100;
-                }
-                return heightCheck;
-            });
-        });
+        window.addEventListener('resize', handleSetHeight.current);
+
+        return () => {
+            window.removeEventListener('resize', handleSetHeight.current);
+        };
+    }, [childRef]);
+
+    useEffect(() => {
+        const childObserve = new ResizeObserver(handleSetHeight.current);
         childObserve.observe(childRef.current);
-        const parentObserve = new ResizeObserver(() => {
-            setHeight(() => {
-                const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
-                if (heightCheck > 100) {
-                    return 100;
-                }
-                return heightCheck;
-            });
-        });
+        const parentObserve = new ResizeObserver(handleSetHeight.current);
         parentObserve.observe(parentRef.current);
-        parentRef.current.addEventListener('scroll', () => {
-            setShow(true);
-            handleScrollHide();
-            setScrolled(
-                (parentRef.current.scrollTop / (parentRef.current.scrollHeight - parentRef.current.clientHeight)) *
-                    (parentRef.current.clientHeight - thumbRef.current.clientHeight)
-            );
-        });
-        containerRef.current.addEventListener('mousemove', () => {
-            setShow(true);
-            handleScrollHide();
-        });
+
+        const parent = parentRef.current;
+        const container = containerRef.current;
+
+        parent.addEventListener('scroll', eventRef.handleScroll);
+        container.addEventListener('mousemove', eventRef.handleMouseMove);
         return () => {
             childObserve.disconnect();
             parentObserve.disconnect();
+
+            parent.removeEventListener('scroll', eventRef.handleScroll);
+            container.removeEventListener('mousemove', eventRef.handleMouseMove);
         };
     }, [childRef, parentRef]);
 

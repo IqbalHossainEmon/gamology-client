@@ -18,8 +18,9 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
     const isMouseDown = useRef(false);
 
     const shouldPlay = useRef(false);
+    const eventRef = useRef(null);
 
-    const progressBufferUpdate = useCallback(({ target: { buffered, duration } }) => {
+    eventRef.progressBufferUpdate = useCallback(({ target: { buffered, duration } }) => {
         if (buffered.length > 0) {
             if (buffered.length === 1) {
                 setBuffer((buffered.end(buffered.length - 1) / duration) * 100);
@@ -35,7 +36,7 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         }
     }, []);
 
-    const progressUpdate = useCallback(
+    eventRef.progressUpdate = useCallback(
         ({ target: { duration, currentTime } }) => {
             if (!isMouseDown.current) {
                 setProgress((currentTime / duration) * 100);
@@ -44,14 +45,14 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         [setProgress]
     );
 
-    const handleError = useCallback(() => {
+    eventRef.handleError = useCallback(() => {
         if (interval.current) {
             clearInterval(interval.current);
             interval.current = null;
         }
     }, []);
 
-    const handlePlaying = useCallback(() => {
+    eventRef.handlePlaying = useCallback(() => {
         if (isMouseDown.current) {
             videoRef.current.pause();
             shouldPlay.current = true;
@@ -61,7 +62,7 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         }
     }, [isSeekedRef]);
 
-    const handlePause = useCallback(() => {
+    eventRef.handlePause = useCallback(() => {
         isPlaying.current = false;
     }, []);
 
@@ -69,11 +70,11 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         if (video.current) {
             videoRef.current = video.current;
 
-            videoRef.current.addEventListener('timeupdate', progressUpdate);
-            videoRef.current.addEventListener('progress', progressBufferUpdate);
-            videoRef.current.addEventListener('error', handleError);
-            videoRef.current.addEventListener('playing', handlePlaying);
-            videoRef.current.addEventListener('pause', handlePause);
+            videoRef.current.addEventListener('timeupdate', eventRef.progressUpdate);
+            videoRef.current.addEventListener('progress', eventRef.progressBufferUpdate);
+            videoRef.current.addEventListener('error', eventRef.handleError);
+            videoRef.current.addEventListener('playing', eventRef.handlePlaying);
+            videoRef.current.addEventListener('pause', eventRef.handlePause);
 
             if (!interval.current) {
                 interval.count = 0;
@@ -81,7 +82,7 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
                     if (videoRef.current.buffered.length === 0) {
                         videoRef.current.load(src);
                     } else {
-                        progressBufferUpdate({ target: videoRef.current });
+                        eventRef.progressBufferUpdate({ target: videoRef.current });
                         clearInterval(interval.current);
                         interval.current = null;
                     }
@@ -96,13 +97,15 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         }
 
         return () => {
-            videoRef.current.removeEventListener('timeupdate', progressUpdate);
-            videoRef.current.removeEventListener('progress', progressBufferUpdate);
-            videoRef.current.removeEventListener('error', handleError);
-            videoRef.current.removeEventListener('playing', handlePlaying);
-            videoRef.current.removeEventListener('pause', handlePause);
+            if (videoRef.current) {
+                videoRef.current.removeEventListener('timeupdate', eventRef.progressUpdate);
+                videoRef.current.removeEventListener('progress', eventRef.progressBufferUpdate);
+                videoRef.current.removeEventListener('error', eventRef.handleError);
+                videoRef.current.removeEventListener('playing', eventRef.handlePlaying);
+                videoRef.current.removeEventListener('pause', eventRef.handlePause);
+            }
         };
-    }, [handleError, handlePause, handlePlaying, progressBufferUpdate, progressUpdate, src, video]);
+    }, [src, video]);
 
     // set current time but after 100ms of mouse move else clear the timer
     const setCurrentTime = useCallback(val => {

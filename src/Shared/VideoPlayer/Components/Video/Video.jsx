@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Video.module.css';
 
 function Video({ videoContainer, src, captions, className }, ref) {
@@ -8,7 +8,9 @@ function Video({ videoContainer, src, captions, className }, ref) {
         height: 0,
     });
 
-    const handleSetFullscreenSize = () => {
+    const eventRef = useRef(null);
+
+    eventRef.handleSetFullscreenSize = useCallback(() => {
         const width = window.innerWidth;
         const height = window.innerHeight;
 
@@ -25,33 +27,38 @@ function Video({ videoContainer, src, captions, className }, ref) {
                 height,
             });
         }
-    };
+    }, []);
 
-    const handleFullscreenChange = useCallback(() => {
+    eventRef.handleFullscreenChange = useCallback(() => {
         if (document.fullscreenElement) {
-            handleSetFullscreenSize();
-            window.addEventListener('resize', handleSetFullscreenSize);
+            eventRef.handleSetFullscreenSize();
+            window.addEventListener('resize', eventRef.handleSetFullscreenSize);
         } else {
             setFullscreenSize(prev => ({ ...prev, isFullScreen: false }));
-            window.removeEventListener('resize', handleSetFullscreenSize);
+            window.removeEventListener('resize', eventRef.handleSetFullscreenSize);
         }
     }, []);
 
     useEffect(() => {
-        videoContainer?.current.addEventListener('fullscreenchange', handleFullscreenChange);
-        videoContainer?.current.addEventListener('mozfullscreenchange', handleFullscreenChange);
-        videoContainer?.current.addEventListener('MSFullscreenChange', handleFullscreenChange);
-        videoContainer?.current.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        let videoContainerRef;
+        if (videoContainer.current) {
+            videoContainerRef = videoContainer.current;
 
-        const videoContainerRef = videoContainer?.current;
+            videoContainerRef.addEventListener('fullscreenchange', eventRef.handleFullscreenChange);
+            videoContainerRef.addEventListener('mozfullscreenchange', eventRef.handleFullscreenChange);
+            videoContainerRef.addEventListener('MSFullscreenChange', eventRef.handleFullscreenChange);
+            videoContainerRef.addEventListener('webkitfullscreenchange', eventRef.handleFullscreenChange);
+        }
 
         return () => {
-            videoContainerRef.removeEventListener('fullscreenchange', handleFullscreenChange);
-            videoContainerRef.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-            videoContainerRef.removeEventListener('MSFullscreenChange', handleFullscreenChange);
-            videoContainerRef.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+            if (videoContainerRef) {
+                videoContainerRef.removeEventListener('fullscreenchange', eventRef.handleFullscreenChange);
+                videoContainerRef.removeEventListener('mozfullscreenchange', eventRef.handleFullscreenChange);
+                videoContainerRef.removeEventListener('MSFullscreenChange', eventRef.handleFullscreenChange);
+                videoContainerRef.removeEventListener('webkitfullscreenchange', eventRef.handleFullscreenChange);
+            }
         };
-    }, [handleFullscreenChange, videoContainer]);
+    }, [videoContainer]);
 
     return (
         <video

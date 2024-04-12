@@ -46,7 +46,7 @@ const data = [
     },
 ];
 
-const EditTags = () => {
+const EditTags = ({ setModal }) => {
     const [tags, setTags] = useState([]);
 
     useEffect(() => {
@@ -56,7 +56,7 @@ const EditTags = () => {
     return (
         <div className={styles.addTags}>
             <h2 className={styles.tagsHeader}>Tags</h2>
-            <ShowCategoryTags tags={tags} />
+            <ShowCategoryTags tags={tags} setModal={setModal} />
             <AddTags tags={tags} />
         </div>
     );

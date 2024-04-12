@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { AutoPlayContext, SetAutoPlayContext } from '../../../../../../../Contexts/AutoPlayContext';
 import withAutoPlayProvider from '../../../../../../../HOC/withAutoPlayProvider';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
@@ -10,6 +10,7 @@ function GearButton({ gearRef, videoContainer }) {
 
     const show = useContext(AutoPlayContext);
     const setShow = useContext(SetAutoPlayContext);
+    const eventRef = useRef(null);
 
     const { showMenu, setElement } = useDropDownHide(setShow);
 
@@ -20,7 +21,7 @@ function GearButton({ gearRef, videoContainer }) {
         }
     }, [gearRef, setElement]);
 
-    const handleClick = () => {
+    eventRef.handleClick = useCallback(() => {
         setAutoplay(prev => {
             if (prev) {
                 localStorage.removeItem('autoplay');
@@ -29,8 +30,8 @@ function GearButton({ gearRef, videoContainer }) {
             }
             return !prev;
         });
-        document.removeEventListener('mouseup', handleClick);
-    };
+        document.removeEventListener('mouseup', eventRef.handleClick);
+    }, []);
 
     return (
         <>
@@ -61,14 +62,14 @@ function GearButton({ gearRef, videoContainer }) {
                         className={styles.menu}
                         role="button"
                         tabIndex={0}
-                        onMouseDown={() => document.addEventListener('mouseup', handleClick)}
+                        onMouseDown={() => document.addEventListener('mouseup', eventRef.handleClick)}
                     >
                         <div>
                             <h5>Autoplay</h5>
                             <p>Applies to all videos</p>
                         </div>
                         <div className={styles.switch}>
-                            <Switch videoContainer={videoContainer} state={autoplay} setState={setAutoplay} event={handleClick} />
+                            <Switch videoContainer={videoContainer} state={autoplay} setState={setAutoplay} event={eventRef.handleClick} />
                         </div>
                     </div>
                 </div>

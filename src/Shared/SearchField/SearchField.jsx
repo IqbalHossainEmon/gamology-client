@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
 import styles from './SearchField.module.css';
 
@@ -20,44 +20,50 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         }, 500);
     };
 
-    const setShowState = state => {
-        if (typeof setNavShow === 'function') {
-            setNavShow(state);
-        }
-        setShow(state);
-    };
+    const setShowState = useCallback(
+        state => {
+            if (typeof setNavShow === 'function') {
+                setNavShow(state);
+            }
+            setShow(state);
+        },
+        [setNavShow]
+    );
 
     const { showMenu, setElement } = useDropDownHide(setShowState);
 
-    useEffect(() => {
-        setElement(searchRef.current);
-    }, [setElement, searchRef]);
+    const eventRef = useRef(null);
 
-    let handleBlurEsc;
-
-    const handleBlurOnWindowBlur = () => {
+    eventRef.handleBlurOnWindowBlur = useCallback(() => {
         setShowState(false);
         searchInputRef.current.blur();
-        searchRef.current.removeEventListener('keydown', handleBlurEsc);
-        window.removeEventListener('blur', handleBlurOnWindowBlur);
-    };
+        searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
+        window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
+    }, [setShowState]);
 
-    handleBlurEsc = e => {
-        if (e.key === 'Escape') {
-            setShowState(false);
-            searchInputRef.current.blur();
-            searchRef.current.removeEventListener('keydown', handleBlurEsc);
-            window.removeEventListener('blur', handleBlurOnWindowBlur);
-        }
-    };
+    eventRef.handleBlurEsc = useCallback(
+        e => {
+            if (e.key === 'Escape') {
+                setShowState(false);
+                searchInputRef.current.blur();
+                searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
+                window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
+            }
+        },
+        [setShowState]
+    );
 
     const handleSearchClick = () => {
         setShowState(true);
         showMenu();
         searchInputRef.current.focus();
-        searchRef.current.addEventListener('keydown', handleBlurEsc);
-        window.addEventListener('blur', handleBlurOnWindowBlur);
+        searchRef.current.addEventListener('keydown', eventRef.handleBlurEsc);
+        window.addEventListener('blur', eventRef.handleBlurOnWindowBlur);
     };
+
+    useEffect(() => {
+        setElement(searchRef.current);
+    }, [setElement, searchRef]);
 
     return (
         <button

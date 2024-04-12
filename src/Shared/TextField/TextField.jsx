@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './TextField.module.css';
 
@@ -22,13 +22,24 @@ export default function TextField({
 
     const fieldRef = useRef(null);
 
+    const handleInputEvent = useRef(null);
+
+    handleInputEvent.current = useCallback(() => {
+        fieldRef.current.style.height = 'auto';
+        fieldRef.current.style.height = `${fieldRef.current.scrollHeight}px`;
+    }, []);
+
     useEffect(() => {
+        const holdFieldRef = fieldRef.current;
         if (field === 'textarea') {
-            fieldRef.current.addEventListener('input', () => {
-                fieldRef.current.style.height = 'auto';
-                fieldRef.current.style.height = `${fieldRef.current.scrollHeight}px`;
-            });
+            holdFieldRef.addEventListener('input', handleInputEvent.current);
         }
+
+        return () => {
+            if (field === 'textarea') {
+                holdFieldRef.removeEventListener('input', handleInputEvent.current);
+            }
+        };
     }, [field]);
 
     useEffect(() => {

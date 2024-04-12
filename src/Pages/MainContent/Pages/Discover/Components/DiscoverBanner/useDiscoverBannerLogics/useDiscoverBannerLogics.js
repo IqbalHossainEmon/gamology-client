@@ -65,6 +65,7 @@ export default function useDiscoverBannerLogics() {
     const timerRef = useRef(null);
     const dispatchRef = useRef(null);
     const timerState = useRef(false);
+    const eventRef = useRef(null);
 
     // this function runs the dispatch function and take the start time.
     const run = useCallback(() => {
@@ -92,7 +93,7 @@ export default function useDiscoverBannerLogics() {
     }, [run]);
 
     // this function is called when user leaves the tab(blur) but don't close this function stops the timer
-    const pause = useCallback(() => {
+    eventRef.pause = useCallback(() => {
         if (!timerState.current) {
             dispatchRef.current({ type: 'pauseState', state: true });
             if (timerRef.current) {
@@ -107,7 +108,7 @@ export default function useDiscoverBannerLogics() {
     }, [stopTimer]);
 
     // this function is called when user comeback to the tab(focus) after blur the tab
-    const resume = useCallback(() => {
+    eventRef.resume = useCallback(() => {
         if (timerState.current) {
             dispatchRef.current({ type: 'pauseState', state: false });
             timerState.current = false;
@@ -128,10 +129,10 @@ export default function useDiscoverBannerLogics() {
                 dispatchRef.current = dispatch;
             }
             startTimer();
-            window.addEventListener('blur', pause);
-            window.addEventListener('focus', resume);
+            window.addEventListener('blur', eventRef.pause);
+            window.addEventListener('focus', eventRef.resume);
         },
-        [pause, resume, startTimer]
+        [startTimer]
     );
 
     // this function stops the timer and removes the listeners
@@ -142,9 +143,9 @@ export default function useDiscoverBannerLogics() {
             timerRef.pauseTimer = null;
         }
 
-        window.removeEventListener('blur', pause);
-        window.removeEventListener('focus', resume);
-    }, [pause, resume, stopTimer]);
+        window.removeEventListener('blur', eventRef.pause);
+        window.removeEventListener('focus', eventRef.resume);
+    }, [stopTimer]);
 
     // this function resets the timer
     const reset = useCallback(() => {

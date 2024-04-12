@@ -48,8 +48,9 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
             }, 200);
         }
     };
+    const eventRef = useRef(null);
 
-    const handlePlaying = useCallback(() => {
+    eventRef.handlePlaying = useCallback(() => {
         canPlay.current = true;
         if (shouldPause.current) {
             videoRef.current.pause();
@@ -57,24 +58,23 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
         }
     }, []);
 
-    const handleCanPlayPlayThorough = useCallback(() => {}, []);
-
-    const handleWaiting = useCallback(() => {
+    eventRef.handleWaiting = useCallback(() => {
         canPlay.current = false;
     }, []);
 
     useEffect(() => {
         if (video.current) {
             videoRef.current = video.current;
-            videoRef.current.addEventListener('playing', handlePlaying);
-            videoRef.current.addEventListener('canplaythrough', handleCanPlayPlayThorough);
-            videoRef.current.addEventListener('waiting', handleWaiting);
+            videoRef.current.addEventListener('playing', eventRef.handlePlaying);
+            videoRef.current.addEventListener('waiting', eventRef.handleWaiting);
         }
         return () => {
-            videoRef.current.removeEventListener('playing', handlePlaying);
-            videoRef.current.removeEventListener('waiting', handleWaiting);
+            if (videoRef.current) {
+                videoRef.current.removeEventListener('playing', eventRef.handlePlaying);
+                videoRef.current.removeEventListener('waiting', eventRef.handleWaiting);
+            }
         };
-    }, [handleCanPlayPlayThorough, handlePlaying, handleWaiting, video]);
+    }, [video]);
 
     return (
         <>

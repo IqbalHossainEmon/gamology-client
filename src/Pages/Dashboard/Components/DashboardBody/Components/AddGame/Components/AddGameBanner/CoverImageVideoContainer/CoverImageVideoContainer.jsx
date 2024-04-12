@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import styles from './CoverImageVideoContainer.module.css';
@@ -14,19 +14,20 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     const btnRef = useRef(null);
     const typeRef = useRef(null);
     typeRef.current = type;
+    const eventRef = useRef(null);
+
+    eventRef.cancel = useCallback(() => {
+        setActive(false);
+    }, []);
 
     useEffect(() => {
         let input;
         if (type.type === 'Image') {
             input = inputRef.current;
-            inputRef.current.addEventListener('cancel', () => {
-                setActive(false);
-            });
+            inputRef.current.addEventListener('cancel', eventRef.cancel);
         }
         return () => {
-            input?.removeEventListener('cancel', () => {
-                setActive(false);
-            });
+            input?.removeEventListener('cancel', eventRef.cancel);
         };
     }, [type.type]);
 

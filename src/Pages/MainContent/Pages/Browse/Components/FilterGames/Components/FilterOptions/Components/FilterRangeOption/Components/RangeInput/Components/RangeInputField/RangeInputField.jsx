@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './RangeInputField.module.css';
 
 export default function RangeInputField({ inputRef, disabled, state, handleEnter, name, float }) {
     const [value, setValue] = useState(0);
+    const eventRef = useRef(null);
 
     useEffect(() => {
         setValue(state.toFixed(float));
     }, [float, state]);
 
-    const handleMouseDown = e => {
+    eventRef.handleMouseDown = e => {
         if (e.target !== inputRef.current) {
             inputRef.current.blur();
-            document.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('mousedown', eventRef.handleMouseDown);
         }
     };
 
@@ -23,7 +24,7 @@ export default function RangeInputField({ inputRef, disabled, state, handleEnter
             value={value}
             name={name}
             onFocus={() => {
-                document.addEventListener('mousedown', handleMouseDown);
+                document.addEventListener('mousedown', eventRef.handleMouseDown);
             }}
             onKeyDown={handleEnter}
             type="text"

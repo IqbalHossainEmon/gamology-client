@@ -5,9 +5,10 @@ import styles from './RangeKnob.module.css';
 function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, handleSetValue }) {
     const stateRef = useRef(state);
     stateRef.current = state;
+    const handleMove = useRef(null);
 
     // Calculate move value
-    const handleMove = useCallback(
+    handleMove.current = useCallback(
         e => {
             const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
 

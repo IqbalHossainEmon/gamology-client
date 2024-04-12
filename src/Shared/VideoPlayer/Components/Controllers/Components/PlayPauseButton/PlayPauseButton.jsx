@@ -7,13 +7,15 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
     const isPlayingRef = useRef(isPlaying);
     isPlayingRef.current = isPlaying;
 
-    const handlePlay = useCallback(() => {
+    const eventRef = useRef(null);
+
+    eventRef.handlePlay = useCallback(() => {
         if (isSeekedRef.current && !isPlayingRef.current) {
             setIsPlaying(true);
         }
     }, [isSeekedRef]);
 
-    const handlePause = useCallback(() => {
+    eventRef.handlePause = useCallback(() => {
         if (isSeekedRef.current && isPlayingRef.current) {
             setIsPlaying(false);
         }
@@ -32,15 +34,17 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
         let videoRef;
         if (video.current) {
             videoRef = video.current;
-            videoRef.addEventListener('play', handlePlay);
-            videoRef.addEventListener('pause', handlePause);
+            videoRef.addEventListener('play', eventRef.handlePlay);
+            videoRef.addEventListener('pause', eventRef.handlePause);
         }
 
         return () => {
-            videoRef.removeEventListener('play', handlePlay);
-            videoRef.removeEventListener('pause', handlePause);
+            if (videoRef) {
+                videoRef.removeEventListener('play', eventRef.handlePlay);
+                videoRef.removeEventListener('pause', eventRef.handlePause);
+            }
         };
-    }, [handlePause, handlePlay, video]);
+    }, [video]);
 
     return (
         <button type="button" onClick={handleCanToggle} className={styles.playPauseButton}>

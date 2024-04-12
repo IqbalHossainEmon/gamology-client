@@ -11,15 +11,22 @@ const Modal = ({ children, setShow }) => {
     const parentRef = useRef(null);
     const childRef = useRef(null);
 
-    const handleModalClose = () => {
-        setHideAnimation(true);
+    const timerId = useRef(null);
 
-        setTimeout(() => {
+    const handleModalClose = () => {
+        console.log('Modal Closed');
+        setHideAnimation(true);
+        if (timerId.current) {
+            clearTimeout(timerId.current);
+            timerId.current = null;
+        }
+        timerId.current = setTimeout(() => {
+            timerId.current = null;
             setShow(false);
         }, 300);
     };
 
-    const { showMenu, setElement } = useDropDownHide(handleModalClose);
+    const { showMenu, setElement, stopMenu } = useDropDownHide(handleModalClose);
 
     useEffect(() => {
         setElement(elementRef.current);
@@ -34,7 +41,14 @@ const Modal = ({ children, setShow }) => {
                         {children}
                     </div>
                 </div>
-                <button onClick={handleModalClose} type="button" className={styles.crossBtn}>
+                <button
+                    onClick={() => {
+                        handleModalClose();
+                        stopMenu();
+                    }}
+                    type="button"
+                    className={styles.crossBtn}
+                >
                     <span className={styles.cross} />
                 </button>
                 <ScrollBar parentRef={parentRef} childRef={childRef} />

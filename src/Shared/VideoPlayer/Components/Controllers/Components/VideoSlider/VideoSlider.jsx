@@ -18,43 +18,47 @@ export default function VideoSlider({
     const pathRef = useRef(null);
     const screenWidth = useScreenWidth();
 
-    const handleResize = useCallback(() => {
+    const eventRef = useRef(null);
+
+    eventRef.handleResize = useCallback(() => {
         pathRef.width = pathRef.current?.offsetWidth;
         pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
     }, []);
 
     useEffect(() => {
-        handleResize();
-    }, [handleResize, screenWidth]);
+        eventRef.handleResize();
+    }, [screenWidth]);
 
     useEffect(() => {
         setTimeout(() => {
-            handleResize();
+            eventRef.handleResize();
         }, 250);
-    }, [changePause, handleResize]);
+    }, [changePause]);
 
     useEffect(() => {
         let videoContainerRef;
 
         if (videoContainer.current) {
-            videoContainer.current.addEventListener('fullscreenchange', handleResize);
-            videoContainer.current.addEventListener('mozfullscreenchange', handleResize);
-            videoContainer.current.addEventListener('MSFullscreenChange', handleResize);
-            videoContainer.current.addEventListener('webkitfullscreenchange', handleResize);
+            videoContainer.current.addEventListener('fullscreenchange', eventRef.handleResize);
+            videoContainer.current.addEventListener('mozfullscreenchange', eventRef.handleResize);
+            videoContainer.current.addEventListener('MSFullscreenChange', eventRef.handleResize);
+            videoContainer.current.addEventListener('webkitfullscreenchange', eventRef.handleResize);
 
             videoContainerRef = videoContainer.current;
         }
 
         return () => {
-            videoContainerRef.removeEventListener('fullscreenchange', handleResize);
-            videoContainerRef.removeEventListener('mozfullscreenchange', handleResize);
-            videoContainerRef.removeEventListener('MSFullscreenChange', handleResize);
-            videoContainerRef.removeEventListener('webkitfullscreenchange', handleResize);
+            videoContainerRef.removeEventListener('fullscreenchange', eventRef.handleResize);
+            videoContainerRef.removeEventListener('mozfullscreenchange', eventRef.handleResize);
+            videoContainerRef.removeEventListener('MSFullscreenChange', eventRef.handleResize);
+            videoContainerRef.removeEventListener('webkitfullscreenchange', eventRef.handleResize);
         };
-    }, [handleResize, videoContainer]);
+    }, [videoContainer]);
+
+    const handleMouseEvent = useRef(null);
 
     // get cursor position while dragging
-    const onMouseEvent = useCallback(
+    handleMouseEvent.current = useCallback(
         e => {
             let cursorInPercent =
                 ((e?.touches ? e.touches[0].clientX - pathRef.offsetLeft : e.clientX - pathRef.offsetLeft) / pathRef.width) * 100;
@@ -73,13 +77,13 @@ export default function VideoSlider({
 
     const handleMouseDownClick = useCallback(
         e => {
-            onMouseEvent(e);
+            handleMouseEvent.current(e);
             handleMouseDown();
         },
-        [handleMouseDown, onMouseEvent]
+        [handleMouseDown]
     );
 
-    const onStart = useDragStartStop(onMouseEvent, handleMouseUp, handleMouseDownClick, false);
+    const onStart = useDragStartStop(handleMouseEvent, handleMouseUp, handleMouseDownClick, false);
 
     return (
         <div ref={pathRef} tabIndex="0" role="button" onMouseDown={onStart} onTouchStart={onStart} className={styles.videoSliderPath}>

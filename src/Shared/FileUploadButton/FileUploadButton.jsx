@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import styles from './FileUploadButton.module.css';
@@ -17,10 +17,18 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
 
+    const handleActive = useRef(null);
+
+    handleActive.current = useCallback(() => {
+        setActive(false);
+    }, []);
+
     useEffect(() => {
-        inputRef.current.addEventListener('cancel', () => {
-            setActive(false);
-        });
+        const input = inputRef.current;
+        input.addEventListener('cancel', handleActive.current);
+        return () => {
+            input.removeEventListener('cancel', handleActive.current);
+        };
     }, []);
 
     const handleSelect = e => {
