@@ -13,7 +13,15 @@ const SelectionFieldWithErrorMessage = ({ htmlFor, placeholder, list, name, setS
 
     return (
         <div className={styles.selectionField}>
-            <SelectionField htmlFor={htmlFor} placeholder={placeholder} list={list} name={name} setState={setState} />
+            <SelectionField
+                onFocusClick={() => setErrorShow(false)}
+                htmlFor={htmlFor}
+                errorBorder={errorShow}
+                placeholder={placeholder}
+                list={list}
+                name={name}
+                setState={setState}
+            />
             <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
         </div>
     );

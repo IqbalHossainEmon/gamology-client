@@ -7,21 +7,24 @@ const ErrorMessage = ({ errorMessage, enable }) => {
     const errorMessageRef = useRef(null);
     const errorMessageContainer = useRef(null);
     const timerId = useRef(null);
+    const resizeObserver = useRef(null);
 
     useEffect(() => {
-        const resizeObserver = new ResizeObserver(() => {
+        resizeObserver.current = new ResizeObserver(() => {
             errorMessageContainer.current.style.height = 'auto';
             errorMessageContainer.current.style.setProperty('--error-message-height', `${errorMessageRef.current.scrollHeight}px`);
             errorMessageContainer.current.style.height = '0px';
         });
+    }, []);
+
+    useEffect(() => {
         if (show) {
-            errorMessageContainer.current.style.height = 'auto';
-            errorMessageContainer.current.style.setProperty('--error-message-height', `${errorMessageRef.current.scrollHeight}px`);
-            errorMessageContainer.current.style.height = '0px';
-            resizeObserver.observe(errorMessageContainer.current);
+            resizeObserver.current.observe(errorMessageContainer.current);
+        } else {
+            resizeObserver.current.disconnect();
         }
         return () => {
-            resizeObserver.disconnect();
+            resizeObserver.current.disconnect();
         };
     }, [show]);
 
@@ -29,6 +32,7 @@ const ErrorMessage = ({ errorMessage, enable }) => {
         if (enable) {
             setShow(true);
         } else {
+            console.log(enable);
             if (timerId.current) {
                 clearTimeout(timerId.current);
                 timerId.current = null;
@@ -36,7 +40,7 @@ const ErrorMessage = ({ errorMessage, enable }) => {
             timerId.current = setTimeout(() => {
                 timerId.current = null;
                 setShow(false);
-            }, 250000);
+            }, 250);
         }
     }, [enable]);
 

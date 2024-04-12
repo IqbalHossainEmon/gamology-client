@@ -19,6 +19,7 @@ export default function SelectionField({
     onFocusClick,
     enabled = true,
     parentSetValue = '',
+    errorBorder = false,
     none,
     ...rest
 }) {
@@ -109,7 +110,7 @@ export default function SelectionField({
                             parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
                             parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && { title: value })}
                 ref={elementRef}
-                className={`${show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
+                className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
                 onClick={() => {
                     handleClick();
                     if (!show) {

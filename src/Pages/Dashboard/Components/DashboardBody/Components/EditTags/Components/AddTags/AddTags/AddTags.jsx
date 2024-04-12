@@ -67,10 +67,12 @@ const AddTags = ({ tags }) => {
                             case 'Tags':
                                 setTagOrCategory(true);
                                 addInfoRef.current.tag = { name: '', category: '' };
+                                errorRef.current = { tag: '', category: '' };
                                 break;
                             case 'Category':
                                 setTagOrCategory(false);
                                 addInfoRef.current.category = { name: '', tags: [] };
+                                errorRef.current = { category: '', tags: [] };
                                 break;
                             default:
                                 setTagOrCategory(null);
