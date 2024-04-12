@@ -1,7 +1,27 @@
+.tag {
+	flex-grow: 1;
+	min-width: 230px;
+}
+.tagHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.tagHeader h3 {
+	font-weight: 400;
+	margin: 1rem 0;
+}
+
+.tagList {
+	list-style: none;
+	width: 100%;
+}
 .tagListItem {
 	display: flex;
 	padding: 0.5rem 0;
 	position: relative;
+	justify-content: space-between;
+	gap: 1rem;
 }
 .tagListItem:not(:last-child)::after {
 	content: '';
@@ -12,13 +32,15 @@
 	left: 0;
 	bottom: 0;
 }
+
 .tagItem {
-	flex-grow: 1;
+	word-break: break-all;
 }
 
 .crossBtn {
 	width: 1.5rem;
 	height: 1.5rem;
+	flex-shrink: 0;
 	background-color: transparent;
 	border: none;
 	background-color: #ffffff2d;
@@ -56,4 +78,10 @@
 }
 .cross::before {
 	rotate: -45deg;
+}
+
+@media only screen and (max-width: 264px) {
+	.tag {
+		min-width: 100%;
+	}
 }

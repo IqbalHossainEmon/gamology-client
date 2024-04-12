@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import AddTags from '../Components/AddTags/AddTags/AddTags';
-import TagsContainer from '../Components/TagsContainer/TagsContainer';
+import ShowCategoryTags from '../Components/ShowTags/ShowCategoryTags/ShowCategoryTags';
 import styles from './EditTags.module.css';
 
 const data = [
@@ -56,7 +56,7 @@ const EditTags = () => {
     return (
         <div className={styles.addTags}>
             <h2 className={styles.tagsHeader}>Tags</h2>
-            <TagsContainer tags={tags} />
+            <ShowCategoryTags tags={tags} />
             <AddTags tags={tags} />
         </div>
     );
