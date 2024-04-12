@@ -32,7 +32,6 @@ const ErrorMessage = ({ errorMessage, enable }) => {
         if (enable) {
             setShow(true);
         } else {
-            console.log(enable);
             if (timerId.current) {
                 clearTimeout(timerId.current);
                 timerId.current = null;

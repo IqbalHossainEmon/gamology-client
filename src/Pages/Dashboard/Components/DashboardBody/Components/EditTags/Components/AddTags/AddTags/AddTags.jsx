@@ -37,16 +37,18 @@ const AddTags = ({ tags }) => {
                 errorRef.current.category = '';
             }
             if (!addInfoRef.current.category.tags.length) {
-                errorRef.current.tags = 'Please Enter At Least One Tag';
+                errorRef.current.tags[0] = 'Please Enter At Least One Tag';
                 isValid = false;
-            } else {
-                errorRef.current.tags = '';
+            } else if (addInfoRef.current.category.tags.length) {
+                errorRef.current.tags = [''];
                 addInfoRef.current.category.tags.forEach((tag, index) => {
                     if (!tag) {
-                        errorRef.current.tags = `Please Enter Tag Name ${index + 1}`;
+                        errorRef.current.tags[index] = 'Please Enter Tag Name';
                         isValid = false;
                     }
                 });
+            } else {
+                errorRef.current.tags = [];
             }
         }
         return isValid;
@@ -66,13 +68,21 @@ const AddTags = ({ tags }) => {
                         switch (val) {
                             case 'Tags':
                                 setTagOrCategory(true);
-                                addInfoRef.current.tag = { name: '', category: '' };
+                                addInfoRef.current.tag = {
+                                    name: addInfoRef.current?.category?.name ? addInfoRef.current.category.name : '',
+                                    category: '',
+                                };
+                                if (addInfoRef.current.category) delete addInfoRef.current.category;
                                 errorRef.current = { tag: '', category: '' };
                                 break;
                             case 'Category':
                                 setTagOrCategory(false);
-                                addInfoRef.current.category = { name: '', tags: [] };
-                                errorRef.current = { category: '', tags: [] };
+                                addInfoRef.current.category = {
+                                    name: addInfoRef.current?.tag?.name ? addInfoRef.current.tag.name : '',
+                                    tags: [''],
+                                };
+                                if (addInfoRef.current.tag) delete addInfoRef.current.tag;
+                                errorRef.current = { category: '', tags: [''] };
                                 break;
                             default:
                                 setTagOrCategory(null);
@@ -109,7 +119,11 @@ const AddTags = ({ tags }) => {
                                 errorChange={errorChange}
                             />
                         ) : (
-                            <AddTagsUnderCategory infoRef={addInfoRef.current.category} />
+                            <AddTagsUnderCategory
+                                errorChange={errorChange}
+                                errorMessage={errorRef.current.tags}
+                                infoRef={addInfoRef.current.category.tags}
+                            />
                         )}
                     </div>
                     <div className={styles.submitBtn}>

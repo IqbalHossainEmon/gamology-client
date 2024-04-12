@@ -3,7 +3,7 @@ import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterE
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './AddTagsUnderCategory.module.css';
 
-const AddTagsUnderCategory = ({ infoRef }) => {
+const AddTagsUnderCategory = ({ infoRef, errorChange, errorMessage }) => {
     const [numberOfTags, setNumberOfTags] = useState(1);
 
     const addBtnREf = useRef(null);
@@ -16,12 +16,14 @@ const AddTagsUnderCategory = ({ infoRef }) => {
                     <div key={key} className={styles.tagField}>
                         <TextField
                             key={key}
+                            errorChange={errorChange}
+                            errorMessage={errorMessage[key]}
                             field="input"
                             htmlFor={`tagName-${key}`}
                             placeholder="Tag Name"
                             name={key}
                             setState={(val, name) => {
-                                infoRef.tags[name] = val;
+                                infoRef[name] = val;
                             }}
                         />
                     </div>
@@ -34,6 +36,7 @@ const AddTagsUnderCategory = ({ infoRef }) => {
                         type="button"
                         onClick={() => {
                             setNumberOfTags(prev => prev + 1);
+                            infoRef.push('');
                         }}
                     >
                         Add More +
@@ -48,6 +51,7 @@ const AddTagsUnderCategory = ({ infoRef }) => {
                         onClick={() => {
                             setNumberOfTags(prev => {
                                 if (prev > 1) {
+                                    infoRef.pop();
                                     return prev - 1;
                                 }
                                 return prev;
