@@ -13,6 +13,7 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         setValue(e.target.value);
         if (debounceIdRef.current) {
             clearTimeout(debounceIdRef.current);
+            debounceIdRef.current = null;
         }
         debounceIdRef.current = setTimeout(() => {
             setChangedValue(e.target.value);

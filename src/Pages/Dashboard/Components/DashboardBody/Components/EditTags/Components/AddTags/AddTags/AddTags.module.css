@@ -24,3 +24,8 @@
 	cursor: pointer;
 	position: relative;
 }
+@media only screen and (max-width: 200px) {
+	.selectionField {
+		width: 100%;
+	}
+}

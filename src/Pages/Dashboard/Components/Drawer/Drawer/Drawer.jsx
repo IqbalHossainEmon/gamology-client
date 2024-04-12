@@ -608,9 +608,11 @@ const Drawer = () => {
         setTransition(true);
         if (transitionId.current) {
             clearTimeout(transitionId.current);
+            transitionId.current = null;
         }
         transitionId.current = setTimeout(() => {
             setTransition(false);
+            transitionId.current = null;
         }, 300);
     };
 

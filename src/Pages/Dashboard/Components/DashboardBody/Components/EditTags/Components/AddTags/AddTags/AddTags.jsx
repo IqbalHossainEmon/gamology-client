@@ -3,13 +3,54 @@ import ButtonWaterEffect from '../../../../../../../../../Shared/ButtonWaterEffe
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import AddTagsUnderCategory from '../Components/AddTagsUnderCategory/AddTagsUnderCategory';
+import SelectionFieldWithErrorMessage from '../Components/SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
 import styles from './AddTags.module.css';
 
 const AddTags = ({ tags }) => {
     const [tagOrCategory, setTagOrCategory] = useState(null);
+    const [errorChange, setErrorChange] = useState(0);
 
     const addBtnRef = useRef(null);
     const addInfoRef = useRef({});
+    const errorRef = useRef({});
+
+    const handleValidation = () => {
+        let isValid = true;
+        if (tagOrCategory) {
+            if (!addInfoRef.current.tag.name) {
+                errorRef.current.tag = 'Please Enter New Tag Name';
+                isValid = false;
+            } else {
+                errorRef.current.tag = '';
+            }
+            if (!addInfoRef.current.tag.category) {
+                errorRef.current.category = 'Please Select Category';
+                isValid = false;
+            } else {
+                errorRef.current.category = '';
+            }
+        } else {
+            if (!addInfoRef.current.category.name) {
+                errorRef.current.category = 'Please Enter New Category Name';
+                isValid = false;
+            } else {
+                errorRef.current.category = '';
+            }
+            if (!addInfoRef.current.category.tags.length) {
+                errorRef.current.tags = 'Please Enter At Least One Tag';
+                isValid = false;
+            } else {
+                errorRef.current.tags = '';
+                addInfoRef.current.category.tags.forEach((tag, index) => {
+                    if (!tag) {
+                        errorRef.current.tags = `Please Enter Tag Name ${index + 1}`;
+                        isValid = false;
+                    }
+                });
+            }
+        }
+        return isValid;
+    };
 
     return (
         <div className={styles.addTags}>
@@ -39,7 +80,6 @@ const AddTags = ({ tags }) => {
                     }}
                 />
             </div>
-
             {tagOrCategory !== null && (
                 <>
                     <div>
@@ -47,23 +87,25 @@ const AddTags = ({ tags }) => {
                             field="input"
                             placeholder={`Enter New ${tagOrCategory ? 'Tag' : 'Category'} Name`}
                             name={tagOrCategory ? 'tag' : 'category'}
+                            errorMessage={errorRef.current[tagOrCategory ? 'tag' : 'category']}
+                            errorChange={errorChange}
                             setState={(val, name) => {
                                 addInfoRef.current[name].name = val;
                             }}
                             htmlFor={tagOrCategory ? 'tag-name' : 'category-name'}
                         />
                         {tagOrCategory ? (
-                            <div className={styles.selectionField}>
-                                <SelectionField
-                                    htmlFor="which-category"
-                                    placeholder="Which Category?"
-                                    list={tags.map(tag => tag.category)}
-                                    name="category"
-                                    setState={(val, name) => {
-                                        addInfoRef.current.tag[name] = val;
-                                    }}
-                                />
-                            </div>
+                            <SelectionFieldWithErrorMessage
+                                htmlFor="category"
+                                placeholder="Select Category"
+                                list={tags.map(tag => tag.category)}
+                                name="category"
+                                setState={val => {
+                                    addInfoRef.current.tag.category = val;
+                                }}
+                                errorMessage={errorRef.current.category}
+                                errorChange={errorChange}
+                            />
                         ) : (
                             <AddTagsUnderCategory infoRef={addInfoRef.current.category} />
                         )}
@@ -73,7 +115,10 @@ const AddTags = ({ tags }) => {
                             ref={addBtnRef}
                             type="button"
                             onClick={() => {
-                                console.log(addInfoRef.current);
+                                setErrorChange(prev => prev + 1);
+                                if (handleValidation()) {
+                                    console.log(addInfoRef.current);
+                                }
                             }}
                         >
                             Submit

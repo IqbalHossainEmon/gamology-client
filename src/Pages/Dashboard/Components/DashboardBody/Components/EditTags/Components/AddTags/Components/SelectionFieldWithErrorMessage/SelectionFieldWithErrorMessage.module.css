@@ -1,0 +1,10 @@
+.selectionField {
+	margin: 1rem 0;
+	width: 200px;
+}
+
+@media only screen and (max-width: 200px) {
+	.selectionField {
+		width: 100%;
+	}
+}

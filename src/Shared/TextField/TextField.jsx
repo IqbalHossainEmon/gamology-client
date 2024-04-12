@@ -36,6 +36,15 @@ export default function TextField({
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
 
+    useEffect(() => {
+        setErrorShow(prev => {
+            if (prev) {
+                return !prev;
+            }
+            return prev;
+        });
+    }, [placeholder]);
+
     return (
         <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}>
             <div className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}`}>

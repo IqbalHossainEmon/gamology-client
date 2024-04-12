@@ -193,11 +193,16 @@
 }
 
 @media screen and (max-width: 768px) {
-	.label {
+	.label,
+	.field {
 		font-size: 12px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+	.label {
+		width: calc(100% - 40px);
+		text-align: left;
 	}
 	.focused {
 		font-size: 10px;

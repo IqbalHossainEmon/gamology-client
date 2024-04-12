@@ -72,7 +72,7 @@ const ScrollBar = ({ parentRef, childRef }) => {
     }, [childRef, parentRef]);
 
     useEffect(() => {
-        new ResizeObserver(() => {
+        const childObserve = new ResizeObserver(() => {
             setHeight(() => {
                 const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
                 if (heightCheck > 100) {
@@ -80,8 +80,9 @@ const ScrollBar = ({ parentRef, childRef }) => {
                 }
                 return heightCheck;
             });
-        }).observe(childRef.current);
-        new ResizeObserver(() => {
+        });
+        childObserve.observe(childRef.current);
+        const parentObserve = new ResizeObserver(() => {
             setHeight(() => {
                 const heightCheck = (parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
                 if (heightCheck > 100) {
@@ -89,7 +90,8 @@ const ScrollBar = ({ parentRef, childRef }) => {
                 }
                 return heightCheck;
             });
-        }).observe(parentRef.current);
+        });
+        parentObserve.observe(parentRef.current);
         parentRef.current.addEventListener('scroll', () => {
             setShow(true);
             handleScrollHide();
@@ -102,6 +104,10 @@ const ScrollBar = ({ parentRef, childRef }) => {
             setShow(true);
             handleScrollHide();
         });
+        return () => {
+            childObserve.disconnect();
+            parentObserve.disconnect();
+        };
     }, [childRef, parentRef]);
 
     return (

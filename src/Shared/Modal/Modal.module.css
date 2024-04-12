@@ -1,115 +1,105 @@
 .modal {
-  max-width: 100%;
-  min-width: 60%;
-  max-height: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  background-color: #18181c;
-  z-index: 3;
-  display: flex;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px 0 #000000;
-  animation: show 200ms forwards;
+	max-width: 100%;
+	min-width: 60%;
+	max-height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	background-color: #18181c;
+	z-index: 3;
+	display: flex;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 10px 0 #000000;
+	animation: show-hide-animation 200ms forwards;
 }
 .modalScrollContainer {
-  width: 100%;
-  max-height: 100%;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+	width: 100%;
+	max-height: 100%;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 .modalScrollContainer ::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 .modalContentContainer {
-  padding: 2rem;
+	padding: 2rem;
 }
 .hide {
-  animation: hide 200ms forwards;
-  pointer-events: none;
+	animation: show-hide-animation 200ms backwards;
+	pointer-events: none;
 }
 
 .crossBtn {
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: transparent;
+	border: none;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 }
 .cross {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 .cross::after,
 .cross::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 0.2rem;
-  background-color: #aaaaaa;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  transition: background-color 200ms;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 0.2rem;
+	background-color: #aaaaaa;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	transition: background-color 200ms;
 }
 .cross::after {
-  rotate: 45deg;
+	rotate: 45deg;
 }
 .cross::before {
-  rotate: -45deg;
+	rotate: -45deg;
 }
 
-@keyframes hide {
-  from {
-    scale: 1;
-    opacity: 1;
-  }
-  to {
-    scale: 0;
-    opacity: 0;
-  }
-}
-@keyframes show {
-  from {
-    scale: 0;
-    opacity: 0;
-  }
-  to {
-    scale: 1;
-    opacity: 1;
-  }
+@keyframes show-hide-animation {
+	from {
+		scale: 0;
+		opacity: 0;
+	}
+	to {
+		scale: 1;
+		opacity: 1;
+	}
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .crossBtn {
-    cursor: pointer;
-  }
-  .crossBtn:hover .cross::after,
-  .crossBtn:hover .cross::before {
-    background-color: #ffffff;
-  }
-  .crossBtn:active .cross::after,
-  .crossBtn:active .cross::before {
-    background-color: #686868;
-  }
+	.crossBtn {
+		cursor: pointer;
+	}
+	.crossBtn:hover .cross::after,
+	.crossBtn:hover .cross::before {
+		background-color: #ffffff;
+	}
+	.crossBtn:active .cross::after,
+	.crossBtn:active .cross::before {
+		background-color: #686868;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  .modal {
-    min-width: 90%;
-  }
+	.modal {
+		min-width: 90%;
+	}
 }
 @media only screen and (max-width: 364px) {
-  .modal {
-    width: 100%;
-  }
-  .modalContentContainer {
-    padding: 1rem;
-  }
+	.modal {
+		width: 100%;
+	}
+	.modalContentContainer {
+		padding: 1rem;
+	}
 }

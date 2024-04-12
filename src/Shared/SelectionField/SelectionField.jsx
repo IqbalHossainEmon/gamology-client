@@ -39,16 +39,20 @@ export default function SelectionField({
     const parentRef = useRef(null);
     const childRef = useRef(null);
 
-    const handleHide = useCallback(() => {
+    const handleIfTimeIdExist = useCallback(() => {
         if (timeId.current) {
             clearTimeout(timeId.current);
             timeId.current = null;
         }
+    }, []);
+
+    const handleHide = useCallback(() => {
+        handleIfTimeIdExist();
         setOpacityShow(false);
         timeId.current = setTimeout(() => {
             setShow(false);
         }, 200);
-    }, []);
+    }, [handleIfTimeIdExist]);
 
     const { showMenu, setElement } = useDropDownHide(handleHide);
 
@@ -112,16 +116,10 @@ export default function SelectionField({
                         showMenu(true);
                         setShow(true);
                         setOpacityShow(true);
-                        if (timeId.current) {
-                            clearTimeout(timeId.current);
-                            timeId.current = null;
-                        }
+                        handleIfTimeIdExist();
                     } else {
                         setOpacityShow(false);
-                        if (timeId.current) {
-                            clearTimeout(timeId.current);
-                            timeId.current = null;
-                        }
+                        handleIfTimeIdExist();
                         timeId.current = setTimeout(() => {
                             showMenu(false);
                             setShow(false);

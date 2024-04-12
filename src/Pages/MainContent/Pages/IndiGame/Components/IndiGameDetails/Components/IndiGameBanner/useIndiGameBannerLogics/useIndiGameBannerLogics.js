@@ -101,6 +101,7 @@ export default function useIndiGameBannerLogics() {
     const timerFunction = useCallback((transitionType, dispatch, time = 500) => {
         if (timeId.current) {
             clearTimeout(timeId.current);
+            timeId.current = null;
         }
 
         timeId.current = setTimeout(() => {
