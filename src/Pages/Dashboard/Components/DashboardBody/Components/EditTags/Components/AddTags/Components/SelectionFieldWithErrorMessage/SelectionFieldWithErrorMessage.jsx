@@ -3,7 +3,7 @@ import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/Erro
 import SelectionField from '../../../../../../../../../../Shared/SelectionField/SelectionField';
 import styles from './SelectionFieldWithErrorMessage.module.css';
 
-const SelectionFieldWithErrorMessage = ({ htmlFor, placeholder, list, name, setState, errorMessage, errorChange }) => {
+const SelectionFieldWithErrorMessage = ({ htmlFor, placeholder, list, name, setState, errorMessage, errorChange, handleCheck }) => {
     const [errorShow, setErrorShow] = useState(false);
 
     useEffect(() => {
@@ -14,7 +14,10 @@ const SelectionFieldWithErrorMessage = ({ htmlFor, placeholder, list, name, setS
     return (
         <div className={styles.selectionField}>
             <SelectionField
-                onFocusClick={() => setErrorShow(false)}
+                onFocusClick={() => {
+                    setErrorShow(false);
+                    handleCheck();
+                }}
                 htmlFor={htmlFor}
                 errorBorder={errorShow}
                 placeholder={placeholder}

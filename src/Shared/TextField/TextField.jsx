@@ -13,11 +13,12 @@ export default function TextField({
     handleChange = () => {},
     onFocusClick,
     enabled = true,
-    defaultValue,
+    defaultValue = '',
+    parentErrorShow = true,
     ...rest
 }) {
     const [focused, setFocused] = useState(false);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(defaultValue);
     const [errorShow, setErrorShow] = useState(!!errorMessage);
 
     const fieldRef = useRef(null);
@@ -46,6 +47,12 @@ export default function TextField({
         if (errorChange && errorMessage) setErrorShow(true);
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
+
+    useEffect(() => {
+        if (!parentErrorShow) {
+            setErrorShow(false);
+        }
+    }, [parentErrorShow]);
 
     useEffect(() => {
         setErrorShow(prev => {
@@ -77,7 +84,7 @@ export default function TextField({
                                 onFocusClick();
                             }
                         }}
-                        {...(defaultValue ? { defaultValue } : { value })}
+                        value={value}
                         onChange={e => {
                             setValue(e.target.value);
                             handleChange(e.target.value);

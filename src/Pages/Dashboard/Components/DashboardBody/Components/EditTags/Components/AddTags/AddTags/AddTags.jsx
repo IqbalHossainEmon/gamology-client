@@ -1,12 +1,11 @@
 import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField';
-import TextField from '../../../../../../../../../Shared/TextField/TextField';
-import AddTagsUnderCategory from '../Components/AddTagsUnderCategory/AddTagsUnderCategory';
-import SelectionFieldWithErrorMessage from '../Components/SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
+import AddCategoryNameAndTags from '../Components/AddCategoryNameAndTags/AddCategoryNameAndTags';
+import AddTagsNameAndCategory from '../Components/AddTagsNameAndCategory/AddTagsNameAndCategory';
 import styles from './AddTags.module.css';
 
-const AddTags = ({ tags }) => {
+const AddTags = ({ tags, setTags }) => {
     const [tagOrCategory, setTagOrCategory] = useState(null);
     const [errorChange, setErrorChange] = useState(0);
 
@@ -27,6 +26,30 @@ const AddTags = ({ tags }) => {
                 errorRef.current.category = 'Please Select Category';
                 isValid = false;
             } else {
+                if (addInfoRef.current.tag.name) {
+                    const isTagExist = tags.some(
+                        category => category.optionList.findIndex(tag => tag.tags === addInfoRef.current.tag.name) !== -1
+                    );
+                    if (isTagExist) {
+                        errorRef.current.tag = (
+                            <>
+                                Tag Already Exists in{' '}
+                                <strong>
+                                    {
+                                        tags.find(
+                                            category =>
+                                                category.optionList.findIndex(tag => tag.tags === addInfoRef.current.tag.name) !== -1
+                                        ).category
+                                    }
+                                </strong>{' '}
+                                Category
+                            </>
+                        );
+                        isValid = false;
+                    } else {
+                        errorRef.current.tag = '';
+                    }
+                }
                 errorRef.current.category = '';
             }
         } else {
@@ -34,7 +57,11 @@ const AddTags = ({ tags }) => {
                 errorRef.current.category = 'Please Enter New Category Name';
                 isValid = false;
             } else {
-                errorRef.current.category = '';
+                const isCategoryExist = tags.some(category => category.category === addInfoRef.current.category.name);
+                if (isCategoryExist) {
+                    errorRef.current.category = 'Category Already Exists';
+                    isValid = false;
+                } else errorRef.current.category = '';
             }
             if (!addInfoRef.current.category.tags.length) {
                 errorRef.current.tags[0] = 'Please Enter At Least One Tag';
@@ -45,6 +72,20 @@ const AddTags = ({ tags }) => {
                     if (!tag) {
                         errorRef.current.tags[index] = 'Please Enter Tag Name';
                         isValid = false;
+                    } else {
+                        const isTagExist = tags.some(category => category.optionList.findIndex(t => t.tags === tag) !== -1);
+                        if (isTagExist) {
+                            errorRef.current.tags[index] = (
+                                <>
+                                    Tag Already Exists in{' '}
+                                    <strong>
+                                        {tags.find(category => category.optionList.findIndex(t => t.tags === tag) !== -1).category}
+                                    </strong>{' '}
+                                    Category
+                                </>
+                            );
+                            isValid = false;
+                        }
                     }
                 });
             } else {
@@ -95,35 +136,10 @@ const AddTags = ({ tags }) => {
             {tagOrCategory !== null && (
                 <>
                     <div>
-                        <TextField
-                            field="input"
-                            placeholder={`Enter New ${tagOrCategory ? 'Tag' : 'Category'} Name`}
-                            name={tagOrCategory ? 'tag' : 'category'}
-                            errorMessage={errorRef.current[tagOrCategory ? 'tag' : 'category']}
-                            errorChange={errorChange}
-                            setState={(val, name) => {
-                                addInfoRef.current[name].name = val;
-                            }}
-                            htmlFor={tagOrCategory ? 'tag-name' : 'category-name'}
-                        />
                         {tagOrCategory ? (
-                            <SelectionFieldWithErrorMessage
-                                htmlFor="category"
-                                placeholder="Select Category"
-                                list={tags.map(tag => tag.category)}
-                                name="category"
-                                setState={val => {
-                                    addInfoRef.current.tag.category = val;
-                                }}
-                                errorMessage={errorRef.current.category}
-                                errorChange={errorChange}
-                            />
+                            <AddTagsNameAndCategory errorRef={errorRef} errorChange={errorChange} addInfoRef={addInfoRef} tags={tags} />
                         ) : (
-                            <AddTagsUnderCategory
-                                errorChange={errorChange}
-                                errorMessage={errorRef.current.tags}
-                                infoRef={addInfoRef.current.category.tags}
-                            />
+                            <AddCategoryNameAndTags errorRef={errorRef} errorChange={errorChange} addInfoRef={addInfoRef} />
                         )}
                     </div>
                     <div className={styles.submitBtn}>
@@ -131,10 +147,31 @@ const AddTags = ({ tags }) => {
                             ref={addBtnRef}
                             type="button"
                             onClick={() => {
-                                setErrorChange(prev => prev + 1);
                                 if (handleValidation()) {
-                                    console.log(addInfoRef.current);
+                                    setTags(prev => {
+                                        const newPrev = JSON.parse(JSON.stringify(prev));
+                                        if (tagOrCategory) {
+                                            const index = newPrev.findIndex(
+                                                category => category.category === addInfoRef.current.tag.category
+                                            );
+
+                                            newPrev[index].optionList.push({
+                                                tags: addInfoRef.current.tag.name,
+                                                id: newPrev[index].optionList.length,
+                                            });
+                                        } else {
+                                            newPrev.push({
+                                                id: newPrev.length,
+                                                category: addInfoRef.current.category.name,
+                                                optionList: addInfoRef.current.category.tags.map((tag, i) => ({ id: i, tags: tag })),
+                                            });
+                                        }
+
+                                        return JSON.stringify(newPrev) !== JSON.stringify(prev) ? newPrev : prev;
+                                    });
+                                    return;
                                 }
+                                setErrorChange(prev => prev + 1);
                             }}
                         >
                             Submit

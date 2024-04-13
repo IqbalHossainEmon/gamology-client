@@ -1,6 +1,6 @@
 .tag {
-	flex-grow: 1;
-	min-width: 230px;
+	flex: 1 0 0px;
+	min-width: 30%;
 }
 .tagHeader {
 	display: flex;

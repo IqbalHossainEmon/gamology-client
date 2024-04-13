@@ -21,7 +21,6 @@ const useDropDownHide = setState => {
                         document.removeEventListener('mousedown', closeMenu.current);
                         window.removeEventListener('blur', closeMenuBlurRef.current);
                         setState(false);
-                        console.log('Close Menu');
                     }
                     break;
             }

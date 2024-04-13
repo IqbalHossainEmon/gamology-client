@@ -46,7 +46,7 @@ const ErrorMessage = ({ errorMessage, enable }) => {
     return show ? (
         <div ref={errorMessageContainer} className={`${styles.errorMessageContainer}`} id={enable ? styles.show : styles.hide}>
             <div ref={errorMessageRef} className={styles.errorMessage}>
-                <p>{errorMessage || 'There is a problem'}</p>
+                <p>{errorMessage}</p>
                 <div className={styles.info}>
                     <svg
                         fill="#ffffff"

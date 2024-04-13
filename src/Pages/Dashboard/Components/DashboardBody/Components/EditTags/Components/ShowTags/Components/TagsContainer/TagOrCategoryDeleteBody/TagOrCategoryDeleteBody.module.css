@@ -8,8 +8,12 @@
 	gap: 1rem;
 }
 
+.checkPoint {
+	margin-top: 1rem;
+}
+
 .deleteBtn {
-	background-color: #8b0303;
+	background-color: #cc2a24;
 	color: white;
 	border: none;
 	font-size: 1rem;

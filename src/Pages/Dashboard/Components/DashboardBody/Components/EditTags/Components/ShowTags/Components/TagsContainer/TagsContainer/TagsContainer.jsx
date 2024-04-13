@@ -2,11 +2,15 @@ import { useCallback } from 'react';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
 
-const TagsContainer = ({ tag, setModal }) => {
+const TagsContainer = ({ tag, setModal, setTags }) => {
     const modalBody = useCallback((props, text, handler) => <TagOrCategoryDeleteBody {...props} text={text} handler={handler} />, []);
 
     const categoryDeleteHandler = () => {
         console.log(tag.category, 'Category Deleted');
+        const checkTags = true;
+        if (checkTags) {
+            setTags(prevTags => prevTags.filter(prevTag => prevTag.category !== tag.category));
+        }
     };
 
     const handleCategoryDelete = () => {
@@ -32,6 +36,21 @@ const TagsContainer = ({ tag, setModal }) => {
 
     const tagDeleteHandler = data => {
         console.log(data, 'Tag Deleted');
+
+        const checkTags = true;
+        if (checkTags) {
+            setTags(prevTags =>
+                prevTags.map(prevTag => {
+                    if (prevTag.category === tag.category) {
+                        return {
+                            ...prevTag,
+                            optionList: prevTag.optionList.filter(option => option.tags !== data),
+                        };
+                    }
+                    return prevTag;
+                })
+            );
+        }
     };
 
     const handleTagDelete = data => {

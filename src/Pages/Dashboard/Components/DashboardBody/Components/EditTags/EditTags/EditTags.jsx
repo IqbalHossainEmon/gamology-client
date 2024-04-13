@@ -5,7 +5,7 @@ import styles from './EditTags.module.css';
 
 const data = [
     {
-        id: 2,
+        id: 0,
         category: 'Genre',
         optionList: [
             { id: 0, tags: 'Action' },
@@ -19,7 +19,7 @@ const data = [
         ],
     },
     {
-        id: 3,
+        id: 1,
         category: 'Os',
         optionList: [
             { id: 0, tags: 'Windows' },
@@ -28,7 +28,7 @@ const data = [
         ],
     },
     {
-        id: 4,
+        id: 2,
         category: 'Features',
         optionList: [
             { id: 0, tags: 'Single-player' },
@@ -56,8 +56,8 @@ const EditTags = ({ setModal }) => {
     return (
         <div className={styles.addTags}>
             <h2 className={styles.tagsHeader}>Tags</h2>
-            <ShowCategoryTags tags={tags} setModal={setModal} />
-            <AddTags tags={tags} />
+            <ShowCategoryTags setTags={setTags} tags={tags} setModal={setModal} />
+            <AddTags tags={tags} setTags={setTags} />
         </div>
     );
 };
