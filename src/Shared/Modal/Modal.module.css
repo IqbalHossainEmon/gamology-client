@@ -11,7 +11,7 @@
 	display: flex;
 	border-radius: 0.5rem;
 	box-shadow: 0 0 10px 0 #000000;
-	animation: show-hide-animation 200ms forwards;
+	animation: show 200ms forwards;
 }
 .modalScrollContainer {
 	width: 100%;
@@ -27,7 +27,7 @@
 	padding: 2rem;
 }
 .hide {
-	animation: show-hide-animation 200ms backwards;
+	animation: hide 200ms forwards;
 	pointer-events: none;
 }
 
@@ -65,9 +65,19 @@
 	rotate: -45deg;
 }
 
-@keyframes show-hide-animation {
+@keyframes hide {
 	from {
-		scale: 0;
+		scale: 1;
+		opacity: 1;
+	}
+	to {
+		scale: 0.5;
+		opacity: 0;
+	}
+}
+@keyframes show {
+	from {
+		scale: 0.5;
 		opacity: 0;
 	}
 	to {

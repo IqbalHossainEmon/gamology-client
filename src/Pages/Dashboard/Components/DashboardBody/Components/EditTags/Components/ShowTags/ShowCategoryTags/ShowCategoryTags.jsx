@@ -1,4 +1,4 @@
-import TagsContainer from '../Components/TagsContainer/TagsContainer';
+import TagsContainer from '../Components/TagsContainer/TagsContainer/TagsContainer';
 import styles from './ShowCategoryTags.module.css';
 
 const ShowCategoryTags = ({ tags, setModal }) => (

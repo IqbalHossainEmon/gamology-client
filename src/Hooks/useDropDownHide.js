@@ -30,10 +30,10 @@ const useDropDownHide = setState => {
     );
 
     closeMenuBlurRef.current = useCallback(() => {
-        // setState(false);
-        // window.removeEventListener('blur', closeMenuBlurRef.current);
-        // document.removeEventListener('mousedown', closeMenu);
-    }, []);
+        setState(false);
+        window.removeEventListener('blur', closeMenuBlurRef.current);
+        document.removeEventListener('mousedown', closeMenu.current);
+    }, [setState]);
 
     const stopMenu = useCallback(() => {
         document.removeEventListener('mousedown', closeMenu.current);

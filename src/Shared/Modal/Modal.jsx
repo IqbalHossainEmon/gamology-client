@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Children, cloneElement, isValidElement, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
 import ScreenShadow from '../ScreenShadow/ScreenShadow';
 import ScrollBar from '../ScrollBar/ScrollBar';
@@ -14,7 +14,6 @@ const Modal = ({ children, setShow }) => {
     const timerId = useRef(null);
 
     const handleModalClose = () => {
-        console.log('Modal Closed');
         setHideAnimation(true);
         if (timerId.current) {
             clearTimeout(timerId.current);
@@ -22,7 +21,7 @@ const Modal = ({ children, setShow }) => {
         }
         timerId.current = setTimeout(() => {
             timerId.current = null;
-            setShow(false);
+            setShow();
         }, 300);
     };
 
@@ -30,15 +29,23 @@ const Modal = ({ children, setShow }) => {
 
     useEffect(() => {
         setElement(elementRef.current);
-        showMenu(true);
-    }, [showMenu, setElement, setShow]);
+    }, [showMenu, setElement]);
 
     return (
         <>
             <div ref={elementRef} className={`${hideAnimation ? `${styles.hide} ` : ''}${styles.modal}`}>
                 <div ref={parentRef} className={styles.modalScrollContainer}>
                     <div className={styles.modalContentContainer} ref={childRef}>
-                        {children}
+                        {Children.map(children, child =>
+                            isValidElement(child)
+                                ? cloneElement(child, {
+                                      handleHide: () => {
+                                          handleModalClose();
+                                          stopMenu();
+                                      },
+                                  })
+                                : child
+                        )}
                     </div>
                 </div>
                 <button

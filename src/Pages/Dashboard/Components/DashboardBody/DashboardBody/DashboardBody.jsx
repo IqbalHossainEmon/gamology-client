@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import Modal from '../../../../../Shared/Modal/Modal';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import DashboardModal from '../Components/DashboardModal/DashboardModal/DashboardModal';
 import EditTags from '../Components/EditTags/EditTags/EditTags';
@@ -7,10 +8,10 @@ import styles from './DashboardBody.module.css';
 const DashboardBody = () => {
     const parentRef = useRef(null);
     const childRef = useRef(null);
-    const [{ show, title, modalQuestion, modalBody }, setModal] = useState({
+    const [{ show, title, modalQuestion, ModalBody }, setModal] = useState({
         title: null,
         modalQuestion: null,
-        modalBody: null,
+        ModalBody: null,
         show: false,
     });
 
@@ -23,12 +24,18 @@ const DashboardBody = () => {
             </div>
             <ScrollBar parentRef={parentRef} childRef={childRef} />
             {show && (
-                <DashboardModal
-                    title={title}
-                    modalQuestion={modalQuestion}
-                    modalBody={modalBody}
-                    setShow={prop => setModal(prev => ({ ...prev, show: prop }))}
-                />
+                <Modal
+                    setShow={() =>
+                        setModal({
+                            title: null,
+                            modalQuestion: null,
+                            ModalBody: null,
+                            show: false,
+                        })
+                    }
+                >
+                    <DashboardModal title={title} modalQuestion={modalQuestion} ModalBody={ModalBody} setModal={setModal} />
+                </Modal>
             )}
         </div>
     );
