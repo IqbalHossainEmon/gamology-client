@@ -2,7 +2,7 @@ import DashboardDeleteModal from '../DashboardDeleteModal/DashboardDeleteModal';
 import DashboardPriceChangeModal from '../DashboardPriceChangeModal/DashboardPriceChangeModal';
 import styles from './CardDotModalBody.module.css';
 
-const CardDotModalBody = ({ type, detail }) => {
+const CardDotModalBody = ({ type, detail, handleHide }) => {
     const { name, category, price, carouselThumb } = detail;
     return (
         <>
@@ -17,9 +17,13 @@ const CardDotModalBody = ({ type, detail }) => {
                 </div>
             </div>
             {type === 'price' ? (
-                <DashboardPriceChangeModal detail={detail} price={typeof price === 'object' ? price.regular : price} />
+                <DashboardPriceChangeModal
+                    handleHide={handleHide}
+                    detail={detail}
+                    price={typeof price === 'object' ? price.regular : price}
+                />
             ) : (
-                <DashboardDeleteModal detail={detail} />
+                <DashboardDeleteModal detail={detail} handleHide={handleHide} />
             )}
         </>
     );

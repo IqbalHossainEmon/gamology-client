@@ -3,12 +3,13 @@ import ButtonWaterEffect from '../../../../../../../../../../../../Shared/Button
 import TextField from '../../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './DashboardPriceChangeModal.module.css';
 
-const DashboardPriceChangeModal = ({ price }) => {
+const DashboardPriceChangeModal = ({ price, handleHide }) => {
     const btnRef = useRef(null);
     const newPrice = useRef(null);
 
     const handleSubmit = () => {
         console.log('Price Submitted');
+        handleHide();
     };
 
     return (

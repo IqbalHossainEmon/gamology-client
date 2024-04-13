@@ -11,9 +11,13 @@ const ErrorMessage = ({ errorMessage, enable }) => {
 
     useEffect(() => {
         resizeObserver.current = new ResizeObserver(() => {
-            errorMessageContainer.current.style.height = 'auto';
-            errorMessageContainer.current.style.setProperty('--error-message-height', `${errorMessageRef.current.scrollHeight}px`);
-            errorMessageContainer.current.style.height = '0px';
+            if (errorMessageContainer.current) {
+                errorMessageContainer.current.style.height = 'auto';
+                errorMessageContainer.current.style.setProperty('--error-message-height', `${errorMessageRef.current.scrollHeight}px`);
+                errorMessageContainer.current.style.height = '0px';
+            } else {
+                resizeObserver.current.disconnect();
+            }
         });
     }, []);
 

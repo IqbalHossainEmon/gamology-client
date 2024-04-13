@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../../../../../Hooks/useDropDownHide';
 import CardDotModalBody from '../Components/CardDotModalBodyContainer/CardDotModalBody';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ className, setModal, item }) => {
     const [show, setShow] = useState(false);
+
+    const modalBody = useCallback((props, type) => <CardDotModalBody {...props} type={type} detail={item} />, [item]);
 
     const elementRef = useRef(null);
 
@@ -91,7 +93,7 @@ const CardDot = ({ className, setModal, item }) => {
                                             What price($) you want to set for <span className={styles.nameContainer}>{item.name}</span>
                                         </>
                                     ),
-                                    modalBody: <CardDotModalBody type="price" detail={item} />,
+                                    ModalBody: props => modalBody(props, 'price'),
                                 });
                                 setShow(false);
                             }}
@@ -111,7 +113,7 @@ const CardDot = ({ className, setModal, item }) => {
                                             Are you sure you want to delete <span className={styles.nameContainer}>{item.name}</span>?
                                         </>
                                     ),
-                                    modalBody: <CardDotModalBody type="delete" detail={item} />,
+                                    ModalBody: props => modalBody(props, 'delete'),
                                 });
                                 setShow(false);
                             }}

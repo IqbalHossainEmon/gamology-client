@@ -2,14 +2,15 @@ import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './DashboardDeleteModal.module.css';
 
-const DashboardDeleteModal = () => {
+const DashboardDeleteModal = ({ handleHide }) => {
     const confirmText = useRef(null);
 
     const [{ errorChange, errorMessage }, setError] = useState({ errorChange: 0, errorMessage: '' });
 
     const handleDelete = () => {
-        if (confirmText.current === 'DELETE') {
+        if (confirmText.current === 'DELETE' || confirmText.current === 'delete' || confirmText.current === 'Delete') {
             console.log('Deleted');
+            handleHide();
         } else {
             setError(prev => ({ errorChange: prev.errorChange + 1, errorMessage: 'Please type delete to confirm' }));
         }

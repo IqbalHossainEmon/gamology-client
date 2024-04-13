@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, useEffect, useRef, useState } from 'react';
+import { Children, cloneElement, isValidElement, useCallback, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Hooks/useDropDownHide';
 import ScreenShadow from '../ScreenShadow/ScreenShadow';
 import ScrollBar from '../ScrollBar/ScrollBar';
@@ -13,7 +13,9 @@ const Modal = ({ children, setShow }) => {
 
     const timerId = useRef(null);
 
-    const handleModalClose = () => {
+    const eventRef = useRef(null);
+
+    eventRef.handleModalClose = useCallback(() => {
         setHideAnimation(true);
         if (timerId.current) {
             clearTimeout(timerId.current);
@@ -23,13 +25,14 @@ const Modal = ({ children, setShow }) => {
             timerId.current = null;
             setShow();
         }, 300);
-    };
+    }, [setShow]);
 
-    const { showMenu, setElement, stopMenu } = useDropDownHide(handleModalClose);
+    const { showMenu, setElement, stopMenu } = useDropDownHide(eventRef.handleModalClose);
 
     useEffect(() => {
         setElement(elementRef.current);
-    }, [showMenu, setElement]);
+        showMenu();
+    }, [setElement, showMenu]);
 
     return (
         <>
@@ -40,7 +43,7 @@ const Modal = ({ children, setShow }) => {
                             isValidElement(child)
                                 ? cloneElement(child, {
                                       handleHide: () => {
-                                          handleModalClose();
+                                          eventRef.handleModalClose();
                                           stopMenu();
                                       },
                                   })
@@ -50,7 +53,7 @@ const Modal = ({ children, setShow }) => {
                 </div>
                 <button
                     onClick={() => {
-                        handleModalClose();
+                        eventRef.handleModalClose();
                         stopMenu();
                     }}
                     type="button"
