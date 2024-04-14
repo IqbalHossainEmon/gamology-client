@@ -1,0 +1,23 @@
+.addGameSpecifications {
+  margin: 3rem 0;
+}
+
+.textField {
+  margin-top: 20px;
+}
+
+.header {
+  font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 769px) {
+  .header {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    font-size: 1rem;
+  }
+}

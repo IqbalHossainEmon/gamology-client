@@ -1,0 +1,40 @@
+.systemReq {
+  margin-top: 30px;
+}
+.type {
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.textField {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.systemReqContainer {
+  transition: opacity 0.3s ease-in-out;
+  user-select: none;
+}
+
+.systemReqContainer[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.btnContainer {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+@media screen and (max-width: 768px) {
+  .selectionField {
+    width: 100px;
+  }
+  .type {
+    font-size: 0.8rem;
+  }
+}
