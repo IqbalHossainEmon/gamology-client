@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './EditGames.module.css';
+import styles from './EditGame.module.css';
 
 const EditGame = () => {
     const [AddGameDetails, setAddGameDetails] = useState({});

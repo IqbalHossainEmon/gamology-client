@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../../../../../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../../../../../../../../../../../Hooks/useDropDownHide';
 import CardDotModalBody from '../Components/CardDotModalBodyContainer/CardDotModalBody';
 import styles from './CardDot.module.css';
 

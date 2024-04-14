@@ -1,4 +1,4 @@
-import Card from '../../../../../../../../../Shared/Card/Card';
+import Card from '../../../../../../../../../../../Shared/Card/Card';
 import CardDot from '../Components/CardDot/CardDot/CardDot';
 import styles from './AllGamesBody.module.css';
 

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import TextField from '../../../../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './DashboardDeleteModal.module.css';
 
 const DashboardDeleteModal = ({ handleHide }) => {

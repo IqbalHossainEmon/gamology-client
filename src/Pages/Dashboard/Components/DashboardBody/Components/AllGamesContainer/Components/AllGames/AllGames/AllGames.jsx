@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Pagination from '../../../../../../../Shared/Pagination/Pagination';
+import Pagination from '../../../../../../../../../Shared/Pagination/Pagination';
 import AllGamesBody from '../Components/AllGamesBody/AllGamesBody/AllGamesBody';
 import AllGamesHeader from '../Components/AllGamesHeader/AllGamesHeader';
 import styles from './AllGames.module.css';
