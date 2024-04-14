@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './EditGames.module.css';
 
-const EditGames = () => {
+const EditGame = () => {
     const [AddGameDetails, setAddGameDetails] = useState({});
 
     return (
@@ -10,4 +10,4 @@ const EditGames = () => {
         </div>
     );
 };
-export default EditGames;
+export default EditGame;
