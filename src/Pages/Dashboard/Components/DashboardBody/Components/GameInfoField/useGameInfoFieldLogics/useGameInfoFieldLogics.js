@@ -228,7 +228,11 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
         } else {
             gameSpecificationsError.policy = '';
         }
-
+        if (error) {
+            errorMessages.current.isThereError = true;
+        } else {
+            errorMessages.current.isThereError = false;
+        }
         return error;
     };
 

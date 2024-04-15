@@ -6,6 +6,7 @@ import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/G
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
 import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
+import OuterErrorMessage from '../Components/OutterErrorMessage/OuterErrorMessage';
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
@@ -64,6 +65,7 @@ export default function GameInfoField({ defaultData, handleGameInfo }) {
     const [errorChange, setErrorChange] = useState(0);
 
     const errorMessages = useRef({
+        isThereError: false,
         gameInfoError: {
             name: '',
             developer: '',
@@ -113,6 +115,8 @@ export default function GameInfoField({ defaultData, handleGameInfo }) {
                     errorMessages={gameSpecificationsError}
                     errorChange={errorChange}
                 />
+                <OuterErrorMessage errorChange={errorChange} isThereError={errorMessages.current.isThereError} />
+
                 <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />
             </form>
         </div>

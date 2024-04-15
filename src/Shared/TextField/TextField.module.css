@@ -6,6 +6,7 @@
 	width: 100%;
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.05);
+	backface-visibility: hidden;
 	border: 2px solid transparent;
 	border-radius: 4px;
 	font-size: 1rem;
@@ -42,6 +43,7 @@
 	background: transparent;
 	padding: 25px 10px 15px 10px;
 	color: rgb(173, 173, 173);
+
 	border: none;
 	user-select: none;
 }
