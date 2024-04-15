@@ -20,15 +20,6 @@ const data = [
     },
     {
         id: 1,
-        category: 'Os',
-        optionList: [
-            { id: 0, tags: 'Windows' },
-            { id: 1, tags: 'macOS' },
-            { id: 2, tags: 'Linux' },
-        ],
-    },
-    {
-        id: 2,
         category: 'Features',
         optionList: [
             { id: 0, tags: 'Single-player' },

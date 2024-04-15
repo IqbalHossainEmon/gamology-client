@@ -93,7 +93,7 @@ export default function GameInfoField({ defaultData, handleGameInfo }) {
             return;
         }
         handleUnnecessaryRemove();
-        console.log(gameData.current, errorMessages.current);
+        console.log(gameData.current);
     };
 
     return (

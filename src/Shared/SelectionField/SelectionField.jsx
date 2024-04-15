@@ -153,7 +153,7 @@ export default function SelectionField({
             </button>
             {show && (
                 <ul
-                    {...(positionRef.current.height && { style: { height: `${positionRef.current.height}px` } })}
+                    {...(positionRef.current.height && { style: { maxHeight: `${positionRef.current.height}px` } })}
                     className={`${opacityShow ? '' : styles.hide} ${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.listContainer}`}
                 >
                     <div ref={parentRef} className={styles.listScrollContainer}>
