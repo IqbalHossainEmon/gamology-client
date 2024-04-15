@@ -14,7 +14,9 @@ function FilterSwitch({ state, setState, name, event }) {
     const stateRef = useRef(circlePosition);
     stateRef.current = circlePosition.translate;
 
-    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef, 0, false);
+    const handleMove = useRef(event);
+
+    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef);
     const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
     useEffect(() => {
@@ -27,7 +29,7 @@ function FilterSwitch({ state, setState, name, event }) {
         }
     }, [handleTimerTransition, state]);
 
-    const handleMove = useCallback(
+    handleMove.current = useCallback(
         e => {
             document.removeEventListener('mouseup', event);
 
@@ -49,21 +51,21 @@ function FilterSwitch({ state, setState, name, event }) {
     const handleSetValue = useCallback(() => {
         // if switch is below 50
         if (stateRef.current < 50) {
-            if (state) {
+            if (stateRef.current) {
                 setState(prev => ({ ...prev, [name]: false }), name);
             } else if (stateRef.current !== 0) {
                 setCirclePosition({ translate: 0, transition: true });
                 handleTimerTransition();
             }
         } else if (stateRef.current >= 50) {
-            if (!state) {
+            if (!stateRef.current) {
                 setState(prev => ({ ...prev, [name]: true }), name);
             } else if (stateRef.current !== 100) {
                 setCirclePosition({ translate: 100, transition: true });
                 handleTimerTransition();
             }
         }
-    }, [handleTimerTransition, name, setState, state]);
+    }, [handleTimerTransition, name, setState]);
 
     const onStart = useDragStartStop(handleMove, handleSetValue);
 

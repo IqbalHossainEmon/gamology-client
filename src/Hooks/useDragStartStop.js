@@ -9,7 +9,6 @@ export default function useDragStartStop(handleMove, handleMouseUp = () => {}, h
     eventRef.onStop = useCallback(
         e => {
             handleMouseUp(e);
-
             document.removeEventListener('mousemove', handleMove.current);
             document.removeEventListener('touchmove', handleMove.current);
             document.removeEventListener('mouseup', eventRef.onStop);
@@ -26,7 +25,6 @@ export default function useDragStartStop(handleMove, handleMouseUp = () => {}, h
     eventRef.onStart = useCallback(
         e => {
             handleMouseDown(e);
-
             document.addEventListener('mousemove', handleMove.current);
             document.addEventListener('touchmove', handleMove.current);
             document.addEventListener('mouseup', eventRef.onStop);

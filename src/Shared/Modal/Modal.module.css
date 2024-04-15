@@ -71,13 +71,13 @@
 		opacity: 1;
 	}
 	to {
-		scale: 0.5;
+		scale: 0.9;
 		opacity: 0;
 	}
 }
 @keyframes show {
 	from {
-		scale: 0.5;
+		scale: 0.9;
 		opacity: 0;
 	}
 	to {

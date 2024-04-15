@@ -39,7 +39,7 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
             }
             let everyStep = 1;
 
-            switch (typeof conditionStepRef.current) {
+            switch (typeof conditionStepRef?.current) {
                 case 'object':
                     everyStep = handleSetEveryStep(cursorInPercent);
                     break;
