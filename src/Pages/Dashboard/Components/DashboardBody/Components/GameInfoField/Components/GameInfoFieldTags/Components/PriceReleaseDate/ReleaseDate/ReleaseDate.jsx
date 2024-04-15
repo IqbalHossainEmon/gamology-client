@@ -42,10 +42,6 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
         }
 
         gameInfo.releaseDate[name] = value;
-
-        if (errorShow) {
-            setErrorShow(false);
-        }
     };
 
     return (
@@ -55,6 +51,11 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
                 <div className={styles.dateContainer}>
                     <div className={`${styles.releaseDay} ${styles.releaseComponent}`}>
                         <SelectionField
+                            onFocusClick={() => {
+                                if (errorShow) {
+                                    setErrorShow(false);
+                                }
+                            }}
                             list={Array.from(Array(day.max), (_, idx) => ++idx)}
                             htmlFor={1}
                             placeholder="Day"
@@ -64,10 +65,26 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
                         />
                     </div>
                     <div className={`${styles.releaseMonth} ${styles.releaseComponent}`}>
-                        <SelectionField list={months} htmlFor={2} placeholder="Month" setState={handleReleaseValue} name="month" />
+                        <SelectionField
+                            onFocusClick={() => {
+                                if (errorShow) {
+                                    setErrorShow(false);
+                                }
+                            }}
+                            list={months}
+                            htmlFor={2}
+                            placeholder="Month"
+                            setState={handleReleaseValue}
+                            name="month"
+                        />
                     </div>
                     <div className={`${styles.releaseYear} ${styles.releaseComponent}`}>
                         <SelectionField
+                            onFocusClick={() => {
+                                if (errorShow) {
+                                    setErrorShow(false);
+                                }
+                            }}
                             list={Array.from(Array(100), (_, idx) => new Date().getFullYear() + 1 - ++idx)}
                             htmlFor={3}
                             placeholder="Year"

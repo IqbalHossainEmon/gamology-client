@@ -30,7 +30,6 @@ export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }
                     />
                 </div>
             </div>
-
             <ReleaseDate gameInfo={gameInfo} errorChange={errorChange} errorMessage={errorMessage} />
         </div>
     );

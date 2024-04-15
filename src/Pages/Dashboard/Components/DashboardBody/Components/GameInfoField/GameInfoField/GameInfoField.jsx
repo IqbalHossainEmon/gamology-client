@@ -10,7 +10,7 @@ import OuterErrorMessage from '../Components/OutterErrorMessage/OuterErrorMessag
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
-export default function GameInfoField({ defaultData, handleGameInfo }) {
+export default function GameInfoField({ handleGameInfo, hasDefaultData, defaultData }) {
     const gameData = useRef({
         gameInfo: {
             name: '',
@@ -116,7 +116,6 @@ export default function GameInfoField({ defaultData, handleGameInfo }) {
                     errorChange={errorChange}
                 />
                 <OuterErrorMessage errorChange={errorChange} isThereError={errorMessages.current.isThereError} />
-
                 <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />
             </form>
         </div>
