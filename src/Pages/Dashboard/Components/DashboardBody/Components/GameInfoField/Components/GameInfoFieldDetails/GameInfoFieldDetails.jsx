@@ -2,7 +2,7 @@ import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/Fi
 import TextField from '../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldDetails.module.css';
 
-export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessages }) {
+export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessages, hasDefault }) {
     const handleSetValue = (value, name) => {
         if (value.type === 'FormData' && !value.file) {
             delete gameInfo[name];
@@ -13,7 +13,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
 
     return (
         <section className={styles.gameDetails}>
-            <h3 className={styles.header}>Add Game&apos;s Details</h3>
+            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s Details</h3>
             <TextField
                 setState={handleSetValue}
                 field="input"

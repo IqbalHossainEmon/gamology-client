@@ -29,10 +29,10 @@ const options = [
     ],
 ];
 
-export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, errorMessages }) {
+export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, errorMessages, hasDefault }) {
     return (
         <section className={styles.addGameTags}>
-            <h3 className={styles.header}>Add Game&apos;s tags</h3>
+            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s tags</h3>
             <div className={styles.optionsContainer}>
                 <div className={styles.options}>
                     <OptionsContainer

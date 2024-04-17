@@ -6,7 +6,7 @@ import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/G
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
 import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
-import OuterErrorMessage from '../Components/OutterErrorMessage/OuterErrorMessage';
+import OuterErrorMessage from '../Components/OuterErrorMessage/OuterErrorMessage';
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
@@ -100,20 +100,33 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 
     return (
         <div className={styles.addGame}>
-            <h1 className={styles.header}>Add New Game to the collection</h1>
+            <h1 className={styles.header}>{hasDefault ? 'Edit The Game' : 'Add New Game to the collection'}</h1>
             <form>
-                <GameInfoFieldDetails gameInfo={gameInfo} errorMessages={gameInfoError} errorChange={errorChange} />
-                <GameInfoFieldBanner gameBanner={gameBanner} errorMessages={gameBannerError} errorChange={errorChange} />
-                <GameInfoFieldTags gameTags={gameTags} gameInfo={gameInfo} errorMessages={gameTagsError} errorChange={errorChange} />
+                <GameInfoFieldDetails gameInfo={gameInfo} errorMessages={gameInfoError} errorChange={errorChange} hasDefault={hasDefault} />
+                <GameInfoFieldBanner
+                    gameBanner={gameBanner}
+                    errorMessages={gameBannerError}
+                    errorChange={errorChange}
+                    hasDefault={hasDefault}
+                />
+                <GameInfoFieldTags
+                    gameTags={gameTags}
+                    gameInfo={gameInfo}
+                    errorMessages={gameTagsError}
+                    errorChange={errorChange}
+                    hasDefault={hasDefault}
+                />
                 <GameInfoFieldDescriptions
                     gameDescriptions={gameDescriptions}
                     errorChange={errorChange}
+                    hasDefault={hasDefault}
                     errorMessages={gameDescriptionsError}
                 />
                 <GameInfoFieldSpecifications
                     gameSpecifications={gameSpecifications}
                     errorMessages={gameSpecificationsError}
                     errorChange={errorChange}
+                    hasDefault={hasDefault}
                 />
                 <OuterErrorMessage errorChange={errorChange} isThereError={errorMessages.current.isThereError} />
                 <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />

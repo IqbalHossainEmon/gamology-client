@@ -4,7 +4,7 @@ import ButtonForGameInfoFieldSection from '../../ButtonForGameInfoFieldSection/B
 import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 
-const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessages }) => {
+const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessages, hasDefault }) => {
     const [array, setArray] = useState([{ id: 0, main: true }]);
 
     const handleSetSortDescription = (value, name) => {
@@ -13,12 +13,12 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
 
     return (
         <section className={styles.addGameDescriptions}>
-            <h3 className={styles.header}>Add Game&#39;s Descriptions</h3>
+            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s Descriptions</h3>
             <div className={styles.sortDescription}>
                 <TextField
                     field="textarea"
                     setState={handleSetSortDescription}
-                    placeholder="Add some short description..."
+                    placeholder="Short description..."
                     htmlFor="sort_description"
                     name="sortDesc"
                     errorChange={errorChange}

@@ -20,7 +20,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                     <TextField
                         field="input"
                         setState={handleSetValues}
-                        placeholder="Add a Main Header"
+                        placeholder="Main Header"
                         name="mainHeader"
                         htmlFor={`main_header_${index}${item.id}`}
                         errorChange={errorChange}
@@ -33,7 +33,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                     field="input"
                     setState={handleSetValues}
                     name="subHeader"
-                    placeholder="Add a Sub Header"
+                    placeholder="Sub Header"
                     htmlFor={`sub_header_${index}${item.id}`}
                     errorChange={errorChange}
                     errorMessage={errorMessages[index]?.subHeader}
@@ -45,7 +45,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         field="textarea"
                         setState={handleSetValues}
                         name="description"
-                        placeholder="Add a Sub Header"
+                        placeholder="Sub Header"
                         htmlFor={`description_${index}${item.id}`}
                         errorChange={errorChange}
                         errorMessage={errorMessages[index]?.description}

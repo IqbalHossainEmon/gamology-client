@@ -3,14 +3,14 @@ import GameInfoFieldSpecificationContainer from '../Components/GameInfoFieldSpec
 import GameInfoFieldSpecsLangsSupported from '../Components/GameInfoFieldSpecsLangsSupported/GameInfoFieldSpecsLangsSupported';
 import styles from './GameInfoFieldSpecifications.module.css';
 
-export default function GameInfoFieldSpecifications({ gameSpecifications, errorMessages, errorChange }) {
+export default function GameInfoFieldSpecifications({ gameSpecifications, errorMessages, errorChange, hasDefault }) {
     const handleValue = (value, name) => {
         gameSpecifications[name] = value;
     };
 
     return (
         <div className={styles.addGameSpecifications}>
-            <h3 className={styles.header}>Add Game&#39;s System Requirement</h3>
+            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s System Requirement</h3>
             <GameInfoFieldSpecificationContainer
                 gameSpecifications={gameSpecifications}
                 errorMessages={errorMessages.spec}
