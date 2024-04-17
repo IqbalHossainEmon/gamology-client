@@ -1,40 +1,41 @@
 .addGameTags {
-  width: 100%;
+	width: 100%;
 }
 .optionsContainer {
-  display: flex;
-  width: 100%;
-  margin-top: 1rem;
+	display: flex;
+	width: 100%;
+	margin-top: 1rem;
 }
 .options {
-  width: 100%;
+	width: 100%;
 }
 .options {
-  padding: 0 10px;
+	padding: 0 10px;
 }
 
 .header {
-  font-size: 1.3rem;
+	font-size: 1.3rem;
+	font-weight: 400;
 }
 
 @media only screen and (max-width: 1023px) and (min-width: 769px) {
-  .header {
-    font-size: 1.2rem;
-  }
+	.header {
+		font-size: 1.2rem;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  .header {
-    font-size: 1rem;
-  }
+	.header {
+		font-size: 1rem;
+	}
 }
 
 @media screen and (max-width: 768px) {
-  .optionsContainer {
-    display: block;
-  }
-  .options:last-child {
-    margin-left: 0px;
-    margin-top: 10px;
-  }
+	.optionsContainer {
+		display: block;
+	}
+	.options:last-child {
+		margin-left: 0px;
+		margin-top: 10px;
+	}
 }

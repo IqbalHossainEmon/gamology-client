@@ -1,39 +1,40 @@
 .gameDetails {
-  margin: 3rem 0;
+	margin: 3rem 0;
 }
 .flexContainer {
-  display: flex;
-  margin: 10px 0;
-  width: 100%;
+	display: flex;
+	margin: 10px 0;
+	width: 100%;
 }
 
 .marginRight {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 .header {
-  font-size: 1.3rem;
-  margin-bottom: 40px;
+	font-size: 1.3rem;
+	font-weight: 400;
+	margin-bottom: 40px;
 }
 
 @media only screen and (max-width: 1023px) and (min-width: 769px) {
-  .header {
-    font-size: 1.2rem;
-  }
+	.header {
+		font-size: 1.2rem;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  .header {
-    font-size: 1rem;
-  }
+	.header {
+		font-size: 1rem;
+	}
 }
 
 @media screen and (max-width: 1023px) {
-  .flexContainer {
-    display: block;
-  }
-  .marginRight {
-    margin-left: 0px;
-    margin-top: 10px;
-  }
+	.flexContainer {
+		display: block;
+	}
+	.marginRight {
+		margin-left: 0px;
+		margin-top: 10px;
+	}
 }

@@ -10,7 +10,7 @@ import OuterErrorMessage from '../Components/OutterErrorMessage/OuterErrorMessag
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
-export default function GameInfoField({ handleGameInfo, hasDefaultData, defaultData }) {
+export default function GameInfoField({ handleGameInfo, hasDefault, defaultData }) {
     const gameData = useRef({
         gameInfo: {
             name: '',

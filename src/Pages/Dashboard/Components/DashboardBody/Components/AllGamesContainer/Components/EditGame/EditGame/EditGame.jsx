@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import GameInfoField from '../../../../GameInfoField/GameInfoField/GameInfoField';
 import styles from './EditGame.module.css';
 
 const EditGame = () => {
@@ -6,7 +7,7 @@ const EditGame = () => {
 
     const gameData = useRef({
         gameInfo: {
-            name: '',
+            name: 'Spider',
             developer: '',
             publisher: '',
             logo: {},
@@ -56,7 +57,7 @@ const EditGame = () => {
     });
     return (
         <div className={styles.editGames}>
-            <p>Edit Games</p>
+            <GameInfoField defaultData={gameData.current} hasDefault />
         </div>
     );
 };
