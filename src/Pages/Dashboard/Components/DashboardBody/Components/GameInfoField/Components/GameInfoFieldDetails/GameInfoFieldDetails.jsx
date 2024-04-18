@@ -1,4 +1,4 @@
-import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton';
+import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import TextField from '../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldDetails.module.css';
 
