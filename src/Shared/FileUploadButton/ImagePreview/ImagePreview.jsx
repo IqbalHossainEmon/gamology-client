@@ -8,9 +8,18 @@ const ImagePreview = ({ containerRef, file }) => {
         imgRef.current.src = URL.createObjectURL(file);
     }, [file]);
 
+    const handleHover = () => {
+        imgRef.current.style.transform = 'scale(1.1)';
+    };
+
     useEffect(() => {
-        containerRef.current.addEventListener('hover', handleHover);
-    }, []);
+        const container = containerRef.current;
+        container.addEventListener('hover', handleHover);
+
+        return () => {
+            container.removeEventListener('hover', handleHover);
+        };
+    }, [containerRef]);
 
     return (
         <div className={styles.imagePreview}>
