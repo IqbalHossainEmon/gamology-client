@@ -22,12 +22,19 @@ export default function TextField({
     const [errorShow, setErrorShow] = useState(!!errorMessage);
 
     const fieldRef = useRef(null);
-
+    const containerRef = useRef(null);
     const handleInputEvent = useRef(null);
 
     handleInputEvent.current = useCallback(() => {
         fieldRef.current.style.height = 'auto';
         fieldRef.current.style.height = `${fieldRef.current.scrollHeight}px`;
+    }, []);
+
+    const onStop = useCallback(e => {
+        if (!containerRef.current.contains(e.target)) {
+            fieldRef.current.blur();
+            document.removeEventListener('click', onStop);
+        }
     }, []);
 
     useEffect(() => {
@@ -64,7 +71,7 @@ export default function TextField({
     }, [placeholder]);
 
     return (
-        <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}>
+        <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`} ref={containerRef}>
             <div className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}`}>
                 <label
                     className={`${focused ? `${styles.focused} ` : value || defaultValue ? `${styles.textFilled} ` : ''}${styles.label}`}
@@ -83,6 +90,7 @@ export default function TextField({
                             if (onFocusClick) {
                                 onFocusClick();
                             }
+                            document.addEventListener('click', onStop);
                         }}
                         value={value}
                         onChange={e => {
@@ -104,6 +112,10 @@ export default function TextField({
                         onFocus={() => {
                             setFocused(true);
                             if (errorShow) setErrorShow(false);
+                            if (onFocusClick) {
+                                onFocusClick();
+                            }
+                            document.addEventListener('click', onStop);
                         }}
                         value={value}
                         onChange={e => {
