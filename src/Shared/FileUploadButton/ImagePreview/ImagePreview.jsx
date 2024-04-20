@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './ImagePreview.module.css';
 
-const ImagePreview = ({ containerRef, file }) => {
+const ImagePreview = ({ containerRef, file, btnRef }) => {
     const [show, setShow] = useState(false);
     const [hideAnimation, setHideAnimation] = useState(false);
 
@@ -22,9 +22,9 @@ const ImagePreview = ({ containerRef, file }) => {
             // if container height more than imageRef than set height to imageRef height
             let height;
             if (imageRef.current.width + 32 > containerRef.current.clientWidth) {
-                height = `${(imageRef.current.height / imageRef.current.width) * (containerRef.current.clientWidth - 32)}px`;
+                height = `${containerRef.current.clientWidth / (imageRef.current.width / imageRef.current.height)}px`;
             } else {
-                height = `${imageRef.current.height}px`;
+                height = `${imageRef.current.height + 32}px`;
             }
             if (imagePreviewRef.current) {
                 imagePreviewRef.current.style.setProperty('--height', height);
@@ -46,9 +46,9 @@ const ImagePreview = ({ containerRef, file }) => {
             clearTimeout(timeId.current);
             timeId.current = null;
         }
-        // setHideAnimation(true);
+        setHideAnimation(true);
         timeId.current = setTimeout(() => {
-            // setShow(false);
+            setShow(false);
             timeId.current = null;
         }, 200);
     };
@@ -57,11 +57,14 @@ const ImagePreview = ({ containerRef, file }) => {
         const container = containerRef.current;
         container.addEventListener('mouseover', handleHover);
         container.addEventListener('mouseleave', handleLeave);
+        const btn = btnRef.current;
+        btn.addEventListener('click', handleLeave);
         return () => {
             container.removeEventListener('mouseover', handleHover);
             container.removeEventListener('mouseleave', handleLeave);
+            btn.removeEventListener('click', handleLeave);
         };
-    }, [containerRef]);
+    }, [btnRef, containerRef]);
 
     return show ? (
         <div

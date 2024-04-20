@@ -4,6 +4,7 @@
     background-color: #18181c;
     display: flex;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
     border-radius: 4px;
     z-index: 1;
@@ -14,35 +15,32 @@
     animation-delay: 0s;
     animation-iteration-count: 1;
     transform-origin: top center;
-    max-height: 80vh;
     --height: 0px;
 }
 .hide {
     animation-name: height-disappear;
 }
-.imgContainer {
-    padding: 1rem;
-}
+
 .imgContainer img {
     max-width: 100%;
 }
 @keyframes height-appear {
     0% {
         height: 0px;
-        opacity: 0;
+        opacity: 0.5;
     }
     100% {
-        height: calc(var(--height) + 1.5rem);
+        height: calc(var(--height));
         opacity: 1;
     }
 }
 @keyframes height-disappear {
     0% {
-        height: calc(var(--height) + 1.5rem);
+        height: calc(var(--height));
         opacity: 1;
     }
     100% {
         height: 0px;
-        opacity: 0;
+        opacity: 0.5;
     }
 }

@@ -120,7 +120,7 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
                 </button>
                 <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
             </div>
-            {selected.file && <ImagePreview containerRef={containerRef} file={selected.file} />}
+            {selected.file && <ImagePreview containerRef={containerRef} file={selected.file} btnRef={btnRef} />}
         </div>
     );
 };
