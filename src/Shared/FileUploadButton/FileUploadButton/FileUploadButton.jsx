@@ -9,9 +9,11 @@ import styles from './FileUploadButton.module.css';
 const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, htmlFor = '' }) => {
     const [selected, setSelected] = useState({ selected: false, name: 'name', file: null });
     const [active, setActive] = useState(false);
-    const [showPreview, setShowPreview] = useState(false);
+    const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({
+        previewShow: false,
+        imagePreviewContainer: false,
+    });
     const [errorShow, setErrorShow] = useState(!!errorMessage);
-    const [previewShow, setPreviewShow] = useState(true);
 
     const containerRef = useRef(null);
     const inputRef = useRef(null);
@@ -23,9 +25,9 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
 
     useEffect(() => {
         setTimeout(() => {
-            setShowPreview(isTouchAble());
+            setImagePreview({ imagePreviewContainer: isTouchAble(), previewShow: false });
         }, 0);
-    }, [screenWidth, isTouchAble]);
+    }, [isTouchAble, screenWidth]);
 
     useEffect(() => {
         if (errorChange && errorMessage) setErrorShow(true);
@@ -140,15 +142,25 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
                     </button>
                     <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
                 </div>
-                {showPreview && selected.file && (
-                    <button ref={previewBtnRef} className={styles.previewBtn} type="button" onClick={() => setPreviewShow(prev => !prev)}>
+                {imagePreviewContainer && selected.file && (
+                    <button
+                        ref={previewBtnRef}
+                        className={styles.previewBtn}
+                        type="button"
+                        onClick={() => setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }))}
+                    >
                         Preview
                         <ButtonWaterEffect btnRef={previewBtnRef} long />
                     </button>
                 )}
             </div>
             {selected.file && (
-                <ImagePreview containerRef={containerRef} file={selected.file} btnRef={btnRef} parentPreview={previewShow && showPreview} />
+                <ImagePreview
+                    containerRef={containerRef}
+                    file={selected.file}
+                    btnRef={btnRef}
+                    parentPreview={previewShow && imagePreviewContainer}
+                />
             )}
         </div>
     );

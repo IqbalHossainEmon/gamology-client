@@ -21,7 +21,7 @@
     animation-name: height-disappear;
 }
 
-.imgContainer img {
+.img {
     max-width: 100%;
 }
 @keyframes height-appear {

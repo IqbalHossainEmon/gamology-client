@@ -96,7 +96,7 @@
 .fileUploadWithPreview {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 10px;
     width: 100%;
 }
 .fileUpload {
@@ -128,5 +128,9 @@
     }
     .focused {
         font-size: 10px;
+    }
+    .fileUploadWithPreview {
+        flex-direction: column;
+        align-items: start;
     }
 }

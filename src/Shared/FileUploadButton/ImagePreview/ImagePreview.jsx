@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../Hooks/useScreenWidth';
 import styles from './ImagePreview.module.css';
 
 const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
@@ -12,6 +13,8 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     const srcRef = useRef(null);
     const showRef = useRef(show);
     showRef.current = show;
+
+    const screenWidth = useScreenWidth();
 
     useEffect(() => {
         if (!file) return;
@@ -35,23 +38,25 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 heightRef.current = height;
             }
         };
-    }, [containerRef, file]);
+    }, [containerRef, file, screenWidth]);
 
     const handleToggle = parentPrev => {
         if (parentPrev) {
+            setShow(true);
+            setHideAnimation(false);
+        } else {
             setHideAnimation(true);
             timeId.current = setTimeout(() => {
                 setShow(false);
                 timeId.current = null;
             }, 200);
-        } else {
-            setShow(true);
-            setHideAnimation(false);
         }
     };
 
     useEffect(() => {
-        handleToggle(parentPreview);
+        if (parentPreview !== showRef.current) {
+            handleToggle(parentPreview);
+        }
     }, [parentPreview]);
 
     const handleHover = () => {
@@ -107,9 +112,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
             }}
             className={`${styles.imagePreview}${hideAnimation ? ` ${styles.hide}` : ''}`}
         >
-            <div className={styles.imgContainer}>
-                <img ref={imageRef} className={styles.img} src={srcRef.current} alt="preview" />
-            </div>
+            <img ref={imageRef} className={styles.img} src={srcRef.current} alt="preview" />
         </div>
     ) : null;
 };
