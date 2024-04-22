@@ -20,6 +20,8 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
     const btnRef = useRef(null);
     const previewBtnRef = useRef(null);
 
+    const eventRef = useRef(null);
+
     const isTouchAble = useIsTouchAble();
     const screenWidth = useScreenWidth();
 
@@ -65,6 +67,13 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
         }
     };
 
+    eventRef.handleCheckClick = useCallback(e => {
+        if (containerRef.current && !containerRef.current.contains(e.target)) {
+            setImagePreview(prev => ({ ...prev, previewShow: false }));
+            document.removeEventListener('click', eventRef.handleCheckClick);
+        }
+    }, []);
+
     return (
         <div
             className={`${className ? `${className} ` : ''}${disabled ? `${styles.containerDisabled} ` : ''}${styles.fileUploadContainer}`}
@@ -90,6 +99,9 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
                             setActive(true);
                             if (errorShow) {
                                 setErrorShow(false);
+                            }
+                            if (previewShow) {
+                                setImagePreview(prev => ({ ...prev, previewShow: false }));
                             }
                         }}
                         className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}${active ? ` ${styles.activeBorder}` : ''}`}
@@ -147,7 +159,14 @@ const FileUploadButton = ({ placeholder, accept, className, setState, name, disa
                         ref={previewBtnRef}
                         className={styles.previewBtn}
                         type="button"
-                        onClick={() => setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }))}
+                        onClick={() => {
+                            setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }));
+                            if (!previewShow) {
+                                document.addEventListener('click', eventRef.handleCheckClick);
+                            } else {
+                                document.removeEventListener('click', eventRef.handleCheckClick);
+                            }
+                        }}
                     >
                         Preview
                         <ButtonWaterEffect btnRef={previewBtnRef} long />

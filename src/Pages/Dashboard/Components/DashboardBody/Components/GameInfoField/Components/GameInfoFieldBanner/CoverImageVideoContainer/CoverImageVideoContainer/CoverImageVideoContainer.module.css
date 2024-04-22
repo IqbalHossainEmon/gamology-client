@@ -13,8 +13,9 @@
 .disabled {
     opacity: 0.5;
 }
-.marginBot {
+.outerContainer {
     margin-bottom: 10px;
+    position: relative;
 }
 
 .label {

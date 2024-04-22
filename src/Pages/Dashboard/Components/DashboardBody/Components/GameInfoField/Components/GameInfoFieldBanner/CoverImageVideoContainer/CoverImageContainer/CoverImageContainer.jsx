@@ -1,6 +1,4 @@
-import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import ImagePreview from '../../../../../../../../../../Shared/FileUploadButton/ImagePreview/ImagePreview';
 import styles from './CoverImageContainer.module.css';
 
 const CoverImageContainer = ({
@@ -14,13 +12,10 @@ const CoverImageContainer = ({
     type,
     number,
     inputRef,
-    containerRef,
+    btnRef,
     previewShow,
-    imagePreviewContainer,
     setImagePreview,
 }) => {
-    const btnRef = useRef(null);
-
     const handleSelect = e => {
         setActive(false);
         if (e.target.files) {
@@ -94,14 +89,6 @@ const CoverImageContainer = ({
                 </div>
                 <ButtonWaterEffect btnRef={btnRef} long />
             </button>
-            {selected.file && (
-                <ImagePreview
-                    containerRef={containerRef}
-                    file={selected.file}
-                    btnRef={btnRef}
-                    parentPreview={previewShow && imagePreviewContainer}
-                />
-            )}
         </>
     );
 };

@@ -3,6 +3,7 @@ import useIsTouchAble from '../../../../../../../../../../Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import ImagePreview from '../../../../../../../../../../Shared/FileUploadButton/ImagePreview/ImagePreview';
 import CoverImageContainer from '../CoverImageContainer/CoverImageContainer';
 import styles from './CoverImageVideoContainer.module.css';
 
@@ -23,6 +24,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     });
 
     const previewBtnRef = useRef(null);
+    const btnRef = useRef(null);
 
     const isTouchAble = useIsTouchAble();
     const screenWidth = useScreenWidth();
@@ -57,12 +59,18 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
 
+    eventRef.handleCheckClick = useCallback(e => {
+        if (containerRef.current && !containerRef.current.contains(e.target)) {
+            setImagePreview(prev => ({ ...prev, previewShow: false }));
+            document.removeEventListener('click', eventRef.handleCheckClick);
+        }
+    }, []);
+
     return (
-        <div className={styles.marginBot}>
+        <div className={styles.outerContainer} ref={containerRef}>
             <div className={styles.containerWithPreview}>
                 <div
                     className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type.type ? '' : ` ${styles.padding} `}${active ? ` ${styles.activeBorder}` : ''}${type.type ? '' : ` ${styles.disabled}`}`}
-                    ref={containerRef}
                 >
                     {type.type && (
                         <label
@@ -111,6 +119,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                                 previewShow={previewShow}
                                 imagePreviewContainer={imagePreviewContainer}
                                 setImagePreview={setImagePreview}
+                                btnRef={btnRef}
                             />
                         )
                     ) : (
@@ -122,13 +131,28 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                         ref={previewBtnRef}
                         className={styles.previewBtn}
                         type="button"
-                        onClick={() => setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }))}
+                        onClick={() => {
+                            setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }));
+                            if (!previewShow) {
+                                document.addEventListener('click', eventRef.handleCheckClick);
+                            } else {
+                                document.removeEventListener('click', eventRef.handleCheckClick);
+                            }
+                        }}
                     >
                         Preview
                         <ButtonWaterEffect btnRef={previewBtnRef} long />
                     </button>
                 )}
             </div>
+            {selected.file && (
+                <ImagePreview
+                    containerRef={containerRef}
+                    file={selected.file}
+                    btnRef={btnRef}
+                    parentPreview={previewShow && imagePreviewContainer}
+                />
+            )}
             <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
         </div>
     );
