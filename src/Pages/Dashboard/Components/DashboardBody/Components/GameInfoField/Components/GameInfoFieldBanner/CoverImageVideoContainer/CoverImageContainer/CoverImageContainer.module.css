@@ -1,0 +1,64 @@
+.field {
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+    padding: 25px 10px 15px 10px;
+    color: rgb(173, 173, 173);
+    border: none;
+    user-select: none;
+}
+.fileUploadField {
+    display: none;
+    pointer-events: none;
+}
+.fileName {
+    opacity: 0;
+    font-size: medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(173, 173, 173);
+    line-height: 20px;
+}
+
+.fileUploadButton {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 25px 40px 15px 10px;
+    text-align: left;
+    position: relative;
+    font-size: 1rem;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.2s ease;
+}
+
+.uploadImage {
+    height: 28px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+.uploadImage svg {
+    width: 100%;
+    height: 100%;
+}
+
+.selected {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .field {
+        font-size: 12px;
+    }
+    .focused {
+        scale: 0.8;
+    }
+}

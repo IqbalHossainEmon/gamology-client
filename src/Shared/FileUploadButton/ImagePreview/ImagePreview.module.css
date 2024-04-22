@@ -16,13 +16,14 @@
     animation-iteration-count: 1;
     transform-origin: top center;
     --height: 0px;
+    max-height: calc(100vh - 152px);
 }
 .hide {
     animation-name: height-disappear;
 }
 
 .img {
-    max-width: 100%;
+    height: var(--height);
 }
 @keyframes height-appear {
     0% {

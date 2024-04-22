@@ -1,10 +1,26 @@
-import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../Hooks/useScreenWidth';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useIsTouchAble from '../../../Hooks/useIsTouchable';
 import styles from './ImagePreview.module.css';
 
 const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     const [show, setShow] = useState(false);
     const [hideAnimation, setHideAnimation] = useState(false);
+
+    const [widthHeight, setWidthHeight] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+    const eventRef = useRef(null);
+    const isTouchAble = useIsTouchAble();
+
+    eventRef.resize = () => {
+        setWidthHeight({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', eventRef.resize);
+        return () => {
+            window.removeEventListener('resize', eventRef.resize);
+        };
+    }, []);
 
     const heightRef = useRef(null);
     const imagePreviewRef = useRef(null);
@@ -14,22 +30,20 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     const showRef = useRef(show);
     showRef.current = show;
 
-    const screenWidth = useScreenWidth();
-
     useEffect(() => {
         if (!file) return;
         srcRef.current = URL.createObjectURL(file);
-        if (!imageRef.current) {
-            imageRef.current = new Image();
-        }
-        imageRef.current.src = URL.createObjectURL(file);
-        imageRef.current.onload = () => {
-            // if container height more than imageRef than set height to imageRef height
+        const imageTemp = new Image();
+        imageTemp.src = URL.createObjectURL(file);
+        imageTemp.onload = () => {
             let height;
-            if (imageRef.current.width + 32 > containerRef.current.clientWidth) {
-                height = `${containerRef.current.clientWidth / (imageRef.current.width / imageRef.current.height)}px`;
+            if (imageTemp.width > containerRef.current.clientWidth) {
+                height = containerRef.current.clientWidth / (imageTemp.width / imageTemp.height);
+                if (height > widthHeight.height - 152) {
+                    height = `${widthHeight.height - 152}px`;
+                } else height = `${containerRef.current.clientWidth / (imageTemp.width / imageTemp.height)}px`;
             } else {
-                height = `${imageRef.current.height + 32}px`;
+                height = `${imageTemp.height + 32}px`;
             }
             if (imagePreviewRef.current) {
                 imagePreviewRef.current.style.setProperty('--height', height);
@@ -38,7 +52,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 heightRef.current = height;
             }
         };
-    }, [containerRef, file, screenWidth]);
+    }, [containerRef, file, widthHeight]);
 
     const handleToggle = parentPrev => {
         if (parentPrev) {
@@ -59,36 +73,40 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
         }
     }, [parentPreview]);
 
-    const handleHover = () => {
-        if (timeId.current) return;
-        if (timeId.showId) {
-            clearTimeout(timeId.showId);
-            timeId.showId = null;
-        }
-        timeId.showId = setTimeout(() => {
-            setShow(true);
-            setHideAnimation(false);
-            timeId.showId = null;
-        }, 200);
-    };
-
-    const handleLeave = () => {
-        if (timeId.showId) {
-            clearTimeout(timeId.showId);
-            timeId.showId = null;
-        }
-        if (timeId.current) {
-            clearTimeout(timeId.current);
-            timeId.current = null;
-        }
-        if (showRef.current) {
-            setHideAnimation(true);
-            timeId.current = setTimeout(() => {
-                setShow(false);
-                timeId.current = null;
+    const handleHover = useCallback(() => {
+        if (!isTouchAble()) {
+            if (timeId.current) return;
+            if (timeId.showId) {
+                clearTimeout(timeId.showId);
+                timeId.showId = null;
+            }
+            timeId.showId = setTimeout(() => {
+                setShow(true);
+                setHideAnimation(false);
+                timeId.showId = null;
             }, 200);
         }
-    };
+    }, [isTouchAble]);
+
+    const handleLeave = useCallback(() => {
+        if (!isTouchAble()) {
+            if (timeId.showId) {
+                clearTimeout(timeId.showId);
+                timeId.showId = null;
+            }
+            if (timeId.current) {
+                clearTimeout(timeId.current);
+                timeId.current = null;
+            }
+            if (showRef.current) {
+                setHideAnimation(true);
+                timeId.current = setTimeout(() => {
+                    setShow(false);
+                    timeId.current = null;
+                }, 200);
+            }
+        }
+    }, [isTouchAble]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -102,7 +120,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
             container.removeEventListener('mouseleave', handleLeave);
             btn.removeEventListener('click', handleLeave);
         };
-    }, [btnRef, containerRef]);
+    }, [btnRef, containerRef, handleHover, handleLeave]);
 
     return show ? (
         <div
