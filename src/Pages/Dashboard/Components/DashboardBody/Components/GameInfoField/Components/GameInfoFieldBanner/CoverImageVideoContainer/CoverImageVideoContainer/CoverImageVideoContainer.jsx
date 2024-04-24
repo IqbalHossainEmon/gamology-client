@@ -3,7 +3,7 @@ import useIsTouchAble from '../../../../../../../../../../Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
-import ImagePreview from '../../../../../../../../../../Shared/FileUploadButton/ImagePreview/ImagePreview';
+import ImagePreview from '../../../../../../../../../../Shared/ImagePreview/ImagePreview';
 import CoverImageContainer from '../CoverImageContainer/CoverImageContainer';
 import styles from './CoverImageVideoContainer.module.css';
 

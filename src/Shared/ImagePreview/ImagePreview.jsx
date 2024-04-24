@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useIsTouchAble from '../../../Hooks/useIsTouchable';
+import useIsTouchAble from '../../Hooks/useIsTouchable';
 import styles from './ImagePreview.module.css';
 
 const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
