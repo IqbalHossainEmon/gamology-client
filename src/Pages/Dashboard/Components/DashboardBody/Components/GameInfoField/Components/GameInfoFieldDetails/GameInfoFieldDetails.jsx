@@ -51,7 +51,6 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Choose cover image"
                     errorChange={errorChange}
                     errorMessage={errorMessages.logo}
-                    defaultValue="https://i.ibb.co/nRpxDZ2/hitman-mobile.jpg"
                 />
                 <FileUploadButton
                     htmlFor={2}

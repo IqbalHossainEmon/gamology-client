@@ -6,8 +6,6 @@ import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import ImagePreview from '../../ImagePreview/ImagePreview';
 import styles from './FileUploadButton.module.css';
 
-const isObject = obj => obj === Object(obj) && typeof obj !== 'string';
-
 const FileUploadButton = ({
     placeholder,
     accept,
@@ -22,7 +20,11 @@ const FileUploadButton = ({
 }) => {
     const [selected, setSelected] = useState({
         selected: !!defaultValue,
-        name: defaultValue ? (isObject(defaultValue) ? defaultValue.name : defaultValue.substr(defaultValue.lastIndexOf('/') + 1)) : 'name',
+        name: defaultValue
+            ? defaultValue instanceof File
+                ? defaultValue.name
+                : defaultValue.substr(defaultValue.lastIndexOf('/') + 1)
+            : 'name',
         file: defaultValue || null,
     });
     const [active, setActive] = useState(false);

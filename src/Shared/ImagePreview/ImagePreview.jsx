@@ -2,8 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import useIsTouchAble from '../../Hooks/useIsTouchable';
 import styles from './ImagePreview.module.css';
 
-const isObject = obj => obj === Object(obj) && typeof obj !== 'string';
-
 const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     const [show, setShow] = useState(false);
     const [hideAnimation, setHideAnimation] = useState(false);
@@ -34,7 +32,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
 
     useEffect(() => {
         if (file && !srcRef.current) {
-            if (isObject(file)) {
+            if (file instanceof File) {
                 srcRef.current = URL.createObjectURL(file);
             } else {
                 srcRef.current = file;
