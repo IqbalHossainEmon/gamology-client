@@ -6,6 +6,8 @@ import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import ImagePreview from '../../ImagePreview/ImagePreview';
 import styles from './FileUploadButton.module.css';
 
+const isObject = obj => obj === Object(obj) && typeof obj !== 'string';
+
 const FileUploadButton = ({
     placeholder,
     accept,
@@ -18,13 +20,19 @@ const FileUploadButton = ({
     htmlFor = '',
     defaultValue,
 }) => {
-    const [selected, setSelected] = useState({ selected: false, name: 'name', file: null });
+    const [selected, setSelected] = useState({
+        selected: !!defaultValue,
+        name: defaultValue ? (isObject(defaultValue) ? defaultValue.name : defaultValue.substr(defaultValue.lastIndexOf('/') + 1)) : 'name',
+        file: defaultValue || null,
+    });
     const [active, setActive] = useState(false);
     const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({
         previewShow: false,
         imagePreviewContainer: false,
     });
     const [errorShow, setErrorShow] = useState(!!errorMessage);
+
+    console.log(selected);
 
     const containerRef = useRef(null);
     const inputRef = useRef(null);
@@ -53,13 +61,25 @@ const FileUploadButton = ({
         setActive(false);
     }, []);
 
+    eventRef.removeDefault = useCallback(() => {
+        setSelected({ selected: false, name: 'name', file: null });
+        inputRef.current.removeEventListener('click', eventRef.removeDefault);
+        eventRef.removeDefault = null;
+    }, []);
+
     useEffect(() => {
         const input = inputRef.current;
         input.addEventListener('cancel', handleActive.current);
+        if (defaultValue) {
+            input.addEventListener('cancel', eventRef.removeDefault);
+        }
         return () => {
             input.removeEventListener('cancel', handleActive.current);
+            if (defaultValue && eventRef.removeDefault) {
+                input.removeEventListener('click', eventRef.removeDefault);
+            }
         };
-    }, []);
+    }, [defaultValue]);
 
     const handleSelect = e => {
         setActive(false);
