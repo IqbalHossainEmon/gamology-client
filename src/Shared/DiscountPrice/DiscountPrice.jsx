@@ -12,7 +12,7 @@ export default function DiscountPrice({ price, className }) {
         return (
             <span className={className ? [styles.DiscountPrice, className].join(' ') : styles.DiscountPrice}>
                 <del className={styles.regular}>${price.regular}</del>
-                <span className={styles.discount}>${price.discount}</span>
+                <ins className={styles.discount}>${price.discount}</ins>
             </span>
         );
     }

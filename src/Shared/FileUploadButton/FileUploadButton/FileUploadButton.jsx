@@ -6,7 +6,18 @@ import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import ImagePreview from '../../ImagePreview/ImagePreview';
 import styles from './FileUploadButton.module.css';
 
-const FileUploadButton = ({ placeholder, accept, className, setState, name, disabled, errorMessage, errorChange, htmlFor = '' }) => {
+const FileUploadButton = ({
+    placeholder,
+    accept,
+    className,
+    setState,
+    name,
+    disabled,
+    errorMessage,
+    errorChange,
+    htmlFor = '',
+    defaultValue,
+}) => {
     const [selected, setSelected] = useState({ selected: false, name: 'name', file: null });
     const [active, setActive] = useState(false);
     const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({

@@ -53,17 +53,13 @@
 
 .label {
     position: absolute;
+    pointer-events: none;
+    color: rgb(173, 173, 173);
     user-select: none;
     left: 10px;
     top: 0;
-    scale: 1;
     translate: 0 20px;
     transform-origin: 0 0;
-    font-size: 1rem;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    color: rgb(173, 173, 173);
     transition:
         scale 200ms cubic-bezier(0, 0, 0.2, 1),
         translate 200ms cubic-bezier(0, 0, 0.2, 1),

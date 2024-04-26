@@ -37,6 +37,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                 setState={handleSetValues}
                 placeholder={type.type ? `Choose Game's Banner ${type.type}'s thumbnail` : 'Select Content Type First'}
                 name="thumb"
+                defaultValue=""
                 errorChange={errorChange}
                 errorMessage={errorMessages[number]?.thumb}
             />
