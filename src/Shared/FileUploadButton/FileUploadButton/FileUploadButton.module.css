@@ -42,6 +42,7 @@
     text-overflow: ellipsis;
     color: rgb(173, 173, 173);
     line-height: 20px;
+    width: calc(100% - 50px);
 }
 #errorColor {
     color: #cc2a24;
@@ -57,12 +58,13 @@
     color: rgb(173, 173, 173);
     user-select: none;
     left: 10px;
-    top: 0;
-    translate: 0 20px;
+    top: 50%;
+    translate: 0 -50%;
     transform-origin: 0 0;
     transition:
         scale 200ms cubic-bezier(0, 0, 0.2, 1),
         translate 200ms cubic-bezier(0, 0, 0.2, 1),
+        top 200ms cubic-bezier(0, 0, 0.2, 1),
         color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -84,8 +86,9 @@
 }
 
 .focused {
+    top: 0%;
     translate: 0 5px;
-    scale: 0.75;
+    scale: 0.8;
 }
 
 .fileUploadWithPreview {
@@ -116,14 +119,13 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
         width: calc(100% - 50px);
     }
     .field {
         font-size: 12px;
     }
-    .focused {
-        font-size: 10px;
-    }
+
     .fileUploadWithPreview {
         flex-direction: column;
         align-items: start;
