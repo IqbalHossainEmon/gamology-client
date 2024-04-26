@@ -19,15 +19,17 @@
 }
 
 .label {
+    width: calc(100% - 45px);
     position: absolute;
     pointer-events: none;
     color: rgb(173, 173, 173);
     user-select: none;
     left: 10px;
-    top: 0;
-    translate: 0 20px;
+    top: 50%;
+    translate: 0 -50%;
     transform-origin: 0 0;
     transition:
+        top 200ms cubic-bezier(0, 0, 0.2, 1),
         scale 200ms cubic-bezier(0, 0, 0.2, 1),
         translate 200ms cubic-bezier(0, 0, 0.2, 1),
         color 200ms cubic-bezier(0, 0, 0.2, 1);
@@ -45,11 +47,14 @@
 }
 
 .textFilled {
+    top: 0%;
     translate: 0 5px;
     scale: 0.8;
     color: rgb(173, 173, 173);
 }
 .focused {
+    width: 100%;
+    top: 0%;
     translate: 0 5px;
     scale: 0.8;
     color: rgb(2, 99, 224);
@@ -108,19 +113,17 @@
 @media screen and (max-width: 768px) {
     .label {
         font-size: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: calc(100% - 50px);
+        white-space: wrap;
     }
     .field {
         font-size: 12px;
     }
-    .focused {
-        scale: 0.8;
-    }
+
     .containerWithPreview {
         flex-direction: column;
         align-items: start;
+    }
+    .defaultText {
+        font-size: 12px;
     }
 }

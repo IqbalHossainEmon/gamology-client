@@ -37,6 +37,11 @@
         color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.textareaLabel {
+    top: 20px;
+    translate: 0;
+}
+
 .field {
     width: 100%;
     outline: none;
@@ -74,9 +79,7 @@
 @media screen and (max-width: 768px) {
     .label {
         font-size: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: wrap;
     }
     .field {
         font-size: 12px;
