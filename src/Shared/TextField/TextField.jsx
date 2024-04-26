@@ -69,7 +69,6 @@ export default function TextField({
             return prev;
         });
     }, [placeholder]);
-    console.log(field);
 
     return (
         <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`} ref={containerRef}>
