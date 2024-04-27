@@ -25,6 +25,8 @@ export default function GameInfoFieldSpecification({ state, gameSpecifications, 
         [handleSetValue, index]
     );
 
+    console.log(selectedKeys);
+
     const handleHideErrorShow = childIndex => {
         if (errorShow.rec && childIndex) setErrorShow(prev => ({ ...prev, rec: false }));
         if (errorShow.min && !childIndex) setErrorShow(prev => ({ ...prev, min: false }));
@@ -109,10 +111,27 @@ export default function GameInfoFieldSpecification({ state, gameSpecifications, 
                             onClick={() => {
                                 setRequiredLength(prev => prev - 1);
                                 const pop = gameSpecifications[index].systemReq.pop();
-                                if (pop[0].key === selectedKeys.min[selectedKeys.min.length - 1]) {
-                                    setSelectedKeys(prev => ({ ...prev, min: prev.min.slice(0, -1) }));
-                                } else if (pop[0].key === selectedKeys.rec[selectedKeys.rec.length - 1]) {
-                                    setSelectedKeys(prev => ({ ...prev, rec: prev.rec.slice(0, -1) }));
+                                const minKey = pop[0].key;
+                                const recKey = pop[1].key;
+                                if (selectedKeys.min.includes(minKey) && selectedKeys.rec.includes(recKey)) {
+                                    setSelectedKeys(prev => {
+                                        const newSelectedKeys = { ...prev };
+                                        newSelectedKeys.min = newSelectedKeys.min.filter(key => key !== minKey);
+                                        newSelectedKeys.rec = newSelectedKeys.rec.filter(key => key !== recKey);
+                                        return newSelectedKeys;
+                                    });
+                                } else if (selectedKeys.min.includes(minKey)) {
+                                    setSelectedKeys(prev => {
+                                        const newSelectedKeys = { ...prev };
+                                        newSelectedKeys.min = newSelectedKeys.min.filter(key => key !== minKey);
+                                        return newSelectedKeys;
+                                    });
+                                } else if (selectedKeys.rec.includes(recKey)) {
+                                    setSelectedKeys(prev => {
+                                        const newSelectedKeys = { ...prev };
+                                        newSelectedKeys.rec = newSelectedKeys.rec.filter(key => key !== recKey);
+                                        return newSelectedKeys;
+                                    });
                                 }
                             }}
                         />

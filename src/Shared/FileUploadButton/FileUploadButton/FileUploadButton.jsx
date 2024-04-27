@@ -34,8 +34,6 @@ const FileUploadButton = ({
     });
     const [errorShow, setErrorShow] = useState(!!errorMessage);
 
-    console.log(selected);
-
     const containerRef = useRef(null);
     const inputRef = useRef(null);
     const btnRef = useRef(null);
