@@ -25,8 +25,6 @@ export default function GameInfoFieldSpecification({ state, gameSpecifications, 
         [handleSetValue, index]
     );
 
-    console.log(selectedKeys);
-
     const handleHideErrorShow = childIndex => {
         if (errorShow.rec && childIndex) setErrorShow(prev => ({ ...prev, rec: false }));
         if (errorShow.min && !childIndex) setErrorShow(prev => ({ ...prev, min: false }));

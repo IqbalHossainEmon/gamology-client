@@ -31,8 +31,12 @@ export default function TextField({
     }, []);
 
     const onStop = useCallback(e => {
-        if (!containerRef.current.contains(e.target)) {
-            fieldRef.current.blur();
+        if (containerRef.current) {
+            if (!containerRef.current?.contains(e.target)) {
+                fieldRef.current.blur();
+                document.removeEventListener('click', onStop);
+            }
+        } else {
             document.removeEventListener('click', onStop);
         }
     }, []);

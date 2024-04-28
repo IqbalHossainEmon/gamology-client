@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../../Hooks/useDragStartStop';
 import useHandleTimerTransition from '../../../Hooks/useHandleTimerTransition';
-import usePointersEveryStep from '../../../Hooks/usePointersEveryStep';
+import useScreenWidth from '../../../Hooks/useScreenWidth';
 import styles from './FilterSwitch.module.css';
 
 function FilterSwitch({ state, setState, name, event }) {
-    const rangePathRef = useRef(null);
     const [circlePosition, setCirclePosition] = useState({
         translate: 0,
         transition: false,
@@ -14,14 +13,19 @@ function FilterSwitch({ state, setState, name, event }) {
     const stateRef = useRef(circlePosition);
     stateRef.current = circlePosition.translate;
 
-    const handleMove = useRef(event);
+    const handleMove = useRef(null);
 
-    const { getCursorInPercent } = usePointersEveryStep(rangePathRef);
+    const screenWidth = useScreenWidth();
+
+    const rangePathRef = useRef(null);
+    const roundRef = useRef(null);
+    const positionsRef = useRef(0);
+
     const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
     useEffect(() => {
         if (state) {
-            setCirclePosition({ translate: 100, transition: true });
+            setCirclePosition({ translate: rangePathRef.width, transition: true });
             handleTimerTransition();
         } else {
             setCirclePosition({ translate: 0, transition: true });
@@ -29,31 +33,52 @@ function FilterSwitch({ state, setState, name, event }) {
         }
     }, [handleTimerTransition, state]);
 
+    useEffect(() => {
+        rangePathRef.width = rangePathRef.current.offsetWidth;
+    }, [rangePathRef, screenWidth]);
+
     handleMove.current = useCallback(
         e => {
-            document.removeEventListener('mouseup', event);
+            document.removeEventListener('mouseup', event.current);
 
-            setCirclePosition(prev => ({ ...prev, translate: getCursorInPercent(e) }));
+            const move = e.clientX - positionsRef.current;
+
+            const newPosition = positionsRef.start + move;
+
+            if (move > 0) {
+                if (newPosition > rangePathRef.width) {
+                    setCirclePosition(prev => ({ ...prev, translate: rangePathRef.width }));
+                } else {
+                    setCirclePosition(prev => ({ ...prev, translate: newPosition }));
+                }
+            } else if (newPosition < 0) {
+                setCirclePosition(prev => ({ ...prev, translate: 0 }));
+            } else {
+                setCirclePosition(prev => ({ ...prev, translate: newPosition }));
+            }
         },
-        [event, getCursorInPercent]
+        [event]
     );
+
+    const handleStart = e => {
+        positionsRef.current = e.touches ? e.touches[0].clientX : e.clientX;
+        positionsRef.start = stateRef.current;
+    };
 
     const handleSetValue = useCallback(() => {
         // if switch is below 50
-        if (stateRef.current < 50) {
-            if (stateRef.current) {
-                setState(prev => ({ ...prev, [name]: false }), name);
-            } else if (stateRef.current !== 0) {
+        if (stateRef.current < rangePathRef.width / 2) {
+            if (stateRef.current !== 0) {
                 setCirclePosition({ translate: 0, transition: true });
                 handleTimerTransition();
             }
-        } else if (stateRef.current >= 50) {
-            if (!stateRef.current) {
-                setState(prev => ({ ...prev, [name]: true }), name);
-            } else if (stateRef.current !== 100) {
-                setCirclePosition({ translate: 100, transition: true });
+            setState(prev => ({ ...prev, [name]: false }), name);
+        } else if (stateRef.current >= rangePathRef.width / 2) {
+            if (stateRef.current !== rangePathRef.width) {
+                setCirclePosition({ translate: rangePathRef.width, transition: true });
                 handleTimerTransition();
             }
+            setState(prev => ({ ...prev, [name]: true }), name);
         }
     }, [handleTimerTransition, name, setState]);
 
@@ -68,40 +93,42 @@ function FilterSwitch({ state, setState, name, event }) {
                         style={
                             circlePosition.transition
                                 ? {
-                                      scale: `${circlePosition.translate / 100} 1`,
+                                      scale: `${circlePosition.translate / rangePathRef.width} 1`,
                                       transition: 'scale linear 100ms',
                                   }
-                                : { scale: `${circlePosition.translate / 100} 1` }
+                                : { scale: `${circlePosition.translate / rangePathRef.width} 1` }
                         }
                     />
                 </div>
                 <div
                     className={styles.roundContainer}
+                    ref={roundRef}
                     style={
                         circlePosition.transition
                             ? {
-                                  translate: `${circlePosition.translate}%`,
+                                  translate: `${circlePosition.translate}px`,
                                   transition: 'translate linear 100ms',
                               }
-                            : { translate: `${circlePosition.translate}%` }
+                            : { translate: `${circlePosition.translate}px` }
                     }
                 >
                     <div
                         tabIndex="-1"
                         role="button"
                         className={styles.round}
-                        style={
-                            circlePosition.transition
-                                ? {
-                                      backgroundColor: `rgb(${(circlePosition.translate / 100) * 255}, ${circlePosition.translate}, 0)`,
-                                      transition: 'translate linear 100ms',
-                                  }
-                                : {
-                                      backgroundColor: `rgb(${(circlePosition.translate / 100) * 255}, ${circlePosition.translate}, 0)`,
-                                  }
-                        }
-                        onTouchStart={onStart}
-                        onMouseDown={onStart}
+                        {...(circlePosition.transition && {
+                            style: {
+                                transition: 'translate linear 100ms',
+                            },
+                        })}
+                        onTouchStart={e => {
+                            onStart(e);
+                            handleStart(e);
+                        }}
+                        onMouseDown={e => {
+                            onStart(e);
+                            handleStart(e);
+                        }}
                     />
                 </div>
             </div>

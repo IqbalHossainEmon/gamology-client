@@ -28,7 +28,7 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 
     const getCursorInPercent = useCallback(e => {
         const cursorInEle = (e?.touches ? e.touches[0].clientX : e.clientX) - pathInfoRef.offsetLeft;
-        console.dir(pathInfoRef.offsetLeft);
+
         let cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
         if (cursorInPercent < 0 || cursorInPercent > 100) {

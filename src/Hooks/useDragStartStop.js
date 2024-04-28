@@ -8,13 +8,13 @@ export default function useDragStartStop(handleMove, handleMouseUp = () => {}, h
 
     eventRef.onStop = useCallback(
         e => {
-            handleMouseUp(e);
             document.removeEventListener('mousemove', handleMove.current);
             document.removeEventListener('touchmove', handleMove.current);
             document.removeEventListener('mouseup', eventRef.onStop);
             document.removeEventListener('touchend', eventRef.onStop);
             window.removeEventListener('blur', eventRef.onStop);
 
+            handleMouseUp(e);
             if (document.getElementById('root').classList.contains('grabbing')) {
                 document.getElementById('root').removeAttribute('class');
             }

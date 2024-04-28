@@ -4,22 +4,26 @@ import styles from './FilterOption.module.css';
 
 function FilterOption({ text, setState, border, state, name }) {
     const handleClick = useRef(null);
-    handleClick.current = useCallback(() => {
-        setState(prev => ({ ...prev, [name]: !prev[name] }), name);
-    }, [name, setState]);
+
+    const btnRef = useRef(null);
+
+    handleClick.current = useCallback(
+        e => {
+            // check if the event is on the btnRef
+            if (btnRef.current.contains(e.target)) {
+                setState(prev => ({ ...prev, [name]: !prev[name] }), name);
+            }
+        },
+        [name, setState]
+    );
 
     return (
         <button
             type="button"
-            onClick={el => {
-                if (document.activeElement === el.target) {
-                    el.preventDefault();
-                    handleClick.current();
-                }
-            }}
-            onMouseDownCapture={el => {
+            ref={btnRef}
+            onMouseDown={el => {
                 el.preventDefault();
-                el.target.addEventListener('mouseup', handleClick.current, { once: true });
+                document.addEventListener('mouseup', handleClick.current, { once: true });
             }}
             className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${styles.filterOption} ${styles.shadow}`}
         >
