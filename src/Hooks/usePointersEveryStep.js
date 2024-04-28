@@ -20,24 +20,32 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
     );
 
     useEffect(() => {
-        pathInfoRef.width = rangePathRef.current.offsetWidth;
-        pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
+        setTimeout(() => {
+            pathInfoRef.width = rangePathRef.current.offsetWidth;
+            pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
+        }, 0);
     }, [rangePathRef, screenWidth]);
 
-    return useCallback(
-        e => {
-            const cursorInEle = (e?.touches ? e.touches[0].clientX : e.clientX) - pathInfoRef.offsetLeft;
+    const getCursorInPercent = useCallback(e => {
+        const cursorInEle = (e?.touches ? e.touches[0].clientX : e.clientX) - pathInfoRef.offsetLeft;
+        console.dir(pathInfoRef.offsetLeft);
+        let cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
-            let cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
-
-            if (cursorInPercent < 0 || cursorInPercent > 100) {
-                if (cursorInPercent < 0) {
-                    cursorInPercent = 0;
-                } else {
-                    cursorInPercent = 100;
-                }
+        if (cursorInPercent < 0 || cursorInPercent > 100) {
+            if (cursorInPercent < 0) {
+                cursorInPercent = 0;
+            } else {
+                cursorInPercent = 100;
             }
+        }
+        return cursorInPercent;
+    }, []);
+
+    const getLeftRightPointerStep = useCallback(
+        e => {
             let everyStep = 1;
+
+            const cursorInPercent = getCursorInPercent(e);
 
             switch (typeof conditionStepRef?.current) {
                 case 'object':
@@ -80,6 +88,11 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
                 rightDiff,
             };
         },
-        [conditionStepRef, handleSetEveryStep]
+        [conditionStepRef, getCursorInPercent, handleSetEveryStep]
     );
+
+    return {
+        getLeftRightPointerStep,
+        getCursorInPercent,
+    };
 }

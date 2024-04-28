@@ -16,7 +16,7 @@ function FilterSwitch({ state, setState, name, event }) {
 
     const handleMove = useRef(event);
 
-    const getLeftRightPointerStep = usePointersEveryStep(rangePathRef);
+    const { getCursorInPercent } = usePointersEveryStep(rangePathRef);
     const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
     useEffect(() => {
@@ -33,19 +33,9 @@ function FilterSwitch({ state, setState, name, event }) {
         e => {
             document.removeEventListener('mouseup', event);
 
-            const { cursorInPercent } = getLeftRightPointerStep(e);
-            // if cursors position is inside the slider range;
-
-            if (cursorInPercent > 0 && cursorInPercent < 100) {
-                // check and set value depend on step
-                setCirclePosition(prev => ({ ...prev, translate: cursorInPercent }));
-            } else if (cursorInPercent <= 0 && stateRef.current !== 0) {
-                setCirclePosition(prev => ({ ...prev, translate: 0 }));
-            } else if (cursorInPercent >= 100 && stateRef.current !== 100) {
-                setCirclePosition(prev => ({ ...prev, translate: 100 }));
-            }
+            setCirclePosition(prev => ({ ...prev, translate: getCursorInPercent(e) }));
         },
-        [event, getLeftRightPointerStep]
+        [event, getCursorInPercent]
     );
 
     const handleSetValue = useCallback(() => {
