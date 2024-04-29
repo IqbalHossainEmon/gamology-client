@@ -89,38 +89,23 @@ function FilterSwitch({ state, setState, name, event }) {
             <div ref={rangePathRef} className={styles.toggleButton}>
                 <div className={styles.activePathContainer}>
                     <div
-                        className={styles.activePath}
-                        style={
-                            circlePosition.transition
-                                ? {
-                                      scale: `${circlePosition.translate / rangePathRef.width} 1`,
-                                      transition: 'scale linear 100ms',
-                                  }
-                                : { scale: `${circlePosition.translate / rangePathRef.width} 1` }
-                        }
+                        className={`${styles.activePath}${circlePosition.transition ? ` ${styles.pathTransition}` : ''}`}
+                        style={{ scale: `${circlePosition.translate / rangePathRef.width} 1` }}
                     />
                 </div>
                 <div
-                    className={styles.roundContainer}
+                    className={`${styles.roundContainer}${circlePosition.transition ? ` ${styles.roundTransition}` : ''}`}
                     ref={roundRef}
-                    style={
-                        circlePosition.transition
-                            ? {
-                                  translate: `${circlePosition.translate}px`,
-                                  transition: 'translate linear 100ms',
-                              }
-                            : { translate: `${circlePosition.translate}px` }
-                    }
+                    {...(circlePosition.translate && {
+                        style: {
+                            translate: `${circlePosition.translate}px`,
+                        },
+                    })}
                 >
                     <div
                         tabIndex="-1"
                         role="button"
-                        className={styles.round}
-                        {...(circlePosition.transition && {
-                            style: {
-                                transition: 'translate linear 100ms',
-                            },
-                        })}
+                        className={`${styles.round}${circlePosition.translate > rangePathRef.width / 2 ? ` ${styles.active}` : ''}`}
                         onTouchStart={e => {
                             onStart(e);
                             handleStart(e);
