@@ -7,11 +7,16 @@ import ImagePreview from '../../../../../../../../../../Shared/ImagePreview/Imag
 import CoverImageContainer from '../CoverImageContainer/CoverImageContainer';
 import styles from './CoverImageVideoContainer.module.css';
 
-const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorChange, name, number }) => {
+const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorChange, name, number, hasDefault, defaultData }) => {
     const [errorShow, setErrorShow] = useState(!!errorMessage);
     const [focused, setFocused] = useState(false);
-    const [value, setValue] = useState('');
-    const [selected, setSelected] = useState({ selected: false, name: 'name', file: null });
+    const [value, setValue] = useState(hasDefault && type === 'video' ? defaultData : '');
+
+    const [selected, setSelected] = useState({
+        selected: !!hasDefault,
+        name: hasDefault ? (defaultData instanceof File ? defaultData.name : defaultData.substr(defaultData.lastIndexOf('/') + 1)) : 'name',
+        file: defaultData || null,
+    });
     const [active, setActive] = useState(false);
 
     const inputRef = useRef(null);
@@ -52,6 +57,10 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
             document.removeEventListener('click', eventRef.handleCheckClick);
         }
     }, []);
+
+    if (type === 'image') {
+        console.log(selected.selected);
+    }
 
     return (
         <div className={styles.outerContainer} ref={containerRef}>
@@ -108,6 +117,8 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                                 setImagePreview={setImagePreview}
                                 btnRef={btnRef}
                                 eventRef={eventRef}
+                                defaultData={defaultData}
+                                hasDefault={hasDefault}
                             />
                         )
                     ) : (
@@ -133,7 +144,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                     </button>
                 )}
             </div>
-            {selected.file && (
+            {selected.file && btnRef.current && (
                 <ImagePreview
                     containerRef={containerRef}
                     file={selected.file}
