@@ -3,20 +3,22 @@ import ButtonForGameInfoFieldSection from '../../ButtonForGameInfoFieldSection/B
 import BannerInputFieldContainer from '../BannerInputFieldContainer/BannerInputFieldContainer';
 import styles from './GameInfoFieldBanner.module.css';
 
-export default function GameInfoFieldBanner({ gameBanner, errorMessages, errorChange, hasDefault }) {
-    const [fieldCount, setFieldCount] = useState(1);
+export default function GameInfoFieldBanner({ gameBanner, errorMessages, errorChange, hasDefault, defaultGameBanner }) {
+    const [fieldCount, setFieldCount] = useState(hasDefault ? defaultGameBanner.length : 1);
 
     return (
         <section className={styles.addGameBanner}>
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s Banner Images or Videos</h3>
             <div className={styles.textFieldContainer}>
-                {[...Array(fieldCount).keys()].map(arr => (
+                {[...Array(fieldCount).keys()].map((arr, i) => (
                     <BannerInputFieldContainer
                         key={arr}
                         number={arr}
                         gameBanner={gameBanner}
                         errorMessages={errorMessages}
                         errorChange={errorChange}
+                        hasDefault={hasDefault}
+                        defaultGameBanner={defaultGameBanner[i]}
                     />
                 ))}
             </div>

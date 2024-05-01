@@ -35,8 +35,6 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
         }, 0);
     }, [isTouchAble, screenWidth]);
 
-    const typeRef = useRef(null);
-    typeRef.current = type;
     const eventRef = useRef(null);
 
     eventRef.cancel = useCallback(() => {
@@ -45,14 +43,14 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
 
     useEffect(() => {
         let input;
-        if (type.type === 'Image') {
+        if (type === 'image') {
             input = inputRef.current;
             inputRef.current.addEventListener('cancel', eventRef.cancel);
         }
         return () => {
             input?.removeEventListener('cancel', eventRef.cancel);
         };
-    }, [type.type]);
+    }, [type]);
 
     useEffect(() => {
         if (errorChange && errorMessage) setErrorShow(true);
@@ -70,19 +68,19 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
         <div className={styles.outerContainer} ref={containerRef}>
             <div className={styles.containerWithPreview}>
                 <div
-                    className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type.type ? '' : ` ${styles.padding} `}${active ? ` ${styles.activeBorder}` : ''}${type.type ? '' : ` ${styles.disabled}`}`}
+                    className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type ? '' : ` ${styles.padding} `}${active ? ` ${styles.activeBorder}` : ''}${type ? '' : ` ${styles.disabled}`}`}
                 >
-                    {type.type && (
+                    {type && (
                         <label
-                            className={`${type.type === 'Image' ? (selected.selected ? `${styles.textFilled} ` : '') : focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}${errorShow ? ` ${styles.errorColor}` : ''}`}
+                            className={`${type === 'image' ? (selected.selected ? `${styles.textFilled} ` : '') : focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}${errorShow ? ` ${styles.errorColor}` : ''}`}
                             {...(active ? { id: styles.active } : errorShow && { id: styles.errorColor })}
                             htmlFor={`addGameBannerCover_${number}`}
                         >
-                            {`Choose Game's Banner's ${type.type}`}
+                            {`Choose Game's Banner's ${type}`}
                         </label>
                     )}
-                    {type.type ? (
-                        type.type === 'Video' ? (
+                    {type ? (
+                        type === 'video' ? (
                             <input
                                 ref={inputRef}
                                 type="text"
@@ -101,7 +99,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                                 }}
                                 value={value}
                                 id={`addGameBannerCover_${number}`}
-                                className={`${type.type === 'Video' ? styles.field : styles.fileUploadField}`}
+                                className={`${type === 'video' ? styles.field : styles.fileUploadField}`}
                             />
                         ) : (
                             <CoverImageContainer
@@ -113,7 +111,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                                 setErrorShow={setErrorShow}
                                 inputRef={inputRef}
                                 errorShow={errorShow}
-                                type={type.type}
+                                type={type}
                                 selected={selected}
                                 number={number}
                                 previewShow={previewShow}

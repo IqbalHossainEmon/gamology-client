@@ -55,7 +55,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 } else {
                     heightRef.current = height;
                 }
-                if (isObject(file)) {
+                if (file instanceof File) {
                     srcRef.loaded = true;
                 }
             };

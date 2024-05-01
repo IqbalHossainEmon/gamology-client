@@ -1,8 +1,8 @@
-import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
+import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton';
 import TextField from '../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldDetails.module.css';
 
-export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessages, hasDefault }) {
+export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessages, hasDefault, defaultGameInfo }) {
     const handleSetValue = (value, name) => {
         if (value.type === 'FormData' && !value.file) {
             delete gameInfo[name];
@@ -11,6 +11,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
         }
     };
 
+    console.log(defaultGameInfo);
     return (
         <section className={styles.gameDetails}>
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s Details</h3>
@@ -21,6 +22,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                 placeholder="Game's Name"
                 errorChange={errorChange}
                 errorMessage={errorMessages.name}
+                {...(hasDefault && { defaultValue: defaultGameInfo.name })}
             />
 
             <div className={styles.flexContainer}>
@@ -31,6 +33,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Developer"
                     errorChange={errorChange}
                     errorMessage={errorMessages.developer}
+                    {...(hasDefault && { defaultValue: defaultGameInfo.developer })}
                 />
                 <TextField
                     setState={handleSetValue}
@@ -40,6 +43,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Publisher"
                     errorChange={errorChange}
                     errorMessage={errorMessages.publisher}
+                    {...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
                 />
             </div>
             <div className={styles.flexContainer}>
@@ -51,6 +55,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Choose cover image"
                     errorChange={errorChange}
                     errorMessage={errorMessages.logo}
+                    {...(hasDefault && { defaultValue: defaultGameInfo.logo })}
                 />
                 <FileUploadButton
                     htmlFor={2}
@@ -61,6 +66,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Choose portrait cover image"
                     errorChange={errorChange}
                     errorMessage={errorMessages.phoneLogo}
+                    {...(hasDefault && { defaultValue: defaultGameInfo.phoneLogo })}
                 />
             </div>
         </section>

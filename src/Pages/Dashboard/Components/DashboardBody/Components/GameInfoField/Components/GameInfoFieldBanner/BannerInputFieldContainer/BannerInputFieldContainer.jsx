@@ -1,14 +1,11 @@
-import { useRef, useState } from 'react';
-import FileUploadButton from '../../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
+import { useState } from 'react';
+import FileUploadButton from '../../../../../../../../../Shared/FileUploadButton/FileUploadButton';
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField';
 import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVideoContainer/CoverImageVideoContainer';
 import styles from './BannerInputFieldContainer.module.css';
 
-export default function BannerInputFieldContainer({ number, gameBanner, errorChange, errorMessages }) {
-    const [type, setType] = useState('');
-
-    const typeRef = useRef(type);
-    typeRef.current = type;
+export default function BannerInputFieldContainer({ number, gameBanner, errorChange, errorMessages, defaultGameBanner, hasDefault }) {
+    const [type, setType] = useState(hasDefault ? defaultGameBanner.type : '');
 
     const handleSetValues = (value, name) => {
         gameBanner[number][name] = value;
@@ -23,7 +20,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
     return (
         <div className={styles.textFieldContainer}>
             <CoverImageVideoContainer
-                type={typeRef.current}
+                type={type}
                 handleSetValues={handleSetValues}
                 errorChange={errorChange}
                 name="cover"
@@ -48,10 +45,11 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                         setType({ [name]: value });
                         handleSetValues(value, name);
                     }}
-                    list={['Image', 'Video']}
+                    list={['image', 'video']}
                     htmlFor={number}
                     placeholder="Content Type"
                     name="type"
+                    defaultValue={hasDefault ? defaultGameBanner.type : ''}
                 />
             </div>
         </div>

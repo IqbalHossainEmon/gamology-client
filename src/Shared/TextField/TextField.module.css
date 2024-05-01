@@ -12,7 +12,7 @@
     font-size: 1rem;
     display: flex;
     flex-direction: column;
-    transition: border 0.2s ease;
+    transition: border 200ms cubic-bezier(0, 0, 0.2, 1);
     overflow: hidden;
 }
 .error {
