@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import Modal from '../../../../../Shared/Modal/Modal';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import AddGamesContainer from '../Components/AllGamesContainer/AllGamesContainer/AddGamesContainer';
-import DashboardModal from '../Components/DashboardModal/DashboardModal/DashboardModal';
+import DashboardModal from '../Components/DashboardModal/DashboardModal';
 import styles from './DashboardBody.module.css';
 
 const DashboardBody = () => {

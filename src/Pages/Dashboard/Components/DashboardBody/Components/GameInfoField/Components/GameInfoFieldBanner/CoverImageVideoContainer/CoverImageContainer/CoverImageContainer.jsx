@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './CoverImageContainer.module.css';
 
@@ -15,6 +16,7 @@ const CoverImageContainer = ({
     btnRef,
     previewShow,
     setImagePreview,
+    eventRef,
 }) => {
     const handleSelect = e => {
         setActive(false);
@@ -34,6 +36,16 @@ const CoverImageContainer = ({
             handleSetValues(object, name);
         }
     };
+
+    useEffect(() => {
+        const input = inputRef.current;
+        inputRef.current.addEventListener('cancel', eventRef.cancel);
+        eventRef.isAdded = true;
+
+        return () => {
+            input.removeEventListener('cancel', eventRef.cancel);
+        };
+    }, [inputRef]);
 
     return (
         <>

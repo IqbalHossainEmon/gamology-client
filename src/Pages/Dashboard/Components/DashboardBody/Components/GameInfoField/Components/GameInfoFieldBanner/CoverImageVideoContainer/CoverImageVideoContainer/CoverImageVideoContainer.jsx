@@ -42,17 +42,6 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     }, []);
 
     useEffect(() => {
-        let input;
-        if (type === 'image') {
-            input = inputRef.current;
-            inputRef.current.addEventListener('cancel', eventRef.cancel);
-        }
-        return () => {
-            input?.removeEventListener('cancel', eventRef.cancel);
-        };
-    }, [type]);
-
-    useEffect(() => {
         if (errorChange && errorMessage) setErrorShow(true);
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
@@ -118,6 +107,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                                 imagePreviewContainer={imagePreviewContainer}
                                 setImagePreview={setImagePreview}
                                 btnRef={btnRef}
+                                eventRef={eventRef}
                             />
                         )
                     ) : (
