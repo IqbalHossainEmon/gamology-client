@@ -13,9 +13,14 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     const [value, setValue] = useState(hasDefault && type === 'video' ? defaultData : '');
 
     const [selected, setSelected] = useState({
-        selected: !!hasDefault,
-        name: hasDefault ? (defaultData instanceof File ? defaultData.name : defaultData.substr(defaultData.lastIndexOf('/') + 1)) : 'name',
-        file: defaultData || null,
+        selected: !!defaultData && type === 'image',
+        name:
+            defaultData && type === 'image'
+                ? defaultData instanceof File
+                    ? defaultData.name
+                    : defaultData.substr(defaultData.lastIndexOf('/') + 1)
+                : 'name',
+        file: defaultData && type === 'image' ? defaultData : null,
     });
     const [active, setActive] = useState(false);
 
@@ -57,10 +62,6 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
             document.removeEventListener('click', eventRef.handleCheckClick);
         }
     }, []);
-
-    if (type === 'image') {
-        console.log(selected.selected);
-    }
 
     return (
         <div className={styles.outerContainer} ref={containerRef}>
@@ -144,7 +145,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                     </button>
                 )}
             </div>
-            {selected.file && btnRef.current && (
+            {selected.file && type === 'image' && (
                 <ImagePreview
                     containerRef={containerRef}
                     file={selected.file}

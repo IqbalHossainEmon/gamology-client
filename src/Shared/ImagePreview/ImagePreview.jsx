@@ -59,7 +59,31 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                     srcRef.loaded = true;
                 }
             };
+        } else if (srcRef.current) {
+            const imageTemp = new Image();
+            imageTemp.src = srcRef.current;
+            imageTemp.onload = () => {
+                let height;
+                if (imageTemp.width > containerRef.current.clientWidth) {
+                    height = containerRef.current.clientWidth / (imageTemp.width / imageTemp.height);
+                    if (height > widthHeight.height - 256) {
+                        height = `${widthHeight.height - 256}px`;
+                    } else height = `${containerRef.current.clientWidth / (imageTemp.width / imageTemp.height)}px`;
+                } else {
+                    height = `${imageTemp.height}px`;
+                }
+                if (imagePreviewRef.current) {
+                    imagePreviewRef.current.style.setProperty('--height', height);
+                    heightRef.current = height;
+                } else {
+                    heightRef.current = height;
+                }
+                if (file instanceof File) {
+                    srcRef.loaded = true;
+                }
+            };
         }
+
         return () => {
             if (srcRef.current && srcRef.loaded) {
                 URL.revokeObjectURL(srcRef.current);

@@ -17,6 +17,8 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
         }
     };
 
+    console.log(type);
+
     return (
         <div className={styles.textFieldContainer}>
             <CoverImageVideoContainer
@@ -45,7 +47,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
             <div className={styles.selectContainer}>
                 <SelectionField
                     setState={(value, name) => {
-                        setType({ [name]: value });
+                        setType(value);
                         handleSetValues(value, name);
                     }}
                     list={['image', 'video']}

@@ -45,7 +45,7 @@ const CoverImageContainer = ({
         return () => {
             input.removeEventListener('cancel', eventRef.cancel);
         };
-    }, [eventRef, inputRef]);
+    }, [btnRef, eventRef, inputRef]);
 
     return (
         <>

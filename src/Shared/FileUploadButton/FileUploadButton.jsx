@@ -70,14 +70,8 @@ const FileUploadButton = ({
     useEffect(() => {
         const input = inputRef.current;
         input.addEventListener('cancel', handleActive.current);
-        if (defaultValue) {
-            input.addEventListener('cancel', eventRef.removeDefault);
-        }
         return () => {
             input.removeEventListener('cancel', handleActive.current);
-            if (defaultValue && eventRef.removeDefault) {
-                input.removeEventListener('click', eventRef.removeDefault);
-            }
         };
     }, [defaultValue]);
 
