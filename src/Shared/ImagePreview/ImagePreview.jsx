@@ -30,6 +30,31 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     const showRef = useRef(show);
     showRef.current = show;
 
+    const calculateHeight = useCallback(() => {
+        const imageTemp = new Image();
+        imageTemp.src = srcRef.current;
+        imageTemp.onload = () => {
+            let height;
+            if (imageTemp.width > containerRef.current.clientWidth) {
+                height = containerRef.current.clientWidth / (imageTemp.width / imageTemp.height);
+                if (height > widthHeight.height - 256) {
+                    height = `${widthHeight.height - 256}px`;
+                } else height = `${containerRef.current.clientWidth / (imageTemp.width / imageTemp.height)}px`;
+            } else {
+                height = `${imageTemp.height}px`;
+            }
+            if (imagePreviewRef.current) {
+                imagePreviewRef.current.style.setProperty('--height', height);
+                heightRef.current = height;
+            } else {
+                heightRef.current = height;
+            }
+            if (file instanceof File) {
+                srcRef.loaded = true;
+            }
+        };
+    }, [containerRef, file, widthHeight.height]);
+
     useEffect(() => {
         if (file && !srcRef.current) {
             if (file instanceof File) {
@@ -37,51 +62,9 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
             } else {
                 srcRef.current = file;
             }
-            const imageTemp = new Image();
-            imageTemp.src = srcRef.current;
-            imageTemp.onload = () => {
-                let height;
-                if (imageTemp.width > containerRef.current.clientWidth) {
-                    height = containerRef.current.clientWidth / (imageTemp.width / imageTemp.height);
-                    if (height > widthHeight.height - 256) {
-                        height = `${widthHeight.height - 256}px`;
-                    } else height = `${containerRef.current.clientWidth / (imageTemp.width / imageTemp.height)}px`;
-                } else {
-                    height = `${imageTemp.height}px`;
-                }
-                if (imagePreviewRef.current) {
-                    imagePreviewRef.current.style.setProperty('--height', height);
-                    heightRef.current = height;
-                } else {
-                    heightRef.current = height;
-                }
-                if (file instanceof File) {
-                    srcRef.loaded = true;
-                }
-            };
+            calculateHeight();
         } else if (srcRef.current) {
-            const imageTemp = new Image();
-            imageTemp.src = srcRef.current;
-            imageTemp.onload = () => {
-                let height;
-                if (imageTemp.width > containerRef.current.clientWidth) {
-                    height = containerRef.current.clientWidth / (imageTemp.width / imageTemp.height);
-                    if (height > widthHeight.height - 256) {
-                        height = `${widthHeight.height - 256}px`;
-                    } else height = `${containerRef.current.clientWidth / (imageTemp.width / imageTemp.height)}px`;
-                } else {
-                    height = `${imageTemp.height}px`;
-                }
-                if (imagePreviewRef.current) {
-                    imagePreviewRef.current.style.setProperty('--height', height);
-                    heightRef.current = height;
-                } else {
-                    heightRef.current = height;
-                }
-                if (file instanceof File) {
-                    srcRef.loaded = true;
-                }
-            };
+            calculateHeight();
         }
 
         return () => {
@@ -90,7 +73,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 srcRef.current = null;
             }
         };
-    }, [containerRef, file, widthHeight]);
+    }, [calculateHeight, containerRef, file]);
 
     const handleToggle = parentPrev => {
         if (parentPrev) {
