@@ -11,7 +11,6 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
         }
     };
 
-    console.log(defaultGameInfo);
     return (
         <section className={styles.gameDetails}>
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s Details</h3>

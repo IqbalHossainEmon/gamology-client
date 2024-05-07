@@ -17,8 +17,6 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
         }
     };
 
-    console.log(type);
-
     return (
         <div className={styles.textFieldContainer}>
             <CoverImageVideoContainer

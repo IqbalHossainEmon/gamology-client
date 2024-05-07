@@ -22,7 +22,7 @@
 }
 
 .img {
-    height: calc(var(--height) - 32px);
+    height: calc(var(--height));
 }
 @keyframes height-appear {
     0% {

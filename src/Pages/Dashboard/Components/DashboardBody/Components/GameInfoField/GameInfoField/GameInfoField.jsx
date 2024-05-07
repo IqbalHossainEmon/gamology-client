@@ -97,7 +97,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
     };
 
     if (hasDefault && Object.keys(defaultData).length) {
-        gameData.current = defaultData;
+        gameData.current = JSON.parse(JSON.stringify(defaultData));
     }
 
     return (

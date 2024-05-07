@@ -105,7 +105,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 setShow(true);
                 setHideAnimation(false);
                 timeId.showId = null;
-            }, 200);
+            }, 600);
         }
     }, [isTouchAble]);
 

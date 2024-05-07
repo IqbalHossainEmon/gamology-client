@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import { useEffect, useState } from 'react';
+import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './CoverImageContainer.module.css';
 
 const CoverImageContainer = ({
-    setSelected,
-    selected,
-    setActive,
+    setFocused,
     handleSetValues,
     name,
     setErrorShow,
@@ -17,16 +15,26 @@ const CoverImageContainer = ({
     previewShow,
     setImagePreview,
     eventRef,
+    mainValue,
 }) => {
+    const [value, setValue] = useState(mainValue);
+
     const handleSelect = e => {
-        setActive(false);
+        setFocused(false);
         if (e.target.files) {
+            let select;
             if (e.target.files[0]) {
                 const { name: fileName } = e.target.files[0] || {};
-                setSelected({ selected: true, name: fileName, file: e.target.files[0] });
+                select = { selected: true, name: fileName, file: e.target.files[0] };
             } else {
-                setSelected({ selected: false, name: 'name', file: null });
+                select = { selected: false, name: 'name', file: null };
             }
+
+            setValue(select);
+            const { selected, name: selectName, file } = select;
+            mainValue.selected = selected;
+            mainValue.name = selectName;
+            mainValue.file = file;
 
             const object = {
                 type: 'FormData',
@@ -54,14 +62,15 @@ const CoverImageContainer = ({
                 onChange={handleSelect}
                 accept="image/*"
                 type="file"
+                name={name}
                 id={`addGameBannerCover_${number}`}
-                className={`${type.type === 'Video' ? styles.field : styles.fileUploadField}`}
+                className={`${type.type === 'video' ? styles.field : styles.fileUploadField}`}
             />
             <button
                 ref={btnRef}
                 onClick={() => {
                     inputRef.current.click();
-                    setActive(true);
+                    setFocused(true);
                     if (errorShow) {
                         setErrorShow(false);
                     }
@@ -72,7 +81,7 @@ const CoverImageContainer = ({
                 type="button"
                 className={styles.fileUploadButton}
             >
-                <p className={`${selected.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>{selected.name}</p>
+                <p className={`${value.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>{value.name}</p>
                 <div className={styles.uploadImage}>
                     <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_14_1859)">

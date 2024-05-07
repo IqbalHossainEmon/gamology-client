@@ -4,28 +4,27 @@ import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import ImagePreview from '../../../../../../../../../../Shared/ImagePreview/ImagePreview';
-import CoverImageContainer from '../CoverImageContainer/CoverImageContainer';
+import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
+import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
 import styles from './CoverImageVideoContainer.module.css';
 
 const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorChange, name, number, hasDefault, defaultData }) => {
     const [errorShow, setErrorShow] = useState(!!errorMessage);
     const [focused, setFocused] = useState(false);
-    const [value, setValue] = useState(hasDefault && type === 'video' ? defaultData : '');
 
-    const [selected, setSelected] = useState({
-        selected: !!defaultData && type === 'image',
-        name:
-            defaultData && type === 'image'
-                ? defaultData instanceof File
-                    ? defaultData.name
-                    : defaultData.substr(defaultData.lastIndexOf('/') + 1)
-                : 'name',
-        file: defaultData && type === 'image' ? defaultData : null,
+    const mainValueRef = useRef({
+        image:
+            type === 'image'
+                ? {
+                      selected: hasDefault,
+                      name: defaultData instanceof File ? defaultData.name : defaultData.substr(defaultData.lastIndexOf('/') + 1),
+                      file: defaultData,
+                  }
+                : { selected: false, name: 'name', file: null },
+        video: type === 'video' ? defaultData : '',
     });
-    const [active, setActive] = useState(false);
 
     const inputRef = useRef(null);
-
     const containerRef = useRef(null);
 
     const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({
@@ -48,7 +47,7 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     const eventRef = useRef(null);
 
     eventRef.cancel = useCallback(() => {
-        setActive(false);
+        setFocused(false);
     }, []);
 
     useEffect(() => {
@@ -67,12 +66,11 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
         <div className={styles.outerContainer} ref={containerRef}>
             <div className={styles.containerWithPreview}>
                 <div
-                    className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type ? '' : ` ${styles.padding} `}${active ? ` ${styles.activeBorder}` : ''}${type ? '' : ` ${styles.disabled}`}`}
+                    className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type ? '' : ` ${styles.padding} `}${type ? '' : ` ${styles.disabled}`}`}
                 >
                     {type && (
                         <label
-                            className={`${type === 'image' ? (selected.selected ? `${styles.textFilled} ` : '') : focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}${errorShow ? ` ${styles.errorColor}` : ''}`}
-                            {...(active ? { id: styles.active } : errorShow && { id: styles.errorColor })}
+                            className={`${errorShow ? `${styles.errorColor} ` : focused ? `${styles.focused} ` : (type === 'image' && mainValueRef.current.image.selected) || (type === 'video' && mainValueRef.current.video) ? `${styles.textFilled} ` : ''}${styles.label}`}
                             htmlFor={`addGameBannerCover_${number}`}
                         >
                             {`Choose Game's Banner's ${type}`}
@@ -80,53 +78,48 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                     )}
                     {type ? (
                         type === 'video' ? (
-                            <input
-                                ref={inputRef}
-                                type="text"
-                                name={name}
+                            <CoverVideoContainer
+                                mainValueRef={mainValueRef}
+                                inputRef={inputRef}
+                                number={number}
                                 onFocus={() => {
                                     setFocused(true);
                                     if (errorShow) setErrorShow(false);
                                 }}
-                                onChange={e => {
-                                    setValue(e.target.value);
-                                    if (errorShow) setErrorShow(false);
-                                }}
+                                name={name}
+                                errorShow={errorShow}
+                                setErrorShow={setErrorShow}
                                 onBlur={e => {
                                     handleSetValues(e.target.value, e.target.name);
                                     setFocused(false);
+                                    mainValueRef.current.video = e.target.value;
                                 }}
-                                value={value}
-                                id={`addGameBannerCover_${number}`}
-                                className={`${type === 'video' ? styles.field : styles.fileUploadField}`}
+                                mainValue={mainValueRef.current.video}
                             />
                         ) : (
                             <CoverImageContainer
                                 containerRef={containerRef}
-                                setSelected={setSelected}
-                                setActive={setActive}
                                 handleSetValues={handleSetValues}
                                 name={name}
                                 setErrorShow={setErrorShow}
                                 inputRef={inputRef}
                                 errorShow={errorShow}
                                 type={type}
-                                selected={selected}
                                 number={number}
                                 previewShow={previewShow}
                                 imagePreviewContainer={imagePreviewContainer}
                                 setImagePreview={setImagePreview}
                                 btnRef={btnRef}
                                 eventRef={eventRef}
-                                defaultData={defaultData}
-                                hasDefault={hasDefault}
+                                mainValue={mainValueRef.current.image}
+                                setFocused={setFocused}
                             />
                         )
                     ) : (
                         <p className={`${errorShow ? `${styles.errorColor} ` : ''}${styles.defaultText}`}>Select Content Type First</p>
                     )}
                 </div>
-                {imagePreviewContainer && selected.file && (
+                {imagePreviewContainer && mainValueRef.current?.image.file && (
                     <button
                         ref={previewBtnRef}
                         className={styles.previewBtn}
@@ -145,10 +138,10 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                     </button>
                 )}
             </div>
-            {selected.file && type === 'image' && (
+            {type === 'image' && mainValueRef.current?.image.file && (
                 <ImagePreview
                     containerRef={containerRef}
-                    file={selected.file}
+                    file={mainValueRef.current?.image.file}
                     btnRef={btnRef}
                     parentPreview={previewShow && imagePreviewContainer}
                 />

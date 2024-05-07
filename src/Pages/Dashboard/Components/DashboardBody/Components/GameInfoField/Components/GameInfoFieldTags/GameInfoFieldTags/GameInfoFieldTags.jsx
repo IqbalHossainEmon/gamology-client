@@ -29,7 +29,7 @@ const options = [
     ],
 ];
 
-export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, errorMessages, hasDefault }) {
+export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, errorMessages, hasDefault, defaultGameTags }) {
     return (
         <section className={styles.addGameTags}>
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s tags</h3>
