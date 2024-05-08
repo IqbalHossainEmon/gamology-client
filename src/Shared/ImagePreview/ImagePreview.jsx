@@ -30,16 +30,16 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     const showRef = useRef(show);
     showRef.current = show;
 
-    const calculateHeight = useCallback(() => {
+    const calculateHeight = useCallback((currentFile, screenHeight, containerWidth) => {
         const imageTemp = new Image();
         imageTemp.src = srcRef.current;
         imageTemp.onload = () => {
             let height;
-            if (imageTemp.width > containerRef.current.clientWidth) {
-                height = containerRef.current.clientWidth / (imageTemp.width / imageTemp.height);
-                if (height > widthHeight.height - 256) {
-                    height = `${widthHeight.height - 256}px`;
-                } else height = `${containerRef.current.clientWidth / (imageTemp.width / imageTemp.height)}px`;
+            if (imageTemp.width > containerWidth) {
+                height = containerWidth / (imageTemp.width / imageTemp.height);
+                if (height > screenHeight - 256) {
+                    height = `${screenHeight - 256}px`;
+                } else height = `${containerWidth / (imageTemp.width / imageTemp.height)}px`;
             } else {
                 height = `${imageTemp.height}px`;
             }
@@ -49,22 +49,23 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
             } else {
                 heightRef.current = height;
             }
-            if (file instanceof File) {
+            if (currentFile instanceof File) {
                 srcRef.loaded = true;
             }
         };
-    }, [containerRef, file, widthHeight.height]);
+    }, []);
 
     useEffect(() => {
-        if (file && !srcRef.current) {
+        if (file && !srcRef.current && srcRef.file !== file) {
             if (file instanceof File) {
                 srcRef.current = URL.createObjectURL(file);
             } else {
                 srcRef.current = file;
             }
-            calculateHeight();
+            srcRef.file = file;
+            calculateHeight(file, widthHeight.height, containerRef.current.clientWidth);
         } else if (srcRef.current) {
-            calculateHeight();
+            calculateHeight(file, widthHeight.height, containerRef.current.clientWidth);
         }
 
         return () => {
@@ -73,7 +74,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 srcRef.current = null;
             }
         };
-    }, [calculateHeight, containerRef, file]);
+    }, [calculateHeight, containerRef, file, widthHeight]);
 
     const handleToggle = parentPrev => {
         if (parentPrev) {

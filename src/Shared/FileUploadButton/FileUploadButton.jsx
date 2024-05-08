@@ -27,6 +27,9 @@ const FileUploadButton = ({
             : 'name',
         file: defaultValue || null,
     });
+
+    console.log(selected);
+
     const [active, setActive] = useState(false);
     const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({
         previewShow: false,
