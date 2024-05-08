@@ -56,7 +56,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
     }, []);
 
     useEffect(() => {
-        if (file && !srcRef.current && srcRef.file !== file) {
+        if ((file && !srcRef.current) || srcRef.file !== file) {
             if (file instanceof File) {
                 srcRef.current = URL.createObjectURL(file);
             } else {
