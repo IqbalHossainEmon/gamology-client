@@ -19,7 +19,10 @@
 }
 
 .label {
-    width: calc(100% - 45px);
+    width: calc(100% - 10px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     pointer-events: none;
     color: rgb(173, 173, 173);
@@ -96,7 +99,6 @@
 @media screen and (max-width: 768px) {
     .label {
         font-size: 12px;
-        white-space: wrap;
     }
     .field {
         font-size: 12px;

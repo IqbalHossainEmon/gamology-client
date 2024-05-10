@@ -15,7 +15,9 @@
 .fileName {
     opacity: 0;
     font-size: medium;
-    white-space: wrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: rgb(173, 173, 173);
     line-height: 20px;
 }

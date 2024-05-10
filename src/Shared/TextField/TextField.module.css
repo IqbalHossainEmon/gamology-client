@@ -12,7 +12,7 @@
     font-size: 1rem;
     display: flex;
     flex-direction: column;
-    transition: border 200ms cubic-bezier(0, 0, 0.2, 1);
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
 }
 .error {
@@ -22,6 +22,10 @@
     color: #cc2a24;
 }
 .label {
+    width: calc(100% - 10px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     pointer-events: none;
     color: rgb(173, 173, 173);
@@ -31,10 +35,9 @@
     translate: 0 -50%;
     transform-origin: 0 0;
     transition:
-        scale 200ms cubic-bezier(0, 0, 0.2, 1),
-        translate 200ms cubic-bezier(0, 0, 0.2, 1),
-        top 200ms cubic-bezier(0, 0, 0.2, 1),
-        color 200ms cubic-bezier(0, 0, 0.2, 1);
+        scale 150ms cubic-bezier(0.4, 0, 0.2, 1),
+        translate 150ms cubic-bezier(0.4, 0, 0.2, 1),
+        color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .textareaLabel {
@@ -53,15 +56,13 @@
 }
 
 .textFilled {
-    top: 0%;
-    translate: 0 5px;
+    translate: 0 -25px;
     scale: 0.8;
     color: rgb(173, 173, 173);
 }
 
 .focused {
-    top: 0%;
-    translate: 0 5px;
+    translate: 0 -25px;
     scale: 0.8;
     color: rgb(2, 99, 224);
 }
@@ -78,7 +79,6 @@
 @media screen and (max-width: 768px) {
     .label {
         font-size: 12px;
-        white-space: wrap;
     }
     .field {
         font-size: 12px;

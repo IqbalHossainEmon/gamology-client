@@ -80,7 +80,7 @@ export default function TextField({
                 <label
                     className={`${focused ? `${styles.focused} ` : value || defaultValue ? `${styles.textFilled} ` : ''}${styles.label}${field === 'textarea' ? ` ${styles.textareaLabel}` : ''}`}
                     {...(errorShow && { id: styles.errorColor })}
-                    htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+                    htmlFor={htmlFor}
                 >
                     {placeholder}
                 </label>
@@ -105,7 +105,7 @@ export default function TextField({
                             setState(e.target.value, e.target.name);
                             setFocused(false);
                         }}
-                        id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+                        id={htmlFor}
                         className={styles.field}
                         autoComplete="off"
                         {...rest}
@@ -130,7 +130,7 @@ export default function TextField({
                             setState(e.target.value, e.target.name);
                             setFocused(false);
                         }}
-                        id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+                        id={htmlFor}
                         className={[styles.textarea, styles.field].join(' ')}
                         rows={10}
                         {...rest}

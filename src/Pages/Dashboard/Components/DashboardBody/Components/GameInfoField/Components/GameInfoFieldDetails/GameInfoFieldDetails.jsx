@@ -22,6 +22,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                 errorChange={errorChange}
                 errorMessage={errorMessages.name}
                 {...(hasDefault && { defaultValue: defaultGameInfo.name })}
+                htmlFor="gameName"
             />
 
             <div className={styles.flexContainer}>
@@ -30,6 +31,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     field="input"
                     name="developer"
                     placeholder="Developer"
+                    htmlFor="developer"
                     errorChange={errorChange}
                     errorMessage={errorMessages.developer}
                     {...(hasDefault && { defaultValue: defaultGameInfo.developer })}
@@ -40,6 +42,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     name="publisher"
                     field="input"
                     placeholder="Publisher"
+                    htmlFor="publisher"
                     errorChange={errorChange}
                     errorMessage={errorMessages.publisher}
                     {...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
@@ -47,7 +50,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
             </div>
             <div className={styles.flexContainer}>
                 <FileUploadButton
-                    htmlFor={1}
+                    htmlFor="gameLogo"
                     setState={handleSetValue}
                     name="logo"
                     accept="image/*"
@@ -57,7 +60,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     {...(hasDefault && { defaultValue: defaultGameInfo.logo })}
                 />
                 <FileUploadButton
-                    htmlFor={2}
+                    htmlFor="phoneLogo"
                     className={styles.marginRight}
                     setState={handleSetValue}
                     accept="image/*"
