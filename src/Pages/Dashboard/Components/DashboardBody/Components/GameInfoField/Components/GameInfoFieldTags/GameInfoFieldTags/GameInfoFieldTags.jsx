@@ -38,7 +38,16 @@ const data = [
     },
 ];
 
-export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, errorMessages, hasDefault, defaultGameTags }) {
+export default function GameInfoFieldTags({
+    gameTags,
+    gameInfo,
+    errorChange,
+    errorMessages,
+    hasDefault,
+    defaultGameTags,
+    defaultReleaseDate,
+    defaultPrice,
+}) {
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
@@ -48,11 +57,9 @@ export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, err
     const getInitialState = (list, category) => {
         const initialState = {};
         list.forEach(option => {
-            console.log(defaultGameTags[category.toLowerCase()], option.filter);
             if (Object.prototype.hasOwnProperty.call(defaultGameTags[category], option.filter)) initialState[option.filter] = true;
             else initialState[option.filter] = false;
         });
-        console.log(defaultGameTags);
         return initialState;
     };
     return (
@@ -72,7 +79,14 @@ export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, err
                     </div>
                 ))}
             </div>
-            <PriceReleaseDate gameInfo={gameInfo} errorMessage={errorMessages.releaseDate} errorChange={errorChange} />
+            <PriceReleaseDate
+                gameInfo={gameInfo}
+                errorMessage={errorMessages.releaseDate}
+                errorChange={errorChange}
+                defaultReleaseDate={defaultReleaseDate}
+                hasDefault={hasDefault}
+                defaultPrice={defaultPrice}
+            />
         </section>
     );
 }

@@ -18,6 +18,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             logo: {},
             phoneLogo: {},
             releaseDate: { day: '', month: '', year: '' },
+            price: '0.00',
         },
         gameBanner: [{ cover: '', thumb: '', type: '' }],
         gameDescriptions: { descriptions: [{ mainHeader: '', subHeader: '', description: '' }] },
@@ -128,6 +129,8 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         defaultGameTags={defaultData.gameTags}
+                        defaultReleaseDate={defaultData.gameInfo.releaseDate}
+                        defaultPrice={defaultData.gameInfo.price}
                     />
                     <GameInfoFieldDescriptions
                         gameDescriptions={gameDescriptions}

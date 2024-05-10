@@ -8,7 +8,7 @@ function getDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
 }
 
-const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
+const ReleaseDate = ({ gameInfo, errorChange, errorMessage, defaultReleaseDate, hasDefault }) => {
     const [errorShow, setErrorShow] = useState(false);
 
     const [day, setDay] = useState({ day: 0, max: 31 });
@@ -59,6 +59,7 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
                             list={Array.from(Array(day.max), (_, idx) => ++idx)}
                             htmlFor={1}
                             placeholder="Day"
+                            defaultValue={hasDefault ? defaultReleaseDate.day : ''}
                             setState={handleReleaseValue}
                             name="day"
                             parentSetValue={day.day}
@@ -72,6 +73,7 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
                                 }
                             }}
                             list={months}
+                            defaultValue={hasDefault ? months[defaultReleaseDate.month - 1] : ''}
                             htmlFor={2}
                             placeholder="Month"
                             setState={handleReleaseValue}
@@ -87,6 +89,7 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage }) => {
                             }}
                             list={Array.from(Array(100), (_, idx) => new Date().getFullYear() + 1 - ++idx)}
                             htmlFor={3}
+                            defaultValue={hasDefault ? defaultReleaseDate.year : ''}
                             placeholder="Year"
                             setState={handleReleaseValue}
                             name="year"

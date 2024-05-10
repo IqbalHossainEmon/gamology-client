@@ -2,8 +2,8 @@ import { useState } from 'react';
 import ReleaseDate from '../ReleaseDate/ReleaseDate';
 import styles from './PriceReleaseDate.module.css';
 
-export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }) {
-    const [price, setPrice] = useState('0.00');
+export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, hasDefault, defaultPrice }) {
+    const [price, setPrice] = useState(defaultPrice || '0.00');
 
     const handleSetValue = e => {
         gameInfo[e.target.name] = e.target.value;
@@ -30,7 +30,13 @@ export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage }
                     />
                 </div>
             </div>
-            <ReleaseDate gameInfo={gameInfo} errorChange={errorChange} errorMessage={errorMessage} />
+            <ReleaseDate
+                gameInfo={gameInfo}
+                errorChange={errorChange}
+                errorMessage={errorMessage}
+                defaultReleaseDate={defaultReleaseDate}
+                hasDefault={hasDefault}
+            />
         </div>
     );
 }

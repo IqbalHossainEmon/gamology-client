@@ -19,7 +19,7 @@ const EditGame = () => {
                         month: 2,
                         year: 2012,
                     },
-                    price: '0.00',
+                    price: '0.69',
                 },
                 gameBanner: [
                     {
