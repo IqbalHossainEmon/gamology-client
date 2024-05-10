@@ -7,6 +7,8 @@ export default function OptionsContainer({ title, options, gameTags, initialStat
     const [optionSates, setOptionSates] = useState(initialState);
     const [errorShow, setErrorShow] = useState(false);
 
+    console.log(initialState);
+
     const errorShowRef = useRef(errorShow);
     errorShowRef.current = errorShow;
 

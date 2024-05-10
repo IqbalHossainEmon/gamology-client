@@ -39,8 +39,7 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
                 height = containerWidth / (imageTemp.width / imageTemp.height);
                 if (height > screenHeight - 256 && screenHeight > 450) {
                     height = `${screenHeight - 256}px`;
-                }
-                if (screenHeight < 450) height = `${screenHeight - 78}px`;
+                } else if (screenHeight < 450) height = `${screenHeight - 78}px`;
                 else height = `${containerWidth / (imageTemp.width / imageTemp.height)}px`;
             } else {
                 height = `${imageTemp.height}px`;
