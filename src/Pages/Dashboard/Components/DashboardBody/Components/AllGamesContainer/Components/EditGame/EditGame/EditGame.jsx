@@ -229,12 +229,12 @@ const EditGame = () => {
                     policy: 'https://www.playstation.com/country-selector/index.html',
                 },
                 gameTags: {
-                    genre: {
+                    Genre: {
                         action: true,
                         adventure: true,
                         rolePlaying: true,
                     },
-                    features: {
+                    Features: {
                         singlePlayer: true,
                     },
                 },

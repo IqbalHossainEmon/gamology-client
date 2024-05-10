@@ -95,6 +95,12 @@ const AddTags = ({ tags, setTags }) => {
         return isValid;
     };
 
+    // lowerCase first letter of the string and remove (-) and space and make it camelCase and return it
+    const camelCase = str => {
+        const newStr = str.toLowerCase();
+        return newStr.replace(/[- ]/g, '').replace(/^[a-z]/, newStr[0].toLowerCase());
+    };
+
     return (
         <div className={styles.addTags}>
             <h3 className={styles.addHeader}>Add {tagOrCategory ? 'Tag' : 'Category'}</h3>
@@ -156,14 +162,19 @@ const AddTags = ({ tags, setTags }) => {
                                             );
 
                                             newPrev[index].optionList.push({
-                                                tags: addInfoRef.current.tag.name,
+                                                text: addInfoRef.current.tag.name,
+                                                filter: camelCase(addInfoRef.current.tag.name),
                                                 id: newPrev[index].optionList.length,
                                             });
                                         } else {
                                             newPrev.push({
                                                 id: newPrev.length,
                                                 category: addInfoRef.current.category.name,
-                                                optionList: addInfoRef.current.category.tags.map((tag, i) => ({ id: i, tags: tag })),
+                                                optionList: addInfoRef.current.category.tags.map((tag, i) => ({
+                                                    id: i,
+                                                    text: tag,
+                                                    filter: camelCase(tag),
+                                                })),
                                             });
                                         }
 

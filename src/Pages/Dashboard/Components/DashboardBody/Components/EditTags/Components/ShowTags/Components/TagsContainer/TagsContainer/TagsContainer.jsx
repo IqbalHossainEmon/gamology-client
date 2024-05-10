@@ -37,6 +37,8 @@ const TagsContainer = ({ tag, setModal, setTags }) => {
     const tagDeleteHandler = data => {
         console.log(data, 'Tag Deleted');
 
+        // send request to backend to delete tag than delete tag from frontend
+
         const checkTags = true;
         if (checkTags) {
             setTags(prevTags =>
@@ -44,7 +46,7 @@ const TagsContainer = ({ tag, setModal, setTags }) => {
                     if (prevTag.category === tag.category) {
                         return {
                             ...prevTag,
-                            optionList: prevTag.optionList.filter(option => option.tags !== data),
+                            optionList: prevTag.optionList.filter(option => option.filter !== data),
                         };
                     }
                     return prevTag;
@@ -53,19 +55,19 @@ const TagsContainer = ({ tag, setModal, setTags }) => {
         }
     };
 
-    const handleTagDelete = data => {
+    const handleTagDelete = (text, data) => {
         setModal({
             title: 'Delete Tag',
             modalQuestion: (
                 <>
-                    Are you sure you want to delete <strong className={styles.categoryText}>{data}</strong> Tag?
+                    Are you sure you want to delete <strong className={styles.categoryText}>{text}</strong> Tag?
                 </>
             ),
             ModalBody: props =>
                 modalBody(
                     props,
                     <>
-                        All Games that has <strong className={styles.categoryText}>{data}</strong> tag will be effected.
+                        All Games that has <strong className={styles.categoryText}>{text}</strong> tag will be effected.
                     </>,
                     () => tagDeleteHandler(data)
                 ),
@@ -84,8 +86,8 @@ const TagsContainer = ({ tag, setModal, setTags }) => {
             <ul className={styles.tagList}>
                 {tag.optionList.map(option => (
                     <li key={option.id} className={styles.tagListItem}>
-                        <p className={styles.tagItem}>{option.tags}</p>
-                        <button type="button" className={styles.crossBtn} onClick={() => handleTagDelete(option.tags)}>
+                        <p className={styles.tagItem}>{option.text}</p>
+                        <button type="button" className={styles.crossBtn} onClick={() => handleTagDelete(option.text, option.filter)}>
                             <strong className={styles.cross} />
                         </button>
                     </li>

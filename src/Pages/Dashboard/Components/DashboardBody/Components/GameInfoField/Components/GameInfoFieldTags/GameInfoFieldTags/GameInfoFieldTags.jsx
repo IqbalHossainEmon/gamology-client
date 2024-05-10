@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import OptionsContainer from '../Components/OptionsContainer/OptionsContainer';
 import PriceReleaseDate from '../Components/PriceReleaseDate/PriceReleaseDate/PriceReleaseDate';
 import styles from './GameInfoFieldTags.module.css';
 
-const options = [
+const data = [
     {
         id: 0,
         category: 'Genre',
@@ -38,12 +39,17 @@ const options = [
 ];
 
 export default function GameInfoFieldTags({ gameTags, gameInfo, errorChange, errorMessages, hasDefault, defaultGameTags }) {
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        setOptions(data);
+    }, []);
+
     const getInitialState = (list, category) => {
         const initialState = {};
         list.forEach(option => {
             console.log(defaultGameTags[category.toLowerCase()], option.filter);
-            if (Object.prototype.hasOwnProperty.call(defaultGameTags[category.toLowerCase()], option.filter))
-                initialState[option.filter] = true;
+            if (Object.prototype.hasOwnProperty.call(defaultGameTags[category], option.filter)) initialState[option.filter] = true;
             else initialState[option.filter] = false;
         });
         console.log(defaultGameTags);
