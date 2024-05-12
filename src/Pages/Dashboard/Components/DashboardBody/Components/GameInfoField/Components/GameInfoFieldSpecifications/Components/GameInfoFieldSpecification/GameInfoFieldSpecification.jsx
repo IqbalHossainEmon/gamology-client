@@ -5,9 +5,18 @@ import ButtonForGameInfoFieldSection from '../../../ButtonForGameInfoFieldSectio
 import SectionFieldTextFieldContainer from '../SectionFieldTextFieldContainer/SectionFieldTextFieldContainer';
 import styles from './GameInfoFieldSpecification.module.css';
 
-export default function GameInfoFieldSpecification({ state, gameSpecifications, index, errorMessages, errorChange, handleSetValue }) {
-    const [requiredLength, setRequiredLength] = useState(1);
-    const [enabled, setEnabled] = useState({ enabled: false });
+export default function GameInfoFieldSpecification({
+    state,
+    gameSpecifications,
+    index,
+    errorMessages,
+    errorChange,
+    handleSetValue,
+    defaultSpecs,
+    hasDefault = false,
+}) {
+    const [requiredLength, setRequiredLength] = useState(defaultSpecs?.systemReq.length || 1);
+    const [enabled, setEnabled] = useState({ enabled: hasDefault });
     const [errorShow, setErrorShow] = useState({ min: !!errorMessages.min, rec: !!errorMessages.rec });
 
     const [selectedKeys, setSelectedKeys] = useState({ min: [], rec: [] });
@@ -64,6 +73,7 @@ export default function GameInfoFieldSpecification({ state, gameSpecifications, 
                         setHideParentErrorShow={() => {
                             if (errorShow.min) setErrorShow(prev => ({ ...prev, min: false }));
                         }}
+                        defaultData={defaultSpecs?.systemReq}
                     />
                     <ErrorMessage enable={errorShow.min} errorMessage={errorMessages.min} />
                 </div>
@@ -83,6 +93,7 @@ export default function GameInfoFieldSpecification({ state, gameSpecifications, 
                         setHideParentErrorShow={() => {
                             if (errorShow.rec) setErrorShow(prev => ({ ...prev, rec: false }));
                         }}
+                        defaultData={defaultSpecs?.systemReq}
                     />
                     <ErrorMessage enable={errorShow.rec} errorMessage={errorMessages.rec} />
                 </div>

@@ -80,10 +80,12 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             spec: [{}, {}, {}],
             others: [],
         },
+        outerErrorMessage: '',
     });
 
     const { gameInfo, gameBanner, gameTags, gameDescriptions, gameSpecifications } = gameData.current;
-    const { gameInfoError, gameBannerError, gameTagsError, gameDescriptionsError, gameSpecificationsError } = errorMessages.current;
+    const { gameInfoError, gameBannerError, gameTagsError, gameDescriptionsError, gameSpecificationsError, outerErrorMessage } =
+        errorMessages.current;
 
     const { checkValidation, handleUnnecessaryRemove } = useGameInfoFieldLogics({ gameData, errorMessages });
 
@@ -94,14 +96,17 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             return;
         }
         handleUnnecessaryRemove();
+        const { errorMessage, error } = handleGameInfo(gameData.current);
+        errorMessages.current.outerErrorMessage = errorMessage;
+        if (error) {
+            errorMessages.current.isThereError = true;
+            setErrorChange(prev => ++prev);
+        }
     };
 
     useEffect(() => {
         if (hasDefault && Object.keys(defaultData).length) {
             const defaultGameData = JSON.parse(JSON.stringify(defaultData));
-            defaultGameData.gameSpecifications.spec.forEach((spec, index) => {
-                defaultGameData.gameSpecifications.spec[index].isActive = true;
-            });
             const specList = defaultGameData.gameSpecifications.spec.map(spec => spec.for);
             const defSpec = {
                 systemReq: [
@@ -177,7 +182,11 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameSpecifications: defaultData.gameSpecifications })}
                     />
-                    <OuterErrorMessage errorChange={errorChange} isThereError={errorMessages.current.isThereError} />
+                    <OuterErrorMessage
+                        errorChange={errorChange}
+                        errorMessage={outerErrorMessage}
+                        isThereError={errorMessages.current.isThereError}
+                    />
                     <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />
                 </form>
             )}

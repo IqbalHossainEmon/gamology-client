@@ -14,6 +14,7 @@ export default function SectionFieldTextFieldContainer({
     errorChange,
     setHideParentErrorShow,
     enabled,
+    defaultData,
 }) {
     return (
         <>
@@ -33,6 +34,7 @@ export default function SectionFieldTextFieldContainer({
                     errorChange={errorChange}
                     setHideParentErrorShow={setHideParentErrorShow}
                     enabled={enabled}
+                    {...(defaultData && { defaultData: defaultData[i][index] })}
                 />
             ))}
         </>

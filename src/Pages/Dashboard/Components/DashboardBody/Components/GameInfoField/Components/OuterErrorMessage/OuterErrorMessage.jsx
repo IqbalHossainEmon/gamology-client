@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import styles from './OuterErrorMessage.module.css';
 
-const OuterErrorMessage = ({ errorChange, isThereError }) => {
+const OuterErrorMessage = ({ errorChange, isThereError, errorMessage }) => {
     const [errorShow, setErrorShow] = useState(false);
 
     const timerId = useRef(null);
@@ -28,7 +28,7 @@ const OuterErrorMessage = ({ errorChange, isThereError }) => {
 
     return (
         <div className={styles.outerErrorMessage}>
-            <ErrorMessage errorMessage="There is some validation mistake above, Please Check." enable={errorShow} />
+            <ErrorMessage errorMessage={errorMessage || 'There is some validation mistake above, Please Check.'} enable={errorShow} />
         </div>
     );
 };

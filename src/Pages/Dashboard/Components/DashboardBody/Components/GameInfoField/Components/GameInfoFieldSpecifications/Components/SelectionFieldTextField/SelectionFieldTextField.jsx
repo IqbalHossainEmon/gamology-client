@@ -18,6 +18,7 @@ const SelectionFieldTextField = ({
     errorChange,
     setHideParentErrorShow,
     enabled,
+    defaultData,
 }) => {
     const [errorShow, setErrorShow] = useState(!!errorMessage);
 
@@ -43,6 +44,7 @@ const SelectionFieldTextField = ({
                             handleSetState(value, i, index, true);
                         }}
                         list={listArr.filter(la => !selectedKeys.includes(la))}
+                        {...(defaultData && { defaultValue: defaultData.key })}
                     />
                 </div>
                 <div className={styles.textField}>
@@ -55,6 +57,7 @@ const SelectionFieldTextField = ({
                         field="input"
                         htmlFor={`${name}_${length}`}
                         placeholder="Required Specs"
+                        {...(defaultData && { defaultValue: defaultData.value })}
                     />
                 </div>
             </div>

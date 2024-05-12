@@ -13,7 +13,7 @@ export default function GameInfoFieldSpecifications({
     const handleValue = (value, name) => {
         gameSpecifications[name] = value;
     };
-    console.log(defaultGameSpecifications);
+
     return (
         <div className={styles.addGameSpecifications}>
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s System Requirement</h3>
@@ -21,6 +21,8 @@ export default function GameInfoFieldSpecifications({
                 gameSpecifications={gameSpecifications}
                 errorMessages={errorMessages.spec}
                 errorChange={errorChange}
+                {...(hasDefault && { defaultGameSpecifications: defaultGameSpecifications.spec })}
+                hasDefault={hasDefault}
             />
             <div>
                 <GameInfoFieldSpecsLangsSupported
