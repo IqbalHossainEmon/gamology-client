@@ -3,11 +3,17 @@ import GameInfoFieldSpecificationContainer from '../Components/GameInfoFieldSpec
 import GameInfoFieldSpecsLangsSupported from '../Components/GameInfoFieldSpecsLangsSupported/GameInfoFieldSpecsLangsSupported';
 import styles from './GameInfoFieldSpecifications.module.css';
 
-export default function GameInfoFieldSpecifications({ gameSpecifications, errorMessages, errorChange, hasDefault }) {
+export default function GameInfoFieldSpecifications({
+    gameSpecifications,
+    errorMessages,
+    errorChange,
+    hasDefault,
+    defaultGameSpecifications,
+}) {
     const handleValue = (value, name) => {
         gameSpecifications[name] = value;
     };
-
+    console.log(defaultGameSpecifications);
     return (
         <div className={styles.addGameSpecifications}>
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s System Requirement</h3>
@@ -22,6 +28,8 @@ export default function GameInfoFieldSpecifications({ gameSpecifications, errorM
                     errorMessages={errorMessages.others}
                     errorChange={errorChange}
                     gameSpecifications={gameSpecifications}
+                    {...(hasDefault && { defaultValue: defaultGameSpecifications.others })}
+                    hasDefault={hasDefault}
                 />
                 <div className={styles.textField}>
                     <TextField
@@ -32,6 +40,7 @@ export default function GameInfoFieldSpecifications({ gameSpecifications, errorM
                         placeholder="Copyright"
                         errorChange={errorChange}
                         errorMessage={errorMessages.copyWrite}
+                        {...(hasDefault && { defaultValue: defaultGameSpecifications.copyWrite })}
                     />
                 </div>
                 <div className={styles.textField}>
@@ -43,6 +52,7 @@ export default function GameInfoFieldSpecifications({ gameSpecifications, errorM
                         placeholder="Privacy Policy Link"
                         errorChange={errorChange}
                         errorMessage={errorMessages.policy}
+                        {...(hasDefault && { defaultValue: defaultGameSpecifications.policy })}
                     />
                 </div>
             </div>

@@ -3,8 +3,8 @@ import FilterOption from '../../../../../../../../../../Shared/FilterOption/Filt
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldSpecsLangsSupported.module.css';
 
-const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorChange }) => {
-    const [separate, setSeparate] = useState({ separate: false });
+const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorChange, defaultValue, hasDefault }) => {
+    const [separate, setSeparate] = useState({ separate: hasDefault });
 
     const language = useRef({ text: '', audio: '' });
 
@@ -29,10 +29,11 @@ const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorCha
                     rows="3"
                     field="textarea"
                     name="text"
-                    htmlFor="lang_support"
+                    htmlFor="lang_support_text"
                     placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
                     errorMessage={errorMessages[0]}
                     errorChange={errorChange}
+                    {...(hasDefault && { defaultValue: defaultValue.value[0] })}
                 />
             </div>
             {separate.separate && (
@@ -44,10 +45,11 @@ const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorCha
                         rows="3"
                         field="textarea"
                         name="audio"
-                        htmlFor="lang_support"
+                        htmlFor="lang_support_audio"
                         placeholder="Audio Languages Supported"
                         errorMessage={errorMessages[1]}
                         errorChange={errorChange}
+                        {...(hasDefault && { defaultValue: defaultValue.value[1] })}
                     />
                 </div>
             )}
