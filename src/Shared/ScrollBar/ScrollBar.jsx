@@ -14,13 +14,15 @@ const ScrollBar = ({ parentRef, childRef }) => {
     const handleMove = useRef(null);
 
     handleMove.current = useCallback(
-        e => {
+        (e, isClick) => {
             const cursorInEle = e?.touches
                 ? e.touches[0].pageY - thumbRef.current.getBoundingClientRect().y
                 : e.pageY - thumbRef.current.getBoundingClientRect().y;
 
-            if (!downElement.current) {
+            if (!downElement.current && !isClick) {
                 downElement.current = cursorInEle;
+            } else if (isClick) {
+                downElement.current = thumbRef.current.clientHeight / 2;
             }
 
             setScrolled(prev => {
@@ -117,7 +119,13 @@ const ScrollBar = ({ parentRef, childRef }) => {
     }, [childRef, parentRef]);
 
     return (
-        <div ref={containerRef} className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}>
+        <div
+            tabIndex={0}
+            role="button"
+            ref={containerRef}
+            onClick={e => handleMove.current(e, true)}
+            className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}
+        >
             <button
                 ref={thumbRef}
                 onMouseDown={onStart}

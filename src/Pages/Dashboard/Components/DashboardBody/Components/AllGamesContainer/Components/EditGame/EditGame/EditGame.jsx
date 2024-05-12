@@ -324,8 +324,8 @@ const EditGame = () => {
     }, []);
 
     const handleSubmit = newData => {
-        if (JSON.parse(JSON.stringify(AddGameDetails)) !== JSON.parse(JSON.stringify(newData))) {
-            console.log(newData);
+        if (JSON.stringify(AddGameDetails) !== JSON.stringify(newData)) {
+            console.log(JSON.stringify(AddGameDetails), '\n\n\n', JSON.stringify(AddGameDetails));
             return { errorMessage: '', error: false };
         }
         return { errorMessage: 'No changes made.', error: true };
