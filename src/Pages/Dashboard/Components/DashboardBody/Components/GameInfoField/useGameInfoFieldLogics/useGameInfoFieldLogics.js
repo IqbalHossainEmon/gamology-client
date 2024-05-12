@@ -8,6 +8,7 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
 
         let error = false;
         // Game Info
+
         if (!gameInfo.name) {
             gameInfoError.name = 'Title is required';
             error = true;
@@ -26,13 +27,13 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
         } else {
             gameInfoError.publisher = '';
         }
-        if (!gameInfo.logo?.file) {
+        if (typeof gameInfo.logo === 'object' ? !gameInfo.logo.file : !gameInfo.logo) {
             gameInfoError.logo = 'Cover Image is required';
             error = true;
         } else {
             gameInfoError.logo = '';
         }
-        if (!gameInfo.phoneLogo?.file) {
+        if (typeof gameInfo.phoneLogo === 'object' ? !gameInfo.phoneLogo.file : !gameInfo.phoneLogo) {
             gameInfoError.phoneLogo = 'Portrait Cover Image is required';
             error = true;
         } else {
@@ -153,7 +154,7 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
             return '';
         };
 
-        if (!gameSpecifications.spec[0].length && !gameSpecifications.spec[1].length && !gameSpecifications.spec[2].length) {
+        if (!gameSpecifications.spec[0].isActive && !gameSpecifications.spec[1].isActive && !gameSpecifications.spec[2].isActive) {
             gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
             error = true;
         } else {
@@ -218,7 +219,6 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
         if (!gameSpecifications.copyWrite) {
             error = true;
             gameSpecificationsError.copyWrite = 'CopyWrite is required';
-            error = true;
         } else {
             gameSpecificationsError.copyWrite = '';
         }

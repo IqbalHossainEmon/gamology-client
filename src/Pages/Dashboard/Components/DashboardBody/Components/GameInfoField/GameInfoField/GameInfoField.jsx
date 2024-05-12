@@ -59,7 +59,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             copyWrite: '',
             policy: '',
         },
-        gameTags: { genre: {}, features: {} },
+        gameTags: { Genre: {}, Features: {} },
     });
     const [errorChange, setErrorChange] = useState(0);
 
@@ -89,14 +89,12 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(gameData.current);
         if (checkValidation()) {
             setErrorChange(prev => ++prev);
+            return;
         }
         handleUnnecessaryRemove();
     };
-
-    console.log(gameData);
 
     useEffect(() => {
         if (hasDefault && Object.keys(defaultData).length) {

@@ -25,7 +25,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         htmlFor={`main_header_${index}${item.id}`}
                         errorChange={errorChange}
                         errorMessage={errorMessages[index]?.mainHeader}
-                        defaultValue={defaultData.mainHeader}
+                        {...(defaultData && { defaultValue: defaultData.shortDesc })}
                     />
                 </div>
             )}
@@ -39,7 +39,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         htmlFor={`sub_header_${index}${item.id}`}
                         errorChange={errorChange}
                         errorMessage={errorMessages[index]?.subHeader}
-                        defaultValue={defaultData.subHeader}
+                        {...(defaultData && { defaultValue: defaultData.subHeader })}
                     />
                 </div>
             )}
@@ -53,7 +53,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         htmlFor={`description_${index}${item.id}`}
                         errorChange={errorChange}
                         errorMessage={errorMessages[index]?.description}
-                        defaultValue={defaultData.description}
+                        {...(defaultData && { defaultValue: defaultData.description })}
                     />
                 </div>
             )}

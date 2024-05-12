@@ -51,7 +51,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         gameDescriptions={gameDescriptions}
                         errorChange={errorChange}
                         errorMessages={errorMessages.descriptions}
-                        defaultData={defaultGameDescriptions.descriptions[index]}
+                        {...(hasDefault && { defaultData: defaultGameDescriptions.descriptions[index] })}
                     />
                 ))}
             </div>

@@ -26,7 +26,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                 name="cover"
                 errorMessage={errorMessages[number]?.cover}
                 number={number}
-                defaultData={defaultGameBanner.cover}
+                {...(hasDefault && { defaultData: defaultGameBanner.cover })}
                 hasDefault={hasDefault}
             />
             <FileUploadButton
