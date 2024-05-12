@@ -95,11 +95,10 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             setErrorChange(prev => ++prev);
             return;
         }
-        handleUnnecessaryRemove();
-        const { errorMessage, error } = handleGameInfo(gameData.current);
+        const cleanData = handleUnnecessaryRemove();
+        const { errorMessage, error } = handleGameInfo(cleanData);
         errorMessages.current.outerErrorMessage = errorMessage;
         if (error) {
-            errorMessages.current.isThereError = true;
             setErrorChange(prev => ++prev);
         }
     };

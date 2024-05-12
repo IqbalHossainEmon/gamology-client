@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import GameInfoField from '../../../../GameInfoField/GameInfoField/GameInfoField';
 import styles from './EditGame.module.css';
 
@@ -313,9 +313,12 @@ const data = {
 const EditGame = () => {
     const [AddGameDetails, setAddGameDetails] = useState({});
 
+    const mainDefaultData = useRef(data);
+
     useEffect(() => {
         setTimeout(() => {
             const defaultData = JSON.parse(JSON.stringify(data));
+
             defaultData.gameSpecifications.spec.forEach((spec, index) => {
                 defaultData.gameSpecifications.spec[index].isActive = true;
             });
@@ -324,8 +327,8 @@ const EditGame = () => {
     }, []);
 
     const handleSubmit = newData => {
-        if (JSON.stringify(AddGameDetails) !== JSON.stringify(newData)) {
-            console.log(JSON.stringify(AddGameDetails), '\n\n\n', JSON.stringify(AddGameDetails));
+        if (JSON.stringify(mainDefaultData.current) !== JSON.stringify(newData)) {
+            console.log(newData);
             return { errorMessage: '', error: false };
         }
         return { errorMessage: 'No changes made.', error: true };

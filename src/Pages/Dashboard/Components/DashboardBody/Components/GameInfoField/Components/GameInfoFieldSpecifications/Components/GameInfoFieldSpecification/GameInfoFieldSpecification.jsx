@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import ButtonForGameInfoFieldSection from '../../../ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
@@ -19,6 +19,9 @@ export default function GameInfoFieldSpecification({
     const [enabled, setEnabled] = useState({ enabled: hasDefault });
     const [errorShow, setErrorShow] = useState({ min: !!errorMessages.min, rec: !!errorMessages.rec });
 
+    const errorShowRef = useRef(errorShow);
+    errorShowRef.current = errorShow;
+
     const [selectedKeys, setSelectedKeys] = useState({ min: [], rec: [] });
 
     useEffect(() => {
@@ -29,6 +32,9 @@ export default function GameInfoFieldSpecification({
     const handleSetEnable = useCallback(
         props => {
             setEnabled(props);
+            if (errorShowRef.current.min || errorShowRef.rec) {
+                setErrorShow({ min: false, rec: false });
+            }
             handleSetValue(index);
         },
         [handleSetValue, index]

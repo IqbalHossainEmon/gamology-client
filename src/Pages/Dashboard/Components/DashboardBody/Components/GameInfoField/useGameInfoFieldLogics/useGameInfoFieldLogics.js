@@ -229,20 +229,22 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
             gameSpecificationsError.policy = '';
         }
         if (error) {
-            errorMessages.current.isThereError = true;
+            errorMessages.current.outerErrorMessage = 'There is some validation mistake above, Please Check.';
         } else {
-            errorMessages.current.isThereError = false;
+            errorMessages.current.outerErrorMessage = '';
         }
         return error;
     };
 
     const handleUnnecessaryRemove = () => {
-        gameData.current.gameSpecifications.spec = gameData.current.gameSpecifications.spec.filter(spec => spec.isActive);
-        gameData.current.gameSpecifications.spec = gameData.current.gameSpecifications.spec.map(spec => {
+        const cleanData = JSON.parse(JSON.stringify(gameData.current));
+        cleanData.gameSpecifications.spec = cleanData.gameSpecifications.spec.filter(spec => spec.isActive);
+        cleanData.gameSpecifications.spec = cleanData.gameSpecifications.spec.map(spec => {
             const newSpec = { ...spec };
             delete newSpec.isActive;
             return newSpec;
         });
+        return cleanData;
     };
 
     return { checkValidation, handleUnnecessaryRemove };
