@@ -53,7 +53,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                     htmlFor={number}
                     placeholder="Content Type"
                     name="type"
-                    defaultValue={hasDefault ? defaultGameBanner.type : ''}
+                    {...(hasDefault && { defaultValue: defaultGameBanner.type })}
                 />
             </div>
         </div>

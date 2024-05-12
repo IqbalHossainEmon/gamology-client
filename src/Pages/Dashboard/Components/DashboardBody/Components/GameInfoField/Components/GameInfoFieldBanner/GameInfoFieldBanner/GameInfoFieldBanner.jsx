@@ -18,7 +18,7 @@ export default function GameInfoFieldBanner({ gameBanner, errorMessages, errorCh
                         errorMessages={errorMessages}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
-                        defaultGameBanner={defaultGameBanner[i]}
+                        {...(hasDefault && { defaultGameBanner: defaultGameBanner[i] })}
                     />
                 ))}
             </div>

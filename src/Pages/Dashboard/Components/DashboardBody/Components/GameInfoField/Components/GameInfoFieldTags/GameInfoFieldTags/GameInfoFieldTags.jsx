@@ -57,7 +57,8 @@ export default function GameInfoFieldTags({
     const getInitialState = (list, category) => {
         const initialState = {};
         list.forEach(option => {
-            if (Object.prototype.hasOwnProperty.call(defaultGameTags[category], option.filter)) initialState[option.filter] = true;
+            if (hasDefault && Object.prototype.hasOwnProperty.call(defaultGameTags[category], option.filter))
+                initialState[option.filter] = true;
             else initialState[option.filter] = false;
         });
         return initialState;

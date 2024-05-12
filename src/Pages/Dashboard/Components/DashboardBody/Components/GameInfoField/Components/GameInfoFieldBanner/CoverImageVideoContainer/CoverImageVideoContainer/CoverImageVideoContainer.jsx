@@ -17,7 +17,11 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
             type === 'image'
                 ? {
                       selected: hasDefault,
-                      name: defaultData instanceof File ? defaultData.name : defaultData.substr(defaultData.lastIndexOf('/') + 1),
+                      name: defaultData
+                          ? defaultData instanceof File
+                              ? defaultData.name
+                              : defaultData.substr(defaultData.lastIndexOf('/') + 1)
+                          : '',
                       file: defaultData,
                   }
                 : { selected: false, name: 'name', file: null },

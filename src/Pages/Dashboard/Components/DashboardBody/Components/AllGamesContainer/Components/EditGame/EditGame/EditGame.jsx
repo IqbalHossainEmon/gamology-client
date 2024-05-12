@@ -139,7 +139,7 @@ const EditGame = () => {
                             subHeader: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
                         },
                     ],
-                    sortDesc:
+                    shortDesc:
                         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit accusantium consequuntur facilis qui harum, id ut sit repellendus animi ducimus, aspernatur unde. Eum optio maiores perspiciatis, sunt praesentium magni beatae vel incidunt delectus natus excepturi maxime debitis deserunt, modi ducimus quidem. Earum voluptate inventore aperiam fuga porro quidem laborum, consectetur rerum odio est culpa eaque laudantium. Ut quo delectus obcaecati. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit accusantium consequuntur facilis qui harum, id ut sit repellendus animi ducimus, aspernatur unde. Eum optio maiores perspiciatis, sunt praesentium magni beatae vel incidunt delectus natus excepturi maxime debitis deserunt, modi ducimus quidem. Earum voluptate inventore aperiam fuga porro quidem laborum, consectetur rerum odio est culpa eaque laudantium. Ut quo delectus obcaecati. ',
                 },
                 gameSpecifications: {

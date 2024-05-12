@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import TextField from '../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldDescription.module.css';
 
-export default function GameInfoFieldDescription({ item, index, gameDescriptions, errorChange, errorMessages }) {
+export default function GameInfoFieldDescription({ item, index, gameDescriptions, errorChange, errorMessages, defaultData }) {
     const valueRef = useRef({});
 
     const handleSetValues = (value, name) => {
@@ -15,7 +15,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
 
     return (
         <div className={styles.description} onBlur={handleSetDescription}>
-            {item.main && (
+            {item.mainHeader && (
                 <div className={styles.mainHeader}>
                     <TextField
                         field="input"
@@ -25,30 +25,35 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         htmlFor={`main_header_${index}${item.id}`}
                         errorChange={errorChange}
                         errorMessage={errorMessages[index]?.mainHeader}
+                        defaultValue={defaultData.mainHeader}
                     />
                 </div>
             )}
-            <div className={item.onlySubHeader ? [styles.subHeader, styles.onlySubHeader].join(' ') : styles.subHeader}>
-                <TextField
-                    field="input"
-                    setState={handleSetValues}
-                    name="subHeader"
-                    placeholder="Sub Header"
-                    htmlFor={`sub_header_${index}${item.id}`}
-                    errorChange={errorChange}
-                    errorMessage={errorMessages[index]?.subHeader}
-                />
-            </div>
-            {item.onlySubHeader || (
+            {item.subHeader && (
+                <div className={styles.subHeader}>
+                    <TextField
+                        field="input"
+                        setState={handleSetValues}
+                        name="subHeader"
+                        placeholder="Sub Header"
+                        htmlFor={`sub_header_${index}${item.id}`}
+                        errorChange={errorChange}
+                        errorMessage={errorMessages[index]?.subHeader}
+                        defaultValue={defaultData.subHeader}
+                    />
+                </div>
+            )}
+            {item.description && (
                 <div className={styles.subHeader}>
                     <TextField
                         field="textarea"
                         setState={handleSetValues}
                         name="description"
-                        placeholder="Sub Header"
+                        placeholder="Description"
                         htmlFor={`description_${index}${item.id}`}
                         errorChange={errorChange}
                         errorMessage={errorMessages[index]?.description}
+                        defaultValue={defaultData.description}
                     />
                 </div>
             )}

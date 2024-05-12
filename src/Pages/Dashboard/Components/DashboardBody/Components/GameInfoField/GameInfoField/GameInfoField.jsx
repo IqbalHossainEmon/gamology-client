@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ButtonForGameInfoFieldSection from '../Components/ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
 import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';
 import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/GameInfoFieldDescriptions/GameInfoFieldDescriptions';
@@ -89,22 +89,55 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 
     const handleSubmit = e => {
         e.preventDefault();
+        console.log(gameData.current);
         if (checkValidation()) {
             setErrorChange(prev => ++prev);
-            return;
         }
         handleUnnecessaryRemove();
-        console.log(gameData.current);
     };
 
-    if (hasDefault && Object.keys(defaultData).length) {
-        gameData.current = JSON.parse(JSON.stringify(defaultData));
-    }
+    console.log(gameData);
+
+    useEffect(() => {
+        if (hasDefault && Object.keys(defaultData).length) {
+            const defaultGameData = JSON.parse(JSON.stringify(defaultData));
+            defaultGameData.gameSpecifications.spec.forEach((spec, index) => {
+                defaultGameData.gameSpecifications.spec[index].isActive = true;
+            });
+            const specList = defaultGameData.gameSpecifications.spec.map(spec => spec.for);
+            const defSpec = {
+                systemReq: [
+                    [
+                        { key: '', value: '' },
+                        { key: '', value: '' },
+                    ],
+                ],
+                isActive: false,
+            };
+            ['Windows', 'MacOs', 'Linux'].forEach((spec, index) => {
+                if (!specList.includes(spec)) {
+                    const newSpec = JSON.parse(JSON.stringify(defSpec));
+                    newSpec.for = spec;
+                    switch (index) {
+                        case 0:
+                            defaultGameData.gameSpecifications.spec.unshift(newSpec);
+                            break;
+                        case 1:
+                            defaultGameData.gameSpecifications.spec.splice(1, 0, newSpec);
+                            break;
+                        default:
+                            defaultGameData.gameSpecifications.spec.push(newSpec);
+                    }
+                }
+            });
+            gameData.current = defaultGameData;
+        }
+    }, [defaultData, hasDefault]);
 
     return (
         <div className={styles.addGame}>
             <h1 className={styles.header}>{hasDefault ? 'Edit The Game' : 'Add New Game to the collection'}</h1>
-            {(hasDefault && !Object.keys(defaultData).length) || (!hasDefault && Object.keys(defaultData).length) ? (
+            {hasDefault && !Object.keys(defaultData).length ? (
                 <h3>Loading...</h3>
             ) : (
                 <form>
@@ -113,14 +146,14 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                         errorMessages={gameInfoError}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
-                        defaultGameInfo={defaultData.gameInfo}
+                        {...(hasDefault && { defaultGameInfo: defaultData.gameInfo })}
                     />
                     <GameInfoFieldBanner
                         gameBanner={gameBanner}
                         errorMessages={gameBannerError}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
-                        defaultGameBanner={defaultData.gameBanner}
+                        {...(hasDefault && { defaultGameBanner: defaultData.gameBanner })}
                     />
                     <GameInfoFieldTags
                         gameTags={gameTags}
@@ -128,23 +161,23 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                         errorMessages={gameTagsError}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
-                        defaultGameTags={defaultData.gameTags}
-                        defaultReleaseDate={defaultData.gameInfo.releaseDate}
-                        defaultPrice={defaultData.gameInfo.price}
+                        {...(hasDefault && { defaultGameTags: defaultData.gameTags })}
+                        {...(hasDefault && { defaultReleaseDate: defaultData.gameInfo.releaseDate })}
+                        {...(hasDefault && { defaultPrice: defaultData.gameInfo.price })}
                     />
                     <GameInfoFieldDescriptions
                         gameDescriptions={gameDescriptions}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         errorMessages={gameDescriptionsError}
-                        defaultGameDescriptions={defaultData.gameDescriptions}
+                        {...(hasDefault && { defaultGameDescriptions: defaultData.gameDescriptions })}
                     />
                     <GameInfoFieldSpecifications
                         gameSpecifications={gameSpecifications}
                         errorMessages={gameSpecificationsError}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
-                        defaultGameSpecifications={defaultData.gameSpecifications}
+                        {...(hasDefault && { defaultGameSpecifications: defaultData.gameSpecifications })}
                     />
                     <OuterErrorMessage errorChange={errorChange} isThereError={errorMessages.current.isThereError} />
                     <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />

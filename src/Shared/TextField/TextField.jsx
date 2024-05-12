@@ -44,6 +44,8 @@ export default function TextField({
     useEffect(() => {
         const holdFieldRef = fieldRef.current;
         if (field === 'textarea') {
+            handleInputEvent.current();
+
             holdFieldRef.addEventListener('input', handleInputEvent.current);
         }
 

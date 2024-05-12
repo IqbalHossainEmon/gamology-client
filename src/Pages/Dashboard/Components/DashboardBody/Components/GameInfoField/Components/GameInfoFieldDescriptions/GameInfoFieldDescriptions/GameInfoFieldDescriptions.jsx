@@ -1,11 +1,27 @@
 import { useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import ButtonForGameInfoFieldSection from '../../ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
-import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
+import GameInfoFieldDescription from '../Components/GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 
-const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessages, hasDefault }) => {
-    const [array, setArray] = useState([{ id: 0, main: true }]);
+const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessages, hasDefault, defaultGameDescriptions }) => {
+    const [array, setArray] = useState(
+        hasDefault
+            ? defaultGameDescriptions.descriptions.map((desc, index) => {
+                  const item = { id: index };
+                  if (desc.mainHeader) {
+                      item.main = true;
+                  }
+                  if (desc.description) {
+                      item.description = true;
+                  }
+                  if (desc.subHeader) {
+                      item.subHeader = true;
+                  }
+                  return item;
+              })
+            : [{ id: 0, mainHeader: true, description: true }]
+    );
 
     const handleSetSortDescription = (value, name) => {
         gameDescriptions[name] = value;
@@ -19,10 +35,11 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                     field="textarea"
                     setState={handleSetSortDescription}
                     placeholder="Short description..."
-                    htmlFor="sort_description"
-                    name="sortDesc"
+                    htmlFor="short_description"
+                    name="shortDesc"
                     errorChange={errorChange}
                     errorMessage={errorMessages.sortDesc}
+                    {...(hasDefault && { defaultValue: defaultGameDescriptions.shortDesc })}
                 />
             </div>
             <div>
@@ -34,6 +51,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         gameDescriptions={gameDescriptions}
                         errorChange={errorChange}
                         errorMessages={errorMessages.descriptions}
+                        defaultData={defaultGameDescriptions.descriptions[index]}
                     />
                 ))}
             </div>
@@ -41,7 +59,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                 <div className={styles.btn}>
                     <ButtonForGameInfoFieldSection
                         onClick={() => {
-                            setArray(prev => [...prev, { id: prev.length }]);
+                            setArray(prev => [...prev, { id: prev.length, subHeader: true, description: true }]);
                             gameDescriptions.descriptions.push({ subHeader: '', description: '' });
                         }}
                         text="Add more +"
@@ -68,7 +86,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         onClick={() => {
                             setArray(prev => {
                                 const prevState = [...prev];
-                                prevState[prevState.length - 1].main = true;
+                                prevState[prevState.length - 1].mainHeader = true;
                                 return prevState;
                             });
                             gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader = '';
@@ -84,7 +102,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         onClick={() => {
                             setArray(prev => {
                                 const prevState = [...prev];
-                                delete prevState[prevState.length - 1].main;
+                                delete prevState[prevState.length - 1].mainHeader;
                                 return prevState;
                             });
                             delete gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader;
@@ -95,7 +113,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                 <div className={styles.mainBtn}>
                     <ButtonForGameInfoFieldSection
                         onClick={() => {
-                            setArray(prev => [...prev, { id: prev.length, onlySubHeader: true }]);
+                            setArray(prev => [...prev, { id: prev.length, subHeader: true }]);
                             gameDescriptions.descriptions.push({ subHeader: '' });
                         }}
                         text="Add Only Sub Header +"

@@ -1,11 +1,11 @@
 const systemReqMustArr = ['CPU', 'Memory', 'GPU', 'Storage'];
 
 export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
-    const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
-
-    const { gameInfoError, gameDescriptionsError, gameSpecificationsError, gameTagsError } = errorMessages.current;
-
     const checkValidation = () => {
+        const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
+
+        const { gameInfoError, gameDescriptionsError, gameSpecificationsError, gameTagsError } = errorMessages.current;
+
         let error = false;
         // Game Info
         if (!gameInfo.name) {
@@ -91,13 +91,13 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
         });
 
         // Game Tags
-        if (Object.keys(gameTags.genre).length === 0) {
+        if (gameTags.Genre && Object.keys(gameTags.Genre).length === 0) {
             gameTagsError.genre = 'Genre is required';
             error = true;
         } else {
             gameTagsError.genre = '';
         }
-        if (Object.keys(gameTags.features).length === 0) {
+        if (gameTags.Features && Object.keys(gameTags.Features).length === 0) {
             gameTagsError.features = 'Features is required';
             error = true;
         } else {
@@ -114,11 +114,11 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
         }
 
         // Game Descriptions
-        if (!gameDescriptions.sortDesc) {
-            gameDescriptionsError.sortDesc = 'Short Description is required';
+        if (!gameDescriptions.shortDesc) {
+            gameDescriptionsError.shortDesc = 'Short Description is required';
             error = true;
         } else {
-            gameDescriptionsError.sortDesc = '';
+            gameDescriptionsError.shortDesc = '';
         }
         errorMessages.current.gameDescriptionsError.descriptions = gameDescriptions.descriptions.map(desc => {
             const obj = {};
@@ -153,7 +153,7 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
             return '';
         };
 
-        if (!gameSpecifications.spec[0].isActive && !gameSpecifications.spec[1].isActive && !gameSpecifications.spec[2].isActive) {
+        if (!gameSpecifications.spec[0].length && !gameSpecifications.spec[1].length && !gameSpecifications.spec[2].length) {
             gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
             error = true;
         } else {
@@ -237,8 +237,8 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
     };
 
     const handleUnnecessaryRemove = () => {
-        gameSpecifications.spec = gameSpecifications.spec.filter(spec => spec.isActive);
-        gameSpecifications.spec = gameSpecifications.spec.map(spec => {
+        gameData.current.gameSpecifications.spec = gameData.current.gameSpecifications.spec.filter(spec => spec.isActive);
+        gameData.current.gameSpecifications.spec = gameData.current.gameSpecifications.spec.map(spec => {
             const newSpec = { ...spec };
             delete newSpec.isActive;
             return newSpec;
