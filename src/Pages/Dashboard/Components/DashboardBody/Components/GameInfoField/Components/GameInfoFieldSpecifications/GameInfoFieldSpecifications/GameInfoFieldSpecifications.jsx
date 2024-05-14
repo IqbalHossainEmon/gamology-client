@@ -29,6 +29,7 @@ export default function GameInfoFieldSpecifications({
                     handleValue={handleValue}
                     errorMessages={errorMessages.current.gameSpecificationsError.others}
                     errorChange={errorChange}
+                    gameSpecifications={gameSpecifications}
                     {...(hasDefault && { defaultValue: defaultGameSpecifications.others })}
                     hasDefault={hasDefault}
                 />

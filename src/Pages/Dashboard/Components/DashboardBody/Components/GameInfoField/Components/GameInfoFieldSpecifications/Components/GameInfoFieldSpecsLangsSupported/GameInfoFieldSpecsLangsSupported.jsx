@@ -1,12 +1,23 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldSpecsLangsSupported.module.css';
 
-const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorChange, defaultValue, hasDefault }) => {
+const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorChange, defaultValue, hasDefault, gameSpecifications }) => {
     const [separate, setSeparate] = useState({ separate: hasDefault });
 
-    const language = useRef({ text: '', audio: '' });
+    const language = useRef({
+        text: hasDefault ? (Array.isArray(defaultValue.value) ? defaultValue.value[0] : defaultValue.value) : '',
+        audio: hasDefault && Array.isArray(defaultValue.value) ? defaultValue.value[1] : '',
+    });
+
+    useEffect(() => {
+        if (separate.separate) {
+            gameSpecifications.current.gameSpecifications.others.value = [language.current.text, language.current.audio];
+        } else {
+            gameSpecifications.current.gameSpecifications.others.value = language.current.text;
+        }
+    }, [gameSpecifications, separate]);
 
     return (
         <div
@@ -33,7 +44,7 @@ const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorCha
                     placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
                     errorMessage={errorMessages[0]}
                     errorChange={errorChange}
-                    {...(hasDefault && { defaultValue: defaultValue.value[0] })}
+                    {...(hasDefault && { defaultValue: Array.isArray(defaultValue.value) ? defaultValue.value[0] : defaultValue.value })}
                 />
             </div>
             {separate.separate && (
@@ -49,7 +60,7 @@ const GameInfoFieldSpecsLangsSupported = ({ handleValue, errorMessages, errorCha
                         placeholder="Audio Languages Supported"
                         errorMessage={errorMessages[1]}
                         errorChange={errorChange}
-                        {...(hasDefault && { defaultValue: defaultValue.value[1] })}
+                        {...(hasDefault && Array.isArray(defaultValue.value) && { defaultValue: defaultValue.value[1] })}
                     />
                 </div>
             )}

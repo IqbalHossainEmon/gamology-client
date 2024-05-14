@@ -5,6 +5,7 @@ import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/G
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
 import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
+import OuterErrorMessage from '../Components/OuterErrorMessage/OuterErrorMessage';
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
@@ -65,7 +66,6 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
     const [errorChange, setErrorChange] = useState(0);
 
     const errorMessages = useRef({
-        isThereError: false,
         gameInfoError: {
             name: '',
             developer: '',
@@ -94,11 +94,9 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             return;
         }
         const cleanData = handleUnnecessaryRemove();
-        const { errorMessage, error } = handleGameInfo(cleanData);
+        const errorMessage = handleGameInfo(cleanData);
         errorMessages.current.outerErrorMessage = errorMessage;
-        if (error) {
-            setErrorChange(prev => ++prev);
-        }
+        setErrorChange(prev => ++prev);
     };
 
     useEffect(() => {
@@ -204,11 +202,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameSpecifications: defaultData.gameSpecifications })}
                     />
-                    {/*    <OuterErrorMessage
-                        errorChange={errorChange}
-                        errorMessage={outerErrorMessage}
-                        isThereError={errorMessages.current.isThereError}
-                    /> */}
+                    <OuterErrorMessage errorChange={errorChange} errorMessage={errorMessages.current.outerErrorMessage} />
                     <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />
                 </form>
             )}

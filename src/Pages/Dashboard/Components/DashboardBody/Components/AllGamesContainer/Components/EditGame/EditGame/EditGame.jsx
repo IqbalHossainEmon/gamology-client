@@ -330,9 +330,9 @@ const EditGame = () => {
         console.log(newData);
         if (JSON.stringify(mainDefaultData.current) !== JSON.stringify(newData)) {
             console.log(newData);
-            return { errorMessage: '', error: false };
+            return '';
         }
-        return { errorMessage: 'No changes made.', error: true };
+        return 'No changes made.';
     };
 
     return (

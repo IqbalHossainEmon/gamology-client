@@ -13,7 +13,10 @@ function FilterSwitch({ state, setState, name, event }) {
     const stateRef = useRef(circlePosition);
     stateRef.current = circlePosition.translate;
 
-    const handleMove = useRef(null);
+    const mainStateRef = useRef(state);
+    mainStateRef.current = state;
+
+    const eventRef = useRef(null);
 
     const screenWidth = useScreenWidth();
 
@@ -37,7 +40,7 @@ function FilterSwitch({ state, setState, name, event }) {
         rangePathRef.width = rangePathRef.current.offsetWidth;
     }, [rangePathRef, screenWidth]);
 
-    handleMove.current = useCallback(
+    eventRef.current = useCallback(
         e => {
             document.removeEventListener('mouseup', event.current);
 
@@ -65,24 +68,28 @@ function FilterSwitch({ state, setState, name, event }) {
         positionsRef.start = stateRef.current;
     };
 
-    const handleSetValue = useCallback(() => {
+    eventRef.handleSetValue = useCallback(() => {
         // if switch is below 50
         if (stateRef.current < rangePathRef.width / 2) {
             if (stateRef.current !== 0) {
                 setCirclePosition({ translate: 0, transition: true });
                 handleTimerTransition();
             }
-            setState(prev => ({ ...prev, [name]: false }), name);
+            if (mainStateRef.current) {
+                setState(prev => ({ ...prev, [name]: false }), name);
+            }
         } else if (stateRef.current >= rangePathRef.width / 2) {
             if (stateRef.current !== rangePathRef.width) {
                 setCirclePosition({ translate: rangePathRef.width, transition: true });
                 handleTimerTransition();
             }
-            setState(prev => ({ ...prev, [name]: true }), name);
+            if (!mainStateRef.current) {
+                setState(prev => ({ ...prev, [name]: true }), name);
+            }
         }
     }, [handleTimerTransition, name, setState]);
 
-    const onStart = useDragStartStop(handleMove, handleSetValue);
+    const onStart = useDragStartStop(eventRef, eventRef.handleSetValue);
 
     return (
         <div className={styles.toggleButtonContainer}>
@@ -105,7 +112,7 @@ function FilterSwitch({ state, setState, name, event }) {
                     <div
                         tabIndex="-1"
                         role="button"
-                        className={`${styles.round}${circlePosition.translate > rangePathRef.width / 2 ? ` ${styles.active}` : ''}`}
+                        className={`${styles.round}${circlePosition.translate >= rangePathRef.width / 2 ? ` ${styles.active}` : ''}`}
                         onTouchStart={e => {
                             onStart(e);
                             handleStart(e);

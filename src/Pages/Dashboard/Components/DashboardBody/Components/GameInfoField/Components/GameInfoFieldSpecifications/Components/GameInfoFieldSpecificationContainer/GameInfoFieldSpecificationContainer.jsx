@@ -5,7 +5,6 @@ import styles from './GameInfoFieldSpecificationContainer.module.css';
 
 const specs = ['Windows', 'MacOs', 'Linux'];
 const GameInfoFieldSpecificationContainer = ({ gameSpecifications, errorMessages, errorChange, hasDefault, defaultGameSpecifications }) => {
-    console.log(errorMessages);
     const [errorShow, setErrorShow] = useState(!!errorMessages[4]);
 
     const errorShowRef = useRef(errorShow);

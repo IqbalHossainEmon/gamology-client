@@ -195,6 +195,7 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
                 }
             }
         }
+        console.log(gameSpecifications.others.value);
 
         if (Array.isArray(gameSpecifications.others.value)) {
             if (!gameSpecifications.others.value[0]) {
