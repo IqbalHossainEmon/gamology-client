@@ -96,7 +96,10 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
         const cleanData = handleUnnecessaryRemove();
         const errorMessage = handleGameInfo(cleanData);
         errorMessages.current.outerErrorMessage = errorMessage;
-        setErrorChange(prev => ++prev);
+        if (errorMessages.current.outerErrorMessage !== errorMessages.current.isThereError) {
+            setErrorChange(prev => ++prev);
+        }
+        errorMessages.current.isThereError = errorMessage;
     };
 
     useEffect(() => {
