@@ -15,7 +15,7 @@ export default function GameInfoFieldBanner({ gameBanner, errorMessages, errorCh
                         key={arr}
                         number={arr}
                         gameBanner={gameBanner}
-                        errorMessages={errorMessages}
+                        errorMessages={errorMessages.current.gameBannerError}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameBanner: defaultGameBanner[i] })}
@@ -30,7 +30,7 @@ export default function GameInfoFieldBanner({ gameBanner, errorMessages, errorCh
                         text="Add More +"
                         onClick={() => {
                             setFieldCount(prev => ++prev);
-                            gameBanner.push({ cover: '', thumb: '', type: '' });
+                            gameBanner.current.gameBanner.push({ cover: '', thumb: '', type: '' });
                         }}
                     />
                 </div>
@@ -40,7 +40,7 @@ export default function GameInfoFieldBanner({ gameBanner, errorMessages, errorCh
                         text="Remove One -"
                         onClick={() => {
                             setFieldCount(prev => --prev);
-                            gameBanner.pop();
+                            gameBanner.current.gameBanner.pop();
                         }}
                     />
                 </div>

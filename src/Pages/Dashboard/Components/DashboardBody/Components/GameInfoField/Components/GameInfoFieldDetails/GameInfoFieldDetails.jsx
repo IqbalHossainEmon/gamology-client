@@ -5,9 +5,9 @@ import styles from './GameInfoFieldDetails.module.css';
 export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessages, hasDefault, defaultGameInfo }) {
     const handleSetValue = (value, name) => {
         if (value.type === 'FormData' && !value.file) {
-            delete gameInfo[name];
+            delete gameInfo.current.gameInfo[name];
         } else {
-            gameInfo[name] = value;
+            gameInfo.current.gameInfo[name] = value;
         }
     };
 
@@ -20,7 +20,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                 name="name"
                 placeholder="Game's Name"
                 errorChange={errorChange}
-                errorMessage={errorMessages.name}
+                errorMessage={errorMessages.current.gameInfoError.name}
                 {...(hasDefault && { defaultValue: defaultGameInfo.name })}
                 htmlFor="gameName"
             />
@@ -33,7 +33,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Developer"
                     htmlFor="developer"
                     errorChange={errorChange}
-                    errorMessage={errorMessages.developer}
+                    errorMessage={errorMessages.current.gameInfoError.developer}
                     {...(hasDefault && { defaultValue: defaultGameInfo.developer })}
                 />
                 <TextField
@@ -44,7 +44,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     placeholder="Publisher"
                     htmlFor="publisher"
                     errorChange={errorChange}
-                    errorMessage={errorMessages.publisher}
+                    errorMessage={errorMessages.current.gameInfoError.publisher}
                     {...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
                 />
             </div>
@@ -56,7 +56,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     accept="image/*"
                     placeholder="Choose cover image"
                     errorChange={errorChange}
-                    errorMessage={errorMessages.logo}
+                    errorMessage={errorMessages.current.gameInfoError.logo}
                     {...(hasDefault && { defaultValue: defaultGameInfo.logo })}
                 />
                 <FileUploadButton
@@ -67,7 +67,7 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
                     name="phoneLogo"
                     placeholder="Choose portrait cover image"
                     errorChange={errorChange}
-                    errorMessage={errorMessages.phoneLogo}
+                    errorMessage={errorMessages.current.gameInfoError.phoneLogo}
                     {...(hasDefault && { defaultValue: defaultGameInfo.phoneLogo })}
                 />
             </div>

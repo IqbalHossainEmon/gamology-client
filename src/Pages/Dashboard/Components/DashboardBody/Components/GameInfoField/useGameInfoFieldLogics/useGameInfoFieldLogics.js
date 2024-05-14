@@ -92,18 +92,17 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
         });
 
         // Game Tags
-        if (gameTags.Genre && Object.keys(gameTags.Genre).length === 0) {
-            gameTagsError.genre = 'Genre is required';
-            error = true;
-        } else {
-            gameTagsError.genre = '';
-        }
-        if (gameTags.Features && Object.keys(gameTags.Features).length === 0) {
-            gameTagsError.features = 'Features is required';
-            error = true;
-        } else {
-            gameTagsError.features = '';
-        }
+        Object.keys(gameTags).forEach(key => {
+            const element = gameTags[key];
+
+            if (!Object.keys(element).length) {
+                gameTagsError[key] = `${key} is required`;
+                error = true;
+            } else {
+                gameTagsError[key] = '';
+            }
+        });
+
         if (!gameInfo.releaseDate.day || !gameInfo.releaseDate.month || !gameInfo.releaseDate.year) {
             gameTagsError.releaseDate = 'Release Date is required';
             error = true;

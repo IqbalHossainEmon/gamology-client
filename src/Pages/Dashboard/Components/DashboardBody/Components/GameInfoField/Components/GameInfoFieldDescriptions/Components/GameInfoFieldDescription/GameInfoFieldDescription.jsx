@@ -10,7 +10,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
     };
 
     const handleSetDescription = () => {
-        gameDescriptions.descriptions[index] = valueRef.current;
+        gameDescriptions.current.gameDescriptions.descriptions[index] = valueRef.current;
     };
 
     return (
@@ -24,7 +24,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         name="mainHeader"
                         htmlFor={`main_header_${index}${item.id}`}
                         errorChange={errorChange}
-                        errorMessage={errorMessages[index]?.mainHeader}
+                        errorMessage={errorMessages.current.gameDescriptionsError.descriptions[index]?.mainHeader}
                         {...(defaultData && { defaultValue: defaultData.shortDesc })}
                     />
                 </div>
@@ -38,7 +38,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         placeholder="Sub Header"
                         htmlFor={`sub_header_${index}${item.id}`}
                         errorChange={errorChange}
-                        errorMessage={errorMessages[index]?.subHeader}
+                        errorMessage={errorMessages.current.gameDescriptionsError.descriptions[index]?.subHeader}
                         {...(defaultData && { defaultValue: defaultData.subHeader })}
                     />
                 </div>
@@ -52,7 +52,7 @@ export default function GameInfoFieldDescription({ item, index, gameDescriptions
                         placeholder="Description"
                         htmlFor={`description_${index}${item.id}`}
                         errorChange={errorChange}
-                        errorMessage={errorMessages[index]?.description}
+                        errorMessage={errorMessages.current.gameDescriptionsError.descriptions[index]?.description}
                         {...(defaultData && { defaultValue: defaultData.description })}
                     />
                 </div>

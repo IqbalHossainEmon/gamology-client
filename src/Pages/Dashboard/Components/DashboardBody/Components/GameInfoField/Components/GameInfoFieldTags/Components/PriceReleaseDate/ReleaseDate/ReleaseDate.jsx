@@ -25,13 +25,13 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
         if (name !== 'day') {
             let max;
             if (name === 'month') {
-                max = getDaysInMonth(gameInfo.releaseDate.year || new Date().getFullYear(), value);
+                max = getDaysInMonth(gameInfo.current.gameInfo.releaseDate.year || new Date().getFullYear(), value);
             } else {
-                max = getDaysInMonth(value, gameInfo.releaseDate.month || 1);
+                max = getDaysInMonth(value, gameInfo.current.gameInfo.releaseDate.month || 1);
             }
             if (day.max !== max) {
-                if (gameInfo.releaseDate.day > max) {
-                    gameInfo.releaseDate.day = max;
+                if (gameInfo.current.gameInfo.releaseDate.day > max) {
+                    gameInfo.current.gameInfo.releaseDate.day = max;
                     setDay({ max, day: max });
                 } else {
                     setDay(prev => ({ ...prev, max }));
@@ -41,7 +41,7 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
             setDay(prev => ({ ...prev, day: value }));
         }
 
-        gameInfo.releaseDate[name] = value;
+        gameInfo.current.gameInfo.releaseDate[name] = value;
     };
 
     return (

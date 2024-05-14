@@ -39,8 +39,7 @@ const data = [
 ];
 
 export default function GameInfoFieldTags({
-    gameTags,
-    gameInfo,
+    gameData,
     errorChange,
     errorMessages,
     hasDefault,
@@ -73,16 +72,16 @@ export default function GameInfoFieldTags({
                             initialState={getInitialState(option.optionList, option.category)}
                             options={option.optionList}
                             title={option.category}
-                            gameTags={gameTags}
-                            errorMessage={errorMessages.genre}
+                            gameTags={gameData}
+                            errorMessage={errorMessages.current.gameTagsError[option.category]}
                             errorChange={errorChange}
                         />
                     </div>
                 ))}
             </div>
             <PriceReleaseDate
-                gameInfo={gameInfo}
-                errorMessage={errorMessages.releaseDate}
+                gameInfo={gameData}
+                errorMessage={errorMessages.current.gameTagsError.releaseDate}
                 errorChange={errorChange}
                 defaultReleaseDate={defaultReleaseDate}
                 hasDefault={hasDefault}

@@ -327,6 +327,7 @@ const EditGame = () => {
     }, []);
 
     const handleSubmit = newData => {
+        console.log(newData);
         if (JSON.stringify(mainDefaultData.current) !== JSON.stringify(newData)) {
             console.log(newData);
             return { errorMessage: '', error: false };

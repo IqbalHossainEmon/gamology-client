@@ -67,10 +67,10 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
     }, []);
 
     return (
-        <div className={styles.outerContainer} ref={containerRef}>
+        <div className={`${styles.outerContainer}${type ? '' : ` ${styles.disabled}`}`} ref={containerRef}>
             <div className={styles.containerWithPreview}>
                 <div
-                    className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type ? '' : ` ${styles.padding} `}${type ? '' : ` ${styles.disabled}`}`}
+                    className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}${type ? '' : ` ${styles.padding} `}`}
                 >
                     {type && (
                         <label

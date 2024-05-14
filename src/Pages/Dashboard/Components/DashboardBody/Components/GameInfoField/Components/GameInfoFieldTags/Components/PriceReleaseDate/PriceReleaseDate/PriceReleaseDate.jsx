@@ -6,7 +6,7 @@ export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage, 
     const [price, setPrice] = useState(defaultPrice || '0.00');
 
     const handleSetValue = e => {
-        gameInfo[e.target.name] = e.target.value;
+        gameInfo.current.gameInfo[e.target.name] = e.target.value;
     };
 
     return (

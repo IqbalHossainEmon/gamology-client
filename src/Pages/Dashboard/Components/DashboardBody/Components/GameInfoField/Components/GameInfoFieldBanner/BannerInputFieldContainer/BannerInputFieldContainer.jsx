@@ -5,10 +5,10 @@ import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVide
 import styles from './BannerInputFieldContainer.module.css';
 
 export default function BannerInputFieldContainer({ number, gameBanner, errorChange, errorMessages, defaultGameBanner, hasDefault }) {
-    const [type, setType] = useState(hasDefault ? defaultGameBanner.type : '');
+    const [type, setType] = useState(hasDefault && defaultGameBanner?.type ? defaultGameBanner.type : '');
 
     const handleSetValues = (value, name) => {
-        gameBanner[number][name] = value;
+        gameBanner.current.gameBanner[number][name] = value;
 
         if (errorMessages[number]?.type) {
             delete errorMessages[number].type;
@@ -26,7 +26,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                 name="cover"
                 errorMessage={errorMessages[number]?.cover}
                 number={number}
-                {...(hasDefault && { defaultData: defaultGameBanner.cover })}
+                {...(hasDefault && { defaultData: defaultGameBanner?.cover })}
                 hasDefault={hasDefault}
             />
             <FileUploadButton
@@ -40,7 +40,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                 defaultValue=""
                 errorChange={errorChange}
                 errorMessage={errorMessages[number]?.thumb}
-                {...(hasDefault && { defaultValue: defaultGameBanner.thumb })}
+                {...(hasDefault && { defaultValue: defaultGameBanner?.thumb })}
             />
 
             <div className={styles.selectContainer}>
@@ -53,7 +53,7 @@ export default function BannerInputFieldContainer({ number, gameBanner, errorCha
                     htmlFor={number}
                     placeholder="Content Type"
                     name="type"
-                    {...(hasDefault && { defaultValue: defaultGameBanner.type })}
+                    {...(hasDefault && { defaultValue: defaultGameBanner?.type })}
                 />
             </div>
         </div>

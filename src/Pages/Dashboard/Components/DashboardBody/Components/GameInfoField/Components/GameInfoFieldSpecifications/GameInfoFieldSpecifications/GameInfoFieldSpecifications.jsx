@@ -11,7 +11,7 @@ export default function GameInfoFieldSpecifications({
     defaultGameSpecifications,
 }) {
     const handleValue = (value, name) => {
-        gameSpecifications[name] = value;
+        gameSpecifications.current.gameSpecifications[name] = value;
     };
 
     return (
@@ -19,7 +19,7 @@ export default function GameInfoFieldSpecifications({
             <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s System Requirement</h3>
             <GameInfoFieldSpecificationContainer
                 gameSpecifications={gameSpecifications}
-                errorMessages={errorMessages.spec}
+                errorMessages={errorMessages.current.gameSpecificationsError.spec}
                 errorChange={errorChange}
                 {...(hasDefault && { defaultGameSpecifications: defaultGameSpecifications.spec })}
                 hasDefault={hasDefault}
@@ -27,9 +27,8 @@ export default function GameInfoFieldSpecifications({
             <div>
                 <GameInfoFieldSpecsLangsSupported
                     handleValue={handleValue}
-                    errorMessages={errorMessages.others}
+                    errorMessages={errorMessages.current.gameSpecificationsError.others}
                     errorChange={errorChange}
-                    gameSpecifications={gameSpecifications}
                     {...(hasDefault && { defaultValue: defaultGameSpecifications.others })}
                     hasDefault={hasDefault}
                 />
@@ -41,7 +40,7 @@ export default function GameInfoFieldSpecifications({
                         htmlFor="copyright"
                         placeholder="Copyright"
                         errorChange={errorChange}
-                        errorMessage={errorMessages.copyWrite}
+                        errorMessage={errorMessages.current.gameSpecificationsError.copyWrite}
                         {...(hasDefault && { defaultValue: defaultGameSpecifications.copyWrite })}
                     />
                 </div>
@@ -53,7 +52,7 @@ export default function GameInfoFieldSpecifications({
                         htmlFor="privacy"
                         placeholder="Privacy Policy Link"
                         errorChange={errorChange}
-                        errorMessage={errorMessages.policy}
+                        errorMessage={errorMessages.current.gameSpecificationsError.policy}
                         {...(hasDefault && { defaultValue: defaultGameSpecifications.policy })}
                     />
                 </div>

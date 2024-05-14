@@ -17,9 +17,9 @@ export default function OptionsContainer({ title, options, gameTags, initialStat
         name => {
             setTimeout(() => {
                 if (optionStatesRef.current[name]) {
-                    gameTags[title][name] = true;
+                    gameTags.current.gameTags[title][name] = true;
                 } else {
-                    delete gameTags[title][name];
+                    delete gameTags.current.gameTags[title][name];
                 }
             }, 0);
         },

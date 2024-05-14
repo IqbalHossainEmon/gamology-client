@@ -5,6 +5,7 @@ import styles from './GameInfoFieldSpecificationContainer.module.css';
 
 const specs = ['Windows', 'MacOs', 'Linux'];
 const GameInfoFieldSpecificationContainer = ({ gameSpecifications, errorMessages, errorChange, hasDefault, defaultGameSpecifications }) => {
+    console.log(errorMessages);
     const [errorShow, setErrorShow] = useState(!!errorMessages[4]);
 
     const errorShowRef = useRef(errorShow);
@@ -18,7 +19,8 @@ const GameInfoFieldSpecificationContainer = ({ gameSpecifications, errorMessages
 
     const handleSetValue = useCallback(
         index => {
-            gameSpecifications.spec[index].isActive = !gameSpecifications.spec[index].isActive;
+            gameSpecifications.current.gameSpecifications.spec[index].isActive =
+                !gameSpecifications.current.gameSpecifications.spec[index].isActive;
             if (errorShowRef.current) {
                 setErrorShow(false);
             }
@@ -31,7 +33,7 @@ const GameInfoFieldSpecificationContainer = ({ gameSpecifications, errorMessages
             {specs.map((spec, i) => (
                 <div key={spec} className={styles.specs}>
                     <GameInfoFieldSpecification
-                        gameSpecifications={gameSpecifications.spec}
+                        gameSpecifications={gameSpecifications.current.gameSpecifications.spec}
                         state={{ name: spec }}
                         index={i}
                         errorMessages={errorMessages[i]}

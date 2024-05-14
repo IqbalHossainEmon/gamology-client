@@ -5,11 +5,12 @@ import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/G
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
 import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
-import OuterErrorMessage from '../Components/OuterErrorMessage/OuterErrorMessage';
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
 export default function GameInfoField({ handleGameInfo, hasDefault, defaultData = {} }) {
+    const [loading, setLoading] = useState(true);
+
     const gameData = useRef({
         gameInfo: {
             name: '',
@@ -59,7 +60,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
             copyWrite: '',
             policy: '',
         },
-        gameTags: { Genre: {}, Features: {} },
+        gameTags: {},
     });
     const [errorChange, setErrorChange] = useState(0);
 
@@ -83,14 +84,11 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
         outerErrorMessage: '',
     });
 
-    const { gameInfo, gameBanner, gameTags, gameDescriptions, gameSpecifications } = gameData.current;
-    const { gameInfoError, gameBannerError, gameTagsError, gameDescriptionsError, gameSpecificationsError, outerErrorMessage } =
-        errorMessages.current;
-
     const { checkValidation, handleUnnecessaryRemove } = useGameInfoFieldLogics({ gameData, errorMessages });
 
     const handleSubmit = e => {
         e.preventDefault();
+
         if (checkValidation()) {
             setErrorChange(prev => ++prev);
             return;
@@ -104,6 +102,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
     };
 
     useEffect(() => {
+        const categories = ['Genre', 'Features'];
         if (hasDefault && Object.keys(defaultData).length) {
             const defaultGameData = JSON.parse(JSON.stringify(defaultData));
             const specList = defaultGameData.gameSpecifications.spec.map(spec => spec.for);
@@ -133,34 +132,58 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                 }
             });
             gameData.current = defaultGameData;
+            // fetch game categories
+            gameData.current.gameTags = categories.reduce((acc, category) => {
+                const obj = {};
+
+                const defaultCategory = hasDefault ? defaultData.gameTags[category] : {};
+                if (hasDefault && Object.keys(defaultCategory).length) {
+                    obj[category] = defaultCategory;
+                } else {
+                    obj[category] = {};
+                }
+                return { ...acc, ...obj };
+            }, {});
+        } else {
+            gameData.current.gameTags = categories.reduce((acc, category) => {
+                const obj = {};
+                obj[category] = {};
+                return { ...acc, ...obj };
+            }, {});
         }
+
+        if (
+            hasDefault
+                ? Object.keys(defaultData).length && Object.keys(gameData.current.gameTags).length
+                : Object.keys(gameData.current.gameTags).length
+        )
+            setLoading(false);
     }, [defaultData, hasDefault]);
 
     return (
         <div className={styles.addGame}>
             <h1 className={styles.header}>{hasDefault ? 'Edit The Game' : 'Add New Game to the collection'}</h1>
-            {hasDefault && !Object.keys(defaultData).length ? (
+            {loading ? (
                 <h3>Loading...</h3>
             ) : (
                 <form>
                     <GameInfoFieldDetails
-                        gameInfo={gameInfo}
-                        errorMessages={gameInfoError}
+                        gameInfo={gameData}
+                        errorMessages={errorMessages}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameInfo: defaultData.gameInfo })}
                     />
                     <GameInfoFieldBanner
-                        gameBanner={gameBanner}
-                        errorMessages={gameBannerError}
+                        gameBanner={gameData}
+                        errorMessages={errorMessages}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameBanner: defaultData.gameBanner })}
                     />
                     <GameInfoFieldTags
-                        gameTags={gameTags}
-                        gameInfo={gameInfo}
-                        errorMessages={gameTagsError}
+                        gameData={gameData}
+                        errorMessages={errorMessages}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameTags: defaultData.gameTags })}
@@ -168,24 +191,24 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
                         {...(hasDefault && { defaultPrice: defaultData.gameInfo.price })}
                     />
                     <GameInfoFieldDescriptions
-                        gameDescriptions={gameDescriptions}
+                        gameDescriptions={gameData}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
-                        errorMessages={gameDescriptionsError}
+                        errorMessages={errorMessages}
                         {...(hasDefault && { defaultGameDescriptions: defaultData.gameDescriptions })}
                     />
                     <GameInfoFieldSpecifications
-                        gameSpecifications={gameSpecifications}
-                        errorMessages={gameSpecificationsError}
+                        gameSpecifications={gameData}
+                        errorMessages={errorMessages}
                         errorChange={errorChange}
                         hasDefault={hasDefault}
                         {...(hasDefault && { defaultGameSpecifications: defaultData.gameSpecifications })}
                     />
-                    <OuterErrorMessage
+                    {/*    <OuterErrorMessage
                         errorChange={errorChange}
                         errorMessage={outerErrorMessage}
                         isThereError={errorMessages.current.isThereError}
-                    />
+                    /> */}
                     <ButtonForGameInfoFieldSection text="Submit" onClick={handleSubmit} />
                 </form>
             )}

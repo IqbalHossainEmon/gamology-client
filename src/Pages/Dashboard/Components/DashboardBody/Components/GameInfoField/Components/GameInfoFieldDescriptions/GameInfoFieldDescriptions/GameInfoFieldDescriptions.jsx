@@ -24,7 +24,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
     );
 
     const handleSetSortDescription = (value, name) => {
-        gameDescriptions[name] = value;
+        gameDescriptions.current.gameDescriptions[name] = value;
     };
 
     return (
@@ -38,7 +38,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                     htmlFor="short_description"
                     name="shortDesc"
                     errorChange={errorChange}
-                    errorMessage={errorMessages.sortDesc}
+                    errorMessage={errorMessages.current.gameDescriptionsError.sortDesc}
                     {...(hasDefault && { defaultValue: defaultGameDescriptions.shortDesc })}
                 />
             </div>
@@ -50,7 +50,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         index={index}
                         gameDescriptions={gameDescriptions}
                         errorChange={errorChange}
-                        errorMessages={errorMessages.descriptions}
+                        errorMessages={errorMessages}
                         {...(hasDefault && { defaultData: defaultGameDescriptions.descriptions[index] })}
                     />
                 ))}
@@ -60,7 +60,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                     <ButtonForGameInfoFieldSection
                         onClick={() => {
                             setArray(prev => [...prev, { id: prev.length, subHeader: true, description: true }]);
-                            gameDescriptions.descriptions.push({ subHeader: '', description: '' });
+                            gameDescriptions.current.gameDescriptions.descriptions.push({ subHeader: '', description: '' });
                         }}
                         text="Add more +"
                     />
@@ -89,7 +89,9 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                                 prevState[prevState.length - 1].mainHeader = true;
                                 return prevState;
                             });
-                            gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader = '';
+                            gameDescriptions.current.gameDescriptions.descriptions[
+                                gameDescriptions.current.gameDescriptions.descriptions.length - 1
+                            ].mainHeader = '';
                         }}
                         text="Add Main Header +"
                     />
@@ -105,7 +107,9 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                                 delete prevState[prevState.length - 1].mainHeader;
                                 return prevState;
                             });
-                            delete gameDescriptions.descriptions[gameDescriptions.descriptions.length - 1].mainHeader;
+                            delete gameDescriptions.current.gameDescriptions.descriptions[
+                                gameDescriptions.current.gameDescriptions.descriptions.length - 1
+                            ].mainHeader;
                         }}
                         text="Remove Main Header -"
                     />
@@ -114,7 +118,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                     <ButtonForGameInfoFieldSection
                         onClick={() => {
                             setArray(prev => [...prev, { id: prev.length, subHeader: true }]);
-                            gameDescriptions.descriptions.push({ subHeader: '' });
+                            gameDescriptions.current.gameDescriptions.descriptions.push({ subHeader: '' });
                         }}
                         text="Add Only Sub Header +"
                     />
