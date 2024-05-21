@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import Modal from '../../../../../Shared/Modal/Modal';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import DashboardModal from '../Components/DashboardModal/DashboardModal';
-import UserContainer from '../Components/UserAdminContainer/UserContainer/UserContainer';
+import UserContainer from '../Components/UserAdminContainer/UserContainer/UserContainer/UserContainer';
 import styles from './DashboardBody.module.css';
 
 const DashboardBody = () => {
