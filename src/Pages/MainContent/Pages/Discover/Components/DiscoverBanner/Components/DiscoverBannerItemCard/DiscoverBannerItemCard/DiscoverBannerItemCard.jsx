@@ -1,3 +1,4 @@
+import DiscoverBannerItemCardShadow from '../DiscoverBannerItemCardShadow/DiscoverBannerItemCardShadow';
 import styles from './DiscoverBannerItemCard.module.css';
 
 export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosition, isPause }) {
@@ -51,11 +52,7 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
             <div className={styles.cardNameContainer}>
                 <div className={styles.cardName}>
                     <p className={styles.cardNameText}>{name}</p>
-                    {cardsPosition[id] === 0 && (
-                        <div className={styles.shadowContainer}>
-                            <div id={isPause ? styles.pause : styles.play} className={styles.shadow} />
-                        </div>
-                    )}
+                    {cardsPosition[id] === 0 && <DiscoverBannerItemCardShadow isPause={isPause} />}
                 </div>
             </div>
         </li>
