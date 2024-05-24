@@ -29,7 +29,6 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
         if (num < 3) {
             return 'next';
         }
-
         return '';
     };
 
