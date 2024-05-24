@@ -14,8 +14,6 @@ const DiscoverBannerItemCardShadow = ({ isPause }) => {
             switch (counter.current) {
                 case 500:
                     clearInterval(timeId.current);
-                    timeId.current = null;
-                    counter.current = 0;
                     break;
                 default:
                     counter.current += 1;
@@ -30,7 +28,6 @@ const DiscoverBannerItemCardShadow = ({ isPause }) => {
     }, []);
 
     useEffect(() => {
-        console.log(timeId.current);
         switch (isPause) {
             case true:
                 handlePause();
@@ -46,9 +43,9 @@ const DiscoverBannerItemCardShadow = ({ isPause }) => {
                         handleStartOrResume();
                         break;
                 }
-                prevIsPause.current = isPause;
                 break;
         }
+        prevIsPause.current = isPause;
 
         return () => {
             if (timeId.current) clearInterval(timeId.current);

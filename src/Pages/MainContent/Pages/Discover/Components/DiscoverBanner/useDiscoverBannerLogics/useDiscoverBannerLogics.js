@@ -113,7 +113,7 @@ export default function useDiscoverBannerLogics() {
             dispatchRef.current({ type: 'pauseState', state: false });
             timerState.current = false;
             timerState.timeStartAt = new Date().getTime();
-            timerState.currentTotalTime = timerState.remain - 100;
+            timerState.currentTotalTime = timerState.remain + 25;
             timerRef.pauseTimer = setTimeout(() => {
                 timerRef.pauseTimer = null;
                 run();
