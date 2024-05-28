@@ -75,10 +75,8 @@ export default function useDiscoverBannerLogics() {
 
     // this function stops the timer;
     const stopTimer = useCallback(() => {
-        if (timerRef.current) {
-            clearInterval(timerRef.current);
-            timerRef.current = null;
-        }
+        clearInterval(timerRef.current);
+        timerRef.current = null;
     }, []);
 
     // this function starts the timer
@@ -123,17 +121,15 @@ export default function useDiscoverBannerLogics() {
     }, [run, startTimer]);
 
     // this function start the timer and set all the listeners and functions
-    const start = useCallback(
-        dispatch => {
-            if (!dispatchRef.current) {
-                dispatchRef.current = dispatch;
-            }
-            startTimer();
-            window.addEventListener('blur', eventRef.pause);
-            window.addEventListener('focus', eventRef.resume);
-        },
-        [startTimer]
-    );
+    const start = useCallback(() => {
+        startTimer();
+        window.addEventListener('blur', eventRef.pause);
+        window.addEventListener('focus', eventRef.resume);
+    }, [startTimer]);
+
+    const setDispatch = useCallback(dispatch => {
+        dispatchRef.current = dispatch;
+    }, []);
 
     // this function stops the timer and removes the listeners
     const stop = useCallback(() => {
@@ -157,5 +153,5 @@ export default function useDiscoverBannerLogics() {
         }
     }, [startTimer, stopTimer]);
 
-    return { initialState, reducer, activeBanner, reset, start, stop };
+    return { initialState, reducer, activeBanner, reset, start, stop, setDispatch };
 }

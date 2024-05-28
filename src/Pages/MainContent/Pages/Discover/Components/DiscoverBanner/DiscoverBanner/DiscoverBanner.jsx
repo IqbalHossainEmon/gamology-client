@@ -56,14 +56,10 @@ const items = [
 ];
 
 export default function DiscoverBanner() {
-    const { reducer, initialState, reset, start, stop, activeBanner } = useDiscoverBannerLogics();
+    const { reducer, initialState, reset, start, stop, activeBanner, setDispatch } = useDiscoverBannerLogics();
 
     const [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(reducer, initialState);
     const screenWidth = useScreenWidth();
-
-    useEffect(() => {
-        dispatch({ type: 'fetch', data: items });
-    }, []);
 
     const handleClick = type => {
         dispatch(type);
@@ -71,9 +67,11 @@ export default function DiscoverBanner() {
     };
 
     useEffect(() => {
-        start(dispatch);
+        start();
+        setDispatch(dispatch);
+        dispatch({ type: 'fetch', data: items });
         return stop;
-    }, [start, stop]);
+    }, [setDispatch, start, stop]);
 
     return (
         <section className={styles.banner}>
