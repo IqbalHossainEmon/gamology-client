@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
-import useToast from '../../../../../../../../../Hooks/useToast';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserMakeAdminModal.module.css';
 
-function UserMakeAdminModal({ data, handleMakeAdmin: handleEvent }) {
+function UserMakeAdminModal({ handleMakeAdmin: handleEvent }) {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
@@ -12,20 +11,10 @@ function UserMakeAdminModal({ data, handleMakeAdmin: handleEvent }) {
 	const confirmText = useRef(null);
 	const { setDashboardModal } = useDashboardModal();
 
-	const { setToast } = useToast();
-
 	const handleMakeAdmin = () => {
 		if (confirmText.current.toUpperCase() === 'CONFIRM') {
 			setDashboardModal(false);
-
-			setToast({
-				title: 'Admin Made',
-				message: `${data.name} has been made admin successfully`,
-				type: 'success',
-			});
 			handleEvent();
-
-			console.log('Made Admin');
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,

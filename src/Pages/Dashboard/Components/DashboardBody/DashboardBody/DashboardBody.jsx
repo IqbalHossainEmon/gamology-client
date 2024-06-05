@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import withDashboardModal from '../Components/HOC/withDashboardModal';
-import AdminContainer from '../Components/UserAdminContainer/AdminContainer/AdminContainer';
+import UserContainer from '../Components/UserAdminContainer/UserContainer/UserContainer/UserContainer';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody({ children }) {
@@ -12,7 +12,7 @@ function DashboardBody({ children }) {
 		<div className={styles.dashboardBodyScrollContainer}>
 			<div className={styles.dashboardBodyContainer} ref={parentRef}>
 				<div className={styles.dashboardBody} ref={childRef}>
-					<AdminContainer />
+					<UserContainer />
 				</div>
 			</div>
 			<ScrollBar childRef={childRef} parentRef={parentRef} />

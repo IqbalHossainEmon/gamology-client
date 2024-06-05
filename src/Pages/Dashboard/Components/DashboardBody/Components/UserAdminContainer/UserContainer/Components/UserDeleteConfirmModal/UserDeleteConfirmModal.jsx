@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
-import useToast from '../../../../../../../../../Hooks/useToast';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserDeleteConfirmModal.module.css';
 
-function UserDeleteConfirmModal({ data, handleRemove }) {
+function UserDeleteConfirmModal({ handleRemove, btnText = 'delete', textConfirm = 'DELETE' }) {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
@@ -12,17 +11,9 @@ function UserDeleteConfirmModal({ data, handleRemove }) {
 	const confirmText = useRef(null);
 	const { setDashboardModal } = useDashboardModal();
 
-	const { setToast } = useToast();
-
 	const handleDelete = () => {
-		if (confirmText.current.toUpperCase() === 'DELETE') {
-			setToast({
-				title: 'User Deleted',
-				message: `${data.name} has been deleted successfully`,
-				type: 'success',
-			});
+		if (confirmText.current.toUpperCase() === textConfirm.toUpperCase()) {
 			handleRemove();
-			console.log('Deleted');
 			setDashboardModal(false);
 		} else {
 			setError(prev => ({
@@ -38,14 +29,14 @@ function UserDeleteConfirmModal({ data, handleRemove }) {
 				errorChange={errorChange}
 				errorMessage={errorMessage}
 				field='input'
-				placeholder="Type 'DELETE' to Delete User"
+				placeholder={`Type '${textConfirm}' to confirm`}
 				setState={val => {
 					confirmText.current = val;
 				}}
 				type='text'
 			/>
 			<button className={styles.deleteBtn} onClick={handleDelete} type='button'>
-				Delete
+				{btnText}
 			</button>
 		</div>
 	);

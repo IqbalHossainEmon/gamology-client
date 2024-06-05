@@ -5,3 +5,32 @@
 	grid-template-columns: repeat(6, 1fr);
 	gap: 1rem;
 }
+
+.paginationContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+
+@media only screen and (max-width: 1600px) and (min-width: 769px) {
+	.adminContainer {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+@media only screen and (max-width: 768px) and (min-width: 553px) {
+	.adminContainer {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@media only screen and (max-width: 552px) and (min-width: 250px) {
+	.adminContainer {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media only screen and (max-width: 340px) {
+	.adminContainer {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
