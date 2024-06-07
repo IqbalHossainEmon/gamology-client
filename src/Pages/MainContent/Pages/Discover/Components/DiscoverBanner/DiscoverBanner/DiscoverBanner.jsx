@@ -83,7 +83,6 @@ export default function DiscoverBanner() {
 					data={data}
 					screenWidth={screenWidth}
 				/>
-
 				<DiscoverBannerInfoItems
 					activeBanner={activeBanner}
 					bannerState={{ active, fadeOut, fadeIn }}

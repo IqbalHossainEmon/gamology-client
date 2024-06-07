@@ -97,9 +97,7 @@ export default function FreeGames() {
 		<section className={styles.freeGames}>
 			<div className={styles.header}>
 				<img alt="gift" src="/assets/images/gift.png" />
-
 				<h3 className={styles.headerName}>Free games</h3>
-
 				<button className={styles.viewMoreBtn} ref={btnRef} type="button">
 					View More
 					<ButtonWaterEffect btnRef={btnRef} />

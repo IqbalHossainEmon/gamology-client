@@ -15,7 +15,6 @@ export default function EventGamesGamesColumn({ header, games, bar, colNum, card
 		>
 			<div className={styles.heading}>
 				<h2>{header}</h2>
-
 				<button ref={btnRef} type="button">
 					View More
 					<ButtonWaterEffect btnRef={btnRef} />

@@ -11,7 +11,6 @@ function UserCard({ data, children }) {
 			</div>
 			<div className={styles.cardContainerInfo}>
 				<h4>{name}</h4>
-
 				<p>{email}</p>
 			</div>
 

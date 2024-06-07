@@ -16,9 +16,7 @@ export default function MobileSortAndFilterButton() {
 
 					<span>Sort</span>
 				</button>
-
 				<div className={styles.verticalLine} />
-
 				<button
 					className={styles.filterButton}
 					onClick={() => setFilterSort('filter')}

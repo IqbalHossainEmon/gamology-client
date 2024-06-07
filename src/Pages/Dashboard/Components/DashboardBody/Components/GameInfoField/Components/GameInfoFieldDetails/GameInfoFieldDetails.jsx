@@ -41,7 +41,6 @@ export default function GameInfoFieldDetails({
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.developer })}
 				/>
-
 				<TextField
 					className={styles.marginRight}
 					errorChange={errorChange}
@@ -65,7 +64,6 @@ export default function GameInfoFieldDetails({
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.logo })}
 				/>
-
 				<FileUploadButton
 					accept="image/*"
 					className={styles.marginRight}

@@ -10,7 +10,6 @@ function AllGamesModalBodySelect({ type, detail }) {
 				<div className={styles.cardHeader}>
 					<img alt={name} src={carouselThumb} />
 				</div>
-
 				<div className={styles.cardBody}>
 					<p className={styles.name}>{name}</p>
 

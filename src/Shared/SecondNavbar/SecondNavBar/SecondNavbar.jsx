@@ -18,12 +18,10 @@ export default function SecondNavbar() {
 					{...(screenWidth <= 768 && { setNavShow })}
 					setChangedValue={e => console.log(e)}
 				/>
-
 				<SecondNavLeftLinks
 					{...(screenWidth <= 768 && { setNavShow })}
 					screenWidth={screenWidth}
 				/>
-
 				<SecondNavRightLinks screenWidth={screenWidth} />
 			</div>
 			<ScreenShadow show={navShow} />

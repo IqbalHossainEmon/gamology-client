@@ -24,7 +24,6 @@ function AllGamesPriceEditModal({ price }) {
 					htmlFor="previous_price"
 					placeholder="Previous Price"
 				/>
-
 				<div className={styles.arrowIcon}>
 					<svg
 						fill="#ffffff00"
@@ -70,7 +69,6 @@ function AllGamesPriceEditModal({ price }) {
 						</g>
 					</svg>
 				</div>
-
 				<TextField
 					className={styles.input}
 					field="input"

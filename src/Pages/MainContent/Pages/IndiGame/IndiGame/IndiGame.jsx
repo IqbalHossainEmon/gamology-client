@@ -9,7 +9,6 @@ export default function IndiGame() {
 			<IndiGameDetails />
 			<div className={styles.reviewContainer}>
 				<IndiGameSpecifications />
-
 				<IndiGameReviewSection />
 			</div>
 		</section>

@@ -51,7 +51,6 @@ export default function FreeGame({ data, today, length }) {
 						</p>
 					)}
 				</div>
-
 				<div className={styles.gameDetail}>
 					<p className={styles.name}>{data.name}</p>
 

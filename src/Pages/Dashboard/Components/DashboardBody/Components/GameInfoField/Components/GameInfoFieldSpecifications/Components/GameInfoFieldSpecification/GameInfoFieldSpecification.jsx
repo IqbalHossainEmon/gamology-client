@@ -116,7 +116,6 @@ export default function GameInfoFieldSpecification({
 
 					<ErrorMessage enable={errorShow.min} errorMessage={errorMessages.min} />
 				</div>
-
 				<div className={styles.systemReq}>
 					<h4 className={styles.type}>Recommended</h4>
 
@@ -141,7 +140,6 @@ export default function GameInfoFieldSpecification({
 
 					<ErrorMessage enable={errorShow.rec} errorMessage={errorMessages.rec} />
 				</div>
-
 				<div className={styles.buttonsContainer}>
 					<div className={styles.btnContainer}>
 						<ButtonForGameInfoFieldSection

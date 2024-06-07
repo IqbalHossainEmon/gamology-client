@@ -65,7 +65,6 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 		<div>
 			<div className={styles.releaseDate}>
 				<p>Release</p>
-
 				<div className={styles.dateContainer}>
 					<div className={`${styles.releaseDay} ${styles.releaseComponent}`}>
 						<SelectionField

@@ -35,7 +35,6 @@ export default function GameInfoFieldSpecifications({
 					{...(hasDefault && { defaultValue: defaultGameSpecifications.others })}
 					hasDefault={hasDefault}
 				/>
-
 				<div className={styles.textField}>
 					<TextField
 						errorChange={errorChange}
@@ -48,7 +47,6 @@ export default function GameInfoFieldSpecifications({
 						{...(hasDefault && { defaultValue: defaultGameSpecifications.copyWrite })}
 					/>
 				</div>
-
 				<div className={styles.textField}>
 					<TextField
 						errorChange={errorChange}

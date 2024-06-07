@@ -51,7 +51,6 @@ export default function IndiGameWriteReview({
 						{user.reviews}
 					</p>
 				</div>
-
 				<div className={styles.writingField}>
 					<div className={styles.reviewTitleContainer}>
 						<div className={styles.reviewStarsContainer}>

@@ -8,7 +8,6 @@ function IndiGameDetails() {
 		<div className={styles.mainContentContainer}>
 			<div className={styles.indiGameMainDetail}>
 				<IndiGameBanner />
-
 				<IndiGameDescription />
 			</div>
 			<div className={styles.asideDetail}>

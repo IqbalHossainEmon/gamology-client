@@ -8,7 +8,6 @@ function IndiGameReviewSection() {
 			<h2 className={styles.reviewMainHeader}>Reviews</h2>
 			<div className={styles.reviewContainer}>
 				<IndiGameTakeReview />
-
 				<IndiGameShowReview />
 			</div>
 		</section>

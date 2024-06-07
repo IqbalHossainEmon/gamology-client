@@ -114,7 +114,6 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 						style={{ scale: `${circlePosition.translate / rangePathWidth || 0} 1` }}
 					/>
 				</div>
-
 				<div
 					className={`${styles.roundContainer}${
 						circlePosition.transition ? ` ${styles.roundTransition}` : ''

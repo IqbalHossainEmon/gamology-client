@@ -88,7 +88,6 @@ function TagsContainer({ tag, setTags }) {
 		<div className={styles.tag}>
 			<div className={styles.tagHeader}>
 				<h3>{tag.category}</h3>
-
 				<button className={styles.crossBtn} onClick={handleCategoryDelete} type="button">
 					<strong className={styles.cross} />
 				</button>

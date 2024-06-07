@@ -51,7 +51,6 @@ function SelectionFieldTextField({
 						{...(defaultData && { defaultValue: defaultData.key })}
 					/>
 				</div>
-
 				<div className={styles.textField}>
 					<TextField
 						enabled={enabled}

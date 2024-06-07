@@ -270,7 +270,6 @@ function Browse() {
 					filterState={state.filterState}
 					limits={state.rangeLimits}
 				/>
-
 				<GameCards dispatch={dispatch} state={state} />
 			</div>
 

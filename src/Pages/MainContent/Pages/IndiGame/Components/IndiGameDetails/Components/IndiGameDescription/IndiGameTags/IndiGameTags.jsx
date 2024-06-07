@@ -5,7 +5,6 @@ export default function IndiGameTags({ genes, features }) {
 		<div className={styles.individualGameTags}>
 			<div className={styles.individualGameTagGroupContainer}>
 				<h5 className={styles.keyName}>Genes</h5>
-
 				<ul className={styles.individualGameTagGroup}>
 					{genes.map(gene => (
 						<li className={styles.individualGameTag} key={gene}>
@@ -20,7 +19,6 @@ export default function IndiGameTags({ genes, features }) {
 			</div>
 			<div className={styles.individualGameTagGroupContainer}>
 				<h5 className={styles.keyName}>Features</h5>
-
 				<ul className={styles.individualGameTagGroup}>
 					{features.map(feature => (
 						<li className={styles.individualGameTag} key={feature}>

@@ -44,7 +44,6 @@ export default function IndiGameReview({ review, index, length }) {
 						{user.reviews}
 					</p>
 				</div>
-
 				<div className={styles.reviewContainer}>
 					<div className={styles.titleStarDateContainer}>
 						<div className={styles.titleStarContainer}>

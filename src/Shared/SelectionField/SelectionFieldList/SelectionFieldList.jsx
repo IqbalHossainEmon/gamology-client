@@ -74,7 +74,6 @@ function SelectionFieldList({
 						)}
 					</div>
 				</div>
-
 				<ScrollBar childRef={childRef} parentRef={parentRef} />
 			</ul>
 		)

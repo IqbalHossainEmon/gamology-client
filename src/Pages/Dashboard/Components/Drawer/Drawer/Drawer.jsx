@@ -757,7 +757,6 @@ function Drawer() {
 						<ScrollBar childRef={scrollChildRef} parentRef={scrollParentRef} />
 					</div>
 				</div>
-
 				<button
 					className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
 					onClick={() => {

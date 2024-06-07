@@ -40,7 +40,6 @@ export default function IndiGameOrderBy({ handleSort }) {
 						{orderBy.filter(order => order.active)[0].name}
 					</span>
 				</p>
-
 				<div className={styles.rotateArrow}>
 					<RotateArrow state={show} />
 				</div>

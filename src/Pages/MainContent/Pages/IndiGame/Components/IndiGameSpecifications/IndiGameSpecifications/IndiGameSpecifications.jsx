@@ -132,15 +132,12 @@ export default function IndiGameSpecifications() {
 						</div>
 					))}
 				</div>
-
 				<div>
 					<IndiGameMultipleSpecification active={toggle} spec={spec.spec} />
 
 					{spec.others ? <IndiGameSpecificationOther others={spec.others} /> : null}
 				</div>
-
 				<LineBreak />
-
 				<div>
 					<p className={styles.copyWrite}>{spec.copyWrite}</p>
 				</div>

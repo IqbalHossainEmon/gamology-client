@@ -88,7 +88,6 @@ function CoverImageContainer({
 				<p className={`${value.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>
 					{value.name}
 				</p>
-
 				<div className={styles.uploadImage}>
 					<svg fill="none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0_14_1859)">
@@ -129,7 +128,6 @@ function CoverImageContainer({
 						</defs>
 					</svg>
 				</div>
-
 				<ButtonWaterEffect btnRef={btnRef} long />
 			</button>
 		</>

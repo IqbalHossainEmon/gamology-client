@@ -41,7 +41,6 @@ export default function GameInfoFieldBanner({
 						text="Add More +"
 					/>
 				</div>
-
 				<div className={styles.btn}>
 					<ButtonForGameInfoFieldSection
 						{...(fieldCount === 1 && { disabled: true })}

@@ -42,7 +42,6 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 						<ButtonWaterEffect btnRef={addBtnREf} />
 					</button>
 				</div>
-
 				<div
 					className={`${styles.removeTagBtn}${numberOfTags === 1 ? ` ${styles.disabled}` : ''}`}
 				>

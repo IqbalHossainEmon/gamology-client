@@ -61,7 +61,6 @@ export default function IndiGameTakeReview() {
 						</button>
 					)}
 				</div>
-
 				<div>
 					<div className={styles.overAllRatingContainer}>
 						<img alt="full star" className={styles.fullStar} src={fullStar} />

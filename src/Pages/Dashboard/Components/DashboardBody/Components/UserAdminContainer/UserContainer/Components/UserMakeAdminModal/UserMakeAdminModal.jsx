@@ -40,7 +40,6 @@ function UserMakeAdminModal() {
 					}}
 					type="text"
 				/>
-
 				<div className={styles.btnContainer}>
 					<button className={styles.btn} onClick={handleMakeAdmin} type="button">
 						Yes

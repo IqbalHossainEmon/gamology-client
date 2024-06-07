@@ -40,7 +40,6 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 				>
 					Delete
 				</button>
-
 				<button className={styles.cancelBtn} onClick={handleHide} type="button">
 					Cancel
 				</button>

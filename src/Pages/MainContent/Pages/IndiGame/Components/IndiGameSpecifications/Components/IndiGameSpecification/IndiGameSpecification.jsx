@@ -5,7 +5,6 @@ export default function IndiGameSpecification({ spec }) {
 		<div className={styles.individualGameSpecification}>
 			<div className={styles.row}>
 				<h5 className={`${styles.column} ${styles.header} ${styles.topHeader}`}>Minimum</h5>
-
 				<h5 className={`${styles.column} ${styles.header} ${styles.topHeader}`}>
 					Recommend
 				</h5>

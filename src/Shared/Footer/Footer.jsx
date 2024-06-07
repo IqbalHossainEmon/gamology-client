@@ -32,7 +32,6 @@ export default function Footer() {
 						number: 1269691510; District Court for the City of Dhaka, 14th Commercial;
 					</small>
 				</p>
-
 				<p>
 					<small>
 						All trademarks referenced herein are the properties of their respective

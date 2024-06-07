@@ -258,7 +258,6 @@ export default function DiscoverGames({ headerTitle }) {
 		<section className={styles.Games}>
 			<div className={styles.headerButtonContainer}>
 				<CardsHeader headerTitle={headerTitle} />
-
 				<GamesButton
 					cardActive={cardActive}
 					handleClick={click => handleClick(click, cardActive, cardOnDeck)}

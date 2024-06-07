@@ -57,7 +57,6 @@ function ErrorMessage({ errorMessage, enable }) {
 		>
 			<div className={styles.errorMessage} ref={errorMessageRef}>
 				<p>{errorMessage}</p>
-
 				<div className={styles.info}>
 					<svg
 						fill="#ffffff"

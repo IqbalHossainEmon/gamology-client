@@ -19,7 +19,6 @@ export default function PriceReleaseDate({
 		<div className={styles.priceReleaseDateContainer}>
 			<div className={styles.priceContainer}>
 				<label htmlFor="price">Price $</label>
-
 				<div className={styles.inputContainer}>
 					<input
 						id="price"

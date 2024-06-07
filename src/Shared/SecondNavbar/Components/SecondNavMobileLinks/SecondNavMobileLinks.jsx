@@ -67,7 +67,6 @@ export default function SecondNavMobileLinks({ setNavShow }) {
 
 					<p>News</p>
 				</div>
-
 				<div className={styles.navArrow}>
 					<RotateArrow state={navMidShow} />
 				</div>

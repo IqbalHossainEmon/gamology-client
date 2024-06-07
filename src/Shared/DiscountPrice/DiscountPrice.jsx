@@ -16,7 +16,6 @@ export default function DiscountPrice({ price, className }) {
 				}
 			>
 				<del className={styles.regular}>${price.regular}</del>
-
 				<ins className={styles.discount}>${price.discount}</ins>
 			</span>
 		);

@@ -111,7 +111,6 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 						progress={progress}
 					/>
 				</li>
-
 				<li>
 					<PlayPauseButton
 						canPlay={canPlay}
@@ -120,7 +119,6 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 						video={video}
 					/>
 				</li>
-
 				<li>
 					<VideoVolume
 						changePause={changePause}
@@ -128,15 +126,12 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 						videoContainer={videoContainer}
 					/>
 				</li>
-
 				<li>
 					<ProgressTimeShow video={video} progress={progress} />
 				</li>
-
 				<li className={styles.gearButton} ref={gearRef}>
 					<GearButton gearRef={gearRef} videoContainer={videoContainer} />
 				</li>
-
 				<li>
 					<FullScreenButton videoContainer={videoContainer} />
 				</li>

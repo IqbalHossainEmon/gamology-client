@@ -78,7 +78,6 @@ function GameInfoFieldDescriptions({
 						text="Add more +"
 					/>
 				</div>
-
 				<div className={styles.btn}>
 					<ButtonForGameInfoFieldSection
 						{...(array.length === 1 && { disabled: true })}
@@ -92,7 +91,6 @@ function GameInfoFieldDescriptions({
 						text="Remove last one -"
 					/>
 				</div>
-
 				<div className={styles.mainBtn}>
 					<ButtonForGameInfoFieldSection
 						{...(array[array.length - 1].main === true && {
@@ -111,7 +109,6 @@ function GameInfoFieldDescriptions({
 						text="Add Main Header +"
 					/>
 				</div>
-
 				<div className={styles.mainBtn}>
 					<ButtonForGameInfoFieldSection
 						{...((array.length === 1 || !array[array.length - 1].main) && {
@@ -130,7 +127,6 @@ function GameInfoFieldDescriptions({
 						text="Remove Main Header -"
 					/>
 				</div>
-
 				<div className={styles.mainBtn}>
 					<ButtonForGameInfoFieldSection
 						onClick={() => {
