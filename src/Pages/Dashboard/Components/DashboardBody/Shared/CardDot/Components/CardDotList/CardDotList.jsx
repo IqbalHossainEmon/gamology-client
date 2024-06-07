@@ -6,25 +6,37 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 	const positionRef = useRef(position);
 	positionRef.current = position;
 
+	const listContainerRef = useRef(null);
+
 	useEffect(() => {
 		const { x, width, y, height } = parentRef.current.getBoundingClientRect();
-		const rightRemain = window.innerWidth - x - width;
+
+		const rightRemain = window.innerWidth - x - width / 2;
 		const bottomRemain = window.innerHeight - y - height;
 
-		if (rightRemain < 60 || (bottomRemain < 112 && y >= 112)) {
-			if (rightRemain < 60) {
-				setPosition(1);
-			}
-			if (bottomRemain < 112 && y >= 112) {
-				setPosition(-1);
-			}
-		} else if (positionRef.current !== 0) {
-			setPosition(0);
+		const containerWidth = listContainerRef.current.clientWidth;
+		const containerHeight = listContainerRef.current.clientHeight;
+
+		if (
+			rightRemain - 10 > containerWidth / 2 &&
+			x > containerWidth / 2 &&
+			bottomRemain - 10 > containerHeight
+		) {
+			if (positionRef.current !== 0) setPosition(0);
+			return;
+		}
+		if (rightRemain - 10 < containerWidth / 2 && x > containerWidth / 2 && bottomRemain > 20) {
+			if (positionRef.current !== 1) setPosition(1);
+			return;
+		}
+		if (positionRef.current !== -1) {
+			setPosition(-1);
 		}
 	}, [parentRef]);
 
 	return (
 		<ul
+			ref={listContainerRef}
 			className={`${styles.listContainer} ${position > 0 ? styles.left : position < 0 ? styles.top : styles.bottom}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
 		>
 			{lists.map(list => (

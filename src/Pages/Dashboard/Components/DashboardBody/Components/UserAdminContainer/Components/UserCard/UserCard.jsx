@@ -1,12 +1,15 @@
 import { useRef } from 'react';
 import styles from './UserCard.module.css';
 
-function UserCard({ data, children }) {
+function UserCard({ data, children, admin }) {
 	const containerRef = useRef(null);
 	const { profileImage, name, email } = data;
 	const { firstName, lastName, middleName } = name;
 	return (
-		<div className={styles.cardContainer} ref={containerRef}>
+		<div
+			className={`${styles.cardContainer}${admin ? ` ${styles.admin}` : ''}`}
+			ref={containerRef}
+		>
 			<div className={styles.cardContainerImg}>
 				<img
 					src={profileImage}

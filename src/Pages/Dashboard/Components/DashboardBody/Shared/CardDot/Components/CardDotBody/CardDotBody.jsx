@@ -61,9 +61,7 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 					xmlns='http://www.w3.org/2000/svg'
 				>
 					<g strokeWidth='0' />
-
 					<g strokeLinecap='round' strokeLinejoin='round' />
-
 					<g>
 						<circle cx='16' cy='16' fill='#F08A5D' r='2' />
 						<circle cx='16' cy='26' fill='#B83B5E' r='2' />
@@ -104,7 +102,6 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 					</g>
 				</svg>
 			</button>
-
 			{show ? (
 				<CardDotList
 					fadeIn={childFadeIn}
