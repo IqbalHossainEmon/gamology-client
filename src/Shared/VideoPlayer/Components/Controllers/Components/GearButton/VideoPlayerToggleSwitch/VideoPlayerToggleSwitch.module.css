@@ -1,0 +1,41 @@
+.menuContainer {
+	position: absolute;
+	font-size: 14px;
+	background-color: rgb(18, 18, 18);
+	padding: 10px;
+	border-radius: 4px;
+	top: -80px;
+	right: 10px;
+	width: auto;
+	opacity: 0;
+	scale: 0.9;
+	transition:
+		opacity 200ms,
+		scale 200ms;
+}
+.zoomIn {
+	opacity: 1;
+	scale: 1;
+}
+.menuContainer h5 {
+	font-size: 14px;
+}
+.menu {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(18, 18, 18);
+	border: none;
+	text-align: left;
+}
+.textContainer {
+	width: 100%;
+}
+.textContainer > p {
+	white-space: nowrap;
+}
+.toggleSwitchContainer {
+	margin-left: 10px;
+}

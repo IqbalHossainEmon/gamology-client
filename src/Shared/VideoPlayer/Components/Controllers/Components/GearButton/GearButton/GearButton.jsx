@@ -1,47 +1,68 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { AutoPlayContext, SetAutoPlayContext } from '../../../../../../../Contexts/AutoPlayContext';
-import withAutoPlayProvider from '../../../../../../../HOC/withAutoPlayProvider';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
-import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
+import VideoPlayerToggleSwitch from '../VideoPlayerToggleSwitch/VideoPlayerToggleSwitch';
 import styles from './GearButton.module.css';
 
 function GearButton({ gearRef }) {
-    const [autoplay, setAutoplay] = useState(false);
+    const [autoplay, setAutoplay] = useState({ autoplay: false });
 
-    const show = useContext(AutoPlayContext);
-    const setShow = useContext(SetAutoPlayContext);
+    const [show, setShow] = useState(false);
+
+    const showRef = useRef(show);
+    showRef.current = show;
+
     const eventRef = useRef({
         handleClick: () => {},
     });
 
     const { showMenu, setElement } = useDropDownHide(setShow);
 
+    const timerId = useRef(null);
+    const handleSwitchShowTimer = useCallback(() => {
+        if (timerId.current) {
+            clearTimeout(timerId.current);
+            timerId.current = null;
+        }
+        timerId.current = setTimeout(() => {
+            timerId.current = null;
+            setShow(prev => !prev);
+        }, 5000);
+    }, []);
+
     useEffect(() => {
         setElement(gearRef.current);
         if (localStorage.getItem('autoplay')) {
-            setAutoplay(true);
+            setAutoplay({ autoplay: true });
         }
     }, [gearRef, setElement]);
 
+    useEffect(() => {
+        //   change in local storage
+        if (autoplay.autoplay) {
+            localStorage.setItem('autoplay', 'true');
+        } else {
+            localStorage.removeItem('autoplay');
+        }
+        if (showRef.current) {
+            handleSwitchShowTimer();
+        }
+    }, [autoplay, handleSwitchShowTimer]);
+
     eventRef.current.handleClick = useCallback(() => {
-        setAutoplay(prev => {
-            if (prev) {
-                localStorage.removeItem('autoplay');
-            } else {
-                localStorage.setItem('autoplay', true);
-            }
-            return !prev;
-        });
+        setAutoplay(prev => ({
+            autoplay: !prev.autoplay,
+        }));
     }, []);
+
     return (
         <>
             <button
                 onClick={() =>
-                    setShow(
-                        prev =>
-                            /* showMenu(); */
-                            !prev
-                    )
+                    setShow(prev => {
+                        showMenu();
+                        handleSwitchShowTimer();
+                        return !prev;
+                    })
                 }
                 type="button"
                 className={styles.gearButton}
@@ -57,32 +78,14 @@ function GearButton({ gearRef }) {
                     </svg>
                 </span>
             </button>
-            {show && (
-                <div className={styles.menuContainer}>
-                    <button
-                        className={styles.menu}
-                        type="button"
-                        onMouseDown={() =>
-                            document.addEventListener('mouseup', eventRef.current.handleClick, { once: true })
-                        }
-                    >
-                        <div className={styles.textContainer}>
-                            <h5>Autoplay</h5>
-                            <p>Applies to all videos</p>
-                        </div>
-                        <div className={styles.toggleSwitchContainer}>
-                            <ToggleSwitch
-                                name="autoplay"
-                                state={autoplay}
-                                setState={setAutoplay}
-                                event={eventRef.current.handleClick}
-                            />
-                        </div>
-                    </button>
-                </div>
-            )}
+            <VideoPlayerToggleSwitch
+                setAutoplay={setAutoplay}
+                event={eventRef.current.handleClick}
+                autoplay={autoplay.autoplay}
+                show={show}
+            />
         </>
     );
 }
 
-export default withAutoPlayProvider(GearButton);
+export default GearButton;
