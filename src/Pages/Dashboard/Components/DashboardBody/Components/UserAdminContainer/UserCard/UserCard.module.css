@@ -1,0 +1,26 @@
+.cardContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+	border-radius: 10px;
+	background-color: #1f1f1f;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cardContainerImg {
+	width: 100%;
+}
+.cardContainerImg img {
+	width: 100%;
+	border-radius: 50%;
+}
+.cardContainerName {
+	margin-top: 1rem;
+	color: #fff;
+}
+.cardContainerName h4 {
+	font-weight: 500;
+}
