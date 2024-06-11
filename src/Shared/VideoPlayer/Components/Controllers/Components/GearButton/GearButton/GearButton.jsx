@@ -15,7 +15,7 @@ function GearButton({ gearRef }) {
         handleClick: () => {},
     });
 
-    const { showMenu, setElement } = useDropDownHide(setShow);
+    const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
 
     const timerId = useRef(null);
     const handleSwitchShowTimer = useCallback(() => {
@@ -25,9 +25,10 @@ function GearButton({ gearRef }) {
         }
         timerId.current = setTimeout(() => {
             timerId.current = null;
-            setShow(prev => !prev);
+            setShow(false);
+            stopMenu();
         }, 5000);
-    }, []);
+    }, [stopMenu]);
 
     useEffect(() => {
         setElement(gearRef.current);
@@ -59,8 +60,13 @@ function GearButton({ gearRef }) {
             <button
                 onClick={() =>
                     setShow(prev => {
-                        showMenu();
-                        handleSwitchShowTimer();
+                        if (prev) {
+                            stopMenu();
+                            clearTimeout(timerId.current);
+                        } else {
+                            showMenu();
+                            handleSwitchShowTimer();
+                        }
                         return !prev;
                     })
                 }
@@ -82,6 +88,8 @@ function GearButton({ gearRef }) {
                 setAutoplay={setAutoplay}
                 event={eventRef.current.handleClick}
                 autoplay={autoplay.autoplay}
+                timerId={timerId}
+                mouseUpEvent={handleSwitchShowTimer}
                 show={show}
             />
         </>

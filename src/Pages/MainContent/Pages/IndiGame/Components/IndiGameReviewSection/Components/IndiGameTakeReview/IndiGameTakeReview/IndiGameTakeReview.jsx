@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import LineBreak from '../../../../../../../../../Shared/LineBreak/LineBreak';
 import ReviewStar from '../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndiGameOwnReview from '../Components/IndiGameOwnReview/IndiGameOwnReview';
-import IndiGameWriteReview from '../Components/IndiGameWriteReview/IndiGameWriteReview/IndiGameWriteReview';
+import IndiGameWriteReviewContainer from '../Components/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer';
 import styles from './IndiGameTakeReview.module.css';
 
 const userIcon = 'assets/images/icons/user.png';
@@ -13,6 +13,7 @@ const data = {
     star: 5,
     title: 'Good Game!!',
     text: `Descriptions`,
+    date: new Date(),
 };
 
 export default function IndiGameTakeReview() {
@@ -78,9 +79,9 @@ export default function IndiGameTakeReview() {
             {userReviewDone ? (
                 <IndiGameOwnReview review={review} />
             ) : (
-                <IndiGameWriteReview
+                <IndiGameWriteReviewContainer
                     reviewStar={reviewStar.active}
-                    writeReviewShow={writeReviewShow}
+                    state={writeReviewShow}
                     setWriteReviewShow={setWriteReviewShow}
                     userIcon={userIcon}
                     user={user.current}

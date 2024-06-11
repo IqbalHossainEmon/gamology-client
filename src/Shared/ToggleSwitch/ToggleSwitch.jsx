@@ -5,7 +5,7 @@ import styles from './ToggleSwitch.module.css';
 
 const rangePathWidth = 13;
 
-function ToggleSwitch({ state, setState, name, event }) {
+function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEvent }) {
     const [circlePosition, setCirclePosition] = useState({
         translate: state ? rangePathWidth : 0,
         transition: false,
@@ -72,6 +72,7 @@ function ToggleSwitch({ state, setState, name, event }) {
 
     eventRefs.current.handleSetValue = useCallback(() => {
         // if switch is below 50
+        mouseUpEvent();
         if (stateRef.current < rangePathWidth / 2) {
             if (stateRef.current !== 0) {
                 setCirclePosition({ translate: 0, transition: true });
@@ -89,9 +90,13 @@ function ToggleSwitch({ state, setState, name, event }) {
                 setState(prev => ({ ...prev, [name]: true }), name);
             }
         }
-    }, [handleTimerTransition, name, setState]);
+    }, [handleTimerTransition, mouseUpEvent, name, setState]);
 
-    const onStart = useDragStartStop(eventRefs.current.handleMove, eventRefs.current.handleSetValue);
+    const onStart = useDragStartStop(
+        eventRefs.current.handleMove,
+        eventRefs.current.handleSetValue,
+        mouseDownEvent && mouseDownEvent
+    );
 
     return (
         <div className={styles.toggleButtonContainer}>

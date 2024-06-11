@@ -39,6 +39,8 @@ const IndiGameReviewInput = ({ setData, isTextArea }) => {
                     value={value}
                     onChange={e => setValue(e.target.value)}
                     placeholder="Review Title..."
+                    name="review title"
+                    id="review-title"
                     className={styles.reviewTitle}
                     type="text"
                 />

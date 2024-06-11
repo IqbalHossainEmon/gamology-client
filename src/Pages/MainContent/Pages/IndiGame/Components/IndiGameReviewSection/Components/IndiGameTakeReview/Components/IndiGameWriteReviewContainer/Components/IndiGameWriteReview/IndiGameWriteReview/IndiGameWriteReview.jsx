@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../../../../../../../Hooks/useScreenWidth';
-import LineBreak from '../../../../../../../../../../../Shared/LineBreak/LineBreak';
-import ReviewStar from '../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
+import useScreenWidth from '../../../../../../../../../../../../../Hooks/useScreenWidth';
+import LineBreak from '../../../../../../../../../../../../../Shared/LineBreak/LineBreak';
+import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn';
 import IndiGameReviewInput from '../Components/IndiGameReviewInput/IndiGameReviewInput';
 import styles from './IndiGameWriteReview.module.css';
 
-export default function IndiGameWriteReview({ userIcon, writeReviewShow, setWriteReviewShow, reviewStar, user }) {
+export default function IndiGameWriteReview({ userIcon, fadeHeight, setWriteReviewShow, reviewStar, user }) {
     const [data, setData] = useState({ active: 0, title: '', text: '' });
 
     const elementRef = useRef(null);
@@ -14,7 +14,7 @@ export default function IndiGameWriteReview({ userIcon, writeReviewShow, setWrit
     const screenWidth = useScreenWidth();
 
     useEffect(() => {
-        elementRef.width = elementRef.current.clientHeight;
+        elementRef.height = elementRef.current.clientHeight;
     }, [elementRef, screenWidth]);
 
     const handleSubmit = () => {
@@ -29,7 +29,7 @@ export default function IndiGameWriteReview({ userIcon, writeReviewShow, setWrit
     return (
         <div
             className={styles.individualGameWriteReviewContainer}
-            style={writeReviewShow ? { height: elementRef.width + 60 } : { height: 0 }}
+            style={fadeHeight ? { height: elementRef.height + 60 } : { height: 0 }}
         >
             <div ref={elementRef} className={styles.individualGameWriteReview}>
                 <div className={styles.userDetails}>

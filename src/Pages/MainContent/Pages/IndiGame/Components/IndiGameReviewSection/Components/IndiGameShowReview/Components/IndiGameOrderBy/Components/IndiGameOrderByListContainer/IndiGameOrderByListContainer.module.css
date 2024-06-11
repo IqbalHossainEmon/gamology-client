@@ -1,0 +1,17 @@
+.orderOptions {
+	list-style-type: none;
+	position: absolute;
+	background-color: rgb(68, 68, 68);
+	padding: 5px;
+	top: calc(100% + 5px);
+	right: 0;
+	opacity: 0;
+	scale: 0.9;
+	transition:
+		opacity 200ms,
+		scale 200ms;
+}
+.zoomIn {
+	opacity: 1;
+	scale: 1;
+}

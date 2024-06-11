@@ -1,0 +1,30 @@
+.individualGameOrderBy {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 30px;
+}
+
+.activeOrderContainer {
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.activeOrder {
+	font-size: small;
+	color: #969696;
+}
+
+.orderChangeablePart {
+	color: #cfcfcf;
+}
+
+.rotateArrow {
+	margin-left: 5px;
+	width: 10px;
+	height: 10px;
+	position: relative;
+}
