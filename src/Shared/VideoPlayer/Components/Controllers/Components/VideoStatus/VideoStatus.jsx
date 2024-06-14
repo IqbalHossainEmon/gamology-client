@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
 
-export default function VideoStatus({ video, isSeekedRef, isChanging }) {
+const VideoStatus = ({ video, isSeekedRef, isChanging }) => {
 	const formatTime = useTimeFormat();
 	const timerId = useRef(null);
 	const videoRef = useRef(video.current);
@@ -65,6 +65,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 			},
 		};
 	}
+
 	useEffect(() => {
 		const {
 			loadMetaDataUpdate,
@@ -149,4 +150,6 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 			) : null}
 		</>
 	);
-}
+};
+
+export default memo(VideoStatus);

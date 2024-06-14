@@ -1,5 +1,4 @@
-import { memo, useEffect, useRef } from 'react';
-import withVideoPlayerProgress from '../../../../../HOC/withVideoPlayerProgress';
+import { useEffect, useRef, useState } from 'react';
 import FullScreenButton from '../Components/FullScreenButton/FullScreenButton/FullScreenButton';
 import useFullScreenLogic from '../Components/FullScreenButton/useFullScreenLogic/useFullScreenLogic';
 import GearButton from '../Components/GearButton/GearButton/GearButton';
@@ -12,42 +11,14 @@ import styles from './Controllers.module.css';
 
 function Controllers({ video, videoContainer, src, isControllerShowing, isChanging, changePause }) {
 	const handleFullScreen = useFullScreenLogic();
-
+	const [progress, setProgress] = useState(0);
 	const gearRef = useRef(null);
 	const clickTimerId = useRef(null);
 	const videoRef = useRef(video);
 	const isSeekedRef = useRef(true);
 	const canPlay = useRef(true);
 	const shouldPause = useRef(false);
-	const togglePausePlay = () => {
-		if (canPlay.current) {
-			if (!videoRef.current.ended) {
-				if (videoRef.current.paused) {
-					videoRef.current.play();
-				} else {
-					videoRef.current.pause();
-				}
-			} else {
-				videoRef.current.currentTime = 0;
-				videoRef.current.play();
-			}
-		} else {
-			shouldPause.current = true;
-		}
-	};
-	// Handle full screen or toggle play depending on click type
-	const handleClick = () => {
-		if (clickTimerId.current) {
-			handleFullScreen(videoContainer.current);
-			clearTimeout(clickTimerId.current);
-			clickTimerId.current = null;
-		} else {
-			clickTimerId.current = setTimeout(() => {
-				togglePausePlay();
-				clickTimerId.current = null;
-			}, 200);
-		}
-	};
+
 	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
@@ -62,6 +33,35 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 
 			handleWaiting: () => {
 				canPlay.current = false;
+			},
+			togglePausePlay: () => {
+				if (canPlay.current) {
+					if (!videoRef.current.ended) {
+						if (videoRef.current.paused) {
+							videoRef.current.play();
+						} else {
+							videoRef.current.pause();
+						}
+					} else {
+						videoRef.current.currentTime = 0;
+						videoRef.current.play();
+					}
+				} else {
+					shouldPause.current = true;
+				}
+			},
+			// Handle full screen or toggle play depending on click type
+			handleClick: () => {
+				if (clickTimerId.current) {
+					handleFullScreen(videoContainer.current);
+					clearTimeout(clickTimerId.current);
+					clickTimerId.current = null;
+				} else {
+					clickTimerId.current = setTimeout(() => {
+						eventRefs.current.togglePausePlay();
+						clickTimerId.current = null;
+					}, 200);
+				}
 			},
 		};
 	}
@@ -96,7 +96,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 		<>
 			<button
 				className={styles.fullDisplayPlayPauseBtn}
-				onClick={handleClick}
+				onClick={eventRefs.current.handleClick}
 				type="button"
 			/>
 
@@ -108,6 +108,8 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 						src={src}
 						video={video}
 						videoContainer={videoContainer}
+						setProgress={setProgress}
+						progress={progress}
 					/>
 				</li>
 
@@ -115,7 +117,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 					<PlayPauseButton
 						canPlay={canPlay}
 						isSeekedRef={isSeekedRef}
-						togglePausePlay={togglePausePlay}
+						togglePausePlay={eventRefs.current.togglePausePlay}
 						video={video}
 					/>
 				</li>
@@ -129,7 +131,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 				</li>
 
 				<li>
-					<ProgressTimeShow video={video} />
+					<ProgressTimeShow video={video} progress={progress} />
 				</li>
 
 				<li className={styles.gearButton} ref={gearRef}>
@@ -146,5 +148,4 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 	);
 }
 
-const EnhancedControllers = withVideoPlayerProgress(memo(Controllers));
-export default EnhancedControllers;
+export default Controllers;

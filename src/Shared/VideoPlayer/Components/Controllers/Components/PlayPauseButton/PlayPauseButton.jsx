@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 import styles from './PlayPauseButton.module.css';
 
-export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, canPlay }) {
+const PlayPauseButton = ({ video, togglePausePlay, isSeekedRef, canPlay }) => {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const isPlayingRef = useRef(isPlaying);
 	isPlayingRef.current = isPlaying;
@@ -69,4 +69,6 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
 			</span>
 		</button>
 	);
-}
+};
+
+export default memo(PlayPauseButton);

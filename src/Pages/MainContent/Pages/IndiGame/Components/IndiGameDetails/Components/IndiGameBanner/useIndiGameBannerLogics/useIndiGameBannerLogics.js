@@ -107,19 +107,21 @@ export default function useIndiGameBannerLogics() {
 	const timeId = useRef(null);
 	const eventRef = useRef(null);
 	if (!eventRef.current) {
-		eventRef.current.timerFunction = (transitionType, dispatch, time = 500) => {
-			if (timeId.current) {
-				clearTimeout(timeId.current);
-				timeId.current = null;
-			}
+		eventRef.current = {
+			timerFunction: (transitionType, dispatch, time = 500) => {
+				if (timeId.current) {
+					clearTimeout(timeId.current);
+					timeId.current = null;
+				}
 
-			timeId.current = setTimeout(() => {
-				dispatch({
-					type: 'transitionStop',
-					transitionType,
-				});
-				timeId.current = null;
-			}, time);
+				timeId.current = setTimeout(() => {
+					dispatch({
+						type: 'transitionStop',
+						transitionType,
+					});
+					timeId.current = null;
+				}, time);
+			},
 		};
 	}
 	return { initialState, reducer, timerFunction: eventRef.current.timerFunction };

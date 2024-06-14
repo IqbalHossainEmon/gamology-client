@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
 import VolumeButton from '../VolumeButton/VolumeButton';
 import styles from './VideoVolume.module.css';
 
-export default function VideoVolume({ video, videoContainer, changePause }) {
+const VideoVolume = ({ video, videoContainer, changePause }) => {
 	const [volume, setVolume] = useState(0);
 	const videoRef = useRef(video.current);
 
@@ -47,4 +47,6 @@ export default function VideoVolume({ video, videoContainer, changePause }) {
 			</div>
 		</div>
 	);
-}
+};
+
+export default memo(VideoVolume);

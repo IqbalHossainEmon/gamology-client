@@ -85,7 +85,6 @@ function Video({ videoContainer, src, captions, className }, ref) {
 			})}
 		>
 			<track kind="captions" src={captions} />
-
 			<p>Your browser does not support the video tag.</p>
 		</video>
 	);

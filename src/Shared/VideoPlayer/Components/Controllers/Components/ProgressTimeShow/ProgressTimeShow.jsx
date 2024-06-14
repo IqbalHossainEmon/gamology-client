@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
-import { useVideoPlayerProgress } from '../../../../../../Hooks/useVideoPlayerProgress';
 import styles from './ProgressTimeShow.module.css';
 
-export default function ProgressTimeShow({ video }) {
+export default function ProgressTimeShow({ video, progress }) {
 	const formatTime = useTimeFormat();
-	const time = useVideoPlayerProgress();
 	const videoRef = useRef(video.current);
 	const eventRef = useRef(null);
 	const [durationTime, setDurationTime] = useState(0);
@@ -33,7 +31,7 @@ export default function ProgressTimeShow({ video }) {
 	return (
 		<div className={styles.progressTimeShow}>
 			<p>
-				{time && durationTime ? formatTime((time / 100) * durationTime) : '0:00'}/
+				{progress && durationTime ? formatTime((progress / 100) * durationTime) : '0:00'}/
 				{durationTime ? formatTime(durationTime) : '0:00'}
 			</p>
 		</div>

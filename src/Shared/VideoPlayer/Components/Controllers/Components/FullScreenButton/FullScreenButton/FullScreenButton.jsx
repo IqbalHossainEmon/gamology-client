@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import useFullScreenLogic from '../useFullScreenLogic/useFullScreenLogic';
 import styles from './FullScreenButton.module.css';
 
-export default function FullScreenButton({ videoContainer }) {
+const FullScreenButton = ({ videoContainer }) => {
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const eventRef = useRef(null);
 
@@ -70,4 +70,6 @@ export default function FullScreenButton({ videoContainer }) {
 			</span>
 		</button>
 	);
-}
+};
+
+export default memo(FullScreenButton);

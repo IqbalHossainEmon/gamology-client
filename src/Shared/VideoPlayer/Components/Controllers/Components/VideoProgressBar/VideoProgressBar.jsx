@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-	useVideoPlayerProgress,
-	useVideoPlayerSetProgress,
-} from '../../../../../../Hooks/useVideoPlayerProgress';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
-export default function VideoProgressBar({ video, videoContainer, src, isSeekedRef, changePause }) {
+export default function VideoProgressBar({
+	video,
+	videoContainer,
+	src,
+	isSeekedRef,
+	changePause,
+	setProgress,
+	progress,
+}) {
 	const interval = useRef(null);
 	const [buffer, setBuffer] = useState(0);
 	const videoRef = useRef(video.current);
-	const progress = useVideoPlayerProgress();
-	const setProgress = useVideoPlayerSetProgress();
 	const progressRef = useRef(progress);
 	progressRef.current = progress;
 
@@ -70,14 +72,13 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
 			setCurrentTime: val => {
 				videoRef.current.currentTime = (val / 100) * videoRef.current.duration;
 			},
-			handleSetProgression: val => {
-				setProgress(val);
-			},
 
 			handleMouseUp: () => {
-				isMouseDown.current = false;
+				console.log('up');
 
-				eventRefs.current.setCurrentTime(progressRef.current);
+				isMouseDown.current = false;
+				videoRef.current.currentTime =
+					(progressRef.current / 100) * videoRef.current.duration;
 
 				if (!isPlaying.current && shouldPlay.current) {
 					videoRef.current.play();
@@ -158,7 +159,7 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
 			handleMouseUp={eventRefs.current.handleMouseUp}
 			isBuffer
 			position={progress}
-			setPosition={eventRefs.current.handleSetProgression}
+			setPosition={setProgress}
 			videoContainer={videoContainer}
 		/>
 	);

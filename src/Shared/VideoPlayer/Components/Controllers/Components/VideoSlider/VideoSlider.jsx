@@ -10,8 +10,8 @@ export default function VideoSlider({
 	buffer,
 	videoContainer,
 	changePause,
-	handleMouseUp = () => {},
-	handleMouseDown = () => {},
+	handleMouseUp,
+	handleMouseDown,
 }) {
 	const stateRef = useRef(position);
 	stateRef.current = position;
@@ -34,17 +34,17 @@ export default function VideoSlider({
 						: e.clientX - pathRef.offsetLeft) /
 						pathRef.width) *
 					100;
-
-				if (cursorInPercent < 0) {
+				if (cursorInPercent < 100 && cursorInPercent > 0) {
+					if (
+						parseFloat(cursorInPercent.toFixed(3)) !==
+						parseFloat(stateRef.current.toFixed(3))
+					) {
+						setPosition(cursorInPercent);
+					}
+				} else if (cursorInPercent < 0 && stateRef.current !== 0) {
 					cursorInPercent = 0;
-				} else if (cursorInPercent > 100) {
+				} else if (cursorInPercent > 100 && stateRef.current !== 100) {
 					cursorInPercent = 100;
-				}
-				if (
-					parseFloat(cursorInPercent.toFixed(3)) !==
-					parseFloat(stateRef.current.toFixed(3))
-				) {
-					setPosition(cursorInPercent);
 				}
 			},
 

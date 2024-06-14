@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
 import VideoPlayerToggleSwitch from '../VideoPlayerToggleSwitch/VideoPlayerToggleSwitch';
 import styles from './GearButton.module.css';
@@ -97,4 +97,4 @@ function GearButton({ gearRef }) {
 	);
 }
 
-export default GearButton;
+export default memo(GearButton);
