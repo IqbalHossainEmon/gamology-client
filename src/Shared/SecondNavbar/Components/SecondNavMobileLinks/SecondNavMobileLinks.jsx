@@ -51,7 +51,6 @@ export default function SecondNavMobileLinks({ setNavShow }) {
 					setNavTextState={handleClick}
 				/>
 			</div>
-
 			<button
 				className={styles.navLinkToggleButton}
 				onClick={() => {

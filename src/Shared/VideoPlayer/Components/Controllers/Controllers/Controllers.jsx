@@ -99,7 +99,6 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 				onClick={eventRefs.current.handleClick}
 				type="button"
 			/>
-
 			<ul className={styles.controllers} id={isControllerShowing ? styles.show : styles.hide}>
 				<li className={styles.videoProgressSlider}>
 					<VideoProgressBar
@@ -142,7 +141,6 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 					<FullScreenButton videoContainer={videoContainer} />
 				</li>
 			</ul>
-
 			<VideoStatus isChanging={isChanging} isSeekedRef={isSeekedRef} video={video} />
 		</>
 	);

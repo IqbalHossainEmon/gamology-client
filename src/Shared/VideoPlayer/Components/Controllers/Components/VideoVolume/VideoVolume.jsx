@@ -34,7 +34,6 @@ const VideoVolume = ({ video, videoContainer, changePause }) => {
 	return (
 		<div className={styles.volume}>
 			<VolumeButton setVolume={setVolume} videoRef={videoRef} volume={volume} />
-
 			<div className={styles.volumeSliderContainer}>
 				<div className={styles.volumeSlider}>
 					<VideoSlider

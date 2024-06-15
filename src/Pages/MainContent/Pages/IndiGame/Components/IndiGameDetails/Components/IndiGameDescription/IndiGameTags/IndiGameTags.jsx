@@ -18,7 +18,6 @@ export default function IndiGameTags({ genes, features }) {
 					)}
 				</ul>
 			</div>
-
 			<div className={styles.individualGameTagGroupContainer}>
 				<h5 className={styles.keyName}>Features</h5>
 

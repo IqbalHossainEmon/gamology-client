@@ -66,7 +66,6 @@ function SelectionFieldTextField({
 					/>
 				</div>
 			</div>
-
 			<ErrorMessage enable={!parentErrorShow && errorShow} errorMessage={errorMessage} />
 		</>
 	);

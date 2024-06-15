@@ -73,7 +73,6 @@ function CoverImageContainer({
 				ref={inputRef}
 				type="file"
 			/>
-
 			<button
 				className={styles.fileUploadButton}
 				onClick={() => {

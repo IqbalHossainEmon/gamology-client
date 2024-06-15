@@ -38,7 +38,6 @@ function UserDeleteConfirmModal() {
 				}}
 				type="text"
 			/>
-
 			<button className={styles.deleteBtn} onClick={handleDelete} type="button">
 				Delete
 			</button>

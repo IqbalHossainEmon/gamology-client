@@ -19,7 +19,6 @@ export default function GameInfoFieldSpecifications({
 			<h3 className={styles.header}>
 				{hasDefault ? 'Edit' : 'Add'} Game&#39;s System Requirement
 			</h3>
-
 			<GameInfoFieldSpecificationContainer
 				errorChange={errorChange}
 				errorMessages={errorMessages.current.gameSpecificationsError.spec}
@@ -27,7 +26,6 @@ export default function GameInfoFieldSpecifications({
 				{...(hasDefault && { defaultGameSpecifications: defaultGameSpecifications.spec })}
 				hasDefault={hasDefault}
 			/>
-
 			<div>
 				<GameInfoFieldSpecsLangsSupported
 					errorChange={errorChange}

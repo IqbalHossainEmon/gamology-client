@@ -10,7 +10,6 @@ export default function DiscoverGamesButton({ handleClick, cardActive, length })
 				handleClick={() => handleClick('prev')}
 				name="Previous Button"
 			/>
-
 			<ArrowButton
 				className={[styles.btn, styles.prevBtn].join(' ')}
 				enable={length === -cardActive}

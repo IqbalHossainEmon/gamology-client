@@ -120,7 +120,6 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 					</div>
 				</div>
 			</div>
-
 			<div className={styles.errorContainer}>
 				<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 			</div>

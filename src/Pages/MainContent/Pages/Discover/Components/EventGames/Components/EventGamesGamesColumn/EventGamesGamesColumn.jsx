@@ -21,7 +21,6 @@ export default function EventGamesGamesColumn({ header, games, bar, colNum, card
 					<ButtonWaterEffect btnRef={btnRef} />
 				</button>
 			</div>
-
 			<ul className={`${bar ? `${styles.bar} ` : ''}${styles.column}`}>
 				{games.map(game => (
 					<GameInColumn game={game} key={game.id} length={games.length} />

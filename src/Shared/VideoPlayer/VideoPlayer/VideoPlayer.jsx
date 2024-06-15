@@ -110,7 +110,6 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 				src={src}
 				videoContainer={videoContainerRef}
 			/>
-
 			<Controllers
 				changePause={changePause}
 				isChanging={isChanging}

@@ -7,11 +7,9 @@ export default function MainContent() {
 	return (
 		<>
 			<SecondNavbar />
-
 			<main className={styles.main}>
 				<IndiGame />
 			</main>
-
 			<Footer />
 		</>
 	);

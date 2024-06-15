@@ -17,7 +17,6 @@ export default function GameInfoFieldBanner({
 			<h3 className={styles.header}>
 				{hasDefault ? 'Edit' : 'Add'} Game&#39;s Banner Images or Videos
 			</h3>
-
 			<div className={styles.textFieldContainer}>
 				{[...Array(fieldCount).keys()].map((arr, i) => (
 					<BannerInputFieldContainer
@@ -31,7 +30,6 @@ export default function GameInfoFieldBanner({
 					/>
 				))}
 			</div>
-
 			<div className={styles.btnContainer}>
 				<div className={styles.btn}>
 					<ButtonForGameInfoFieldSection

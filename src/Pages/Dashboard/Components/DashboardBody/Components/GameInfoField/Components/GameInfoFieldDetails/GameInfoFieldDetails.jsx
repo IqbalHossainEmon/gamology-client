@@ -20,7 +20,6 @@ export default function GameInfoFieldDetails({
 	return (
 		<section className={styles.gameDetails}>
 			<h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s Details</h3>
-
 			<TextField
 				errorChange={errorChange}
 				errorMessage={errorMessages.current.gameInfoError.name}
@@ -31,7 +30,6 @@ export default function GameInfoFieldDetails({
 				{...(hasDefault && { defaultValue: defaultGameInfo.name })}
 				htmlFor="gameName"
 			/>
-
 			<div className={styles.flexContainer}>
 				<TextField
 					errorChange={errorChange}
@@ -56,7 +54,6 @@ export default function GameInfoFieldDetails({
 					{...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
 				/>
 			</div>
-
 			<div className={styles.flexContainer}>
 				<FileUploadButton
 					accept="image/*"

@@ -88,7 +88,6 @@ export default function GameInfoFieldSpecification({
 					text={state.name}
 				/>
 			</div>
-
 			<div
 				className={styles.systemReqContainer}
 				{...(!enabled.enabled && { disabled: true, tabIndex: '-1' })}

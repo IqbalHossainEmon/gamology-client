@@ -77,9 +77,7 @@ export default function IndiGameShowReview() {
 	return (
 		<div className={styles.individualGameShowReview}>
 			<IndiGameOrderBy handleSort={handleChange} />
-
 			<IndiGameReviews reviews={reviews} />
-
 			<div className={styles.paginationContainer}>
 				<Pagination
 					activePage={activePage}

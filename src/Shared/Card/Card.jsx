@@ -17,9 +17,7 @@ export default function Card({ cardInfo, style, className, children }) {
 				className={styles.cardImg}
 				src={carouselThumb}
 			/>
-
 			<h4 className={styles.name}>{name}</h4>
-
 			<div className={styles.price}>
 				<DiscountPriceWithPercent price={price} />
 			</div>

@@ -59,7 +59,6 @@ export default function IndiGameBannerCards({
 				}}
 				name="Previous Button"
 			/>
-
 			<div className={styles.cardsWrapper}>
 				<ul
 					className={styles.individualGameBannerCards}
@@ -98,7 +97,6 @@ export default function IndiGameBannerCards({
 					))}
 				</ul>
 			</div>
-
 			<ArrowButton
 				className={[styles.btn, styles.nextBtn].join(' ')}
 				handleClick={() => {

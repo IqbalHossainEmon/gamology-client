@@ -90,7 +90,6 @@ export default function DiscoverBanner() {
 					data={data}
 				/>
 			</div>
-
 			<BannerButtons handleClick={handleClick} />
 
 			{screenWidth > 768 && (

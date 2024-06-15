@@ -78,9 +78,7 @@ export default function IndiGameDescription() {
 	return (
 		<section className={styles.individualGameDescription}>
 			<IndiGameSortDescription desc={sortDesc} />
-
 			<IndiGameTags features={features} genes={genes} />
-
 			<IndiGameTextDescription descriptions={descriptions} />
 		</section>
 	);

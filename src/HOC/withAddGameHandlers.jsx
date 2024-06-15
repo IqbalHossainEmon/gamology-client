@@ -9,7 +9,6 @@ const withAddGameHandlers = Component =>
 		const handleSetValue = (v, name) => {
 			setValue(prev => ({ ...prev, [name]: v }));
 		};
-
 		return <Component handleBlur={handleBlur} handleSetValue={handleSetValue} />;
 	};
 

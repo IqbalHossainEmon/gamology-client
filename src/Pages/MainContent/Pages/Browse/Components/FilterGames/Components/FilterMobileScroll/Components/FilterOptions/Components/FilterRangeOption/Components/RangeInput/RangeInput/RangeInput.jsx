@@ -74,9 +74,7 @@ export default function RangeInput({
 				state={state.smaller}
 				val={limit.lower.toFixed(float)}
 			/>
-
 			<span className={styles.minus} />
-
 			<RangeInputField
 				disabled={disabled}
 				float={float}

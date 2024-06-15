@@ -81,7 +81,6 @@ function AllGamesPriceEditModal({ price }) {
 					}}
 				/>
 			</div>
-
 			<button className={styles.submitBtn} onClick={handleSubmit} ref={btnRef} type="button">
 				Submit
 				<ButtonWaterEffect backGround="#3e9c35" btnRef={btnRef} long />

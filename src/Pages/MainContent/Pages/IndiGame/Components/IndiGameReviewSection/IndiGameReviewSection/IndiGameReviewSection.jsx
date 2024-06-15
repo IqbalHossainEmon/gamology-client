@@ -6,7 +6,6 @@ function IndiGameReviewSection() {
 	return (
 		<section className={styles.individualGameReview}>
 			<h2 className={styles.reviewMainHeader}>Reviews</h2>
-
 			<div className={styles.reviewContainer}>
 				<IndiGameTakeReview />
 

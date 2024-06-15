@@ -265,7 +265,6 @@ export default function DiscoverGames({ headerTitle }) {
 					length={data.length - cardOnDeck}
 				/>
 			</div>
-
 			<DiscoverGamesCards
 				cardsWidth={cardsWidth}
 				data={data}

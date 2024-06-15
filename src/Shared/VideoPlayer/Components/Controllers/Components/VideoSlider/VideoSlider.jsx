@@ -109,7 +109,6 @@ export default function VideoSlider({
 			tabIndex="0"
 		>
 			<div className={styles.path} />
-
 			<div className={styles.activePath} style={{ scale: `${position / 100} 1` }} />
 
 			{isBuffer ? (

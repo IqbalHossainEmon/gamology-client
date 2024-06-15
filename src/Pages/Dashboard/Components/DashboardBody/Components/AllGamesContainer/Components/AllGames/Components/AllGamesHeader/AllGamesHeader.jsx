@@ -39,7 +39,6 @@ function AllGamesHeader({ setSearchText }) {
 	return (
 		<div className={styles.allGamesHeader}>
 			<h2 className={styles.headerText}>All Games</h2>
-
 			<div className={styles.searchFieldContainer}>
 				<div className={`${navShow ? `${styles.searchShow} ` : ''}${styles.searchField}`}>
 					<SearchField

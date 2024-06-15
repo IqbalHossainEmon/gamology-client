@@ -26,7 +26,6 @@ export default function SecondNavbar() {
 
 				<SecondNavRightLinks screenWidth={screenWidth} />
 			</div>
-
 			<ScreenShadow show={navShow} />
 		</section>
 	);

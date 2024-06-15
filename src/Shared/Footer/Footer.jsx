@@ -10,7 +10,6 @@ export default function Footer() {
 					<h2>Gamology</h2>
 				</a>
 			</div>
-
 			<div className={styles.linkContainer}>
 				<ol className={styles.links}>
 					{[
@@ -26,7 +25,6 @@ export default function Footer() {
 					))}
 				</ol>
 			</div>
-
 			<div className={styles.description}>
 				<p>
 					<small>

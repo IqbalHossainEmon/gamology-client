@@ -37,7 +37,6 @@ export default function BannerInputFieldContainer({
 				{...(hasDefault && { defaultData: defaultGameBanner?.cover })}
 				hasDefault={hasDefault}
 			/>
-
 			<FileUploadButton
 				{...(type || { disabled: true })}
 				accept="image/*"
@@ -55,7 +54,6 @@ export default function BannerInputFieldContainer({
 				setState={handleSetValues}
 				{...(hasDefault && { defaultValue: defaultGameBanner?.thumb })}
 			/>
-
 			<div className={styles.selectContainer}>
 				<SelectionField
 					htmlFor={number}

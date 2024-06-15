@@ -9,7 +9,6 @@ function UserCard({ data, children }) {
 			<div className={styles.cardContainerImg}>
 				<img alt={name} src={img} />
 			</div>
-
 			<div className={styles.cardContainerInfo}>
 				<h4>{name}</h4>
 

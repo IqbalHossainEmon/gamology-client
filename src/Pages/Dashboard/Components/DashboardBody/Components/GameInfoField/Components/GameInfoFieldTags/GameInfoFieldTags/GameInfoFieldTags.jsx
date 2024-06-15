@@ -67,7 +67,6 @@ export default function GameInfoFieldTags({
 	return (
 		<section className={styles.addGameTags}>
 			<h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s tags</h3>
-
 			<div className={styles.optionsContainer}>
 				{options.map(option => (
 					<div className={styles.options} key={option.id}>
@@ -82,7 +81,6 @@ export default function GameInfoFieldTags({
 					</div>
 				))}
 			</div>
-
 			<PriceReleaseDate
 				defaultPrice={defaultPrice}
 				defaultReleaseDate={defaultReleaseDate}

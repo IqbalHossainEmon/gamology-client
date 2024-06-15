@@ -353,7 +353,6 @@ function EditGame() {
 					</svg>
 				</button>
 			</div>
-
 			<GameInfoField defaultData={AddGameDetails} handleGameInfo={handleSubmit} hasDefault />
 		</div>
 	);

@@ -16,7 +16,6 @@ function AddCategoryNameAndTags({ errorRef, errorChange, addInfoRef }) {
 					addInfoRef.current[name].name = val;
 				}}
 			/>
-
 			<AddTagsUnderCategory
 				errorChange={errorChange}
 				errorMessage={errorRef.current.tags}

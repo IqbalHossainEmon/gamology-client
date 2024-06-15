@@ -31,7 +31,6 @@ function FilterOption({ text, setState, border, state, name }) {
 			type="button"
 		>
 			<p className={styles.text}>{text}</p>
-
 			<div className={styles.toggleButtonContainer}>
 				<ToggleSwitch
 					event={eventRef.current.handleClick}

@@ -93,7 +93,6 @@ function TagsContainer({ tag, setTags }) {
 					<strong className={styles.cross} />
 				</button>
 			</div>
-
 			<ul className={styles.tagList}>
 				{tag.optionList.map(option => (
 					<li className={styles.tagListItem} key={option.id}>

@@ -122,7 +122,6 @@ function AddTags({ tags, setTags }) {
 				Add
 				{tagOrCategory ? 'Tag' : 'Category'}
 			</h3>
-
 			<div className={styles.selectionField}>
 				<SelectionField
 					htmlFor="add-what"

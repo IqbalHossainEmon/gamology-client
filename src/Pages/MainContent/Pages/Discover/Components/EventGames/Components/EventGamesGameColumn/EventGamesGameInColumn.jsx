@@ -11,7 +11,6 @@ export default function EventGamesGameColumn({ game }) {
 					src={game.carouselThumb}
 				/>
 			</div>
-
 			<div className={styles.gameDetails}>
 				<h4 className={styles.name}>{game.name}</h4>
 

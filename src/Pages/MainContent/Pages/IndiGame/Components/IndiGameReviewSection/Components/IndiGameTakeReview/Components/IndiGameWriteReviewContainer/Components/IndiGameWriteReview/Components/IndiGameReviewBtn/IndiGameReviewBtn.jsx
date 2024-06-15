@@ -14,7 +14,6 @@ export default function IndiGameReviewButtons({ setWriteReviewShow, handleSubmit
 			>
 				Close
 			</button>
-
 			<button
 				ref={buttonRef}
 				type="button"

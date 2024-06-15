@@ -34,7 +34,6 @@ function DrawerOptions({ option, parentState }) {
 					<RotateArrow state={show.show} />
 				</div>
 			</button>
-
 			<ul
 				className={styles.innerOptionsContainer}
 				ref={containerRef}

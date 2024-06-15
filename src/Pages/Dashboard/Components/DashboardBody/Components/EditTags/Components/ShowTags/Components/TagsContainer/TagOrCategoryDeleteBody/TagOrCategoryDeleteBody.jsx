@@ -8,7 +8,6 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 	return (
 		<div className={styles.modalBody}>
 			<p className={styles.modelBody}>{text}</p>
-
 			<div className={styles.checkPoint}>
 				<TextField
 					errorChange={errorChange}
@@ -21,7 +20,6 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					}}
 				/>
 			</div>
-
 			<div className={styles.btnContainer}>
 				<button
 					className={styles.deleteBtn}

@@ -34,7 +34,6 @@ function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, tags }) {
 					addInfoRef.current[name].name = val;
 				}}
 			/>
-
 			<SelectionFieldWithErrorMessage
 				errorChange={errorChange}
 				errorMessage={errorRef.current.category}

@@ -10,7 +10,6 @@ export default function IndiGameSpecification({ spec }) {
 					Recommend
 				</h5>
 			</div>
-
 			<div>
 				{spec?.systemReq?.map(sysReq => (
 					<div className={styles.row} key={sysReq[0].key}>

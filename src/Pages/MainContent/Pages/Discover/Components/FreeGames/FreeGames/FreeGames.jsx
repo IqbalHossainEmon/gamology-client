@@ -105,7 +105,6 @@ export default function FreeGames() {
 					<ButtonWaterEffect btnRef={btnRef} />
 				</button>
 			</div>
-
 			<div className={`${getClassName(items.length)} ${styles.games}`}>
 				{items.map(item => (
 					<FreeGame data={item} key={item.id} length={items.length} today={today} />

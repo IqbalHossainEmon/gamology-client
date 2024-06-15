@@ -35,7 +35,6 @@ function GameInfoFieldDescriptions({
 	return (
 		<section className={styles.addGameDescriptions}>
 			<h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s Descriptions</h3>
-
 			<div className={styles.sortDescription}>
 				<TextField
 					errorChange={errorChange}
@@ -48,7 +47,6 @@ function GameInfoFieldDescriptions({
 					{...(hasDefault && { defaultValue: defaultGameDescriptions.shortDesc })}
 				/>
 			</div>
-
 			<div>
 				{array.map((item, index) => (
 					<GameInfoFieldDescription
@@ -64,7 +62,6 @@ function GameInfoFieldDescriptions({
 					/>
 				))}
 			</div>
-
 			<div className={styles.buttonContainer}>
 				<div className={styles.btn}>
 					<ButtonForGameInfoFieldSection

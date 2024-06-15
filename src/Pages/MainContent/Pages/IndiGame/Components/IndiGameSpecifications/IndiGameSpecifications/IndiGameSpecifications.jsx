@@ -118,7 +118,6 @@ export default function IndiGameSpecifications() {
 	return (
 		<section className={styles.individualGameSpecifications}>
 			<h2 className={styles.specificationText}>Specifications</h2>
-
 			<div className={styles.specificationContainer}>
 				<div className={styles.mainHeadersContainer}>
 					{spec.spec?.map((s, i) => (

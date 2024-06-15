@@ -49,7 +49,6 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
 			>
 				<img alt={`${name} card-${id}`} src={carouselThumb} />
 			</button>
-
 			<CardNameContainer isPause={isPause} name={name} state={cardsPosition[id] === 0} />
 		</li>
 	);

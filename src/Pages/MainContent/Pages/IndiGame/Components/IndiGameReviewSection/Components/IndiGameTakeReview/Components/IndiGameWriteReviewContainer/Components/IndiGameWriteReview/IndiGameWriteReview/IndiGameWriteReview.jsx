@@ -70,7 +70,6 @@ export default function IndiGameWriteReview({
 					/>
 				</div>
 			</div>
-
 			<LineBreak />
 		</div>
 	);

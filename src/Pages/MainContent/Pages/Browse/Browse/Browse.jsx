@@ -264,7 +264,6 @@ function Browse() {
 	return (
 		<section className={styles.browse}>
 			<BrowseHeader handleChange={dispatch} state={state} />
-
 			<div className={styles.mainContent}>
 				<FilterGames
 					dispatch={dispatch}

@@ -15,7 +15,6 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 				className={styles.carouselImg}
 				src={coverImg}
 			/>
-
 			<div className={styles.itemButton}>
 				<button type="button">buy now</button>
 			</div>

@@ -77,7 +77,6 @@ export default function IndiGameTakeReview() {
 					</div>
 				</div>
 			</div>
-
 			<LineBreak />
 
 			{userReviewDone ? (

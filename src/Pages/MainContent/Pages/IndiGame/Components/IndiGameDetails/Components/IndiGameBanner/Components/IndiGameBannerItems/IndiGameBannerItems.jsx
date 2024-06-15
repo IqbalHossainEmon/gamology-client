@@ -25,7 +25,6 @@ export default function IndiGameBannerItems({
 					})
 				}
 			/>
-
 			<ul
 				className={styles.individualGameBannerItems}
 				ref={containerRef}
@@ -54,7 +53,6 @@ export default function IndiGameBannerItems({
 					/>
 				))}
 			</ul>
-
 			<ArrowButton
 				className={[styles.next, styles.arrowButton].join(' ')}
 				handleClick={() =>

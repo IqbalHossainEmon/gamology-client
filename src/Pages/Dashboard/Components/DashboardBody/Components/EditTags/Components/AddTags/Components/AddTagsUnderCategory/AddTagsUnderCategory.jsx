@@ -28,7 +28,6 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 					</div>
 				))}
 			</div>
-
 			<div className={styles.btnContainer}>
 				<div className={styles.addTagBtn}>
 					<button

@@ -8,9 +8,7 @@ function DashboardModal({ content }) {
 	return (
 		<>
 			<h2 className={styles.header}>{modalTitle}</h2>
-
 			<div className={styles.headerQuestion}>{modalBody}</div>
-
 			<div>{modalFooter}</div>
 		</>
 	);

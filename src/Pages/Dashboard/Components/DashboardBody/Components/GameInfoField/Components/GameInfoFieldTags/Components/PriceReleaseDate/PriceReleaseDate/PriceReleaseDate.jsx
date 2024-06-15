@@ -39,7 +39,6 @@ export default function PriceReleaseDate({
 					/>
 				</div>
 			</div>
-
 			<ReleaseDate
 				defaultReleaseDate={defaultReleaseDate}
 				errorChange={errorChange}

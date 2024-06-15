@@ -37,7 +37,6 @@ function SelectionFieldWithErrorMessage({
 				placeholder={placeholder}
 				setState={setState}
 			/>
-
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);

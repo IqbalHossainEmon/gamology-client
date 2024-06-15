@@ -45,7 +45,6 @@ export default function IndiGameOrderBy({ handleSort }) {
 					<RotateArrow state={show} />
 				</div>
 			</button>
-
 			<IndiGameOrderByListContainer
 				handleSort={handleSort}
 				listRef={listRef}

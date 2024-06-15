@@ -71,7 +71,6 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 				singleStepRef={singleStepRef}
 				state={state}
 			/>
-
 			<RangeInput
 				disabled={disableState}
 				float={float}

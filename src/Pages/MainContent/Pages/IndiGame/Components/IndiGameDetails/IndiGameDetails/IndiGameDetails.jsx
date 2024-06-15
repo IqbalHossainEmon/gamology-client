@@ -11,7 +11,6 @@ function IndiGameDetails() {
 
 				<IndiGameDescription />
 			</div>
-
 			<div className={styles.asideDetail}>
 				<IndiGameDetailAside />
 			</div>

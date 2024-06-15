@@ -47,7 +47,6 @@ export default function OptionsContainer({
 	return (
 		<div className={styles.optionsContainer}>
 			<h4>{title}</h4>
-
 			<ul>
 				{options.map((option, i) => (
 					<FilterOption
@@ -60,7 +59,6 @@ export default function OptionsContainer({
 					/>
 				))}
 			</ul>
-
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);

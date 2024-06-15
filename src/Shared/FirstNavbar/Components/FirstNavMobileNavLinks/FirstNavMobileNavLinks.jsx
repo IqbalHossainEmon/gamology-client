@@ -6,7 +6,6 @@ export default function FirstNavMobileNavLinks({ setNavState, navState }) {
 	return (
 		<div className={styles.NavLinks} {...(navState && { id: styles.show })}>
 			<FirstNavLinks setNavState={() => setNavState(false)} />
-
 			<NavProfileInfo />
 		</div>
 	);

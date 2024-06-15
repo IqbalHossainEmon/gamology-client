@@ -84,7 +84,6 @@ function GearButton({ gearRef }) {
 					</svg>
 				</span>
 			</button>
-
 			<VideoPlayerToggleSwitch
 				autoplay={autoplay.autoplay}
 				event={eventRef.current.handleClick}
