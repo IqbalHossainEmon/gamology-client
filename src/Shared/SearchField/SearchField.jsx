@@ -34,6 +34,7 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
 
     eventRef.handleClose = useCallback(isFormDismount => {
         eventRef.setShowState(false);
+        searchInputRef.current.blur();
         if (!isFormDismount) searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
         window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
     }, []);
@@ -56,7 +57,8 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         }
     }, []);
 
-    const handleSearchClick = () => {
+    const handleSearchClick = e => {
+        e.stopPropagation();
         eventRef.setShowState(true);
         showMenu();
         searchInputRef.current.focus();
@@ -76,7 +78,14 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         <button
             ref={searchRef}
             type="button"
-            onClick={handleSearchClick}
+            {...(show
+                ? {
+                      onMouseDown: e => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                      },
+                  }
+                : { onClick: handleSearchClick })}
             className={styles.searchField}
             id={show ? styles.show : styles.hide}
         >
@@ -89,7 +98,6 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
                 ref={searchInputRef}
                 value={value}
                 onChange={handleChange}
-                onMouseDown={handleSearchClick}
                 placeholder="Search Here"
                 name="search"
                 autoComplete="off"
