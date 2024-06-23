@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import UserCard from '../../UserCard/UserCard';
+import UserCard from '../UserCard/UserCard';
 import styles from './UserContainer.module.css';
 
 const userDetail = [];
