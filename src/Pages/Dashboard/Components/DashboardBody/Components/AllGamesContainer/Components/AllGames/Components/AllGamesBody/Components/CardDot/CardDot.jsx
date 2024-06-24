@@ -1,12 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../../../../../../../../../Hooks/useDropDownHide';
-import CardDotModalBody from '../Components/CardDotModalBodyContainer/CardDotModalBody';
+import { useEffect, useRef, useState } from 'react';
+import useDropDownHide from '../../../../../../../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
-const CardDot = ({ className, setModal, item }) => {
+const CardDot = ({ className, item, lists }) => {
     const [show, setShow] = useState(false);
-
-    const modalBody = useCallback((props, type) => <CardDotModalBody {...props} type={type} detail={item} />, [item]);
 
     const elementRef = useRef(null);
 
@@ -78,49 +75,19 @@ const CardDot = ({ className, setModal, item }) => {
             </button>
             {show && (
                 <ul className={styles.listContainer}>
-                    <li>
-                        <button type="button">Edit</button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setModal({
-                                    show: true,
-                                    title: 'Edit Price',
-                                    modalQuestion: (
-                                        <>
-                                            What price($) you want to set for <span className={styles.nameContainer}>{item.name}</span>
-                                        </>
-                                    ),
-                                    ModalBody: props => modalBody(props, 'price'),
-                                });
-                                setShow(false);
-                            }}
-                        >
-                            Price
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setModal({
-                                    show: true,
-                                    title: 'Delete Game',
-                                    modalQuestion: (
-                                        <>
-                                            Are you sure you want to delete <span className={styles.nameContainer}>{item.name}</span>?
-                                        </>
-                                    ),
-                                    ModalBody: props => modalBody(props, 'delete'),
-                                });
-                                setShow(false);
-                            }}
-                        >
-                            Delete
-                        </button>
-                    </li>
+                    {lists.map(list => (
+                        <li key={list.id}>
+                            <button
+                                onClick={() => {
+                                    list.event(item);
+                                    setShow(false);
+                                }}
+                                type="button"
+                            >
+                                {list.name}
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             )}
         </div>
