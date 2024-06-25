@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import CardDot from '../../../../Shared/CardDot/CardDot';
 import UserCard from '../UserCard/UserCard';
 import styles from './UserContainer.module.css';
 
@@ -13,7 +14,7 @@ for (let i = 0; i < 100; i++) {
     userDetail.push(user);
 }
 
-const UserContainer = () => {
+const UserContainer = ({ setModal }) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -23,7 +24,56 @@ const UserContainer = () => {
     return (
         <div className={styles.userContainer}>
             {users.map(user => (
-                <UserCard key={user.id} data={user} />
+                <UserCard key={user.id} data={user}>
+                    <CardDot
+                        className={styles.cardDots}
+                        setModal={setModal}
+                        item={user}
+                        lists={[
+                            {
+                                id: 1,
+                                name: 'Edit',
+                                event: () => console.log('Edit'),
+                            },
+                            {
+                                id: 2,
+                                name: 'Price',
+                                event: detail => {
+                                    // setModal({
+                                    //     show: true,
+                                    //     title: 'Edit Price',
+                                    //     modalQuestion: (
+                                    //         <>
+                                    //             What price($) you want to set for <span className={styles.nameContainer}>{item.name}</span>
+                                    //         </>
+                                    //     ),
+                                    //     ModalBody: props => modalBody(props, 'price', detail),
+                                    // });
+                                    console.log('Price');
+                                },
+                            },
+                            {
+                                id: 3,
+                                name: 'Delete',
+                                event: detail => {
+                                    setModal({
+                                        show: true,
+                                        title: 'Delete Game',
+                                        modalQuestion: (
+                                            <>
+                                                Are you sure you want to delete <span className={styles.nameContainer}>{user.name}</span>?
+                                            </>
+                                        ),
+                                        ModalBody: props => {
+                                            // modalBody(props, 'delete', detail);
+                                            console.log('Delete');
+                                        },
+                                    });
+                                },
+                            },
+                        ]}
+                    />
+                </UserCard>
             ))}
         </div>
     );

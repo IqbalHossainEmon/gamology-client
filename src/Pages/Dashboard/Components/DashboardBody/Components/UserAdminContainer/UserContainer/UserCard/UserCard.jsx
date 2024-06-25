@@ -1,6 +1,6 @@
 import styles from './UserCard.module.css';
 
-const UserCard = ({ data }) => {
+const UserCard = ({ data, children }) => {
     const { img, name, email } = data;
     return (
         <div className={styles.cardContainer}>
@@ -11,6 +11,7 @@ const UserCard = ({ data }) => {
                 <h4>{name}</h4>
                 <p>{email}</p>
             </div>
+            {children && children}
         </div>
     );
 };

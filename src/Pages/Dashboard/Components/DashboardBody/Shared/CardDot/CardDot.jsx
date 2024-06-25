@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../../../../../../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
-const CardDot = ({ className, item, lists }) => {
+const CardDot = ({ item, lists }) => {
     const [show, setShow] = useState(false);
 
     const elementRef = useRef(null);
@@ -14,7 +14,7 @@ const CardDot = ({ className, item, lists }) => {
     }, [setElement]);
 
     return (
-        <div ref={elementRef} className={className} {...(show && { id: styles.show })}>
+        <div ref={elementRef} className={styles.cardDots} {...(show && { id: styles.show })}>
             <button
                 onClick={() => {
                     setShow(prev => !prev);

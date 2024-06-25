@@ -1,54 +1,42 @@
 .cardsContainer {
-  list-style: none;
-  display: grid;
-  padding: 10px 5px;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 3rem 1rem;
+	list-style: none;
+	display: grid;
+	padding: 10px 5px;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 3rem 1rem;
 }
 .list {
-  position: relative;
-}
-.cardDots {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  opacity: 0;
-  transition: opacity 300ms;
-}
-.list:hover .cardDots {
-  opacity: 1;
+	position: relative;
 }
 
 @media only screen and (hover: none) {
-  .cardDots {
-    opacity: 1;
-  }
+	.cardDots {
+		opacity: 1;
+	}
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 769px) {
-  .cardsContainer {
-    grid-template-columns: repeat(4, 1fr);
-  }
+	.cardsContainer {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
 @media only screen and (max-width: 768px) and (min-width: 553px) {
-  .cardsContainer {
-    grid-template-columns: repeat(3, 1fr);
-  }
+	.cardsContainer {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 @media only screen and (max-width: 552px) and (min-width: 250px) {
-  .cardsContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	.cardsContainer {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 @media only screen and (max-width: 340px) {
-  .cardsContainer {
-    grid-template-columns: repeat(1, 1fr);
-  }
+	.cardsContainer {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }
 @media only screen and (max-width: 1099px) {
-  .allGamesBody {
-    padding: 0 0.5rem;
-  }
+	.allGamesBody {
+		padding: 0 0.5rem;
+	}
 }

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import Card from '../../../../../../../../../../../Shared/Card/Card';
+import CardDot from '../../../../../../../Shared/CardDot/CardDot';
 import CardDotModalBody from '../Components/AllGamesModalBodyEvents/CardDotModalBodyContainer/CardDotModalBody';
-import CardDot from '../Components/CardDot/CardDot';
 import styles from './AllGamesBody.module.css';
 
 const AllGamesBody = ({ items, setModal }) => {
@@ -13,7 +13,6 @@ const AllGamesBody = ({ items, setModal }) => {
                 {items.map(item => (
                     <Card className={styles.list} key={item.id} cardInfo={item} image={item.image} alt={item.title}>
                         <CardDot
-                            className={styles.cardDots}
                             setModal={setModal}
                             item={item}
                             lists={[

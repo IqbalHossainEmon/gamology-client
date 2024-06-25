@@ -1,3 +1,15 @@
+.list:hover .cardDots {
+	opacity: 1;
+}
+.cardDots {
+	position: absolute;
+	right: 0.5rem;
+	top: 0.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	opacity: 0;
+	transition: opacity 300ms;
+}
 #show {
 	opacity: 1;
 }
