@@ -1,9 +1,9 @@
 import styles from './UserCard.module.css';
 
-const UserCard = ({ data, children }) => {
+const UserCard = ({ data, children, className }) => {
     const { img, name, email } = data;
     return (
-        <div className={styles.cardContainer}>
+        <div className={`${styles.cardContainer}${className ? ` ${className}` : ''}`}>
             <div className={styles.cardContainerImg}>
                 <img src={img} alt={name} />
             </div>

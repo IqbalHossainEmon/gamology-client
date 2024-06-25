@@ -24,9 +24,9 @@ const UserContainer = ({ setModal }) => {
     return (
         <div className={styles.userContainer}>
             {users.map(user => (
-                <UserCard key={user.id} data={user}>
+                <UserCard className={styles.list} key={user.id} data={user}>
                     <CardDot
-                        className={styles.cardDots}
+                        hoverClassName={styles.dots}
                         setModal={setModal}
                         item={user}
                         lists={[
@@ -37,23 +37,6 @@ const UserContainer = ({ setModal }) => {
                             },
                             {
                                 id: 2,
-                                name: 'Price',
-                                event: detail => {
-                                    // setModal({
-                                    //     show: true,
-                                    //     title: 'Edit Price',
-                                    //     modalQuestion: (
-                                    //         <>
-                                    //             What price($) you want to set for <span className={styles.nameContainer}>{item.name}</span>
-                                    //         </>
-                                    //     ),
-                                    //     ModalBody: props => modalBody(props, 'price', detail),
-                                    // });
-                                    console.log('Price');
-                                },
-                            },
-                            {
-                                id: 3,
                                 name: 'Delete',
                                 event: detail => {
                                     setModal({

@@ -5,3 +5,12 @@
 	grid-template-columns: repeat(5, 1fr);
 	gap: 1rem;
 }
+.list:hover .dots {
+	opacity: 1;
+}
+
+@media only screen and (hover: none) {
+	.dots {
+		opacity: 1;
+	}
+}

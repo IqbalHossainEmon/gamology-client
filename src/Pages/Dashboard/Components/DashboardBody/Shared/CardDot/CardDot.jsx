@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
-const CardDot = ({ item, lists }) => {
+const CardDot = ({ item, lists, hoverClassName }) => {
     const [show, setShow] = useState(false);
 
     const elementRef = useRef(null);
@@ -14,7 +14,11 @@ const CardDot = ({ item, lists }) => {
     }, [setElement]);
 
     return (
-        <div ref={elementRef} className={styles.cardDots} {...(show && { id: styles.show })}>
+        <div
+            ref={elementRef}
+            className={`${styles.cardDots}${hoverClassName ? ` ${hoverClassName}` : ''}`}
+            {...(show && { id: styles.show })}
+        >
             <button
                 onClick={() => {
                     setShow(prev => !prev);

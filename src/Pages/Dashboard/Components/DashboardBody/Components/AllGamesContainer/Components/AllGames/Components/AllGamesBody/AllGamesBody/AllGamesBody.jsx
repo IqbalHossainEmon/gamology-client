@@ -14,6 +14,7 @@ const AllGamesBody = ({ items, setModal }) => {
                     <Card className={styles.list} key={item.id} cardInfo={item} image={item.image} alt={item.title}>
                         <CardDot
                             setModal={setModal}
+                            hoverClassName={styles.dots}
                             item={item}
                             lists={[
                                 {

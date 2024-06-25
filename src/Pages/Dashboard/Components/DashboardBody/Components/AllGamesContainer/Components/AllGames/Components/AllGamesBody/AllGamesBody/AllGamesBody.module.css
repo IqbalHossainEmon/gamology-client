@@ -9,8 +9,12 @@
 	position: relative;
 }
 
+.list:hover .dots {
+	opacity: 1;
+}
+
 @media only screen and (hover: none) {
-	.cardDots {
+	.dots {
 		opacity: 1;
 	}
 }
