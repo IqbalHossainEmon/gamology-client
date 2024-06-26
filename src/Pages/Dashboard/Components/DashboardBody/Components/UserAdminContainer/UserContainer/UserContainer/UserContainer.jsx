@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CardDot from '../../../../Shared/CardDot/CardDot';
-import UserCard from '../UserCard/UserCard';
+import UserCard from '../../UserCard/UserCard';
 import styles from './UserContainer.module.css';
+import UserDeleteModalBody from './UserDeleteModalBody/UserDeleteModalBody';
 
 const userDetail = [];
 for (let i = 0; i < 100; i++) {
@@ -16,6 +17,8 @@ for (let i = 0; i < 100; i++) {
 
 const UserContainer = ({ setModal }) => {
     const [users, setUsers] = useState([]);
+
+    const modalBody = useCallback((props, type, item) => <UserDeleteModalBody {...props} type={type} detail={item} />, []);
 
     useEffect(() => {
         setUsers(userDetail);
@@ -47,10 +50,7 @@ const UserContainer = ({ setModal }) => {
                                                 Are you sure you want to delete <span className={styles.nameContainer}>{user.name}</span>?
                                             </>
                                         ),
-                                        ModalBody: props => {
-                                            // modalBody(props, 'delete', detail);
-                                            console.log('Delete');
-                                        },
+                                        modalBody: props => modalBody(props, 'delete', detail),
                                     });
                                 },
                             },

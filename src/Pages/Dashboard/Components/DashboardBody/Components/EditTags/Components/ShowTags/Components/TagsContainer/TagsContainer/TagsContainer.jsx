@@ -21,7 +21,7 @@ const TagsContainer = ({ tag, setModal, setTags }) => {
                     Are you sure you want to delete <strong className={styles.categoryText}>{tag.category}</strong> category?
                 </>
             ),
-            ModalBody: props =>
+            modalBody: props =>
                 modalBody(
                     props,
                     <>
@@ -63,7 +63,7 @@ const TagsContainer = ({ tag, setModal, setTags }) => {
                     Are you sure you want to delete <strong className={styles.categoryText}>{text}</strong> Tag?
                 </>
             ),
-            ModalBody: props =>
+            modalBody: props =>
                 modalBody(
                     props,
                     <>
