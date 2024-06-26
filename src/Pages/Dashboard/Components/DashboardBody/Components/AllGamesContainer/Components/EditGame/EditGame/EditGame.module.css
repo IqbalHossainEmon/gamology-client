@@ -1,3 +1,20 @@
+.backBtnContainer {
+	margin-bottom: 1rem;
+}
+.backBtn {
+	background-color: black;
+	border: none;
+	cursor: pointer;
+}
+.backBtn svg {
+	width: 2rem;
+	height: 2rem;
+	fill: rgb(214, 214, 214);
+	transition: fill 200ms;
+}
+.backBtn:hover svg {
+	fill: white;
+}
 .editGames {
-    width: 100%;
+	width: 100%;
 }

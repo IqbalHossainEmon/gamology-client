@@ -31,7 +31,7 @@ const AllGamesBody = ({ items, setModal }) => {
                                             title: 'Edit Price',
                                             modalQuestion: (
                                                 <>
-                                                    What price($) you want to set for{' '}
+                                                    What price($) you want to set for
                                                     <span className={styles.nameContainer}>{item.name}</span>
                                                 </>
                                             ),
@@ -48,7 +48,7 @@ const AllGamesBody = ({ items, setModal }) => {
                                             title: 'Delete Game',
                                             modalQuestion: (
                                                 <>
-                                                    Are you sure you want to delete{' '}
+                                                    Are you sure you want to delete
                                                     <span className={styles.nameContainer}>{item.name}</span>?
                                                 </>
                                             ),

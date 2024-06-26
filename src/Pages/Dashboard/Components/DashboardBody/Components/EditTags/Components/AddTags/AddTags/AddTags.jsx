@@ -33,7 +33,7 @@ const AddTags = ({ tags, setTags }) => {
                     if (isTagExist) {
                         errorRef.current.tag = (
                             <>
-                                Tag Already Exists in{' '}
+                                Tag Already Exists in
                                 <strong>
                                     {
                                         tags.find(
@@ -41,7 +41,7 @@ const AddTags = ({ tags, setTags }) => {
                                                 category.optionList.findIndex(tag => tag.tags === addInfoRef.current.tag.name) !== -1
                                         ).category
                                     }
-                                </strong>{' '}
+                                </strong>
                                 Category
                             </>
                         );
@@ -77,10 +77,10 @@ const AddTags = ({ tags, setTags }) => {
                         if (isTagExist) {
                             errorRef.current.tags[index] = (
                                 <>
-                                    Tag Already Exists in{' '}
+                                    Tag Already Exists in
                                     <strong>
                                         {tags.find(category => category.optionList.findIndex(t => t.tags === tag) !== -1).category}
-                                    </strong>{' '}
+                                    </strong>
                                     Category
                                 </>
                             );

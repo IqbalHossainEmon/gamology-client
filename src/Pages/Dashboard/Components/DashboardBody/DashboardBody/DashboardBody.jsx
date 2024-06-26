@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import Modal from '../../../../../Shared/Modal/Modal';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
+import EditGame from '../Components/AllGamesContainer/Components/EditGame/EditGame/EditGame';
 import DashboardModal from '../Components/DashboardModal/DashboardModal';
-import UserContainer from '../Components/UserAdminContainer/UserContainer/UserContainer/UserContainer';
 import styles from './DashboardBody.module.css';
 
 const DashboardBody = () => {
@@ -19,7 +19,7 @@ const DashboardBody = () => {
         <div className={styles.dashboardBodyScrollContainer}>
             <div ref={parentRef} className={styles.dashboardBodyContainer}>
                 <div ref={childRef} className={styles.dashboardBody}>
-                    <UserContainer setModal={setModal} />
+                    <EditGame setModal={setModal} />
                 </div>
             </div>
             <ScrollBar parentRef={parentRef} childRef={childRef} />
