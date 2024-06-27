@@ -50,7 +50,7 @@ const UserContainer = ({ setModal }) => {
                                                 Are you sure you want to delete <span className={styles.nameContainer}>{user.name}</span>?
                                             </>
                                         ),
-                                        modalBody: props => modalBody(props, 'delete', detail),
+                                        ModalBody: props => modalBody(props, 'delete', detail),
                                     });
                                 },
                             },

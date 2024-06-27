@@ -35,7 +35,7 @@ const AllGamesBody = ({ items, setModal }) => {
                                                     <span className={styles.nameContainer}>{item.name}</span>
                                                 </>
                                             ),
-                                            modalBody: props => modalBody(props, 'price', detail),
+                                            ModalBody: props => modalBody(props, 'price', detail),
                                         });
                                     },
                                 },
@@ -52,7 +52,7 @@ const AllGamesBody = ({ items, setModal }) => {
                                                     <span className={styles.nameContainer}>{item.name}</span>?
                                                 </>
                                             ),
-                                            modalBody: props => modalBody(props, 'delete', detail),
+                                            ModalBody: props => modalBody(props, 'delete', detail),
                                         });
                                     },
                                 },
