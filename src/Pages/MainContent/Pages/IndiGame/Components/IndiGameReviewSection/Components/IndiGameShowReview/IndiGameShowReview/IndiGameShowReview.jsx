@@ -79,7 +79,12 @@ export default function IndiGameShowReview() {
             <IndiGameOrderBy handleSort={handleChange} />
             <IndiGameReviews reviews={reviews} />
             <div className={styles.paginationContainer}>
-                <Pagination activePage={activePage} setActivePage={setActivePage} totalPage={1} />
+                <Pagination
+                    activePage={activePage}
+                    setActivePage={setActivePage}
+                    totalPage={69}
+                    pageNumberStyle={styles.pageNumber}
+                />
             </div>
         </div>
     );

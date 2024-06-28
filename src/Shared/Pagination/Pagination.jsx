@@ -2,7 +2,7 @@ import usePagination, { DOTS } from '../../Hooks/usePagination';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import styles from './Pagination.module.css';
 
-export default function Pagination({ activePage, setActivePage, totalPage }) {
+export default function Pagination({ activePage, setActivePage, totalPage, pageNumberStyle }) {
     const paginationRange = usePagination(totalPage, activePage);
     if (totalPage <= 1) {
         return null;
@@ -15,9 +15,12 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
                     type="button"
                     onClick={() => setActivePage(activePage - 1)}
                     disabled={activePage === 1}
-                    className={`${styles.paginationButton} ${styles.prevButton} ${styles.number}`}
+                    className={`${styles.paginationButton} ${styles.prevButton} ${styles.number}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
                 >
-                    <ArrowIcon className={styles.arrowIcon} {...(activePage === 1 && { stroke: 'rgba(255, 255, 255, 0.3)' })} />
+                    <ArrowIcon
+                        className={styles.arrowIcon}
+                        {...(activePage === 1 && { stroke: 'rgba(255, 255, 255, 0.3)' })}
+                    />
                 </button>
             </li>
             {paginationRange.map((page, i) => (
@@ -28,7 +31,7 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
                         <button
                             type="button"
                             onClick={() => setActivePage(page)}
-                            className={`${styles.paginationButton} ${styles.numberButton}`}
+                            className={`${styles.paginationButton} ${styles.numberButton}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
                             {...(activePage === page && { id: styles.active })}
                         >
                             {page}
@@ -41,7 +44,7 @@ export default function Pagination({ activePage, setActivePage, totalPage }) {
                     type="button"
                     onClick={() => setActivePage(activePage + 1)}
                     disabled={activePage === totalPage}
-                    className={`${styles.paginationButton} ${styles.nextButton} ${styles.number}`}
+                    className={`${styles.paginationButton} ${styles.nextButton} ${styles.number}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
                 >
                     <ArrowIcon
                         className={styles.arrowIcon}
