@@ -9,6 +9,10 @@
 	opacity: 1;
 }
 
+.nameContainer {
+	font-weight: 600;
+}
+
 @media only screen and (hover: none) {
 	.dots {
 		opacity: 1;

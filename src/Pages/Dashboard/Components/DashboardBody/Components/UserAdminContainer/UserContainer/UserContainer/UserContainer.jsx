@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import CardDot from '../../../../Shared/CardDot/CardDot';
 import UserCard from '../../UserCard/UserCard';
+import UserDeleteModalBody from '../UserDeleteModalBody/UserDeleteModalBody';
 import styles from './UserContainer.module.css';
-import UserDeleteModalBody from './UserDeleteModalBody/UserDeleteModalBody';
 
 const userDetail = [];
 for (let i = 0; i < 100; i++) {
@@ -44,7 +44,7 @@ const UserContainer = ({ setModal }) => {
                                 event: detail => {
                                     setModal({
                                         show: true,
-                                        title: 'Delete Game',
+                                        title: 'Delete User',
                                         modalQuestion: (
                                             <>
                                                 Are you sure you want to delete <span className={styles.nameContainer}>{user.name}</span>?
