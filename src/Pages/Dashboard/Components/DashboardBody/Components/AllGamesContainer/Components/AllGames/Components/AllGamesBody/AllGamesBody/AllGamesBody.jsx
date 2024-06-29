@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import Card from '../../../../../../../../../../../Shared/Card/Card';
 import CardDot from '../../../../../../../Shared/CardDot/CardDot';
-import CardDotModalBody from '../Components/AllGamesModalBodyEvents/CardDotModalBodyContainer/CardDotModalBody';
+import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesBody.module.css';
 
 const AllGamesBody = ({ items, setModal }) => {
-    const modalBody = useCallback((props, type, item) => <CardDotModalBody {...props} type={type} detail={item} />, []);
+    const modalBody = useCallback((props, type, item) => <AllGamesModalBodySelect {...props} type={type} detail={item} />, []);
 
     return (
         <div className={styles.allGamesBody}>

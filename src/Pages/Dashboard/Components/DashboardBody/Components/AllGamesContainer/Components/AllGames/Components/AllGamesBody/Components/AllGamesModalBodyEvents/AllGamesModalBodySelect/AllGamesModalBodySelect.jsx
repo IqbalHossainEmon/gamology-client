@@ -1,8 +1,8 @@
-import DashboardDeleteModal from '../DashboardDeleteModal/DashboardDeleteModal';
-import DashboardPriceChangeModal from '../DashboardPriceChangeModal/DashboardPriceChangeModal';
-import styles from './CardDotModalBody.module.css';
+import AllGamesDeleteConfirmModal from '../AllGamesDeleteConfirmationModal/AllGamesDeleteConfirmModal';
+import AllGamesPriceEditModal from '../AllGamesPriceEditModal/AllGamesPriceEditModal';
+import styles from './AllGamesModalBodySelect.module.css';
 
-const CardDotModalBody = ({ type, detail, handleHide }) => {
+const AllGamesModalBodySelect = ({ type, detail, handleHide }) => {
     const { name, category, price, carouselThumb } = detail;
     return (
         <>
@@ -17,15 +17,11 @@ const CardDotModalBody = ({ type, detail, handleHide }) => {
                 </div>
             </div>
             {type === 'price' ? (
-                <DashboardPriceChangeModal
-                    handleHide={handleHide}
-                    detail={detail}
-                    price={typeof price === 'object' ? price.regular : price}
-                />
+                <AllGamesPriceEditModal handleHide={handleHide} detail={detail} price={typeof price === 'object' ? price.regular : price} />
             ) : (
-                <DashboardDeleteModal detail={detail} handleHide={handleHide} />
+                <AllGamesDeleteConfirmModal detail={detail} handleHide={handleHide} />
             )}
         </>
     );
 };
-export default CardDotModalBody;
+export default AllGamesModalBodySelect;

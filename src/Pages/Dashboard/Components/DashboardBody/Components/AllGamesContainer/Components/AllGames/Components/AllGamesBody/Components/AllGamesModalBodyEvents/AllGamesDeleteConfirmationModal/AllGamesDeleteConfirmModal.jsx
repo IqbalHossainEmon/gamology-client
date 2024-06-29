@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
-import styles from './DashboardDeleteModal.module.css';
+import styles from './AllGamesDeleteConfirmModal.module.css';
 
-const DashboardDeleteModal = ({ handleHide }) => {
+const AllGamesDeleteConfirmModal = ({ handleHide }) => {
     const confirmText = useRef(null);
 
     const [{ errorChange, errorMessage }, setError] = useState({ errorChange: 0, errorMessage: '' });
@@ -36,4 +36,4 @@ const DashboardDeleteModal = ({ handleHide }) => {
         </div>
     );
 };
-export default DashboardDeleteModal;
+export default AllGamesDeleteConfirmModal;

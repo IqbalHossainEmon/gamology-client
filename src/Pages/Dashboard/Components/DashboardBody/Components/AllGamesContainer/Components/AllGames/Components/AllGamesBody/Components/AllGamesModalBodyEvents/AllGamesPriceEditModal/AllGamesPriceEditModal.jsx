@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
-import styles from './DashboardPriceChangeModal.module.css';
+import styles from './AllGamesPriceEditModal.module.css';
 
-const DashboardPriceChangeModal = ({ price, handleHide }) => {
+const AllGamesPriceEditModal = ({ price, handleHide }) => {
     const btnRef = useRef(null);
     const newPrice = useRef(null);
 
@@ -66,4 +66,4 @@ const DashboardPriceChangeModal = ({ price, handleHide }) => {
         </div>
     );
 };
-export default DashboardPriceChangeModal;
+export default AllGamesPriceEditModal;

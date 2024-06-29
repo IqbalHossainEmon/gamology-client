@@ -13,3 +13,7 @@
 	color: rgb(145, 145, 145);
 	display: inline-block;
 }
+
+.discount {
+	text-decoration: none;
+}
