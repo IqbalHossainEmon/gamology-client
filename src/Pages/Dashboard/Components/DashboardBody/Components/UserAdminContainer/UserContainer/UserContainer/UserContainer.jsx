@@ -48,6 +48,9 @@ const UserContainer = ({ setModal }) => {
                                         modalQuestion: (
                                             <>
                                                 Are you sure you want to delete <span className={styles.nameContainer}>{user.name}</span>?
+                                                <div className={styles.imgContainer}>
+                                                    <img src={user.img} alt={user.name} />
+                                                </div>
                                             </>
                                         ),
                                         ModalBody: props => modalBody(props, 'delete', detail),

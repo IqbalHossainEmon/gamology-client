@@ -15,7 +15,6 @@ const AllGamesDeleteConfirmModal = ({ handleHide }) => {
             setError(prev => ({ errorChange: prev.errorChange + 1, errorMessage: 'Please type delete to confirm' }));
         }
     };
-
     return (
         <div className={styles.deleteModal}>
             <TextField
