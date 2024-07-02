@@ -46,14 +46,39 @@ const UserContainer = ({ setModal }) => {
                                         show: true,
                                         title: 'Delete User',
                                         modalQuestion: (
-                                            <>
-                                                Are you sure you want to delete <span className={styles.nameContainer}>{user.name}</span>?
+                                            <div>
+                                                <p>
+                                                    Are you sure you want to delete{' '}
+                                                    <span className={styles.nameContainer}>{user.name}</span>?
+                                                </p>
                                                 <div className={styles.imgContainer}>
                                                     <img src={user.img} alt={user.name} />
                                                 </div>
-                                            </>
+                                            </div>
                                         ),
                                         ModalBody: props => modalBody(props, 'delete', detail),
+                                    });
+                                },
+                            },
+                            {
+                                id: 3,
+                                name: 'Make Admin',
+                                event: detail => {
+                                    setModal({
+                                        show: true,
+                                        title: 'Make Admin',
+                                        modalQuestion: (
+                                            <div>
+                                                <p>
+                                                    Are you sure you want to make <span className={styles.nameContainer}>{user.name}</span>{' '}
+                                                    an admin?
+                                                </p>
+                                                <div className={styles.imgContainer}>
+                                                    <img src={user.img} alt={user.name} />
+                                                </div>
+                                            </div>
+                                        ),
+                                        ModalBody: props => modalBody(props, 'makeAdmin', detail),
                                     });
                                 },
                             },
