@@ -15,7 +15,14 @@ const AllGamesPriceEditModal = ({ price, handleHide }) => {
     return (
         <div className={styles.priceChange}>
             <div className={styles.inputContainer}>
-                <TextField className={styles.input} placeholder="Previous Price" field="input" enabled={false} defaultValue={price} />
+                <TextField
+                    className={styles.input}
+                    placeholder="Previous Price"
+                    field="input"
+                    enabled={false}
+                    defaultValue={price}
+                    htmlFor="previous_price"
+                />
                 <div className={styles.arrowIcon}>
                     <svg
                         version="1.1"
@@ -57,6 +64,7 @@ const AllGamesPriceEditModal = ({ price, handleHide }) => {
                     setState={val => {
                         newPrice.current = val;
                     }}
+                    htmlFor="new_price"
                 />
             </div>
             <button onClick={handleSubmit} ref={btnRef} type="button" className={styles.submitBtn}>

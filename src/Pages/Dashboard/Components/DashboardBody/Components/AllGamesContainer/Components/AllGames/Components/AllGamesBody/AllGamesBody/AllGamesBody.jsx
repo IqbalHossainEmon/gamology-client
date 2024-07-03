@@ -30,10 +30,10 @@ const AllGamesBody = ({ items, setModal }) => {
                                             show: true,
                                             title: 'Edit Price',
                                             modalQuestion: (
-                                                <>
-                                                    What price($) you want to set for
+                                                <h3 className={styles.priceChangeHeader}>
+                                                    What price you want to set for
                                                     <span className={styles.nameContainer}>{item.name}</span>
-                                                </>
+                                                </h3>
                                             ),
                                             ModalBody: props => modalBody(props, 'price', detail),
                                         });
@@ -47,10 +47,10 @@ const AllGamesBody = ({ items, setModal }) => {
                                             show: true,
                                             title: 'Delete Game',
                                             modalQuestion: (
-                                                <>
+                                                <h3 className={styles.priceChangeHeader}>
                                                     Are you sure you want to delete
                                                     <span className={styles.nameContainer}>{item.name}</span>?
-                                                </>
+                                                </h3>
                                             ),
                                             ModalBody: props => modalBody(props, 'delete', detail),
                                         });

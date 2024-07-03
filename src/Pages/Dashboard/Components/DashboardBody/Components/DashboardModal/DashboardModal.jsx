@@ -5,7 +5,7 @@ const DashboardModal = ({ title, modalQuestion, ModalBody, handleHide, setModal 
     return (
         <>
             <h2 className={styles.header}>{title}</h2>
-            <h3 className={styles.headerQuestion}>{modalQuestion}</h3>
+            <div className={styles.headerQuestion}>{modalQuestion}</div>
             <ModalBody handleHide={handleHide} setModal={setModal} />
         </>
     );
