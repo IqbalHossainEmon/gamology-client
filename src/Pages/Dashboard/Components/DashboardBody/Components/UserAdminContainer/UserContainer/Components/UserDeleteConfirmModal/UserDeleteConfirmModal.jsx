@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
-import TextField from '../../../../../../../../Shared/TextField/TextField';
-import styles from './UserDeleteModalBody.module.css';
+import TextField from '../../../../../../../../../Shared/TextField/TextField';
+import styles from './UserDeleteConfirmModal.module.css';
 
-const UserDeleteModalBody = ({ handleHide }) => {
-    const confirmText = useRef(null);
-
+const UserDeleteConfirmModal = ({ handleHide }) => {
     const [{ errorChange, errorMessage }, setError] = useState({ errorChange: 0, errorMessage: '' });
+
+    const confirmText = useRef(null);
 
     const handleDelete = () => {
         if (confirmText.current === 'DELETE' || confirmText.current === 'delete' || confirmText.current === 'Delete') {
@@ -15,7 +15,6 @@ const UserDeleteModalBody = ({ handleHide }) => {
             setError(prev => ({ errorChange: prev.errorChange + 1, errorMessage: 'Please type delete to confirm' }));
         }
     };
-
     return (
         <div className={styles.deleteModal}>
             <TextField
@@ -36,4 +35,4 @@ const UserDeleteModalBody = ({ handleHide }) => {
         </div>
     );
 };
-export default UserDeleteModalBody;
+export default UserDeleteConfirmModal;

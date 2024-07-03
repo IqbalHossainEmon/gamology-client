@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import CardDot from '../../../../Shared/CardDot/CardDot';
 import UserCard from '../../UserCard/UserCard';
-import UserDeleteModalBody from '../UserDeleteModalBody/UserDeleteModalBody';
+import UserDeleteModalBody from '../Components/UserDeleteModalBody/UserDeleteModalBody';
 import styles from './UserContainer.module.css';
 
 const userDetail = [];

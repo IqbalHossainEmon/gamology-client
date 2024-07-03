@@ -13,14 +13,14 @@ const useDropDownHide = setState => {
                     if (!element.current.some(ele => ele?.contains(e.target)) && e) {
                         document.removeEventListener('mousedown', closeMenu.current);
                         window.removeEventListener('blur', closeMenuBlurRef.current);
-                        // setState(false);
+                        setState(false);
                     }
                     break;
                 default:
                     if (element.current && e && !element.current.contains(e.target)) {
                         document.removeEventListener('mousedown', closeMenu.current);
                         window.removeEventListener('blur', closeMenuBlurRef.current);
-                        // setState(false);
+                        setState(false);
                     }
                     break;
             }

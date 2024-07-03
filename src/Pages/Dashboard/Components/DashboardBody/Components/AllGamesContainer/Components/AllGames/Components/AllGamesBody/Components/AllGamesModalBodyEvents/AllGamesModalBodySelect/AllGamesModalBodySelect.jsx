@@ -1,4 +1,4 @@
-import AllGamesDeleteConfirmModal from '../AllGamesDeleteConfirmationModal/AllGamesDeleteConfirmModal';
+import AllGamesDeleteConfirmModal from '../AllGamesDeleteConfirmModal/AllGamesDeleteConfirmModal';
 import AllGamesPriceEditModal from '../AllGamesPriceEditModal/AllGamesPriceEditModal';
 import styles from './AllGamesModalBodySelect.module.css';
 
