@@ -1,0 +1,28 @@
+.btnContainer {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	margin-top: 1rem;
+}
+
+.btn {
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.noBtn {
+	background-color: #f8d7da;
+	color: #721c24;
+	padding: 5px 10px;
+	margin-right: 10px;
+}
+
+.yesBtn {
+	background-color: #28a745;
+	color: white;
+}

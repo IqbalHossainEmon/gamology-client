@@ -21,8 +21,7 @@ const UserDeleteConfirmModal = ({ handleHide }) => {
                 errorChange={errorChange}
                 errorMessage={errorMessage}
                 type="text"
-                placeholder="Type 'DELETE' to confirm"
-                label="Type 'delete' to confirm"
+                placeholder="Type 'DELETE' to Delete User"
                 field="input"
                 setState={val => {
                     confirmText.current = val;

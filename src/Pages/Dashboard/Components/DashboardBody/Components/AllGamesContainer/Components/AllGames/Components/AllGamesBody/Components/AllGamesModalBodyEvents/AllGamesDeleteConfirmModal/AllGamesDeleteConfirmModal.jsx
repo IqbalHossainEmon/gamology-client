@@ -22,8 +22,7 @@ const AllGamesDeleteConfirmModal = ({ handleHide }) => {
                 errorMessage={errorMessage}
                 type="text"
                 htmlFor="delete_game"
-                placeholder="Type 'DELETE' to confirm"
-                label="Type 'delete' to confirm"
+                placeholder="Type 'DELETE' to Delete"
                 field="input"
                 setState={val => {
                     confirmText.current = val;

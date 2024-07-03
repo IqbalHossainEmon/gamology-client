@@ -18,13 +18,12 @@ const UserMakeAdminModal = ({ handleHide }) => {
 
     return (
         <div>
-            <div className={styles.deleteModal}>
+            <div className={styles.makeAdminModal}>
                 <TextField
                     errorChange={errorChange}
                     errorMessage={errorMessage}
                     type="text"
-                    placeholder="Type 'CONFIRM' to confirm"
-                    label="Type 'CONFIRM' to confirm"
+                    placeholder="Type 'CONFIRM' to continue"
                     field="input"
                     setState={val => {
                         confirmText.current = val;
@@ -32,10 +31,10 @@ const UserMakeAdminModal = ({ handleHide }) => {
                     className={styles.textField}
                 />
                 <div className={styles.btnContainer}>
-                    <button type="button" className={styles.noBtn} onClick={handleHide}>
+                    <button type="button" className={`${styles.noBtn} ${styles.btn}`} onClick={handleHide}>
                         No
                     </button>
-                    <button type="button" className={styles.yesBtn} onClick={handleMakeAdmin}>
+                    <button type="button" className={`${styles.yesBtn} ${styles.btn}`} onClick={handleMakeAdmin}>
                         Yes
                     </button>
                 </div>
