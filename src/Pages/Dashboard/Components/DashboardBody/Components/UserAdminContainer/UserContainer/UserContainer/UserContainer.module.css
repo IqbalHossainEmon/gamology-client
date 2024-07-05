@@ -5,9 +5,6 @@
 	grid-template-columns: repeat(5, 1fr);
 	gap: 1rem;
 }
-.list:hover .dots {
-	opacity: 1;
-}
 
 .nameContainer {
 	font-weight: 600;

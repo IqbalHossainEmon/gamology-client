@@ -34,7 +34,12 @@ const DashboardBody = () => {
                         })
                     }
                 >
-                    <DashboardModal title={title} modalQuestion={modalQuestion} ModalBody={ModalBody} setModal={setModal} />
+                    <DashboardModal
+                        title={title}
+                        modalQuestion={modalQuestion}
+                        ModalBody={ModalBody}
+                        setModal={setModal}
+                    />
                 </Modal>
             )}
         </div>
