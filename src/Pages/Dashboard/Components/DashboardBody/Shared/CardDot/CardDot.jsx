@@ -3,31 +3,57 @@ import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ item, lists, parentRef }) => {
-    const [btnShow, setBtnShow] = useState(false);
-
+    const [btnShow, setBtnShow] = useState({ fadeIn: false, show: false });
     const [show, setShow] = useState(false);
 
     const elementRef = useRef(null);
 
+    const btnShowRef = useRef(btnShow);
+    btnShowRef.current = btnShow;
+
     const { showMenu, setElement } = useDropDownHide(setShow);
 
-    const handleShow = useCallback(() => {
-        setBtnShow(true);
+    const firstTimerRef = useRef(null);
+
+    const handleShow = useCallback(e => {
+        e.stopPropagation();
+        setBtnShow({ fadeIn: false, show: true });
+
+        if (firstTimerRef.current) {
+            clearTimeout(firstTimerRef.current);
+            firstTimerRef.current = null;
+        }
+
+        firstTimerRef.current = setTimeout(() => {
+            setBtnShow(prev => ({ ...prev, fadeIn: true }));
+            firstTimerRef.current = null;
+        }, 1);
     }, []);
 
-    const handleHide = useCallback(() => {
-        setBtnShow(false);
+    const secondTimerRef = useRef(null);
+
+    const handleHide = useCallback(e => {
+        e.stopPropagation();
+        if (secondTimerRef.current) {
+            clearTimeout(secondTimerRef.current);
+            secondTimerRef.current = null;
+        }
+        setBtnShow({ fadeIn: false, show: true });
+        secondTimerRef.current = setTimeout(() => {
+            setBtnShow({ fadeIn: false, show: false });
+            secondTimerRef.current = null;
+        }, 2000);
     }, []);
 
     useEffect(() => {
         const parent = parentRef.current;
         if (parent) {
-            parent.addEventListener('mouseenter', handleShow);
+            parent.addEventListener('mousemove', handleShow);
             parent.addEventListener('mouseleave', handleHide);
         }
         return () => {
             if (parent) {
-                parent.removeEventListener('mouseenter', handleShow);
+                parent.removeEventListener('mousemove', handleShow);
                 parent.removeEventListener('mouseleave', handleHide);
             }
         };
@@ -38,14 +64,14 @@ const CardDot = ({ item, lists, parentRef }) => {
     }, [setElement]);
 
     return (
-        (btnShow || show) && (
-            <div ref={elementRef} className={styles.cardDots} {...(show && { id: styles.show })}>
+        <div ref={elementRef} className={styles.cardDots}>
+            {(btnShow.show || show) && (
                 <button
                     onClick={() => {
                         setShow(prev => !prev);
                         showMenu(true);
                     }}
-                    className={styles.btnDot}
+                    className={`${styles.btnDot}${btnShow.fadeIn ? ` ${styles.zoomIn}` : ''}`}
                     type="button"
                 >
                     <svg
@@ -98,25 +124,25 @@ const CardDot = ({ item, lists, parentRef }) => {
                         </g>
                     </svg>
                 </button>
-                {show && (
-                    <ul className={styles.listContainer}>
-                        {lists.map(list => (
-                            <li key={list.id}>
-                                <button
-                                    onClick={() => {
-                                        list.event(item);
-                                        setShow(false);
-                                    }}
-                                    type="button"
-                                >
-                                    {list.name}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-        )
+            )}
+            {show && (
+                <ul className={styles.listContainer}>
+                    {lists.map(list => (
+                        <li key={list.id}>
+                            <button
+                                onClick={() => {
+                                    list.event(item);
+                                    setShow(false);
+                                }}
+                                type="button"
+                            >
+                                {list.name}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
     );
 };
 export default CardDot;

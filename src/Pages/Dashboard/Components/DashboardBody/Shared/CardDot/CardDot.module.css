@@ -4,11 +4,8 @@
 	top: 0.5rem;
 	width: 2.5rem;
 	height: 2.5rem;
-	transition: opacity 200ms;
 }
-#show {
-	opacity: 1;
-}
+
 .nameContainer {
 	font-weight: 600;
 }
@@ -20,7 +17,15 @@
 	padding: 5px;
 	border: none;
 	cursor: pointer;
-	transition: scale 200ms;
+	opacity: 0;
+	scale: 0.5;
+	transition:
+		opacity 2000ms,
+		scale 2000ms;
+}
+.zoomIn {
+	scale: 1;
+	opacity: 1;
 }
 .btnDot:hover {
 	background-color: rgba(0, 0, 0, 0.6);
@@ -38,14 +43,14 @@
 	top: calc(100% + 5px);
 	left: 50%;
 	translate: -50%;
-	animation: fadeZoomIn 200ms;
+	animation: fadeZoomIn 200ms 0ms;
 	z-index: 1;
 }
 .listContainer li button {
 	width: 100%;
 	background-color: transparent;
 	border: none;
-	color: #ffffff75;
+	color: #ffffff95;
 	font-size: 14px;
 	text-align: center;
 	text-wrap: nowrap;
