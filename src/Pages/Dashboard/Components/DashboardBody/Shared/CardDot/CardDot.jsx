@@ -3,7 +3,7 @@ import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ item, lists, parentRef }) => {
-    const [btnShow, setBtnShow] = useState({ fadeIn: false, show: false });
+    const [btnShow, setBtnShow] = useState({ fadeOut: false, show: false });
     const [show, setShow] = useState(false);
 
     const elementRef = useRef(null);
@@ -13,34 +13,27 @@ const CardDot = ({ item, lists, parentRef }) => {
 
     const { showMenu, setElement } = useDropDownHide(setShow);
 
-    const firstTimerRef = useRef(null);
-
-    const handleShow = useCallback(e => {
-        e.stopPropagation();
-        setBtnShow({ fadeIn: false, show: true });
-
-        if (firstTimerRef.current) {
-            clearTimeout(firstTimerRef.current);
-            firstTimerRef.current = null;
-        }
-
-        firstTimerRef.current = setTimeout(() => {
-            setBtnShow(prev => ({ ...prev, fadeIn: true }));
-            firstTimerRef.current = null;
-        }, 1);
-    }, []);
-
     const secondTimerRef = useRef(null);
 
-    const handleHide = useCallback(e => {
+    const handleShow = useCallback(e => {
         e.stopPropagation();
         if (secondTimerRef.current) {
             clearTimeout(secondTimerRef.current);
             secondTimerRef.current = null;
         }
-        setBtnShow({ fadeIn: false, show: true });
+        setBtnShow({ fadeOut: false, show: true });
+    }, []);
+
+    const handleHide = useCallback(e => {
+        e.stopPropagation();
+
+        if (secondTimerRef.current) {
+            clearTimeout(secondTimerRef.current);
+            secondTimerRef.current = null;
+        }
+        setBtnShow({ fadeOut: true, show: true });
         secondTimerRef.current = setTimeout(() => {
-            setBtnShow({ fadeIn: false, show: false });
+            setBtnShow({ fadeOut: false, show: false });
             secondTimerRef.current = null;
         }, 2000);
     }, []);
@@ -48,12 +41,12 @@ const CardDot = ({ item, lists, parentRef }) => {
     useEffect(() => {
         const parent = parentRef.current;
         if (parent) {
-            parent.addEventListener('mousemove', handleShow);
+            parent.addEventListener('mouseenter', handleShow);
             parent.addEventListener('mouseleave', handleHide);
         }
         return () => {
             if (parent) {
-                parent.removeEventListener('mousemove', handleShow);
+                parent.removeEventListener('mouseenter', handleShow);
                 parent.removeEventListener('mouseleave', handleHide);
             }
         };
@@ -65,13 +58,14 @@ const CardDot = ({ item, lists, parentRef }) => {
 
     return (
         <div ref={elementRef} className={styles.cardDots}>
+            <div />
             {(btnShow.show || show) && (
                 <button
                     onClick={() => {
                         setShow(prev => !prev);
                         showMenu(true);
                     }}
-                    className={`${styles.btnDot}${btnShow.fadeIn ? ` ${styles.zoomIn}` : ''}`}
+                    className={`${styles.btnDot}${btnShow.fadeOut ? ` ${styles.zoomOut}` : ''}`}
                     type="button"
                 >
                     <svg
