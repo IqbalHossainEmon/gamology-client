@@ -33,7 +33,7 @@ const CardDot = ({ item, lists, parentRef }) => {
         }
         setBtnShow({ fadeOut: true, show: true });
         secondTimerRef.current = setTimeout(() => {
-            setBtnShow({ fadeOut: false, show: false });
+            // setBtnShow({ fadeOut: false, show: false });
             secondTimerRef.current = null;
         }, 2000);
     }, []);
