@@ -3,7 +3,7 @@ import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ item, lists, parentRef }) => {
-    const [btnShow, setBtnShow] = useState({ fadeOut: false, show: false });
+    const [btnShow, setBtnShow] = useState({ fadeIn: false, show: false });
     const [show, setShow] = useState(false);
 
     const elementRef = useRef(null);
@@ -13,6 +13,7 @@ const CardDot = ({ item, lists, parentRef }) => {
 
     const { showMenu, setElement } = useDropDownHide(setShow);
 
+    const firstTimerRef = useRef(null);
     const secondTimerRef = useRef(null);
 
     const handleShow = useCallback(e => {
@@ -21,7 +22,15 @@ const CardDot = ({ item, lists, parentRef }) => {
             clearTimeout(secondTimerRef.current);
             secondTimerRef.current = null;
         }
-        setBtnShow({ fadeOut: false, show: true });
+        if (firstTimerRef.current) {
+            clearTimeout(firstTimerRef.current);
+            firstTimerRef.current = null;
+        }
+        setBtnShow({ fadeIn: false, show: true });
+        firstTimerRef.current = setTimeout(() => {
+            setBtnShow({ fadeIn: true, show: true });
+            firstTimerRef.current = null;
+        }, 10);
     }, []);
 
     const handleHide = useCallback(e => {
@@ -31,11 +40,15 @@ const CardDot = ({ item, lists, parentRef }) => {
             clearTimeout(secondTimerRef.current);
             secondTimerRef.current = null;
         }
-        setBtnShow({ fadeOut: true, show: true });
+        if (firstTimerRef.current) {
+            clearTimeout(firstTimerRef.current);
+            firstTimerRef.current = null;
+        }
+        setBtnShow({ fadeIn: false, show: true });
         secondTimerRef.current = setTimeout(() => {
-            // setBtnShow({ fadeOut: false, show: false });
+            setBtnShow({ fadeIn: false, show: false });
             secondTimerRef.current = null;
-        }, 2000);
+        }, 200);
     }, []);
 
     useEffect(() => {
@@ -58,14 +71,13 @@ const CardDot = ({ item, lists, parentRef }) => {
 
     return (
         <div ref={elementRef} className={styles.cardDots}>
-            <div />
             {(btnShow.show || show) && (
                 <button
                     onClick={() => {
                         setShow(prev => !prev);
                         showMenu(true);
                     }}
-                    className={`${styles.btnDot}${btnShow.fadeOut ? ` ${styles.zoomOut}` : ''}`}
+                    className={`${styles.btnDot}${btnShow.fadeIn ? ` ${styles.zoomIn}` : ''}`}
                     type="button"
                 >
                     <svg
