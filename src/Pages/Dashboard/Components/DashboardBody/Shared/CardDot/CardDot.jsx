@@ -3,15 +3,17 @@ import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ item, lists, parentRef }) => {
-    const [btnShow, setBtnShow] = useState({ fadeIn: false, show: false });
-    const [show, setShow] = useState(false);
+    const [btnShow, setBtnShow] = useState(false);
+    const [btnFadeIn, setBtnFadeIn] = useState(false);
+    const [listShow, setListShow] = useState(false);
+    const [listFadeIn, setListFadeIn] = useState(false);
 
     const elementRef = useRef(null);
 
     const btnShowRef = useRef(btnShow);
     btnShowRef.current = btnShow;
 
-    const { showMenu, setElement } = useDropDownHide(setShow);
+    const { showMenu, setElement } = useDropDownHide(setListShow);
 
     const firstTimerRef = useRef(null);
     const secondTimerRef = useRef(null);
@@ -21,32 +23,36 @@ const CardDot = ({ item, lists, parentRef }) => {
         if (secondTimerRef.current) {
             clearTimeout(secondTimerRef.current);
             secondTimerRef.current = null;
+            setBtnFadeIn(true);
+            return;
         }
         if (firstTimerRef.current) {
             clearTimeout(firstTimerRef.current);
             firstTimerRef.current = null;
         }
-        setBtnShow({ fadeIn: false, show: true });
+        setBtnShow(true);
         firstTimerRef.current = setTimeout(() => {
-            setBtnShow({ fadeIn: true, show: true });
+            setBtnFadeIn(true);
             firstTimerRef.current = null;
-        }, 10);
+        }, 100);
     }, []);
 
     const handleHide = useCallback(e => {
         e.stopPropagation();
 
+        if (firstTimerRef.current) {
+            clearTimeout(firstTimerRef.current);
+            firstTimerRef.current = null;
+            setBtnShow(false);
+            return;
+        }
         if (secondTimerRef.current) {
             clearTimeout(secondTimerRef.current);
             secondTimerRef.current = null;
         }
-        if (firstTimerRef.current) {
-            clearTimeout(firstTimerRef.current);
-            firstTimerRef.current = null;
-        }
-        setBtnShow({ fadeIn: false, show: true });
+        setBtnFadeIn(false);
         secondTimerRef.current = setTimeout(() => {
-            setBtnShow({ fadeIn: false, show: false });
+            setBtnShow(false);
             secondTimerRef.current = null;
         }, 200);
     }, []);
@@ -71,13 +77,13 @@ const CardDot = ({ item, lists, parentRef }) => {
 
     return (
         <div ref={elementRef} className={styles.cardDots}>
-            {(btnShow.show || show) && (
+            {(btnShow || listShow) && (
                 <button
                     onClick={() => {
-                        setShow(prev => !prev);
+                        setListShow(prev => !prev);
                         showMenu(true);
                     }}
-                    className={`${styles.btnDot}${btnShow.fadeIn ? ` ${styles.zoomIn}` : ''}`}
+                    className={`${styles.btnDot}${btnFadeIn || listShow ? ` ${styles.zoomIn}` : ''}`}
                     type="button"
                 >
                     <svg
@@ -131,14 +137,14 @@ const CardDot = ({ item, lists, parentRef }) => {
                     </svg>
                 </button>
             )}
-            {show && (
+            {listShow && (
                 <ul className={styles.listContainer}>
                     {lists.map(list => (
                         <li key={list.id}>
                             <button
                                 onClick={() => {
                                     list.event(item);
-                                    setShow(false);
+                                    setListShow(false);
                                 }}
                                 type="button"
                             >
