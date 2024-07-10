@@ -9,6 +9,7 @@
 .nameContainer {
 	font-weight: 600;
 }
+
 .btnDot {
 	width: 100%;
 	height: 100%;
@@ -23,10 +24,7 @@
 		opacity 200ms,
 		scale 200ms;
 }
-.zoomIn {
-	opacity: 1;
-	scale: 1;
-}
+
 .btnDot:hover {
 	background-color: rgba(0, 0, 0, 0.6);
 }
@@ -34,6 +32,7 @@
 .btnDot:active {
 	background-color: rgba(0, 0, 0, 0.4);
 }
+
 .listContainer {
 	position: absolute;
 	list-style: none;
@@ -43,9 +42,19 @@
 	top: calc(100% + 5px);
 	left: 50%;
 	translate: -50%;
-	animation: fadeZoomIn 200ms 0ms;
 	z-index: 1;
+	opacity: 0;
+	scale: 0.5;
+	transition:
+		opacity 200ms,
+		scale 200ms;
 }
+
+.zoomIn {
+	opacity: 1;
+	scale: 1;
+}
+
 .listContainer li button {
 	width: 100%;
 	background-color: transparent;
@@ -61,6 +70,7 @@
 .listContainer li button:hover {
 	color: rgba(255, 255, 255, 0.9);
 }
+
 .listContainer li button::after {
 	content: '';
 	display: block;
@@ -70,6 +80,7 @@
 	margin-top: 5px;
 	transition: background-color 200ms;
 }
+
 .listContainer li button:hover::after {
 	background-color: #444;
 }

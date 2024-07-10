@@ -8,7 +8,6 @@ const useDropDownHide = setState => {
 
     closeMenu.current = useCallback(
         e => {
-            console.log('closeMenu', e.target);
             switch (Array.isArray(element.current)) {
                 case true:
                     if (!element.current.some(ele => ele?.contains(e.target)) && e) {
