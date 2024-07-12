@@ -1,5 +1,9 @@
 import { useContext } from 'react';
-import { FilterSortContext, FilterSortRefContext, SetFilterSortContext } from '../../../../../../../../Contexts/FilterSortContext';
+import {
+    FilterSortContext,
+    FilterSortRefContext,
+    SetFilterSortContext,
+} from '../../../../../../../../Contexts/FilterSortContext';
 
 const useFilterSortState = () => {
     const filterSortState = useContext(FilterSortContext);

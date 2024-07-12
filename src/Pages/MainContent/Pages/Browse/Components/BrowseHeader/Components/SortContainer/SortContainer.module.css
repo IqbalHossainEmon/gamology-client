@@ -1,42 +1,52 @@
 .sortContainer {
-  position: relative;
-  z-index: 1;
+	position: relative;
+	z-index: 1;
 }
 
 .sortLists {
-  position: absolute;
-  width: 100%;
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	scale: 0.7;
+	transition:
+		opacity 200ms,
+		scale 200ms;
+}
+
+.fadeIn {
+	opacity: 1;
+	scale: 1;
 }
 
 @media only screen and (max-width: 768px) {
-  .sortContainer {
-    width: 100%;
-    position: fixed;
-    background-color: rgba(55, 55, 55);
-    left: 0;
-    bottom: 0%;
-    z-index: 4;
-    transition: translate 300ms;
-  }
-  .sortLists {
-    position: relative;
-    padding: 5px 10px;
-  }
-  .sortLists h3 {
-    padding: 5px;
-  }
-  .hidden {
-    translate: 0 100%;
-  }
-  .closeButton {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
-  .shadow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
+	.sortContainer {
+		width: 100%;
+		position: fixed;
+		background-color: rgba(55, 55, 55);
+		left: 0;
+		bottom: 0%;
+		z-index: 4;
+		transition: translate 300ms;
+	}
+	.sortLists {
+		position: relative;
+		padding: 5px 10px;
+	}
+	.sortLists h3 {
+		padding: 5px;
+	}
+	.hidden {
+		translate: 0 100%;
+	}
+	.closeButton {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+	.shadow {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
 }

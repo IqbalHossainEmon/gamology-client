@@ -29,31 +29,34 @@ const withFilterSortProvider = Component =>
 
         const setFilterSort = useCallback(
             prop => {
-                if (prop === 'filter') {
-                    setFilterSortState(prev => {
-                        if (prev.filter && screenWidth < 769) {
-                            hideBodyOverflow();
-                        } else {
-                            showBodyOverflow();
-                        }
-                        return {
-                            filter: !prev.filter,
-                            sort: true,
-                        };
-                    });
-                } else if (prop === 'sort') {
-                    setElement(filterSortRef.sort);
-                    showMenu();
-                    setFilterSortState(prev => {
-                        if (prev.sort && screenWidth < 769) {
-                            hideBodyOverflow();
-                        } else {
-                            showBodyOverflow();
-                        }
-                        return { sort: !prev.sort, filter: true };
-                    });
-                } else {
-                    setFilterSortState({ sort: true, filter: true });
+                switch (prop) {
+                    case 'filter':
+                        setFilterSortState(prev => {
+                            if (prev.filter && screenWidth < 769) {
+                                hideBodyOverflow();
+                            } else {
+                                showBodyOverflow();
+                            }
+                            return {
+                                filter: !prev.filter,
+                                sort: true,
+                            };
+                        });
+                        break;
+                    case 'sort':
+                        setElement(filterSortRef.sort);
+                        showMenu();
+                        setFilterSortState(prev => {
+                            if (prev.sort && screenWidth < 769) {
+                                hideBodyOverflow();
+                            } else {
+                                showBodyOverflow();
+                            }
+                            return { sort: !prev.sort, filter: true };
+                        });
+                        break;
+                    default:
+                        setFilterSortState({ sort: true, filter: true });
                 }
             },
             [hideBodyOverflow, screenWidth, setElement, showBodyOverflow, showMenu]

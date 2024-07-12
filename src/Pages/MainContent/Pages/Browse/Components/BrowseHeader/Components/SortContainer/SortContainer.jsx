@@ -9,7 +9,7 @@ import styles from './SortContainer.module.css';
 
 export default function SortContainer({ state, handleChange }) {
     const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
-    const { sort: show } = filterSortState;
+    const { sort: show, fadeIn } = filterSortState;
 
     const dropDownRef = useRef();
 
@@ -21,10 +21,15 @@ export default function SortContainer({ state, handleChange }) {
 
     return (
         <>
-            <div ref={dropDownRef} className={`${styles.sortContainer} ${show && screenWidth < 769 ? styles.hidden : ''}`}>
-                {screenWidth > 768 && <SortButton dropDownRef={dropDownRef.current} state={state} show={show} setShow={setFilterSort} />}
+            <div
+                ref={dropDownRef}
+                className={`${styles.sortContainer} ${show && screenWidth < 769 ? styles.hidden : ''}`}
+            >
+                {screenWidth > 768 && (
+                    <SortButton dropDownRef={dropDownRef.current} state={state} show={show} setShow={setFilterSort} />
+                )}
                 {!show && screenWidth > 768 && (
-                    <div className={styles.sortLists}>
+                    <div className={`${styles.sortLists}${fadeIn ? ` ${styles.fadeIn}` : ''}`}>
                         <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
                     </div>
                 )}
