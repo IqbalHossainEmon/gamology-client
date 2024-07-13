@@ -25,7 +25,11 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
     return (
         <div className={styles.filterOptions}>
             {title && (
-                <button type="button" onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))} className={styles.filterTitle}>
+                <button
+                    type="button"
+                    onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
+                    className={styles.filterTitle}
+                >
                     <h3 className={styles.title}>{title}</h3>
                     <div className={styles.downArrow}>
                         <RotateArrow state={show.show} />

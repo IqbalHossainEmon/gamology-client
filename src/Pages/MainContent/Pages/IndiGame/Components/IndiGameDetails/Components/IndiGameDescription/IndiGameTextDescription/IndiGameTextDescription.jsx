@@ -23,7 +23,9 @@ export default function IndiGameTextDescription({ descriptions }) {
                     {descriptions.map(description => (
                         <div key={description.id} className={styles.descriptionContainer}>
                             {description.mainHeader && <h2 className={styles.mainHeader}>{description.mainHeader}</h2>}
-                            {description.subHeader && <strong className={styles.subHeader}>{description.subHeader}</strong>}
+                            {description.subHeader && (
+                                <strong className={styles.subHeader}>{description.subHeader}</strong>
+                            )}
                             {description.description && <p className={styles.description}>{description.description}</p>}
                             {description.subHeader && !description.description && description.mainHeader && (
                                 <div>

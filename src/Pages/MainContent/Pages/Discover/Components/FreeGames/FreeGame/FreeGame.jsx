@@ -33,7 +33,9 @@ export default function FreeGame({ data, today, length }) {
                     {dateState !== -1 && (
                         <p
                             className={
-                                dateState === 1 ? [styles.common, styles.freeNow].join(' ') : [styles.common, styles.coming].join(' ')
+                                dateState === 1
+                                    ? [styles.common, styles.freeNow].join(' ')
+                                    : [styles.common, styles.coming].join(' ')
                             }
                         >
                             {dateState === 1 ? 'FREE GAME' : 'COMING SOON'}

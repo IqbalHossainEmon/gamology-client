@@ -82,11 +82,20 @@ export default function DiscoverBanner() {
                     bannerState={{ active, fadeOut, fadeIn }}
                     data={data}
                 />
-                <DiscoverBannerInfoItems data={data} activeBanner={activeBanner} bannerState={{ active, fadeOut, fadeIn }} />
+                <DiscoverBannerInfoItems
+                    data={data}
+                    activeBanner={activeBanner}
+                    bannerState={{ active, fadeOut, fadeIn }}
+                />
             </div>
             <BannerButtons handleClick={handleClick} />
             {screenWidth > 768 && (
-                <DiscoverBannerItemCards handleClick={handleClick} data={data} cardsPosition={cardsPosition} isPause={isPause} />
+                <DiscoverBannerItemCards
+                    handleClick={handleClick}
+                    data={data}
+                    cardsPosition={cardsPosition}
+                    isPause={isPause}
+                />
             )}
         </section>
     );

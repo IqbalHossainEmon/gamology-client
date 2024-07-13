@@ -141,7 +141,9 @@ const FileUploadButton = ({
                             {placeholder || 'Browse'}
                         </label>
 
-                        <p className={`${selected.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>{selected.name}</p>
+                        <p className={`${selected.selected ? `${styles.selected} ` : ''}${styles.fileName}`}>
+                            {selected.name}
+                        </p>
                         {disabled || (
                             <div className={styles.uploadImage}>
                                 <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +172,12 @@ const FileUploadButton = ({
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_14_1859">
-                                            <rect width="51.999" height="42.999" fill="white" transform="translate(6 11)" />
+                                            <rect
+                                                width="51.999"
+                                                height="42.999"
+                                                fill="white"
+                                                transform="translate(6 11)"
+                                            />
                                         </clipPath>
                                     </defs>
                                 </svg>

@@ -30,13 +30,17 @@ const ScrollBar = ({ parentRef, childRef }) => {
                     parentRef.current.scrollTop = 0;
                     return 0;
                 }
-                if (prev + cursorInEle - downElement.current > parentRef.current.clientHeight - thumbRef.current.clientHeight) {
+                if (
+                    prev + cursorInEle - downElement.current >
+                    parentRef.current.clientHeight - thumbRef.current.clientHeight
+                ) {
                     parentRef.current.scrollTop = parentRef.current.scrollHeight - parentRef.current.clientHeight;
                     return parentRef.current.clientHeight - thumbRef.current.clientHeight;
                 }
 
                 parentRef.current.scrollTop =
-                    ((prev + cursorInEle - downElement.current) / (parentRef.current.clientHeight - thumbRef.current.clientHeight)) *
+                    ((prev + cursorInEle - downElement.current) /
+                        (parentRef.current.clientHeight - thumbRef.current.clientHeight)) *
                     (parentRef.current.scrollHeight - parentRef.current.clientHeight);
                 return prev + cursorInEle - downElement.current;
             });

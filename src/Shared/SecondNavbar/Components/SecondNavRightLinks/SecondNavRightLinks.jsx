@@ -3,11 +3,11 @@ import LinksList from '../../../LinksList/LinksList';
 import styles from './SecondNavRightLinks.module.css';
 
 export default function SecondNavRightLinks({ screenWidth }) {
-    const [links, setlinks] = useState([]);
+    const [links, setLinks] = useState([]);
 
     useEffect(() => {
         if (screenWidth > 768) {
-            setlinks([
+            setLinks([
                 {
                     no: 0,
                     name: 'Wishlist',
@@ -16,7 +16,7 @@ export default function SecondNavRightLinks({ screenWidth }) {
                 { no: 1, name: 'Cart', URL: '#cart' },
             ]);
         } else {
-            setlinks([
+            setLinks([
                 {
                     no: 0,
                     name: (

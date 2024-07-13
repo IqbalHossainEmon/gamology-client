@@ -8,7 +8,16 @@ import CoverImageContainer from '../Components/CoverImageContainer/CoverImageCon
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
 import styles from './CoverImageVideoContainer.module.css';
 
-const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorChange, name, number, hasDefault, defaultData }) => {
+const CoverImageVideoContainer = ({
+    type,
+    handleSetValues,
+    errorMessage,
+    errorChange,
+    name,
+    number,
+    hasDefault,
+    defaultData,
+}) => {
     const [errorShow, setErrorShow] = useState(!!errorMessage);
     const [focused, setFocused] = useState(false);
 
@@ -120,7 +129,9 @@ const CoverImageVideoContainer = ({ type, handleSetValues, errorMessage, errorCh
                             />
                         )
                     ) : (
-                        <p className={`${errorShow ? `${styles.errorColor} ` : ''}${styles.defaultText}`}>Select Content Type First</p>
+                        <p className={`${errorShow ? `${styles.errorColor} ` : ''}${styles.defaultText}`}>
+                            Select Content Type First
+                        </p>
                     )}
                 </div>
                 {imagePreviewContainer && mainValueRef.current?.image.file && (

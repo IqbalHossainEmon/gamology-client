@@ -82,7 +82,10 @@ const items = [
 export default function IndiGameBanner() {
     const { reducer, initialState, timerFunction } = useIndiGameBannerLogics();
 
-    const [{ data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition }, dispatch] = useReducer(reducer, initialState);
+    const [{ data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition }, dispatch] = useReducer(
+        reducer,
+        initialState
+    );
 
     useEffect(() => {
         dispatch({ type: 'fetch', data: items });

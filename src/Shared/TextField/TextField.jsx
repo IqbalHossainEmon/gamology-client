@@ -78,7 +78,9 @@ export default function TextField({
 
     return (
         <div className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`} ref={containerRef}>
-            <div className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}`}>
+            <div
+                className={`${errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''}${styles.container}`}
+            >
                 <label
                     className={`${focused ? `${styles.focused} ` : value || defaultValue ? `${styles.textFilled} ` : ''}${styles.label}${field === 'textarea' ? ` ${styles.textareaLabel}` : ''}`}
                     {...(errorShow && { id: styles.errorColor })}

@@ -27,7 +27,9 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
     }, [disabled, limit]);
 
     const bigger = parseFloat(((knob1 > knob2 ? knob1 : knob2) / singleStepRef.current + limit.lower).toFixed(float));
-    const smaller = parseFloat((((knob1 < knob2 ? knob1 : knob2) / singleStepRef.current || 0) + limit.lower).toFixed(float));
+    const smaller = parseFloat(
+        (((knob1 < knob2 ? knob1 : knob2) / singleStepRef.current || 0) + limit.lower).toFixed(float)
+    );
 
     const stateRef = useRef({ bigger, smaller });
     stateRef.current.bigger = bigger;

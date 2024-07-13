@@ -47,7 +47,11 @@ export default function SecondNavMobileLinks({ setNavShow }) {
                 style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }}
                 className={styles.navLinksContainer}
             >
-                <SecondNavLinkLists navMidShow={navMidShow} setNavTextState={handleClick} id={navMidShow ? 'navShow' : 'navHide'} />
+                <SecondNavLinkLists
+                    navMidShow={navMidShow}
+                    setNavTextState={handleClick}
+                    id={navMidShow ? 'navShow' : 'navHide'}
+                />
             </div>
             <button
                 ref={midSliderElement2}

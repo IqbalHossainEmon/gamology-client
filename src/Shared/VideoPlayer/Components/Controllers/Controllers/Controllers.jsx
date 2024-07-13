@@ -90,7 +90,12 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
                     />
                 </li>
                 <li>
-                    <PlayPauseButton canPlay={canPlay} isSeekedRef={isSeekedRef} video={video} togglePausePlay={togglePausePlay} />
+                    <PlayPauseButton
+                        canPlay={canPlay}
+                        isSeekedRef={isSeekedRef}
+                        video={video}
+                        togglePausePlay={togglePausePlay}
+                    />
                 </li>
                 <li>
                     <VideoVolume changePause={changePause} video={video} videoContainer={videoContainer} />

@@ -69,7 +69,12 @@ function GearButton({ gearRef, videoContainer }) {
                             <p>Applies to all videos</p>
                         </div>
                         <div className={styles.switch}>
-                            <Switch videoContainer={videoContainer} state={autoplay} setState={setAutoplay} event={eventRef.handleClick} />
+                            <Switch
+                                videoContainer={videoContainer}
+                                state={autoplay}
+                                setState={setAutoplay}
+                                event={eventRef.handleClick}
+                            />
                         </div>
                     </div>
                 </div>

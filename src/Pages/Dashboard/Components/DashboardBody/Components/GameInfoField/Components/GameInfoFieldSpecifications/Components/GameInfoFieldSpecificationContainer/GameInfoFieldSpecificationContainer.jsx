@@ -4,7 +4,13 @@ import GameInfoFieldSpecification from '../GameInfoFieldSpecification/GameInfoFi
 import styles from './GameInfoFieldSpecificationContainer.module.css';
 
 const specs = ['Windows', 'MacOs', 'Linux'];
-const GameInfoFieldSpecificationContainer = ({ gameSpecifications, errorMessages, errorChange, hasDefault, defaultGameSpecifications }) => {
+const GameInfoFieldSpecificationContainer = ({
+    gameSpecifications,
+    errorMessages,
+    errorChange,
+    hasDefault,
+    defaultGameSpecifications,
+}) => {
     const [errorShow, setErrorShow] = useState(!!errorMessages[4]);
 
     const errorShowRef = useRef(errorShow);
@@ -38,9 +44,12 @@ const GameInfoFieldSpecificationContainer = ({ gameSpecifications, errorMessages
                         errorMessages={errorMessages[i]}
                         errorChange={errorChange}
                         handleSetValue={handleSetValue}
-                        {...(hasDefault && { defaultSpecs: defaultGameSpecifications.find(defaultSpec => defaultSpec.for === spec) })}
                         {...(hasDefault && {
-                            hasDefault: defaultGameSpecifications.find(defaultSpec => defaultSpec.for === spec)?.isActive,
+                            defaultSpecs: defaultGameSpecifications.find(defaultSpec => defaultSpec.for === spec),
+                        })}
+                        {...(hasDefault && {
+                            hasDefault: defaultGameSpecifications.find(defaultSpec => defaultSpec.for === spec)
+                                ?.isActive,
                         })}
                     />
                 </div>

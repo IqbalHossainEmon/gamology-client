@@ -92,7 +92,13 @@ const CoverImageContainer = ({
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
-                            <path d="M31.999 13V40" stroke="#426AB2" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                            <path
+                                d="M31.999 13V40"
+                                stroke="#426AB2"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                             <path
                                 d="M41 19L31.999 13L23 19"
                                 stroke="#426AB2"

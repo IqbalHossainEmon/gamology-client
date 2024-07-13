@@ -4,7 +4,15 @@ import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowB
 import IndiGameBannerCard from '../IndiGameBannerCard/IndiGameBannerCard';
 import styles from './IndiGameBannerCards.module.css';
 
-export default function IndiGameBannerCards({ active, items, dispatch, timerFunction, cardsOnDeck, cardActive, thumbTransition }) {
+export default function IndiGameBannerCards({
+    active,
+    items,
+    dispatch,
+    timerFunction,
+    cardsOnDeck,
+    cardActive,
+    thumbTransition,
+}) {
     const screenWidth = useScreenWidth();
 
     const cardsOnDeckRef = useRef(cardsOnDeck);
@@ -59,14 +67,18 @@ export default function IndiGameBannerCards({ active, items, dispatch, timerFunc
                             ? {
                                   width: `${Math.ceil(items.length / cardsOnDeck) * 100}%`,
                                   translate: `calc(-${
-                                      Math.ceil(items.length / cardsOnDeck) ? (100 / Math.ceil(items.length / cardsOnDeck)) * cardActive : 0
+                                      Math.ceil(items.length / cardsOnDeck)
+                                          ? (100 / Math.ceil(items.length / cardsOnDeck)) * cardActive
+                                          : 0
                                   }% - ${cardsOnDeck > 1 ? cardActive * 15 : 0}px)`,
                                   transition: 'translate 250ms',
                               }
                             : {
                                   width: `${Math.ceil(items.length / cardsOnDeck) * 100}%`,
                                   translate: `calc(-${
-                                      Math.ceil(items.length / cardsOnDeck) ? (100 / Math.ceil(items.length / cardsOnDeck)) * cardActive : 0
+                                      Math.ceil(items.length / cardsOnDeck)
+                                          ? (100 / Math.ceil(items.length / cardsOnDeck)) * cardActive
+                                          : 0
                                   }% - ${cardsOnDeck > 1 ? cardActive * 15 : 0}px)`,
                               }
                     }

@@ -13,7 +13,10 @@ const ErrorMessage = ({ errorMessage, enable }) => {
         resizeObserver.current = new ResizeObserver(() => {
             if (errorMessageContainer.current) {
                 errorMessageContainer.current.style.height = 'auto';
-                errorMessageContainer.current.style.setProperty('--error-message-height', `${errorMessageRef.current.scrollHeight}px`);
+                errorMessageContainer.current.style.setProperty(
+                    '--error-message-height',
+                    `${errorMessageRef.current.scrollHeight}px`
+                );
                 errorMessageContainer.current.style.height = '0px';
             } else {
                 resizeObserver.current.disconnect();
@@ -48,7 +51,11 @@ const ErrorMessage = ({ errorMessage, enable }) => {
     }, [enable]);
 
     return show ? (
-        <div ref={errorMessageContainer} className={`${styles.errorMessageContainer}`} id={enable ? styles.show : styles.hide}>
+        <div
+            ref={errorMessageContainer}
+            className={`${styles.errorMessageContainer}`}
+            id={enable ? styles.show : styles.hide}
+        >
             <div ref={errorMessageRef} className={styles.errorMessage}>
                 <p>{errorMessage}</p>
                 <div className={styles.info}>

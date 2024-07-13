@@ -30,10 +30,13 @@ export default function SortContainer({ state, handleChange }) {
         setFadeIn(false);
         endTimeRef.current = setTimeout(() => {
             setShow(false);
-            window.removeEventListener('blur', handleHideBtn);
+            // window.removeEventListener('blur', handleHideBtn);
             endTimeRef.current = null;
         }, 200);
     }, []);
+
+    console.log(show);
+    console.log(fadeIn);
 
     const handleShow = useCallback(() => {
         if (endTimeRef.current) {
@@ -48,7 +51,7 @@ export default function SortContainer({ state, handleChange }) {
         setShow(true);
         startTimeRef.current = setTimeout(() => {
             setFadeIn(true);
-            window.addEventListener('blur', handleHideBtn);
+            // window.addEventListener('blur', handleHideBtn);
             startTimeRef.current = null;
         }, 60);
     }, [handleHideBtn]);
@@ -62,6 +65,7 @@ export default function SortContainer({ state, handleChange }) {
                 handleHideBtn();
                 break;
         }
+        console.log('sort', sort);
     }, [handleHideBtn, handleShow, sort]);
 
     const dropDownRef = useRef();

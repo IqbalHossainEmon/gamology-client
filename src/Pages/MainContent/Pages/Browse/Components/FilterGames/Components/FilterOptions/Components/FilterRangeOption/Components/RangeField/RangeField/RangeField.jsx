@@ -24,7 +24,10 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
         }
     }, [conditionStep, limit, singleStepRef]);
 
-    const { getLeftRightPointerStep } = usePointersEveryStep(rangePathRef, conditionStep ? conditionStepRef : singleStepRef);
+    const { getLeftRightPointerStep } = usePointersEveryStep(
+        rangePathRef,
+        conditionStep ? conditionStepRef : singleStepRef
+    );
 
     // set click value in the path of slider depending on steps
     const handlePathClick = e => {
@@ -53,7 +56,13 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
 
     return (
         <div className={styles.rangeFieldContainer}>
-            <div tabIndex="-1" role="button" ref={rangePathRef} onMouseDown={handlePathClick} className={styles.rangeField}>
+            <div
+                tabIndex="-1"
+                role="button"
+                ref={rangePathRef}
+                onMouseDown={handlePathClick}
+                className={styles.rangeField}
+            >
                 <div
                     className={`${transition ? `${styles.activePathTransition} ` : ''}${styles.activePath}`}
                     ref={activePathRef}

@@ -3,7 +3,16 @@ import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/Erro
 import SelectionField from '../../../../../../../../../../Shared/SelectionField/SelectionField';
 import styles from './SelectionFieldWithErrorMessage.module.css';
 
-const SelectionFieldWithErrorMessage = ({ htmlFor, placeholder, list, name, setState, errorMessage, errorChange, handleCheck }) => {
+const SelectionFieldWithErrorMessage = ({
+    htmlFor,
+    placeholder,
+    list,
+    name,
+    setState,
+    errorMessage,
+    errorChange,
+    handleCheck,
+}) => {
     const [errorShow, setErrorShow] = useState(false);
 
     useEffect(() => {

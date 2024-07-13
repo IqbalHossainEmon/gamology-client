@@ -3,7 +3,20 @@ import ErrorMessage from '../../../../../../../../../../../Shared/ErrorMessage/E
 import SelectionField from '../../../../../../../../../../../Shared/SelectionField/SelectionField';
 import styles from './ReleaseDate.module.css';
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+];
 function getDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
 }

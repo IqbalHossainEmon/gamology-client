@@ -56,7 +56,11 @@ export default function FullScreenButton({ videoContainer }) {
     }, [videoContainer]);
 
     return (
-        <button type="button" onClick={() => handleFullScreen(videoContainer.current)} className={styles.fullScreenButton}>
+        <button
+            type="button"
+            onClick={() => handleFullScreen(videoContainer.current)}
+            className={styles.fullScreenButton}
+        >
             <span>
                 <svg viewBox="0 0 14 14">
                     <title>{isFullScreen ? 'Enter fullscreen' : 'Exit fullscreen'}</title>
