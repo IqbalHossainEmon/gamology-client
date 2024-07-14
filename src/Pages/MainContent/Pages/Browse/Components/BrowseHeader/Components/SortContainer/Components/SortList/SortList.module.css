@@ -1,0 +1,83 @@
+.listContainer {
+	background-color: rgba(55, 55, 55);
+	padding: 0 5px;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	border-radius: 0 0 4px 4px;
+	animation: FadeIn 200ms ease-in 0s 1 forwards normal;
+}
+
+.listContainer li {
+	margin-top: 5px;
+}
+.listContainer:last-child li {
+	margin-bottom: 5px;
+}
+
+#active {
+	color: rgba(255, 255, 255, 0.4);
+}
+#active:hover {
+	color: rgba(255, 255, 255, 0.4);
+	cursor: default;
+	text-decoration: none;
+}
+
+.sortButtons {
+	width: 100%;
+	background-color: transparent;
+	color: rgba(255, 255, 255, 0.6);
+	padding: 5px;
+	font-size: 0.9rem;
+	text-align: left;
+	border: none;
+	cursor: pointer;
+	transition: color 200ms;
+}
+.sortButtons:hover {
+	color: rgba(255, 255, 255, 0.9);
+	text-decoration: underline;
+}
+
+@media only screen and (min-width: 769px) {
+	.listContainer {
+		box-shadow: 0 0 10px 0 rgb(24, 24, 24);
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.sortLists ol {
+		width: 100%;
+		margin: 0;
+	}
+	.sortButtons {
+		position: relative;
+	}
+	.sortButtons::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		background-color: rgb(136, 136, 136);
+	}
+	#active {
+		color: rgba(255, 255, 255, 0.2);
+	}
+	#active:hover {
+		color: rgba(255, 255, 255, 0.2);
+		cursor: default;
+		text-decoration: none;
+	}
+}
+
+@keyframes FadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

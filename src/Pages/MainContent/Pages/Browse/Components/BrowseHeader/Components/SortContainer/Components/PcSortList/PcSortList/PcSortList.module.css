@@ -1,0 +1,28 @@
+.sortLists {
+	position: absolute;
+	width: 11rem;
+	right: 0;
+	opacity: 0;
+	scale: 0.7;
+	transition:
+		opacity 200ms,
+		scale 200ms;
+	z-index: 1;
+}
+
+.fadeIn {
+	opacity: 1;
+	scale: 1;
+}
+@media only screen and (max-width: 768px) {
+	.sortLists {
+		width: 100%;
+		position: relative;
+		padding: 5px 10px;
+		opacity: 1;
+		scale: 1;
+	}
+	.sortLists h3 {
+		padding: 5px;
+	}
+}

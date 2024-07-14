@@ -1,4 +1,4 @@
-import SortContainer from '../Components/SortContainer/SortContainer';
+import SortContainer from '../Components/SortContainer/SortContainer/SortContainer';
 import styles from './BrowseHeader.module.css';
 
 export default function BrowseHeader({ handleChange, state }) {
