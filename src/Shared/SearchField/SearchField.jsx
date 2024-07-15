@@ -33,7 +33,6 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
     );
 
     eventRef.handleClose = useCallback(isFormDismount => {
-        console.log(isFormDismount);
         eventRef.setShowState(false);
         if (!isFormDismount) searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
         window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);

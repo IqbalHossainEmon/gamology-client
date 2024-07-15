@@ -1,14 +1,14 @@
-import { useCallback } from 'react';
 import Card from '../../../../../../../../../../../Shared/Card/Card';
-import CardDot from '../../../../../../../Shared/CardDotContainer/Components/CardDot/CardDot';
+import CardDotContainer from '../../../../../../../Shared/CardDotContainer/CardDotContainer/CardDotContainer';
+import useDashboardModalHook from '../../../../../../useDashboardModalHook/useDashboardModalHook';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesBody.module.css';
 
 const AllGamesBody = ({ items, setModal }) => {
-    const modalBody = useCallback(
-        (props, type, item) => <AllGamesModalBodySelect {...props} type={type} detail={item} />,
-        []
-    );
+    const { useDashboardBodySetContent, useDashboardBodySetModal } = useDashboardModalHook();
+
+    const setModalContent = useDashboardBodySetContent();
+    const setModalShow = useDashboardBodySetModal();
 
     return (
         <div className={styles.allGamesBody}>
@@ -16,7 +16,7 @@ const AllGamesBody = ({ items, setModal }) => {
                 {items.map(item => (
                     <Card className={styles.list} key={item.id} cardInfo={item} image={item.image} alt={item.title}>
                         {prop => (
-                            <CardDot
+                            <CardDotContainer
                                 setModal={setModal}
                                 parentRef={prop}
                                 hoverClassName={styles.dots}
@@ -31,16 +31,16 @@ const AllGamesBody = ({ items, setModal }) => {
                                         id: 2,
                                         name: 'Price',
                                         event: detail => {
-                                            setModal({
-                                                show: true,
-                                                title: 'Edit Price',
-                                                modalQuestion: (
+                                            setModalShow(true);
+                                            setModalContent({
+                                                modalTitle: 'Edit Price',
+                                                modalBody: (
                                                     <h3 className={styles.priceChangeHeader}>
                                                         What price you want to set for
                                                         <span className={styles.nameContainer}>{item.name}</span>
                                                     </h3>
                                                 ),
-                                                ModalBody: props => modalBody(props, 'price', detail),
+                                                modalFooter: <AllGamesModalBodySelect type="price" detail={detail} />,
                                             });
                                         },
                                     },
@@ -48,16 +48,16 @@ const AllGamesBody = ({ items, setModal }) => {
                                         id: 3,
                                         name: 'Delete',
                                         event: detail => {
-                                            setModal({
-                                                show: true,
-                                                title: 'Delete Game',
-                                                modalQuestion: (
+                                            setModalShow(true);
+                                            setModalContent({
+                                                modalTitle: 'Delete Game',
+                                                modalBody: (
                                                     <h3 className={styles.priceChangeHeader}>
                                                         Are you sure you want to delete
                                                         <span className={styles.nameContainer}>{item.name}</span>?
                                                     </h3>
                                                 ),
-                                                ModalBody: props => modalBody(props, 'delete', detail),
+                                                modalFooter: <AllGamesModalBodySelect type="delete" detail={detail} />,
                                             });
                                         },
                                     },

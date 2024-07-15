@@ -1,15 +1,18 @@
 import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
+import useDashboardModalHook from '../../../../../../../../useDashboardModalHook/useDashboardModalHook';
 import styles from './AllGamesPriceEditModal.module.css';
 
-const AllGamesPriceEditModal = ({ price, handleHide }) => {
+const AllGamesPriceEditModal = ({ price }) => {
     const btnRef = useRef(null);
     const newPrice = useRef(null);
 
+    const setModal = useDashboardModalHook().useDashboardBodySetModal();
+
     const handleSubmit = () => {
         console.log('Price Submitted');
-        handleHide();
+        setModal();
     };
 
     return (
@@ -34,7 +37,13 @@ const AllGamesPriceEditModal = ({ price, handleHide }) => {
                         strokeWidth="0.00512"
                     >
                         <g id="SVGRepo_bgCarrier" strokeWidth="0" />
-                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="1.024" />
+                        <g
+                            id="SVGRepo_tracerCarrier"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            stroke="#CCCCCC"
+                            strokeWidth="1.024"
+                        />
                         <g id="SVGRepo_iconCarrier">
                             <path
                                 fill="#3e9c35"

@@ -2,7 +2,7 @@ import AllGamesDeleteConfirmModal from '../AllGamesDeleteConfirmModal/AllGamesDe
 import AllGamesPriceEditModal from '../AllGamesPriceEditModal/AllGamesPriceEditModal';
 import styles from './AllGamesModalBodySelect.module.css';
 
-const AllGamesModalBodySelect = ({ type, detail, handleHide }) => {
+const AllGamesModalBodySelect = ({ type, detail }) => {
     const { name, category, price, carouselThumb } = detail;
     return (
         <>
@@ -17,9 +17,9 @@ const AllGamesModalBodySelect = ({ type, detail, handleHide }) => {
                 </div>
             </div>
             {type === 'price' ? (
-                <AllGamesPriceEditModal handleHide={handleHide} detail={detail} price={typeof price === 'object' ? price.regular : price} />
+                <AllGamesPriceEditModal detail={detail} price={typeof price === 'object' ? price.regular : price} />
             ) : (
-                <AllGamesDeleteConfirmModal detail={detail} handleHide={handleHide} />
+                <AllGamesDeleteConfirmModal detail={detail} />
             )}
         </>
     );
