@@ -4,7 +4,6 @@
 	background-color: #252525;
 	padding: 5px 10px;
 	border-radius: 4px;
-	translate: -50%;
 	z-index: 1;
 	opacity: 0;
 	scale: 0.7;
@@ -14,17 +13,19 @@
 }
 
 .bottom {
-	top: calc(100% + 5px);
+	top: 100%;
 	left: 50%;
+	translate: -50%;
 }
 
 .left {
 	top: 0;
-	right: -10px;
+	right: 100%;
 }
 .top {
 	bottom: 100%;
 	left: 50%;
+	translate: -50%;
 }
 
 .zoomIn {
