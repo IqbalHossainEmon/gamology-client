@@ -1,6 +1,5 @@
 .modal {
 	max-width: 100%;
-	min-width: 60%;
 	max-height: 100%;
 	position: absolute;
 	top: 50%;
@@ -10,7 +9,11 @@
 	z-index: 4;
 	display: flex;
 	border-radius: 0.5rem;
-	box-shadow: 0 0 10px 0 #000000;
+	opacity: 0;
+	scale: 0.7;
+	transition:
+		opacity 200ms,
+		scale 200ms;
 }
 .modalScrollContainer {
 	width: 100%;
@@ -25,8 +28,9 @@
 .modalContentContainer {
 	padding: 2rem;
 }
-.hide {
-	/* pointer-events: none; */
+.zoomIn {
+	opacity: 1;
+	scale: 1;
 }
 
 .crossBtn {

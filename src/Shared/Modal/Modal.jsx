@@ -24,7 +24,7 @@ const Modal = ({ children, setShow, fadeIn, hideEventRef }) => {
     }, [handleHide, hideEventRef, setElement, showMenu]);
 
     return (
-        <div ref={elementRef} className={`${fadeIn ? `${styles.fadeIn} ` : ''} ${styles.modal}`}>
+        <div ref={elementRef} className={`${fadeIn ? `${styles.zoomIn} ` : ''} ${styles.modal}`}>
             <div ref={parentRef} className={styles.modalScrollContainer}>
                 <div className={styles.modalContentContainer} ref={childRef}>
                     {children}
