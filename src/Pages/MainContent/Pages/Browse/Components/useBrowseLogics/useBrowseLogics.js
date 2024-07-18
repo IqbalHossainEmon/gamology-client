@@ -1,6 +1,6 @@
 const initialState = {
     items: [],
-    NumberOfGames: 'Pc Games / All',
+    numberOfGames: 'Pc Games / All',
     sortBy: 'New Release',
     filterState: {
         showOnlyDiscounted: false,

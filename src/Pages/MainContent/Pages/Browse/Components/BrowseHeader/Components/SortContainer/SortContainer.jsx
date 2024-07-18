@@ -14,8 +14,9 @@ export default function SortContainer({ state, handleChange }) {
     const [show, setShow] = useState(false);
     const [fadeIn, setFadeIn] = useState(false);
 
-    const startTimeRef = useRef();
-    const endTimeRef = useRef();
+    const startTimeRef = useRef(null);
+    const endTimeRef = useRef(null);
+    const prevSortRef = useRef(sort);
 
     const handleHideBtn = useCallback(() => {
         if (startTimeRef.current) {
@@ -30,13 +31,10 @@ export default function SortContainer({ state, handleChange }) {
         setFadeIn(false);
         endTimeRef.current = setTimeout(() => {
             setShow(false);
-            // window.removeEventListener('blur', handleHideBtn);
+            window.removeEventListener('blur', handleHideBtn);
             endTimeRef.current = null;
         }, 200);
     }, []);
-
-    console.log(show);
-    console.log(fadeIn);
 
     const handleShow = useCallback(() => {
         if (endTimeRef.current) {
@@ -51,21 +49,23 @@ export default function SortContainer({ state, handleChange }) {
         setShow(true);
         startTimeRef.current = setTimeout(() => {
             setFadeIn(true);
-            // window.addEventListener('blur', handleHideBtn);
+            window.addEventListener('blur', handleHideBtn);
             startTimeRef.current = null;
         }, 60);
     }, [handleHideBtn]);
 
     useEffect(() => {
-        switch (sort) {
-            case true:
-                handleShow();
-                break;
-            default:
-                handleHideBtn();
-                break;
+        if (prevSortRef.current !== sort) {
+            switch (sort) {
+                case true:
+                    handleShow();
+                    break;
+                default:
+                    handleHideBtn();
+                    break;
+            }
         }
-        console.log('sort', sort);
+        prevSortRef.current = sort;
     }, [handleHideBtn, handleShow, sort]);
 
     const dropDownRef = useRef();
@@ -85,7 +85,7 @@ export default function SortContainer({ state, handleChange }) {
                 {screenWidth > 768 && (
                     <SortButton dropDownRef={dropDownRef.current} state={state} show={show} setShow={setFilterSort} />
                 )}
-                {!show && screenWidth > 768 && (
+                {show && screenWidth > 768 && (
                     <div className={`${styles.sortLists}${fadeIn ? ` ${styles.fadeIn}` : ''}`}>
                         <SortList state={state} setShow={setFilterSort} handleChange={handleChange} />
                     </div>
