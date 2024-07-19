@@ -31,6 +31,8 @@
 	.sortLists {
 		position: relative;
 		padding: 5px 10px;
+		opacity: 1;
+		scale: 1;
 	}
 	.sortLists h3 {
 		padding: 5px;

@@ -11,6 +11,8 @@ export default function SortContainer({ state, handleChange }) {
     const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
     const { sort } = filterSortState;
 
+    console.log(sort);
+
     const [show, setShow] = useState(false);
     const [fadeIn, setFadeIn] = useState(false);
 
@@ -31,7 +33,6 @@ export default function SortContainer({ state, handleChange }) {
         setFadeIn(false);
         endTimeRef.current = setTimeout(() => {
             setShow(false);
-            window.removeEventListener('blur', handleHideBtn);
             endTimeRef.current = null;
         }, 200);
     }, []);
@@ -49,19 +50,18 @@ export default function SortContainer({ state, handleChange }) {
         setShow(true);
         startTimeRef.current = setTimeout(() => {
             setFadeIn(true);
-            window.addEventListener('blur', handleHideBtn);
             startTimeRef.current = null;
         }, 60);
-    }, [handleHideBtn]);
+    }, []);
 
     useEffect(() => {
         if (prevSortRef.current !== sort) {
             switch (sort) {
                 case true:
-                    handleShow();
+                    handleHideBtn();
                     break;
                 default:
-                    handleHideBtn();
+                    handleShow();
                     break;
             }
         }
