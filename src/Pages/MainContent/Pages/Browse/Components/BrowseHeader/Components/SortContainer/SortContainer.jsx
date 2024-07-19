@@ -11,8 +11,6 @@ export default function SortContainer({ state, handleChange }) {
     const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
     const { sort } = filterSortState;
 
-    console.log(sort);
-
     const [show, setShow] = useState(false);
     const [fadeIn, setFadeIn] = useState(false);
 
@@ -54,8 +52,10 @@ export default function SortContainer({ state, handleChange }) {
         }, 60);
     }, []);
 
+    const screenWidth = useScreenWidth();
+
     useEffect(() => {
-        if (prevSortRef.current !== sort) {
+        if (prevSortRef.current !== sort && screenWidth > 768) {
             switch (sort) {
                 case true:
                     handleHideBtn();
@@ -66,7 +66,7 @@ export default function SortContainer({ state, handleChange }) {
             }
         }
         prevSortRef.current = sort;
-    }, [handleHideBtn, handleShow, sort]);
+    }, [handleHideBtn, handleShow, screenWidth, sort]);
 
     const dropDownRef = useRef();
 
@@ -74,13 +74,11 @@ export default function SortContainer({ state, handleChange }) {
         filterSortRef.sort = dropDownRef.current;
     }, [dropDownRef, filterSortRef]);
 
-    const screenWidth = useScreenWidth();
-
     return (
         <>
             <div
                 ref={dropDownRef}
-                className={`${styles.sortContainer} ${show && screenWidth < 769 ? styles.hidden : ''}`}
+                className={`${styles.sortContainer} ${sort && screenWidth < 769 ? styles.hidden : ''}`}
             >
                 {screenWidth > 768 && (
                     <SortButton dropDownRef={dropDownRef.current} state={state} show={show} setShow={setFilterSort} />
@@ -104,7 +102,7 @@ export default function SortContainer({ state, handleChange }) {
             </div>
             {screenWidth < 769 && (
                 <div className={styles.shadow}>
-                    <ScreenShadow show={!show} />
+                    <ScreenShadow show={!sort} />
                 </div>
             )}
         </>
