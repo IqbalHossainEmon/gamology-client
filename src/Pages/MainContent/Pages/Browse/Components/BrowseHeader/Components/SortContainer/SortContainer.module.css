@@ -1,16 +1,17 @@
 .sortContainer {
 	position: relative;
-	z-index: 1;
 }
 
 .sortLists {
 	position: absolute;
-	width: 100%;
+	width: 11rem;
+	right: 0;
 	opacity: 0;
 	scale: 0.7;
 	transition:
 		opacity 200ms,
 		scale 200ms;
+	z-index: 1;
 }
 
 .fadeIn {
@@ -29,6 +30,7 @@
 		transition: translate 300ms;
 	}
 	.sortLists {
+		width: 100%;
 		position: relative;
 		padding: 5px 10px;
 		opacity: 1;
@@ -44,6 +46,7 @@
 		position: absolute;
 		right: 10px;
 		top: 10px;
+		z-index: 1;
 	}
 	.shadow {
 		position: fixed;

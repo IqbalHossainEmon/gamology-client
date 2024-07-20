@@ -1,41 +1,41 @@
 .SecondNavContainer {
-  width: 100%;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  padding: 1rem 0;
-  z-index: 1;
-  background-color: #121212;
-  display: flex;
-  justify-content: center;
+	width: 100%;
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+	padding: 1rem 0;
+	z-index: 2;
+	background-color: #121212;
+	display: flex;
+	justify-content: center;
 }
 .SecondNavbar {
-  width: 75vw;
-  position: relative;
-  max-width: 1600px;
-  display: flex;
-  align-items: center;
+	width: 75vw;
+	position: relative;
+	max-width: 1600px;
+	display: flex;
+	align-items: center;
 }
 .screenShadowContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 @media (max-width: 1023px) and (min-width: 769px) {
-  .SecondNavbar {
-    width: 97vw;
-  }
+	.SecondNavbar {
+		width: 97vw;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  .SecondNavContainer {
-    padding: 0.5rem 0;
-  }
-  .SecondNavbar {
-    width: 100%;
-    padding: 0;
-    height: 60px;
-    position: relative;
-  }
+	.SecondNavContainer {
+		padding: 0.5rem 0;
+	}
+	.SecondNavbar {
+		width: 100%;
+		padding: 0;
+		height: 60px;
+		position: relative;
+	}
 }

@@ -17,7 +17,7 @@
 
 .cardImg {
 	width: 100%;
-	aspect-ratio: 0.7/1;
+	aspect-ratio: 0.75;
 }
 .card img {
 	border-radius: 5px;

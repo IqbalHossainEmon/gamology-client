@@ -8,8 +8,8 @@ const links = [
     },
     {
         no: 1,
-        name: 'Comming Soon',
-        URL: '#comming',
+        name: 'Coming Soon',
+        URL: '#coming',
     },
     {
         no: 2,

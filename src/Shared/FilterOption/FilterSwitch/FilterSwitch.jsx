@@ -10,6 +10,8 @@ function FilterSwitch({ state, setState, name, event }) {
         transition: false,
     });
 
+    const prevState = useRef(state);
+
     const stateRef = useRef(circlePosition);
     stateRef.current = circlePosition.translate;
 
@@ -27,13 +29,16 @@ function FilterSwitch({ state, setState, name, event }) {
     const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
     useEffect(() => {
-        if (state) {
-            setCirclePosition({ translate: rangePathRef.width, transition: true });
-            handleTimerTransition();
-        } else {
-            setCirclePosition({ translate: 0, transition: true });
-            handleTimerTransition();
+        if (prevState.current !== state) {
+            if (state) {
+                setCirclePosition({ translate: rangePathRef.width, transition: true });
+                handleTimerTransition();
+            } else {
+                setCirclePosition({ translate: 0, transition: true });
+                handleTimerTransition();
+            }
         }
+        prevState.current = state;
     }, [handleTimerTransition, state]);
 
     useEffect(() => {
@@ -112,7 +117,7 @@ function FilterSwitch({ state, setState, name, event }) {
                     <div
                         tabIndex="-1"
                         role="button"
-                        className={`${styles.round}${circlePosition.translate >= rangePathRef.width / 2 ? ` ${styles.active}` : ''}`}
+                        className={`${styles.round}${circlePosition.translate < rangePathRef.width / 2 ? '' : ` ${styles.active}`}`}
                         onTouchStart={e => {
                             onStart(e);
                             handleStart(e);

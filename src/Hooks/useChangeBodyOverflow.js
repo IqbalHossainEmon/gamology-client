@@ -13,7 +13,6 @@ export default function useChangeBodyOverflow() {
 
     const hideBodyOverflow = useCallback(() => {
         touchAble.current = isTouchable();
-
         if (
             !touchAble.current &&
             !root.current.classList.contains('margin-right-8px') &&
