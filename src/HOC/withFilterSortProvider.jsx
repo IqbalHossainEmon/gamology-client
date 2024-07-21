@@ -17,8 +17,8 @@ const withFilterSortProvider = Component =>
         const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
         const { showMenu, setElement } = useDropDownHide(() => {
-            // setFilterSortState({ sort: true, filter: true });
-            // showBodyOverflow();
+            setFilterSortState({ sort: true, filter: true });
+            showBodyOverflow();
         });
 
         useEffect(() => {

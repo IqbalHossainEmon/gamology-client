@@ -111,6 +111,8 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 
     const screenWidth = useScreenWidth();
 
+    console.log(filter);
+
     return (
         <aside
             ref={filterSortRef}
