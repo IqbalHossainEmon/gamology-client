@@ -12,20 +12,24 @@ const withFilterSortProvider = Component =>
         });
 
         const filterSortRef = useRef();
+        const filterSortStateRef = useRef(filterSortRef);
+        filterSortStateRef.current = filterSortState;
 
         const screenWidth = useScreenWidth();
         const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
-        const { showMenu, setElement } = useDropDownHide(() => {
+        const handleDropDown = useCallback(() => {
             setFilterSortState({ sort: true, filter: true });
             showBodyOverflow();
-        });
+        }, [showBodyOverflow]);
+
+        const { showMenu, setElement } = useDropDownHide(handleDropDown);
 
         useEffect(() => {
-            if (screenWidth < 769 && (!filterSortState.sort || !filterSortState.filter)) {
+            if (screenWidth < 769 && (!filterSortStateRef.current.sort || !filterSortStateRef.current.filter)) {
                 hideBodyOverflow();
             }
-        }, [filterSortState, screenWidth, hideBodyOverflow]);
+        }, [screenWidth, hideBodyOverflow]);
 
         const setFilterSort = useCallback(
             prop => {
