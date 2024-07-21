@@ -10,7 +10,6 @@ function FilterOption({ text, setState, border, state, name }) {
     handleClick.current = useCallback(
         e => {
             // check if the event is on the btnRef
-            console.log('click');
             if (btnRef.current.contains(e.target)) {
                 setState(prev => ({ ...prev, [name]: !prev[name] }), name);
             }

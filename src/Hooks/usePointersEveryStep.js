@@ -77,6 +77,7 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
                     pointerRightStep = 0;
                 }
             }
+
             const leftDiff = cursorInPercent - pointerLeftStep;
             const rightDiff = pointerRightStep - cursorInPercent;
 

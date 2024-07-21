@@ -21,6 +21,8 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
                 value = pointerLeftStep;
             } else if (leftDiff > rightDiff) {
                 value = pointerRightStep;
+            } else if (pointerLeftStep === pointerRightStep) {
+                value = pointerLeftStep;
             }
 
             if (value !== stateRef.current) {
@@ -33,7 +35,10 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
     const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
 
     return (
-        <div className={`${transition ? `${styles.knobTransition} ` : ''}${styles.knobContainer}`} style={{ translate: `${state}%` }}>
+        <div
+            className={`${transition ? `${styles.knobTransition} ` : ''}${styles.knobContainer}`}
+            style={{ translate: `${state}%` }}
+        >
             <div
                 role="button"
                 data-knob={name}
