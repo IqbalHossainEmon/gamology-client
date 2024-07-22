@@ -3,8 +3,7 @@ import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 import CloseButton from '../../Shared/CloseButton/CloseButton';
 import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
 
-import ApplyButton from '../Components/ApplyButton/ApplyButton';
-import FilterOptionList from '../Components/FilterOptionList/FilterOptionList';
+import FilterMobileScroll from '../Components/FilterMobileScroll/FilterMobileScroll/FilterMobileScroll';
 import styles from './FilterGames.module.css';
 
 const options = [
@@ -116,11 +115,16 @@ export default function FilterGames({ filterState, dispatch, limits }) {
             ref={filterSortRef}
             className={`${styles.FilterGames} ${filter && screenWidth < 769 ? styles.hidden : styles.show}`}
         >
-            <div className={styles.filterContainer}>
-                {screenWidth < 769 && <h2 className={styles.filterText}>Filters</h2>}
-                <FilterOptionList options={options} state={state} setState={setState} limits={limits} />
-                <ApplyButton setShow={setFilterSort} dispatch={dispatch} filterState={filterState} state={state} />
-            </div>
+            <FilterMobileScroll
+                screenWidth={screenWidth}
+                options={options}
+                state={state}
+                setState={setState}
+                limits={limits}
+                setFilterSort={setFilterSort}
+                dispatch={dispatch}
+                filterState={filterState}
+            />
             {screenWidth < 769 && (
                 <div className={styles.closeButton}>
                     <CloseButton setState={setFilterSort} state="filter" />

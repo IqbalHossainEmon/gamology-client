@@ -1,0 +1,12 @@
+.rangeInput {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.minus {
+  width: 10px;
+  background-color: aliceblue;
+  height: 1px;
+}

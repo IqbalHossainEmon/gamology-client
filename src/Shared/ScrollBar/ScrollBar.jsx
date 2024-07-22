@@ -16,8 +16,8 @@ const ScrollBar = ({ parentRef, childRef }) => {
     handleMove.current = useCallback(
         (e, isClick) => {
             const cursorInEle = e?.touches
-                ? e.touches[0].pageY - thumbRef.current.getBoundingClientRect().y
-                : e.pageY - thumbRef.current.getBoundingClientRect().y;
+                ? e.touches[0].clientY - thumbRef.current.getBoundingClientRect().y
+                : e.clientY - thumbRef.current.getBoundingClientRect().y;
 
             if (!downElement.current && !isClick) {
                 downElement.current = cursorInEle;

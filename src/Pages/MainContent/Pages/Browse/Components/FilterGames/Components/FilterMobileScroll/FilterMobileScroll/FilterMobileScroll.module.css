@@ -1,0 +1,29 @@
+.parentContainer {
+	position: relative;
+	padding: 1rem;
+}
+
+.childContainer {
+	height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+	.filterContainer {
+		position: relative;
+		height: 100%;
+		width: 100%;
+	}
+	.parentContainer {
+		overflow: hidden;
+		height: 100%;
+	}
+
+	.parentContainer {
+		overflow-y: scroll;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.childContainer::-webkit-scrollbar {
+		display: none;
+	}
+}
