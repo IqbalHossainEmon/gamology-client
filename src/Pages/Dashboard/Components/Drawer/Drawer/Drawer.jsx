@@ -735,11 +735,7 @@ const Drawer = () => {
                     <span className={styles.arrowBtn} />
                 </button>
             </div>
-            {screenWidth < 1100 && (
-                <div className={styles.shadow}>
-                    <ScreenShadow show={!collapse} />
-                </div>
-            )}
+            {screenWidth < 1100 && <ScreenShadow show={!collapse} zIndex={1} />}
         </>
     );
 };

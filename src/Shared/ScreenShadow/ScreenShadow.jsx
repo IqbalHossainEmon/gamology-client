@@ -1,8 +1,16 @@
-import useHideShowFadeInOut from '../../Hooks/useHideShowFadeInOut';
+import useAppearDisappear from '../../Hooks/useAppearDisappear';
 import styles from './ScreenShadow.module.css';
 
-export default function ScreenShadow({ show: state }) {
-    const { show, fadeIn } = useHideShowFadeInOut(state);
+export default function ScreenShadow({ show: state, zIndex }) {
+    const { show, fadeIn } = useAppearDisappear(state, true);
 
-    return show && <div className={styles.shadowPage} id={fadeIn ? styles.ShadowShow : styles.ShadowHide} />;
+    return (
+        show && (
+            <div
+                className={styles.shadowPage}
+                {...(zIndex && { style: { zIndex } })}
+                id={fadeIn ? styles.shadowShow : styles.shadowHide}
+            />
+        )
+    );
 }

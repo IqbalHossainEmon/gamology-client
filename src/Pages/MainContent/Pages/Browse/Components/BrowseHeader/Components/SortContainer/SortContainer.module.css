@@ -48,10 +48,4 @@
 		top: 10px;
 		z-index: 1;
 	}
-	.shadow {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 2;
-	}
 }

@@ -1,61 +1,63 @@
 .SecondNavLinks {
-  list-style: none;
-  display: flex;
-  margin-left: 15px;
+	list-style: none;
+	display: flex;
+	margin-left: 15px;
 }
 
 .navOption {
-  margin-left: 30px;
+	margin-left: 30px;
 }
 .navOption a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
-  transition: color 200ms;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.5);
+	transition: color 200ms;
 }
 
 .navOption a:hover {
-  color: rgba(255, 255, 255, 0.8);
+	color: rgba(255, 255, 255, 0.8);
 }
 
 #active {
-  cursor: default;
+	cursor: default;
 }
 
 #active a {
-  color: #fff;
-  pointer-events: none;
+	color: #fff;
+	pointer-events: none;
 }
 
 @media only screen and (max-width: 768px) {
-  .SecondNavLinks {
-    display: flex;
-    position: relative;
-    padding: 10px;
-    margin-left: 0px;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.75);
-    width: 100%;
-    left: 0;
-    transition: bottom 300ms, visibility 300ms;
-  }
+	.SecondNavLinks {
+		display: flex;
+		position: relative;
+		padding: 10px;
+		margin-left: 0px;
+		flex-direction: column;
+		background-color: rgba(0, 0, 0, 0.9);
+		width: 100%;
+		left: 0;
+		transition:
+			bottom 300ms,
+			visibility 300ms;
+	}
 
-  .navOption {
-    margin: 10px;
-    border-bottom: 1px solid grey;
-  }
+	.navOption {
+		margin: 10px;
+		border-bottom: 1px solid grey;
+	}
 
-  .navOption a {
-    width: 100%;
-    display: inline-block;
-  }
+	.navOption a {
+		width: 100%;
+		display: inline-block;
+	}
 
-  #navShow {
-    bottom: 0;
-    z-index: 1;
-    visibility: visible;
-  }
-  #navHide {
-    z-index: -1;
-    visibility: hidden;
-  }
+	#navShow {
+		bottom: 0;
+		z-index: 1;
+		visibility: visible;
+	}
+	#navHide {
+		z-index: -1;
+		visibility: hidden;
+	}
 }

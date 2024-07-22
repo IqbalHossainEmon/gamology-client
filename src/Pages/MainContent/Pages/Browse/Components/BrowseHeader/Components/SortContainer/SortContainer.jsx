@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import useHideShowFadeInOut from '../../../../../../../../Hooks/useHideShowFadeInOut';
+import useAppearDisappear from '../../../../../../../../Hooks/useAppearDisappear';
 import useScreenWidth from '../../../../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../../../../Shared/ScreenShadow/ScreenShadow';
 import useFilterSortState from '../../../FilterGames/Components/useFilterSortState/useFilterSortState';
@@ -14,7 +14,7 @@ export default function SortContainer({ state, handleChange }) {
 
     const screenWidth = useScreenWidth();
 
-    const { show, fadeIn } = useHideShowFadeInOut(sort, screenWidth > 768);
+    const { show, fadeIn } = useAppearDisappear(sort, false, screenWidth > 768);
 
     const dropDownRef = useRef();
 
@@ -48,11 +48,7 @@ export default function SortContainer({ state, handleChange }) {
                     </div>
                 )}
             </div>
-            {screenWidth < 769 && (
-                <div className={styles.shadow}>
-                    <ScreenShadow show={sort} />
-                </div>
-            )}
+            {screenWidth < 769 && <ScreenShadow show={sort} zIndex={3} />}
         </>
     );
 }

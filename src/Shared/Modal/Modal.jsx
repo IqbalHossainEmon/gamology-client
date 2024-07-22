@@ -63,7 +63,7 @@ const Modal = ({ children, setShow }) => {
                 </button>
                 <ScrollBar parentRef={parentRef} childRef={childRef} />
             </div>
-            <ScreenShadow show={hideAnimation} />
+            <ScreenShadow show={hideAnimation} zIndex={3} />
         </>
     );
 };

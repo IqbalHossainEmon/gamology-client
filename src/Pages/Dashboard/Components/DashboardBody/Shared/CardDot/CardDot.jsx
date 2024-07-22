@@ -104,12 +104,12 @@ const CardDot = ({ item, lists, parentRef }) => {
     useEffect(() => {
         const parent = parentRef.current;
         if (parent) {
-            parent.addEventListener('mouseenter', handleShowBtn);
+            parent.addEventListener('mousemove', handleShowBtn);
             parent.addEventListener('mouseleave', handleHideBtn);
         }
         return () => {
             if (parent) {
-                parent.removeEventListener('mouseenter', handleShowBtn);
+                parent.removeEventListener('mousemove', handleShowBtn);
                 parent.removeEventListener('mouseleave', handleHideBtn);
             }
         };
