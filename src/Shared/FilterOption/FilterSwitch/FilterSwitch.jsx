@@ -49,7 +49,7 @@ function FilterSwitch({ state, setState, name, event }) {
         e => {
             document.removeEventListener('mouseup', event.current);
 
-            const move = e.clientX - positionsRef.current;
+            const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
 
             const newPosition = positionsRef.start + move;
 
