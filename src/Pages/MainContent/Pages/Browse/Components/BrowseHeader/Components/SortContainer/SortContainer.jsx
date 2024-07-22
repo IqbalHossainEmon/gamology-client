@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import useHideShowFadeInOut from '../../../../../../../../Hooks/useHideShowFadeInOut';
 import useScreenWidth from '../../../../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../../../../Shared/ScreenShadow/ScreenShadow';
 import useFilterSortState from '../../../FilterGames/Components/useFilterSortState/useFilterSortState';
@@ -11,62 +12,9 @@ export default function SortContainer({ state, handleChange }) {
     const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
     const { sort } = filterSortState;
 
-    const [show, setShow] = useState(false);
-    const [fadeIn, setFadeIn] = useState(false);
-
-    const startTimeRef = useRef(null);
-    const endTimeRef = useRef(null);
-    const prevSortRef = useRef(sort);
-
-    const handleHideBtn = useCallback(() => {
-        if (startTimeRef.current) {
-            clearTimeout(startTimeRef.current);
-            startTimeRef.current = null;
-            setFadeIn(false);
-            return;
-        }
-        if (endTimeRef.current) {
-            return;
-        }
-        setFadeIn(false);
-        endTimeRef.current = setTimeout(() => {
-            setShow(false);
-            endTimeRef.current = null;
-        }, 200);
-    }, []);
-
-    const handleShow = useCallback(() => {
-        if (endTimeRef.current) {
-            clearTimeout(endTimeRef.current);
-            endTimeRef.current = null;
-            setFadeIn(true);
-            return;
-        }
-        if (startTimeRef.current) {
-            return;
-        }
-        setShow(true);
-        startTimeRef.current = setTimeout(() => {
-            setFadeIn(true);
-            startTimeRef.current = null;
-        }, 60);
-    }, []);
-
     const screenWidth = useScreenWidth();
 
-    useEffect(() => {
-        if (prevSortRef.current !== sort && screenWidth > 768) {
-            switch (sort) {
-                case true:
-                    handleHideBtn();
-                    break;
-                default:
-                    handleShow();
-                    break;
-            }
-        }
-        prevSortRef.current = sort;
-    }, [handleHideBtn, handleShow, screenWidth, sort]);
+    const { show, fadeIn } = useHideShowFadeInOut(sort, screenWidth > 768);
 
     const dropDownRef = useRef();
 
@@ -102,7 +50,7 @@ export default function SortContainer({ state, handleChange }) {
             </div>
             {screenWidth < 769 && (
                 <div className={styles.shadow}>
-                    <ScreenShadow show={!sort} />
+                    <ScreenShadow show={sort} />
                 </div>
             )}
         </>
