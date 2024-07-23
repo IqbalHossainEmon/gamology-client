@@ -14,7 +14,7 @@ export default function SortContainer({ state, handleChange }) {
 
     const screenWidth = useScreenWidth();
 
-    const { show, fadeIn } = useAppearDisappear(sort, false, screenWidth > 768);
+    const { show, fadeIn } = useAppearDisappear(!sort, false, screenWidth > 768);
 
     const dropDownRef = useRef();
 

@@ -1,5 +1,5 @@
 .shadowPage {
-	width: calc(100vw - 8px);
+	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
 	position: fixed;
@@ -9,16 +9,15 @@
 
 #shadowShow {
 	opacity: 1;
-	z-index: 0;
 	visibility: visible;
-	transition: opacity 300ms;
+	transition: opacity 200ms linear;
 }
 #shadowHide {
 	opacity: 0;
 	visibility: hidden;
 	transition:
-		opacity 300ms,
-		visibility 0ms 300ms;
+		opacity 200ms linear,
+		visibility 0ms 200ms linear;
 }
 @media (pointer: coarse) {
 	.shadowPage {
