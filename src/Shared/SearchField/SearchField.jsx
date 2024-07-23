@@ -43,7 +43,7 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
 
     eventRef.handleBlurEsc = useCallback(
         e => {
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' || e.key === 'Enter') {
                 setShowState(false);
                 searchInputRef.current.blur();
                 searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);

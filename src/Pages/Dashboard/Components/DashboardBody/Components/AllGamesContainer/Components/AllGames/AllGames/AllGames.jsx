@@ -304,9 +304,15 @@ const AllGames = ({ setModal }) => {
         setItems(data);
     }, []);
 
+    useEffect(() => {
+        if (searchText !== '') {
+            console.log(searchText);
+        }
+    }, [searchText]);
+
     return (
         <div className={styles.allGames}>
-            <AllGamesHeader change={setSearchText} />
+            <AllGamesHeader setSearchText={setSearchText} />
             <AllGamesBody items={items} setModal={setModal} />
             <div className={styles.paginationContainer}>
                 <Pagination

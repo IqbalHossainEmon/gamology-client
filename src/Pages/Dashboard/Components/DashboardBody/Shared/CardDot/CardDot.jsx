@@ -1,136 +1,91 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import useAppearDisappear from '../../../../../../Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../../../Hooks/useDropDownHide';
+import useIsTouchAble from '../../../../../../Hooks/useIsTouchable';
+import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
+import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDot.module.css';
 
 const CardDot = ({ item, lists, parentRef }) => {
     const [btnShow, setBtnShow] = useState(false);
-    const [btnFadeIn, setBtnFadeIn] = useState(false);
     const [listShow, setListShow] = useState(false);
-    const [listFadeIn, setListFadeIn] = useState(false);
 
     const elementRef = useRef(null);
+
+    const btnShowRef = useRef(btnShow);
+    btnShowRef.current = btnShow;
 
     const listShowRef = useRef(listShow);
     listShowRef.current = listShow;
 
-    const firstTimerBtnRef = useRef(null);
-    const secondTimerBtnRef = useRef(null);
-
-    const firstTimerListRef = useRef(null);
-    const secondTimerListRef = useRef(null);
-
-    const handleHideBtn = useCallback(shouldIgnore => {
-        if ((listShowRef.current && shouldIgnore) || secondTimerBtnRef.current) {
-            return;
-        }
-        if (firstTimerBtnRef.current) {
-            clearTimeout(firstTimerBtnRef.current);
-            firstTimerBtnRef.current = null;
-            setBtnShow(false);
-            return;
-        }
-
-        setBtnFadeIn(false);
-        secondTimerBtnRef.current = setTimeout(() => {
-            setBtnShow(false);
-            window.removeEventListener('blur', handleHideBtn);
-            secondTimerBtnRef.current = null;
-        }, 200);
-    }, []);
-
     const handleShowBtn = useCallback(() => {
-        if (secondTimerBtnRef.current) {
-            clearTimeout(secondTimerBtnRef.current);
-            secondTimerBtnRef.current = null;
-            setBtnFadeIn(true);
-            return;
+        if (!btnShowRef.current) {
+            setBtnShow(true);
         }
-        if (firstTimerBtnRef.current) {
-            return;
+    }, []);
+    const handleHideBtn = useCallback(() => {
+        if (btnShowRef.current && !listShowRef.current) {
+            setBtnShow(false);
         }
-        setBtnShow(true);
-        firstTimerBtnRef.current = setTimeout(() => {
-            setBtnFadeIn(true);
-            window.addEventListener('blur', handleHideBtn);
-            firstTimerBtnRef.current = null;
-        }, 60);
-    }, [handleHideBtn]);
-
-    const handleHideList = useCallback(() => {
-        if (firstTimerListRef.current) {
-            clearTimeout(firstTimerListRef.current);
-            firstTimerListRef.current = null;
-            setListShow(false);
-            return;
-        }
-        if (secondTimerListRef.current) {
-            clearTimeout(secondTimerListRef.current);
-            secondTimerListRef.current = null;
-            setListShow(false);
-        }
-        setListFadeIn(false);
-        secondTimerListRef.current = setTimeout(() => {
-            setListShow(false);
-            secondTimerListRef.current = null;
-        }, 200);
     }, []);
 
-    const handleHideListBlur = useCallback(() => {
-        handleHideBtn();
-        handleHideList();
-    }, [handleHideBtn, handleHideList]);
+    const touchAble = useIsTouchAble();
+    const screenWidth = useScreenWidth();
 
-    const { showMenu, setElement } = useDropDownHide(handleHideListBlur);
-
-    const handleShowList = useCallback(() => {
-        if (secondTimerListRef.current) {
-            clearTimeout(secondTimerListRef.current);
-            secondTimerListRef.current = null;
-            setListShow(true);
-            return;
-        }
-        if (firstTimerListRef.current) {
-            clearTimeout(firstTimerListRef.current);
-            firstTimerListRef.current = null;
-        }
-        setListShow(true);
-        showMenu(true);
-        firstTimerListRef.current = setTimeout(() => {
-            setListFadeIn(true);
-            firstTimerListRef.current = null;
-        }, 100);
-    }, [showMenu]);
+    const isEventAdded = useRef(false);
 
     useEffect(() => {
         const parent = parentRef.current;
-        if (parent) {
+        const isTouchAble = touchAble();
+        if (parent && !isTouchAble && !isEventAdded.current) {
             parent.addEventListener('mousemove', handleShowBtn);
             parent.addEventListener('mouseleave', handleHideBtn);
+            isEventAdded.current = true;
+            if (btnShowRef.current) {
+                setBtnShow(false);
+            }
+        } else if (isTouchAble && isEventAdded.current) {
+            parent.removeEventListener('mousemove', handleShowBtn);
+            parent.removeEventListener('mouseleave', handleHideBtn);
+            isEventAdded.current = false;
+            setBtnShow(true);
+        } else if (isTouchAble && !isEventAdded.current) {
+            setBtnShow(true);
         }
         return () => {
             if (parent) {
                 parent.removeEventListener('mousemove', handleShowBtn);
                 parent.removeEventListener('mouseleave', handleHideBtn);
+                isEventAdded.current = false;
             }
         };
-    }, [handleHideBtn, handleShowBtn, parentRef]);
+    }, [handleHideBtn, handleShowBtn, parentRef, touchAble, screenWidth]);
 
-    useEffect(() => {
-        setElement(elementRef.current);
-    }, [setElement]);
+    const { show, fadeIn } = useAppearDisappear(btnShow);
+
+    const handleHide = useCallback(() => {
+        const isTouchAble = touchAble();
+        if (!isTouchAble) setBtnShow(false);
+        setListShow(false);
+    }, [touchAble]);
+
+    const { setElement, stopMenu, showMenu } = useDropDownHide(handleHide);
 
     return (
-        <div ref={elementRef} className={styles.cardDots}>
-            {(btnShow || listShow) && (
+        (show || listShow) && (
+            <div ref={elementRef} className={styles.cardDots}>
                 <button
                     onClick={() => {
                         if (!listShow) {
-                            handleShowList();
+                            setListShow(true);
+                            setElement(elementRef.current);
+                            showMenu();
                         } else {
-                            handleHideList();
+                            setListShow(false);
+                            stopMenu();
                         }
                     }}
-                    className={`${styles.btnDot}${btnFadeIn ? ` ${styles.zoomIn}` : ''}`}
+                    className={`${styles.btnDot}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
                     type="button"
                 >
                     <svg
@@ -183,26 +138,11 @@ const CardDot = ({ item, lists, parentRef }) => {
                         </g>
                     </svg>
                 </button>
-            )}
-            <div />
-            {listShow && (
-                <ul className={`${styles.listContainer}${listFadeIn ? ` ${styles.zoomIn}` : ''}`}>
-                    {lists.map(list => (
-                        <li key={list.id}>
-                            <button
-                                onClick={() => {
-                                    list.event(item);
-                                    setListShow(false);
-                                }}
-                                type="button"
-                            >
-                                {list.name}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+                <div />
+                <CardDotList lists={lists} listShow={listShow} handleHide={handleHide} item={item} />
+            </div>
+        )
     );
 };
+
 export default CardDot;

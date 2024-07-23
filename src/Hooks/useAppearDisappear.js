@@ -6,7 +6,7 @@ export default function useAppearDisappear(state, isAppear, condition = true) {
 
     const startTimeRef = useRef(null);
     const endTimeRef = useRef(null);
-    const prevStateRef = useRef(false);
+    const prevStateRef = useRef(state);
 
     const handleHideBtn = useCallback(() => {
         if (startTimeRef.current) {
@@ -47,10 +47,10 @@ export default function useAppearDisappear(state, isAppear, condition = true) {
             case true:
                 switch (state) {
                     case true:
-                        handleHideBtn();
+                        handleShow();
                         break;
                     default:
-                        handleShow();
+                        handleHideBtn();
                         break;
                 }
                 break;
@@ -58,10 +58,10 @@ export default function useAppearDisappear(state, isAppear, condition = true) {
                 if (prevStateRef.current !== state && condition) {
                     switch (state) {
                         case true:
-                            handleHideBtn();
+                            handleShow();
                             break;
                         default:
-                            handleShow();
+                            handleHideBtn();
                             break;
                     }
                     prevStateRef.current = state;
