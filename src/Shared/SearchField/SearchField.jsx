@@ -29,10 +29,15 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         },
         [setNavShow]
     );
-
-    const { showMenu, setElement } = useDropDownHide(setShowState);
-
     const eventRef = useRef(null);
+
+    eventRef.handleClose = useCallback(() => {
+        setShowState(false);
+        searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
+        window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
+    }, [setShowState]);
+
+    const { showMenu, setElement, stopMenu } = useDropDownHide(eventRef.handleClose);
 
     eventRef.handleBlurOnWindowBlur = useCallback(() => {
         setShowState(false);
@@ -63,7 +68,10 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
 
     useEffect(() => {
         setElement(searchRef.current);
-    }, [setElement, searchRef]);
+        return () => {
+            stopMenu();
+        };
+    }, [setElement, searchRef, stopMenu]);
 
     return (
         <button
