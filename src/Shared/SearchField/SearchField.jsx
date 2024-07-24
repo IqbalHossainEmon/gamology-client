@@ -20,7 +20,9 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         }, 500);
     };
 
-    const setShowState = useCallback(
+    const eventRef = useRef(null);
+
+    eventRef.setShowState = useCallback(
         state => {
             if (typeof setNavShow === 'function') {
                 setNavShow(state);
@@ -29,37 +31,34 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         },
         [setNavShow]
     );
-    const eventRef = useRef(null);
 
-    eventRef.handleClose = useCallback(() => {
-        setShowState(false);
-        searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
+    eventRef.handleClose = useCallback(isFormDismount => {
+        console.log(isFormDismount);
+        eventRef.setShowState(false);
+        if (!isFormDismount) searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
         window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
-    }, [setShowState]);
+    }, []);
 
     const { showMenu, setElement, stopMenu } = useDropDownHide(eventRef.handleClose);
 
     eventRef.handleBlurOnWindowBlur = useCallback(() => {
-        setShowState(false);
+        eventRef.setShowState(false);
         searchInputRef.current.blur();
         searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
         window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
-    }, [setShowState]);
+    }, []);
 
-    eventRef.handleBlurEsc = useCallback(
-        e => {
-            if (e.key === 'Escape' || e.key === 'Enter') {
-                setShowState(false);
-                searchInputRef.current.blur();
-                searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
-                window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
-            }
-        },
-        [setShowState]
-    );
+    eventRef.handleBlurEsc = useCallback(e => {
+        if (e.key === 'Escape' || e.key === 'Enter') {
+            eventRef.setShowState(false);
+            searchInputRef.current.blur();
+            searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
+            window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
+        }
+    }, []);
 
     const handleSearchClick = () => {
-        setShowState(true);
+        eventRef.setShowState(true);
         showMenu();
         searchInputRef.current.focus();
         searchRef.current.addEventListener('keydown', eventRef.handleBlurEsc);
@@ -70,6 +69,7 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         setElement(searchRef.current);
         return () => {
             stopMenu();
+            eventRef.handleClose(true);
         };
     }, [setElement, searchRef, stopMenu]);
 
