@@ -60,7 +60,13 @@ export default function GameInfoFieldSpecification({
     return (
         <div className={styles.addGameSpecification}>
             <div className={styles.switch}>
-                <FilterOption setState={handleSetEnable} name="enabled" state={enabled.enabled} border text={state.name} />
+                <FilterOption
+                    setState={handleSetEnable}
+                    name="enabled"
+                    state={enabled.enabled}
+                    border
+                    text={state.name}
+                />
             </div>
             <div className={styles.systemReqContainer} {...(!enabled.enabled && { disabled: true, tabIndex: '-1' })}>
                 <div className={styles.systemReq}>

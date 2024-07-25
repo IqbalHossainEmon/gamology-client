@@ -138,7 +138,13 @@ const CardDot = ({ item, lists, parentRef }) => {
                         </g>
                     </svg>
                 </button>
-                <CardDotList lists={lists} listShow={listShow} handleHide={handleHide} item={item} />
+                <CardDotList
+                    lists={lists}
+                    listShow={listShow}
+                    handleHide={handleHide}
+                    item={item}
+                    parentRef={elementRef}
+                />
             </div>
         )
     );

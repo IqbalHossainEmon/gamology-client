@@ -1,6 +1,17 @@
 import SelectionFieldTextField from '../SelectionFieldTextField/SelectionFieldTextField';
 
-const listArr = ['CPU', 'Memory', 'GPU', 'Storage', 'VRM', 'DirectX', 'Resolution', 'Preset / Target', 'Peripherals', 'Others'];
+const listArr = [
+    'CPU',
+    'Memory',
+    'GPU',
+    'Storage',
+    'VRM',
+    'DirectX',
+    'Resolution',
+    'Preset / Target',
+    'Peripherals',
+    'Others',
+];
 
 export default function SectionFieldTextFieldContainer({
     requiredLength,
