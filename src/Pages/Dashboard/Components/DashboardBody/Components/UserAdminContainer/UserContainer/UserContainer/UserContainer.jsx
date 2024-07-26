@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import CardDot from '../../../../Shared/CardDot/CardDot';
+import CardDotContainer from '../../../../Shared/CardDotContainer/CardDotContainer/CardDotContainer';
 import UserCard from '../../UserCard/UserCard';
 import UserDeleteModalBody from '../Components/UserDeleteModalBody/UserDeleteModalBody';
 import styles from './UserContainer.module.css';
@@ -32,7 +32,7 @@ const UserContainer = ({ setModal }) => {
             {users.map(user => (
                 <UserCard key={user.id} data={user}>
                     {props => (
-                        <CardDot
+                        <CardDotContainer
                             setModal={setModal}
                             parentRef={props}
                             item={user}

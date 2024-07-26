@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import Card from '../../../../../../../../../../../Shared/Card/Card';
-import CardDot from '../../../../../../../Shared/CardDot/CardDot';
+import CardDot from '../../../../../../../Shared/CardDotContainer/Components/CardDot/CardDot';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesBody.module.css';
 
