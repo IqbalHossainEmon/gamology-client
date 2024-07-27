@@ -46,7 +46,7 @@ export default function SortContainer({ state, handleChange }) {
                     </div>
                 )}
             </div>
-            {screenWidth < 769 && <ScreenShadow show={sort} zIndex={3} />}
+            {screenWidth < 769 && <ScreenShadow show={!sort} zIndex={3} />}
         </>
     );
 }

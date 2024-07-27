@@ -1,12 +1,13 @@
 import styles from './DashboardModal.module.css';
 
-const DashboardModal = ({ title, modalQuestion, ModalBody, handleHide, setModal }) => {
-    if (!title || !ModalBody) return null;
+const DashboardModal = ({ content }) => {
+    const { title, body, footer } = content;
+    if (!title || !body) return null;
     return (
         <>
             <h2 className={styles.header}>{title}</h2>
-            <div className={styles.headerQuestion}>{modalQuestion}</div>
-            <ModalBody handleHide={handleHide} setModal={setModal} />
+            <div className={styles.headerQuestion}>{body}</div>
+            <div>{footer}</div>
         </>
     );
 };

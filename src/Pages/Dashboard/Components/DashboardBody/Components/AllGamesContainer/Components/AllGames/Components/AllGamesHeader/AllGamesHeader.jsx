@@ -44,7 +44,7 @@ const AllGamesHeader = ({ setSearchText }) => {
                     <SearchField setNavShow={handleChange} setChangedValue={setSearch} />
                 </div>
             </div>
-            {screenWidth < 769 && <ScreenShadow show={!navShow} zIndex={3} />}
+            {screenWidth < 769 && <ScreenShadow show={navShow} zIndex={3} />}
         </div>
     );
 };
