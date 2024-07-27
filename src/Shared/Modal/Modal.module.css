@@ -26,7 +26,7 @@
 	padding: 2rem;
 }
 .hide {
-	pointer-events: none;
+	/* pointer-events: none; */
 }
 
 .crossBtn {

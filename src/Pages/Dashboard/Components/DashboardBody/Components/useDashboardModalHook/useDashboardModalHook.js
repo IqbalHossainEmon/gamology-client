@@ -4,5 +4,7 @@ import {
     DashboardBodyModalContextSetShow,
 } from '../../../../../../Contexts/DashboardBodyModalContext';
 
-export const useDashboardBodySetContent = () => useContext(DashboardBodyModalContextSetContent);
-export const useDashboardBodySetModal = () => useContext(DashboardBodyModalContextSetShow);
+const useDashboardBodySetContent = () => useContext(DashboardBodyModalContextSetContent);
+const useDashboardBodySetModal = () => useContext(DashboardBodyModalContextSetShow);
+
+export default () => ({ useDashboardBodySetContent, useDashboardBodySetModal });

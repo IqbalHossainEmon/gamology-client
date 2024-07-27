@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardDotContainer from '../../../../Shared/CardDotContainer/CardDotContainer/CardDotContainer';
+import useDashboardModalHook from '../../../useDashboardModalHook/useDashboardModalHook';
 import UserCard from '../../UserCard/UserCard';
 import UserDeleteModalBody from '../Components/UserDeleteModalBody/UserDeleteModalBody';
+import UserInfo from '../Components/UserInfo/UserInfo';
 import styles from './UserContainer.module.css';
 
 const userDetail = [];
@@ -15,13 +17,13 @@ for (let i = 0; i < 96; i++) {
     userDetail.push(user);
 }
 
-const UserContainer = ({ setModal }) => {
+const UserContainer = () => {
     const [users, setUsers] = useState([]);
 
-    const modalBody = useCallback(
-        (props, type, item) => <UserDeleteModalBody {...props} type={type} detail={item} />,
-        []
-    );
+    const { useDashboardBodySetContent, useDashboardBodySetModal } = useDashboardModalHook();
+
+    const setModalContent = useDashboardBodySetContent();
+    const setModalShow = useDashboardBodySetModal();
 
     useEffect(() => {
         setUsers(userDetail);
@@ -33,7 +35,6 @@ const UserContainer = ({ setModal }) => {
                 <UserCard key={user.id} data={user}>
                     {props => (
                         <CardDotContainer
-                            setModal={setModal}
                             parentRef={props}
                             item={user}
                             lists={[
@@ -46,21 +47,19 @@ const UserContainer = ({ setModal }) => {
                                     id: 2,
                                     name: 'Delete',
                                     event: detail => {
-                                        setModal({
-                                            show: true,
-                                            title: 'Delete User',
-                                            modalQuestion: (
+                                        setModalShow(true);
+                                        setModalContent({
+                                            modalTitle: 'Delete User',
+                                            modalBody: (
                                                 <div>
                                                     <p>
                                                         Are you sure you want to delete{' '}
                                                         <span className={styles.nameContainer}>{user.name}</span>?
                                                     </p>
-                                                    <div className={styles.imgContainer}>
-                                                        <img src={user.img} alt={user.name} />
-                                                    </div>
+                                                    <UserInfo user={user} />
                                                 </div>
                                             ),
-                                            ModalBody: childProp => modalBody(childProp, 'delete', detail),
+                                            modalFooter: <UserDeleteModalBody type="delete" detail={detail} />,
                                         });
                                     },
                                 },
@@ -68,22 +67,20 @@ const UserContainer = ({ setModal }) => {
                                     id: 3,
                                     name: 'Make Admin',
                                     event: detail => {
-                                        setModal({
-                                            show: true,
-                                            title: 'Make Admin',
-                                            modalQuestion: (
+                                        setModalShow(true);
+                                        setModalContent({
+                                            modalTitle: 'Make Admin',
+                                            modalBody: (
                                                 <div>
                                                     <p>
                                                         Are you sure you want to make{' '}
                                                         <span className={styles.nameContainer}>{user.name}</span> an
                                                         admin?
                                                     </p>
-                                                    <div className={styles.imgContainer}>
-                                                        <img src={user.img} alt={user.name} />
-                                                    </div>
+                                                    <UserInfo user={user} />
                                                 </div>
                                             ),
-                                            ModalBody: childProp => modalBody(childProp, 'makeAdmin', detail),
+                                            modalFooter: <UserDeleteModalBody type="makeAdmin" detail={detail} />,
                                         });
                                     },
                                 },

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-export const DashboardBodyModalContextSetShow = createContext(null);
+export const DashboardBodyModalContextSetShow = createContext(() => {});
 
-export const DashboardBodyModalContextSetContent = createContext(null);
+export const DashboardBodyModalContextSetContent = createContext(() => {});

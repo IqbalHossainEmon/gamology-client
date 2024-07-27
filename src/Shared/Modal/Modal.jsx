@@ -3,7 +3,7 @@ import useDropDownHide from '../../Hooks/useDropDownHide';
 import ScrollBar from '../ScrollBar/ScrollBar';
 import styles from './Modal.module.css';
 
-const Modal = ({ children, setShow, fadeIn }) => {
+const Modal = ({ children, setShow, fadeIn, hideEventRef }) => {
     const elementRef = useRef(null);
     const parentRef = useRef(null);
     const childRef = useRef(null);
@@ -18,13 +18,16 @@ const Modal = ({ children, setShow, fadeIn }) => {
     useEffect(() => {
         setElement(elementRef.current);
         showMenu();
-    }, [setElement, showMenu]);
+        if (hideEventRef) {
+            hideEventRef.current = handleHide;
+        }
+    }, [handleHide, hideEventRef, setElement, showMenu]);
 
     return (
-        <div ref={elementRef} className={`${fadeIn ? `${styles.hide} ` : ''}${styles.modal}`}>
+        <div ref={elementRef} className={`${fadeIn ? `${styles.fadeIn} ` : ''} ${styles.modal}`}>
             <div ref={parentRef} className={styles.modalScrollContainer}>
                 <div className={styles.modalContentContainer} ref={childRef}>
-                    {children(handleHide)}
+                    {children}
                 </div>
             </div>
             <ScrollBar parentRef={parentRef} childRef={childRef} />
