@@ -18,40 +18,53 @@ export default function VideoSlider({
     const pathRef = useRef(null);
     const screenWidth = useScreenWidth();
 
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handleResize: () => {},
+    });
 
-    eventRef.handleResize = useCallback(() => {
+    eventRef.current.handleResize = useCallback(() => {
         pathRef.width = pathRef.current?.offsetWidth;
         pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
     }, []);
 
     useEffect(() => {
-        eventRef.handleResize();
+        eventRef.current.handleResize();
     }, [screenWidth]);
 
     useEffect(() => {
         setTimeout(() => {
-            eventRef.handleResize();
+            eventRef.current.handleResize();
         }, 250);
     }, [changePause]);
 
     useEffect(() => {
+        const { handleResize } = eventRef.current;
+
+        const addFullscreenEventListeners = element => {
+            element.addEventListener('fullscreenchange', handleResize);
+            element.addEventListener('mozfullscreenchange', handleResize);
+            element.addEventListener('MSFullscreenChange', handleResize);
+            element.addEventListener('webkitfullscreenchange', handleResize);
+        };
+
+        const removeFullscreenEventListeners = element => {
+            element.removeEventListener('fullscreenchange', handleResize);
+            element.removeEventListener('mozfullscreenchange', handleResize);
+            element.removeEventListener('MSFullscreenChange', handleResize);
+            element.removeEventListener('webkitfullscreenchange', handleResize);
+        };
+
         let videoContainerRef;
 
         if (videoContainer.current) {
-            videoContainer.current.addEventListener('fullscreenchange', eventRef.handleResize);
-            videoContainer.current.addEventListener('mozfullscreenchange', eventRef.handleResize);
-            videoContainer.current.addEventListener('MSFullscreenChange', eventRef.handleResize);
-            videoContainer.current.addEventListener('webkitfullscreenchange', eventRef.handleResize);
-
+            addFullscreenEventListeners(videoContainer.current);
             videoContainerRef = videoContainer.current;
         }
 
         return () => {
-            videoContainerRef.removeEventListener('fullscreenchange', eventRef.handleResize);
-            videoContainerRef.removeEventListener('mozfullscreenchange', eventRef.handleResize);
-            videoContainerRef.removeEventListener('MSFullscreenChange', eventRef.handleResize);
-            videoContainerRef.removeEventListener('webkitfullscreenchange', eventRef.handleResize);
+            if (videoContainerRef) {
+                removeFullscreenEventListeners(videoContainerRef);
+            }
         };
     }, [videoContainer]);
 

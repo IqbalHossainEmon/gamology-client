@@ -40,7 +40,11 @@ const FileUploadButton = ({
     const btnRef = useRef(null);
     const previewBtnRef = useRef(null);
 
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handleCheckClick: () => {},
+        removeDefault: () => {},
+        handleActive: () => {},
+    });
 
     const isTouchAble = useIsTouchAble();
     const screenWidth = useScreenWidth();
@@ -56,23 +60,24 @@ const FileUploadButton = ({
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
 
-    const handleActive = useRef(null);
-
-    handleActive.current = useCallback(() => {
+    eventRef.current.handleActive = useCallback(() => {
         setActive(false);
     }, []);
 
-    eventRef.removeDefault = useCallback(() => {
+    eventRef.current.removeDefault = useCallback(() => {
         setSelected({ selected: false, name: 'name', file: null });
-        inputRef.current.removeEventListener('click', eventRef.removeDefault);
-        eventRef.removeDefault = null;
+        inputRef.current.removeEventListener('click', eventRef.current.removeDefault);
+        eventRef.current.removeDefault = null;
     }, []);
 
     useEffect(() => {
         const input = inputRef.current;
-        input.addEventListener('cancel', handleActive.current);
+        const { handleActive } = eventRef.current;
+
+        input.addEventListener('cancel', handleActive);
+
         return () => {
-            input.removeEventListener('cancel', handleActive.current);
+            input.removeEventListener('cancel', handleActive);
         };
     }, [defaultValue]);
 
@@ -93,10 +98,10 @@ const FileUploadButton = ({
         }
     };
 
-    eventRef.handleCheckClick = useCallback(e => {
+    eventRef.current.handleCheckClick = useCallback(e => {
         if (containerRef.current && !containerRef.current.contains(e.target)) {
             setImagePreview(prev => ({ ...prev, previewShow: false }));
-            document.removeEventListener('click', eventRef.handleCheckClick);
+            document.removeEventListener('click', eventRef.current.handleCheckClick);
         }
     }, []);
 
@@ -195,9 +200,9 @@ const FileUploadButton = ({
                         onClick={() => {
                             setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }));
                             if (!previewShow) {
-                                document.addEventListener('click', eventRef.handleCheckClick);
+                                document.addEventListener('click', eventRef.current.handleCheckClick);
                             } else {
-                                document.removeEventListener('click', eventRef.handleCheckClick);
+                                document.removeEventListener('click', eventRef.current.handleCheckClick);
                             }
                         }}
                     >

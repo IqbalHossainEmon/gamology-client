@@ -17,35 +17,49 @@ function Switch({ state, setState, event, videoContainer }) {
     const pathInfoRef = useRef();
     const screenWidth = useScreenWidth();
 
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handleResize: () => {},
+    });
 
-    eventRef.handleResize = useCallback(() => {
+    eventRef.current.handleResize = useCallback(() => {
         pathInfoRef.width = rangePathRef.current?.offsetWidth;
         pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
     }, []);
 
     useEffect(() => {
-        eventRef.handleResize();
+        eventRef.current.handleResize();
     }, [screenWidth]);
 
     useEffect(() => {
+        const { handleResize } = eventRef.current;
+
+        const addFullscreenEventListeners = element => {
+            element.addEventListener('fullscreenchange', handleResize);
+            element.addEventListener('mozfullscreenchange', handleResize);
+            element.addEventListener('MSFullscreenChange', handleResize);
+            element.addEventListener('webkitfullscreenchange', handleResize);
+        };
+
+        const removeFullscreenEventListeners = element => {
+            element.removeEventListener('fullscreenchange', handleResize);
+            element.removeEventListener('mozfullscreenchange', handleResize);
+            element.removeEventListener('MSFullscreenChange', handleResize);
+            element.removeEventListener('webkitfullscreenchange', handleResize);
+        };
+
         let videoContainerRef;
+
         if (videoContainer.current) {
             videoContainerRef = videoContainer.current;
-
-            videoContainerRef.addEventListener('fullscreenchange', eventRef.handleResize);
-            videoContainerRef.addEventListener('mozfullscreenchange', eventRef.handleResize);
-            videoContainerRef.addEventListener('MSFullscreenChange', eventRef.handleResize);
-            videoContainerRef.addEventListener('webkitfullscreenchange', eventRef.handleResize);
+            addFullscreenEventListeners(videoContainerRef);
         }
+
         return () => {
-            videoContainerRef.removeEventListener('fullscreenchange', eventRef.handleResize);
-            videoContainerRef.removeEventListener('mozfullscreenchange', eventRef.handleResize);
-            videoContainerRef.removeEventListener('MSFullscreenChange', eventRef.handleResize);
-            videoContainerRef.removeEventListener('webkitfullscreenchange', eventRef.handleResize);
+            if (videoContainerRef) {
+                removeFullscreenEventListeners(videoContainerRef);
+            }
         };
     }, [videoContainer]);
-
     const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 100);
 
     useEffect(() => {

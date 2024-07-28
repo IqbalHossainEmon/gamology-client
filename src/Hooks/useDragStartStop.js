@@ -4,15 +4,18 @@ import useIsTouchAble from './useIsTouchable';
 export default function useDragStartStop(event, handleMouseUp = () => {}, handleMouseDown = () => {}, grab = false) {
     const isTouchAble = useIsTouchAble();
 
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        onStart: () => {},
+        onStop: () => {},
+    });
 
-    eventRef.onStop = useCallback(
+    eventRefs.current.onStop = useCallback(
         e => {
             document.removeEventListener('mousemove', event.current);
             document.removeEventListener('touchmove', event.current);
-            document.removeEventListener('mouseup', eventRef.onStop);
-            document.removeEventListener('touchend', eventRef.onStop);
-            window.removeEventListener('blur', eventRef.onStop);
+            document.removeEventListener('mouseup', eventRefs.current.onStop);
+            document.removeEventListener('touchend', eventRefs.current.onStop);
+            window.removeEventListener('blur', eventRefs.current.onStop);
 
             handleMouseUp(e);
             if (document.getElementById('root').classList.contains('grabbing')) {
@@ -22,14 +25,14 @@ export default function useDragStartStop(event, handleMouseUp = () => {}, handle
         [handleMouseUp, event]
     );
 
-    eventRef.onStart = useCallback(
+    eventRefs.current.onStart = useCallback(
         e => {
             handleMouseDown(e);
             document.addEventListener('mousemove', event.current);
             document.addEventListener('touchmove', event.current);
-            document.addEventListener('mouseup', eventRef.onStop);
-            document.addEventListener('touchend', eventRef.onStop);
-            window.addEventListener('blur', eventRef.onStop);
+            document.addEventListener('mouseup', eventRefs.current.onStop);
+            document.addEventListener('touchend', eventRefs.current.onStop);
+            window.addEventListener('blur', eventRefs.current.onStop);
 
             if (!isTouchAble() && grab) {
                 e.preventDefault();
@@ -38,5 +41,6 @@ export default function useDragStartStop(event, handleMouseUp = () => {}, handle
         },
         [grab, handleMouseDown, event, isTouchAble]
     );
-    return eventRef.onStart;
+
+    return eventRefs.current.onStart;
 }

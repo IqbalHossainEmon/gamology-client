@@ -9,7 +9,11 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
     const mouseMoveTimerId = useRef(null);
     const onLoadedRef = useRef(false);
     const isChanging = useRef(false);
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handleMouseMove: () => {},
+        handleLoadedMetaData: () => {},
+        handleMouseDown: () => {},
+    });
 
     const [isControllerShowing, setIsControllerShowing] = useState(false);
 
@@ -29,7 +33,7 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
         }
     }, []);
 
-    eventRef.handleMouseMove = useCallback(() => {
+    eventRef.current.handleMouseMove = useCallback(() => {
         handleShowHide();
     }, [handleShowHide]);
 
@@ -41,42 +45,54 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
     }, [changePause]);
 
     const handleMouseUp = useCallback(() => {
-        videoContainerRef?.current.addEventListener('mousemove', eventRef.handleMouseMove);
+        videoContainerRef?.current.addEventListener('mousemove', eventRef.current.handleMouseMove);
         handleShowHide();
         document.removeEventListener('mouseup', handleMouseUp);
-    }, [eventRef.handleMouseMove, handleShowHide]);
+    }, [handleShowHide]);
 
-    eventRef.handleLoadedMetaData = useCallback(() => {
+    eventRef.current.handleLoadedMetaData = useCallback(() => {
         onLoadedRef.current = true;
     }, []);
 
-    eventRef.handleMouseDown = useCallback(() => {
+    eventRef.current.handleMouseDown = useCallback(() => {
         document.addEventListener('mouseup', handleMouseUp);
         if (mouseMoveTimerId.current) {
             clearTimeout(mouseMoveTimerId.current);
             mouseMoveTimerId.current = null;
         }
-        videoContainerRef?.current.removeEventListener('mousemove', eventRef.handleMouseMove);
+        videoContainerRef?.current.removeEventListener('mousemove', eventRef.current.handleMouseMove);
     }, [handleMouseUp]);
 
     useEffect(() => {
-        const videoContainer = videoContainerRef.current;
-        if (videoContainerRef.current) {
-            videoContainerRef.current.addEventListener('mousemove', eventRef.handleMouseMove);
-            videoContainerRef.current.addEventListener('mousedown', eventRef.handleMouseDown);
-        }
+        const { handleMouseMove, handleMouseDown, handleLoadedMetaData } = eventRef.current;
 
-        const video = videoRef.current;
-        if (videoRef.current) videoRef.current.addEventListener('loadedmetadata', eventRef.handleLoadedMetaData);
-
-        return () => {
+        const addEventListeners = (videoContainer, video) => {
+            if (videoContainer) {
+                videoContainer.addEventListener('mousemove', handleMouseMove);
+                videoContainer.addEventListener('mousedown', handleMouseDown);
+            }
             if (video) {
-                video.removeEventListener('loadedmetadata', eventRef.handleLoadedMetaData);
+                video.addEventListener('loadedmetadata', handleLoadedMetaData);
+            }
+        };
+
+        const removeEventListeners = (videoContainer, video) => {
+            if (video) {
+                video.removeEventListener('loadedmetadata', handleLoadedMetaData);
             }
             if (videoContainer) {
-                videoContainer.removeEventListener('mousemove', eventRef.handleMouseMove);
-                videoContainer.removeEventListener('mousedown', eventRef.handleMouseDown);
+                videoContainer.removeEventListener('mousemove', handleMouseMove);
+                videoContainer.removeEventListener('mousedown', handleMouseDown);
             }
+        };
+
+        const videoContainer = videoContainerRef.current;
+        const video = videoRef.current;
+
+        addEventListeners(videoContainer, video);
+
+        return () => {
+            removeEventListeners(videoContainer, video);
         };
     }, [handleMouseUp, videoContainerRef]);
 

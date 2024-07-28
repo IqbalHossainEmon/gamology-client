@@ -57,9 +57,12 @@ const CoverImageVideoContainer = ({
         }, 0);
     }, [isTouchAble, screenWidth]);
 
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        cancel: () => {},
+        handleCheckClick: () => {},
+    });
 
-    eventRef.cancel = useCallback(() => {
+    eventRefs.current.cancel = useCallback(() => {
         setFocused(false);
     }, []);
 
@@ -68,10 +71,10 @@ const CoverImageVideoContainer = ({
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
 
-    eventRef.handleCheckClick = useCallback(e => {
+    eventRefs.current.handleCheckClick = useCallback(e => {
         if (containerRef.current && !containerRef.current.contains(e.target)) {
             setImagePreview(prev => ({ ...prev, previewShow: false }));
-            document.removeEventListener('click', eventRef.handleCheckClick);
+            document.removeEventListener('click', eventRefs.current.handleCheckClick);
         }
     }, []);
 
@@ -123,7 +126,7 @@ const CoverImageVideoContainer = ({
                                 imagePreviewContainer={imagePreviewContainer}
                                 setImagePreview={setImagePreview}
                                 btnRef={btnRef}
-                                eventRef={eventRef}
+                                eventRef={eventRefs}
                                 mainValue={mainValueRef.current.image}
                                 setFocused={setFocused}
                             />
@@ -142,9 +145,9 @@ const CoverImageVideoContainer = ({
                         onClick={() => {
                             setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }));
                             if (!previewShow) {
-                                document.addEventListener('click', eventRef.handleCheckClick);
+                                document.addEventListener('click', eventRefs.current.handleCheckClick);
                             } else {
-                                document.removeEventListener('click', eventRef.handleCheckClick);
+                                document.removeEventListener('click', eventRefs.current.handleCheckClick);
                             }
                         }}
                     >

@@ -14,13 +14,15 @@ const withDashboardModal = Component =>
         const [content, setContent] = useState({ modalTitle: null, modalBody: null, modalFooter: null });
 
         const { show, fadeIn } = useAppearDisappear(showModal);
-        const hideEventRef = useRef(() => {});
+        const hideEventRef = useRef({
+            handleHide: () => {},
+        });
 
         const handleShowHide = useCallback(isTrue => {
             if (isTrue) {
                 setShowModal(true);
             } else {
-                hideEventRef.current();
+                hideEventRef.current.handleHide();
             }
         }, []);
 

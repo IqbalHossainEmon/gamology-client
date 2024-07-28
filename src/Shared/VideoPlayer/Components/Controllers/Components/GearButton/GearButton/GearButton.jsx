@@ -10,7 +10,9 @@ function GearButton({ gearRef, videoContainer }) {
 
     const show = useContext(AutoPlayContext);
     const setShow = useContext(SetAutoPlayContext);
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handleClick: () => {},
+    });
 
     const { showMenu, setElement } = useDropDownHide(setShow);
 
@@ -21,7 +23,7 @@ function GearButton({ gearRef, videoContainer }) {
         }
     }, [gearRef, setElement]);
 
-    eventRef.handleClick = useCallback(() => {
+    eventRef.current.handleClick = useCallback(() => {
         setAutoplay(prev => {
             if (prev) {
                 localStorage.removeItem('autoplay');
@@ -30,7 +32,7 @@ function GearButton({ gearRef, videoContainer }) {
             }
             return !prev;
         });
-        document.removeEventListener('mouseup', eventRef.handleClick);
+        document.removeEventListener('mouseup', eventRef.current.handleClick);
     }, []);
 
     return (
@@ -58,11 +60,10 @@ function GearButton({ gearRef, videoContainer }) {
             </button>
             {show && (
                 <div className={styles.menuContainer}>
-                    <div
+                    <button
                         className={styles.menu}
-                        role="button"
-                        tabIndex={0}
-                        onMouseDown={() => document.addEventListener('mouseup', eventRef.handleClick)}
+                        type="button"
+                        onMouseDown={() => document.addEventListener('mouseup', eventRef.current.handleClick)}
                     >
                         <div>
                             <h5>Autoplay</h5>
@@ -73,10 +74,10 @@ function GearButton({ gearRef, videoContainer }) {
                                 videoContainer={videoContainer}
                                 state={autoplay}
                                 setState={setAutoplay}
-                                event={eventRef.handleClick}
+                                event={eventRef.current.handleClick}
                             />
                         </div>
-                    </div>
+                    </button>
                 </div>
             )}
         </>

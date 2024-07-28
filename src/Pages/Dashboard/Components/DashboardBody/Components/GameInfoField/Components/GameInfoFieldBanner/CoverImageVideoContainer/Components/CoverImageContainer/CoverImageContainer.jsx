@@ -47,11 +47,13 @@ const CoverImageContainer = ({
 
     useEffect(() => {
         const input = inputRef.current;
-        inputRef.current.addEventListener('cancel', eventRef.cancel);
-        eventRef.isAdded = true;
+
+        const { cancel } = eventRef.current;
+
+        inputRef.current.addEventListener('cancel', cancel);
 
         return () => {
-            input.removeEventListener('cancel', eventRef.cancel);
+            input.removeEventListener('cancel', cancel);
         };
     }, [btnRef, eventRef, inputRef]);
 

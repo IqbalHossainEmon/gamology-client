@@ -18,9 +18,15 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
     const isMouseDown = useRef(false);
 
     const shouldPlay = useRef(false);
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        progressUpdate: () => {},
+        progressBufferUpdate: () => {},
+        handleError: () => {},
+        handlePlaying: () => {},
+        handlePause: () => {},
+    });
 
-    eventRef.progressBufferUpdate = useCallback(({ target: { buffered, duration } }) => {
+    eventRefs.current.progressBufferUpdate = useCallback(({ target: { buffered, duration } }) => {
         if (buffered.length > 0) {
             if (buffered.length === 1) {
                 setBuffer((buffered.end(buffered.length - 1) / duration) * 100);
@@ -36,7 +42,7 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         }
     }, []);
 
-    eventRef.progressUpdate = useCallback(
+    eventRefs.current.progressUpdate = useCallback(
         ({ target: { duration, currentTime } }) => {
             if (!isMouseDown.current) {
                 setProgress((currentTime / duration) * 100);
@@ -45,14 +51,14 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         [setProgress]
     );
 
-    eventRef.handleError = useCallback(() => {
+    eventRefs.current.handleError = useCallback(() => {
         if (interval.current) {
             clearInterval(interval.current);
             interval.current = null;
         }
     }, []);
 
-    eventRef.handlePlaying = useCallback(() => {
+    eventRefs.current.handlePlaying = useCallback(() => {
         if (isMouseDown.current) {
             videoRef.current.pause();
             shouldPlay.current = true;
@@ -62,47 +68,60 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         }
     }, [isSeekedRef]);
 
-    eventRef.handlePause = useCallback(() => {
+    eventRefs.current.handlePause = useCallback(() => {
         isPlaying.current = false;
     }, []);
 
     useEffect(() => {
+        const { progressUpdate, progressBufferUpdate, handleError, handlePlaying, handlePause } = eventRefs.current;
+
+        const addEventListeners = () => {
+            videoRef.current.addEventListener('timeupdate', progressUpdate);
+            videoRef.current.addEventListener('progress', progressBufferUpdate);
+            videoRef.current.addEventListener('error', handleError);
+            videoRef.current.addEventListener('playing', handlePlaying);
+            videoRef.current.addEventListener('pause', handlePause);
+        };
+
+        const removeEventListeners = () => {
+            videoRef.current.removeEventListener('timeupdate', progressUpdate);
+            videoRef.current.removeEventListener('progress', progressBufferUpdate);
+            videoRef.current.removeEventListener('error', handleError);
+            videoRef.current.removeEventListener('playing', handlePlaying);
+            videoRef.current.removeEventListener('pause', handlePause);
+        };
+
+        const initializeInterval = () => {
+            interval.count = 0;
+            interval.current = setInterval(() => {
+                if (videoRef.current.buffered.length === 0) {
+                    videoRef.current.load(src);
+                } else {
+                    progressBufferUpdate({ target: videoRef.current });
+                    clearInterval(interval.current);
+                    interval.current = null;
+                }
+
+                if (interval.count > 120) {
+                    clearInterval(interval.current);
+                    interval.current = null;
+                }
+                interval.count++;
+            }, 500);
+        };
+
         if (video.current) {
             videoRef.current = video.current;
-
-            videoRef.current.addEventListener('timeupdate', eventRef.progressUpdate);
-            videoRef.current.addEventListener('progress', eventRef.progressBufferUpdate);
-            videoRef.current.addEventListener('error', eventRef.handleError);
-            videoRef.current.addEventListener('playing', eventRef.handlePlaying);
-            videoRef.current.addEventListener('pause', eventRef.handlePause);
+            addEventListeners();
 
             if (!interval.current) {
-                interval.count = 0;
-                interval.current = setInterval(() => {
-                    if (videoRef.current.buffered.length === 0) {
-                        videoRef.current.load(src);
-                    } else {
-                        eventRef.progressBufferUpdate({ target: videoRef.current });
-                        clearInterval(interval.current);
-                        interval.current = null;
-                    }
-
-                    if (interval.count > 120) {
-                        clearInterval(interval.current);
-                        interval.current = null;
-                    }
-                    interval.count++;
-                }, 500);
+                initializeInterval();
             }
         }
 
         return () => {
             if (videoRef.current) {
-                videoRef.current.removeEventListener('timeupdate', eventRef.progressUpdate);
-                videoRef.current.removeEventListener('progress', eventRef.progressBufferUpdate);
-                videoRef.current.removeEventListener('error', eventRef.handleError);
-                videoRef.current.removeEventListener('playing', eventRef.handlePlaying);
-                videoRef.current.removeEventListener('pause', eventRef.handlePause);
+                removeEventListeners();
             }
         };
     }, [src, video]);

@@ -78,9 +78,12 @@ const ScrollBar = ({ parentRef, childRef }) => {
         });
     }, [parentRef]);
 
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handleScroll: () => {},
+        handleMouseMove: () => {},
+    });
 
-    eventRef.handleScroll = useCallback(() => {
+    eventRef.current.handleScroll = useCallback(() => {
         setShow(true);
         handleScrollHide();
         setScrolled(
@@ -89,7 +92,7 @@ const ScrollBar = ({ parentRef, childRef }) => {
         );
     }, [parentRef]);
 
-    eventRef.handleMouseMove = useCallback(() => {
+    eventRef.current.handleMouseMove = useCallback(() => {
         setShow(true);
         handleScrollHide();
     }, []);
@@ -111,14 +114,18 @@ const ScrollBar = ({ parentRef, childRef }) => {
         const parent = parentRef.current;
         const container = containerRef.current;
 
-        parent.addEventListener('scroll', eventRef.handleScroll);
-        container.addEventListener('mousemove', eventRef.handleMouseMove);
+        const { handleScroll } = eventRef.current;
+        const { handleMouseMove } = eventRef.current;
+
+        parent.addEventListener('scroll', handleScroll);
+        container.addEventListener('mousemove', handleMouseMove);
+
         return () => {
             childObserve.disconnect();
             parentObserve.disconnect();
 
-            parent.removeEventListener('scroll', eventRef.handleScroll);
-            container.removeEventListener('mousemove', eventRef.handleMouseMove);
+            parent.removeEventListener('scroll', handleScroll);
+            container.removeEventListener('mousemove', handleMouseMove);
         };
     }, [childRef, parentRef]);
 

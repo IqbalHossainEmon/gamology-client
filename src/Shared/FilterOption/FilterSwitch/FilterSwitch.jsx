@@ -6,7 +6,7 @@ import styles from './FilterSwitch.module.css';
 
 function FilterSwitch({ state, setState, name, event }) {
     const [circlePosition, setCirclePosition] = useState({
-        translate: 0,
+        translate: state ? 100 : 0,
         transition: false,
     });
 
@@ -18,7 +18,10 @@ function FilterSwitch({ state, setState, name, event }) {
     const mainStateRef = useRef(state);
     mainStateRef.current = state;
 
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        handleMove: { current: () => {} },
+        handleSetValue: () => {},
+    });
 
     const screenWidth = useScreenWidth();
 
@@ -45,7 +48,7 @@ function FilterSwitch({ state, setState, name, event }) {
         rangePathRef.width = rangePathRef.current.offsetWidth;
     }, [rangePathRef, screenWidth]);
 
-    eventRef.current = useCallback(
+    eventRefs.current.handleMove.current = useCallback(
         e => {
             document.removeEventListener('mouseup', event.current);
 
@@ -73,7 +76,7 @@ function FilterSwitch({ state, setState, name, event }) {
         positionsRef.start = stateRef.current;
     };
 
-    eventRef.handleSetValue = useCallback(() => {
+    eventRefs.current.handleSetValue = useCallback(() => {
         // if switch is below 50
         if (stateRef.current < rangePathRef.width / 2) {
             if (stateRef.current !== 0) {
@@ -94,7 +97,7 @@ function FilterSwitch({ state, setState, name, event }) {
         }
     }, [handleTimerTransition, name, setState]);
 
-    const onStart = useDragStartStop(eventRef, eventRef.handleSetValue);
+    const onStart = useDragStartStop(eventRefs.current.handleMove, eventRefs.current.handleSetValue);
 
     return (
         <div className={styles.toggleButtonContainer}>

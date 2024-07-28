@@ -8,7 +8,14 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
     const timerId = useRef(null);
     const videoRef = useRef(video.current);
 
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        loadMetaDataUpdate: () => {},
+        loadUpdate: () => {},
+        handlePlay: () => {},
+        handlePause: () => {},
+        handlePlaying: () => {},
+        handleWaiting: () => {},
+    });
 
     const [status, setStatus] = useState({
         duration: 0,
@@ -25,17 +32,17 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
         }
     };
 
-    eventRef.loadMetaDataUpdate = useCallback(({ target: { duration } }) => {
+    eventRefs.current.loadMetaDataUpdate = useCallback(({ target: { duration } }) => {
         setStatus(prev => ({ ...prev, duration }));
     }, []);
 
-    eventRef.loadUpdate = useCallback(() => {
+    eventRefs.current.loadUpdate = useCallback(() => {
         if (localStorage.getItem('autoplay') && videoRef.current.paused) {
             videoRef.current.play();
         }
     }, []);
 
-    eventRef.handlePlay = useCallback(() => {
+    eventRefs.current.handlePlay = useCallback(() => {
         if (isSeekedRef.current) {
             setStatus(prev => {
                 if (!prev.initialShow) {
@@ -47,7 +54,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
         }
     }, [isSeekedRef]);
 
-    eventRef.handlePause = useCallback(() => {
+    eventRefs.current.handlePause = useCallback(() => {
         if (isSeekedRef.current && !videoRef.current.ended && !isChanging.current) {
             setStatus({ play: false, animation: true, loading: false });
             handleTransition();
@@ -63,34 +70,44 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
         }
     }, []);
 
-    eventRef.handlePlaying = useCallback(() => {
+    eventRefs.current.handlePlaying = useCallback(() => {
         setStatus(prev => ({ ...prev, loading: false }));
     }, []);
 
-    eventRef.handleWaiting = useCallback(() => {
+    eventRefs.current.handleWaiting = useCallback(() => {
         setStatus(prev => ({ ...prev, loading: true }));
     }, []);
 
     useEffect(() => {
+        const { loadMetaDataUpdate, loadUpdate, handlePlay, handlePause, handlePlaying, handleWaiting } =
+            eventRefs.current;
+
+        const addEventListeners = videoElement => {
+            videoElement.addEventListener('loadedmetadata', loadMetaDataUpdate);
+            videoElement.addEventListener('loadeddata', loadUpdate);
+            videoElement.addEventListener('play', handlePlay);
+            videoElement.addEventListener('pause', handlePause);
+            videoElement.addEventListener('playing', handlePlaying);
+            videoElement.addEventListener('waiting', handleWaiting);
+        };
+
+        const removeEventListeners = videoElement => {
+            videoElement.removeEventListener('loadedmetadata', loadMetaDataUpdate);
+            videoElement.removeEventListener('loadeddata', loadUpdate);
+            videoElement.removeEventListener('play', handlePlay);
+            videoElement.removeEventListener('pause', handlePause);
+            videoElement.removeEventListener('playing', handlePlaying);
+            videoElement.removeEventListener('waiting', handleWaiting);
+        };
+
         if (video.current) {
             videoRef.current = video.current;
-
-            videoRef.current.addEventListener('loadedmetadata', eventRef.loadMetaDataUpdate);
-            videoRef.current.addEventListener('loadeddata', eventRef.loadUpdate);
-            videoRef.current.addEventListener('play', eventRef.handlePlay);
-            videoRef.current.addEventListener('pause', eventRef.handlePause);
-            videoRef.current.addEventListener('playing', eventRef.handlePlaying);
-            videoRef.current.addEventListener('waiting', eventRef.handleWaiting);
+            addEventListeners(videoRef.current);
         }
 
         return () => {
             if (videoRef.current) {
-                videoRef.current.removeEventListener('loadedmetadata', eventRef.loadMetaDataUpdate);
-                videoRef.current.removeEventListener('loadeddata', eventRef.loadUpdate);
-                videoRef.current.removeEventListener('play', eventRef.handlePlay);
-                videoRef.current.removeEventListener('pause', eventRef.handlePause);
-                videoRef.current.removeEventListener('playing', eventRef.handlePlaying);
-                videoRef.current.removeEventListener('waiting', eventRef.handleWaiting);
+                removeEventListeners(videoRef.current);
             }
         };
     }, [video]);

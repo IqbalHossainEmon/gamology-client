@@ -9,22 +9,26 @@ export default function ProgressTimeShow({ video }) {
     const time = useVideoPlayerProgress();
 
     const videoRef = useRef(video.current);
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        loadUpdate: () => {},
+    });
 
     const [durationTime, setDurationTime] = useState(0);
 
-    eventRef.loadUpdate = useCallback(({ target: { duration } }) => {
+    eventRef.current.loadUpdate = useCallback(({ target: { duration } }) => {
         setDurationTime(duration);
     }, []);
 
     useEffect(() => {
+        const { loadUpdate } = eventRef.current;
+
         if (video.current) {
             videoRef.current = video.current;
-            videoRef.current.addEventListener('loadedmetadata', eventRef.loadUpdate);
+            videoRef.current.addEventListener('loadedmetadata', loadUpdate);
         }
 
         return () => {
-            videoRef.current.removeEventListener('loadedmetadata', eventRef.loadUpdate);
+            videoRef.current.removeEventListener('loadedmetadata', loadUpdate);
         };
     }, [video]);
 

@@ -7,15 +7,18 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
     const isPlayingRef = useRef(isPlaying);
     isPlayingRef.current = isPlaying;
 
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        handlePlay: () => {},
+        handlePause: () => {},
+    });
 
-    eventRef.handlePlay = useCallback(() => {
+    eventRefs.current.handlePlay = useCallback(() => {
         if (isSeekedRef.current && !isPlayingRef.current) {
             setIsPlaying(true);
         }
     }, [isSeekedRef]);
 
-    eventRef.handlePause = useCallback(() => {
+    eventRefs.current.handlePause = useCallback(() => {
         if (isSeekedRef.current && isPlayingRef.current) {
             setIsPlaying(false);
         }
@@ -32,16 +35,19 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
 
     useEffect(() => {
         let videoRef;
+
+        const { handlePlay, handlePause } = eventRefs.current;
+
         if (video.current) {
             videoRef = video.current;
-            videoRef.addEventListener('play', eventRef.handlePlay);
-            videoRef.addEventListener('pause', eventRef.handlePause);
+            videoRef.addEventListener('play', handlePlay);
+            videoRef.addEventListener('pause', handlePause);
         }
 
         return () => {
             if (videoRef) {
-                videoRef.removeEventListener('play', eventRef.handlePlay);
-                videoRef.removeEventListener('pause', eventRef.handlePause);
+                videoRef.removeEventListener('play', handlePlay);
+                videoRef.removeEventListener('pause', handlePause);
             }
         };
     }, [video]);

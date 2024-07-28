@@ -48,9 +48,12 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
             }, 200);
         }
     };
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        handlePlaying: () => {},
+        handleWaiting: () => {},
+    });
 
-    eventRef.handlePlaying = useCallback(() => {
+    eventRef.current.handlePlaying = useCallback(() => {
         canPlay.current = true;
         if (shouldPause.current) {
             videoRef.current.pause();
@@ -58,20 +61,35 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
         }
     }, []);
 
-    eventRef.handleWaiting = useCallback(() => {
+    eventRef.current.handleWaiting = useCallback(() => {
         canPlay.current = false;
     }, []);
 
     useEffect(() => {
+        const { handlePlaying, handleWaiting } = eventRef.current;
+
+        const addEventListeners = videoElement => {
+            videoElement.addEventListener('playing', handlePlaying);
+            videoElement.addEventListener('waiting', handleWaiting);
+        };
+
+        const removeEventListeners = videoElement => {
+            videoElement.removeEventListener('playing', handlePlaying);
+            videoElement.removeEventListener('waiting', handleWaiting);
+        };
+
+        const updateVideoRef = videoElement => {
+            videoRef.current = videoElement;
+            addEventListeners(videoRef.current);
+        };
+
         if (video.current) {
-            videoRef.current = video.current;
-            videoRef.current.addEventListener('playing', eventRef.handlePlaying);
-            videoRef.current.addEventListener('waiting', eventRef.handleWaiting);
+            updateVideoRef(video.current);
         }
+
         return () => {
             if (videoRef.current) {
-                videoRef.current.removeEventListener('playing', eventRef.handlePlaying);
-                videoRef.current.removeEventListener('waiting', eventRef.handleWaiting);
+                removeEventListeners(videoRef.current);
             }
         };
     }, [video]);

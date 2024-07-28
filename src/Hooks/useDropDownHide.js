@@ -2,24 +2,25 @@ import { useCallback, useRef } from 'react';
 
 const useDropDownHide = setState => {
     const element = useRef();
+    const eventRefs = useRef({
+        closeMenu: () => {},
+        closeMenuBlur: () => {},
+    });
 
-    const closeMenuBlurRef = useRef(null);
-    const closeMenu = useRef(null);
-
-    closeMenu.current = useCallback(
+    eventRefs.current.closeMenu = useCallback(
         e => {
             switch (Array.isArray(element.current)) {
                 case true:
                     if (!element.current.some(ele => ele?.contains(e.target)) && e) {
-                        document.removeEventListener('mousedown', closeMenu.current);
-                        window.removeEventListener('blur', closeMenuBlurRef.current);
+                        document.removeEventListener('mousedown', eventRefs.current.closeMenu);
+                        window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
                         setState(false);
                     }
                     break;
                 default:
                     if (element.current && e && !element.current.contains(e.target)) {
-                        document.removeEventListener('mousedown', closeMenu.current);
-                        window.removeEventListener('blur', closeMenuBlurRef.current);
+                        document.removeEventListener('mousedown', eventRefs.current.closeMenu);
+                        window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
                         setState(false);
                     }
                     break;
@@ -28,15 +29,15 @@ const useDropDownHide = setState => {
         [setState]
     );
 
-    closeMenuBlurRef.current = useCallback(() => {
+    eventRefs.current.closeMenuBlur = useCallback(() => {
         setState(false);
-        window.removeEventListener('blur', closeMenuBlurRef.current);
-        document.removeEventListener('mousedown', closeMenu.current);
+        window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
+        document.removeEventListener('mousedown', eventRefs.current.closeMenu);
     }, [setState]);
 
     const stopMenu = useCallback(() => {
-        document.removeEventListener('mousedown', closeMenu.current);
-        window.removeEventListener('blur', closeMenuBlurRef.current);
+        document.removeEventListener('mousedown', eventRefs.current.closeMenu);
+        window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
     }, []);
 
     const setElement = useCallback(ele => {
@@ -44,8 +45,8 @@ const useDropDownHide = setState => {
     }, []);
 
     const showMenu = useCallback(() => {
-        document.addEventListener('mousedown', closeMenu.current);
-        window.addEventListener('blur', closeMenuBlurRef.current);
+        document.addEventListener('mousedown', eventRefs.current.closeMenu);
+        window.addEventListener('blur', eventRefs.current.closeMenuBlur);
     }, []);
 
     return { showMenu, setElement, stopMenu };

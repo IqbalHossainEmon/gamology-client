@@ -19,7 +19,7 @@ const Modal = ({ children, setShow, fadeIn, hideEventRef }) => {
         setElement(elementRef.current);
         showMenu();
         if (hideEventRef) {
-            hideEventRef.current = handleHide;
+            hideEventRef.current.handleHide = handleHide;
         }
     }, [handleHide, hideEventRef, setElement, showMenu]);
 

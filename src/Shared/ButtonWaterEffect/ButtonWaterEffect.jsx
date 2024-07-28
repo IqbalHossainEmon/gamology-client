@@ -6,9 +6,12 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
     const eleRef = useRef(ele);
     eleRef.current = ele;
     const key = useRef(0);
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        handleClick: () => {},
+        removeWaterDrop: () => {},
+    });
 
-    eventRef.removeWaterDrop = useCallback(() => {
+    eventRefs.current.removeWaterDrop = useCallback(() => {
         setTimeout(
             () => {
                 setEle(e => e.slice(1));
@@ -17,7 +20,7 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
         );
     }, [long]);
 
-    eventRef.current = useCallback(
+    eventRefs.current.handleClick = useCallback(
         e => {
             let x = (e.touches ? e.touches[0].clientX : e.clientX) - btnRef.current.getBoundingClientRect().left;
             let y = (e.touches ? e.touches[0].clientY : e.clientY) - btnRef.current.getBoundingClientRect().top;
@@ -59,16 +62,18 @@ const ButtonWaterEffect = ({ btnRef, backGround, long }) => {
                     }}
                 />,
             ]);
-            eventRef.removeWaterDrop();
+            eventRefs.current.removeWaterDrop();
         },
         [backGround, btnRef, long]
     );
 
     useEffect(() => {
         const btn = btnRef.current;
-        btn.addEventListener('click', eventRef.current);
+        const { handleClick } = eventRefs.current;
+
+        btn.addEventListener('click', handleClick);
         return () => {
-            if (btn) btn.removeEventListener('click', eventRef.current);
+            if (btn) btn.removeEventListener('click', handleClick);
         };
     }, [backGround, btnRef, long]);
 

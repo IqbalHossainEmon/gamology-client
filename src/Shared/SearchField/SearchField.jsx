@@ -20,9 +20,14 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         }, 500);
     };
 
-    const eventRef = useRef(null);
+    const eventRefs = useRef({
+        setShowState: () => {},
+        handleBlurOnWindowBlur: () => {},
+        handleBlurEsc: () => {},
+        handleClose: () => {},
+    });
 
-    eventRef.setShowState = useCallback(
+    eventRefs.current.setShowState = useCallback(
         state => {
             if (typeof setNavShow === 'function') {
                 setNavShow(state);
@@ -32,45 +37,48 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
         [setNavShow]
     );
 
-    eventRef.handleClose = useCallback(isFormDismount => {
-        eventRef.setShowState(false);
-        searchInputRef.current.blur();
-        if (!isFormDismount) searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
-        window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
-    }, []);
-
-    const { showMenu, setElement, stopMenu } = useDropDownHide(eventRef.handleClose);
-
-    eventRef.handleBlurOnWindowBlur = useCallback(() => {
-        eventRef.setShowState(false);
-        searchInputRef.current.blur();
-        searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
-        window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
-    }, []);
-
-    eventRef.handleBlurEsc = useCallback(e => {
-        if (e.key === 'Escape' || e.key === 'Enter') {
-            eventRef.setShowState(false);
+    eventRefs.current.handleClose = useCallback(isFormDismount => {
+        eventRefs.current.setShowState(false);
+        if (!isFormDismount) {
             searchInputRef.current.blur();
-            searchRef.current.removeEventListener('keydown', eventRef.handleBlurEsc);
-            window.removeEventListener('blur', eventRef.handleBlurOnWindowBlur);
+            searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+        }
+        window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
+    }, []);
+
+    const { showMenu, setElement, stopMenu } = useDropDownHide(eventRefs.current.handleClose);
+
+    eventRefs.current.handleBlurOnWindowBlur = useCallback(() => {
+        eventRefs.current.setShowState(false);
+        searchInputRef.current.blur();
+        searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+        window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
+    }, []);
+
+    eventRefs.current.handleBlurEsc = useCallback(e => {
+        if (e.key === 'Escape' || e.key === 'Enter') {
+            eventRefs.current.setShowState(false);
+            searchInputRef.current.blur();
+            searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+            window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
         }
     }, []);
 
     const handleSearchClick = e => {
         e.stopPropagation();
-        eventRef.setShowState(true);
+        eventRefs.current.setShowState(true);
         showMenu();
         searchInputRef.current.focus();
-        searchRef.current.addEventListener('keydown', eventRef.handleBlurEsc);
-        window.addEventListener('blur', eventRef.handleBlurOnWindowBlur);
+        searchRef.current.addEventListener('keydown', eventRefs.current.handleBlurEsc);
+        window.addEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
     };
 
     useEffect(() => {
         setElement(searchRef.current);
+        const cleanUp = eventRefs.current.handleClose;
         return () => {
             stopMenu();
-            eventRef.handleClose(true);
+            cleanUp(true);
         };
     }, [setElement, searchRef, stopMenu]);
 

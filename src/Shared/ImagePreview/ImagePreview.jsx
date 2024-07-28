@@ -8,17 +8,20 @@ const ImagePreview = ({ containerRef, file, btnRef, parentPreview }) => {
 
     const [widthHeight, setWidthHeight] = useState({ width: window.innerWidth, height: window.innerHeight });
 
-    const eventRef = useRef(null);
+    const eventRef = useRef({
+        resize: () => {},
+    });
     const isTouchAble = useIsTouchAble();
 
-    eventRef.resize = () => {
+    eventRef.current.resize = () => {
         setWidthHeight({ width: window.innerWidth, height: window.innerHeight });
     };
 
     useEffect(() => {
-        window.addEventListener('resize', eventRef.resize);
+        const { resize } = eventRef.current;
+        window.addEventListener('resize', resize);
         return () => {
-            window.removeEventListener('resize', eventRef.resize);
+            window.removeEventListener('resize', resize);
         };
     }, []);
 
