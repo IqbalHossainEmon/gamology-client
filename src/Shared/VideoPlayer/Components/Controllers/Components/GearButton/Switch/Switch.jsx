@@ -72,9 +72,9 @@ function Switch({ state, setState, event, videoContainer }) {
         }
     }, [handleTimerTransition, state]);
 
-    const handleMove = useRef(null);
+    const handleMoveEventRef = useRef(() => {});
 
-    handleMove.current = useCallback(
+    handleMoveEventRef.current = useCallback(
         e => {
             document.removeEventListener('mouseup', event);
 
@@ -122,7 +122,7 @@ function Switch({ state, setState, event, videoContainer }) {
         }
     }, [handleTimerTransition, setState, state]);
 
-    const onStart = useDragStartStop(handleMove, handleSetValue);
+    const onStart = useDragStartStop(handleMoveEventRef.current, handleSetValue);
 
     return (
         <div ref={rangePathRef} className={styles.toggleButton}>

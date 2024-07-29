@@ -11,9 +11,9 @@ const ScrollBar = ({ parentRef, childRef }) => {
     const downElement = useRef(null);
     const containerRef = useRef(null);
     const timerID = useRef(null);
-    const handleMove = useRef(null);
+    const handleMoveEventRef = useRef(() => {});
 
-    handleMove.current = useCallback(
+    handleMoveEventRef.current = useCallback(
         (e, isClick) => {
             const cursorInEle = e?.touches
                 ? e.touches[0].clientY - thumbRef.current.getBoundingClientRect().y
@@ -52,7 +52,7 @@ const ScrollBar = ({ parentRef, childRef }) => {
         downElement.current = null;
     }, []);
 
-    const onStart = useDragStartStop(handleMove, handleMouseUp);
+    const onStart = useDragStartStop(handleMoveEventRef.current, handleMouseUp);
 
     const handleScrollHide = () => {
         if (timerID.current) {
@@ -134,7 +134,7 @@ const ScrollBar = ({ parentRef, childRef }) => {
             tabIndex={0}
             role="button"
             ref={containerRef}
-            onClick={e => handleMove.current(e, true)}
+            onClick={e => handleMoveEventRef.current(e, true)}
             className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}
         >
             <button

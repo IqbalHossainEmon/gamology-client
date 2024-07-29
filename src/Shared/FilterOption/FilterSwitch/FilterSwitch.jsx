@@ -6,7 +6,7 @@ import styles from './FilterSwitch.module.css';
 
 function FilterSwitch({ state, setState, name, event }) {
     const [circlePosition, setCirclePosition] = useState({
-        translate: state ? 100 : 0,
+        translate: 0,
         transition: false,
     });
 
@@ -19,7 +19,7 @@ function FilterSwitch({ state, setState, name, event }) {
     mainStateRef.current = state;
 
     const eventRefs = useRef({
-        handleMove: { current: () => {} },
+        handleMove: () => {},
         handleSetValue: () => {},
     });
 
@@ -40,15 +40,21 @@ function FilterSwitch({ state, setState, name, event }) {
                 setCirclePosition({ translate: 0, transition: true });
                 handleTimerTransition();
             }
+            prevState.current = state;
+        } else if (prevState.current === state && state) {
+            if (state) {
+                setCirclePosition({ translate: rangePathRef.width, transition: false });
+            } else {
+                setCirclePosition({ translate: 0, transition: false });
+            }
         }
-        prevState.current = state;
     }, [handleTimerTransition, state]);
 
     useEffect(() => {
         rangePathRef.width = rangePathRef.current.offsetWidth;
     }, [rangePathRef, screenWidth]);
 
-    eventRefs.current.handleMove.current = useCallback(
+    eventRefs.current.handleMove = useCallback(
         e => {
             document.removeEventListener('mouseup', event.current);
 
@@ -105,7 +111,7 @@ function FilterSwitch({ state, setState, name, event }) {
                 <div className={styles.activePathContainer}>
                     <div
                         className={`${styles.activePath}${circlePosition.transition ? ` ${styles.pathTransition}` : ''}`}
-                        style={{ scale: `${circlePosition.translate / rangePathRef.width} 1` }}
+                        style={{ scale: `${circlePosition.translate / rangePathRef.width || 0} 1` }}
                     />
                 </div>
                 <div
@@ -120,7 +126,7 @@ function FilterSwitch({ state, setState, name, event }) {
                     <div
                         tabIndex="-1"
                         role="button"
-                        className={`${styles.round}${circlePosition.translate < rangePathRef.width / 2 ? '' : ` ${styles.active}`}`}
+                        className={`${styles.round}${circlePosition.translate > rangePathRef.width / 2 ? ` ${styles.active}` : ''}`}
                         onTouchStart={e => {
                             onStart(e);
                             handleStart(e);

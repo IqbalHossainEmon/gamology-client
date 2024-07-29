@@ -1,7 +1,12 @@
 import { useCallback, useRef } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
-export default function useDragStartStop(event, handleMouseUp = () => {}, handleMouseDown = () => {}, grab = false) {
+export default function useDragStartStop(
+    moveEvent,
+    handleMouseUp = () => {},
+    handleMouseDown = () => {},
+    grab = false
+) {
     const isTouchAble = useIsTouchAble();
 
     const eventRefs = useRef({
@@ -11,8 +16,8 @@ export default function useDragStartStop(event, handleMouseUp = () => {}, handle
 
     eventRefs.current.onStop = useCallback(
         e => {
-            document.removeEventListener('mousemove', event.current);
-            document.removeEventListener('touchmove', event.current);
+            document.removeEventListener('mousemove', moveEvent);
+            document.removeEventListener('touchmove', moveEvent);
             document.removeEventListener('mouseup', eventRefs.current.onStop);
             document.removeEventListener('touchend', eventRefs.current.onStop);
             window.removeEventListener('blur', eventRefs.current.onStop);
@@ -22,14 +27,14 @@ export default function useDragStartStop(event, handleMouseUp = () => {}, handle
                 document.getElementById('root').removeAttribute('class');
             }
         },
-        [handleMouseUp, event]
+        [handleMouseUp, moveEvent]
     );
 
     eventRefs.current.onStart = useCallback(
         e => {
             handleMouseDown(e);
-            document.addEventListener('mousemove', event.current);
-            document.addEventListener('touchmove', event.current);
+            document.addEventListener('mousemove', moveEvent);
+            document.addEventListener('touchmove', moveEvent);
             document.addEventListener('mouseup', eventRefs.current.onStop);
             document.addEventListener('touchend', eventRefs.current.onStop);
             window.addEventListener('blur', eventRefs.current.onStop);
@@ -39,7 +44,7 @@ export default function useDragStartStop(event, handleMouseUp = () => {}, handle
                 document.getElementById('root').classList.add('grabbing');
             }
         },
-        [grab, handleMouseDown, event, isTouchAble]
+        [grab, handleMouseDown, moveEvent, isTouchAble]
     );
 
     return eventRefs.current.onStart;

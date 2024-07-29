@@ -68,10 +68,10 @@ export default function VideoSlider({
         };
     }, [videoContainer]);
 
-    const handleMouseEvent = useRef(null);
+    const handleMoveEventRef = useRef(null);
 
     // get cursor position while dragging
-    handleMouseEvent.current = useCallback(
+    handleMoveEventRef.current = useCallback(
         e => {
             let cursorInPercent =
                 ((e?.touches ? e.touches[0].clientX - pathRef.offsetLeft : e.clientX - pathRef.offsetLeft) /
@@ -92,13 +92,13 @@ export default function VideoSlider({
 
     const handleMouseDownClick = useCallback(
         e => {
-            handleMouseEvent.current(e);
+            handleMoveEventRef.current(e);
             handleMouseDown();
         },
         [handleMouseDown]
     );
 
-    const onStart = useDragStartStop(handleMouseEvent, handleMouseUp, handleMouseDownClick, false);
+    const onStart = useDragStartStop(handleMoveEventRef.current, handleMouseUp, handleMouseDownClick, false);
 
     return (
         <div
