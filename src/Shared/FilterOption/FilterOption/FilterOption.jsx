@@ -1,9 +1,9 @@
 import { useCallback, useRef } from 'react';
-import FilterSwitch from '../FilterSwitch/FilterSwitch';
+import ToggleSwitch from '../../ToggleSwitch/ToggleSwitch';
 import styles from './FilterOption.module.css';
 
 function FilterOption({ text, setState, border, state, name }) {
-    const handleClick = useRef(null);
+    const handleClick = useRef(() => {});
 
     const btnRef = useRef(null);
 
@@ -29,7 +29,7 @@ function FilterOption({ text, setState, border, state, name }) {
         >
             <p className={styles.text}>{text}</p>
             <div className={styles.toggleButtonContainer}>
-                <FilterSwitch event={handleClick} state={state} setState={setState} name={name} />
+                <ToggleSwitch event={handleClick.current} state={state} setState={setState} name={name} />
             </div>
         </button>
     );

@@ -2,10 +2,10 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { AutoPlayContext, SetAutoPlayContext } from '../../../../../../../Contexts/AutoPlayContext';
 import withAutoPlayProvider from '../../../../../../../HOC/withAutoPlayProvider';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
-import Switch from '../Switch/Switch';
+import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
 import styles from './GearButton.module.css';
 
-function GearButton({ gearRef, videoContainer }) {
+function GearButton({ gearRef }) {
     const [autoplay, setAutoplay] = useState(false);
 
     const show = useContext(AutoPlayContext);
@@ -32,17 +32,16 @@ function GearButton({ gearRef, videoContainer }) {
             }
             return !prev;
         });
-        document.removeEventListener('mouseup', eventRef.current.handleClick);
     }, []);
-
     return (
         <>
             <button
                 onClick={() =>
-                    setShow(prev => {
-                        showMenu();
-                        return !prev;
-                    })
+                    setShow(
+                        prev =>
+                            /* showMenu(); */
+                            !prev
+                    )
                 }
                 type="button"
                 className={styles.gearButton}
@@ -63,15 +62,17 @@ function GearButton({ gearRef, videoContainer }) {
                     <button
                         className={styles.menu}
                         type="button"
-                        onMouseDown={() => document.addEventListener('mouseup', eventRef.current.handleClick)}
+                        onMouseDown={() =>
+                            document.addEventListener('mouseup', eventRef.current.handleClick, { once: true })
+                        }
                     >
-                        <div>
+                        <div className={styles.textContainer}>
                             <h5>Autoplay</h5>
                             <p>Applies to all videos</p>
                         </div>
-                        <div className={styles.switch}>
-                            <Switch
-                                videoContainer={videoContainer}
+                        <div className={styles.toggleSwitchContainer}>
+                            <ToggleSwitch
+                                name="autoplay"
                                 state={autoplay}
                                 setState={setAutoplay}
                                 event={eventRef.current.handleClick}
