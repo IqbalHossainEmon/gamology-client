@@ -1,4 +1,5 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 
 // this two function calculates the next state of the active item, the item will fade out and the item will fade in.
 const increaseByOne = (state, fadeIn) => ({
@@ -69,6 +70,9 @@ export default function useDiscoverBannerLogics() {
         pause: () => {},
         resume: () => {},
     });
+    const screenWidth = useScreenWidth();
+
+    const screenWidthRef = useRef(screenWidth);
 
     // this function runs the dispatch function and take the start time.
     const run = useCallback(() => {
@@ -86,7 +90,7 @@ export default function useDiscoverBannerLogics() {
     const startTimer = useCallback(() => {
         if (!timerRef.current) {
             timerState.timeStartAt = new Date().getTime();
-            timerState.currentTotalTime = 8900;
+            timerState.currentTotalTime = 9500;
             timerRef.current = setInterval(() => {
                 run();
             }, timerState.currentTotalTime);
@@ -155,6 +159,14 @@ export default function useDiscoverBannerLogics() {
             timerRef.pauseTimer = null;
         }
     }, [startTimer, stopTimer]);
+
+    useEffect(() => {
+        if (screenWidthRef.current < 769 && screenWidth > 768) {
+            reset();
+        } else if (screenWidthRef.current > 768 && screenWidth < 769) {
+            reset();
+        }
+    }, [reset, screenWidth]);
 
     return { initialState, reducer, activeBanner, reset, start, stop, setDispatch };
 }

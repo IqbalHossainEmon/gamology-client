@@ -9,7 +9,11 @@ export default function DiscoverBannerItems({ data, bannerState, cardsPosition, 
                 screenWidth > 768 ? (
                     <DiscoverBannerItem key={id} banner={{ coverImg, id: index, name }} bannerState={bannerState} />
                 ) : (
-                    <DiscoverBannerItemMobile key={id} banner={{ coverMobile, id: index, name }} cardsPosition={cardsPosition} />
+                    <DiscoverBannerItemMobile
+                        key={id}
+                        banner={{ coverMobile, id: index, name }}
+                        cardsPosition={cardsPosition}
+                    />
                 )
             )}
         </div>

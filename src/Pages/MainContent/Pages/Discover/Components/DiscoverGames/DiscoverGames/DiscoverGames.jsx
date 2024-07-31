@@ -237,7 +237,7 @@ const items = [
     },
 ];
 
-export default function DiscoverGames() {
+export default function DiscoverGames({ headerTitle }) {
     const cardsContainer = useRef();
     const screenWidth = useScreenWidth();
     const { initialState, reducer, handleClick, setReference, setCardsOnScreenWidthChange } = useGamesLogics();
@@ -259,7 +259,7 @@ export default function DiscoverGames() {
     return (
         <section className={styles.Games}>
             <div className={styles.headerButtonContainer}>
-                <CardsHeader headerTitle="Game on sale" />
+                <CardsHeader headerTitle={headerTitle} />
                 <GamesButton
                     cardActive={cardActive}
                     length={data.length - cardOnDeck}

@@ -67,8 +67,8 @@ export default function DiscoverBanner() {
     };
 
     useEffect(() => {
-        start();
         setDispatch(dispatch);
+        start();
         dispatch({ type: 'fetch', data: items });
         return stop;
     }, [setDispatch, start, stop]);
