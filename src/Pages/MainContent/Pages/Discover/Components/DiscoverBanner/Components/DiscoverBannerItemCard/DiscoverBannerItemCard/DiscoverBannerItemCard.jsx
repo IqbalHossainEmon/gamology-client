@@ -1,4 +1,4 @@
-import DiscoverBannerItemCardShadow from '../DiscoverBannerItemCardShadow/DiscoverBannerItemCardShadow';
+import CardNameContainer from '../Components/CardNameContainer/CardNameContainer';
 import styles from './DiscoverBannerItemCard.module.css';
 
 export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosition, isPause }) {
@@ -45,15 +45,14 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
 
     return (
         <li className={`${styles.cards} hover-shadow`} id={handleCardPosition(cardsPosition[id])}>
-            <button type="button" {...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}>
+            <button
+                className={styles.cardBtn}
+                type="button"
+                {...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}
+            >
                 <img src={carouselThumb} alt={`${name} card-${id}`} />
             </button>
-            <div className={styles.cardNameContainer}>
-                <div className={styles.cardName}>
-                    <p className={styles.cardNameText}>{name}</p>
-                    {cardsPosition[id] === 0 && <DiscoverBannerItemCardShadow isPause={isPause} />}
-                </div>
-            </div>
+            <CardNameContainer state={cardsPosition[id] === 0} name={name} isPause={isPause} />
         </li>
     );
 }

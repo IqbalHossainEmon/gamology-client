@@ -1,23 +1,78 @@
 import { useCallback, useEffect, useRef } from 'react';
 import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 
-// this two function calculates the next state of the active item, the item will fade out and the item will fade in.
+const BANNER_COUNT = 5;
+const TIMER_INTERVAL = 9000;
+
+// Calculate the next state of the active item
 const increaseByOne = (state, fadeIn) => ({
     ...state,
     active: null,
-    fadeIn: (fadeIn + 1) % 5,
+    fadeIn: (fadeIn + 1) % BANNER_COUNT,
     fadeOut: fadeIn,
-    cardsPosition: state.cardsPosition.map(cardPosition => (cardPosition > 0 ? cardPosition - 1 : 5 - 1)),
+    cardsPosition: state.cardsPosition.map(cardPosition => (cardPosition > 0 ? cardPosition - 1 : BANNER_COUNT - 1)),
 });
+
 const decreaseByOne = (state, fadeIn) => ({
     ...state,
     active: null,
-    fadeIn: (fadeIn + (5 - 1)) % 5,
+    fadeIn: (fadeIn + (BANNER_COUNT - 1)) % BANNER_COUNT,
     fadeOut: fadeIn,
-    cardsPosition: state.cardsPosition.map(cardPosition => (cardPosition < 5 - 1 ? cardPosition + 1 : 0)),
+    cardsPosition: state.cardsPosition.map(cardPosition => (cardPosition < BANNER_COUNT - 1 ? cardPosition + 1 : 0)),
 });
 
-// reducer function take's the state and active to return the new state of the items.
+// Initial state of the banner
+const initialState = {
+    data: [],
+    active: 0,
+    fadeIn: 0,
+    fadeOut: null,
+    cardsPosition: [...Array(BANNER_COUNT).keys()],
+    isPause: false,
+};
+
+// Custom hook to manage timer
+function useTimer(callback) {
+    const timerRef = useRef(null);
+    const startTimeRef = useRef(null);
+    const remainingTimeRef = useRef(TIMER_INTERVAL);
+
+    const start = useCallback(() => {
+        if (!timerRef.current) {
+            startTimeRef.current = Date.now();
+            timerRef.current = setTimeout(() => {
+                callback();
+                timerRef.current = null;
+                remainingTimeRef.current = TIMER_INTERVAL;
+                start();
+            }, remainingTimeRef.current);
+        }
+    }, [callback]);
+
+    const stop = useCallback(() => {
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+            timerRef.current = null;
+            const elapsedTime = Date.now() - startTimeRef.current;
+            remainingTimeRef.current -= elapsedTime;
+        }
+    }, []);
+
+    const reset = useCallback(() => {
+        stop();
+        remainingTimeRef.current = TIMER_INTERVAL;
+        start();
+    }, [start, stop]);
+
+    useEffect(
+        () => () => stop(), // Cleanup on unmount
+        [stop]
+    );
+
+    return { start, stop, reset };
+}
+
+// Reducer function to manage state transitions
 function reducer(state, action) {
     const { fadeIn } = state;
 
@@ -35,7 +90,7 @@ function reducer(state, action) {
     }
 }
 
-// Banner styles changer
+// Determine the banner styles
 function activeBanner(bannerId, bannerState, styles) {
     const { fadeIn, fadeOut, active } = bannerState;
 
@@ -51,119 +106,52 @@ function activeBanner(bannerId, bannerState, styles) {
     }
 }
 
-// initial state of banner, The active state is for initial state.
-const initialState = {
-    data: [],
-    active: 0,
-    fadeIn: 0,
-    fadeOut: null,
-    cardsPosition: [...Array(5).keys()],
-    isPause: false,
-};
-
-// this function just returns every functions.
+// Hook to manage banner logic
 export default function useDiscoverBannerLogics() {
-    const timerRef = useRef(null);
-    const dispatchRef = useRef(null);
-    const timerState = useRef(false);
+    const dispatchRef = useRef(() => {});
+    const screenWidth = useScreenWidth();
+    const screenWidthRef = useRef(screenWidth);
     const eventRefs = useRef({
         pause: () => {},
         resume: () => {},
     });
-    const screenWidth = useScreenWidth();
 
-    const screenWidthRef = useRef(screenWidth);
-
-    // this function runs the dispatch function and take the start time.
     const run = useCallback(() => {
-        timerState.timeStartAt = new Date().getTime();
         dispatchRef.current({ type: 'next' });
     }, []);
 
-    // this function stops the timer;
-    const stopTimer = useCallback(() => {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-    }, []);
+    const { start, stop, reset } = useTimer(run);
 
-    // this function starts the timer
-    const startTimer = useCallback(() => {
-        if (!timerRef.current) {
-            timerState.timeStartAt = new Date().getTime();
-            timerState.currentTotalTime = 9500;
-            timerRef.current = setInterval(() => {
-                run();
-            }, timerState.currentTotalTime);
-        }
-    }, [run]);
-
-    // this function is called when user leaves the tab(blur) but don't close this function stops the timer
     eventRefs.current.pause = useCallback(() => {
-        if (!timerState.current) {
-            dispatchRef.current({ type: 'pauseState', state: true });
-            if (timerRef.current) {
-                stopTimer();
-            } else if (timerRef.pauseTimer) {
-                clearTimeout(timerRef.pauseTimer);
-                timerRef.pauseTimer = null;
-            }
-            timerState.current = true;
-            timerState.remain = timerState.currentTotalTime - (new Date().getTime() - timerState.timeStartAt);
-        }
-    }, [stopTimer]);
+        dispatchRef.current({ type: 'pauseState', state: true });
+        stop();
+    }, [stop]);
 
-    // this function is called when user comeback to the tab(focus) after blur the tab
     eventRefs.current.resume = useCallback(() => {
-        if (timerState.current) {
-            dispatchRef.current({ type: 'pauseState', state: false });
-            timerState.current = false;
-            timerState.timeStartAt = new Date().getTime();
-            timerState.currentTotalTime = timerState.remain + 25;
-            timerRef.pauseTimer = setTimeout(() => {
-                timerRef.pauseTimer = null;
-                run();
-                startTimer();
-            }, timerState.remain);
-        }
-    }, [run, startTimer]);
+        dispatchRef.current({ type: 'pauseState', state: false });
+        start();
+    }, [start]);
 
-    // this function start the timer and set all the listeners and functions
-    const start = useCallback(() => {
-        startTimer();
-        window.addEventListener('blur', eventRefs.current.pause);
-        window.addEventListener('focus', eventRefs.current.resume);
-    }, [startTimer]);
+    useEffect(() => {
+        const { pause, resume } = eventRefs.current;
+        window.addEventListener('blur', pause);
+        window.addEventListener('focus', resume);
+
+        return () => {
+            window.removeEventListener('blur', pause);
+            window.removeEventListener('focus', resume);
+        };
+    }, []);
 
     const setDispatch = useCallback(dispatch => {
         dispatchRef.current = dispatch;
     }, []);
 
-    // this function stops the timer and removes the listeners
-    const stop = useCallback(() => {
-        stopTimer();
-        if (timerRef.pauseTimer) {
-            clearTimeout(timerRef.pauseTimer);
-            timerRef.pauseTimer = null;
-        }
-
-        window.removeEventListener('blur', eventRefs.current.pause);
-        window.removeEventListener('focus', eventRefs.current.resume);
-    }, [stopTimer]);
-
-    // this function resets the timer
-    const reset = useCallback(() => {
-        stopTimer();
-        startTimer();
-        if (timerRef.pauseTimer) {
-            clearTimeout(timerRef.pauseTimer);
-            timerRef.pauseTimer = null;
-        }
-    }, [startTimer, stopTimer]);
-
     useEffect(() => {
-        if (screenWidthRef.current < 769 && screenWidth > 768) {
-            reset();
-        } else if (screenWidthRef.current > 768 && screenWidth < 769) {
+        if (
+            (screenWidthRef.current < 769 && screenWidth > 768) ||
+            (screenWidthRef.current > 768 && screenWidth < 769)
+        ) {
             reset();
         }
     }, [reset, screenWidth]);

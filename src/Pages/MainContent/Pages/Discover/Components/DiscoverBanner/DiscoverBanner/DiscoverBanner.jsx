@@ -77,6 +77,7 @@ export default function DiscoverBanner() {
         <section className={styles.banner}>
             <div className={styles.bannerOverflow}>
                 <DiscoverBannerItems
+                    activeBanner={activeBanner}
                     screenWidth={screenWidth}
                     cardsPosition={cardsPosition}
                     bannerState={{ active, fadeOut, fadeIn }}
