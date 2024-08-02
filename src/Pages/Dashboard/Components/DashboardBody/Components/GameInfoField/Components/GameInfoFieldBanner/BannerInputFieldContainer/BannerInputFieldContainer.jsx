@@ -1,10 +1,17 @@
 import { useState } from 'react';
-import FileUploadButton from '../../../../../../../../../Shared/FileUploadButton/FileUploadButton';
+import FileUploadButton from '../../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField';
 import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVideoContainer/CoverImageVideoContainer';
 import styles from './BannerInputFieldContainer.module.css';
 
-export default function BannerInputFieldContainer({ number, gameBanner, errorChange, errorMessages, defaultGameBanner, hasDefault }) {
+export default function BannerInputFieldContainer({
+    number,
+    gameBanner,
+    errorChange,
+    errorMessages,
+    defaultGameBanner,
+    hasDefault,
+}) {
     const [type, setType] = useState(hasDefault && defaultGameBanner?.type ? defaultGameBanner.type : '');
 
     const handleSetValues = (value, name) => {

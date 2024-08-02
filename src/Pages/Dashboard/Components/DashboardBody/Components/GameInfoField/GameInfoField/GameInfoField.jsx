@@ -162,7 +162,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
     }, [defaultData, hasDefault]);
 
     return (
-        <div className={styles.addGame}>
+        <div className={styles.gameInfoField}>
             <h1 className={styles.header}>{hasDefault ? 'Edit The Game' : 'Add New Game to the collection'}</h1>
             {loading ? (
                 <h3>Loading...</h3>

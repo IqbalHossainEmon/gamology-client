@@ -72,7 +72,9 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 
     eventRefs.current.handleSetValue = useCallback(() => {
         // if switch is below 50
-        mouseUpEvent();
+        if (mouseUpEvent) {
+            mouseUpEvent();
+        }
         if (stateRef.current < rangePathWidth / 2) {
             if (stateRef.current !== 0) {
                 setCirclePosition({ translate: 0, transition: true });

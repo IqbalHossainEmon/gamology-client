@@ -39,7 +39,7 @@ const data = {
             id: 3,
             type: 'image',
             cover: `/assets/images/IndiGameBanner/spider-carousel-1.jpg`,
-            thumb: `/assets/images/IndiGameBannerCards/spiderman-carousel-card-4.avif`,
+            thumb: `/assets/images/IndiGameBanner/spider-carousel-1.jpg`,
         },
         {
             id: 4,

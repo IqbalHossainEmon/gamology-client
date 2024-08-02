@@ -3,7 +3,6 @@ import useIsTouchAble from '../../../../../../../../../../Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
-import ImagePreview from '../../../../../../../../../../Shared/ImagePreview/ImagePreview';
 import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
 import styles from './CoverImageVideoContainer.module.css';
@@ -156,14 +155,14 @@ const CoverImageVideoContainer = ({
                     </button>
                 )}
             </div>
-            {type === 'image' && mainValueRef.current?.image.file && (
+            {/*     {type === 'image' && mainValueRef.current?.image.file && (
                 <ImagePreview
                     containerRef={containerRef}
                     file={mainValueRef.current?.image.file}
                     btnRef={btnRef}
                     parentPreview={previewShow && imagePreviewContainer}
                 />
-            )}
+            )} */}
             <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
         </div>
     );

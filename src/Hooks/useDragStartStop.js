@@ -9,6 +9,8 @@ export default function useDragStartStop(
 ) {
     const isTouchAble = useIsTouchAble();
 
+    const isTouchAdd = useRef(false);
+
     const eventRefs = useRef({
         onStart: () => {},
         onStop: () => {},
@@ -16,10 +18,17 @@ export default function useDragStartStop(
 
     eventRefs.current.onStop = useCallback(
         e => {
-            document.removeEventListener('mousemove', moveEvent);
-            document.removeEventListener('touchmove', moveEvent);
-            document.removeEventListener('mouseup', eventRefs.current.onStop);
-            document.removeEventListener('touchend', eventRefs.current.onStop);
+            e.preventDefault();
+
+            if (isTouchAdd.current) {
+                document.removeEventListener('touchmove', moveEvent);
+                document.removeEventListener('touchend', eventRefs.current.onStop);
+                isTouchAdd.current = false;
+            } else {
+                document.removeEventListener('mousemove', moveEvent);
+                document.removeEventListener('mouseup', eventRefs.current.onStop);
+            }
+
             window.removeEventListener('blur', eventRefs.current.onStop);
 
             handleMouseUp(e);
@@ -32,14 +41,22 @@ export default function useDragStartStop(
 
     eventRefs.current.onStart = useCallback(
         e => {
-            handleMouseDown(e);
-            document.addEventListener('mousemove', moveEvent);
-            document.addEventListener('touchmove', moveEvent);
-            document.addEventListener('mouseup', eventRefs.current.onStop);
-            document.addEventListener('touchend', eventRefs.current.onStop);
-            window.addEventListener('blur', eventRefs.current.onStop);
+            e.preventDefault();
 
-            if (!isTouchAble() && grab) {
+            handleMouseDown(e);
+            const touchAble = isTouchAble();
+
+            window.addEventListener('blur', eventRefs.current.onStop);
+            if (touchAble) {
+                document.addEventListener('touchmove', moveEvent);
+                document.addEventListener('touchend', eventRefs.current.onStop);
+                isTouchAdd.current = true;
+            } else {
+                document.removeEventListener('mousemove', moveEvent);
+                document.removeEventListener('mouseup', eventRefs.current.onStop);
+            }
+
+            if (touchAble && grab) {
                 e.preventDefault();
                 document.getElementById('root').classList.add('grabbing');
             }

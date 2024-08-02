@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useIsTouchAble from '../../Hooks/useIsTouchable';
-import useScreenWidth from '../../Hooks/useScreenWidth';
-import ButtonWaterEffect from '../ButtonWaterEffect/ButtonWaterEffect';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import ImagePreview from '../ImagePreview/ImagePreview';
+import useIsTouchAble from '../../../Hooks/useIsTouchable';
+import useScreenWidth from '../../../Hooks/useScreenWidth';
+import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import ImagePreviewContainer from '../ImagePreviewContainer/ImagePreviewContainer';
 import styles from './FileUploadButton.module.css';
 
 const FileUploadButton = ({
@@ -211,14 +211,12 @@ const FileUploadButton = ({
                     </button>
                 )}
             </div>
-            {selected.file && (
-                <ImagePreview
-                    containerRef={containerRef}
-                    file={selected.file}
-                    btnRef={btnRef}
-                    parentPreview={previewShow && imagePreviewContainer}
-                />
-            )}
+            <ImagePreviewContainer
+                containerRef={containerRef}
+                file={selected.file}
+                btnRef={btnRef}
+                parentPreview={previewShow && imagePreviewContainer}
+            />
         </div>
     );
 };
