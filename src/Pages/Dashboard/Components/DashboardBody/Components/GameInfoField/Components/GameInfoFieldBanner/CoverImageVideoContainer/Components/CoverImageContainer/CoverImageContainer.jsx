@@ -12,8 +12,6 @@ const CoverImageContainer = ({
     number,
     inputRef,
     btnRef,
-    previewShow,
-    setImagePreview,
     eventRef,
     mainValue,
 }) => {
@@ -75,9 +73,6 @@ const CoverImageContainer = ({
                     setFocused(true);
                     if (errorShow) {
                         setErrorShow(false);
-                    }
-                    if (previewShow) {
-                        setImagePreview(prev => ({ ...prev, previewShow: false }));
                     }
                 }}
                 type="button"

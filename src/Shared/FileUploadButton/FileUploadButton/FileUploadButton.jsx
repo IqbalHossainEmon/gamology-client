@@ -49,6 +49,7 @@ const FileUploadButton = ({
     }, [errorChange, errorMessage]);
 
     eventRef.current.handleActive = useCallback(() => {
+        setSelected({ selected: false, name: 'name' });
         setActive(false);
     }, []);
 
@@ -72,7 +73,7 @@ const FileUploadButton = ({
         return () => {
             input.removeEventListener('cancel', handleActive);
         };
-    }, [defaultValue]);
+    }, []);
 
     const handleSelect = e => {
         setActive(false);
@@ -182,13 +183,15 @@ const FileUploadButton = ({
                     </button>
                 )}
             </div>
-            <ImagePreviewContainer
-                containerRef={containerRef}
-                file={selected.file}
-                btnRef={btnRef}
-                screenWidth={screenWidth}
-                previewBtnRef={previewBtnRef}
-            />
+            {selected.file && (
+                <ImagePreviewContainer
+                    containerRef={containerRef}
+                    file={selected.file}
+                    btnRef={btnRef}
+                    screenWidth={screenWidth}
+                    previewBtnRef={previewBtnRef}
+                />
+            )}
         </div>
     );
 };

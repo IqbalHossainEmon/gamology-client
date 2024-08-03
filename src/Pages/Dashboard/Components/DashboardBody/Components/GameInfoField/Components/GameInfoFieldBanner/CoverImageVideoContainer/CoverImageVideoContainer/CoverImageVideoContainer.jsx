@@ -3,6 +3,7 @@ import useIsTouchAble from '../../../../../../../../../../Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import ImagePreviewContainer from '../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer';
 import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
 import styles from './CoverImageVideoContainer.module.css';
@@ -39,22 +40,13 @@ const CoverImageVideoContainer = ({
     const inputRef = useRef(null);
     const containerRef = useRef(null);
 
-    const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({
-        previewShow: false,
-        imagePreviewContainer: false,
-    });
-
     const previewBtnRef = useRef(null);
     const btnRef = useRef(null);
 
     const isTouchAble = useIsTouchAble();
-    const screenWidth = useScreenWidth();
 
-    useEffect(() => {
-        setTimeout(() => {
-            setImagePreview({ imagePreviewContainer: isTouchAble(), previewShow: false });
-        }, 0);
-    }, [isTouchAble, screenWidth]);
+    const touchAble = isTouchAble();
+    const screenWidth = useScreenWidth();
 
     const eventRefs = useRef({
         cancel: () => {},
@@ -69,13 +61,6 @@ const CoverImageVideoContainer = ({
         if (errorChange && errorMessage) setErrorShow(true);
         else setErrorShow(false);
     }, [errorChange, errorMessage]);
-
-    eventRefs.current.handleCheckClick = useCallback(e => {
-        if (containerRef.current && !containerRef.current.contains(e.target)) {
-            setImagePreview(prev => ({ ...prev, previewShow: false }));
-            document.removeEventListener('click', eventRefs.current.handleCheckClick);
-        }
-    }, []);
 
     return (
         <div className={`${styles.outerContainer}${type ? '' : ` ${styles.disabled}`}`} ref={containerRef}>
@@ -121,9 +106,6 @@ const CoverImageVideoContainer = ({
                                 errorShow={errorShow}
                                 type={type}
                                 number={number}
-                                previewShow={previewShow}
-                                imagePreviewContainer={imagePreviewContainer}
-                                setImagePreview={setImagePreview}
                                 btnRef={btnRef}
                                 eventRef={eventRefs}
                                 mainValue={mainValueRef.current.image}
@@ -136,33 +118,22 @@ const CoverImageVideoContainer = ({
                         </p>
                     )}
                 </div>
-                {imagePreviewContainer && mainValueRef.current?.image.file && (
-                    <button
-                        ref={previewBtnRef}
-                        className={styles.previewBtn}
-                        type="button"
-                        onClick={() => {
-                            setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }));
-                            if (!previewShow) {
-                                document.addEventListener('click', eventRefs.current.handleCheckClick);
-                            } else {
-                                document.removeEventListener('click', eventRefs.current.handleCheckClick);
-                            }
-                        }}
-                    >
+                {mainValueRef.current?.image.file && touchAble && (
+                    <button ref={previewBtnRef} className={styles.previewBtn} type="button">
                         Preview
                         <ButtonWaterEffect btnRef={previewBtnRef} long />
                     </button>
                 )}
             </div>
-            {/*     {type === 'image' && mainValueRef.current?.image.file && (
-                <ImagePreview
+            {type === 'image' && mainValueRef.current?.image.file && (
+                <ImagePreviewContainer
                     containerRef={containerRef}
                     file={mainValueRef.current?.image.file}
                     btnRef={btnRef}
-                    parentPreview={previewShow && imagePreviewContainer}
+                    screenWidth={screenWidth}
+                    previewBtnRef={previewBtnRef}
                 />
-            )} */}
+            )}
             <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
         </div>
     );

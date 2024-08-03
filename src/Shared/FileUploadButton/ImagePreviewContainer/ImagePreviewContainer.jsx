@@ -14,15 +14,23 @@ const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidt
 
     const { show, fadeIn } = useAppearDisappear(showPreview);
 
-    const { showMenu, stopMenu } = useDropDownHide(setShowPreview);
+    const { showMenu, stopMenu, setElement } = useDropDownHide(setShowPreview);
+
+    const timerId = useRef(null);
 
     const handleHover = useCallback(() => {
-        if (!showPreviewRef.current) {
-            setShowPreview(true);
+        if (!showPreviewRef.current && !timerId.current) {
+            timerId.current = setTimeout(() => {
+                setShowPreview(true);
+                timerId.current = null;
+            }, 200);
         }
     }, []);
     const handleLeave = useCallback(() => {
-        if (showPreviewRef.current) {
+        if (timerId.current) {
+            clearTimeout(timerId.current);
+            timerId.current = null;
+        } else if (showPreviewRef.current) {
             setShowPreview(false);
         }
     }, []);
@@ -30,9 +38,9 @@ const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidt
     const handleToggle = useCallback(() => {
         setShowPreview(prev => {
             if (prev) {
-                showMenu();
-            } else {
                 stopMenu();
+            } else {
+                showMenu();
             }
             return !prev;
         });
@@ -48,6 +56,7 @@ const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidt
 
         const touchEvent = () => {
             previewBtn.addEventListener('click', handleToggle);
+            setElement(previewBtn);
             isEventAdded = true;
             isMouseEventAdded = false;
         };
@@ -60,20 +69,40 @@ const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidt
             isMouseEventAdded = true;
         };
 
+        const removeMouseEvent = () => {
+            container.removeEventListener('mouseover', handleHover);
+            container.removeEventListener('mouseleave', handleLeave);
+            btn.removeEventListener('click', handleLeave);
+            isEventAdded = false;
+            isMouseEventAdded = false;
+        };
+        if (showPreviewRef.current) {
+            setShowPreview(false);
+        }
         if (isEventAdded) {
             if (isMouseEventAdded && touchAble) {
-                container.addEventListener('mouseover', handleHover);
+                removeMouseEvent();
                 touchEvent();
+            } else {
+                mouseEvent();
             }
+        } else if (touchAble) {
+            touchEvent();
+        } else {
+            mouseEvent();
         }
-        return () => {
-            if (isMouseEventAdded) {
-                container.removeEventListener('mouseover', handleHover);
-                container.removeEventListener('mouseleave', handleLeave);
-                btn.removeEventListener('click', handleLeave);
-            }
-        };
-    }, [handleToggle, isTouchAble, previewBtnRef, containerRef, btnRef, handleHover, handleLeave, screenWidth]);
+        return removeMouseEvent;
+    }, [
+        handleToggle,
+        isTouchAble,
+        previewBtnRef,
+        containerRef,
+        btnRef,
+        handleHover,
+        handleLeave,
+        screenWidth,
+        setElement,
+    ]);
     return show && <ImagePreview containerRef={containerRef} show={fadeIn} {...rest} />;
 };
 export default ImagePreviewContainer;
