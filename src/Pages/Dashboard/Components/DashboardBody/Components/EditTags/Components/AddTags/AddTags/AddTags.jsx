@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField';
+import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import AddCategoryNameAndTags from '../Components/AddCategoryNameAndTags/AddCategoryNameAndTags';
 import AddTagsNameAndCategory from '../Components/AddTagsNameAndCategory/AddTagsNameAndCategory';
 import styles from './AddTags.module.css';

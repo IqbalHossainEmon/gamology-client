@@ -1,0 +1,88 @@
+.showBottom {
+	top: 100%;
+}
+.showAbove {
+	bottom: 100%;
+}
+.listContainer {
+	position: absolute;
+	width: 100%;
+	border-radius: 4px;
+	background-color: rgb(37, 37, 37);
+	cursor: default;
+	list-style: none;
+	z-index: 1;
+	scale: 0.7;
+	opacity: 0;
+	transition:
+		opacity 200ms,
+		scale 200ms;
+}
+.fadeIn {
+	opacity: 1;
+	scale: 1;
+}
+.listScrollContainer {
+	position: relative;
+	padding: 10px 10px 0px 10px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: auto;
+	max-height: 410px;
+}
+.listScrollContainer::-webkit-scrollbar {
+	display: none;
+}
+
+.item {
+	position: relative;
+}
+
+.item button {
+	width: 100%;
+	padding: 10px 0;
+	cursor: pointer;
+	height: 100%;
+	background-color: transparent;
+	color: rgb(140, 140, 140);
+	border: none;
+	font-size: 1rem;
+	text-align: center;
+	transition: color 200ms;
+}
+.item button:hover button {
+	color: rgb(196, 196, 196);
+}
+.item button:hover::after {
+	background-color: rgb(196, 196, 196);
+}
+
+.item:not(:last-child)::after {
+	content: ' ';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0.3);
+	left: 0;
+	bottom: 0;
+	transition: background-color 200ms;
+}
+#selected,
+#selected button {
+	opacity: 0.5;
+	cursor: default;
+	pointer-events: none;
+}
+.noDataItem {
+	width: 100%;
+	text-align: center;
+	color: rgb(140, 140, 140);
+	font-size: 1rem;
+	padding: 10px 0;
+}
+
+@media screen and (max-width: 768px) {
+	.item button {
+		font-size: 12px;
+	}
+}
