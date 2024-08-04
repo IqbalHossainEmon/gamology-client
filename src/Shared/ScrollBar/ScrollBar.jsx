@@ -11,20 +11,16 @@ const ScrollBar = ({ parentRef, childRef }) => {
     const downElement = useRef(null);
     const containerRef = useRef(null);
     const timerID = useRef(null);
-    const handleMoveEventRef = useRef(() => {});
+    const handleMoveScrollEventRef = useRef(() => {});
+    const eventRef = useRef({
+        handleScroll: () => {},
+        handleMouseMove: () => {},
+        moveSetEventRef: () => {},
+        cursorInElementCalc: () => {},
+    });
 
-    handleMoveEventRef.current = useCallback(
-        (e, isClick) => {
-            const cursorInEle = e?.touches
-                ? e.touches[0].clientY - thumbRef.current.getBoundingClientRect().y
-                : e.clientY - thumbRef.current.getBoundingClientRect().y;
-
-            if (!downElement.current && !isClick) {
-                downElement.current = cursorInEle;
-            } else if (isClick) {
-                downElement.current = thumbRef.current.clientHeight / 2;
-            }
-
+    eventRef.current.moveSetEventRef = useCallback(
+        cursorInEle => {
             setScrolled(prev => {
                 if (prev + cursorInEle - downElement.current < 0) {
                     parentRef.current.scrollTop = 0;
@@ -48,11 +44,41 @@ const ScrollBar = ({ parentRef, childRef }) => {
         [parentRef]
     );
 
-    const handleMouseUp = useCallback(() => {
+    eventRef.current.cursorInElementCalc = useCallback(
+        e =>
+            e?.touches
+                ? e.touches[0].clientY - thumbRef.current.getBoundingClientRect().y
+                : e.clientY - thumbRef.current.getBoundingClientRect().y,
+        []
+    );
+
+    handleMoveScrollEventRef.current = useCallback(e => {
+        const cursorInEle = eventRef.current.cursorInElementCalc(e);
+        eventRef.current.moveSetEventRef(cursorInEle);
+    }, []);
+
+    eventRef.current.handleMouseUp = useCallback(() => {
         downElement.current = null;
     }, []);
 
-    const onStart = useDragStartStop(handleMoveEventRef.current, handleMouseUp);
+    eventRef.current.handleMouseDownBar = useCallback(e => {
+        downElement.current = eventRef.current.cursorInElementCalc(e);
+    }, []);
+    eventRef.current.handleMouseDownParent = useCallback(() => {
+        downElement.current = thumbRef.current.clientHeight / 2;
+    }, []);
+
+    const onStartScroll = useDragStartStop(
+        handleMoveScrollEventRef.current,
+        eventRef.current.handleMouseUp,
+        eventRef.current.handleMouseDownBar
+    );
+
+    const onStartParent = useDragStartStop(
+        handleMoveScrollEventRef.current,
+        eventRef.current.handleMouseUp,
+        eventRef.current.handleMouseDownParent
+    );
 
     const handleScrollHide = () => {
         if (timerID.current) {
@@ -78,11 +104,6 @@ const ScrollBar = ({ parentRef, childRef }) => {
         });
     }, [parentRef]);
 
-    const eventRef = useRef({
-        handleScroll: () => {},
-        handleMouseMove: () => {},
-    });
-
     eventRef.current.handleScroll = useCallback(() => {
         setShow(true);
         handleScrollHide();
@@ -99,7 +120,6 @@ const ScrollBar = ({ parentRef, childRef }) => {
 
     useEffect(() => {
         window.addEventListener('resize', handleSetHeight.current);
-
         return () => {
             window.removeEventListener('resize', handleSetHeight.current);
         };
@@ -134,13 +154,14 @@ const ScrollBar = ({ parentRef, childRef }) => {
             tabIndex={0}
             role="button"
             ref={containerRef}
-            onClick={e => handleMoveEventRef.current(e, true)}
+            onMouseDown={onStartParent}
+            onTouchStart={onStartParent}
             className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}
         >
             <button
                 ref={thumbRef}
-                onMouseDown={onStart}
-                onTouchStart={onStart}
+                onMouseDown={onStartScroll}
+                onTouchStart={onStartScroll}
                 type="button"
                 style={{ height: `${height}%`, translate: `0 ${scrolled < 0 ? 0 : scrolled}px` }}
                 className={`${show ? `${styles.show} ` : ''}${styles.scrollThumb}`}

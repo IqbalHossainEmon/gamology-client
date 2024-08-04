@@ -42,7 +42,7 @@ export default function useDragStartStop(
     eventRefs.current.onStart = useCallback(
         e => {
             e.preventDefault();
-
+            e.stopPropagation();
             handleMouseDown(e);
             const touchAble = isTouchAble();
 
@@ -52,8 +52,8 @@ export default function useDragStartStop(
                 document.addEventListener('touchend', eventRefs.current.onStop);
                 isTouchAdd.current = true;
             } else {
-                document.removeEventListener('mousemove', moveEvent);
-                document.removeEventListener('mouseup', eventRefs.current.onStop);
+                document.addEventListener('mousemove', moveEvent);
+                document.addEventListener('mouseup', eventRefs.current.onStop);
             }
 
             if (touchAble && grab) {

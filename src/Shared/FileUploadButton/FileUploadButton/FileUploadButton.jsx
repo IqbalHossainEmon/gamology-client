@@ -29,10 +29,7 @@ const FileUploadButton = ({
     });
 
     const [active, setActive] = useState(false);
-    const [{ imagePreviewContainer, previewShow }, setImagePreview] = useState({
-        previewShow: false,
-        imagePreviewContainer: false,
-    });
+
     const [errorShow, setErrorShow] = useState(!!errorMessage);
 
     const containerRef = useRef(null);
@@ -45,15 +42,6 @@ const FileUploadButton = ({
         removeDefault: () => {},
         handleActive: () => {},
     });
-
-    const isTouchAble = useIsTouchAble();
-    const screenWidth = useScreenWidth();
-
-    useEffect(() => {
-        setTimeout(() => {
-            setImagePreview({ imagePreviewContainer: isTouchAble(), previewShow: false });
-        }, 0);
-    }, [isTouchAble, screenWidth]);
 
     useEffect(() => {
         if (errorChange && errorMessage) setErrorShow(true);
@@ -69,6 +57,11 @@ const FileUploadButton = ({
         inputRef.current.removeEventListener('click', eventRef.current.removeDefault);
         eventRef.current.removeDefault = null;
     }, []);
+
+    const isTouchAble = useIsTouchAble();
+
+    const touchAble = isTouchAble();
+    const screenWidth = useScreenWidth();
 
     useEffect(() => {
         const input = inputRef.current;
@@ -98,13 +91,6 @@ const FileUploadButton = ({
         }
     };
 
-    eventRef.current.handleCheckClick = useCallback(e => {
-        if (containerRef.current && !containerRef.current.contains(e.target)) {
-            setImagePreview(prev => ({ ...prev, previewShow: false }));
-            document.removeEventListener('click', eventRef.current.handleCheckClick);
-        }
-    }, []);
-
     return (
         <div
             className={`${className ? `${className} ` : ''}${disabled ? `${styles.containerDisabled} ` : ''}${styles.fileUploadContainer}`}
@@ -130,9 +116,6 @@ const FileUploadButton = ({
                             setActive(true);
                             if (errorShow) {
                                 setErrorShow(false);
-                            }
-                            if (previewShow) {
-                                setImagePreview(prev => ({ ...prev, previewShow: false }));
                             }
                         }}
                         className={`${errorShow ? `${styles.errorBorder} ` : ''}${styles.fileUploadButton}${active ? ` ${styles.activeBorder}` : ''}`}
@@ -192,20 +175,8 @@ const FileUploadButton = ({
                     </button>
                     <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
                 </div>
-                {imagePreviewContainer && selected.file && (
-                    <button
-                        ref={previewBtnRef}
-                        className={styles.previewBtn}
-                        type="button"
-                        onClick={() => {
-                            setImagePreview(prev => ({ ...prev, previewShow: !prev.previewShow }));
-                            if (!previewShow) {
-                                document.addEventListener('click', eventRef.current.handleCheckClick);
-                            } else {
-                                document.removeEventListener('click', eventRef.current.handleCheckClick);
-                            }
-                        }}
-                    >
+                {selected.file && touchAble && (
+                    <button ref={previewBtnRef} className={styles.previewBtn} type="button">
                         Preview
                         <ButtonWaterEffect btnRef={previewBtnRef} long />
                     </button>
@@ -215,7 +186,8 @@ const FileUploadButton = ({
                 containerRef={containerRef}
                 file={selected.file}
                 btnRef={btnRef}
-                parentPreview={previewShow && imagePreviewContainer}
+                screenWidth={screenWidth}
+                previewBtnRef={previewBtnRef}
             />
         </div>
     );
