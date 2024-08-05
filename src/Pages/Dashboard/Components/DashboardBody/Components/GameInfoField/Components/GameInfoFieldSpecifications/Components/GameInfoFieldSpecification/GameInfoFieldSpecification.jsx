@@ -22,7 +22,14 @@ export default function GameInfoFieldSpecification({
     const errorShowRef = useRef(errorShow);
     errorShowRef.current = errorShow;
 
-    const [selectedKeys, setSelectedKeys] = useState({ min: [], rec: [] });
+    const [selectedKeys, setSelectedKeys] = useState(
+        defaultSpecs
+            ? {
+                  min: defaultSpecs.systemReq.map(defaultSpec => defaultSpec[0].key),
+                  rec: defaultSpecs.systemReq.map(defaultSpec => defaultSpec[1].key),
+              }
+            : { min: [], rec: [] }
+    );
 
     useEffect(() => {
         if (errorChange && errorMessages.rec) setErrorShow(prev => ({ ...prev, rec: true }));

@@ -45,7 +45,7 @@ export default function SectionFieldTextFieldContainer({
                     errorChange={errorChange}
                     setHideParentErrorShow={setHideParentErrorShow}
                     enabled={enabled}
-                    {...(defaultData && { defaultData: defaultData[i][index] })}
+                    {...(defaultData && { defaultData: defaultData[i]?.[index] })}
                 />
             ))}
         </>

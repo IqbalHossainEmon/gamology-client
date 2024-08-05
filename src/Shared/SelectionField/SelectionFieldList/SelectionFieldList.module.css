@@ -12,7 +12,7 @@
 	cursor: default;
 	list-style: none;
 	z-index: 1;
-	scale: 0.7;
+	scale: 0.9;
 	opacity: 0;
 	transition:
 		opacity 200ms,
