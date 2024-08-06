@@ -42,7 +42,6 @@ export default function useDragStartStop(
     eventRefs.current.onStart = useCallback(
         e => {
             e.preventDefault();
-            e.stopPropagation();
             handleMouseDown(e);
             const touchAble = isTouchAble();
 

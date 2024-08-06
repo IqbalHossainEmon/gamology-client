@@ -119,7 +119,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
                     })}
                 >
                     <div
-                        tabIndex="-1"
+                        tabIndex="0"
                         role="button"
                         className={`${styles.round}${circlePosition.translate > rangePathWidth / 2 ? ` ${styles.active}` : ''}`}
                         onTouchStart={e => {

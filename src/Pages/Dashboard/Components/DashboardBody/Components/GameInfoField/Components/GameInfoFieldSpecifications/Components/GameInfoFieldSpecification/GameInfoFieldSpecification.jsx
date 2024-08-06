@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
-import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
+import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption';
 import ButtonForGameInfoFieldSection from '../../../ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
 import SectionFieldTextFieldContainer from '../SectionFieldTextFieldContainer/SectionFieldTextFieldContainer';
 import styles from './GameInfoFieldSpecification.module.css';

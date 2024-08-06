@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption/FilterOption';
+import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldSpecsLangsSupported.module.css';
 
