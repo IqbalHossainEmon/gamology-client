@@ -1,114 +1,115 @@
 .container {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 2px solid transparent;
-    border-radius: 4px;
-    font-size: 1rem;
-    position: relative;
-    transition:
-        border 0.2s ease,
-        opacity 200ms;
-    color: rgb(173, 173, 173);
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.05);
+	border: 2px solid transparent;
+	border-radius: 4px;
+	font-size: 1rem;
+	position: relative;
+	transition:
+		border 0.2s ease,
+		opacity 200ms;
+	color: rgb(173, 173, 173);
 }
 .disabled {
-    opacity: 0.5;
+	opacity: 0.5;
 }
 .outerContainer {
-    margin-bottom: 10px;
-    position: relative;
+	margin-bottom: 10px;
+	position: relative;
 }
 
 .label {
-    width: calc(100% - 10px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: absolute;
-    pointer-events: none;
-    color: rgb(173, 173, 173);
-    user-select: none;
-    left: 10px;
-    top: 50%;
-    translate: 0 -50%;
-    transform-origin: 0 0;
-    transition:
-        top 200ms cubic-bezier(0, 0, 0.2, 1),
-        scale 200ms cubic-bezier(0, 0, 0.2, 1),
-        translate 200ms cubic-bezier(0, 0, 0.2, 1),
-        color 200ms cubic-bezier(0, 0, 0.2, 1);
+	width: calc(100% - 10px);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: absolute;
+	pointer-events: none;
+	color: rgb(173, 173, 173);
+	user-select: none;
+	left: 10px;
+	top: 50%;
+	translate: 0 -50%;
+	transform-origin: 0 0;
+	transition:
+		top 200ms cubic-bezier(0, 0, 0.2, 1),
+		scale 200ms cubic-bezier(0, 0, 0.2, 1),
+		translate 200ms cubic-bezier(0, 0, 0.2, 1),
+		color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .textFilled {
-    top: 0%;
-    translate: 0 5px;
-    scale: 0.8;
-    color: rgb(173, 173, 173);
+	top: 0%;
+	translate: 0 5px;
+	scale: 0.8;
+	color: rgb(173, 173, 173);
 }
 .focused {
-    width: 100%;
-    top: 0%;
-    translate: 0 5px;
-    scale: 0.8;
-    color: rgb(2, 99, 224);
+	width: 100%;
+	top: 0%;
+	translate: 0 5px;
+	scale: 0.8;
+	color: rgb(2, 99, 224);
 }
 
 .padding {
-    padding: 20px 10px;
+	padding: 20px 10px;
 }
 
 .defaultText {
-    cursor: default;
-    user-select: none;
+	cursor: default;
+	user-select: none;
+	line-height: 20px;
 }
 .fileUploadField {
-    display: none;
-    pointer-events: none;
+	display: none;
+	pointer-events: none;
 }
 .errorColor {
-    color: #cc2a24;
+	color: #cc2a24;
 }
 .error {
-    border: 2px solid #cc2a24;
+	border: 2px solid #cc2a24;
 }
 
 .selected {
-    opacity: 1;
+	opacity: 1;
 }
 .focusBorder {
-    border: 2px solid rgba(1, 81, 185, 0.733);
+	border: 2px solid rgba(1, 81, 185, 0.733);
 }
 
 .previewBtn {
-    background-color: rgba(255, 255, 255, 0.05);
-    position: relative;
-    color: rgb(173, 173, 173);
-    height: 100%;
-    padding: 20px;
-    font-size: medium;
-    border: none;
-    cursor: pointer;
-    transition: opacity 200ms;
+	background-color: rgba(255, 255, 255, 0.05);
+	position: relative;
+	color: rgb(173, 173, 173);
+	height: 100%;
+	padding: 20px;
+	font-size: medium;
+	border: none;
+	cursor: pointer;
+	transition: opacity 200ms;
 }
 
 .containerWithPreview {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 @media screen and (max-width: 768px) {
-    .label {
-        font-size: 12px;
-    }
-    .field {
-        font-size: 12px;
-    }
+	.label {
+		font-size: 12px;
+	}
+	.field {
+		font-size: 12px;
+	}
 
-    .containerWithPreview {
-        flex-direction: column;
-        align-items: start;
-    }
-    .defaultText {
-        font-size: 12px;
-    }
+	.containerWithPreview {
+		flex-direction: column;
+		align-items: start;
+	}
+	.defaultText {
+		font-size: 12px;
+	}
 }
