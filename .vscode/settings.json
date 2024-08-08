@@ -3,11 +3,11 @@
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"[javascript]": {
-		"editor.formatOnSave": false,
+		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[javascriptreact]": {
-		"editor.formatOnSave": false,
+		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"javascript.validate.enable": false,

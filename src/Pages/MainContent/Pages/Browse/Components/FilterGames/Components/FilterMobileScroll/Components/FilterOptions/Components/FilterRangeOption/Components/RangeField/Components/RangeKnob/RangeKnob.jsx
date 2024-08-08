@@ -1,14 +1,13 @@
-import { useCallback, useRef } from 'react';
+import { useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../../../../../../../Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
 function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, handleSetValue }) {
     const stateRef = useRef(state);
     stateRef.current = state;
-    const handleMove = useRef(null);
 
     // Calculate move value
-    handleMove.current = useCallback(
+    const handleMove = useRef(
         e => {
             const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
 
@@ -28,11 +27,9 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
             if (value !== stateRef.current) {
                 setState(prev => ({ ...prev, [name]: value }));
             }
-        },
-        [getLeftRightStep, name, setState]
-    );
+        });
 
-    const onStart = useDragStartStop(handleMove, handleSetValue, undefined, true);
+    const onStart = useDragStartStop(handleMove.current, handleSetValue, undefined, true);
 
     return (
         <div
