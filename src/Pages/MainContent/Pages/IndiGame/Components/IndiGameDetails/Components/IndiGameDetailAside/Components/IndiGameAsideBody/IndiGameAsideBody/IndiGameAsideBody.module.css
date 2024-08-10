@@ -21,7 +21,8 @@
 }
 
 .key {
-	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 .gameInfo:not(:last-child)::after {
@@ -40,7 +41,8 @@
 
 .value {
 	text-align: right;
-	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 .logos svg {
