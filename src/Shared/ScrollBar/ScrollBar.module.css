@@ -24,9 +24,7 @@
 	user-select: none;
 	pointer-events: none;
 	opacity: 0;
-	transition:
-		background-color 200ms,
-		opacity 200ms;
+	transition: background-color 200ms, opacity 200ms;
 }
 .scrollThumb:hover {
 	background-color: rgb(90, 90, 90);
