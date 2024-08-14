@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
+const isTouchable = () => window.matchMedia('(any-hover: none)').matches;
 
-const useIsTouchAble = () => useCallback(() => window.matchMedia('(any-hover: none)').matches, []);
+const useIsTouchAble = () => isTouchable;
 
 export default useIsTouchAble;
