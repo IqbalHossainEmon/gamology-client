@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import './App.css';
 import withScreenWidthProvider from './HOC/withScreenWidthProvider';
-import MainContent from './Pages/MainContent/MainContent/MainContent';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import MainHeader from './Shared/MainHeader/MainHeader';
 
 const App = () => {
 	return (
 		<>
 			<MainHeader />
-			<MainContent />
+			<Dashboard />
 		</>
 	);
 };

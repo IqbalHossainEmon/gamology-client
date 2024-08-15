@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../Hooks/useDragStartStop';
 import styles from './ScrollBar.module.css';
 
@@ -11,139 +11,115 @@ const ScrollBar = ({ parentRef, childRef }) => {
 	const downElement = useRef(null);
 	const containerRef = useRef(null);
 	const timerID = useRef(null);
-	const handleMoveScrollEventRef = useRef(() => {});
-	const eventRef = useRef({
-		handleScroll: () => {},
-		handleMouseMove: () => {},
-		moveSetEventRef: () => {},
-		cursorInElementCalc: () => {},
-	});
+	const eventRefs = useRef(null);
 
-	eventRef.current.moveSetEventRef = useCallback(
-		cursorInEle => {
-			console.log(downElement.current);
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			moveSetEventRef: cursorInEle => {
+				setScrolled(prev => {
+					if (
+						prev + cursorInEle - downElement.current > 0 &&
+						prev + cursorInEle - downElement.current <
+							parentRef.current.clientHeight - thumbRef.current.clientHeight
+					) {
+						parentRef.current.scrollTop =
+							((prev + cursorInEle - downElement.current) /
+								(parentRef.current.clientHeight - thumbRef.current.clientHeight)) *
+							(parentRef.current.scrollHeight - parentRef.current.clientHeight);
+						return prev + cursorInEle - downElement.current;
+					}
+					if (prev + cursorInEle - downElement.current < 0) {
+						parentRef.current.scrollTop = 0;
+						return 0;
+					}
 
-			setScrolled(prev => {
-				if (
-					prev + cursorInEle - downElement.current > 0 &&
-					prev + cursorInEle - downElement.current <
-						parentRef.current.clientHeight - thumbRef.current.clientHeight
-				) {
 					parentRef.current.scrollTop =
-						((prev + cursorInEle - downElement.current) /
-							(parentRef.current.clientHeight - thumbRef.current.clientHeight)) *
-						(parentRef.current.scrollHeight - parentRef.current.clientHeight);
-					return prev + cursorInEle - downElement.current;
+						parentRef.current.scrollHeight - parentRef.current.clientHeight;
+					return parentRef.current.clientHeight - thumbRef.current.clientHeight;
+				});
+			},
+			cursorInElementCalc: e =>
+				e?.touches
+					? e.touches[0].clientY - thumbRef.current.getBoundingClientRect().y
+					: e.clientY - thumbRef.current.getBoundingClientRect().y,
+			handleMoveScroll: e => {
+				eventRefs.current.moveSetEventRef(eventRefs.current.cursorInElementCalc(e));
+			},
+			handleMouseUp: () => {
+				downElement.current = null;
+			},
+			handleMouseDownBar: e => {
+				downElement.current = eventRefs.current.cursorInElementCalc(e);
+			},
+			handleMouseDownParent: () => {
+				downElement.current = thumbRef.current.clientHeight / 2;
+			},
+			handleSetHeight: () => {
+				setHeight(() => {
+					const heightCheck =
+						(parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
+
+					if (heightCheck > 100) {
+						return 100;
+					}
+					return heightCheck;
+				});
+			},
+			handleScroll: () => {
+				setShow(true);
+				eventRefs.current.handleScrollHide();
+				setScrolled(
+					(parentRef.current.scrollTop /
+						(parentRef.current.scrollHeight - parentRef.current.clientHeight)) *
+						(parentRef.current.clientHeight - thumbRef.current.clientHeight)
+				);
+			},
+			handleMouseMove: () => {
+				setShow(true);
+				eventRefs.current.handleScrollHide();
+			},
+			handleScrollHide: () => {
+				if (timerID.current) {
+					clearTimeout(timerID.current);
+					timerID.current = null;
 				}
-				if (prev + cursorInEle - downElement.current < 0) {
-					parentRef.current.scrollTop = 0;
-					return 0;
-				}
-
-				parentRef.current.scrollTop =
-					parentRef.current.scrollHeight - parentRef.current.clientHeight;
-				return parentRef.current.clientHeight - thumbRef.current.clientHeight;
-			});
-		},
-		[parentRef]
-	);
-
-	eventRef.current.cursorInElementCalc = useCallback(
-		e =>
-			e?.touches
-				? e.touches[0].clientY - thumbRef.current.getBoundingClientRect().y
-				: e.clientY - thumbRef.current.getBoundingClientRect().y,
-		[]
-	);
-
-	handleMoveScrollEventRef.current = useCallback(e => {
-		const cursorInEle = eventRef.current.cursorInElementCalc(e);
-		eventRef.current.moveSetEventRef(cursorInEle);
-	}, []);
-
-	eventRef.current.handleMouseUp = useCallback(() => {
-		downElement.current = null;
-	}, []);
-
-	eventRef.current.handleMouseDownBar = useCallback(e => {
-		downElement.current = eventRef.current.cursorInElementCalc(e);
-		console.log(downElement.current);
-	}, []);
-
-	eventRef.current.handleMouseDownParent = useCallback(() => {
-		downElement.current = thumbRef.current.clientHeight / 2;
-	}, []);
-
+				timerID.current = setTimeout(() => {
+					timerID.current = null;
+					setShow(false);
+				}, 2000);
+			},
+		};
+	}
 	const onStartScroll = useDragStartStop(
-		handleMoveScrollEventRef.current,
-		eventRef.current.handleMouseUp,
-		eventRef.current.handleMouseDownBar
+		eventRefs.current.handleMoveScroll,
+		eventRefs.current.handleMouseUp,
+		eventRefs.current.handleMouseDownBar
 	);
 
 	const onStartParent = useDragStartStop(
-		handleMoveScrollEventRef.current,
-		eventRef.current.handleMouseUp,
-		eventRef.current.handleMouseDownParent
+		eventRefs.current.handleMoveScroll,
+		eventRefs.current.handleMouseUp,
+		eventRefs.current.handleMouseDownParent
 	);
 
-	const handleScrollHide = () => {
-		if (timerID.current) {
-			clearTimeout(timerID.current);
-			timerID.current = null;
-		}
-		timerID.current = setTimeout(() => {
-			timerID.current = null;
-			setShow(false);
-		}, 2000);
-	};
-
-	const handleSetHeight = useRef(null);
-
-	handleSetHeight.current = useCallback(() => {
-		setHeight(() => {
-			const heightCheck =
-				(parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
-
-			if (heightCheck > 100) {
-				return 100;
-			}
-			return heightCheck;
-		});
-	}, [parentRef]);
-
-	eventRef.current.handleScroll = useCallback(() => {
-		setShow(true);
-		handleScrollHide();
-		setScrolled(
-			(parentRef.current.scrollTop /
-				(parentRef.current.scrollHeight - parentRef.current.clientHeight)) *
-				(parentRef.current.clientHeight - thumbRef.current.clientHeight)
-		);
-	}, [parentRef]);
-
-	eventRef.current.handleMouseMove = useCallback(() => {
-		setShow(true);
-		handleScrollHide();
-	}, []);
-
 	useEffect(() => {
-		window.addEventListener('resize', handleSetHeight.current);
+		window.addEventListener('resize', eventRefs.current.handleSetHeight);
 		return () => {
-			window.removeEventListener('resize', handleSetHeight.current);
+			window.removeEventListener('resize', eventRefs.current.handleSetHeight);
 		};
 	}, [childRef]);
 
 	useEffect(() => {
-		const childObserve = new ResizeObserver(handleSetHeight.current);
+		const childObserve = new ResizeObserver(eventRefs.current.handleSetHeight);
 		childObserve.observe(childRef.current);
-		const parentObserve = new ResizeObserver(handleSetHeight.current);
+		const parentObserve = new ResizeObserver(eventRefs.current.handleSetHeight);
 		parentObserve.observe(parentRef.current);
 
 		const parent = parentRef.current;
 		const container = containerRef.current;
 
-		const { handleScroll } = eventRef.current;
-		const { handleMouseMove } = eventRef.current;
+		const { handleScroll } = eventRefs.current;
+		const { handleMouseMove } = eventRefs.current;
 
 		parent.addEventListener('scroll', handleScroll);
 		container.addEventListener('mousemove', handleMouseMove);
