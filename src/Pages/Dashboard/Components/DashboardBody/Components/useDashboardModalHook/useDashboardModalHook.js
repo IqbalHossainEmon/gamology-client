@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import {
-    DashboardBodyModalContextSetContent,
-    DashboardBodyModalContextSetShow,
+	DashboardBodyModalContextSetContent,
+	DashboardBodyModalContextSetShow,
 } from '../../../../../../Contexts/DashboardBodyModalContext';
 
-const useDashboardBodySetContent = () => useContext(DashboardBodyModalContextSetContent);
-const useDashboardBodySetModal = () => useContext(DashboardBodyModalContextSetShow);
-
-export default () => ({ useDashboardBodySetContent, useDashboardBodySetModal });
+export default () => ({
+	setDashboardContent: useContext(DashboardBodyModalContextSetContent),
+	setDashboardModal: useContext(DashboardBodyModalContextSetShow),
+});
