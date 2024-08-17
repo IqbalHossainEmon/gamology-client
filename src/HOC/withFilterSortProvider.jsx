@@ -31,48 +31,48 @@ const withFilterSortProvider = Component =>
 			}
 		}, [screenWidth, hideBodyOverflow]);
 
-		const eventRefs = useRef(null);
+		const eventRefs = useRef({});
+
+		if (!eventRefs.current.handleDropDown) {
+			eventRefs.current.handleDropDown = () => {
+				setFilterSortState({ sort: true, filter: true });
+				showBodyOverflow();
+			};
+		}
 
 		const { showMenu, setElement } = useDropDownHide(eventRefs.current.handleDropDown);
 
-		if (!eventRefs.current) {
-			eventRefs.current = {
-				handleDropDown: () => {
-					setFilterSortState({ sort: true, filter: true });
-					showBodyOverflow();
-				},
-
-				setFilterSort: prop => {
-					switch (prop) {
-						case 'filter':
-							setFilterSortState(prev => {
-								if (prev.filter && screenWidth < 769) {
-									hideBodyOverflow();
-								} else {
-									showBodyOverflow();
-								}
-								return {
-									filter: !prev.filter,
-									sort: true,
-								};
-							});
-							break;
-						case 'sort':
-							setElement(filterSortRef.sort);
-							showMenu();
-							setFilterSortState(prev => {
-								if (prev.sort && screenWidth < 769) {
-									hideBodyOverflow();
-								} else {
-									showBodyOverflow();
-								}
-								return { sort: !prev.sort, filter: true };
-							});
-							break;
-						default:
-							setFilterSortState({ sort: true, filter: true });
-					}
-				},
+		if (!eventRefs.current.setFilterSort) {
+			eventRefs.current.setFilterSort = prop => {
+				switch (prop) {
+					case 'filter':
+						setFilterSortState(prev => {
+							if (prev.filter && screenWidth < 769) {
+								hideBodyOverflow();
+							} else {
+								showBodyOverflow();
+							}
+							return {
+								filter: !prev.filter,
+								sort: true,
+							};
+						});
+						break;
+					case 'sort':
+						setElement(filterSortRef.sort);
+						showMenu();
+						setFilterSortState(prev => {
+							if (prev.sort && screenWidth < 769) {
+								hideBodyOverflow();
+							} else {
+								showBodyOverflow();
+							}
+							return { sort: !prev.sort, filter: true };
+						});
+						break;
+					default:
+						setFilterSortState({ sort: true, filter: true });
+				}
 			};
 		}
 		return (
