@@ -3,6 +3,7 @@ import { useRef } from 'react';
 const useDropDownHide = setState => {
 	const element = useRef();
 	const eventRefs = useRef(null);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			closeMenu: e => {

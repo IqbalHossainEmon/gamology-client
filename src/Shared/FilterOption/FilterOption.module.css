@@ -25,8 +25,6 @@
 
 .toggleButtonContainer {
 	position: relative;
-	width: 100%;
-	max-width: 70px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -5,11 +5,11 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
 
 export default [
+	{ ignores: ['dist'] },
 	{
 		files: ['**/*.{js,jsx}'],
-		ignores: ['dist'],
 		languageOptions: {
-			ecmaVersion: 'latest',
+			ecmaVersion: 2020,
 			globals: globals.browser,
 			parserOptions: {
 				ecmaVersion: 'latest',
@@ -29,25 +29,7 @@ export default [
 			...react.configs['jsx-runtime'].rules,
 			...reactHooks.configs.recommended.rules,
 			'react/jsx-no-target-blank': 'off',
-			'react/jsx-props-no-spreading': 0,
-			'react/react-in-jsx-scope': 0,
-			'react-hooks/rules-of-hooks': 'error',
-			'no-console': 0,
-			'react/state-in-constructor': 0,
-			indent: 0,
-			'linebreak-style': 0,
-			'react/prop-types': 0,
-			'jsx-a11y/click-events-have-key-events': 0,
-			'no-param-reassign': 0,
-			'no-nested-ternary': 0,
-			'jsx-a11y/label-has-associated-control': 0,
-			'react/function-component-definition': 0,
-			'no-plusplus': 0,
-			'no-unused-vars': ['error', { argsIgnorePattern: '_' }],
-			'react-refresh/only-export-components': [
-				'warn',
-				{ allowConstantExport: true },
-			],
+			'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 		},
 	},
 ];
