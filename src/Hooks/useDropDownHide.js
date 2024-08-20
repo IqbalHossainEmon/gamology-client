@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 
 const useDropDownHide = setState => {
-	const element = useRef();
-	const eventRefs = useRef(null);
+	const element = useRef(),
+	 eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {

@@ -8,14 +8,15 @@ export default function ButtonForGameInfoFieldSection({ onClick, text, disabled 
     return (
         <div className={`${disabled ? `${styles.disabled} ` : ''}${styles.addMoreButton}`}>
             <button
-                ref={btnRef}
                 className={styles.btn}
                 onClick={onClick}
+                ref={btnRef}
                 type="button"
                 {...(disabled && { disabled })}
                 {...(tabIndexOff && { tabIndex: '-1' })}
             >
                 {text}
+
                 <ButtonWaterEffect btnRef={btnRef} />
             </button>
         </div>

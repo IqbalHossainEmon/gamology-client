@@ -3,17 +3,17 @@ import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModalHook from '../../../../useDashboardModalHook/useDashboardModalHook';
 import styles from './UserMakeAdminModal.module.css';
 
-const UserMakeAdminModal = () => {
+function UserMakeAdminModal() {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
-	});
+	}),
 
-	const confirmText = useRef(null);
+	 confirmText = useRef(null),
 
-	const { setDashboardModal } = useDashboardModalHook();
+	 { setDashboardModal } = useDashboardModalHook(),
 
-	const handleMakeAdmin = () => {
+	 handleMakeAdmin = () => {
 		if (
 			confirmText.current === 'CONFIRM' ||
 			confirmText.current === 'confirm' ||
@@ -30,26 +30,31 @@ const UserMakeAdminModal = () => {
 	};
 
 	return (
-		<div>
-			<div className={styles.makeAdminModal}>
-				<TextField
-					errorChange={errorChange}
-					errorMessage={errorMessage}
-					type='text'
-					placeholder="Type 'CONFIRM' to continue"
-					field='input'
-					setState={val => {
+    <div>
+        <div className={styles.makeAdminModal}>
+            <TextField
+                className={styles.textField}
+                errorChange={errorChange}
+                errorMessage={errorMessage}
+                field='input'
+                placeholder="Type 'CONFIRM' to continue"
+                setState={val => {
 						confirmText.current = val;
 					}}
-					className={styles.textField}
-				/>
-				<div className={styles.btnContainer}>
-					<button type='button' className={styles.btn} onClick={handleMakeAdmin}>
-						Yes
-					</button>
-				</div>
-			</div>
-		</div>
+                type='text'
+            />
+
+            <div className={styles.btnContainer}>
+                <button
+                    className={styles.btn}
+                    onClick={handleMakeAdmin}
+                    type='button'
+                >
+                    Yes
+                </button>
+            </div>
+        </div>
+    </div>
 	);
-};
+}
 export default UserMakeAdminModal;

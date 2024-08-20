@@ -13,25 +13,25 @@ export default function usePaginationLogic(totalPage, activePage, siblingCount =
             return range(1, totalPage);
         }
 
-        // finding the index of left and right siblings in range of 1 to totalPage
-        const leftSiblingIndex = Math.max(activePage - siblingCount, 1);
-        const rightSiblingIndex = Math.min(activePage + siblingCount, totalPage);
+        // Finding the index of left and right siblings in range of 1 to totalPage
+        const leftSiblingIndex = Math.max(activePage - siblingCount, 1),
+         rightSiblingIndex = Math.min(activePage + siblingCount, totalPage),
 
         // We do not want to show dots if there is only two position left after/before the left/right page count as that would lead to a change if our Pagination component size which we do not want
-        const shouldShowLeftDots = leftSiblingIndex > 3;
-        const shouldShowRightDots = rightSiblingIndex < totalPage - 2;
+         shouldShowLeftDots = leftSiblingIndex > 3,
+         shouldShowRightDots = rightSiblingIndex < totalPage - 2;
 
-        // show right dots not the left dots
+        // Show right dots not the left dots
         if (!shouldShowLeftDots && shouldShowRightDots) {
             return [...range(1, 3 + 2 * siblingCount), DOTS, totalPage];
         }
 
-        // show left dots not the right dots
+        // Show left dots not the right dots
         if (shouldShowLeftDots && !shouldShowRightDots) {
             return [1, DOTS, ...range(totalPage - (3 + 2 * siblingCount) + 1, totalPage)];
         }
 
-        // show both dots
+        // Show both dots
         if (shouldShowLeftDots && shouldShowRightDots) {
             return [1, DOTS, ...range(leftSiblingIndex, rightSiblingIndex), DOTS, totalPage];
         }

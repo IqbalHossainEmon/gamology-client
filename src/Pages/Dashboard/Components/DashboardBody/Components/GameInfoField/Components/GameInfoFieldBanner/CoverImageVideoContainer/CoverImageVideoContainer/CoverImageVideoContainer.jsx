@@ -8,7 +8,7 @@ import CoverImageContainer from '../Components/CoverImageContainer/CoverImageCon
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
 import styles from './CoverImageVideoContainer.module.css';
 
-const CoverImageVideoContainer = ({
+function CoverImageVideoContainer({
 	type,
 	handleSetValues,
 	errorMessage,
@@ -17,11 +17,11 @@ const CoverImageVideoContainer = ({
 	number,
 	hasDefault,
 	defaultData,
-}) => {
-	const [errorShow, setErrorShow] = useState(!!errorMessage);
-	const [focused, setFocused] = useState(false);
+}) {
+	const [errorShow, setErrorShow] = useState(Boolean(errorMessage)),
+	 [focused, setFocused] = useState(false),
 
-	const mainValueRef = useRef({
+	 mainValueRef = useRef({
 		image:
 			type === 'image'
 				? {
@@ -35,38 +35,37 @@ const CoverImageVideoContainer = ({
 				  }
 				: { selected: false, name: 'name', file: null },
 		video: type === 'video' ? defaultData : '',
-	});
+	}),
 
-	const inputRef = useRef(null);
-	const containerRef = useRef(null);
+	 inputRef = useRef(null),
+	 containerRef = useRef(null),
 
-	const previewBtnRef = useRef(null);
-	const btnRef = useRef(null);
+	 previewBtnRef = useRef(null),
+	 btnRef = useRef(null),
 
-	const isTouchAble = useIsTouchAble();
+	 isTouchAble = useIsTouchAble(),
 
-	const touchAble = isTouchAble();
-	const screenWidth = useScreenWidth();
+	 touchAble = isTouchAble(),
+	 screenWidth = useScreenWidth();
 
 	useEffect(() => {
-		if (errorChange && errorMessage) setErrorShow(true);
-		else setErrorShow(false);
+		if (errorChange && errorMessage) {setErrorShow(true);}
+		else {setErrorShow(false);}
 	}, [errorChange, errorMessage]);
 
 	return (
-		<div
-			className={`${styles.outerContainer}${type ? '' : ` ${styles.disabled}`}`}
-			ref={containerRef}
-		>
-			<div className={styles.containerWithPreview}>
-				<div
-					className={`${
+    <div
+        className={`${styles.outerContainer}${type ? '' : ` ${styles.disabled}`}`}
+        ref={containerRef}
+    >
+        <div className={styles.containerWithPreview}>
+            <div
+                className={`${
 						errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''
 					}${styles.container}${type ? '' : ` ${styles.padding} `}`}
-				>
-					{type && (
-						<label
-							className={`${
+            >
+                {type ? <label
+                    className={`${
 								errorShow
 									? `${styles.errorColor} `
 									: focused
@@ -76,74 +75,83 @@ const CoverImageVideoContainer = ({
 									? `${styles.textFilled} `
 									: ''
 							}${styles.label}`}
-							htmlFor={`addGameBannerCover_${number}`}
-						>
-							{`Choose Game's Banner's ${type}`}
-						</label>
-					)}
-					{type ? (
+                    htmlFor={`addGameBannerCover_${number}`}
+                        >
+                    {`Choose Game's Banner's ${type}`}
+                        </label> : null}
+
+                {type ? (
 						type === 'video' ? (
-							<CoverVideoContainer
-								mainValueRef={mainValueRef}
-								inputRef={inputRef}
-								number={number}
-								onFocus={() => {
-									setFocused(true);
-									if (errorShow) setErrorShow(false);
-								}}
-								name={name}
-								errorShow={errorShow}
-								setErrorShow={setErrorShow}
-								onBlur={e => {
+    <CoverVideoContainer
+        errorShow={errorShow}
+        inputRef={inputRef}
+        mainValue={mainValueRef.current.video}
+        mainValueRef={mainValueRef}
+        name={name}
+        number={number}
+        onBlur={e => {
 									handleSetValues(e.target.value, e.target.name);
 									setFocused(false);
 									mainValueRef.current.video = e.target.value;
 								}}
-								mainValue={mainValueRef.current.video}
-							/>
+        onFocus={() => {
+									setFocused(true);
+									if (errorShow) {setErrorShow(false);}
+								}}
+        setErrorShow={setErrorShow}
+    />
 						) : (
-							<CoverImageContainer
-								containerRef={containerRef}
-								handleSetValues={handleSetValues}
-								name={name}
-								setErrorShow={setErrorShow}
-								inputRef={inputRef}
-								errorShow={errorShow}
-								type={type}
-								number={number}
-								btnRef={btnRef}
-								mainValue={mainValueRef.current.image}
-								setFocused={setFocused}
-							/>
+    <CoverImageContainer
+        btnRef={btnRef}
+        containerRef={containerRef}
+        errorShow={errorShow}
+        handleSetValues={handleSetValues}
+        inputRef={inputRef}
+        mainValue={mainValueRef.current.image}
+        name={name}
+        number={number}
+        setErrorShow={setErrorShow}
+        setFocused={setFocused}
+        type={type}
+    />
 						)
 					) : (
-						<p
-							className={`${errorShow ? `${styles.errorColor} ` : ''}${
+    <p
+        className={`${errorShow ? `${styles.errorColor} ` : ''}${
 								styles.defaultText
 							}`}
-						>
-							Select Content Type First
-						</p>
+    >
+        Select Content Type First
+    </p>
 					)}
-				</div>
-				{mainValueRef.current?.image.file && touchAble && (
-					<button ref={previewBtnRef} className={styles.previewBtn} type='button'>
-						Preview
-						<ButtonWaterEffect btnRef={previewBtnRef} long />
-					</button>
-				)}
-			</div>
-			{type === 'image' && mainValueRef.current?.image.file && (
-				<ImagePreviewContainer
-					containerRef={containerRef}
-					file={mainValueRef.current?.image.file}
-					btnRef={btnRef}
-					screenWidth={screenWidth}
-					previewBtnRef={previewBtnRef}
-				/>
-			)}
-			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
-		</div>
+            </div>
+
+            {mainValueRef.current?.image.file && touchAble ? <button
+                className={styles.previewBtn}
+                ref={previewBtnRef}
+                type='button'
+                                                             >
+                Preview
+                <ButtonWaterEffect
+                    btnRef={previewBtnRef}
+                    long
+                />
+            </button> : null}
+        </div>
+
+        {type === 'image' && mainValueRef.current?.image.file ? <ImagePreviewContainer
+            btnRef={btnRef}
+            containerRef={containerRef}
+            file={mainValueRef.current?.image.file}
+            previewBtnRef={previewBtnRef}
+            screenWidth={screenWidth}
+                                                                /> : null}
+
+        <ErrorMessage
+            enable={errorShow}
+            errorMessage={errorMessage}
+        />
+    </div>
 	);
-};
+}
 export default CoverImageVideoContainer;

@@ -253,11 +253,11 @@ const items = [
 ];
 
 function Browse() {
-    const { initialState, reducer } = useBrowseLogics();
+    const { initialState, reducer } = useBrowseLogics(),
 
-    const screenWidth = useScreenWidth();
+     screenWidth = useScreenWidth(),
 
-    const [state, dispatch] = useReducer(reducer, initialState);
+     [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
         dispatch({ type: 'fetch', data: items });
@@ -265,11 +265,24 @@ function Browse() {
 
     return (
         <section className={styles.browse}>
-            <BrowseHeader state={state} handleChange={dispatch} />
+            <BrowseHeader
+                handleChange={dispatch}
+                state={state}
+            />
+
             <div className={styles.mainContent}>
-                <FilterGames limits={state.rangeLimits} filterState={state.filterState} dispatch={dispatch} />
-                <GameCards state={state} dispatch={dispatch} />
+                <FilterGames
+                    dispatch={dispatch}
+                    filterState={state.filterState}
+                    limits={state.rangeLimits}
+                />
+
+                <GameCards
+                    dispatch={dispatch}
+                    state={state}
+                />
             </div>
+
             {screenWidth < 769 && <MobileSortAndFilterButton />}
         </section>
     );

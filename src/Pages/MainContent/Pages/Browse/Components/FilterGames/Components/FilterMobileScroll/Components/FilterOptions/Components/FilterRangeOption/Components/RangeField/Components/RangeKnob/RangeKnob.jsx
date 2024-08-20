@@ -13,9 +13,9 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
 
             let value = stateRef.current;
 
-            // if cursors position is inside the slider range;
+            // If cursors position is inside the slider range;
 
-            // check and set value depend on step
+            // Check and set value depend on step
             if (leftDiff < rightDiff) {
                 value = pointerLeftStep;
             } else if (leftDiff > rightDiff) {
@@ -27,9 +27,9 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
             if (value !== stateRef.current) {
                 setState(prev => ({ ...prev, [name]: value }));
             }
-        });
+        }),
 
-    const onStart = useDragStartStop(handleMove.current, handleSetValue, undefined, true);
+     onStart = useDragStartStop(handleMove.current, handleSetValue, undefined, true);
 
     return (
         <div
@@ -37,12 +37,12 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
             style={{ translate: `${state}%` }}
         >
             <div
-                role="button"
-                data-knob={name}
-                onTouchStart={onStart}
-                onMouseDown={onStart}
-                tabIndex={disabled ? -1 : 0}
                 className={styles.knop}
+                data-knob={name}
+                onMouseDown={onStart}
+                onTouchStart={onStart}
+                role="button"
+                tabIndex={disabled ? -1 : 0}
             />
         </div>
     );

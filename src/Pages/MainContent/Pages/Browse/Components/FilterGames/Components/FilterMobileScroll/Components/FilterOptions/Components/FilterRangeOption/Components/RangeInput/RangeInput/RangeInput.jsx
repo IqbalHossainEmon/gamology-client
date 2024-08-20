@@ -67,21 +67,23 @@ export default function RangeInput({
         <div className={styles.rangeInput}>
             <RangeInputField
                 disabled={disabled}
-                handleEnter={handleEnter}
-                state={state.smaller}
-                val={limit.lower.toFixed(float)}
                 float={float}
+                handleEnter={handleEnter}
                 inputRef={leftInputRef}
                 name="smaller"
+                state={state.smaller}
+                val={limit.lower.toFixed(float)}
             />
+
             <span className={styles.minus} />
+
             <RangeInputField
-                float={float}
                 disabled={disabled}
+                float={float}
                 handleEnter={handleEnter}
-                state={state.bigger}
                 inputRef={rightInputRef}
                 name="bigger"
+                state={state.bigger}
                 val={limit.higher.toFixed(float)}
             />
         </div>

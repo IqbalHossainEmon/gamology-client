@@ -15,10 +15,10 @@ export default function VideoSlider({
 }) {
     const stateRef = useRef(position);
     stateRef.current = position;
-    const pathRef = useRef(null);
-    const screenWidth = useScreenWidth();
+    const pathRef = useRef(null),
+     screenWidth = useScreenWidth(),
 
-    const eventRef = useRef({
+     eventRef = useRef({
         handleResize: () => {},
     });
 
@@ -38,16 +38,16 @@ export default function VideoSlider({
     }, [changePause]);
 
     useEffect(() => {
-        const { handleResize } = eventRef.current;
+        const { handleResize } = eventRef.current,
 
-        const addFullscreenEventListeners = element => {
+         addFullscreenEventListeners = element => {
             element.addEventListener('fullscreenchange', handleResize);
             element.addEventListener('mozfullscreenchange', handleResize);
             element.addEventListener('MSFullscreenChange', handleResize);
             element.addEventListener('webkitfullscreenchange', handleResize);
-        };
+        },
 
-        const removeFullscreenEventListeners = element => {
+         removeFullscreenEventListeners = element => {
             element.removeEventListener('fullscreenchange', handleResize);
             element.removeEventListener('mozfullscreenchange', handleResize);
             element.removeEventListener('MSFullscreenChange', handleResize);
@@ -70,7 +70,7 @@ export default function VideoSlider({
 
     const handleMoveEventRef = useRef(null);
 
-    // get cursor position while dragging
+    // Get cursor position while dragging
     handleMoveEventRef.current = useCallback(
         e => {
             let cursorInPercent =
@@ -96,23 +96,35 @@ export default function VideoSlider({
             handleMouseDown();
         },
         [handleMouseDown]
-    );
+    ),
 
-    const onStart = useDragStartStop(handleMoveEventRef.current, handleMouseUp, handleMouseDownClick, false);
+     onStart = useDragStartStop(handleMoveEventRef.current, handleMouseUp, handleMouseDownClick, false);
 
     return (
         <div
-            ref={pathRef}
-            tabIndex="0"
-            role="button"
+            className={styles.videoSliderPath}
             onMouseDown={onStart}
             onTouchStart={onStart}
-            className={styles.videoSliderPath}
+            ref={pathRef}
+            role="button"
+            tabIndex="0"
         >
             <div className={styles.path} />
-            <div style={{ scale: `${position / 100} 1` }} className={styles.activePath} />
-            {isBuffer && <div style={{ scale: `${buffer / 100} 1` }} className={styles.bufferPath} />}
-            <div style={{ translate: `${position}%` }} className={styles.knobContainer}>
+
+            <div
+                className={styles.activePath}
+                style={{ scale: `${position / 100} 1` }}
+            />
+
+            {isBuffer ? <div
+                className={styles.bufferPath}
+                style={{ scale: `${buffer / 100} 1` }}
+                        /> : null}
+
+            <div
+                className={styles.knobContainer}
+                style={{ translate: `${position}%` }}
+            >
                 <div className={styles.knob} />
             </div>
         </div>

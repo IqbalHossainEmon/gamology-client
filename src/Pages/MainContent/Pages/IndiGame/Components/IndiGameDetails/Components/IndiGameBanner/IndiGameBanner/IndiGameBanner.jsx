@@ -80,9 +80,9 @@ const items = [
 ];
 
 export default function IndiGameBanner() {
-    const { reducer, initialState, timerFunction } = useIndiGameBannerLogics();
+    const { reducer, initialState, timerFunction } = useIndiGameBannerLogics(),
 
-    const [{ data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition }, dispatch] = useReducer(
+     [{ data, active, coverTransition, cardActive, cardsOnDeck, thumbTransition }, dispatch] = useReducer(
         reducer,
         initialState
     );
@@ -95,19 +95,20 @@ export default function IndiGameBanner() {
         <section className={styles.banner}>
             <IndiGameBannerItems
                 active={active}
-                transition={coverTransition}
-                items={data}
                 dispatch={dispatch}
+                items={data}
                 timerFunction={timerFunction}
+                transition={coverTransition}
             />
+
             {data.length > 1 && (
                 <IndiGameBannerCards
-                    cardActive={cardActive}
-                    thumbTransition={thumbTransition}
-                    cardsOnDeck={cardsOnDeck}
                     active={active}
-                    items={data}
+                    cardActive={cardActive}
+                    cardsOnDeck={cardsOnDeck}
                     dispatch={dispatch}
+                    items={data}
+                    thumbTransition={thumbTransition}
                     timerFunction={timerFunction}
                 />
             )}

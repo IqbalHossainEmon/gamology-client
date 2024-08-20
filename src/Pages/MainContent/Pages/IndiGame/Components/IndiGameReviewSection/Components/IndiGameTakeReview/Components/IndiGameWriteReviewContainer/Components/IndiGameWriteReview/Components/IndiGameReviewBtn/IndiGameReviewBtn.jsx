@@ -7,9 +7,14 @@ export default function IndiGameReviewButtons({ setWriteReviewShow, handleSubmit
 
     return (
         <div className={styles.IndiGameReviewButtons}>
-            <button onClick={() => setWriteReviewShow(false)} type="button" className={styles.closeBtn}>
+            <button
+                className={styles.closeBtn}
+                onClick={() => setWriteReviewShow(false)}
+                type="button"
+            >
                 Close
             </button>
+
             <button
                 ref={buttonRef}
                 type="button"

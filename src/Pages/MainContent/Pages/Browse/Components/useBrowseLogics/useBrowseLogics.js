@@ -34,9 +34,9 @@ const initialState = {
         price: { lower: 0, higher: 148.18 },
         releaseDate: { lower: 1980, higher: new Date().getFullYear() },
     },
-};
+},
 
-const reducer = (state, action) => {
+ reducer = (state, action) => {
     switch (action.type) {
         case 'fetch':
             return { ...state, items: action.data };

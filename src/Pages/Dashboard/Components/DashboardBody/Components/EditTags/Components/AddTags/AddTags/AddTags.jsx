@@ -5,15 +5,15 @@ import AddCategoryNameAndTags from '../Components/AddCategoryNameAndTags/AddCate
 import AddTagsNameAndCategory from '../Components/AddTagsNameAndCategory/AddTagsNameAndCategory';
 import styles from './AddTags.module.css';
 
-const AddTags = ({ tags, setTags }) => {
-    const [tagOrCategory, setTagOrCategory] = useState(null);
-    const [errorChange, setErrorChange] = useState(0);
+function AddTags({ tags, setTags }) {
+    const [tagOrCategory, setTagOrCategory] = useState(null),
+     [errorChange, setErrorChange] = useState(0),
 
-    const addBtnRef = useRef(null);
-    const addInfoRef = useRef({});
-    const errorRef = useRef({});
+     addBtnRef = useRef(null),
+     addInfoRef = useRef({}),
+     errorRef = useRef({}),
 
-    const handleValidation = () => {
+     handleValidation = () => {
         let isValid = true;
         if (tagOrCategory) {
             if (!addInfoRef.current.tag.name) {
@@ -61,7 +61,7 @@ const AddTags = ({ tags, setTags }) => {
                 if (isCategoryExist) {
                     errorRef.current.category = 'Category Already Exists';
                     isValid = false;
-                } else errorRef.current.category = '';
+                } else {errorRef.current.category = '';}
             }
             if (!addInfoRef.current.category.tags.length) {
                 errorRef.current.tags[0] = 'Please Enter At Least One Tag';
@@ -93,24 +93,28 @@ const AddTags = ({ tags, setTags }) => {
             }
         }
         return isValid;
-    };
+    },
 
-    // lowerCase first letter of the string and remove (-) and space and make it camelCase and return it
-    const camelCase = str => {
+    // LowerCase first letter of the string and remove (-) and space and make it camelCase and return it
+     camelCase = str => {
         const newStr = str.toLowerCase();
         return newStr.replace(/[- ]/g, '').replace(/^[a-z]/, newStr[0].toLowerCase());
     };
 
     return (
         <div className={styles.addTags}>
-            <h3 className={styles.addHeader}>Add {tagOrCategory ? 'Tag' : 'Category'}</h3>
+            <h3 className={styles.addHeader}>
+                Add
+                {tagOrCategory ? 'Tag' : 'Category'}
+            </h3>
+
             <div className={styles.selectionField}>
                 <SelectionField
+                    htmlFor="add-what"
+                    list={['Tags', 'Category']}
                     name="Add What"
                     none
-                    htmlFor="add-what"
                     placeholder="Add What?"
-                    list={['Tags', 'Category']}
                     setState={val => {
                         switch (val) {
                             case 'Tags':
@@ -119,7 +123,7 @@ const AddTags = ({ tags, setTags }) => {
                                     name: addInfoRef.current?.category?.name ? addInfoRef.current.category.name : '',
                                     category: '',
                                 };
-                                if (addInfoRef.current.category) delete addInfoRef.current.category;
+                                if (addInfoRef.current.category) {delete addInfoRef.current.category;}
                                 errorRef.current = { tag: '', category: '' };
                                 break;
                             case 'Category':
@@ -128,7 +132,7 @@ const AddTags = ({ tags, setTags }) => {
                                     name: addInfoRef.current?.tag?.name ? addInfoRef.current.tag.name : '',
                                     tags: [''],
                                 };
-                                if (addInfoRef.current.tag) delete addInfoRef.current.tag;
+                                if (addInfoRef.current.tag) {delete addInfoRef.current.tag;}
                                 errorRef.current = { category: '', tags: [''] };
                                 break;
                             default:
@@ -139,19 +143,28 @@ const AddTags = ({ tags, setTags }) => {
                     }}
                 />
             </div>
+
             {tagOrCategory !== null && (
                 <>
                     <div>
                         {tagOrCategory ? (
-                            <AddTagsNameAndCategory errorRef={errorRef} errorChange={errorChange} addInfoRef={addInfoRef} tags={tags} />
+                            <AddTagsNameAndCategory
+                                addInfoRef={addInfoRef}
+                                errorChange={errorChange}
+                                errorRef={errorRef}
+                                tags={tags}
+                            />
                         ) : (
-                            <AddCategoryNameAndTags errorRef={errorRef} errorChange={errorChange} addInfoRef={addInfoRef} />
+                            <AddCategoryNameAndTags
+                                addInfoRef={addInfoRef}
+                                errorChange={errorChange}
+                                errorRef={errorRef}
+                            />
                         )}
                     </div>
+
                     <div className={styles.submitBtn}>
                         <button
-                            ref={addBtnRef}
-                            type="button"
                             onClick={() => {
                                 if (handleValidation()) {
                                     setTags(prev => {
@@ -184,6 +197,8 @@ const AddTags = ({ tags, setTags }) => {
                                 }
                                 setErrorChange(prev => prev + 1);
                             }}
+                            ref={addBtnRef}
+                            type="button"
                         >
                             Submit
                             <ButtonWaterEffect btnRef={addBtnRef} />
@@ -193,5 +208,5 @@ const AddTags = ({ tags, setTags }) => {
             )}
         </div>
     );
-};
+}
 export default AddTags;

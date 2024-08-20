@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './FreeGame.module.css';
 
-// get the month name depending on given time
+// Get the month name depending on given time
 function getMonthName(monthNumber) {
     const date = new Date();
     date.setMonth(monthNumber - 1);
@@ -13,9 +13,9 @@ export default function FreeGame({ data, today, length }) {
 
     // Finding todays date and comparing the upcoming / expire date and setting styles
     useEffect(() => {
-        const todayDate = new Date(`${today[2]}-${today[1]}-${today[0]}`);
-        const firstDay = new Date(`${data.saleTill[0][2]}-${data.saleTill[0][1]}-${data.saleTill[0][0]}`);
-        const lastDay = new Date(`${data.saleTill[1][2]}-${data.saleTill[1][1]}-${data.saleTill[1][0]}`);
+        const todayDate = new Date(`${today[2]}-${today[1]}-${today[0]}`),
+         firstDay = new Date(`${data.saleTill[0][2]}-${data.saleTill[0][1]}-${data.saleTill[0][0]}`),
+         lastDay = new Date(`${data.saleTill[1][2]}-${data.saleTill[1][1]}-${data.saleTill[1][0]}`);
         if (todayDate < firstDay) {
             setDateState(0);
         } else if (todayDate >= firstDay && todayDate < lastDay) {
@@ -29,7 +29,12 @@ export default function FreeGame({ data, today, length }) {
         dateState !== -1 && (
             <div className={`${styles.freeGame} hover-shadow`}>
                 <div className={styles.gameHeader}>
-                    <img style={{ aspectRatio: `1/1.${length}` }} src={data.carouselThumb} alt={data.name} />
+                    <img
+                        alt={data.name}
+                        src={data.carouselThumb}
+                        style={{ aspectRatio: `1/1.${length}` }}
+                    />
+
                     {dateState !== -1 && (
                         <p
                             className={
@@ -42,11 +47,17 @@ export default function FreeGame({ data, today, length }) {
                         </p>
                     )}
                 </div>
+
                 <div className={styles.gameDetail}>
-                    <p className={styles.name}>{data.name}</p>
-                    <p className={styles.date}>{`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
+                    <p className={styles.name}>
+                        {data.name}
+                    </p>
+
+                    <p className={styles.date}>
+                        {`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
                         data.saleTill[0][0]
-                    } - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}</p>
+                    } - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}
+                    </p>
                 </div>
             </div>
         )

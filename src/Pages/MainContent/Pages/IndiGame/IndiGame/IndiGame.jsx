@@ -7,8 +7,10 @@ export default function IndiGame() {
     return (
         <section className={styles.individualGame}>
             <IndiGameDetails />
+
             <div className={styles.reviewContainer}>
                 <IndiGameSpecifications />
+
                 <IndiGameReviewSection />
             </div>
         </section>

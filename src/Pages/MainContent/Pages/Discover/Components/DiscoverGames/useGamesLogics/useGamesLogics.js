@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 
 export default function useGamesLogics() {
-	const referenceRef = useRef(null);
-	const eventRefs = useRef(null);
+	const referenceRef = useRef(null),
+	 eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			// this function get calls after every change of cards and turns off the transition of translate of the cards.
+			// This function get calls after every change of cards and turns off the transition of translate of the cards.
 			timerFunction: () => {
 				referenceRef.timerId = setTimeout(() => {
 					referenceRef.dispatch({ type: 'transitionStop' });
@@ -14,12 +14,12 @@ export default function useGamesLogics() {
 				}, 400);
 			},
 
-			// this function give the reference of dispatch and stores it in a ref.
+			// This function give the reference of dispatch and stores it in a ref.
 			setReference: dispatch => {
 				referenceRef.dispatch = dispatch;
 			},
 
-			// this function handles clicks in the cards change.
+			// This function handles clicks in the cards change.
 			handleClick: (click, cardActive, cardOnDeck) => {
 				if (click === 'next') {
 					referenceRef.dispatch({
@@ -42,10 +42,10 @@ export default function useGamesLogics() {
 				}
 			},
 
-			// this function checks screen widths and set cards on deck and send it through dispatch.
+			// This function checks screen widths and set cards on deck and send it through dispatch.
 			setCardsOnScreenWidthChange: (screenWidth, cardsContainer) => {
-				let cardOnOneDeck;
-				let margin;
+				let cardOnOneDeck,
+				 margin;
 				if (screenWidth >= 1600) {
 					cardOnOneDeck = 6;
 					margin = 32;

@@ -13,14 +13,14 @@ const withFilterSortProvider = Component =>
 		const [filterSortState, setFilterSortState] = useState({
 			filter: true,
 			sort: true,
-		});
+		}),
 
-		const filterSortRef = useRef();
-		const filterSortStateRef = useRef(filterSortRef);
+		 filterSortRef = useRef(),
+		 filterSortStateRef = useRef(filterSortRef);
 		filterSortStateRef.current = filterSortState;
 
-		const screenWidth = useScreenWidth();
-		const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
+		const screenWidth = useScreenWidth(),
+		 { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
 		useEffect(() => {
 			if (
@@ -76,13 +76,13 @@ const withFilterSortProvider = Component =>
 			};
 		}
 		return (
-			<FilterSortContext.Provider value={filterSortState}>
-				<SetFilterSortContext.Provider value={eventRefs.current.setFilterSort}>
-					<FilterSortRefContext.Provider value={filterSortRef}>
-						<Component />
-					</FilterSortRefContext.Provider>
-				</SetFilterSortContext.Provider>
-			</FilterSortContext.Provider>
+    <FilterSortContext.Provider value={filterSortState}>
+        <SetFilterSortContext.Provider value={eventRefs.current.setFilterSort}>
+            <FilterSortRefContext.Provider value={filterSortRef}>
+                <Component />
+            </FilterSortRefContext.Provider>
+        </SetFilterSortContext.Provider>
+    </FilterSortContext.Provider>
 		);
 	};
 

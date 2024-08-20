@@ -6,11 +6,11 @@ import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({ option, state, setState, limits = {} }) {
-    const screenWidth = useScreenWidth();
+    const screenWidth = useScreenWidth(),
 
-    const { title, optionList } = option;
-    const optionRef = useRef(null);
-    const [show, setShow] = useState({
+     { title, optionList } = option,
+     optionRef = useRef(null),
+     [show, setShow] = useState({
         show: true,
         height: NaN,
     });
@@ -24,18 +24,19 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
 
     return (
         <div className={styles.filterOptions}>
-            {title && (
-                <button
-                    type="button"
-                    onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
-                    className={styles.filterTitle}
-                >
-                    <h3 className={styles.title}>{title}</h3>
-                    <div className={styles.downArrow}>
-                        <RotateArrow state={show.show} />
-                    </div>
-                </button>
-            )}
+            {title ? <button
+                className={styles.filterTitle}
+                onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
+                type="button"
+                     >
+                <h3 className={styles.title}>
+                    {title}
+                </h3>
+
+                <div className={styles.downArrow}>
+                    <RotateArrow state={show.show} />
+                </div>
+                     </button> : null}
 
             <div
                 className={styles.optionList}
@@ -53,12 +54,12 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
                         case 'switch':
                             return (
                                 <FilterOption
-                                    key={op.id}
-                                    text={op.text}
                                     border={i !== optionList.length - 1}
-                                    state={state[op.filter]}
+                                    key={op.id}
                                     name={op.filter}
                                     setState={setState}
+                                    state={state[op.filter]}
+                                    text={op.text}
                                 />
                             );
                         default:
@@ -66,8 +67,8 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
                                 <FilterRangeOption
                                     key={op.id}
                                     limit={limits[op.rangeName]}
-                                    setState={setState}
                                     option={op}
+                                    setState={setState}
                                     {...(state.ShowOnlyFreeGames && op.rangeName === 'price' && { disabled: true })}
                                 />
                             );

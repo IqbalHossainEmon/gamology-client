@@ -6,17 +6,17 @@ import SecondNavLinkLists from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
 import styles from './SecondNavMobileLinks.module.css';
 
 export default function SecondNavMobileLinks({ setNavShow }) {
-    const [navTextState, setNavTextState] = useState(styles.discover);
-    const [navMidShow, setNavMidShow] = useState();
-    const midSliderElement1 = useRef();
-    const midSliderElement2 = useRef();
+    const [navTextState, setNavTextState] = useState(styles.discover),
+     [navMidShow, setNavMidShow] = useState(),
+     midSliderElement1 = useRef(),
+     midSliderElement2 = useRef(),
 
-    const setShowState = state => {
+     setShowState = state => {
         setNavShow(state);
         setNavMidShow(state);
-    };
+    },
 
-    const { showMenu, setElement } = useDropDownHide(setShowState);
+     { showMenu, setElement } = useDropDownHide(setShowState);
 
     useEffect(() => {
         setElement([midSliderElement1.current, midSliderElement2.current]);
@@ -43,30 +43,43 @@ export default function SecondNavMobileLinks({ setNavShow }) {
     return (
         <div className={styles.mobileLinks}>
             <div
+                className={styles.navLinksContainer}
                 ref={midSliderElement1}
                 style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }}
-                className={styles.navLinksContainer}
             >
                 <SecondNavLinkLists
+                    id={navMidShow ? 'navShow' : 'navHide'}
                     navMidShow={navMidShow}
                     setNavTextState={handleClick}
-                    id={navMidShow ? 'navShow' : 'navHide'}
                 />
             </div>
+
             <button
-                ref={midSliderElement2}
-                type="button"
+                className={styles.navLinkToggleButton}
                 onClick={() => {
                     setShowState(prev => !prev);
                     showMenu();
                 }}
-                className={styles.navLinkToggleButton}
+                ref={midSliderElement2}
+                type="button"
             >
-                <div id={navTextState} className={styles.navLinkOverFlow}>
-                    <p>Discover</p>
-                    <p>Browse</p>
-                    <p>News</p>
+                <div
+                    className={styles.navLinkOverFlow}
+                    id={navTextState}
+                >
+                    <p>
+                        Discover
+                    </p>
+
+                    <p>
+                        Browse
+                    </p>
+
+                    <p>
+                        News
+                    </p>
                 </div>
+
                 <div className={styles.navArrow}>
                     <RotateArrow state={navMidShow} />
                 </div>

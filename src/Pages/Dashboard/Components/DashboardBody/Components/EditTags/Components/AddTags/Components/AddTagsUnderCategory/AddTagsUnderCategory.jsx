@@ -3,25 +3,28 @@ import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterE
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './AddTagsUnderCategory.module.css';
 
-const AddTagsUnderCategory = ({ infoRef, errorChange, errorMessage }) => {
-    const [numberOfTags, setNumberOfTags] = useState(1);
+function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
+    const [numberOfTags, setNumberOfTags] = useState(1),
 
-    const addBtnREf = useRef(null);
-    const removeBtnREf = useRef(null);
+     addBtnREf = useRef(null),
+     removeBtnREf = useRef(null);
 
     return (
         <div className={styles.tagsUnderCategory}>
             <div>
                 {[...Array(numberOfTags).keys()].map(key => (
-                    <div key={key} className={styles.tagField}>
+                    <div
+                        className={styles.tagField}
+                        key={key}
+                    >
                         <TextField
-                            key={key}
                             errorChange={errorChange}
                             errorMessage={errorMessage[key]}
                             field="input"
                             htmlFor={`tagName-${key}`}
-                            placeholder="Tag Name"
+                            key={key}
                             name={key}
+                            placeholder="Tag Name"
                             setState={(val, name) => {
                                 infoRef[name] = val;
                             }}
@@ -29,24 +32,24 @@ const AddTagsUnderCategory = ({ infoRef, errorChange, errorMessage }) => {
                     </div>
                 ))}
             </div>
+
             <div className={styles.btnContainer}>
                 <div className={styles.addTagBtn}>
                     <button
-                        ref={addBtnREf}
-                        type="button"
                         onClick={() => {
                             setNumberOfTags(prev => prev + 1);
                             infoRef.push('');
                         }}
+                        ref={addBtnREf}
+                        type="button"
                     >
                         Add More +
                         <ButtonWaterEffect btnRef={addBtnREf} />
                     </button>
                 </div>
+
                 <div className={`${styles.removeTagBtn}${numberOfTags === 1 ? ` ${styles.disabled}` : ''}`}>
                     <button
-                        ref={removeBtnREf}
-                        type="button"
                         disabled={numberOfTags === 1}
                         onClick={() => {
                             setNumberOfTags(prev => {
@@ -57,6 +60,8 @@ const AddTagsUnderCategory = ({ infoRef, errorChange, errorMessage }) => {
                                 return prev;
                             });
                         }}
+                        ref={removeBtnREf}
+                        type="button"
                     >
                         Remove One -
                         <ButtonWaterEffect btnRef={removeBtnREf} />
@@ -65,5 +70,5 @@ const AddTagsUnderCategory = ({ infoRef, errorChange, errorMessage }) => {
             </div>
         </div>
     );
-};
+}
 export default AddTagsUnderCategory;

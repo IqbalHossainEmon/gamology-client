@@ -8,9 +8,9 @@ const initialState = {
 	margin: 0,
 	transition: false,
 	oneDeckLength: 0,
-};
+},
 
-const reducer = (state, action) => {
+ reducer = (state, action) => {
 	switch (action.type) {
 		case 'fetch':
 			return { ...state, data: action.data, dataLength: action.dataLength };

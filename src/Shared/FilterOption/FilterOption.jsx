@@ -1,25 +1,25 @@
+import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import styles from './FilterOption.module.css';
 
-import PropTypes from 'prop-types';
-
 function FilterOption({ text, setState, border, state, name }) {
-	FilterOption.propTypes = {
-		text: PropTypes.string.isRequired,
-		setState: PropTypes.func.isRequired,
-		border: PropTypes.bool,
-		state: PropTypes.any.isRequired,
-		name: PropTypes.string.isRequired,
-	};
 	const eventRef = useRef(null);
+
+	FilterOption.propTypes = {
+		border: PropTypes.bool,
+		name: PropTypes.string.isRequired,
+		setState: PropTypes.func.isRequired,
+		state: PropTypes.object.isRequired,
+		text: PropTypes.string.isRequired,
+	};
 
 	const btnRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = {
 			handleClick: e => {
-				// check if the event is on the btnRef
+				// Check if the event is on the btnRef
 				if (btnRef.current.contains(e.target)) {
 					setState(prev => ({ ...prev, [name]: !prev[name] }), name);
 				}
@@ -28,28 +28,31 @@ function FilterOption({ text, setState, border, state, name }) {
 	}
 
 	return (
-		<button
-			type='button'
-			ref={btnRef}
-			onMouseDown={el => {
+    <button
+        className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${
+				styles.filterOption
+			} ${styles.shadow}`}
+        onMouseDown={el => {
 				el.preventDefault();
 				document.addEventListener('mouseup', eventRef.current.handleClick, { once: true });
 			}}
-			className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${
-				styles.filterOption
-			} ${styles.shadow}`}
-		>
-			<p className={styles.text}>{text}</p>
-			<div className={styles.toggleButtonContainer}>
-				<ToggleSwitch
-					event={eventRef.current.handleClick}
-					state={state}
-					setState={setState}
-					name={name}
-					isLoading
-				/>
-			</div>
-		</button>
+        ref={btnRef}
+        type='button'
+    >
+        <p className={styles.text}>
+            {text}
+        </p>
+
+        <div className={styles.toggleButtonContainer}>
+            <ToggleSwitch
+                event={eventRef.current.handleClick}
+                isLoading
+                name={name}
+                setState={setState}
+                state={state}
+            />
+        </div>
+    </button>
 	);
 }
 

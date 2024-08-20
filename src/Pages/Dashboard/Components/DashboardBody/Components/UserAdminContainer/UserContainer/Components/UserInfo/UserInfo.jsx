@@ -1,8 +1,11 @@
 import styles from './UserInfo.module.css';
 
-const UserInfo = ({ user }) => (
-    <div className={styles.imgContainer}>
-        <img src={user.img} alt={user.name} />
-    </div>
-);
+function UserInfo({ user }) {
+  return (<div className={styles.imgContainer}>
+      <img
+          alt={user.name}
+          src={user.img}
+      />
+          </div>)
+}
 export default UserInfo;

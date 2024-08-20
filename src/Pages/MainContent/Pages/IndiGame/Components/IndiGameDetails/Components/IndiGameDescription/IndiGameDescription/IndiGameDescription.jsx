@@ -4,11 +4,11 @@ import IndiGameTextDescription from '../IndiGameTextDescription/IndiGameTextDesc
 import styles from './IndiGameDescription.module.css';
 
 const sortDesc =
-    'In Marvel’s Spider-Man Remastered, the worlds of Peter Parker and Spider-Man collide in an original, action-packed story. Play as an experienced Peter Parker, fighting big crime and iconic villains in Marvel’s New York. Web-swing through vibrant neighborhoods and defeat villains with epic takedowns.';
-const genes = ['Action', 'Adventure'];
-const features = ['Cloud Saves', 'Controller Support', 'Single Player'];
+    'In Marvel’s Spider-Man Remastered, the worlds of Peter Parker and Spider-Man collide in an original, action-packed story. Play as an experienced Peter Parker, fighting big crime and iconic villains in Marvel’s New York. Web-swing through vibrant neighborhoods and defeat villains with epic takedowns.',
+ genes = ['Action', 'Adventure'],
+ features = ['Cloud Saves', 'Controller Support', 'Single Player'],
 
-const descriptions = [
+ descriptions = [
     {
         id: 0,
         mainHeader: "Marvel's Spider-Man Remastered Available Now on PC",
@@ -79,7 +79,12 @@ export default function IndiGameDescription() {
     return (
         <section className={styles.individualGameDescription}>
             <IndiGameSortDescription desc={sortDesc} />
-            <IndiGameTags genes={genes} features={features} />
+
+            <IndiGameTags
+                features={features}
+                genes={genes}
+            />
+
             <IndiGameTextDescription descriptions={descriptions} />
         </section>
     );

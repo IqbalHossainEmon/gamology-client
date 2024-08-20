@@ -1,24 +1,24 @@
 import { useState } from 'react';
 import styles from './CoverVideoContainer.module.css';
 
-const CoverVideoContainer = ({ inputRef, number, onFocus, onBlur, name, errorShow, setErrorShow, mainValue }) => {
+function CoverVideoContainer({ inputRef, number, onFocus, onBlur, name, errorShow, setErrorShow, mainValue }) {
     const [value, setValue] = useState(mainValue);
 
     return (
         <input
-            ref={inputRef}
-            type="text"
+            className={styles.field}
+            id={`addGameBannerCover_${number}`}
             name={name}
-            onFocus={onFocus}
+            onBlur={onBlur}
             onChange={e => {
                 setValue(e.target.value);
-                if (errorShow) setErrorShow(false);
+                if (errorShow) {setErrorShow(false);}
             }}
-            onBlur={onBlur}
+            onFocus={onFocus}
+            ref={inputRef}
+            type="text"
             value={value}
-            id={`addGameBannerCover_${number}`}
-            className={styles.field}
         />
     );
-};
+}
 export default CoverVideoContainer;

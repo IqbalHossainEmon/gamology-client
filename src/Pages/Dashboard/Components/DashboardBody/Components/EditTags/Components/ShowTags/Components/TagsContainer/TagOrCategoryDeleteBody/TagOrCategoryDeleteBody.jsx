@@ -2,27 +2,32 @@ import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './TagOrCategoryDeleteBody.module.css';
 
-const TagOrCategoryDeleteBody = ({ handleHide, text, handler }) => {
-    const [errorChange, setErrorChange] = useState(0);
+function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
+    const [errorChange, setErrorChange] = useState(0),
 
-    const checkText = useRef('');
+     checkText = useRef('');
     return (
         <div className={styles.modalBody}>
-            <p className={styles.modelBody}>{text}</p>
+            <p className={styles.modelBody}>
+                {text}
+            </p>
+
             <div className={styles.checkPoint}>
                 <TextField
+                    errorChange={errorChange}
+                    errorMessage={checkText.errorMessage}
                     field="input"
-                    placeholder={"Type 'delete' to confirm"}
                     htmlFor="TagOrCategoryDelete"
+                    placeholder={"Type 'delete' to confirm"}
                     setState={val => {
                         checkText.current = val;
                     }}
-                    errorChange={errorChange}
-                    errorMessage={checkText.errorMessage}
                 />
             </div>
+
             <div className={styles.btnContainer}>
                 <button
+                    className={styles.deleteBtn}
                     onClick={() => {
                         if (checkText.current !== 'delete' && checkText.current !== 'Delete' && checkText.current !== 'DELETE') {
                             checkText.errorMessage = 'Please type "delete" to confirm';
@@ -33,15 +38,19 @@ const TagOrCategoryDeleteBody = ({ handleHide, text, handler }) => {
                         handleHide();
                     }}
                     type="button"
-                    className={styles.deleteBtn}
                 >
                     Delete
                 </button>
-                <button onClick={handleHide} type="button" className={styles.cancelBtn}>
+
+                <button
+                    className={styles.cancelBtn}
+                    onClick={handleHide}
+                    type="button"
+                >
                     Cancel
                 </button>
             </div>
         </div>
     );
-};
+}
 export default TagOrCategoryDeleteBody;

@@ -2,7 +2,10 @@ import styles from './IndiGameOrderByList.module.css';
 
 const IndiGameOrderByList = ({ orderBy, setOrderBy, setShow, handleSort }) =>
     orderBy.map((order, index) => (
-        <li className={styles.orderOption} key={order.id}>
+        <li
+            className={styles.orderOption}
+            key={order.id}
+        >
             <button
                 className={orderBy[index].active ? [styles.optionBtn, styles.activeBtn].join(' ') : styles.optionBtn}
                 type="button"

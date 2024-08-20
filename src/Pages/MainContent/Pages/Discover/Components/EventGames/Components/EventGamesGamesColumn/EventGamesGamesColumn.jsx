@@ -8,15 +8,26 @@ export default function EventGamesGamesColumn({ header, games, bar, colNum, card
     return (
         <li className={colNum === cardPosition ? styles.GameColumn : [styles.GameColumn, styles.Opacity0].join(' ')}>
             <div className={styles.heading}>
-                <h2>{header}</h2>
-                <button ref={btnRef} type="button">
+                <h2>
+                    {header}
+                </h2>
+
+                <button
+                    ref={btnRef}
+                    type="button"
+                >
                     View More
                     <ButtonWaterEffect btnRef={btnRef} />
                 </button>
             </div>
+
             <ul className={`${bar ? `${styles.bar} ` : ''}${styles.column}`}>
                 {games.map(game => (
-                    <GameInColumn key={game.id} length={games.length} game={game} />
+                    <GameInColumn
+                        game={game}
+                        key={game.id}
+                        length={games.length}
+                    />
                 ))}
             </ul>
         </li>

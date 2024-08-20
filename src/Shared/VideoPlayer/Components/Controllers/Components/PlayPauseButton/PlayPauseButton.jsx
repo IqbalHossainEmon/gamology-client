@@ -3,8 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './PlayPauseButton.module.css';
 
 export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, canPlay }) {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const isPlayingRef = useRef(isPlaying);
+    const [isPlaying, setIsPlaying] = useState(false),
+     isPlayingRef = useRef(isPlaying);
     isPlayingRef.current = isPlaying;
 
     const eventRefs = useRef({
@@ -53,7 +53,11 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
     }, [video]);
 
     return (
-        <button type="button" onClick={handleCanToggle} className={styles.playPauseButton}>
+        <button
+            className={styles.playPauseButton}
+            onClick={handleCanToggle}
+            type="button"
+        >
             <span>
                 <svg viewBox={isPlaying ? '0 0 10 14' : '0 0 11 14'}>
                     <path

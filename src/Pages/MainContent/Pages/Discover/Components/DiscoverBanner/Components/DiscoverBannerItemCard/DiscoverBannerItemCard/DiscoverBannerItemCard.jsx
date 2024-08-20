@@ -2,10 +2,10 @@ import CardNameContainer from '../Components/CardNameContainer/CardNameContainer
 import styles from './DiscoverBannerItemCard.module.css';
 
 export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosition, isPause }) {
-    const { carouselThumb, id, name } = banner;
+    const { carouselThumb, id, name } = banner,
 
-    // this function takes card positions in the screen and returns a object where cards position styles and function is added as element
-    const handleCardPosition = num => {
+    // This function takes card positions in the screen and returns a object where cards position styles and function is added as element
+     handleCardPosition = num => {
         switch (num) {
             case 0:
                 return styles.first;
@@ -20,9 +20,9 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
             default:
                 return '';
         }
-    };
+    },
 
-    const handleOnClickParam = num => {
+     handleOnClickParam = num => {
         if (num > 2) {
             return 'prev';
         }
@@ -30,9 +30,9 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
             return 'next';
         }
         return '';
-    };
+    },
 
-    const handleCardClick = () => {
+     handleCardClick = () => {
         if (cardsPosition[id] === 2 || cardsPosition[id] === 3) {
             handleClick({ type: handleOnClickParam(cardsPosition[id]) });
             setTimeout(() => {
@@ -44,15 +44,26 @@ export default function DiscoverBannerItemCard({ banner, handleClick, cardsPosit
     };
 
     return (
-        <li className={`${styles.cards} hover-shadow`} id={handleCardPosition(cardsPosition[id])}>
+        <li
+            className={`${styles.cards} hover-shadow`}
+            id={handleCardPosition(cardsPosition[id])}
+        >
             <button
                 className={styles.cardBtn}
                 type="button"
                 {...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}
             >
-                <img src={carouselThumb} alt={`${name} card-${id}`} />
+                <img
+                    alt={`${name} card-${id}`}
+                    src={carouselThumb}
+                />
             </button>
-            <CardNameContainer state={cardsPosition[id] === 0} name={name} isPause={isPause} />
+
+            <CardNameContainer
+                isPause={isPause}
+                name={name}
+                state={cardsPosition[id] === 0}
+            />
         </li>
     );
 }

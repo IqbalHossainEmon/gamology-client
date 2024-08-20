@@ -3,22 +3,22 @@ import { useVideoPlayerProgress, useVideoPlayerSetProgress } from '../../../../.
 import VideoSlider from '../VideoSlider/VideoSlider';
 
 export default function VideoProgressBar({ video, videoContainer, src, isSeekedRef, changePause }) {
-    const interval = useRef(null);
-    const [buffer, setBuffer] = useState(0);
+    const interval = useRef(null),
+     [buffer, setBuffer] = useState(0),
 
-    const videoRef = useRef(video.current);
+     videoRef = useRef(video.current),
 
-    const progress = useVideoPlayerProgress();
-    const setProgress = useVideoPlayerSetProgress();
+     progress = useVideoPlayerProgress(),
+     setProgress = useVideoPlayerSetProgress(),
 
-    const progressRef = useRef(progress);
+     progressRef = useRef(progress);
     progressRef.current = progress;
 
-    const isPlaying = useRef(false);
-    const isMouseDown = useRef(false);
+    const isPlaying = useRef(false),
+     isMouseDown = useRef(false),
 
-    const shouldPlay = useRef(false);
-    const eventRefs = useRef({
+     shouldPlay = useRef(false),
+     eventRefs = useRef({
         progressUpdate: () => {},
         progressBufferUpdate: () => {},
         handleError: () => {},
@@ -73,25 +73,25 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
     }, []);
 
     useEffect(() => {
-        const { progressUpdate, progressBufferUpdate, handleError, handlePlaying, handlePause } = eventRefs.current;
+        const { progressUpdate, progressBufferUpdate, handleError, handlePlaying, handlePause } = eventRefs.current,
 
-        const addEventListeners = () => {
+         addEventListeners = () => {
             videoRef.current.addEventListener('timeupdate', progressUpdate);
             videoRef.current.addEventListener('progress', progressBufferUpdate);
             videoRef.current.addEventListener('error', handleError);
             videoRef.current.addEventListener('playing', handlePlaying);
             videoRef.current.addEventListener('pause', handlePause);
-        };
+        },
 
-        const removeEventListeners = () => {
+         removeEventListeners = () => {
             videoRef.current.removeEventListener('timeupdate', progressUpdate);
             videoRef.current.removeEventListener('progress', progressBufferUpdate);
             videoRef.current.removeEventListener('error', handleError);
             videoRef.current.removeEventListener('playing', handlePlaying);
             videoRef.current.removeEventListener('pause', handlePause);
-        };
+        },
 
-        const initializeInterval = () => {
+         initializeInterval = () => {
             interval.count = 0;
             interval.current = setInterval(() => {
                 if (videoRef.current.buffered.length === 0) {
@@ -126,19 +126,19 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
         };
     }, [src, video]);
 
-    // set current time but after 100ms of mouse move else clear the timer
+    // Set current time but after 100ms of mouse move else clear the timer
     const setCurrentTime = useCallback(val => {
         videoRef.current.currentTime = (val / 100) * videoRef.current.duration;
-    }, []);
+    }, []),
 
-    const handleSetProgression = useCallback(
+     handleSetProgression = useCallback(
         val => {
             setProgress(val);
         },
         [setProgress]
-    );
+    ),
 
-    const handleMouseUp = useCallback(() => {
+     handleMouseUp = useCallback(() => {
         isMouseDown.current = false;
 
         setCurrentTime(progressRef.current);
@@ -147,9 +147,9 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
             videoRef.current.play();
             shouldPlay.current = false;
         }
-    }, [setCurrentTime]);
+    }, [setCurrentTime]),
 
-    const handleMouseDown = useCallback(() => {
+     handleMouseDown = useCallback(() => {
         if (!videoRef.current.paused) {
             isSeekedRef.current = false;
         }
@@ -164,14 +164,14 @@ export default function VideoProgressBar({ video, videoContainer, src, isSeekedR
 
     return (
         <VideoSlider
-            changePause={changePause}
-            videoContainer={videoContainer}
-            isBuffer
-            position={progress}
             buffer={buffer}
+            changePause={changePause}
             handleMouseDown={handleMouseDown}
             handleMouseUp={handleMouseUp}
+            isBuffer
+            position={progress}
             setPosition={handleSetProgression}
+            videoContainer={videoContainer}
         />
     );
 }

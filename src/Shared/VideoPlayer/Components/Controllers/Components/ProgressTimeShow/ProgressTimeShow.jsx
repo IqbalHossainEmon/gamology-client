@@ -4,16 +4,16 @@ import { useVideoPlayerProgress } from '../../../../../../Hooks/useVideoPlayerPr
 import styles from './ProgressTimeShow.module.css';
 
 export default function ProgressTimeShow({ video }) {
-    const formatTime = useTimeFormat();
+    const formatTime = useTimeFormat(),
 
-    const time = useVideoPlayerProgress();
+     time = useVideoPlayerProgress(),
 
-    const videoRef = useRef(video.current);
-    const eventRef = useRef({
+     videoRef = useRef(video.current),
+     eventRef = useRef({
         loadUpdate: () => {},
-    });
+    }),
 
-    const [durationTime, setDurationTime] = useState(0);
+     [durationTime, setDurationTime] = useState(0);
 
     eventRef.current.loadUpdate = useCallback(({ target: { duration } }) => {
         setDurationTime(duration);
@@ -35,7 +35,10 @@ export default function ProgressTimeShow({ video }) {
     return (
         <div className={styles.progressTimeShow}>
             <p>
-                {time && durationTime ? formatTime((time / 100) * durationTime) : '0:00'}/
+                {time && durationTime ? formatTime((time / 100) * durationTime) : '0:00'}
+
+                /
+
                 {durationTime ? formatTime(durationTime) : '0:00'}
             </p>
         </div>

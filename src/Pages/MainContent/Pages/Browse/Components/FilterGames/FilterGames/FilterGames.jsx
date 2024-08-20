@@ -103,31 +103,35 @@ const options = [
 ];
 
 export default function FilterGames({ filterState, dispatch, limits }) {
-    const [state, setState] = useState(filterState);
+    const [state, setState] = useState(filterState),
 
-    const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
-    const { filter } = filterSortState;
+     { filterSortState, setFilterSort, filterSortRef } = useFilterSortState(),
+     { filter } = filterSortState,
 
-    const screenWidth = useScreenWidth();
+     screenWidth = useScreenWidth();
 
     return (
         <aside
-            ref={filterSortRef}
             className={`${styles.FilterGames} ${filter && screenWidth < 769 ? styles.hidden : styles.show}`}
+            ref={filterSortRef}
         >
             <FilterMobileScroll
-                screenWidth={screenWidth}
-                options={options}
-                state={state}
-                setState={setState}
-                limits={limits}
-                setFilterSort={setFilterSort}
                 dispatch={dispatch}
                 filterState={filterState}
+                limits={limits}
+                options={options}
+                screenWidth={screenWidth}
+                setFilterSort={setFilterSort}
+                setState={setState}
+                state={state}
             />
+
             {screenWidth < 769 && (
                 <div className={styles.closeButton}>
-                    <CloseButton setState={setFilterSort} state="filter" />
+                    <CloseButton
+                        setState={setFilterSort}
+                        state="filter"
+                    />
                 </div>
             )}
         </aside>

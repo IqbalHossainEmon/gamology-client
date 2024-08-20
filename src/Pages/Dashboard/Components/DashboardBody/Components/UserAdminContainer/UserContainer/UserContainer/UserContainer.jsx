@@ -17,24 +17,26 @@ for (let i = 0; i < 96; i++) {
 	userDetail.push(user);
 }
 
-const UserContainer = () => {
-	const [users, setUsers] = useState([]);
+function UserContainer() {
+	const [users, setUsers] = useState([]),
 
-	const { setDashboardContent, setDashboardModal } = useDashboardModalHook();
+	 { setDashboardContent, setDashboardModal } = useDashboardModalHook();
 
 	useEffect(() => {
 		setUsers(userDetail);
 	}, []);
 
 	return (
-		<div className={styles.userContainer}>
-			{users.map(user => (
-				<UserCard key={user.id} data={user}>
-					{props => (
-						<CardDotContainer
-							parentRef={props}
-							item={user}
-							lists={[
+    <div className={styles.userContainer}>
+        {users.map(user => (
+            <UserCard
+                data={user}
+                key={user.id}
+            >
+                {props => (
+                    <CardDotContainer
+                        item={user}
+                        lists={[
 								{
 									id: 1,
 									name: 'Edit',
@@ -48,22 +50,25 @@ const UserContainer = () => {
 										setDashboardContent({
 											modalTitle: 'Delete User',
 											modalBody: (
-												<div>
-													<p>
-														Are you sure you want to delete{' '}
-														<span className={styles.nameContainer}>
-															{user.name}
-														</span>
-														?
-													</p>
-													<UserInfo user={user} />
-												</div>
+    <div>
+        <p>
+            Are you sure you want to delete
+            {' '}
+
+            <span className={styles.nameContainer}>
+                {user.name}
+            </span>
+            ?
+        </p>
+
+        <UserInfo user={user} />
+    </div>
 											),
 											modalFooter: (
-												<UserDeleteModalBody
-													type='delete'
-													detail={detail}
-												/>
+    <UserDeleteModalBody
+        detail={detail}
+        type='delete'
+    />
 											),
 										});
 									},
@@ -76,32 +81,38 @@ const UserContainer = () => {
 										setDashboardContent({
 											modalTitle: 'Make Admin',
 											modalBody: (
-												<div>
-													<p>
-														Are you sure you want to make{' '}
-														<span className={styles.nameContainer}>
-															{user.name}
-														</span>{' '}
-														an admin?
-													</p>
-													<UserInfo user={user} />
-												</div>
+    <div>
+        <p>
+            Are you sure you want to make
+            {' '}
+
+            <span className={styles.nameContainer}>
+                {user.name}
+            </span>
+
+            {' '}
+            an admin?
+        </p>
+
+        <UserInfo user={user} />
+    </div>
 											),
 											modalFooter: (
-												<UserDeleteModalBody
-													type='makeAdmin'
-													detail={detail}
-												/>
+    <UserDeleteModalBody
+        detail={detail}
+        type='makeAdmin'
+    />
 											),
 										});
 									},
 								},
 							]}
-						/>
+                        parentRef={props}
+                    />
 					)}
-				</UserCard>
+            </UserCard>
 			))}
-		</div>
+    </div>
 	);
-};
+}
 export default UserContainer;

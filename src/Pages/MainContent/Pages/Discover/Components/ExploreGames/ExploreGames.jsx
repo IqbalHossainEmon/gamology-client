@@ -11,10 +11,10 @@ const fetched = {
 };
 
 export default function ExploreGames() {
-    const buttonRef = useRef(null);
+    const buttonRef = useRef(null),
 
-    const screenWidth = useScreenWidth();
-    const [data, setData] = useState({});
+     screenWidth = useScreenWidth(),
+     [data, setData] = useState({});
 
     useEffect(() => {
         setData(fetched);
@@ -31,11 +31,25 @@ export default function ExploreGames() {
                 }
             >
                 <div className={styles.ExploreTexts}>
-                    <h4>{data.heading}</h4>
-                    <p>{data.details}</p>
-                    <a href="#d" ref={buttonRef} type="button">
+                    <h4>
+                        {data.heading}
+                    </h4>
+
+                    <p>
+                        {data.details}
+                    </p>
+
+                    <a
+                        href="#d"
+                        ref={buttonRef}
+                        type="button"
+                    >
                         Learn More
-                        <ButtonWaterEffect btnRef={buttonRef} backGround="white" long />
+                        <ButtonWaterEffect
+                            backGround="white"
+                            btnRef={buttonRef}
+                            long
+                        />
                     </a>
                 </div>
             </div>

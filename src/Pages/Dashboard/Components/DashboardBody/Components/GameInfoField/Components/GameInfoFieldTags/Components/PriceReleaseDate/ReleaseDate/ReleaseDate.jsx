@@ -21,13 +21,13 @@ function getDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
 }
 
-const ReleaseDate = ({ gameInfo, errorChange, errorMessage, defaultReleaseDate, hasDefault }) => {
-    const [errorShow, setErrorShow] = useState(false);
+function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, hasDefault }) {
+    const [errorShow, setErrorShow] = useState(false),
 
-    const [day, setDay] = useState({ day: 0, max: 31 });
+     [day, setDay] = useState({ day: 0, max: 31 });
 
     useEffect(() => {
-        if (errorChange && errorMessage) setErrorShow(true);
+        if (errorChange && errorMessage) {setErrorShow(true);}
     }, [errorChange, errorMessage]);
 
     const handleReleaseValue = (value, name) => {
@@ -60,60 +60,69 @@ const ReleaseDate = ({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
     return (
         <div>
             <div className={styles.releaseDate}>
-                <p>Release</p>
+                <p>
+                    Release
+                </p>
+
                 <div className={styles.dateContainer}>
                     <div className={`${styles.releaseDay} ${styles.releaseComponent}`}>
                         <SelectionField
+                            defaultValue={hasDefault ? defaultReleaseDate.day : ''}
+                            htmlFor={1}
+                            list={Array.from(Array(day.max), (_, idx) => ++idx)}
+                            name="day"
                             onFocusClick={() => {
                                 if (errorShow) {
                                     setErrorShow(false);
                                 }
                             }}
-                            list={Array.from(Array(day.max), (_, idx) => ++idx)}
-                            htmlFor={1}
-                            placeholder="Day"
-                            defaultValue={hasDefault ? defaultReleaseDate.day : ''}
-                            setState={handleReleaseValue}
-                            name="day"
                             parentSetValue={day.day}
+                            placeholder="Day"
+                            setState={handleReleaseValue}
                         />
                     </div>
+
                     <div className={`${styles.releaseMonth} ${styles.releaseComponent}`}>
                         <SelectionField
-                            onFocusClick={() => {
-                                if (errorShow) {
-                                    setErrorShow(false);
-                                }
-                            }}
-                            list={months}
                             defaultValue={hasDefault ? months[defaultReleaseDate.month - 1] : ''}
                             htmlFor={2}
-                            placeholder="Month"
-                            setState={handleReleaseValue}
+                            list={months}
                             name="month"
-                        />
-                    </div>
-                    <div className={`${styles.releaseYear} ${styles.releaseComponent}`}>
-                        <SelectionField
                             onFocusClick={() => {
                                 if (errorShow) {
                                     setErrorShow(false);
                                 }
                             }}
-                            list={Array.from(Array(100), (_, idx) => new Date().getFullYear() + 1 - ++idx)}
-                            htmlFor={3}
+                            placeholder="Month"
+                            setState={handleReleaseValue}
+                        />
+                    </div>
+
+                    <div className={`${styles.releaseYear} ${styles.releaseComponent}`}>
+                        <SelectionField
                             defaultValue={hasDefault ? defaultReleaseDate.year : ''}
+                            htmlFor={3}
+                            list={Array.from(Array(100), (_, idx) => new Date().getFullYear() + 1 - ++idx)}
+                            name="year"
+                            onFocusClick={() => {
+                                if (errorShow) {
+                                    setErrorShow(false);
+                                }
+                            }}
                             placeholder="Year"
                             setState={handleReleaseValue}
-                            name="year"
                         />
                     </div>
                 </div>
             </div>
+
             <div className={styles.errorContainer}>
-                <ErrorMessage enable={errorShow} errorMessage={errorMessage} />
+                <ErrorMessage
+                    enable={errorShow}
+                    errorMessage={errorMessage}
+                />
             </div>
         </div>
     );
-};
+}
 export default ReleaseDate;

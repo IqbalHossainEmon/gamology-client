@@ -8,27 +8,27 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 		knob1: 0,
 		knob2: 100,
 		transition: false,
-	});
+	}),
 
-	const { knob1, knob2 } = state;
-	const { float, rangeName } = option;
+	 { knob1, knob2 } = state,
+	 { float, rangeName } = option,
 
-	const leftInputRef = useRef(null);
-	const rightInputRef = useRef(null);
-	const singleStepRef = useRef(0);
+	 leftInputRef = useRef(null),
+	 rightInputRef = useRef(null),
+	 singleStepRef = useRef(0),
 
-	const disableState = typeof limit !== 'object' || limit.higher <= limit.lower || disabled;
+	 disableState = typeof limit !== 'object' || limit.higher <= limit.lower || disabled,
 
-	const bigger = parseFloat(
+	 bigger = parseFloat(
 		((knob1 > knob2 ? knob1 : knob2) / singleStepRef.current + limit.lower).toFixed(float)
-	);
-	const smaller = parseFloat(
+	),
+	 smaller = parseFloat(
 		(((knob1 < knob2 ? knob1 : knob2) / singleStepRef.current || 0) + limit.lower).toFixed(
 			float
 		)
-	);
+	),
 
-	const stateRef = useRef({ bigger, smaller });
+	 stateRef = useRef({ bigger, smaller });
 	stateRef.current.bigger = bigger;
 	stateRef.current.smaller = smaller;
 
@@ -64,29 +64,33 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 		};
 	}
 	return (
-		<div className={styles.filterRange} {...(disableState && { disabled: true })}>
-			<RangeField
-				leftInputRef={leftInputRef}
-				rightInputRef={rightInputRef}
-				disabled={disableState}
-				conditionStep={option.stepCondition}
-				limit={limit}
-				setState={setState}
-				state={state}
-				singleStepRef={singleStepRef}
-				handleSetValue={eventRef.current.handleSetValue}
-			/>
-			<RangeInput
-				disabled={disableState}
-				leftInputRef={leftInputRef}
-				rightInputRef={rightInputRef}
-				limit={limit}
-				float={float}
-				state={{ bigger, smaller }}
-				setState={setState}
-				singleStepRef={singleStepRef}
-				handleSetValue={eventRef.current.handleSetValue}
-			/>
-		</div>
+    <div
+        className={styles.filterRange}
+        {...(disableState && { disabled: true })}
+    >
+        <RangeField
+            conditionStep={option.stepCondition}
+            disabled={disableState}
+            handleSetValue={eventRef.current.handleSetValue}
+            leftInputRef={leftInputRef}
+            limit={limit}
+            rightInputRef={rightInputRef}
+            setState={setState}
+            singleStepRef={singleStepRef}
+            state={state}
+        />
+
+        <RangeInput
+            disabled={disableState}
+            float={float}
+            handleSetValue={eventRef.current.handleSetValue}
+            leftInputRef={leftInputRef}
+            limit={limit}
+            rightInputRef={rightInputRef}
+            setState={setState}
+            singleStepRef={singleStepRef}
+            state={{ bigger, smaller }}
+        />
+    </div>
 	);
 }

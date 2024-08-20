@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function useAppearDisappear(state, isAppear, condition = true) {
-	const [show, setShow] = useState(false);
-	const [fadeIn, setFadeIn] = useState(false);
+	const [show, setShow] = useState(false),
+	 [fadeIn, setFadeIn] = useState(false),
 
-	const startTimeRef = useRef(null);
-	const endTimeRef = useRef(null);
-	const prevStateRef = useRef(state);
+	 startTimeRef = useRef(null),
+	 endTimeRef = useRef(null),
+	 prevStateRef = useRef(state),
 
-	const eventRefs = useRef(null);
+	 eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {

@@ -4,7 +4,7 @@ import ButtonForGameInfoFieldSection from '../../ButtonForGameInfoFieldSection/B
 import GameInfoFieldDescription from '../Components/GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 
-const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessages, hasDefault, defaultGameDescriptions }) => {
+function GameInfoFieldDescriptions({ gameDescriptions, errorChange, errorMessages, hasDefault, defaultGameDescriptions }) {
     const [array, setArray] = useState(
         hasDefault
             ? defaultGameDescriptions.descriptions.map((desc, index) => {
@@ -21,40 +21,48 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                   return item;
               })
             : [{ id: 0, mainHeader: true, description: true }]
-    );
+    ),
 
-    const handleSetSortDescription = (value, name) => {
+     handleSetSortDescription = (value, name) => {
         gameDescriptions.current.gameDescriptions[name] = value;
     };
 
     return (
         <section className={styles.addGameDescriptions}>
-            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s Descriptions</h3>
+            <h3 className={styles.header}>
+                {hasDefault ? 'Edit' : 'Add'}
+
+                {' '}
+                Game&#39;s Descriptions
+            </h3>
+
             <div className={styles.sortDescription}>
                 <TextField
-                    field="textarea"
-                    setState={handleSetSortDescription}
-                    placeholder="Short description..."
-                    htmlFor="short_description"
-                    name="shortDesc"
                     errorChange={errorChange}
                     errorMessage={errorMessages.current.gameDescriptionsError.sortDesc}
+                    field="textarea"
+                    htmlFor="short_description"
+                    name="shortDesc"
+                    placeholder="Short description..."
+                    setState={handleSetSortDescription}
                     {...(hasDefault && { defaultValue: defaultGameDescriptions.shortDesc })}
                 />
             </div>
+
             <div>
                 {array.map((item, index) => (
                     <GameInfoFieldDescription
-                        key={`${item.id}`}
-                        item={item}
-                        index={index}
-                        gameDescriptions={gameDescriptions}
                         errorChange={errorChange}
                         errorMessages={errorMessages}
+                        gameDescriptions={gameDescriptions}
+                        index={index}
+                        item={item}
+                        key={`${item.id}`}
                         {...(hasDefault && { defaultData: defaultGameDescriptions.descriptions[index] })}
                     />
                 ))}
             </div>
+
             <div className={styles.buttonContainer}>
                 <div className={styles.btn}>
                     <ButtonForGameInfoFieldSection
@@ -65,6 +73,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         text="Add more +"
                     />
                 </div>
+
                 <div className={styles.btn}>
                     <ButtonForGameInfoFieldSection
                         {...(array.length === 1 && { disabled: true })}
@@ -78,6 +87,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         text="Remove last one -"
                     />
                 </div>
+
                 <div className={styles.mainBtn}>
                     <ButtonForGameInfoFieldSection
                         {...(array[array.length - 1].main === true && {
@@ -96,6 +106,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         text="Add Main Header +"
                     />
                 </div>
+
                 <div className={styles.mainBtn}>
                     <ButtonForGameInfoFieldSection
                         {...((array.length === 1 || !array[array.length - 1].main) && {
@@ -114,6 +125,7 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
                         text="Remove Main Header -"
                     />
                 </div>
+
                 <div className={styles.mainBtn}>
                     <ButtonForGameInfoFieldSection
                         onClick={() => {
@@ -126,6 +138,6 @@ const GameInfoFieldDescriptions = ({ gameDescriptions, errorChange, errorMessage
             </div>
         </section>
     );
-};
+}
 
 export default GameInfoFieldDescriptions;

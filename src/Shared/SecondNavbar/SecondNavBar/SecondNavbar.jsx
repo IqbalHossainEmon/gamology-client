@@ -8,16 +8,25 @@ import SecondNavRightLinks from '../Components/SecondNavRightLinks/SecondNavRigh
 import styles from './SecondNavbar.module.css';
 
 export default function SecondNavbar() {
-    const screenWidth = useScreenWidth();
-    const [navShow, setNavShow] = useState(false);
+    const screenWidth = useScreenWidth(),
+     [navShow, setNavShow] = useState(false);
 
     return (
         <section className={styles.SecondNavContainer}>
             <div className={styles.SecondNavbar}>
-                <SearchField {...(screenWidth <= 768 && { setNavShow })} setChangedValue={e => console.log(e)} />
-                <SecondNavLeftLinks {...(screenWidth <= 768 && { setNavShow })} screenWidth={screenWidth} />
+                <SearchField
+                    {...(screenWidth <= 768 && { setNavShow })}
+                    setChangedValue={e => console.log(e)}
+                />
+
+                <SecondNavLeftLinks
+                    {...(screenWidth <= 768 && { setNavShow })}
+                    screenWidth={screenWidth}
+                />
+
                 <SecondNavRightLinks screenWidth={screenWidth} />
             </div>
+
             <ScreenShadow show={navShow} />
         </section>
     );

@@ -6,7 +6,11 @@ export default function IndiGameViewMoreButton({ handleChange }) {
     const btnRef = useRef(null);
     return (
         <div className={styles.individualGameViewMoreButton}>
-            <button ref={btnRef} onClick={() => handleChange({ type: 'viewMore' })} type="button">
+            <button
+                onClick={() => handleChange({ type: 'viewMore' })}
+                ref={btnRef}
+                type="button"
+            >
                 View More &rarr;
                 <ButtonWaterEffect btnRef={btnRef} />
             </button>

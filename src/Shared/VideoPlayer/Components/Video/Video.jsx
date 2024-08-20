@@ -6,16 +6,16 @@ function Video({ videoContainer, src, captions, className }, ref) {
         isFullScreen: false,
         width: 0,
         height: 0,
-    });
+    }),
 
-    const eventRef = useRef({
+     eventRef = useRef({
         handleSetFullscreenSize: () => {},
         handleFullscreenChange: () => {},
     });
 
     eventRef.current.handleSetFullscreenSize = useCallback(() => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const width = window.innerWidth,
+         height = window.innerHeight;
 
         if (height > width / 1.7777778) {
             setFullscreenSize({
@@ -43,16 +43,16 @@ function Video({ videoContainer, src, captions, className }, ref) {
     }, []);
 
     useEffect(() => {
-        const { handleFullscreenChange } = eventRef.current;
+        const { handleFullscreenChange } = eventRef.current,
 
-        const addFullscreenEventListeners = element => {
+         addFullscreenEventListeners = element => {
             element.addEventListener('fullscreenchange', handleFullscreenChange);
             element.addEventListener('mozfullscreenchange', handleFullscreenChange);
             element.addEventListener('MSFullscreenChange', handleFullscreenChange);
             element.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-        };
+        },
 
-        const removeFullscreenEventListeners = element => {
+         removeFullscreenEventListeners = element => {
             element.removeEventListener('fullscreenchange', handleFullscreenChange);
             element.removeEventListener('mozfullscreenchange', handleFullscreenChange);
             element.removeEventListener('MSFullscreenChange', handleFullscreenChange);
@@ -75,12 +75,12 @@ function Video({ videoContainer, src, captions, className }, ref) {
 
     return (
         <video
-            crossOrigin="anonymous"
-            ref={ref}
-            preload="auto"
             className={[className, styles.video].join(' ')}
-            src={src}
+            crossOrigin="anonymous"
             muted
+            preload="auto"
+            ref={ref}
+            src={src}
             {...(fullscreenSize.isFullScreen && {
                 style: {
                     width: `${fullscreenSize.width}px`,
@@ -88,8 +88,14 @@ function Video({ videoContainer, src, captions, className }, ref) {
                 },
             })}
         >
-            <track kind="captions" src={captions} />
-            <p>Your browser does not support the video tag.</p>
+            <track
+                kind="captions"
+                src={captions}
+            />
+
+            <p>
+                Your browser does not support the video tag.
+            </p>
         </video>
     );
 }

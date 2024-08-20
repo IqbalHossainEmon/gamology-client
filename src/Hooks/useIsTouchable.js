@@ -1,5 +1,5 @@
-const isTouchable = () => window.matchMedia('(any-hover: none)').matches;
+const isTouchable = () => window.matchMedia('(any-hover: none)').matches,
 
-const useIsTouchAble = () => isTouchable;
+ useIsTouchAble = () => isTouchable;
 
 export default useIsTouchAble;

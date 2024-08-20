@@ -4,20 +4,20 @@ import useDropDownHide from '../../../Hooks/useDropDownHide';
 import useIsTouchAble from '../../../Hooks/useIsTouchable';
 import ImagePreview from '../../ImagePreview/ImagePreview';
 
-const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidth, ...rest }) => {
-	const [showPreview, setShowPreview] = useState(false);
+function ImagePreviewContainer({ containerRef, btnRef, previewBtnRef, screenWidth, ...rest }) {
+	const [showPreview, setShowPreview] = useState(false),
 
-	const showPreviewRef = useRef(showPreview);
+	 showPreviewRef = useRef(showPreview);
 	showPreviewRef.current = showPreview;
 
-	const isTouchAble = useIsTouchAble();
+	const isTouchAble = useIsTouchAble(),
 
-	const { show, fadeIn } = useAppearDisappear(showPreview);
+	 { show, fadeIn } = useAppearDisappear(showPreview),
 
-	const { showMenu, stopMenu, setElement } = useDropDownHide(setShowPreview);
+	 { showMenu, stopMenu, setElement } = useDropDownHide(setShowPreview),
 
-	const timerId = useRef(null);
-	const eventRefs = useRef(null);
+	 timerId = useRef(null),
+	 eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -50,29 +50,29 @@ const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidt
 		};
 	}
 	useEffect(() => {
-		const previewBtn = previewBtnRef?.current;
-		const container = containerRef?.current;
-		const btn = btnRef?.current;
-		let isEventAdded = false;
-		let isMouseEventAdded = true;
-		const touchAble = isTouchAble();
+		const previewBtn = previewBtnRef?.current,
+		 container = containerRef?.current,
+		 btn = btnRef?.current;
+		let isEventAdded = false,
+		 isMouseEventAdded = true;
+		const touchAble = isTouchAble(),
 
-		const touchEvent = () => {
+		 touchEvent = () => {
 			previewBtn.addEventListener('click', eventRefs.current.handleToggle);
 			setElement(previewBtn);
 			isEventAdded = true;
 			isMouseEventAdded = false;
-		};
+		},
 
-		const mouseEvent = () => {
+		 mouseEvent = () => {
 			container.addEventListener('mouseover', eventRefs.current.handleHover);
 			container.addEventListener('mouseleave', eventRefs.current.handleLeave);
 			btn.addEventListener('click', eventRefs.current.handleLeave);
 			isEventAdded = true;
 			isMouseEventAdded = true;
-		};
+		},
 
-		const removeMouseEvent = () => {
+		 removeMouseEvent = () => {
 			container.removeEventListener('mouseover', eventRefs.current.handleHover);
 			container.removeEventListener('mouseleave', eventRefs.current.handleLeave);
 			btn.removeEventListener('click', eventRefs.current.handleLeave);
@@ -96,6 +96,10 @@ const ImagePreviewContainer = ({ containerRef, btnRef, previewBtnRef, screenWidt
 		}
 		return removeMouseEvent;
 	}, [isTouchAble, previewBtnRef, containerRef, btnRef, screenWidth, setElement]);
-	return show && <ImagePreview containerRef={containerRef} show={fadeIn} {...rest} />;
-};
+	return show && <ImagePreview
+    containerRef={containerRef}
+    show={fadeIn}
+    {...rest}
+	               />;
+}
 export default ImagePreviewContainer;

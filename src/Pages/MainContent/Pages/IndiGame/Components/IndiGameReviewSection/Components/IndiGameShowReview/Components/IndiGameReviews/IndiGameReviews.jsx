@@ -5,7 +5,12 @@ export default function IndiGameReviews({ reviews }) {
     return (
         <div className={styles.IndiGameReviews}>
             {reviews.map((review, i) => (
-                <IndiGameReview key={review.id} review={review} length={reviews.length} index={i} />
+                <IndiGameReview
+                    index={i}
+                    key={review.id}
+                    length={reviews.length}
+                    review={review}
+                />
             ))}
         </div>
     );

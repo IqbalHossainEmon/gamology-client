@@ -2,7 +2,7 @@ import useAppearDisappear from '../../../Hooks/useAppearDisappear';
 import ScrollBar from '../../ScrollBar/ScrollBar';
 import styles from './SelectionFieldList.module.css';
 
-const SelectionFieldList = ({
+function SelectionFieldList({
     state,
     setShow,
     positionRef,
@@ -14,7 +14,7 @@ const SelectionFieldList = ({
     name,
     value,
     none,
-}) => {
+}) {
     const { show, fadeIn } = useAppearDisappear(state);
     return (
         show && (
@@ -22,48 +22,61 @@ const SelectionFieldList = ({
                 className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
             >
                 <div
-                    ref={parentRef}
                     className={styles.listScrollContainer}
+                    ref={parentRef}
                     {...(positionRef.current.height && { style: { maxHeight: `${positionRef.current.height}px` } })}
                 >
                     <div ref={childRef}>
-                        {none && (
-                            <li className={styles.item} {...(value === '' && { id: styles.selected })}>
-                                <button
-                                    tabIndex={show ? 0 : -1}
-                                    type="button"
-                                    onClick={() => {
+                        {none ? <li
+                            className={styles.item}
+                            {...(value === '' && { id: styles.selected })}
+                                >
+                            <button
+                                onClick={() => {
                                         setShow(false);
                                         setValue('');
                                         setState('', name);
                                     }}
-                                >
-                                    None
-                                </button>
-                            </li>
-                        )}
+                                tabIndex={show ? 0 : -1}
+                                type="button"
+                            >
+                                None
+                            </button>
+                        </li> : null}
+
                         {list.map(item => (
-                            <li className={styles.item} {...(value === item && { id: styles.selected })} key={item}>
+                            <li
+                                className={styles.item}
+                                {...(value === item && { id: styles.selected })}
+                                key={item}
+                            >
                                 <button
                                     tabIndex={show ? 0 : -1}
                                     {...(value === item && { disabled: true })}
-                                    type="button"
                                     onClick={() => {
                                         setShow(false);
                                         setValue(item);
                                         setState(item, name);
                                     }}
+                                    type="button"
                                 >
                                     {item}
                                 </button>
                             </li>
                         ))}
-                        {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>}
+
+                        {list.length === 0 && <li className={`${styles.item} ${styles.noDataItem}`}>
+                            No Data
+                                              </li>}
                     </div>
                 </div>
-                <ScrollBar parentRef={parentRef} childRef={childRef} />
+
+                <ScrollBar
+                    childRef={childRef}
+                    parentRef={parentRef}
+                />
             </ul>
         )
     );
-};
+}
 export default SelectionFieldList;

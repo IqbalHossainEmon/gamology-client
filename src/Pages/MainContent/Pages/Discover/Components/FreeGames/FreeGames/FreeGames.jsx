@@ -68,9 +68,9 @@ const data = [
             [23, 12, 2025],
         ],
     },
-];
+],
 
-const getClassName = length => {
+ getClassName = length => {
     switch (length) {
         case 4:
             return styles.games4;
@@ -81,10 +81,10 @@ const getClassName = length => {
         default:
             return styles.games1;
     }
-};
+},
 
-const date = new Date();
-const today = [date.getDate(), date.getMonth() + 1, date.getFullYear()];
+ date = new Date(),
+ today = [date.getDate(), date.getMonth() + 1, date.getFullYear()];
 
 export default function FreeGames() {
     const [items, setItems] = useState([]);
@@ -98,16 +98,33 @@ export default function FreeGames() {
     return (
         <section className={styles.freeGames}>
             <div className={styles.header}>
-                <img src="/assets/images/gift.png" alt="gift" />
-                <h3 className={styles.headerName}>Free games</h3>
-                <button ref={btnRef} className={styles.viewMoreBtn} type="button">
+                <img
+                    alt="gift"
+                    src="/assets/images/gift.png"
+                />
+
+                <h3 className={styles.headerName}>
+                    Free games
+                </h3>
+
+                <button
+                    className={styles.viewMoreBtn}
+                    ref={btnRef}
+                    type="button"
+                >
                     View More
                     <ButtonWaterEffect btnRef={btnRef} />
                 </button>
             </div>
+
             <div className={`${getClassName(items.length)} ${styles.games}`}>
                 {items.map(item => (
-                    <FreeGame key={item.id} length={items.length} data={item} today={today} />
+                    <FreeGame
+                        data={item}
+                        key={item.id}
+                        length={items.length}
+                        today={today}
+                    />
                 ))}
             </div>
         </section>

@@ -13,61 +13,70 @@ export default function GameInfoFieldDetails({ gameInfo, errorChange, errorMessa
 
     return (
         <section className={styles.gameDetails}>
-            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s Details</h3>
+            <h3 className={styles.header}>
+                {hasDefault ? 'Edit' : 'Add'}
+
+                {' '}
+                Game&apos;s Details
+            </h3>
+
             <TextField
-                setState={handleSetValue}
+                errorChange={errorChange}
+                errorMessage={errorMessages.current.gameInfoError.name}
                 field="input"
                 name="name"
                 placeholder="Game's Name"
-                errorChange={errorChange}
-                errorMessage={errorMessages.current.gameInfoError.name}
+                setState={handleSetValue}
                 {...(hasDefault && { defaultValue: defaultGameInfo.name })}
                 htmlFor="gameName"
             />
 
             <div className={styles.flexContainer}>
                 <TextField
-                    setState={handleSetValue}
-                    field="input"
-                    name="developer"
-                    placeholder="Developer"
-                    htmlFor="developer"
                     errorChange={errorChange}
                     errorMessage={errorMessages.current.gameInfoError.developer}
+                    field="input"
+                    htmlFor="developer"
+                    name="developer"
+                    placeholder="Developer"
+                    setState={handleSetValue}
                     {...(hasDefault && { defaultValue: defaultGameInfo.developer })}
                 />
+
                 <TextField
-                    setState={handleSetValue}
                     className={styles.marginRight}
-                    name="publisher"
-                    field="input"
-                    placeholder="Publisher"
-                    htmlFor="publisher"
                     errorChange={errorChange}
                     errorMessage={errorMessages.current.gameInfoError.publisher}
+                    field="input"
+                    htmlFor="publisher"
+                    name="publisher"
+                    placeholder="Publisher"
+                    setState={handleSetValue}
                     {...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
                 />
             </div>
+
             <div className={styles.flexContainer}>
                 <FileUploadButton
-                    htmlFor="gameLogo"
-                    setState={handleSetValue}
-                    name="logo"
                     accept="image/*"
-                    placeholder="Choose cover image"
                     errorChange={errorChange}
                     errorMessage={errorMessages.current.gameInfoError.logo}
+                    htmlFor="gameLogo"
+                    name="logo"
+                    placeholder="Choose cover image"
+                    setState={handleSetValue}
                     {...(hasDefault && { defaultValue: defaultGameInfo.logo })}
                 />
+
                 <FileUploadButton
-                    htmlFor="phoneLogo"
-                    className={styles.marginRight}
-                    setState={handleSetValue}
                     accept="image/*"
-                    name="phoneLogo"
-                    placeholder="Choose portrait cover image"
+                    className={styles.marginRight}
                     errorChange={errorChange}
                     errorMessage={errorMessages.current.gameInfoError.phoneLogo}
+                    htmlFor="phoneLogo"
+                    name="phoneLogo"
+                    placeholder="Choose portrait cover image"
+                    setState={handleSetValue}
                     {...(hasDefault && { defaultValue: defaultGameInfo.phoneLogo })}
                 />
             </div>

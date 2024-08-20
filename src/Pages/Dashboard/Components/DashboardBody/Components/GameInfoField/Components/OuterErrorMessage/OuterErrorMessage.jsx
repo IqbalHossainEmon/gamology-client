@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import styles from './OuterErrorMessage.module.css';
 
-const OuterErrorMessage = ({ errorChange, errorMessage }) => {
-	const [errorShow, setErrorShow] = useState(false);
+function OuterErrorMessage({ errorChange, errorMessage }) {
+	const [errorShow, setErrorShow] = useState(false),
 
-	const timerId = useRef(null);
+	 timerId = useRef(null),
 
-	const eventRef = useRef(null);
+	 eventRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = {
@@ -32,9 +32,12 @@ const OuterErrorMessage = ({ errorChange, errorMessage }) => {
 	}, [errorChange, errorMessage]);
 
 	return (
-		<div className={styles.outerErrorMessage}>
-			<ErrorMessage errorMessage={errorMessage} enable={errorShow} />
-		</div>
+    <div className={styles.outerErrorMessage}>
+        <ErrorMessage
+            enable={errorShow}
+            errorMessage={errorMessage}
+        />
+    </div>
 	);
-};
+}
 export default OuterErrorMessage;

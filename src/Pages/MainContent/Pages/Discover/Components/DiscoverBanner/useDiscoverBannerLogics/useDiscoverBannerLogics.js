@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
 
-const BANNER_COUNT = 5;
-const TIMER_INTERVAL = 9000;
+const BANNER_COUNT = 5,
+ TIMER_INTERVAL = 9000,
 
 // Calculate the next state of the active item
-const increaseByOne = (state, fadeIn) => ({
+ increaseByOne = (state, fadeIn) => ({
 	...state,
 	active: null,
 	fadeIn: (fadeIn + 1) % BANNER_COUNT,
@@ -13,9 +13,9 @@ const increaseByOne = (state, fadeIn) => ({
 	cardsPosition: state.cardsPosition.map(cardPosition =>
 		cardPosition > 0 ? cardPosition - 1 : BANNER_COUNT - 1
 	),
-});
+}),
 
-const decreaseByOne = (state, fadeIn) => ({
+ decreaseByOne = (state, fadeIn) => ({
 	...state,
 	active: null,
 	fadeIn: (fadeIn + (BANNER_COUNT - 1)) % BANNER_COUNT,
@@ -23,10 +23,10 @@ const decreaseByOne = (state, fadeIn) => ({
 	cardsPosition: state.cardsPosition.map(cardPosition =>
 		cardPosition < BANNER_COUNT - 1 ? cardPosition + 1 : 0
 	),
-});
+}),
 
 // Initial state of the banner
-const initialState = {
+ initialState = {
 	data: [],
 	active: 0,
 	fadeIn: 0,
@@ -71,13 +71,13 @@ function reducer(state, action) {
 
 // Custom hook to manage timer
 function useTimer(callbackRef) {
-	const timerRef = useRef(null);
-	const startTimeRef = useRef(null);
-	const screenWidth = useScreenWidth();
-	const screenWidthRef = useRef(screenWidth);
-	const remainingTimeRef = useRef(TIMER_INTERVAL);
+	const timerRef = useRef(null),
+	 startTimeRef = useRef(null),
+	 screenWidth = useScreenWidth(),
+	 screenWidthRef = useRef(screenWidth),
+	 remainingTimeRef = useRef(TIMER_INTERVAL),
 
-	const eventRefs = useRef(null);
+	 eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -133,9 +133,9 @@ function useTimer(callbackRef) {
 
 // Hook to manage banner logic
 export default function useDiscoverBannerLogics() {
-	const dispatchRef = useRef(() => {});
-	const eventRefs = useRef(null);
-	const { start, stop, reset } = useTimer(eventRefs);
+	const dispatchRef = useRef(() => {}),
+	 eventRefs = useRef(null),
+	 { start, stop, reset } = useTimer(eventRefs);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {

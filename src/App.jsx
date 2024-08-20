@@ -4,14 +4,15 @@ import withScreenWidthProvider from './HOC/withScreenWidthProvider';
 import MainContent from './Pages/MainContent/MainContent/MainContent';
 import MainHeader from './Shared/MainHeader/MainHeader';
 
-const App = () => {
+function App() {
 	return (
-		<>
-			<MainHeader />
-			<MainContent />
-		</>
+    <>
+        <MainHeader />
+
+        <MainContent />
+    </>
 	);
-};
+}
 
 const EnhancedApp = withScreenWidthProvider(memo(App));
 

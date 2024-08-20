@@ -2,17 +2,20 @@ import { useState } from 'react';
 
 const withAddGameHandlers = Component =>
     function InnerComponent({ setMainState }) {
-        const [value, setValue] = useState({});
+        const [value, setValue] = useState({}),
 
-        const handleBlur = () => {
+         handleBlur = () => {
             setMainState(value);
-        };
+        },
 
-        const handleSetValue = (v, name) => {
+         handleSetValue = (v, name) => {
             setValue(prev => ({ ...prev, [name]: v }));
         };
 
-        return <Component handleSetValue={handleSetValue} handleBlur={handleBlur} />;
+        return (<Component
+            handleBlur={handleBlur}
+            handleSetValue={handleSetValue}
+        />);
     };
 
 export default withAddGameHandlers;

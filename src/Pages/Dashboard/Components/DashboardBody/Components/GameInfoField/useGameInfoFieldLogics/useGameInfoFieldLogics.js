@@ -2,9 +2,9 @@ const systemReqMustArr = ['CPU', 'Memory', 'GPU', 'Storage'];
 
 export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
     const checkValidation = () => {
-        const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current;
+        const { gameInfo, gameBanner, gameDescriptions, gameSpecifications, gameTags } = gameData.current,
 
-        const { gameInfoError, gameDescriptionsError, gameSpecificationsError, gameTagsError } = errorMessages.current;
+         { gameInfoError, gameDescriptionsError, gameSpecificationsError, gameTagsError } = errorMessages.current;
 
         let error = false;
         // Game Info
@@ -157,15 +157,15 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
             gameSpecificationsError.spec[3] = 'At least One System Requirements is required';
             error = true;
         } else {
-            if (gameSpecificationsError.spec[3]) gameSpecificationsError.spec.pop();
+            if (gameSpecificationsError.spec[3]) {gameSpecificationsError.spec.pop();}
 
             for (let i = 0; i < 3; i++) {
                 const spec = gameSpecifications.spec[i];
                 gameSpecificationsError.spec[i] = { req: { min: [], rec: [] } };
 
                 if (spec.isActive) {
-                    const { systemReq } = spec;
-                    const systemReqLength = systemReq.length;
+                    const { systemReq } = spec,
+                     systemReqLength = systemReq.length;
 
                     for (let k = 0; k < 2; k++) {
                         const mustReqARr = [];
@@ -178,8 +178,8 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
                             let result = '';
                             const { length } = check;
                             if (length > 2) {
-                                const lastItem = check.pop();
-                                const joined = check.join(', ');
+                                const lastItem = check.pop(),
+                                 joined = check.join(', ');
                                 result = `${joined}, and ${lastItem}`;
                             } else {
                                 result = check.join(' and ');
@@ -233,9 +233,9 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
             errorMessages.current.outerErrorMessage = '';
         }
         return error;
-    };
+    },
 
-    const handleUnnecessaryRemove = () => {
+     handleUnnecessaryRemove = () => {
         const cleanData = JSON.parse(JSON.stringify(gameData.current));
         cleanData.gameSpecifications.spec = cleanData.gameSpecifications.spec.filter(spec => spec.isActive);
         cleanData.gameSpecifications.spec = cleanData.gameSpecifications.spec.map(spec => {

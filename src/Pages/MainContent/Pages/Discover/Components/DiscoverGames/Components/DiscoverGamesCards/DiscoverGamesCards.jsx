@@ -4,17 +4,20 @@ import styles from './DiscoverGamesCards.module.css';
 
 function DiscoverGamesCards({ data, style, cardsWidth }, ref) {
     return (
-        <div ref={ref} className={styles.Cards}>
+        <div
+            className={styles.Cards}
+            ref={ref}
+        >
             <ul
                 className={`${style.transition ? `${styles.transition} ` : ''}${styles.CardSlider}`}
                 style={{ translate: `${style.translate}px` }}
             >
                 {data.map(({ id, name, carouselThumb, price, category }) => (
                     <Card
-                        className={styles.card}
-                        style={{ width: `${cardsWidth}px`, marginRight: `${style.margin}px` }}
-                        key={id}
                         cardInfo={{ id, name, carouselThumb, price, category }}
+                        className={styles.card}
+                        key={id}
+                        style={{ width: `${cardsWidth}px`, marginRight: `${style.margin}px` }}
                     />
                 ))}
             </ul>

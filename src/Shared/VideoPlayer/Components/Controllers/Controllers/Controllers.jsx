@@ -10,15 +10,15 @@ import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
 function Controllers({ video, videoContainer, src, isControllerShowing, isChanging, changePause }) {
-    const gearRef = useRef(null);
-    const clickTimerId = useRef(null);
-    const videoRef = useRef(video);
+    const gearRef = useRef(null),
+     clickTimerId = useRef(null),
+     videoRef = useRef(video),
 
-    const isSeekedRef = useRef(true);
-    const canPlay = useRef(true);
-    const shouldPause = useRef(false);
+     isSeekedRef = useRef(true),
+     canPlay = useRef(true),
+     shouldPause = useRef(false),
 
-    const togglePausePlay = () => {
+     togglePausePlay = () => {
         if (canPlay.current) {
             if (!videoRef.current.ended) {
                 if (videoRef.current.paused) {
@@ -33,10 +33,10 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
         } else {
             shouldPause.current = true;
         }
-    };
+    },
 
-    // handle full screen or toggle play depending on click type
-    const handleClick = () => {
+    // Handle full screen or toggle play depending on click type
+     handleClick = () => {
         if (clickTimerId.current) {
             handleFullScreen(videoContainer.current);
             clearTimeout(clickTimerId.current);
@@ -47,8 +47,8 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
                 clickTimerId.current = null;
             }, 200);
         }
-    };
-    const eventRef = useRef({
+    },
+     eventRef = useRef({
         handlePlaying: () => {},
         handleWaiting: () => {},
     });
@@ -66,19 +66,19 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
     }, []);
 
     useEffect(() => {
-        const { handlePlaying, handleWaiting } = eventRef.current;
+        const { handlePlaying, handleWaiting } = eventRef.current,
 
-        const addEventListeners = videoElement => {
+         addEventListeners = videoElement => {
             videoElement.addEventListener('playing', handlePlaying);
             videoElement.addEventListener('waiting', handleWaiting);
-        };
+        },
 
-        const removeEventListeners = videoElement => {
+         removeEventListeners = videoElement => {
             videoElement.removeEventListener('playing', handlePlaying);
             videoElement.removeEventListener('waiting', handleWaiting);
-        };
+        },
 
-        const updateVideoRef = videoElement => {
+         updateVideoRef = videoElement => {
             videoRef.current = videoElement;
             addEventListeners(videoRef.current);
         };
@@ -96,39 +96,67 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 
     return (
         <>
-            <button onClick={handleClick} type="button" className={styles.fullDisplayPlayPauseBtn} />
-            <ul id={isControllerShowing ? styles.show : styles.hide} className={styles.controllers}>
+            <button
+                className={styles.fullDisplayPlayPauseBtn}
+                onClick={handleClick}
+                type="button"
+            />
+
+            <ul
+                className={styles.controllers}
+                id={isControllerShowing ? styles.show : styles.hide}
+            >
                 <li className={styles.videoProgressSlider}>
                     <VideoProgressBar
                         changePause={changePause}
                         isSeekedRef={isSeekedRef}
+                        src={src}
                         video={video}
                         videoContainer={videoContainer}
-                        src={src}
                     />
                 </li>
+
                 <li>
                     <PlayPauseButton
                         canPlay={canPlay}
                         isSeekedRef={isSeekedRef}
-                        video={video}
                         togglePausePlay={togglePausePlay}
+                        video={video}
                     />
                 </li>
+
                 <li>
-                    <VideoVolume changePause={changePause} video={video} videoContainer={videoContainer} />
+                    <VideoVolume
+                        changePause={changePause}
+                        video={video}
+                        videoContainer={videoContainer}
+                    />
                 </li>
+
                 <li>
                     <ProgressTimeShow video={video} />
                 </li>
-                <li ref={gearRef} className={styles.gearButton}>
-                    <GearButton videoContainer={videoContainer} gearRef={gearRef} />
+
+                <li
+                    className={styles.gearButton}
+                    ref={gearRef}
+                >
+                    <GearButton
+                        gearRef={gearRef}
+                        videoContainer={videoContainer}
+                    />
                 </li>
+
                 <li>
                     <FullScreenButton videoContainer={videoContainer} />
                 </li>
             </ul>
-            <VideoStatus isChanging={isChanging} isSeekedRef={isSeekedRef} video={video} />
+
+            <VideoStatus
+                isChanging={isChanging}
+                isSeekedRef={isSeekedRef}
+                video={video}
+            />
         </>
     );
 }

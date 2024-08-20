@@ -12,10 +12,10 @@ export default function Pagination({ activePage, setActivePage, totalPage, pageN
         <ul className={styles.pagination}>
             <li className={styles.number}>
                 <button
-                    type="button"
-                    onClick={() => setActivePage(activePage - 1)}
-                    disabled={activePage === 1}
                     className={`${styles.paginationButton} ${styles.prevButton} ${styles.number}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
+                    disabled={activePage === 1}
+                    onClick={() => setActivePage(activePage - 1)}
+                    type="button"
                 >
                     <ArrowIcon
                         className={styles.arrowIcon}
@@ -23,15 +23,19 @@ export default function Pagination({ activePage, setActivePage, totalPage, pageN
                     />
                 </button>
             </li>
+
             {paginationRange.map((page, i) => (
-                <li key={page === DOTS ? `...${i}` : page} className={page === DOTS ? styles.ellipsis : styles.number}>
+                <li
+                    className={page === DOTS ? styles.ellipsis : styles.number}
+                    key={page === DOTS ? `...${i}` : page}
+                >
                     {page === DOTS ? (
                         DOTS
                     ) : (
                         <button
-                            type="button"
-                            onClick={() => setActivePage(page)}
                             className={`${styles.paginationButton} ${styles.numberButton}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
+                            onClick={() => setActivePage(page)}
+                            type="button"
                             {...(activePage === page && { id: styles.active })}
                         >
                             {page}
@@ -39,12 +43,13 @@ export default function Pagination({ activePage, setActivePage, totalPage, pageN
                     )}
                 </li>
             ))}
+
             <li className={styles.number}>
                 <button
-                    type="button"
-                    onClick={() => setActivePage(activePage + 1)}
-                    disabled={activePage === totalPage}
                     className={`${styles.paginationButton} ${styles.nextButton} ${styles.number}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
+                    disabled={activePage === totalPage}
+                    onClick={() => setActivePage(activePage + 1)}
+                    type="button"
                 >
                     <ArrowIcon
                         className={styles.arrowIcon}

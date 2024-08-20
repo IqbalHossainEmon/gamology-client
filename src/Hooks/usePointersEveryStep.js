@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import useScreenWidth from './useScreenWidth';
 
 export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
-	// get value cursors value left right side value and left difference and right difference depending on cursors position inside the cursor.
+	// Get value cursors value left right side value and left difference and right difference depending on cursors position inside the cursor.
 
-	const pathInfoRef = useRef();
-	const screenWidth = useScreenWidth();
+	const pathInfoRef = useRef(),
+	 screenWidth = useScreenWidth();
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -69,9 +69,9 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 				}
 
 				let pointerLeftStep =
-					Math.round(cursorInPercent / everyStep) * everyStep;
+					Math.round(cursorInPercent / everyStep) * everyStep,
 
-				let pointerRightStep = pointerLeftStep + everyStep;
+				 pointerRightStep = pointerLeftStep + everyStep;
 
 				if (pointerLeftStep < 0 || pointerLeftStep > 100) {
 					if (pointerLeftStep < 0) {
@@ -89,8 +89,8 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 					}
 				}
 
-				const leftDiff = cursorInPercent - pointerLeftStep;
-				const rightDiff = pointerRightStep - cursorInPercent;
+				const leftDiff = cursorInPercent - pointerLeftStep,
+				 rightDiff = pointerRightStep - cursorInPercent;
 
 				return {
 					cursorInPercent,

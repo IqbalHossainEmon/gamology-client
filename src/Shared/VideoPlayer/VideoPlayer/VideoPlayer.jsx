@@ -4,21 +4,21 @@ import Video from '../Components/Video/Video';
 import styles from './VideoPlayer.module.css';
 
 export default function VideoPlayer({ src, captions, sizeClassName, changePause }) {
-    const videoRef = useRef(null);
-    const videoContainerRef = useRef(null);
-    const mouseMoveTimerId = useRef(null);
-    const onLoadedRef = useRef(false);
-    const isChanging = useRef(false);
-    const eventRef = useRef({
+    const videoRef = useRef(null),
+     videoContainerRef = useRef(null),
+     mouseMoveTimerId = useRef(null),
+     onLoadedRef = useRef(false),
+     isChanging = useRef(false),
+     eventRef = useRef({
         handleMouseMove: () => {},
         handleLoadedMetaData: () => {},
         handleMouseDown: () => {},
-    });
+    }),
 
-    const [isControllerShowing, setIsControllerShowing] = useState(false);
+     [isControllerShowing, setIsControllerShowing] = useState(false),
 
     // Show hide controllers by checking the time.
-    const handleShowHide = useCallback(() => {
+     handleShowHide = useCallback(() => {
         if (onLoadedRef.current) {
             if (mouseMoveTimerId.current) {
                 clearTimeout(mouseMoveTimerId.current);
@@ -64,9 +64,9 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
     }, [handleMouseUp]);
 
     useEffect(() => {
-        const { handleMouseMove, handleMouseDown, handleLoadedMetaData } = eventRef.current;
+        const { handleMouseMove, handleMouseDown, handleLoadedMetaData } = eventRef.current,
 
-        const addEventListeners = (videoContainer, video) => {
+         addEventListeners = (videoContainer, video) => {
             if (videoContainer) {
                 videoContainer.addEventListener('mousemove', handleMouseMove);
                 videoContainer.addEventListener('mousedown', handleMouseDown);
@@ -74,9 +74,9 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
             if (video) {
                 video.addEventListener('loadedmetadata', handleLoadedMetaData);
             }
-        };
+        },
 
-        const removeEventListeners = (videoContainer, video) => {
+         removeEventListeners = (videoContainer, video) => {
             if (video) {
                 video.removeEventListener('loadedmetadata', handleLoadedMetaData);
             }
@@ -84,10 +84,10 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
                 videoContainer.removeEventListener('mousemove', handleMouseMove);
                 videoContainer.removeEventListener('mousedown', handleMouseDown);
             }
-        };
+        },
 
-        const videoContainer = videoContainerRef.current;
-        const video = videoRef.current;
+         videoContainer = videoContainerRef.current,
+         video = videoRef.current;
 
         addEventListeners(videoContainer, video);
 
@@ -98,23 +98,24 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 
     return (
         <div
-            ref={videoContainerRef}
             className={sizeClassName ? [styles.videoContainer, sizeClassName].join(' ') : styles.videoContainer}
+            ref={videoContainerRef}
         >
             <Video
-                videoContainer={videoContainerRef}
-                ref={videoRef}
-                className={styles.video}
-                src={src}
                 captions={captions}
+                className={styles.video}
+                ref={videoRef}
+                src={src}
+                videoContainer={videoContainerRef}
             />
+
             <Controllers
+                changePause={changePause}
+                isChanging={isChanging}
                 isControllerShowing={isControllerShowing}
                 src={src}
-                videoContainer={videoContainerRef}
                 video={videoRef}
-                isChanging={isChanging}
-                changePause={changePause}
+                videoContainer={videoContainerRef}
             />
         </div>
     );

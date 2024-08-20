@@ -7,9 +7,9 @@ const initialState = {
 	thumbTransition: false,
 	cardActive: 0,
 	cardsOnDeck: 4,
-};
+},
 
-const reducer = (state, action) => {
+ reducer = (state, action) => {
 	switch (action.type) {
 		case 'fetch':
 			return { ...state, data: action.data };
@@ -105,8 +105,8 @@ const reducer = (state, action) => {
 };
 
 export default function useIndiGameBannerLogics() {
-	const timeId = useRef(null);
-	const eventRef = useRef(null);
+	const timeId = useRef(null),
+	 eventRef = useRef(null);
 	if (!eventRef.current) {
 		eventRef.current.timerFunction = (transitionType, dispatch, time = 500) => {
 			if (timeId.current) {

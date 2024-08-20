@@ -35,13 +35,13 @@ const newGames = [
         carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
         price: { regular: 59.99, discount: 29.99 },
     },
-];
+],
 
-const header = ['New Releases', 'Top Rated', 'Coming Soon'];
+ header = ['New Releases', 'Top Rated', 'Coming Soon'];
 
 export default function EventGames() {
-    const screenWidth = useScreenWidth();
-    const [cardPosition, setCardPosition] = useState(0);
+    const screenWidth = useScreenWidth(),
+     [cardPosition, setCardPosition] = useState(0);
 
     return (
         <section className={styles.EventGamesContainer}>
@@ -53,16 +53,20 @@ export default function EventGames() {
             >
                 {header.map((item, index) => (
                     <GamesColumn
-                        key={item}
-                        header={item}
-                        games={newGames}
                         bar={index !== header.length - 1}
-                        colNum={index}
                         cardPosition={cardPosition}
+                        colNum={index}
+                        games={newGames}
+                        header={item}
+                        key={item}
                     />
                 ))}
             </ul>
-            {screenWidth <= 768 && <ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />}
+
+            {screenWidth <= 768 && <ChangeEventButtons
+                cardPosition={cardPosition}
+                setCardPosition={setCardPosition}
+                                   />}
         </section>
     );
 }

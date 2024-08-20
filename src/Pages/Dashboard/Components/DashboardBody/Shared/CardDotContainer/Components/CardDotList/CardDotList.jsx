@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './CardDotList.module.css';
 
-const CardDotList = ({ lists, handleHide, item, parentRef, fadeIn }) => {
-    const [position, setPosition] = useState(0);
-    const positionRef = useRef(position);
+function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
+    const [position, setPosition] = useState(0),
+     positionRef = useRef(position);
     positionRef.current = position;
 
     useEffect(() => {
-        const { x, width, y, height } = parentRef.current.getBoundingClientRect();
-        const rightRemain = window.innerWidth - x - width;
-        const bottomRemain = window.innerHeight - y - height;
+        const { x, width, y, height } = parentRef.current.getBoundingClientRect(),
+         rightRemain = window.innerWidth - x - width,
+         bottomRemain = window.innerHeight - y - height;
 
         if (rightRemain < 60 || (bottomRemain < 112 && y >= 112)) {
             if (rightRemain < 60) {
@@ -42,5 +42,5 @@ const CardDotList = ({ lists, handleHide, item, parentRef, fadeIn }) => {
             ))}
         </ul>
     );
-};
+}
 export default CardDotList;

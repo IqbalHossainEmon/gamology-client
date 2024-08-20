@@ -31,20 +31,20 @@ export default function SectionFieldTextFieldContainer({
         <>
             {[...Array(requiredLength).keys()].map((length, i) => (
                 <SelectionFieldTextField
-                    key={length}
-                    parentIndex={parentIndex}
-                    name={name}
-                    length={length}
+                    enabled={enabled}
+                    errorChange={errorChange}
+                    errorMessage={errorMessage[i]}
+                    handleSetState={handleSetState}
                     i={i}
                     index={index}
-                    handleSetState={handleSetState}
+                    key={length}
+                    length={length}
                     listArr={listArr}
-                    selectedKeys={selectedKeys}
-                    errorMessage={errorMessage[i]}
+                    name={name}
                     parentErrorShow={parentErrorShow}
-                    errorChange={errorChange}
+                    parentIndex={parentIndex}
+                    selectedKeys={selectedKeys}
                     setHideParentErrorShow={setHideParentErrorShow}
-                    enabled={enabled}
                     {...(defaultData && { defaultData: defaultData[i]?.[index] })}
                 />
             ))}

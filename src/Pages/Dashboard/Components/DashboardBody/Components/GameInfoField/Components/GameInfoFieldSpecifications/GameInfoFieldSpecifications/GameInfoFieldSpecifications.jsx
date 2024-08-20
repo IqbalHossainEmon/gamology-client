@@ -16,44 +16,53 @@ export default function GameInfoFieldSpecifications({
 
     return (
         <div className={styles.addGameSpecifications}>
-            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&#39;s System Requirement</h3>
+            <h3 className={styles.header}>
+                {hasDefault ? 'Edit' : 'Add'}
+
+                {' '}
+                Game&#39;s System Requirement
+            </h3>
+
             <GameInfoFieldSpecificationContainer
-                gameSpecifications={gameSpecifications}
-                errorMessages={errorMessages.current.gameSpecificationsError.spec}
                 errorChange={errorChange}
+                errorMessages={errorMessages.current.gameSpecificationsError.spec}
+                gameSpecifications={gameSpecifications}
                 {...(hasDefault && { defaultGameSpecifications: defaultGameSpecifications.spec })}
                 hasDefault={hasDefault}
             />
+
             <div>
                 <GameInfoFieldSpecsLangsSupported
-                    handleValue={handleValue}
-                    errorMessages={errorMessages.current.gameSpecificationsError.others}
                     errorChange={errorChange}
+                    errorMessages={errorMessages.current.gameSpecificationsError.others}
                     gameSpecifications={gameSpecifications}
+                    handleValue={handleValue}
                     {...(hasDefault && { defaultValue: defaultGameSpecifications.others })}
                     hasDefault={hasDefault}
                 />
+
                 <div className={styles.textField}>
                     <TextField
-                        setState={handleValue}
-                        name="copyWrite"
-                        field="input"
-                        htmlFor="copyright"
-                        placeholder="Copyright"
                         errorChange={errorChange}
                         errorMessage={errorMessages.current.gameSpecificationsError.copyWrite}
+                        field="input"
+                        htmlFor="copyright"
+                        name="copyWrite"
+                        placeholder="Copyright"
+                        setState={handleValue}
                         {...(hasDefault && { defaultValue: defaultGameSpecifications.copyWrite })}
                     />
                 </div>
+
                 <div className={styles.textField}>
                     <TextField
-                        setState={handleValue}
-                        name="policy"
-                        field="input"
-                        htmlFor="privacy"
-                        placeholder="Privacy Policy Link"
                         errorChange={errorChange}
                         errorMessage={errorMessages.current.gameSpecificationsError.policy}
+                        field="input"
+                        htmlFor="privacy"
+                        name="policy"
+                        placeholder="Privacy Policy Link"
+                        setState={handleValue}
                         {...(hasDefault && { defaultValue: defaultGameSpecifications.policy })}
                     />
                 </div>

@@ -13,9 +13,9 @@ export default function IndiGameBannerCards({
     cardActive,
     thumbTransition,
 }) {
-    const screenWidth = useScreenWidth();
+    const screenWidth = useScreenWidth(),
 
-    const cardsOnDeckRef = useRef(cardsOnDeck);
+     cardsOnDeckRef = useRef(cardsOnDeck);
     cardsOnDeckRef.current = cardsOnDeck;
 
     useEffect(() => {
@@ -53,15 +53,17 @@ export default function IndiGameBannerCards({
     return (
         <div className={styles.cardsContainer}>
             <ArrowButton
-                name="Previous Button"
+                className={[styles.btn, styles.prevBtn].join(' ')}
                 handleClick={() => {
                     dispatch({ type: 'prevCards' });
                     timerFunction(false, dispatch, 250);
                 }}
-                className={[styles.btn, styles.prevBtn].join(' ')}
+                name="Previous Button"
             />
+
             <div className={styles.cardsWrapper}>
                 <ul
+                    className={styles.individualGameBannerCards}
                     style={
                         thumbTransition
                             ? {
@@ -82,27 +84,27 @@ export default function IndiGameBannerCards({
                                   }% - ${cardsOnDeck > 1 ? cardActive * 15 : 0}px)`,
                               }
                     }
-                    className={styles.individualGameBannerCards}
                 >
                     {items.map((item, index) => (
                         <IndiGameBannerCard
-                            key={item.id}
-                            index={index}
-                            data={item}
                             active={active}
+                            data={item}
                             dispatch={dispatch}
+                            index={index}
+                            key={item.id}
                             timerFunction={timerFunction}
                         />
                     ))}
                 </ul>
             </div>
+
             <ArrowButton
-                name="next Button"
+                className={[styles.btn, styles.nextBtn].join(' ')}
                 handleClick={() => {
                     dispatch({ type: 'nextCards' });
                     timerFunction(false, dispatch, 250);
                 }}
-                className={[styles.btn, styles.nextBtn].join(' ')}
+                name="next Button"
             />
         </div>
     );

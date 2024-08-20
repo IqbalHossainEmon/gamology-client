@@ -4,26 +4,26 @@ import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
 
 export default function VideoStatus({ video, isSeekedRef, isChanging }) {
-    const formatTime = useTimeFormat();
-    const timerId = useRef(null);
-    const videoRef = useRef(video.current);
+    const formatTime = useTimeFormat(),
+     timerId = useRef(null),
+     videoRef = useRef(video.current),
 
-    const eventRefs = useRef({
+     eventRefs = useRef({
         loadMetaDataUpdate: () => {},
         loadUpdate: () => {},
         handlePlay: () => {},
         handlePause: () => {},
         handlePlaying: () => {},
         handleWaiting: () => {},
-    });
+    }),
 
-    const [status, setStatus] = useState({
+     [status, setStatus] = useState({
         duration: 0,
         initialShow: true,
         loading: false,
-    });
+    }),
 
-    const handleTransition = () => {
+     handleTransition = () => {
         if (!timerId.current) {
             timerId.current = setTimeout(() => {
                 timerId.current = null;
@@ -80,18 +80,18 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 
     useEffect(() => {
         const { loadMetaDataUpdate, loadUpdate, handlePlay, handlePause, handlePlaying, handleWaiting } =
-            eventRefs.current;
+            eventRefs.current,
 
-        const addEventListeners = videoElement => {
+         addEventListeners = videoElement => {
             videoElement.addEventListener('loadedmetadata', loadMetaDataUpdate);
             videoElement.addEventListener('loadeddata', loadUpdate);
             videoElement.addEventListener('play', handlePlay);
             videoElement.addEventListener('pause', handlePause);
             videoElement.addEventListener('playing', handlePlaying);
             videoElement.addEventListener('waiting', handleWaiting);
-        };
+        },
 
-        const removeEventListeners = videoElement => {
+         removeEventListeners = videoElement => {
             videoElement.removeEventListener('loadedmetadata', loadMetaDataUpdate);
             videoElement.removeEventListener('loadeddata', loadUpdate);
             videoElement.removeEventListener('play', handlePlay);
@@ -114,32 +114,44 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 
     return (
         <>
-            {!status.initialShow && !status.animation && status.loading && (
-                <div>
-                    <CircularSpinner />
-                </div>
-            )}
+            {!status.initialShow && !status.animation && status.loading ? <div>
+                <CircularSpinner />
+                                                                          </div> : null}
+
             {!status.initialShow && (
                 <div className={status.animation ? [styles.videoStatus, styles.fadeOut].join(' ') : styles.videoStatus}>
                     <span {...(!status.play && { className: styles.marginLeft })}>
                         <svg viewBox={status.play ? '0 0 10 14' : '0 0 11 14'}>
-                            <path d={status.play ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'} fill="white" />
+                            <path
+                                d={status.play ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'}
+                                fill="white"
+                            />
                         </svg>
                     </span>
                 </div>
             )}
-            {status.initialShow && status.duration > 0 && (
-                <div className={styles.initialPlaceholder}>
-                    <button onClick={initialBtnPlay} type="button" className={styles.initialPlaceholderButton}>
-                        <span className={styles.svgContainer}>
-                            <svg viewBox="0 0 11 14">
-                                <path d="M0 0v14l11-7z" fill="black" fillRule="nonzero" />
-                            </svg>
-                        </span>
-                        <span>{status.duration ? formatTime(status.duration) : '0:00'}</span>
-                    </button>
-                </div>
-            )}
+
+            {status.initialShow && status.duration > 0 ? <div className={styles.initialPlaceholder}>
+                <button
+                    className={styles.initialPlaceholderButton}
+                    onClick={initialBtnPlay}
+                    type="button"
+                >
+                    <span className={styles.svgContainer}>
+                        <svg viewBox="0 0 11 14">
+                            <path
+                                d="M0 0v14l11-7z"
+                                fill="black"
+                                fillRule="nonzero"
+                            />
+                        </svg>
+                    </span>
+
+                    <span>
+                        {status.duration ? formatTime(status.duration) : '0:00'}
+                    </span>
+                </button>
+                                                         </div> : null}
         </>
     );
 }

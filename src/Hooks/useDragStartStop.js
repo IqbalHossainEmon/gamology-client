@@ -7,11 +7,11 @@ export default function useDragStartStop(
 	handleMouseDown = () => {},
 	grab = false
 ) {
-	const isTouchAble = useIsTouchAble();
+	const isTouchAble = useIsTouchAble(),
 
-	const isTouchAdd = useRef(false);
+	 isTouchAdd = useRef(false),
 
-	const eventRefs = useRef(null);
+	 eventRefs = useRef(null);
 
 	if (eventRefs.current === null) {
 		eventRefs.current = {

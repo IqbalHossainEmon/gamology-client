@@ -63,8 +63,8 @@ const data = [
 ];
 
 export default function IndiGameShowReview() {
-    const [reviews, setReviews] = useState([]);
-    const [activePage, setActivePage] = useState(1);
+    const [reviews, setReviews] = useState([]),
+     [activePage, setActivePage] = useState(1);
 
     useEffect(() => {
         setReviews(data);
@@ -77,13 +77,15 @@ export default function IndiGameShowReview() {
     return (
         <div className={styles.individualGameShowReview}>
             <IndiGameOrderBy handleSort={handleChange} />
+
             <IndiGameReviews reviews={reviews} />
+
             <div className={styles.paginationContainer}>
                 <Pagination
                     activePage={activePage}
+                    pageNumberStyle={styles.pageNumber}
                     setActivePage={setActivePage}
                     totalPage={69}
-                    pageNumberStyle={styles.pageNumber}
                 />
             </div>
         </div>

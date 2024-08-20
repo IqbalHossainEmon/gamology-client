@@ -5,10 +5,10 @@ import IndiGameOwnReview from '../Components/IndiGameOwnReview/IndiGameOwnReview
 import IndiGameWriteReviewContainer from '../Components/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer';
 import styles from './IndiGameTakeReview.module.css';
 
-const userIcon = 'assets/images/icons/user.png';
-const fullStar = 'assets/images/icons/star-full.png';
+const userIcon = 'assets/images/icons/user.png',
+ fullStar = 'assets/images/icons/star-full.png',
 
-const data = {
+ data = {
     id: 10000,
     star: 5,
     title: 'Good Game!!',
@@ -17,20 +17,20 @@ const data = {
 };
 
 export default function IndiGameTakeReview() {
-    const [writeReviewShow, setWriteReviewShow] = useState(false);
+    const [writeReviewShow, setWriteReviewShow] = useState(false),
 
-    const [reviewStar, setReviewStar] = useState({ active: 0 });
-    const user = useRef({ name: 'iqbal69', reviews: 3, games: 50 });
+     [reviewStar, setReviewStar] = useState({ active: 0 }),
+     user = useRef({ name: 'iqbal69', reviews: 3, games: 50 }),
 
-    const [review, setReview] = useState({});
+     [review, setReview] = useState({});
 
     useEffect(() => {
         setReview({ ...data, user: user.current });
     }, [user]);
 
-    const overAllRating = 4.5;
+    const overAllRating = 4.5,
 
-    const userReviewDone = false;
+     userReviewDone = false;
 
     return (
         <>
@@ -38,10 +38,11 @@ export default function IndiGameTakeReview() {
                 <div>
                     <div className={styles.userStarContainer}>
                         <img
+                            alt="user_icon"
                             className={styles.userIcon}
                             src={user.current.src ? user.current.src : userIcon}
-                            alt="user_icon"
                         />
+
                         <ReviewStar
                             name="active"
                             {...((writeReviewShow || userReviewDone) && { disabled: true })}
@@ -49,6 +50,7 @@ export default function IndiGameTakeReview() {
                             {...(userReviewDone && { newValue: review.star - 1 })}
                         />
                     </div>
+
                     {userReviewDone || (
                         <button
                             {...(writeReviewShow
@@ -63,28 +65,46 @@ export default function IndiGameTakeReview() {
                         </button>
                     )}
                 </div>
+
                 <div>
                     <div className={styles.overAllRatingContainer}>
-                        <img className={styles.fullStar} src={fullStar} alt="full star" />
+                        <img
+                            alt="full star"
+                            className={styles.fullStar}
+                            src={fullStar}
+                        />
+
                         <p>
-                            <span className={styles.overAllRating}>{overAllRating}</span>/<span>5</span>
+                            <span className={styles.overAllRating}>
+                                {overAllRating}
+                            </span>
+
+                            /
+                            <span>
+                                5
+                            </span>
                         </p>
                     </div>
+
                     <div>
-                        <p className={styles.overallRatingText}>Overall rating</p>
+                        <p className={styles.overallRatingText}>
+                            Overall rating
+                        </p>
                     </div>
                 </div>
             </div>
+
             <LineBreak />
+
             {userReviewDone ? (
                 <IndiGameOwnReview review={review} />
             ) : (
                 <IndiGameWriteReviewContainer
                     reviewStar={reviewStar.active}
-                    state={writeReviewShow}
                     setWriteReviewShow={setWriteReviewShow}
-                    userIcon={userIcon}
+                    state={writeReviewShow}
                     user={user.current}
+                    userIcon={userIcon}
                 />
             )}
         </>

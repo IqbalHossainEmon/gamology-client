@@ -4,14 +4,14 @@ import ScreenShadow from '../../../../../../../../../../Shared/ScreenShadow/Scre
 import SearchField from '../../../../../../../../../../Shared/SearchField/SearchField';
 import styles from './AllGamesHeader.module.css';
 
-const AllGamesHeader = ({ setSearchText }) => {
-	const [search, setSearch] = useState('');
-	const [navShow, setNavShow] = useState(false);
-	const screenWidth = useScreenWidth();
+function AllGamesHeader({ setSearchText }) {
+	const [search, setSearch] = useState(''),
+	 [navShow, setNavShow] = useState(false),
+	 screenWidth = useScreenWidth(),
 
-	const timerId = useRef(null);
+	 timerId = useRef(null),
 
-	const searchRef = useRef(search);
+	 searchRef = useRef(search);
 	searchRef.current = search;
 
 	useEffect(() => {
@@ -39,18 +39,25 @@ const AllGamesHeader = ({ setSearchText }) => {
 		};
 	}
 	return (
-		<div className={styles.allGamesHeader}>
-			<h2 className={styles.headerText}>All Games</h2>
-			<div className={styles.searchFieldContainer}>
-				<div className={`${navShow ? `${styles.searchShow} ` : ''}${styles.searchField}`}>
-					<SearchField
-						setNavShow={eventRef.current.handleChange}
-						setChangedValue={setSearch}
-					/>
-				</div>
-			</div>
-			{screenWidth < 769 && <ScreenShadow show={navShow} zIndex={3} />}
-		</div>
+    <div className={styles.allGamesHeader}>
+        <h2 className={styles.headerText}>
+            All Games
+        </h2>
+
+        <div className={styles.searchFieldContainer}>
+            <div className={`${navShow ? `${styles.searchShow} ` : ''}${styles.searchField}`}>
+                <SearchField
+                    setChangedValue={setSearch}
+                    setNavShow={eventRef.current.handleChange}
+                />
+            </div>
+        </div>
+
+        {screenWidth < 769 && <ScreenShadow
+            show={navShow}
+            zIndex={3}
+                              />}
+    </div>
 	);
-};
+}
 export default AllGamesHeader;

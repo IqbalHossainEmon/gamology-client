@@ -4,13 +4,13 @@ import RangeKnob from '../Components/RangeKnob/RangeKnob';
 import styles from './RangeField.module.css';
 
 function RangeField({ state, setState, disabled, conditionStep, limit, singleStepRef, handleSetValue }) {
-    const { knob1, knob2, transition } = state;
+    const { knob1, knob2, transition } = state,
 
-    const rangePathRef = useRef();
-    const activePathRef = useRef();
-    const conditionStepRef = useRef(conditionStep?.map(step => ({ ...step })));
+     rangePathRef = useRef(),
+     activePathRef = useRef(),
+     conditionStepRef = useRef(conditionStep?.map(step => ({ ...step }))),
 
-    const once = useRef(true);
+     once = useRef(true);
 
     useEffect(() => {
         singleStepRef.current = 100 / (limit.higher - limit.lower);
@@ -27,10 +27,10 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
     const { getLeftRightPointerStep } = usePointersEveryStep(
         rangePathRef,
         conditionStep ? conditionStepRef : singleStepRef
-    );
+    ),
 
-    // set click value in the path of slider depending on steps
-    const handlePathClick = e => {
+    // Set click value in the path of slider depending on steps
+     handlePathClick = e => {
         if (e.target === rangePathRef.current || e.target === activePathRef.current) {
             const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightPointerStep(e);
 
@@ -57,11 +57,11 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
     return (
         <div className={styles.rangeFieldContainer}>
             <div
-                tabIndex="-1"
-                role="button"
-                ref={rangePathRef}
-                onMouseDown={handlePathClick}
                 className={styles.rangeField}
+                onMouseDown={handlePathClick}
+                ref={rangePathRef}
+                role="button"
+                tabIndex="-1"
             >
                 <div
                     className={`${transition ? `${styles.activePathTransition} ` : ''}${styles.activePath}`}
@@ -74,14 +74,14 @@ function RangeField({ state, setState, disabled, conditionStep, limit, singleSte
 
                 {['knob1', 'knob2'].map(rangeKnob => (
                     <RangeKnob
-                        key={rangeKnob}
+                        disabled={disabled}
                         getLeftRightStep={getLeftRightPointerStep}
+                        handleSetValue={handleSetValue}
+                        key={rangeKnob}
+                        name={rangeKnob}
                         setState={setState}
                         state={state[rangeKnob]}
-                        name={rangeKnob}
                         transition={transition}
-                        disabled={disabled}
-                        handleSetValue={handleSetValue}
                     />
                 ))}
             </div>

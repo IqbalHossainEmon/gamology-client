@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../Hooks/useDragStartStop';
 import styles from './ScrollBar.module.css';
 
-const ScrollBar = ({ parentRef, childRef }) => {
-	const [scrolled, setScrolled] = useState(0);
-	const [show, setShow] = useState(false);
-	const [height, setHeight] = useState(0);
+function ScrollBar({ parentRef, childRef }) {
+	const [scrolled, setScrolled] = useState(0),
+	 [show, setShow] = useState(false),
+	 [height, setHeight] = useState(0),
 
-	const thumbRef = useRef(null);
-	const downElement = useRef(null);
-	const containerRef = useRef(null);
-	const timerID = useRef(null);
-	const eventRefs = useRef(null);
+	 thumbRef = useRef(null),
+	 downElement = useRef(null),
+	 containerRef = useRef(null),
+	 timerID = useRef(null),
+	 eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -94,9 +94,9 @@ const ScrollBar = ({ parentRef, childRef }) => {
 		eventRefs.current.handleMoveScroll,
 		eventRefs.current.handleMouseUp,
 		eventRefs.current.handleMouseDownBar
-	);
+	),
 
-	const onStartParent = useDragStartStop(
+	 onStartParent = useDragStartStop(
 		eventRefs.current.handleMoveScroll,
 		eventRefs.current.handleMouseUp,
 		eventRefs.current.handleMouseDownParent
@@ -115,11 +115,11 @@ const ScrollBar = ({ parentRef, childRef }) => {
 		const parentObserve = new ResizeObserver(eventRefs.current.handleSetHeight);
 		parentObserve.observe(parentRef.current);
 
-		const parent = parentRef.current;
-		const container = containerRef.current;
+		const parent = parentRef.current,
+		 container = containerRef.current,
 
-		const { handleScroll } = eventRefs.current;
-		const { handleMouseMove } = eventRefs.current;
+		 { handleScroll } = eventRefs.current,
+		 { handleMouseMove } = eventRefs.current;
 
 		parent.addEventListener('scroll', handleScroll);
 		container.addEventListener('mousemove', handleMouseMove);
@@ -134,34 +134,34 @@ const ScrollBar = ({ parentRef, childRef }) => {
 	}, [childRef, parentRef]);
 
 	return (
-		<div
-			tabIndex={0}
-			role='button'
-			ref={containerRef}
-			onMouseDown={onStartParent}
-			onTouchStart={onStartParent}
-			className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${
+    <div
+        className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${
 				styles.scrollBarContainers
 			}`}
-		>
-			<button
-				ref={thumbRef}
-				onMouseDown={e => {
+        onMouseDown={onStartParent}
+        onTouchStart={onStartParent}
+        ref={containerRef}
+        role='button'
+        tabIndex={0}
+    >
+        <button
+            className={`${show ? `${styles.show} ` : ''}${styles.scrollThumb}`}
+            onMouseDown={e => {
 					e.stopPropagation();
 					onStartScroll(e);
 				}}
-				onTouchStart={e => {
+            onTouchStart={e => {
 					e.stopPropagation();
 					onStartScroll(e);
 				}}
-				type='button'
-				style={{
+            ref={thumbRef}
+            style={{
 					height: `${height}%`,
 					translate: `0 ${scrolled < 0 ? 0 : scrolled}px`,
 				}}
-				className={`${show ? `${styles.show} ` : ''}${styles.scrollThumb}`}
-			/>
-		</div>
+            type='button'
+        />
+    </div>
 	);
-};
+}
 export default ScrollBar;

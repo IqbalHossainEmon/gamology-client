@@ -4,7 +4,7 @@ import ApplyButton from '../Components/ApplyButton/ApplyButton';
 import FilterOptionList from '../Components/FilterOptionList/FilterOptionList';
 import styles from './FilterMobileScroll.module.css';
 
-const FilterMobileScroll = ({
+function FilterMobileScroll({
     screenWidth,
     options,
     state,
@@ -13,21 +13,45 @@ const FilterMobileScroll = ({
     setFilterSort,
     dispatch,
     filterState,
-}) => {
-    const parentRef = useRef(null);
-    const childRef = useRef(null);
+}) {
+    const parentRef = useRef(null),
+     childRef = useRef(null);
 
     return (
         <div className={styles.filterContainer}>
-            <div ref={parentRef} className={styles.parentContainer}>
-                <div ref={childRef} className={styles.childContainer}>
-                    {screenWidth < 769 && <h2 className={styles.filterText}>Filters</h2>}
-                    <FilterOptionList options={options} state={state} setState={setState} limits={limits} />
-                    <ApplyButton setShow={setFilterSort} dispatch={dispatch} filterState={filterState} state={state} />
+            <div
+                className={styles.parentContainer}
+                ref={parentRef}
+            >
+                <div
+                    className={styles.childContainer}
+                    ref={childRef}
+                >
+                    {screenWidth < 769 && <h2 className={styles.filterText}>
+                        Filters
+                                          </h2>}
+
+                    <FilterOptionList
+                        limits={limits}
+                        options={options}
+                        setState={setState}
+                        state={state}
+                    />
+
+                    <ApplyButton
+                        dispatch={dispatch}
+                        filterState={filterState}
+                        setShow={setFilterSort}
+                        state={state}
+                    />
                 </div>
             </div>
-            {screenWidth < 769 && <ScrollBar parentRef={parentRef} childRef={childRef} />}
+
+            {screenWidth < 769 && <ScrollBar
+                childRef={childRef}
+                parentRef={parentRef}
+                                  />}
         </div>
     );
-};
+}
 export default FilterMobileScroll;

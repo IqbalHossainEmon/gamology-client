@@ -5,10 +5,17 @@ export default function Footer() {
         <footer id={styles.footer}>
             <div className={styles.header}>
                 <a href="/">
-                    <img src="/assets/images/game-controller.png" alt="game-controller-logo" />
-                    <h2>Gamology</h2>
+                    <img
+                        alt="game-controller-logo"
+                        src="/assets/images/game-controller.png"
+                    />
+
+                    <h2>
+                        Gamology
+                    </h2>
                 </a>
             </div>
+
             <div className={styles.linkContainer}>
                 <ol className={styles.links}>
                     {[
@@ -19,11 +26,14 @@ export default function Footer() {
                         { text: 'Thanks', link: 'thanks' },
                     ].map(link => (
                         <li key={link.link}>
-                            <a href={link.link}>{link.text}</a>
+                            <a href={link.link}>
+                                {link.text}
+                            </a>
                         </li>
                     ))}
                 </ol>
             </div>
+
             <div className={styles.description}>
                 <p>
                     <small>
@@ -31,6 +41,7 @@ export default function Footer() {
                         the City of Dhaka, 14th Commercial;
                     </small>
                 </p>
+
                 <p>
                     <small>
                         All trademarks referenced herein are the properties of their respective owners. &copy;2023 Gamology All rights

@@ -27,9 +27,9 @@ export const handleFullScreen = ref => {
 };
 
 export default function FullScreenButton({ videoContainer }) {
-    const [isFullScreen, setIsFullScreen] = useState(false);
+    const [isFullScreen, setIsFullScreen] = useState(false),
 
-    const eventRef = useRef({
+     eventRef = useRef({
         handleFullscreenChange: () => {},
     });
 
@@ -61,15 +61,22 @@ export default function FullScreenButton({ videoContainer }) {
 
     return (
         <button
-            type="button"
-            onClick={() => handleFullScreen(videoContainer.current)}
             className={styles.fullScreenButton}
+            onClick={() => handleFullScreen(videoContainer.current)}
+            type="button"
         >
             <span>
                 <svg viewBox="0 0 14 14">
-                    <title>{isFullScreen ? 'Enter fullscreen' : 'Exit fullscreen'}</title>
-                    <g fill="none" fillRule="evenodd">
+                    <title>
+                        {isFullScreen ? 'Enter fullscreen' : 'Exit fullscreen'}
+                    </title>
+
+                    <g
+                        fill="none"
+                        fillRule="evenodd"
+                    >
                         <path d="M-5-5h24v24H-5z" />
+
                         <path
                             d={
                                 isFullScreen

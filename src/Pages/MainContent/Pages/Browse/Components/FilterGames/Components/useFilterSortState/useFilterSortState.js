@@ -6,9 +6,9 @@ import {
 } from '../../../../../../../../Contexts/FilterSortContext';
 
 const useFilterSortState = () => {
-    const filterSortState = useContext(FilterSortContext);
-    const setFilterSort = useContext(SetFilterSortContext);
-    const filterSortRef = useContext(FilterSortRefContext);
+    const filterSortState = useContext(FilterSortContext),
+     setFilterSort = useContext(SetFilterSortContext),
+     filterSortRef = useContext(FilterSortRefContext);
 
     return { filterSortState, setFilterSort, filterSortRef };
 };

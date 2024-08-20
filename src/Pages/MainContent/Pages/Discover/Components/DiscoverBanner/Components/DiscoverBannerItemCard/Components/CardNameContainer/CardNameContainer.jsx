@@ -3,11 +3,11 @@ import useAppearDisappear from '../../../../../../../../../../Hooks/useAppearDis
 import DiscoverBannerItemCardShadow from '../DiscoverBannerItemCardShadow/DiscoverBannerItemCardShadow';
 import styles from './CardNameContainer.module.css';
 
-const CardNameContainer = ({ state, name, isPause }) => {
-    const { show, fadeIn } = useAppearDisappear(state, true);
-    const timerId = useRef(null);
+function CardNameContainer({ state, name, isPause }) {
+    const { show, fadeIn } = useAppearDisappear(state, true),
+     timerId = useRef(null),
 
-    const [showShadow, setShowShadow] = useState(false);
+     [showShadow, setShowShadow] = useState(false);
 
     useEffect(() => {
         if (show) {
@@ -26,11 +26,14 @@ const CardNameContainer = ({ state, name, isPause }) => {
         show && (
             <div className={styles.cardNameContainer}>
                 <div className={`${styles.cardName}${fadeIn ? ` ${styles.fadeIn}` : ''}`}>
-                    <p className={styles.cardNameText}>{name}</p>
-                    {showShadow && <DiscoverBannerItemCardShadow isPause={isPause} />}
+                    <p className={styles.cardNameText}>
+                        {name}
+                    </p>
+
+                    {showShadow ? <DiscoverBannerItemCardShadow isPause={isPause} /> : null}
                 </div>
             </div>
         )
     );
-};
+}
 export default CardNameContainer;

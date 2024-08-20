@@ -238,15 +238,15 @@ const items = [
 ];
 
 export default function DiscoverGames({ headerTitle }) {
-	const cardsContainer = useRef();
-	const screenWidth = useScreenWidth();
+	const cardsContainer = useRef(),
+	 screenWidth = useScreenWidth(),
 
-	const { reducer, initialState } = discoverGamesReducerInitialValue();
+	 { reducer, initialState } = discoverGamesReducerInitialValue(),
 
-	const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
-		useReducer(reducer, initialState);
+	 [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
+		useReducer(reducer, initialState),
 
-	const { handleClick, setReference, setCardsOnScreenWidthChange } = useGamesLogics();
+	 { handleClick, setReference, setCardsOnScreenWidthChange } = useGamesLogics();
 
 	useEffect(() => {
 		dispatch({ type: 'fetch', data: items, dataLength: items.length });
@@ -258,21 +258,23 @@ export default function DiscoverGames({ headerTitle }) {
 	}, [screenWidth, setCardsOnScreenWidthChange]);
 
 	return (
-		<section className={styles.Games}>
-			<div className={styles.headerButtonContainer}>
-				<CardsHeader headerTitle={headerTitle} />
-				<GamesButton
-					cardActive={cardActive}
-					length={data.length - cardOnDeck}
-					handleClick={click => handleClick(click, cardActive, cardOnDeck)}
-				/>
-			</div>
-			<DiscoverGamesCards
-				style={{ translate, transition, margin }}
-				cardsWidth={cardsWidth}
-				ref={cardsContainer}
-				data={data}
-			/>
-		</section>
+    <section className={styles.Games}>
+        <div className={styles.headerButtonContainer}>
+            <CardsHeader headerTitle={headerTitle} />
+
+            <GamesButton
+                cardActive={cardActive}
+                handleClick={click => handleClick(click, cardActive, cardOnDeck)}
+                length={data.length - cardOnDeck}
+            />
+        </div>
+
+        <DiscoverGamesCards
+            cardsWidth={cardsWidth}
+            data={data}
+            ref={cardsContainer}
+            style={{ translate, transition, margin }}
+        />
+    </section>
 	);
 }

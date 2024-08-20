@@ -3,17 +3,16 @@ import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/Erro
 import GameInfoFieldSpecification from '../GameInfoFieldSpecification/GameInfoFieldSpecification';
 import styles from './GameInfoFieldSpecificationContainer.module.css';
 
-const specs = ['Windows', 'MacOs', 'Linux'];
-const GameInfoFieldSpecificationContainer = ({
+function GameInfoFieldSpecificationContainer({
 	gameSpecifications,
 	errorMessages,
 	errorChange,
 	hasDefault,
 	defaultGameSpecifications,
-}) => {
-	const [errorShow, setErrorShow] = useState(!!errorMessages[4]);
+}) {
+	const [errorShow, setErrorShow] = useState(Boolean(errorMessages[4])),
 
-	const errorShowRef = useRef(errorShow);
+	 errorShowRef = useRef(errorShow);
 	errorShowRef.current = errorShow;
 
 	useEffect(() => {
@@ -37,31 +36,38 @@ const GameInfoFieldSpecificationContainer = ({
 	}
 
 	return (
-		<div className={styles.specsContainer}>
-			{specs.map((spec, i) => (
-				<div key={spec} className={styles.specs}>
-					<GameInfoFieldSpecification
-						gameSpecifications={gameSpecifications.current.gameSpecifications.spec}
-						state={{ name: spec }}
-						index={i}
-						errorMessages={errorMessages[i]}
-						errorChange={errorChange}
-						handleSetValue={eventRef.current.handleSetValue}
-						{...(hasDefault && {
+    <div className={styles.specsContainer}>
+        {specs.map((spec, i) => (
+            <div
+                className={styles.specs}
+                key={spec}
+            >
+                <GameInfoFieldSpecification
+                    errorChange={errorChange}
+                    errorMessages={errorMessages[i]}
+                    gameSpecifications={gameSpecifications.current.gameSpecifications.spec}
+                    handleSetValue={eventRef.current.handleSetValue}
+                    index={i}
+                    state={{ name: spec }}
+                    {...(hasDefault && {
 							defaultSpecs: defaultGameSpecifications.find(
 								defaultSpec => defaultSpec.for === spec
 							),
 						})}
-						{...(hasDefault && {
+                    {...(hasDefault && {
 							hasDefault: defaultGameSpecifications.find(
 								defaultSpec => defaultSpec.for === spec
 							)?.isActive,
 						})}
-					/>
-				</div>
+                />
+            </div>
 			))}
-			<ErrorMessage enable={errorShow} errorMessage={errorMessages[3]} />
-		</div>
+
+        <ErrorMessage
+            enable={errorShow}
+            errorMessage={errorMessages[3]}
+        />
+    </div>
 	);
-};
+}
 export default GameInfoFieldSpecificationContainer;

@@ -3,17 +3,17 @@ import FilterOption from '../../../../../../../../../../Shared/FilterOption/Filt
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './GameInfoFieldSpecsLangsSupported.module.css';
 
-const GameInfoFieldSpecsLangsSupported = ({
+function GameInfoFieldSpecsLangsSupported({
     handleValue,
     errorMessages,
     errorChange,
     defaultValue,
     hasDefault,
     gameSpecifications,
-}) => {
-    const [separate, setSeparate] = useState({ separate: hasDefault });
+}) {
+    const [separate, setSeparate] = useState({ separate: hasDefault }),
 
-    const language = useRef({
+     language = useRef({
         text: hasDefault ? (Array.isArray(defaultValue.value) ? defaultValue.value[0] : defaultValue.value) : '',
         audio: hasDefault && Array.isArray(defaultValue.value) ? defaultValue.value[1] : '',
     });
@@ -41,55 +41,54 @@ const GameInfoFieldSpecsLangsSupported = ({
                             : language.current.text,
                     },
                     'others'
-                )
-            }
+                )}
         >
             <div className={styles.textField}>
                 <TextField
+                    errorChange={errorChange}
+                    errorMessage={errorMessages[0]}
+                    field="textarea"
+                    htmlFor="lang_support_text"
+                    name="text"
+                    placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
+                    rows="3"
                     setState={(value, name) => {
                         language.current[name] = value;
                     }}
-                    rows="3"
-                    field="textarea"
-                    name="text"
-                    htmlFor="lang_support_text"
-                    placeholder={separate.separate ? 'Text Languages Supported' : 'Languages Supported'}
-                    errorMessage={errorMessages[0]}
-                    errorChange={errorChange}
                     {...(hasDefault && {
                         defaultValue: Array.isArray(defaultValue.value) ? defaultValue.value[0] : defaultValue.value,
                     })}
                 />
             </div>
-            {separate.separate && (
-                <div className={styles.textField}>
-                    <TextField
-                        setState={(value, name) => {
+
+            {separate.separate ? <div className={styles.textField}>
+                <TextField
+                    errorChange={errorChange}
+                    errorMessage={errorMessages[1]}
+                    field="textarea"
+                    htmlFor="lang_support_audio"
+                    name="audio"
+                    placeholder="Audio Languages Supported"
+                    rows="3"
+                    setState={(value, name) => {
                             language.current[name] = value;
                         }}
-                        rows="3"
-                        field="textarea"
-                        name="audio"
-                        htmlFor="lang_support_audio"
-                        placeholder="Audio Languages Supported"
-                        errorMessage={errorMessages[1]}
-                        errorChange={errorChange}
-                        {...(hasDefault &&
+                    {...(hasDefault &&
                             Array.isArray(defaultValue.value) && { defaultValue: defaultValue.value[1] })}
-                    />
-                </div>
-            )}
+                />
+            </div> : null}
+
             <div className={styles.switch}>
                 <FilterOption
-                    text="Show Audio"
+                    name="separate"
                     setState={obj => {
                         setSeparate(obj);
                     }}
-                    name="separate"
                     state={separate.separate}
+                    text="Show Audio"
                 />
             </div>
         </div>
     );
-};
+}
 export default GameInfoFieldSpecsLangsSupported;

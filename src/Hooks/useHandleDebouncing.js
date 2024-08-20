@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
 const useHandleDebouncing = (seconds = 500) => {
-	const timeOutRef = useRef(null);
-	// handle multiple click.
-	const eventRef = useRef(null);
+	const timeOutRef = useRef(null),
+	// Handle multiple click.
+	 eventRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = handleClick => {

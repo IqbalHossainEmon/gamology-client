@@ -36,11 +36,22 @@ export default function VolumeButton({ volume, videoRef, setVolume }) {
     };
 
     return (
-        <button type="button" onClick={handleMute} className={styles.volumeBtn}>
+        <button
+            className={styles.volumeBtn}
+            onClick={handleMute}
+            type="button"
+        >
             <span>
                 <svg viewBox="0 0 18 18">
-                    <title>{state.title}</title>
-                    <path d={state.svg} fill="white" fillRule="nonzero" />
+                    <title>
+                        {state.title}
+                    </title>
+
+                    <path
+                        d={state.svg}
+                        fill="white"
+                        fillRule="nonzero"
+                    />
                 </svg>
             </span>
         </button>

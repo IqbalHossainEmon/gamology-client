@@ -5,16 +5,17 @@ export default function DiscoverGamesButton({ handleClick, cardActive, length })
     return (
         <div className={styles.Buttons}>
             <ArrowButton
-                enable={cardActive === 0}
-                name="Previous Button"
-                handleClick={() => handleClick('prev')}
                 className={[styles.btn, styles.nextBtn].join(' ')}
+                enable={cardActive === 0}
+                handleClick={() => handleClick('prev')}
+                name="Previous Button"
             />
+
             <ArrowButton
-                enable={length === -cardActive}
-                name="Next Button"
-                handleClick={() => handleClick('next')}
                 className={[styles.btn, styles.prevBtn].join(' ')}
+                enable={length === -cardActive}
+                handleClick={() => handleClick('next')}
+                name="Next Button"
             />
         </div>
     );

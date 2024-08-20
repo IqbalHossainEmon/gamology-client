@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './DiscoverBannerItemMobile.module.css';
 
 export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
-    const { coverMobile, name, id } = banner;
-    const [position, setPosition] = useState(0);
+    const { coverMobile, name, id } = banner,
+     [position, setPosition] = useState(0);
 
     useEffect(() => {
         switch (cardsPosition[id]) {
@@ -29,8 +29,15 @@ export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
     }, [cardsPosition, id]);
 
     return (
-        <div id={position} className={`${styles.carouselItem}`}>
-            <img src={coverMobile} className={styles.carouselImg} alt={`${name} carousel cover-${id + 1}`} />
+        <div
+            className={`${styles.carouselItem}`}
+            id={position}
+        >
+            <img
+                alt={`${name} carousel cover-${id + 1}`}
+                className={styles.carouselImg}
+                src={coverMobile}
+            />
         </div>
     );
 }

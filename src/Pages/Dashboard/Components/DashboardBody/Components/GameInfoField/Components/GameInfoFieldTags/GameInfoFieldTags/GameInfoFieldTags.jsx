@@ -56,36 +56,46 @@ export default function GameInfoFieldTags({
     const getInitialState = (list, category) => {
         const initialState = {};
         list.forEach(option => {
-            if (hasDefault && Object.prototype.hasOwnProperty.call(defaultGameTags[category], option.filter))
-                initialState[option.filter] = true;
-            else initialState[option.filter] = false;
+            if (hasDefault && Object.hasOwn(defaultGameTags[category], option.filter))
+                {initialState[option.filter] = true;}
+            else {initialState[option.filter] = false;}
         });
         return initialState;
     };
     return (
         <section className={styles.addGameTags}>
-            <h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s tags</h3>
+            <h3 className={styles.header}>
+                {hasDefault ? 'Edit' : 'Add'}
+
+                {' '}
+                Game&apos;s tags
+            </h3>
+
             <div className={styles.optionsContainer}>
                 {options.map(option => (
-                    <div key={option.id} className={styles.options}>
+                    <div
+                        className={styles.options}
+                        key={option.id}
+                    >
                         <OptionsContainer
+                            errorChange={errorChange}
+                            errorMessage={errorMessages.current.gameTagsError[option.category]}
+                            gameTags={gameData}
                             initialState={getInitialState(option.optionList, option.category)}
                             options={option.optionList}
                             title={option.category}
-                            gameTags={gameData}
-                            errorMessage={errorMessages.current.gameTagsError[option.category]}
-                            errorChange={errorChange}
                         />
                     </div>
                 ))}
             </div>
+
             <PriceReleaseDate
-                gameInfo={gameData}
-                errorMessage={errorMessages.current.gameTagsError.releaseDate}
-                errorChange={errorChange}
-                defaultReleaseDate={defaultReleaseDate}
-                hasDefault={hasDefault}
                 defaultPrice={defaultPrice}
+                defaultReleaseDate={defaultReleaseDate}
+                errorChange={errorChange}
+                errorMessage={errorMessages.current.gameTagsError.releaseDate}
+                gameInfo={gameData}
+                hasDefault={hasDefault}
             />
         </section>
     );

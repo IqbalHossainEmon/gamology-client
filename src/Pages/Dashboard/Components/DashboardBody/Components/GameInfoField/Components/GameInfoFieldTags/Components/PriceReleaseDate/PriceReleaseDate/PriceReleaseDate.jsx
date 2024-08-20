@@ -3,38 +3,42 @@ import ReleaseDate from '../ReleaseDate/ReleaseDate';
 import styles from './PriceReleaseDate.module.css';
 
 export default function PriceReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, hasDefault, defaultPrice }) {
-    const [price, setPrice] = useState(defaultPrice || '0.00');
+    const [price, setPrice] = useState(defaultPrice || '0.00'),
 
-    const handleSetValue = e => {
+     handleSetValue = e => {
         gameInfo.current.gameInfo[e.target.name] = e.target.value;
     };
 
     return (
         <div className={styles.priceReleaseDateContainer}>
             <div className={styles.priceContainer}>
-                <label htmlFor="price">Price $</label>
+                <label htmlFor="price">
+                    Price $
+                </label>
+
                 <div className={styles.inputContainer}>
                     <input
-                        step="1"
-                        min={0}
-                        onFocus={e => {
-                            if (e.target.value === '0.00') e.target.select();
-                        }}
-                        onBlur={handleSetValue}
-                        name="price"
-                        placeholder="0.00"
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}
-                        type="number"
                         id="price"
+                        min={0}
+                        name="price"
+                        onBlur={handleSetValue}
+                        onChange={e => setPrice(e.target.value)}
+                        onFocus={e => {
+                            if (e.target.value === '0.00') {e.target.select();}
+                        }}
+                        placeholder="0.00"
+                        step="1"
+                        type="number"
+                        value={price}
                     />
                 </div>
             </div>
+
             <ReleaseDate
-                gameInfo={gameInfo}
+                defaultReleaseDate={defaultReleaseDate}
                 errorChange={errorChange}
                 errorMessage={errorMessage}
-                defaultReleaseDate={defaultReleaseDate}
+                gameInfo={gameInfo}
                 hasDefault={hasDefault}
             />
         </div>

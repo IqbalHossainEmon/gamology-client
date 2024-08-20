@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import styles from './ImagePreview.module.css';
 
-const ImagePreview = ({ file, show }) => {
-    const imageRef = useRef(null);
-    const srcRef = useRef(null);
+function ImagePreview({ file, show }) {
+    const imageRef = useRef(null),
+     srcRef = useRef(null);
 
     useEffect(() => {
         if ((file && !srcRef.current) || srcRef.file !== file) {
@@ -26,10 +26,15 @@ const ImagePreview = ({ file, show }) => {
     return (
         <div className={styles.imagePreviewContainer}>
             <div className={`${styles.imagePreview}${show ? ` ${styles.show}` : ''}`}>
-                <img ref={imageRef} className={styles.img} src={srcRef.current} alt="preview" />
+                <img
+                    alt="preview"
+                    className={styles.img}
+                    ref={imageRef}
+                    src={srcRef.current}
+                />
             </div>
         </div>
     );
-};
+}
 
 export default ImagePreview;

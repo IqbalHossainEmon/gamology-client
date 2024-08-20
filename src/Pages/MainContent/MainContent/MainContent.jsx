@@ -5,12 +5,14 @@ import styles from './MainContent.module.css';
 
 export default function MainContent() {
 	return (
-		<>
-			<SecondNavbar />
-			<main className={styles.main}>
-				<Browse />
-			</main>
-			<Footer />
-		</>
+    <>
+        <SecondNavbar />
+
+        <main className={styles.main}>
+            <Browse />
+        </main>
+
+        <Footer />
+    </>
 	);
 }

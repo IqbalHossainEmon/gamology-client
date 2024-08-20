@@ -9,15 +9,15 @@ export default function DiscoverBannerItems({ data, bannerState, cardsPosition, 
                 screenWidth > 768 ? (
                     <DiscoverBannerItem
                         activeBanner={activeBanner}
-                        key={id}
                         banner={{ coverImg, id: index, name }}
                         bannerState={bannerState}
+                        key={id}
                     />
                 ) : (
                     <DiscoverBannerItemMobile
-                        key={id}
                         banner={{ coverMobile, id: index, name }}
                         cardsPosition={cardsPosition}
+                        key={id}
                     />
                 )
             )}

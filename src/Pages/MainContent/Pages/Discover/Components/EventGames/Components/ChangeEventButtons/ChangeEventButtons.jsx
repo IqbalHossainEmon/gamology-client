@@ -10,9 +10,9 @@ export default function ChangeEventButtons({ setCardPosition, cardPosition }) {
                     <button
                         key={Button}
                         {...(cardPosition === Button && { id: styles.active })}
-                        type="button"
-                        onClick={() => setCardPosition(Button)}
                         className={[styles.button1, styles.button].join(' ')}
+                        onClick={() => setCardPosition(Button)}
+                        type="button"
                     />
                 ))}
             </div>

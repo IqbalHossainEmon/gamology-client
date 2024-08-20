@@ -3,17 +3,17 @@ import TextField from '../../../../../../../../../../../../../Shared/TextField/T
 import useDashboardModalHook from '../../../../../../../../useDashboardModalHook/useDashboardModalHook';
 import styles from './AllGamesDeleteConfirmModal.module.css';
 
-const AllGamesDeleteConfirmModal = () => {
-	const confirmText = useRef(null);
+function AllGamesDeleteConfirmModal() {
+	const confirmText = useRef(null),
 
-	const [{ errorChange, errorMessage }, setError] = useState({
+	 [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
-	});
+	}),
 
-	const { setDashboardModal } = useDashboardModalHook();
+	 { setDashboardModal } = useDashboardModalHook(),
 
-	const handleDelete = () => {
+	 handleDelete = () => {
 		if (
 			confirmText.current === 'DELETE' ||
 			confirmText.current === 'delete' ||
@@ -29,23 +29,28 @@ const AllGamesDeleteConfirmModal = () => {
 		}
 	};
 	return (
-		<div className={styles.deleteModal}>
-			<TextField
-				errorChange={errorChange}
-				errorMessage={errorMessage}
-				type='text'
-				htmlFor='delete_game'
-				placeholder="Type 'DELETE' to Delete"
-				field='input'
-				setState={val => {
+    <div className={styles.deleteModal}>
+        <TextField
+            className={styles.textField}
+            errorChange={errorChange}
+            errorMessage={errorMessage}
+            field='input'
+            htmlFor='delete_game'
+            placeholder="Type 'DELETE' to Delete"
+            setState={val => {
 					confirmText.current = val;
 				}}
-				className={styles.textField}
-			/>
-			<button type='button' className={styles.deleteBtn} onClick={handleDelete}>
-				Delete
-			</button>
-		</div>
+            type='text'
+        />
+
+        <button
+            className={styles.deleteBtn}
+            onClick={handleDelete}
+            type='button'
+        >
+            Delete
+        </button>
+    </div>
 	);
-};
+}
 export default AllGamesDeleteConfirmModal;

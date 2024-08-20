@@ -13,8 +13,8 @@ const links = [
 ];
 
 export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState }) {
-    const [style, setStyle] = useState({});
-    const sliderElementRef = useRef();
+    const [style, setStyle] = useState({}),
+     sliderElementRef = useRef();
 
     useEffect(() => {
         if (sliderElementRef) {
@@ -23,8 +23,18 @@ export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState 
     }, [sliderElementRef]);
 
     return (
-        <ul ref={sliderElementRef} {...(!navMidShow && { style })} className={styles.SecondNavLinks} id={styles[id]}>
-            <LinksList active={3} styles={styles} links={links} onclick={setNavTextState} />
+        <ul
+            ref={sliderElementRef}
+            {...(!navMidShow && { style })}
+            className={styles.SecondNavLinks}
+            id={styles[id]}
+        >
+            <LinksList
+                active={3}
+                links={links}
+                onclick={setNavTextState}
+                styles={styles}
+            />
         </ul>
     );
 }

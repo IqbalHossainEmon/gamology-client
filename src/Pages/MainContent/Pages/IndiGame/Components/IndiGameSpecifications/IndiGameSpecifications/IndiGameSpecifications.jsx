@@ -108,9 +108,9 @@ const data = {
 };
 
 export default function IndiGameSpecifications() {
-    const [spec, setSpec] = useState({});
+    const [spec, setSpec] = useState({}),
 
-    const [toggle, setToggle] = useState(0);
+     [toggle, setToggle] = useState(0);
 
     useEffect(() => {
         setSpec(data);
@@ -118,36 +118,53 @@ export default function IndiGameSpecifications() {
 
     return (
         <section className={styles.individualGameSpecifications}>
-            <h2 className={styles.specificationText}>Specifications</h2>
+            <h2 className={styles.specificationText}>
+                Specifications
+            </h2>
+
             <div className={styles.specificationContainer}>
                 <div className={styles.mainHeadersContainer}>
                     {spec.spec?.map((s, i) => (
-                        <div className={styles.mainHeader} key={s.id}>
+                        <div
+                            className={styles.mainHeader}
+                            key={s.id}
+                        >
                             <button
-                                type="button"
-                                onClick={() => setToggle(i)}
                                 className={`${toggle === i ? `${styles.active} ` : ''}${styles.mainHeaderBtn}`}
+                                onClick={() => setToggle(i)}
+                                type="button"
                             >
                                 {s.for}
                             </button>
                         </div>
                     ))}
                 </div>
+
                 <div>
-                    <IndiGameMultipleSpecification spec={spec.spec} active={toggle} />
-                    {spec.others && <IndiGameSpecificationOther others={spec.others} />}
+                    <IndiGameMultipleSpecification
+                        active={toggle}
+                        spec={spec.spec}
+                    />
+
+                    {spec.others ? <IndiGameSpecificationOther others={spec.others} /> : null}
                 </div>
+
                 <LineBreak />
+
                 <div>
-                    <p className={styles.copyWrite}>{spec.copyWrite}</p>
+                    <p className={styles.copyWrite}>
+                        {spec.copyWrite}
+                    </p>
                 </div>
-                {spec.policy && (
-                    <div className={styles.policyContainer}>
-                        <a className={styles.policy} href={spec.policy}>
-                            Privacy Policy
-                        </a>
-                    </div>
-                )}
+
+                {spec.policy ? <div className={styles.policyContainer}>
+                    <a
+                        className={styles.policy}
+                        href={spec.policy}
+                    >
+                        Privacy Policy
+                    </a>
+                               </div> : null}
             </div>
         </section>
     );

@@ -3,16 +3,16 @@ import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModalHook from '../../../../useDashboardModalHook/useDashboardModalHook';
 import styles from './UserDeleteConfirmModal.module.css';
 
-const UserDeleteConfirmModal = () => {
+function UserDeleteConfirmModal() {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
-	});
+	}),
 
-	const confirmText = useRef(null);
-	const { setDashboardModal } = useDashboardModalHook();
+	 confirmText = useRef(null),
+	 { setDashboardModal } = useDashboardModalHook(),
 
-	const handleDelete = () => {
+	 handleDelete = () => {
 		if (
 			confirmText.current === 'DELETE' ||
 			confirmText.current === 'delete' ||
@@ -28,22 +28,27 @@ const UserDeleteConfirmModal = () => {
 		}
 	};
 	return (
-		<div className={styles.deleteModal}>
-			<TextField
-				errorChange={errorChange}
-				errorMessage={errorMessage}
-				type='text'
-				placeholder="Type 'DELETE' to Delete User"
-				field='input'
-				setState={val => {
+    <div className={styles.deleteModal}>
+        <TextField
+            className={styles.textField}
+            errorChange={errorChange}
+            errorMessage={errorMessage}
+            field='input'
+            placeholder="Type 'DELETE' to Delete User"
+            setState={val => {
 					confirmText.current = val;
 				}}
-				className={styles.textField}
-			/>
-			<button type='button' className={styles.deleteBtn} onClick={handleDelete}>
-				Delete
-			</button>
-		</div>
+            type='text'
+        />
+
+        <button
+            className={styles.deleteBtn}
+            onClick={handleDelete}
+            type='button'
+        >
+            Delete
+        </button>
+    </div>
 	);
-};
+}
 export default UserDeleteConfirmModal;

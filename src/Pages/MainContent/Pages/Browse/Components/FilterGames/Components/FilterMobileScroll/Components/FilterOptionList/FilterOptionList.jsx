@@ -6,7 +6,13 @@ function FilterOptionList({ options, state, setState, limits }) {
     return (
         <div className={styles.filterOptionList}>
             {options.map(option => (
-                <FilterOptions key={option.id} option={option} setState={setState} state={state} limits={limits} />
+                <FilterOptions
+                    key={option.id}
+                    limits={limits}
+                    option={option}
+                    setState={setState}
+                    state={state}
+                />
             ))}
         </div>
     );

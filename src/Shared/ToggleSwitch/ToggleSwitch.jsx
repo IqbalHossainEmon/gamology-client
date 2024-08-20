@@ -9,20 +9,20 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 	const [circlePosition, setCirclePosition] = useState({
 		translate: state ? rangePathWidth : 0,
 		transition: false,
-	});
+	}),
 
-	const prevState = useRef(state);
+	 prevState = useRef(state),
 
-	const stateRef = useRef(circlePosition);
+	 stateRef = useRef(circlePosition);
 	stateRef.current = circlePosition.translate;
 
 	const mainStateRef = useRef(state);
 	mainStateRef.current = state;
 
-	const roundRef = useRef(null);
-	const positionsRef = useRef(0);
+	const roundRef = useRef(null),
+	 positionsRef = useRef(0),
 
-	const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
+	 handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
 
 	useEffect(() => {
 		if (prevState.current !== state) {
@@ -44,9 +44,9 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 			handleMove: e => {
 				document.removeEventListener('mouseup', event);
 
-				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
+				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current,
 
-				const newPosition = positionsRef.start + move;
+				 newPosition = positionsRef.start + move;
 
 				if (move > 0) {
 					if (newPosition > rangePathWidth) {
@@ -65,7 +65,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 				positionsRef.start = stateRef.current;
 			},
 			handleSetValue: () => {
-				// if switch is below 50
+				// If switch is below 50
 				if (mouseUpEvent) {
 					mouseUpEvent();
 				}
@@ -104,41 +104,42 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 	}
 
 	return (
-		<div
-			className={`${styles.toggleButtonContainer}${
+    <div
+        className={`${styles.toggleButtonContainer}${
 				isLoading ? ` ${styles.containerLoading}` : ''
 			}`}
-		>
-			<div className={styles.toggleButton}>
-				<div className={styles.activePathContainer}>
-					<div
-						className={`${styles.activePath}${
+    >
+        <div className={styles.toggleButton}>
+            <div className={styles.activePathContainer}>
+                <div
+                    className={`${styles.activePath}${
 							circlePosition.transition ? ` ${styles.pathTransition}` : ''
 						}${isLoading ? ` ${styles.activePathLoading}` : ''}`}
-						style={{ scale: `${circlePosition.translate / rangePathWidth || 0} 1` }}
-					/>
-				</div>
-				<div
-					className={`${styles.roundContainer}${
+                    style={{ scale: `${circlePosition.translate / rangePathWidth || 0} 1` }}
+                />
+            </div>
+
+            <div
+                className={`${styles.roundContainer}${
 						circlePosition.transition ? ` ${styles.roundTransition}` : ''
 					}`}
-					ref={roundRef}
-					{...(circlePosition.translate && {
+                ref={roundRef}
+                {...(circlePosition.translate && {
 						style: {
 							translate: `${circlePosition.translate}px`,
 						},
 					})}
-				>
-					<button
-						className={`${styles.round}${
+            >
+                <button
+                    className={`${styles.round}${
 							circlePosition.translate > rangePathWidth / 2 ? ` ${styles.active}` : ''
 						}${isLoading ? ` ${styles.roundLoading}` : ''}`}
-						onTouchStart={eventRefs.current.handleBeginning}
-						onMouseDown={eventRefs.current.handleBeginning}
-					/>
-				</div>
-			</div>
-		</div>
+                    onMouseDown={eventRefs.current.handleBeginning}
+                    onTouchStart={eventRefs.current.handleBeginning}
+                />
+            </div>
+        </div>
+    </div>
 	);
 }
 

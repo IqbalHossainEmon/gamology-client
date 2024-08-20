@@ -28,12 +28,13 @@ export default function IndiGameDetailAside() {
             <div className={styles.asideContainer}>
                 <IndiGameAsideHeader
                     name={gameInfo.name}
-                    price={gameInfo.price}
-                    src={gameInfo.logo}
                     phoneSrc={gameInfo.phoneLogo}
+                    price={gameInfo.price}
                     rating={gameInfo.star}
+                    src={gameInfo.logo}
                 />
-                {gameInfo.info && <IndiGameAsideBody info={gameInfo.info} />}
+
+                {gameInfo.info ? <IndiGameAsideBody info={gameInfo.info} /> : null}
             </div>
         </aside>
     );

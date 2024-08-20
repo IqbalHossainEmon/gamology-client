@@ -23,23 +23,23 @@ export default function SelectionField({
     none,
     ...rest
 }) {
-    const [value, setValue] = useState(defaultValue);
-    const [show, setShow] = useState(false);
+    const [value, setValue] = useState(defaultValue),
+     [show, setShow] = useState(false),
 
-    const screenWidth = useScreenWidth();
+     screenWidth = useScreenWidth(),
 
-    const valueRef = useRef(value);
+     valueRef = useRef(value);
     valueRef.current = value;
     const parentSetValueRef = useRef(parentSetValue);
     parentSetValueRef.current = parentSetValue;
-    const elementRef = useRef(null);
-    const containerRef = useRef(null);
-    const inputRef = useRef(null);
-    const positionRef = useRef({ height: 0, bottom: true });
-    const parentRef = useRef(null);
-    const childRef = useRef(null);
+    const elementRef = useRef(null),
+     containerRef = useRef(null),
+     inputRef = useRef(null),
+     positionRef = useRef({ height: 0, bottom: true }),
+     parentRef = useRef(null),
+     childRef = useRef(null),
 
-    const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
+     { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
 
     useEffect(() => {
         if (parentSetValueRef.current) {
@@ -53,13 +53,13 @@ export default function SelectionField({
 
     useEffect(() => {
         if (inputRef.current)
-            ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;
+            {ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;}
     }, [screenWidth]);
 
     const handleClick = () => {
-        const { height, y } = elementRef.current.getBoundingClientRect();
+        const { height, y } = elementRef.current.getBoundingClientRect(),
 
-        const bottomRemain = window.innerHeight - y - height;
+         bottomRemain = window.innerHeight - y - height;
         if (list.length > 4) {
             if (bottomRemain < 170) {
                 positionRef.current.bottom = false;
@@ -84,7 +84,10 @@ export default function SelectionField({
     };
 
     return (
-        <div ref={containerRef} className={styles.container}>
+        <div
+            className={styles.container}
+            ref={containerRef}
+        >
             <button
                 type="button"
                 {...(enabled || { tabIndex: '-1' })}
@@ -93,7 +96,6 @@ export default function SelectionField({
                         inputRef.current.offsetWidth -
                             parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
                             parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && { title: value })}
-                ref={elementRef}
                 className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
                 onClick={() => {
                     handleClick();
@@ -109,6 +111,7 @@ export default function SelectionField({
                         onFocusClick();
                     }
                 }}
+                ref={elementRef}
             >
                 <label
                     className={`${show ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
@@ -116,32 +119,36 @@ export default function SelectionField({
                 >
                     {placeholder}
                 </label>
+
                 <input
-                    tabIndex="-1"
-                    ref={inputRef}
-                    value={value}
-                    readOnly
-                    id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
                     className={styles.field}
+                    id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
+                    readOnly
+                    ref={inputRef}
+                    tabIndex="-1"
+                    value={value}
                     {...rest}
                 />
+
                 <div className={styles.rotateArrow}>
                     <RotateArrow state={show} />
                 </div>
+
                 <ButtonWaterEffect btnRef={elementRef} />
             </button>
+
             <SelectionFieldList
-                state={show}
+                childRef={childRef}
                 list={list}
-                value={value}
-                setValue={setValue}
-                setState={setState}
-                setShow={setShow}
                 name={name}
                 none={none}
                 parentRef={parentRef}
-                childRef={childRef}
                 positionRef={positionRef}
+                setShow={setShow}
+                setState={setState}
+                setValue={setValue}
+                state={show}
+                value={value}
             />
         </div>
     );
