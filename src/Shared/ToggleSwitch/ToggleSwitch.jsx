@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../Hooks/useDragStartStop';
 import useHandleTimerTransition from '../../Hooks/useHandleTimerTransition';
@@ -6,23 +7,30 @@ import styles from './ToggleSwitch.module.css';
 const rangePathWidth = 13;
 
 function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEvent, isLoading }) {
+	ToggleSwitch.propTypes = {
+		state: PropTypes.bool.isRequired,
+		setState: PropTypes.func.isRequired,
+		name: PropTypes.string.isRequired,
+		event: PropTypes.func.isRequired,
+		mouseDownEvent: PropTypes.func,
+		mouseUpEvent: PropTypes.func,
+		isLoading: PropTypes.bool,
+	};
+
 	const [circlePosition, setCirclePosition] = useState({
-		translate: state ? rangePathWidth : 0,
-		transition: false,
-	}),
-
-	 prevState = useRef(state),
-
-	 stateRef = useRef(circlePosition);
+			translate: state ? rangePathWidth : 0,
+			transition: false,
+		}),
+		prevState = useRef(state),
+		stateRef = useRef(circlePosition);
 	stateRef.current = circlePosition.translate;
 
 	const mainStateRef = useRef(state);
 	mainStateRef.current = state;
 
 	const roundRef = useRef(null),
-	 positionsRef = useRef(0),
-
-	 handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
+		positionsRef = useRef(0),
+		handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
 
 	useEffect(() => {
 		if (prevState.current !== state) {
@@ -45,8 +53,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 				document.removeEventListener('mouseup', event);
 
 				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current,
-
-				 newPosition = positionsRef.start + move;
+					newPosition = positionsRef.start + move;
 
 				if (move > 0) {
 					if (newPosition > rangePathWidth) {
@@ -104,42 +111,45 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 	}
 
 	return (
-    <div
-        className={`${styles.toggleButtonContainer}${
+		<div
+			className={`${styles.toggleButtonContainer}${
 				isLoading ? ` ${styles.containerLoading}` : ''
 			}`}
-    >
-        <div className={styles.toggleButton}>
-            <div className={styles.activePathContainer}>
-                <div
-                    className={`${styles.activePath}${
+		>
+			<div className={styles.toggleButton}>
+				<div className={styles.activePathContainer}>
+					<div
+						className={`${styles.activePath}${
 							circlePosition.transition ? ` ${styles.pathTransition}` : ''
 						}${isLoading ? ` ${styles.activePathLoading}` : ''}`}
-                    style={{ scale: `${circlePosition.translate / rangePathWidth || 0} 1` }}
-                />
-            </div>
+						style={{ scale: `${circlePosition.translate / rangePathWidth || 0} 1` }}
+					/>
+				</div>
 
-            <div
-                className={`${styles.roundContainer}${
+				<div
+					className={`${styles.roundContainer}${
 						circlePosition.transition ? ` ${styles.roundTransition}` : ''
 					}`}
-                ref={roundRef}
-                {...(circlePosition.translate && {
+					ref={roundRef}
+					{...(circlePosition.translate && {
 						style: {
 							translate: `${circlePosition.translate}px`,
 						},
 					})}
-            >
-                <button
-                    className={`${styles.round}${
+				>
+					<div
+						className={`${styles.round}${
 							circlePosition.translate > rangePathWidth / 2 ? ` ${styles.active}` : ''
-						}${isLoading ? ` ${styles.roundLoading}` : ''}`}
-                    onMouseDown={eventRefs.current.handleBeginning}
-                    onTouchStart={eventRefs.current.handleBeginning}
-                />
-            </div>
-        </div>
-    </div>
+						}`}
+						onMouseDown={eventRefs.current.handleBeginning}
+						onTouchStart={eventRefs.current.handleBeginning}
+						role="switch"
+						aria-checked={mainStateRef.current}
+						tabIndex="0"
+					/>
+				</div>
+			</div>
+		</div>
 	);
 }
 

@@ -10,7 +10,7 @@ function FilterOption({ text, setState, border, state, name }) {
 		border: PropTypes.bool,
 		name: PropTypes.string.isRequired,
 		setState: PropTypes.func.isRequired,
-		state: PropTypes.object.isRequired,
+		state: PropTypes.bool.isRequired,
 		text: PropTypes.string.isRequired,
 	};
 
@@ -28,31 +28,28 @@ function FilterOption({ text, setState, border, state, name }) {
 	}
 
 	return (
-    <button
-        className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${
+		<button
+			className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${
 				styles.filterOption
 			} ${styles.shadow}`}
-        onMouseDown={el => {
+			onMouseDown={el => {
 				el.preventDefault();
 				document.addEventListener('mouseup', eventRef.current.handleClick, { once: true });
 			}}
-        ref={btnRef}
-        type='button'
-    >
-        <p className={styles.text}>
-            {text}
-        </p>
+			ref={btnRef}
+			type="button"
+		>
+			<p className={styles.text}>{text}</p>
 
-        <div className={styles.toggleButtonContainer}>
-            <ToggleSwitch
-                event={eventRef.current.handleClick}
-                isLoading
-                name={name}
-                setState={setState}
-                state={state}
-            />
-        </div>
-    </button>
+			<div className={styles.toggleButtonContainer}>
+				<ToggleSwitch
+					event={eventRef.current.handleClick}
+					name={name}
+					setState={setState}
+					state={state}
+				/>
+			</div>
+		</button>
 	);
 }
 
