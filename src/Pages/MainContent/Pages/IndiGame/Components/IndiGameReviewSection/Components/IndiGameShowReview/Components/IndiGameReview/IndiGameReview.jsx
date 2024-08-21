@@ -3,150 +3,118 @@ import LineBreak from '../../../../../../../../../../Shared/LineBreak/LineBreak'
 import ReviewStar from '../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import styles from './IndiGameReview.module.css';
 
-const userIcon = 'assets/images/icons/user.png',
-
- month = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+const userIcon = 'assets/images/icons/user.png';
+const month = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
 ];
 
 export default function IndiGameReview({ review, index, length }) {
-    const [feedbackState, setFeedbackState] = useState({ state: 0 }),
+	const [feedbackState, setFeedbackState] = useState({ state: 0 });
+	const { user, feedback } = review;
+	const handleReport = () => {
+		setFeedbackState({ state: -1 });
+	};
 
-     { user, feedback } = review,
+	return (
+		<>
+			<div className={styles.individualGameReview}>
+				<div className={styles.userDetails}>
+					<img alt="" className={styles.userIcon} src={userIcon} />
 
-     handleReport = () => {
-        setFeedbackState({ state: -1 });
-    };
+					<p className={styles.name}>{user.name}</p>
 
-    return (
-        <>
-            <div className={styles.individualGameReview}>
-                <div className={styles.userDetails}>
-                    <img
-                        alt=""
-                        className={styles.userIcon}
-                        src={userIcon}
-                    />
+					<p className={styles.details}>
+						Games:
+						{user.games}
+					</p>
 
-                    <p className={styles.name}>
-                        {user.name}
-                    </p>
+					<p className={styles.details}>
+						Reviews:
+						{user.reviews}
+					</p>
+				</div>
 
-                    <p className={styles.details}>
-                        Games:
-                        {user.games}
-                    </p>
+				<div className={styles.reviewContainer}>
+					<div className={styles.titleStarDateContainer}>
+						<div className={styles.titleStarContainer}>
+							<ReviewStar disabled newValue={review.star - 1} />
 
-                    <p className={styles.details}>
-                        Reviews:
-                        {user.reviews}
-                    </p>
-                </div>
+							<h3 className={styles.title}>{review.title}</h3>
+						</div>
 
-                <div className={styles.reviewContainer}>
-                    <div className={styles.titleStarDateContainer}>
-                        <div className={styles.titleStarContainer}>
-                            <ReviewStar
-                                disabled
-                                newValue={review.star - 1}
-                            />
+						<div>
+							<p className={styles.date}>
+								{month[review.date.getMonth()]} {review.date.getDate()},
+								{review.date.getFullYear()}
+							</p>
+						</div>
+					</div>
 
-                            <h3 className={styles.title}>
-                                {review.title}
-                            </h3>
-                        </div>
+					<p className={styles.reviewDescription}>{review.text}</p>
 
-                        <div>
-                            <p className={styles.date}>
-                                {month[review.date.getMonth()]} {review.date.getDate()}
+					<div className={styles.feedbackContainer}>
+						<div
+							className={
+								feedbackState.state === 0
+									? styles.giveFeedback
+									: [styles.notGiven, styles.giveFeedback].join(' ')
+							}
+						>
+							{feedbackState.state === 0 ? (
+								<div className={styles.interactionContainer}>
+									<p>Is this Helpful to you?</p>
 
-                                ,
-                                {review.date.getFullYear()}
-                            </p>
-                        </div>
-                    </div>
+									<button
+										className={styles.feedbackBtn}
+										onClick={() => setFeedbackState({ state: -1 })}
+										type="button"
+									>
+										yes
+									</button>
 
-                    <p className={styles.reviewDescription}>
-                        {review.text}
-                    </p>
+									<button
+										className={styles.feedbackBtn}
+										onClick={() => setFeedbackState({ state: 1 })}
+										type="button"
+									>
+										no
+									</button>
+								</div>
+							) : (
+								<p>Thanks for your vote!</p>
+							)}
 
-                    <div className={styles.feedbackContainer}>
-                        <div
-                            className={
-                                feedbackState.state === 0
-                                    ? styles.giveFeedback
-                                    : [styles.notGiven, styles.giveFeedback].join(' ')
-                            }
-                        >
-                            {feedbackState.state === 0 ? (
-                                <div className={styles.interactionContainer}>
-                                    <p>
-                                        Is this Helpful to you?
-                                    </p>
+							<p className={styles.usersFeedback}>
+								({feedback.goodFeedback} of {feedback.totalFeedback} users found
+								this helpful)
+							</p>
+						</div>
 
-                                    <button
-                                        className={styles.feedbackBtn}
-                                        onClick={() => setFeedbackState({ state: -1 })}
-                                        type="button"
-                                    >
-                                        yes
-                                    </button>
+						{feedbackState.state > 0 && (
+							<button
+								className={styles.reportBtn}
+								onClick={handleReport}
+								type="button"
+							>
+								report
+							</button>
+						)}
+					</div>
+				</div>
+			</div>
 
-                                    <button
-                                        className={styles.feedbackBtn}
-                                        onClick={() => setFeedbackState({ state: 1 })}
-                                        type="button"
-                                    >
-                                        no
-                                    </button>
-                                </div>
-                            ) : (
-                                <p>
-                                    Thanks for your vote!
-                                </p>
-                            )}
-
-                            <p className={styles.usersFeedback}>
-                                (
-                                {feedback.goodFeedback}
-
-                                {' '}
-                                of 
-
-                                {' '}
-
-                                {feedback.totalFeedback}
-
-                                {' '}
-                                users found this helpful)
-                            </p>
-                        </div>
-
-                        {feedbackState.state > 0 && (
-                            <button
-                                className={styles.reportBtn}
-                                onClick={handleReport}
-                                type="button"
-                            >
-                                report
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            {index !== length - 1 && <LineBreak />}
-        </>
-    );
+			{index !== length - 1 && <LineBreak />}
+		</>
+	);
 }

@@ -4,14 +4,13 @@ import useScreenWidth from './useScreenWidth';
 export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 	// Get value cursors value left right side value and left difference and right difference depending on cursors position inside the cursor.
 
-	const pathInfoRef = useRef(),
-	 screenWidth = useScreenWidth();
+	const pathInfoRef = useRef();
+	const screenWidth = useScreenWidth();
 
 	useEffect(() => {
 		setTimeout(() => {
 			pathInfoRef.width = rangePathRef.current.offsetWidth;
-			pathInfoRef.offsetLeft =
-				rangePathRef.current.getBoundingClientRect().left;
+			pathInfoRef.offsetLeft = rangePathRef.current.getBoundingClientRect().left;
 		}, 0);
 	}, [rangePathRef, screenWidth]);
 
@@ -20,22 +19,17 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 	if (eventRefs.current === null) {
 		eventRefs.current = {
 			handleSetEveryStep: value => {
-				const st = conditionStepRef.current.find(
-					({ ifLess }) => value <= ifLess
-				);
+				const st = conditionStepRef.current.find(({ ifLess }) => value <= ifLess);
 
 				if (st) {
 					return st.step;
 				}
-				return conditionStepRef.current[
-					conditionStepRef.current.length - 1
-				].step;
+				return conditionStepRef.current[conditionStepRef.current.length - 1].step;
 			},
 
 			getCursorInPercent: e => {
 				const cursorInEle =
-					(e?.touches ? e.touches[0].clientX : e.clientX) -
-					pathInfoRef.offsetLeft;
+					(e?.touches ? e.touches[0].clientX : e.clientX) - pathInfoRef.offsetLeft;
 
 				let cursorInPercent = (cursorInEle / pathInfoRef.width) * 100;
 
@@ -56,10 +50,7 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 
 				switch (typeof conditionStepRef?.current) {
 					case 'object':
-						everyStep =
-							eventRefs.current.handleSetEveryStep(
-								cursorInPercent
-							);
+						everyStep = eventRefs.current.handleSetEveryStep(cursorInPercent);
 						break;
 					case 'number':
 						everyStep = conditionStepRef.current;
@@ -68,10 +59,8 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 						break;
 				}
 
-				let pointerLeftStep =
-					Math.round(cursorInPercent / everyStep) * everyStep,
-
-				 pointerRightStep = pointerLeftStep + everyStep;
+				let pointerLeftStep = Math.round(cursorInPercent / everyStep) * everyStep;
+				let pointerRightStep = pointerLeftStep + everyStep;
 
 				if (pointerLeftStep < 0 || pointerLeftStep > 100) {
 					if (pointerLeftStep < 0) {
@@ -89,8 +78,8 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 					}
 				}
 
-				const leftDiff = cursorInPercent - pointerLeftStep,
-				 rightDiff = pointerRightStep - cursorInPercent;
+				const leftDiff = cursorInPercent - pointerLeftStep;
+				const rightDiff = pointerRightStep - cursorInPercent;
 
 				return {
 					cursorInPercent,

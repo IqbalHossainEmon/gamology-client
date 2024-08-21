@@ -8,27 +8,22 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 		knob1: 0,
 		knob2: 100,
 		transition: false,
-	}),
-
-	 { knob1, knob2 } = state,
-	 { float, rangeName } = option,
-
-	 leftInputRef = useRef(null),
-	 rightInputRef = useRef(null),
-	 singleStepRef = useRef(0),
-
-	 disableState = typeof limit !== 'object' || limit.higher <= limit.lower || disabled,
-
-	 bigger = parseFloat(
+	});
+	const { knob1, knob2 } = state;
+	const { float, rangeName } = option;
+	const leftInputRef = useRef(null);
+	const rightInputRef = useRef(null);
+	const singleStepRef = useRef(0);
+	const disableState = typeof limit !== 'object' || limit.higher <= limit.lower || disabled;
+	const bigger = parseFloat(
 		((knob1 > knob2 ? knob1 : knob2) / singleStepRef.current + limit.lower).toFixed(float)
-	),
-	 smaller = parseFloat(
+	);
+	const smaller = parseFloat(
 		(((knob1 < knob2 ? knob1 : knob2) / singleStepRef.current || 0) + limit.lower).toFixed(
 			float
 		)
-	),
-
-	 stateRef = useRef({ bigger, smaller });
+	);
+	const stateRef = useRef({ bigger, smaller });
 	stateRef.current.bigger = bigger;
 	stateRef.current.smaller = smaller;
 
@@ -64,33 +59,30 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 		};
 	}
 	return (
-    <div
-        className={styles.filterRange}
-        {...(disableState && { disabled: true })}
-    >
-        <RangeField
-            conditionStep={option.stepCondition}
-            disabled={disableState}
-            handleSetValue={eventRef.current.handleSetValue}
-            leftInputRef={leftInputRef}
-            limit={limit}
-            rightInputRef={rightInputRef}
-            setState={setState}
-            singleStepRef={singleStepRef}
-            state={state}
-        />
+		<div className={styles.filterRange} {...(disableState && { disabled: true })}>
+			<RangeField
+				conditionStep={option.stepCondition}
+				disabled={disableState}
+				handleSetValue={eventRef.current.handleSetValue}
+				leftInputRef={leftInputRef}
+				limit={limit}
+				rightInputRef={rightInputRef}
+				setState={setState}
+				singleStepRef={singleStepRef}
+				state={state}
+			/>
 
-        <RangeInput
-            disabled={disableState}
-            float={float}
-            handleSetValue={eventRef.current.handleSetValue}
-            leftInputRef={leftInputRef}
-            limit={limit}
-            rightInputRef={rightInputRef}
-            setState={setState}
-            singleStepRef={singleStepRef}
-            state={{ bigger, smaller }}
-        />
-    </div>
+			<RangeInput
+				disabled={disableState}
+				float={float}
+				handleSetValue={eventRef.current.handleSetValue}
+				leftInputRef={leftInputRef}
+				limit={limit}
+				rightInputRef={rightInputRef}
+				setState={setState}
+				singleStepRef={singleStepRef}
+				state={{ bigger, smaller }}
+			/>
+		</div>
 	);
 }

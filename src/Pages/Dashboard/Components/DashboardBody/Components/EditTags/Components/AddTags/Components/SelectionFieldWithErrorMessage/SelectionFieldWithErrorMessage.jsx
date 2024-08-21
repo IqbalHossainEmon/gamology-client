@@ -4,42 +4,42 @@ import SelectionField from '../../../../../../../../../../Shared/SelectionField/
 import styles from './SelectionFieldWithErrorMessage.module.css';
 
 function SelectionFieldWithErrorMessage({
-    htmlFor,
-    placeholder,
-    list,
-    name,
-    setState,
-    errorMessage,
-    errorChange,
-    handleCheck,
+	htmlFor,
+	placeholder,
+	list,
+	name,
+	setState,
+	errorMessage,
+	errorChange,
+	handleCheck,
 }) {
-    const [errorShow, setErrorShow] = useState(false);
+	const [errorShow, setErrorShow] = useState(false);
 
-    useEffect(() => {
-        if (errorChange && errorMessage) {setErrorShow(true);}
-        else {setErrorShow(false);}
-    }, [errorChange, errorMessage]);
+	useEffect(() => {
+		if (errorChange && errorMessage) {
+			setErrorShow(true);
+		} else {
+			setErrorShow(false);
+		}
+	}, [errorChange, errorMessage]);
 
-    return (
-        <div className={styles.selectionField}>
-            <SelectionField
-                errorBorder={errorShow}
-                htmlFor={htmlFor}
-                list={list}
-                name={name}
-                onFocusClick={() => {
-                    setErrorShow(false);
-                    handleCheck();
-                }}
-                placeholder={placeholder}
-                setState={setState}
-            />
+	return (
+		<div className={styles.selectionField}>
+			<SelectionField
+				errorBorder={errorShow}
+				htmlFor={htmlFor}
+				list={list}
+				name={name}
+				onFocusClick={() => {
+					setErrorShow(false);
+					handleCheck();
+				}}
+				placeholder={placeholder}
+				setState={setState}
+			/>
 
-            <ErrorMessage
-                enable={errorShow}
-                errorMessage={errorMessage}
-            />
-        </div>
-    );
+			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
+		</div>
+	);
 }
 export default SelectionFieldWithErrorMessage;

@@ -6,84 +6,72 @@ import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn
 import IndiGameReviewInput from '../Components/IndiGameReviewInput/IndiGameReviewInput';
 import styles from './IndiGameWriteReview.module.css';
 
-export default function IndiGameWriteReview({ userIcon, fadeHeight, setWriteReviewShow, reviewStar, user }) {
-    const [data, setData] = useState({ active: 0, title: '', text: '' }),
+export default function IndiGameWriteReview({
+	userIcon,
+	fadeHeight,
+	setWriteReviewShow,
+	reviewStar,
+	user,
+}) {
+	const [data, setData] = useState({ active: 0, title: '', text: '' });
+	const elementRef = useRef(null);
+	const screenWidth = useScreenWidth();
 
-     elementRef = useRef(null),
+	useEffect(() => {
+		elementRef.height = elementRef.current.clientHeight;
+	}, [elementRef, screenWidth]);
 
-     screenWidth = useScreenWidth();
+	const handleSubmit = () => {
+		console.log({
+			star: data.active + 1,
+			title: data.title,
+			text: data.text,
+			data: new Date(),
+		});
+	};
 
-    useEffect(() => {
-        elementRef.height = elementRef.current.clientHeight;
-    }, [elementRef, screenWidth]);
+	return (
+		<div
+			className={styles.individualGameWriteReviewContainer}
+			style={fadeHeight ? { height: elementRef.height + 60 } : { height: 0 }}
+		>
+			<div className={styles.individualGameWriteReview} ref={elementRef}>
+				<div className={styles.userDetails}>
+					<img alt="" className={styles.userIcon} src={userIcon} />
 
-    const handleSubmit = () => {
-        console.log({
-            star: data.active + 1,
-            title: data.title,
-            text: data.text,
-            data: new Date(),
-        });
-    };
+					<p className={styles.name}>{user.name}</p>
 
-    return (
-        <div
-            className={styles.individualGameWriteReviewContainer}
-            style={fadeHeight ? { height: elementRef.height + 60 } : { height: 0 }}
-        >
-            <div
-                className={styles.individualGameWriteReview}
-                ref={elementRef}
-            >
-                <div className={styles.userDetails}>
-                    <img
-                        alt=""
-                        className={styles.userIcon}
-                        src={userIcon}
-                    />
+					<p className={styles.details}>
+						Games:
+						{user.reviews}
+					</p>
 
-                    <p className={styles.name}>
-                        {user.name}
-                    </p>
+					<p className={styles.details}>
+						Reviews:
+						{user.reviews}
+					</p>
+				</div>
 
-                    <p className={styles.details}>
-                        Games:
-                        {user.reviews}
-                    </p>
+				<div className={styles.writingField}>
+					<div className={styles.reviewTitleContainer}>
+						<div className={styles.reviewStarsContainer}>
+							<ReviewStar name="active" newValue={reviewStar} setValue={setData} />
+						</div>
 
-                    <p className={styles.details}>
-                        Reviews:
-                        {user.reviews}
-                    </p>
-                </div>
+						<IndiGameReviewInput setData={setData} />
+					</div>
 
-                <div className={styles.writingField}>
-                    <div className={styles.reviewTitleContainer}>
-                        <div className={styles.reviewStarsContainer}>
-                            <ReviewStar
-                                name="active"
-                                newValue={reviewStar}
-                                setValue={setData}
-                            />
-                        </div>
+					<IndiGameReviewInput isTextArea setData={setData} />
 
-                        <IndiGameReviewInput setData={setData} />
-                    </div>
+					<IndiGameReviewBtn
+						canSubmit={data.title ? data.text : null}
+						handleSubmit={handleSubmit}
+						setWriteReviewShow={setWriteReviewShow}
+					/>
+				</div>
+			</div>
 
-                    <IndiGameReviewInput
-                        isTextArea
-                        setData={setData}
-                    />
-
-                    <IndiGameReviewBtn
-                        canSubmit={data.title ? data.text : null}
-                        handleSubmit={handleSubmit}
-                        setWriteReviewShow={setWriteReviewShow}
-                    />
-                </div>
-            </div>
-
-            <LineBreak />
-        </div>
-    );
+			<LineBreak />
+		</div>
+	);
 }

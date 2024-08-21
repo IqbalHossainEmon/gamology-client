@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
 export default function useChangeBodyOverflow() {
-	const touchAble = useRef(),
-	 root = useRef(),
-	 eventRefs = useRef(null);
+	const touchAble = useRef();
+	const root = useRef();
+	const eventRefs = useRef(null);
 
 	useEffect(() => {
 		root.current = document.getElementById('root');

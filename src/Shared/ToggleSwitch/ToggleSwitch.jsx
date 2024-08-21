@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../Hooks/useDragStartStop';
 import useHandleTimerTransition from '../../Hooks/useHandleTimerTransition';
@@ -7,30 +6,20 @@ import styles from './ToggleSwitch.module.css';
 const rangePathWidth = 13;
 
 function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEvent, isLoading }) {
-	ToggleSwitch.propTypes = {
-		state: PropTypes.bool.isRequired,
-		setState: PropTypes.func.isRequired,
-		name: PropTypes.string.isRequired,
-		event: PropTypes.func.isRequired,
-		mouseDownEvent: PropTypes.func,
-		mouseUpEvent: PropTypes.func,
-		isLoading: PropTypes.bool,
-	};
-
 	const [circlePosition, setCirclePosition] = useState({
-			translate: state ? rangePathWidth : 0,
-			transition: false,
-		}),
-		prevState = useRef(state),
-		stateRef = useRef(circlePosition);
+		translate: state ? rangePathWidth : 0,
+		transition: false,
+	});
+	const prevState = useRef(state);
+	const stateRef = useRef(circlePosition);
 	stateRef.current = circlePosition.translate;
 
 	const mainStateRef = useRef(state);
 	mainStateRef.current = state;
 
-	const roundRef = useRef(null),
-		positionsRef = useRef(0),
-		handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
+	const roundRef = useRef(null);
+	const positionsRef = useRef(0);
+	const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
 
 	useEffect(() => {
 		if (prevState.current !== state) {
@@ -52,8 +41,8 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 			handleMove: e => {
 				document.removeEventListener('mouseup', event);
 
-				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current,
-					newPosition = positionsRef.start + move;
+				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
+				const newPosition = positionsRef.start + move;
 
 				if (move > 0) {
 					if (newPosition > rangePathWidth) {

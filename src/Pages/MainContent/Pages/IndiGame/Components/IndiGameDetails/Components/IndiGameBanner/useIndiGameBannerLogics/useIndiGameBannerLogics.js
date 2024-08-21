@@ -7,9 +7,8 @@ const initialState = {
 	thumbTransition: false,
 	cardActive: 0,
 	cardsOnDeck: 4,
-},
-
- reducer = (state, action) => {
+};
+const reducer = (state, action) => {
 	switch (action.type) {
 		case 'fetch':
 			return { ...state, data: action.data };
@@ -22,7 +21,7 @@ const initialState = {
 						...state,
 						active: state.active === state.data.length - 1 ? 0 : state.active + 1,
 						coverTransition: true,
-				  }
+					}
 				: {
 						...state,
 						active: state.active === state.data.length - 1 ? 0 : state.active + 1,
@@ -32,7 +31,7 @@ const initialState = {
 								? 0
 								: Math.floor((state.active + 1) / state.cardsOnDeck),
 						thumbTransition: true,
-				  };
+					};
 
 		case 'prevBanner':
 			return state.active - 1 !== -1 &&
@@ -42,7 +41,7 @@ const initialState = {
 						...state,
 						active: state.active - 1 === -1 ? state.data.length - 1 : state.active - 1,
 						coverTransition: true,
-				  }
+					}
 				: {
 						...state,
 						active: state.active - 1 === -1 ? state.data.length - 1 : state.active - 1,
@@ -52,7 +51,7 @@ const initialState = {
 								? Math.floor((state.data.length - 1) / state.cardsOnDeck)
 								: Math.floor((state.active - 1) / state.cardsOnDeck),
 						thumbTransition: true,
-				  };
+					};
 
 		case 'setBanner':
 			return { ...state, active: action.active, coverTransition: true };
@@ -93,20 +92,20 @@ const initialState = {
 				? {
 						...state,
 						cardsOnDeck: action.cardsOnDeck,
-				  }
+					}
 				: {
 						...state,
 						cardActive: Math.floor(state.active / action.cardsOnDeck),
 						cardsOnDeck: action.cardsOnDeck,
-				  };
+					};
 		default:
 			return state;
 	}
 };
 
 export default function useIndiGameBannerLogics() {
-	const timeId = useRef(null),
-	 eventRef = useRef(null);
+	const timeId = useRef(null);
+	const eventRef = useRef(null);
 	if (!eventRef.current) {
 		eventRef.current.timerFunction = (transitionType, dispatch, time = 500) => {
 			if (timeId.current) {

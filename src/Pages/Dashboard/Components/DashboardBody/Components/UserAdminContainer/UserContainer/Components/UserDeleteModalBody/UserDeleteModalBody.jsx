@@ -2,6 +2,6 @@ import UserDeleteConfirmModal from '../UserDeleteConfirmModal/UserDeleteConfirmM
 import UserMakeAdminModal from '../UserMakeAdminModal/UserMakeAdminModal';
 
 function UserDeleteModalBody({ type }) {
-  return type === 'delete' ? <UserDeleteConfirmModal /> : <UserMakeAdminModal />
+	return type === 'delete' ? <UserDeleteConfirmModal /> : <UserMakeAdminModal />;
 }
 export default UserDeleteModalBody;

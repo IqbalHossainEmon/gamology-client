@@ -3,19 +3,19 @@ import DiscoverBannerItemCard from '../DiscoverBannerItemCard/DiscoverBannerItem
 import styles from './DiscoverBannerItemCards.module.css';
 
 export default function DiscoverBannerItemCards({ data, handleClick, cardsPosition, isPause }) {
-    const handleDebouncing = useHandleDebouncing(400);
+	const handleDebouncing = useHandleDebouncing(400);
 
-    return (
-        <ul className={styles.itemCards}>
-            {data.map(({ id, carouselThumb, name }, index) => (
-                <DiscoverBannerItemCard
-                    banner={{ carouselThumb, id: index, name }}
-                    cardsPosition={cardsPosition}
-                    handleClick={prop => handleDebouncing(() => handleClick(prop))}
-                    isPause={isPause}
-                    key={id}
-                />
-            ))}
-        </ul>
-    );
+	return (
+		<ul className={styles.itemCards}>
+			{data.map(({ id, carouselThumb, name }, index) => (
+				<DiscoverBannerItemCard
+					banner={{ carouselThumb, id: index, name }}
+					cardsPosition={cardsPosition}
+					handleClick={prop => handleDebouncing(() => handleClick(prop))}
+					isPause={isPause}
+					key={id}
+				/>
+			))}
+		</ul>
+	);
 }

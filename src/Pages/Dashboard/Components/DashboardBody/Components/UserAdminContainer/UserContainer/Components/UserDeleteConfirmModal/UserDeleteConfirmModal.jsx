@@ -7,12 +7,10 @@ function UserDeleteConfirmModal() {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
-	}),
-
-	 confirmText = useRef(null),
-	 { setDashboardModal } = useDashboardModalHook(),
-
-	 handleDelete = () => {
+	});
+	const confirmText = useRef(null);
+	const { setDashboardModal } = useDashboardModalHook();
+	const handleDelete = () => {
 		if (
 			confirmText.current === 'DELETE' ||
 			confirmText.current === 'delete' ||
@@ -28,27 +26,23 @@ function UserDeleteConfirmModal() {
 		}
 	};
 	return (
-    <div className={styles.deleteModal}>
-        <TextField
-            className={styles.textField}
-            errorChange={errorChange}
-            errorMessage={errorMessage}
-            field='input'
-            placeholder="Type 'DELETE' to Delete User"
-            setState={val => {
+		<div className={styles.deleteModal}>
+			<TextField
+				className={styles.textField}
+				errorChange={errorChange}
+				errorMessage={errorMessage}
+				field="input"
+				placeholder="Type 'DELETE' to Delete User"
+				setState={val => {
 					confirmText.current = val;
 				}}
-            type='text'
-        />
+				type="text"
+			/>
 
-        <button
-            className={styles.deleteBtn}
-            onClick={handleDelete}
-            type='button'
-        >
-            Delete
-        </button>
-    </div>
+			<button className={styles.deleteBtn} onClick={handleDelete} type="button">
+				Delete
+			</button>
+		</div>
 	);
 }
 export default UserDeleteConfirmModal;

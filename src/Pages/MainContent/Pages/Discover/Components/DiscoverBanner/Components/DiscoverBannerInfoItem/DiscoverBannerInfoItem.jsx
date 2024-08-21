@@ -2,37 +2,22 @@ import DiscountPrice from '../../../../../../../../Shared/DiscountPrice/Discount
 import styles from './DiscoverBannerInfoItem.module.css';
 
 export default function DiscoverBannerInfoItem({ banner, bannerState, activeBanner }) {
-    const { logoImg, name, id, price } = banner,
-     idState = activeBanner(id, bannerState, styles);
+	const { logoImg, name, id, price } = banner;
+	const idState = activeBanner(id, bannerState, styles);
 
-    return (
-        <div
-            className={styles.itemInfo}
-            id={idState}
-        >
-            <img
-                alt={`${name} Logo-${id + 1}`}
-                className={styles.logoImg}
-                src={logoImg}
-            />
+	return (
+		<div className={styles.itemInfo} id={idState}>
+			<img alt={`${name} Logo-${id + 1}`} className={styles.logoImg} src={logoImg} />
 
-            {price === 'Free' || price === 'free' ? (
-                <p className={styles.priceContainer}>
-                    Free
-                </p>
-            ) : (
-                <p className={styles.priceContainer}>
-                    <span>
-                        Starts at
-                        {' '}
-                    </span>
+			{price === 'Free' || price === 'free' ? (
+				<p className={styles.priceContainer}>Free</p>
+			) : (
+				<p className={styles.priceContainer}>
+					<span>Starts at </span>
 
-                    <DiscountPrice
-                        className={styles.price}
-                        price={price}
-                    />
-                </p>
-            )}
-        </div>
-    );
+					<DiscountPrice className={styles.price} price={price} />
+				</p>
+			)}
+		</div>
+	);
 }

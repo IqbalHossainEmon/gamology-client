@@ -1,0 +1,16 @@
+.fullScreenButton {
+  border: none;
+  background: none;
+  padding: 10px;
+  height: 100%;
+  cursor: pointer;
+}
+.fullScreenButton > span {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+.fullScreenButton > span > svg {
+  width: 100%;
+  height: 100%;
+}

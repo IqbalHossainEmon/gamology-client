@@ -7,13 +7,10 @@ function UserMakeAdminModal() {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
-	}),
-
-	 confirmText = useRef(null),
-
-	 { setDashboardModal } = useDashboardModalHook(),
-
-	 handleMakeAdmin = () => {
+	});
+	const confirmText = useRef(null);
+	const { setDashboardModal } = useDashboardModalHook();
+	const handleMakeAdmin = () => {
 		if (
 			confirmText.current === 'CONFIRM' ||
 			confirmText.current === 'confirm' ||
@@ -30,31 +27,27 @@ function UserMakeAdminModal() {
 	};
 
 	return (
-    <div>
-        <div className={styles.makeAdminModal}>
-            <TextField
-                className={styles.textField}
-                errorChange={errorChange}
-                errorMessage={errorMessage}
-                field='input'
-                placeholder="Type 'CONFIRM' to continue"
-                setState={val => {
+		<div>
+			<div className={styles.makeAdminModal}>
+				<TextField
+					className={styles.textField}
+					errorChange={errorChange}
+					errorMessage={errorMessage}
+					field="input"
+					placeholder="Type 'CONFIRM' to continue"
+					setState={val => {
 						confirmText.current = val;
 					}}
-                type='text'
-            />
+					type="text"
+				/>
 
-            <div className={styles.btnContainer}>
-                <button
-                    className={styles.btn}
-                    onClick={handleMakeAdmin}
-                    type='button'
-                >
-                    Yes
-                </button>
-            </div>
-        </div>
-    </div>
+				<div className={styles.btnContainer}>
+					<button className={styles.btn} onClick={handleMakeAdmin} type="button">
+						Yes
+					</button>
+				</div>
+			</div>
+		</div>
 	);
 }
 export default UserMakeAdminModal;

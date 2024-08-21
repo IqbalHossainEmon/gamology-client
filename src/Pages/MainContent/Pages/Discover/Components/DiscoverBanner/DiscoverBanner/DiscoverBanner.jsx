@@ -57,15 +57,13 @@ const items = [
 
 export default function DiscoverBanner() {
 	const { reducer, initialState, reset, start, stop, activeBanner, setDispatch } =
-		useDiscoverBannerLogics(),
-
-	 [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(
+		useDiscoverBannerLogics();
+	const [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(
 		reducer,
 		initialState
-	),
-	 screenWidth = useScreenWidth(),
-
-	 handleClick = type => {
+	);
+	const screenWidth = useScreenWidth();
+	const handleClick = type => {
 		dispatch(type);
 		reset();
 	};
@@ -76,33 +74,33 @@ export default function DiscoverBanner() {
 	}, [setDispatch, start, stop]);
 
 	return (
-    <section className={styles.banner}>
-        <div className={styles.bannerOverflow}>
-            <DiscoverBannerItems
-                activeBanner={activeBanner}
-                bannerState={{ active, fadeOut, fadeIn }}
-                cardsPosition={cardsPosition}
-                data={data}
-                screenWidth={screenWidth}
-            />
+		<section className={styles.banner}>
+			<div className={styles.bannerOverflow}>
+				<DiscoverBannerItems
+					activeBanner={activeBanner}
+					bannerState={{ active, fadeOut, fadeIn }}
+					cardsPosition={cardsPosition}
+					data={data}
+					screenWidth={screenWidth}
+				/>
 
-            <DiscoverBannerInfoItems
-                activeBanner={activeBanner}
-                bannerState={{ active, fadeOut, fadeIn }}
-                data={data}
-            />
-        </div>
+				<DiscoverBannerInfoItems
+					activeBanner={activeBanner}
+					bannerState={{ active, fadeOut, fadeIn }}
+					data={data}
+				/>
+			</div>
 
-        <BannerButtons handleClick={handleClick} />
+			<BannerButtons handleClick={handleClick} />
 
-        {screenWidth > 768 && (
-        <DiscoverBannerItemCards
-            cardsPosition={cardsPosition}
-            data={data}
-            handleClick={handleClick}
-            isPause={isPause}
-        />
+			{screenWidth > 768 && (
+				<DiscoverBannerItemCards
+					cardsPosition={cardsPosition}
+					data={data}
+					handleClick={handleClick}
+					isPause={isPause}
+				/>
 			)}
-    </section>
+		</section>
 	);
 }

@@ -3,11 +3,9 @@ import ErrorMessage from '../../../../../../../../Shared/ErrorMessage/ErrorMessa
 import styles from './OuterErrorMessage.module.css';
 
 function OuterErrorMessage({ errorChange, errorMessage }) {
-	const [errorShow, setErrorShow] = useState(false),
-
-	 timerId = useRef(null),
-
-	 eventRef = useRef(null);
+	const [errorShow, setErrorShow] = useState(false);
+	const timerId = useRef(null);
+	const eventRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = {
@@ -32,12 +30,9 @@ function OuterErrorMessage({ errorChange, errorMessage }) {
 	}, [errorChange, errorMessage]);
 
 	return (
-    <div className={styles.outerErrorMessage}>
-        <ErrorMessage
-            enable={errorShow}
-            errorMessage={errorMessage}
-        />
-    </div>
+		<div className={styles.outerErrorMessage}>
+			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
+		</div>
 	);
 }
 export default OuterErrorMessage;

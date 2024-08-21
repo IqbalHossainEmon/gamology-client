@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './ButtonWaterEffect.module.css';
 
 function ButtonWaterEffect({ btnRef, backGround, long }) {
-	const [ele, setEle] = useState([]),
-	 eleRef = useRef(ele);
+	const [ele, setEle] = useState([]);
+	const eleRef = useRef(ele);
 	eleRef.current = ele;
-	const key = useRef(0),
-	 eventRefs = useRef(null);
+	const key = useRef(0);
+	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -22,14 +22,14 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 			handleClick: e => {
 				let x =
 					(e.touches ? e.touches[0].clientX : e.clientX) -
-					btnRef.current.getBoundingClientRect().left,
-				 y =
+					btnRef.current.getBoundingClientRect().left;
+				let y =
 					(e.touches ? e.touches[0].clientY : e.clientY) -
 					btnRef.current.getBoundingClientRect().top;
-				const width = btnRef.current.offsetWidth,
-				 height = btnRef.current.offsetHeight,
-				 halfWidth = width / 2,
-				 halfHeight = height / 2;
+				const width = btnRef.current.offsetWidth;
+				const height = btnRef.current.offsetHeight;
+				const halfWidth = width / 2;
+				const halfHeight = height / 2;
 
 				if (x < -2 || y < -2) {
 					x = halfWidth;
@@ -48,38 +48,40 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 					length = Math.sqrt(x ** 2 + y ** 2);
 				}
 
-				if (eleRef.current.length === 0) {key.current = 0;}
+				if (eleRef.current.length === 0) {
+					key.current = 0;
+				}
 
 				setEle(el => [
 					...el,
-    <span
-        className={`${long ? styles.long : styles.short} ${styles.waterDrop}`}
-        key={key.current++}
-        style={{
+					<span
+						className={`${long ? styles.long : styles.short} ${styles.waterDrop}`}
+						key={key.current++}
+						style={{
 							width: `${length * 2}px`,
 							height: `${length * 2}px`,
 							top: `${y - length}px`,
 							left: `${x - length}px`,
 							background: backGround || 'white',
 						}}
-    />,
+					/>,
 				]);
 				eventRefs.current.removeWaterDrop();
 			},
 		};
 	}
 	useEffect(() => {
-		const btn = btnRef.current,
-		 { handleClick } = eventRefs.current;
+		const btn = btnRef.current;
+		const { handleClick } = eventRefs.current;
 
 		btn.addEventListener('click', handleClick);
 		return () => {
-			if (btn) {btn.removeEventListener('click', handleClick);}
+			if (btn) {
+				btn.removeEventListener('click', handleClick);
+			}
 		};
 	}, [backGround, btnRef, long]);
 
-	return (<span className={styles.btnWaterEffect}>
-    {ele}
-         </span>);
+	return <span className={styles.btnWaterEffect}>{ele}</span>;
 }
 export default ButtonWaterEffect;

@@ -17,13 +17,12 @@ export default function TextField({
 	parentErrorShow = true,
 	...rest
 }) {
-	const [focused, setFocused] = useState(false),
-	 [value, setValue] = useState(defaultValue),
-	 [errorShow, setErrorShow] = useState(Boolean(errorMessage)),
-
-	 fieldRef = useRef(null),
-	 containerRef = useRef(null),
-	 eventRefs = useRef(null);
+	const [focused, setFocused] = useState(false);
+	const [value, setValue] = useState(defaultValue);
+	const [errorShow, setErrorShow] = useState(Boolean(errorMessage));
+	const fieldRef = useRef(null);
+	const containerRef = useRef(null);
+	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -43,7 +42,9 @@ export default function TextField({
 			},
 			handleFocus: () => {
 				setFocused(true);
-				if (errorShow) {setErrorShow(false);}
+				if (errorShow) {
+					setErrorShow(false);
+				}
 				if (onFocusClick) {
 					onFocusClick();
 				}
@@ -75,8 +76,11 @@ export default function TextField({
 	}, [field]);
 
 	useEffect(() => {
-		if (errorChange && errorMessage) {setErrorShow(true);}
-		else {setErrorShow(false);}
+		if (errorChange && errorMessage) {
+			setErrorShow(true);
+		} else {
+			setErrorShow(false);
+		}
 	}, [errorChange, errorMessage]);
 
 	useEffect(() => {
@@ -95,61 +99,58 @@ export default function TextField({
 	}, [placeholder]);
 
 	return (
-    <div
-        className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}
-        ref={containerRef}
-    >
-        <div
-            className={`${
+		<div
+			className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}
+			ref={containerRef}
+		>
+			<div
+				className={`${
 					errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''
 				}${styles.container}`}
-        >
-            <label
-                className={`${
+			>
+				<label
+					className={`${
 						focused
 							? `${styles.focused} `
 							: value || defaultValue
-							? `${styles.textFilled} `
-							: ''
+								? `${styles.textFilled} `
+								: ''
 					}${styles.label}${field === 'textarea' ? ` ${styles.textareaLabel}` : ''}`}
-                {...(errorShow && { id: styles.errorColor })}
-                htmlFor={htmlFor}
-            >
-                {placeholder}
-            </label>
+					{...(errorShow && { id: styles.errorColor })}
+					htmlFor={htmlFor}
+				>
+					{placeholder}
+				</label>
 
-            {field === 'input' ? (
-                <input
-                    {...(enabled || { disabled: true, readOnly: true })}
-                    autoComplete='off'
-                    className={styles.field}
-                    id={htmlFor}
-                    onBlur={eventRefs.current.handleBlur}
-                    onChange={eventRefs.current.handleChange}
-                    onFocus={eventRefs.current.handleFocus}
-                    ref={fieldRef}
-                    value={value}
-                    {...rest}
-                />
+				{field === 'input' ? (
+					<input
+						{...(enabled || { disabled: true, readOnly: true })}
+						autoComplete="off"
+						className={styles.field}
+						id={htmlFor}
+						onBlur={eventRefs.current.handleBlur}
+						onChange={eventRefs.current.handleChange}
+						onFocus={eventRefs.current.handleFocus}
+						ref={fieldRef}
+						value={value}
+						{...rest}
+					/>
 				) : (
-    <textarea
-        className={`${styles.textarea} ${styles.field}`}
-        id={htmlFor}
-        onBlur={eventRefs.current.handleBlur}
-        onChange={eventRefs.current.handleChange}
-        onFocus={eventRefs.current.handleFocus}
-        ref={fieldRef}
-        rows={10}
-        value={value}
-        {...rest}
-    />
+					<textarea
+						className={`${styles.textarea} ${styles.field}`}
+						id={htmlFor}
+						onBlur={eventRefs.current.handleBlur}
+						onChange={eventRefs.current.handleChange}
+						onFocus={eventRefs.current.handleFocus}
+						ref={fieldRef}
+						rows={10}
+						value={value}
+						{...rest}
+					/>
 				)}
-        </div>
+			</div>
 
-        <ErrorMessage
-            enable={errorShow}
-            errorMessage={errorMessage}
-        />
-    </div>
+			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
+		</div>
 	);
 }

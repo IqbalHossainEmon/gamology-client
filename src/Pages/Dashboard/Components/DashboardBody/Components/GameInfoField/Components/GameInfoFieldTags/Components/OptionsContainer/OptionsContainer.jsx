@@ -11,17 +11,18 @@ export default function OptionsContainer({
 	errorChange,
 	errorMessage,
 }) {
-	const [optionSates, setOptionSates] = useState(initialState),
-	 [errorShow, setErrorShow] = useState(false),
-
-	 errorShowRef = useRef(errorShow);
+	const [optionSates, setOptionSates] = useState(initialState);
+	const [errorShow, setErrorShow] = useState(false);
+	const errorShowRef = useRef(errorShow);
 	errorShowRef.current = errorShow;
 
 	const optionStatesRef = useRef(optionSates);
 	optionStatesRef.current = optionSates;
 
 	useEffect(() => {
-		if (errorChange && errorMessage) {setErrorShow(true);}
+		if (errorChange && errorMessage) {
+			setErrorShow(true);
+		}
 	}, [errorChange, errorMessage]);
 
 	const eventRef = useRef(null);
@@ -44,28 +45,23 @@ export default function OptionsContainer({
 		};
 	}
 	return (
-    <div className={styles.optionsContainer}>
-        <h4>
-            {title}
-        </h4>
+		<div className={styles.optionsContainer}>
+			<h4>{title}</h4>
 
-        <ul>
-            {options.map((option, i) => (
-                <FilterOption
-                    border={options.length - 1 !== i}
-                    key={option.id}
-                    name={option.filter}
-                    setState={eventRef.current.setState}
-                    state={optionSates[option.filter]}
-                    text={option.text}
-                />
+			<ul>
+				{options.map((option, i) => (
+					<FilterOption
+						border={options.length - 1 !== i}
+						key={option.id}
+						name={option.filter}
+						setState={eventRef.current.setState}
+						state={optionSates[option.filter]}
+						text={option.text}
+					/>
 				))}
-        </ul>
+			</ul>
 
-        <ErrorMessage
-            enable={errorShow}
-            errorMessage={errorMessage}
-        />
-    </div>
+			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
+		</div>
 	);
 }

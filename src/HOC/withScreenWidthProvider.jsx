@@ -3,9 +3,8 @@ import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
 const withScreenWidthProvider = Component =>
 	function InnerComponent() {
-		const [screenWidth, setScreenWidth] = useState(window.innerWidth),
-
-		 handleChange = useRef(null);
+		const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+		const handleChange = useRef(null);
 
 		if (!handleChange.current) {
 			handleChange.current = () => {
@@ -19,9 +18,9 @@ const withScreenWidthProvider = Component =>
 		}, []);
 
 		return (
-    <ScreenWidthContext.Provider value={screenWidth}>
-        <Component />
-    </ScreenWidthContext.Provider>
+			<ScreenWidthContext.Provider value={screenWidth}>
+				<Component />
+			</ScreenWidthContext.Provider>
 		);
 	};
 

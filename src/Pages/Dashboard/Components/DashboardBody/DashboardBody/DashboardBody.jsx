@@ -5,30 +5,21 @@ import EditTags from '../Components/EditTags/EditTags/EditTags';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody({ render }) {
-	const parentRef = useRef(null),
-	 childRef = useRef(null);
+	const parentRef = useRef(null);
+	const childRef = useRef(null);
 
 	return (
-    <div className={styles.dashboardBodyScrollContainer}>
-        <div
-            className={styles.dashboardBodyContainer}
-            ref={parentRef}
-        >
-            <div
-                className={styles.dashboardBody}
-                ref={childRef}
-            >
-                <EditTags />
-            </div>
-        </div>
+		<div className={styles.dashboardBodyScrollContainer}>
+			<div className={styles.dashboardBodyContainer} ref={parentRef}>
+				<div className={styles.dashboardBody} ref={childRef}>
+					<EditTags />
+				</div>
+			</div>
 
-        <ScrollBar
-            childRef={childRef}
-            parentRef={parentRef}
-        />
+			<ScrollBar childRef={childRef} parentRef={parentRef} />
 
-        {render}
-    </div>
+			{render}
+		</div>
 	);
 }
 

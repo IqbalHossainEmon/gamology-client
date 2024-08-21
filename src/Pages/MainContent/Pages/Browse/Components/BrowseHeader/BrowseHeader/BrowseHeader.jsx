@@ -2,19 +2,11 @@ import SortContainer from '../Components/SortContainer/SortContainer/SortContain
 import styles from './BrowseHeader.module.css';
 
 export default function BrowseHeader({ handleChange, state }) {
-    return (
-        <div className={styles.browseHeader}>
-            <h2 className={styles.numberOfGames}>
-                {state.numberOfGames}
+	return (
+		<div className={styles.browseHeader}>
+			<h2 className={styles.numberOfGames}>{state.numberOfGames} Games</h2>
 
-                {' '}
-                Games
-            </h2>
-
-            <SortContainer
-                handleChange={handleChange}
-                state={state}
-            />
-        </div>
-    );
+			<SortContainer handleChange={handleChange} state={state} />
+		</div>
+	);
 }

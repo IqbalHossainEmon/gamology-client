@@ -1,18 +1,9 @@
-import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import styles from './FilterOption.module.css';
 
 function FilterOption({ text, setState, border, state, name }) {
 	const eventRef = useRef(null);
-
-	FilterOption.propTypes = {
-		border: PropTypes.bool,
-		name: PropTypes.string.isRequired,
-		setState: PropTypes.func.isRequired,
-		state: PropTypes.bool.isRequired,
-		text: PropTypes.string.isRequired,
-	};
 
 	const btnRef = useRef(null);
 

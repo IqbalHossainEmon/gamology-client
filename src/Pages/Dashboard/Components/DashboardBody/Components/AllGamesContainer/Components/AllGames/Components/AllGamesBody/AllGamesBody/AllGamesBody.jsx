@@ -8,21 +8,21 @@ function AllGamesBody({ items }) {
 	const { setDashboardContent, setDashboardModal } = useDashboardModalHook();
 
 	return (
-    <div className={styles.allGamesBody}>
-        <ul className={styles.cardsContainer}>
-            {items.map(item => (
-                <Card
-                    alt={item.title}
-                    cardInfo={item}
-                    className={styles.list}
-                    image={item.image}
-                    key={item.id}
-                >
-                    {prop => (
-                        <CardDotContainer
-                            hoverClassName={styles.dots}
-                            item={item}
-                            lists={[
+		<div className={styles.allGamesBody}>
+			<ul className={styles.cardsContainer}>
+				{items.map(item => (
+					<Card
+						alt={item.title}
+						cardInfo={item}
+						className={styles.list}
+						image={item.image}
+						key={item.id}
+					>
+						{prop => (
+							<CardDotContainer
+								hoverClassName={styles.dots}
+								item={item}
+								lists={[
 									{
 										id: 1,
 										name: 'Edit',
@@ -36,18 +36,18 @@ function AllGamesBody({ items }) {
 											setDashboardContent({
 												modalTitle: 'Edit Price',
 												modalBody: (
-    <h3 className={styles.priceChangeHeader}>
-        What price you want to set for
-        <span className={styles.nameContainer}>
-            {item.name}
-        </span>
-    </h3>
+													<h3 className={styles.priceChangeHeader}>
+														What price you want to set for
+														<span className={styles.nameContainer}>
+															{item.name}
+														</span>
+													</h3>
 												),
 												modalFooter: (
-    <AllGamesModalBodySelect
-        detail={detail}
-        type='price'
-    />
+													<AllGamesModalBodySelect
+														detail={detail}
+														type="price"
+													/>
 												),
 											});
 										},
@@ -60,31 +60,31 @@ function AllGamesBody({ items }) {
 											setDashboardContent({
 												modalTitle: 'Delete Game',
 												modalBody: (
-    <h3 className={styles.priceChangeHeader}>
-        Are you sure you want to delete
-        <span className={styles.nameContainer}>
-            {item.name}
-        </span>
-        ?
-    </h3>
+													<h3 className={styles.priceChangeHeader}>
+														Are you sure you want to delete
+														<span className={styles.nameContainer}>
+															{item.name}
+														</span>
+														?
+													</h3>
 												),
 												modalFooter: (
-    <AllGamesModalBodySelect
-        detail={detail}
-        type='delete'
-    />
+													<AllGamesModalBodySelect
+														detail={detail}
+														type="delete"
+													/>
 												),
 											});
 										},
 									},
 								]}
-                            parentRef={prop}
-                        />
+								parentRef={prop}
+							/>
 						)}
-                </Card>
+					</Card>
 				))}
-        </ul>
-    </div>
+			</ul>
+		</div>
 	);
 }
 export default AllGamesBody;

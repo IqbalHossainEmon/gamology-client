@@ -7,11 +7,9 @@ export default function useDragStartStop(
 	handleMouseDown = () => {},
 	grab = false
 ) {
-	const isTouchAble = useIsTouchAble(),
-
-	 isTouchAdd = useRef(false),
-
-	 eventRefs = useRef(null);
+	const isTouchAble = useIsTouchAble();
+	const isTouchAdd = useRef(false);
+	const eventRefs = useRef(null);
 
 	if (eventRefs.current === null) {
 		eventRefs.current = {
@@ -20,27 +18,17 @@ export default function useDragStartStop(
 
 				if (isTouchAdd.current) {
 					document.removeEventListener('touchmove', moveEvent);
-					document.removeEventListener(
-						'touchend',
-						eventRefs.current.onStop
-					);
+					document.removeEventListener('touchend', eventRefs.current.onStop);
 					isTouchAdd.current = false;
 				} else {
 					document.removeEventListener('mousemove', moveEvent);
-					document.removeEventListener(
-						'mouseup',
-						eventRefs.current.onStop
-					);
+					document.removeEventListener('mouseup', eventRefs.current.onStop);
 				}
 
 				window.removeEventListener('blur', eventRefs.current.onStop);
 
 				handleMouseUp(e);
-				if (
-					document
-						.getElementById('root')
-						.classList.contains('grabbing')
-				) {
+				if (document.getElementById('root').classList.contains('grabbing')) {
 					document.getElementById('root').removeAttribute('class');
 				}
 			},
@@ -52,17 +40,11 @@ export default function useDragStartStop(
 				window.addEventListener('blur', eventRefs.current.onStop);
 				if (touchAble) {
 					document.addEventListener('touchmove', moveEvent);
-					document.addEventListener(
-						'touchend',
-						eventRefs.current.onStop
-					);
+					document.addEventListener('touchend', eventRefs.current.onStop);
 					isTouchAdd.current = true;
 				} else {
 					document.addEventListener('mousemove', moveEvent);
-					document.addEventListener(
-						'mouseup',
-						eventRefs.current.onStop
-					);
+					document.addEventListener('mouseup', eventRefs.current.onStop);
 				}
 
 				if (touchAble && grab) {

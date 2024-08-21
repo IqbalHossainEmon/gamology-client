@@ -8,61 +8,51 @@ import SortList from '../Components/SortList/SortList';
 import styles from './SortContainer.module.css';
 
 export default function SortContainer({ state, handleChange }) {
-    const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState(),
-     { sort } = filterSortState,
+	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
+	const { sort } = filterSortState;
+	const screenWidth = useScreenWidth();
+	const dropDownRef = useRef();
 
-     screenWidth = useScreenWidth(),
+	useEffect(() => {
+		filterSortRef.sort = dropDownRef.current;
+	}, [dropDownRef, filterSortRef]);
 
-     dropDownRef = useRef();
+	return (
+		<>
+			<div
+				className={`${styles.sortContainer}${sort && screenWidth < 769 ? ` ${styles.hidden}` : ''}`}
+				ref={dropDownRef}
+			>
+				{screenWidth > 768 && (
+					<PcSortList
+						dropDownRef={dropDownRef}
+						handleChange={handleChange}
+						setFilterSort={setFilterSort}
+						sort={sort}
+						state={state}
+					/>
+				)}
 
-    useEffect(() => {
-        filterSortRef.sort = dropDownRef.current;
-    }, [dropDownRef, filterSortRef]);
+				{screenWidth < 769 && (
+					<div className={styles.sortLists}>
+						<h2>Sort by</h2>
 
-    return (
-        <>
-            <div
-                className={`${styles.sortContainer}${sort && screenWidth < 769 ? ` ${styles.hidden}` : ''}`}
-                ref={dropDownRef}
-            >
-                {screenWidth > 768 && (
-                    <PcSortList
-                        dropDownRef={dropDownRef}
-                        handleChange={handleChange}
-                        setFilterSort={setFilterSort}
-                        sort={sort}
-                        state={state}
-                    />
-                )}
+						<SortList
+							handleChange={handleChange}
+							setShow={setFilterSort}
+							state={state}
+						/>
+					</div>
+				)}
 
-                {screenWidth < 769 && (
-                    <div className={styles.sortLists}>
-                        <h2>
-                            Sort by
-                        </h2>
+				{screenWidth < 769 && (
+					<div className={styles.closeButton}>
+						<CloseButton setState={setFilterSort} state="sort" />
+					</div>
+				)}
+			</div>
 
-                        <SortList
-                            handleChange={handleChange}
-                            setShow={setFilterSort}
-                            state={state}
-                        />
-                    </div>
-                )}
-
-                {screenWidth < 769 && (
-                    <div className={styles.closeButton}>
-                        <CloseButton
-                            setState={setFilterSort}
-                            state="sort"
-                        />
-                    </div>
-                )}
-            </div>
-
-            {screenWidth < 769 && <ScreenShadow
-                show={!sort}
-                zIndex={3}
-                                  />}
-        </>
-    );
+			{screenWidth < 769 && <ScreenShadow show={!sort} zIndex={3} />}
+		</>
+	);
 }

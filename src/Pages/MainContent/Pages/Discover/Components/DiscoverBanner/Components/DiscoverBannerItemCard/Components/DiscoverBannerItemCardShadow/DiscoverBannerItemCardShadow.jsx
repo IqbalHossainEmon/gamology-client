@@ -2,16 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './DiscoverBannerItemCardShadow.module.css';
 
 function DiscoverBannerItemCardShadow({ isPause }) {
-	const [translate, setTranslate] = useState(0),
-
-	 timerId = useRef(null),
-	 startTime = useRef(null),
-	 translateRef = useRef(translate);
+	const [translate, setTranslate] = useState(0);
+	const timerId = useRef(null);
+	const startTime = useRef(null);
+	const translateRef = useRef(translate);
 	translateRef.current = translate;
 
-	const prevTranslate = useRef(0),
-
-	 eventRefs = useRef(null);
+	const prevTranslate = useRef(0);
+	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -27,7 +25,9 @@ function DiscoverBannerItemCardShadow({ isPause }) {
 			},
 
 			animate: timestamp => {
-				if (!startTime.current) {startTime.current = timestamp;}
+				if (!startTime.current) {
+					startTime.current = timestamp;
+				}
 				const elapsed = timestamp - startTime.current;
 
 				if (elapsed >= 7750) {
@@ -54,19 +54,21 @@ function DiscoverBannerItemCardShadow({ isPause }) {
 		}
 
 		return () => {
-			if (timerId.current) {cancelAnimationFrame(timerId.current);}
+			if (timerId.current) {
+				cancelAnimationFrame(timerId.current);
+			}
 		};
 	}, [isPause]);
 
 	return (
-    <div className={styles.shadowContainer}>
-        <div
-            className={styles.shadow}
-            style={{
+		<div className={styles.shadowContainer}>
+			<div
+				className={styles.shadow}
+				style={{
 					transform: `translateY(${translate}%)`,
 				}}
-        />
-    </div>
+			/>
+		</div>
 	);
 }
 

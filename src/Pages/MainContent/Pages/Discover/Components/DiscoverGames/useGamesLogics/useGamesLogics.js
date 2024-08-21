@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 
 export default function useGamesLogics() {
-	const referenceRef = useRef(null),
-	 eventRefs = useRef(null);
+	const referenceRef = useRef(null);
+	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -44,8 +44,7 @@ export default function useGamesLogics() {
 
 			// This function checks screen widths and set cards on deck and send it through dispatch.
 			setCardsOnScreenWidthChange: (screenWidth, cardsContainer) => {
-				let cardOnOneDeck,
-				 margin;
+				let cardOnOneDeck, margin;
 				if (screenWidth >= 1600) {
 					cardOnOneDeck = 6;
 					margin = 32;

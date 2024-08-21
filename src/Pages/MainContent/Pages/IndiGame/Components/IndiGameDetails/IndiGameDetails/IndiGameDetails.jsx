@@ -4,17 +4,19 @@ import IndiGameDetailAside from '../Components/IndiGameDetailAside/IndiGameDetai
 import styles from './IndiGameDetails.module.css';
 
 function IndiGameDetails() {
-  return (<div className={styles.mainContentContainer}>
-      <div className={styles.indiGameMainDetail}>
-          <IndiGameBanner />
+	return (
+		<div className={styles.mainContentContainer}>
+			<div className={styles.indiGameMainDetail}>
+				<IndiGameBanner />
 
-          <IndiGameDescription />
-      </div>
+				<IndiGameDescription />
+			</div>
 
-      <div className={styles.asideDetail}>
-          <IndiGameDetailAside />
-      </div>
-          </div>)
+			<div className={styles.asideDetail}>
+				<IndiGameDetailAside />
+			</div>
+		</div>
+	);
 }
 
 export default IndiGameDetails;

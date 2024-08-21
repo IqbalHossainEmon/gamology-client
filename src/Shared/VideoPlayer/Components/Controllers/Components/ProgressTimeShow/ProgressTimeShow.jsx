@@ -4,43 +4,37 @@ import { useVideoPlayerProgress } from '../../../../../../Hooks/useVideoPlayerPr
 import styles from './ProgressTimeShow.module.css';
 
 export default function ProgressTimeShow({ video }) {
-    const formatTime = useTimeFormat(),
+	const formatTime = useTimeFormat();
+	const time = useVideoPlayerProgress();
+	const videoRef = useRef(video.current);
+	const eventRef = useRef({
+		loadUpdate: () => {},
+	});
+	const [durationTime, setDurationTime] = useState(0);
 
-     time = useVideoPlayerProgress(),
+	eventRef.current.loadUpdate = useCallback(({ target: { duration } }) => {
+		setDurationTime(duration);
+	}, []);
 
-     videoRef = useRef(video.current),
-     eventRef = useRef({
-        loadUpdate: () => {},
-    }),
+	useEffect(() => {
+		const { loadUpdate } = eventRef.current;
 
-     [durationTime, setDurationTime] = useState(0);
+		if (video.current) {
+			videoRef.current = video.current;
+			videoRef.current.addEventListener('loadedmetadata', loadUpdate);
+		}
 
-    eventRef.current.loadUpdate = useCallback(({ target: { duration } }) => {
-        setDurationTime(duration);
-    }, []);
+		return () => {
+			videoRef.current.removeEventListener('loadedmetadata', loadUpdate);
+		};
+	}, [video]);
 
-    useEffect(() => {
-        const { loadUpdate } = eventRef.current;
-
-        if (video.current) {
-            videoRef.current = video.current;
-            videoRef.current.addEventListener('loadedmetadata', loadUpdate);
-        }
-
-        return () => {
-            videoRef.current.removeEventListener('loadedmetadata', loadUpdate);
-        };
-    }, [video]);
-
-    return (
-        <div className={styles.progressTimeShow}>
-            <p>
-                {time && durationTime ? formatTime((time / 100) * durationTime) : '0:00'}
-
-                /
-
-                {durationTime ? formatTime(durationTime) : '0:00'}
-            </p>
-        </div>
-    );
+	return (
+		<div className={styles.progressTimeShow}>
+			<p>
+				{time && durationTime ? formatTime((time / 100) * durationTime) : '0:00'}/
+				{durationTime ? formatTime(durationTime) : '0:00'}
+			</p>
+		</div>
+	);
 }

@@ -4,38 +4,38 @@ import IndiGameAsideHeader from '../Components/IndiGameAsideHeader/IndiGameAside
 import styles from './IndiGameDetailAside.module.css';
 
 const data = {
-    name: "Marvel's Spider-Man Remastered",
-    price: { regular: 59.99, discount: 29.99 },
-    logo: '/assets/images/CarouselInfo/spiderman-logo.png',
-    phoneLogo: '/assets/images/spiderman-logo-cover.avif',
-    info: [
-        { id: 1000, key: 'Developer', value: 'Insomniac Games, Nixxes Software' },
-        { id: 1001, key: 'Publisher', value: 'PlayStation' },
-        { id: 1010, key: 'Release Date', value: new Date('2022-07-12') },
-        { id: 1011, key: 'Platform', value: 'both' },
-    ],
+	name: "Marvel's Spider-Man Remastered",
+	price: { regular: 59.99, discount: 29.99 },
+	logo: '/assets/images/CarouselInfo/spiderman-logo.png',
+	phoneLogo: '/assets/images/spiderman-logo-cover.avif',
+	info: [
+		{ id: 1000, key: 'Developer', value: 'Insomniac Games, Nixxes Software' },
+		{ id: 1001, key: 'Publisher', value: 'PlayStation' },
+		{ id: 1010, key: 'Release Date', value: new Date('2022-07-12') },
+		{ id: 1011, key: 'Platform', value: 'both' },
+	],
 };
 
 export default function IndiGameDetailAside() {
-    const [gameInfo, setGameInfo] = useState({});
+	const [gameInfo, setGameInfo] = useState({});
 
-    useEffect(() => {
-        setGameInfo(data);
-    }, []);
+	useEffect(() => {
+		setGameInfo(data);
+	}, []);
 
-    return (
-        <aside className={styles.individualGameDetailAside}>
-            <div className={styles.asideContainer}>
-                <IndiGameAsideHeader
-                    name={gameInfo.name}
-                    phoneSrc={gameInfo.phoneLogo}
-                    price={gameInfo.price}
-                    rating={gameInfo.star}
-                    src={gameInfo.logo}
-                />
+	return (
+		<aside className={styles.individualGameDetailAside}>
+			<div className={styles.asideContainer}>
+				<IndiGameAsideHeader
+					name={gameInfo.name}
+					phoneSrc={gameInfo.phoneLogo}
+					price={gameInfo.price}
+					rating={gameInfo.star}
+					src={gameInfo.logo}
+				/>
 
-                {gameInfo.info ? <IndiGameAsideBody info={gameInfo.info} /> : null}
-            </div>
-        </aside>
-    );
+				{gameInfo.info ? <IndiGameAsideBody info={gameInfo.info} /> : null}
+			</div>
+		</aside>
+	);
 }

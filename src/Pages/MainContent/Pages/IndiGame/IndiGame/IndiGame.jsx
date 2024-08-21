@@ -4,15 +4,15 @@ import IndiGameSpecifications from '../Components/IndiGameSpecifications/IndiGam
 import styles from './IndiGame.module.css';
 
 export default function IndiGame() {
-    return (
-        <section className={styles.individualGame}>
-            <IndiGameDetails />
+	return (
+		<section className={styles.individualGame}>
+			<IndiGameDetails />
 
-            <div className={styles.reviewContainer}>
-                <IndiGameSpecifications />
+			<div className={styles.reviewContainer}>
+				<IndiGameSpecifications />
 
-                <IndiGameReviewSection />
-            </div>
-        </section>
-    );
+				<IndiGameReviewSection />
+			</div>
+		</section>
+	);
 }

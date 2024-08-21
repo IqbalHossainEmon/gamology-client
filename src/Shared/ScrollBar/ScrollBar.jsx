@@ -1,22 +1,16 @@
-import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../Hooks/useDragStartStop';
 import styles from './ScrollBar.module.css';
 
 function ScrollBar({ parentRef, childRef }) {
-	ScrollBar.propTypes = {
-		parentRef: PropTypes.object.isRequired,
-		childRef: PropTypes.object.isRequired,
-	};
-
-	const [scrolled, setScrolled] = useState(0),
-		[show, setShow] = useState(false),
-		[height, setHeight] = useState(0),
-		thumbRef = useRef(null),
-		downElement = useRef(null),
-		containerRef = useRef(null),
-		timerID = useRef(null),
-		eventRefs = useRef(null);
+	const [scrolled, setScrolled] = useState(0);
+	const [show, setShow] = useState(false);
+	const [height, setHeight] = useState(0);
+	const thumbRef = useRef(null);
+	const downElement = useRef(null);
+	const containerRef = useRef(null);
+	const timerID = useRef(null);
+	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -96,15 +90,15 @@ function ScrollBar({ parentRef, childRef }) {
 		};
 	}
 	const onStartScroll = useDragStartStop(
-			eventRefs.current.handleMoveScroll,
-			eventRefs.current.handleMouseUp,
-			eventRefs.current.handleMouseDownBar
-		),
-		onStartParent = useDragStartStop(
-			eventRefs.current.handleMoveScroll,
-			eventRefs.current.handleMouseUp,
-			eventRefs.current.handleMouseDownParent
-		);
+		eventRefs.current.handleMoveScroll,
+		eventRefs.current.handleMouseUp,
+		eventRefs.current.handleMouseDownBar
+	);
+	const onStartParent = useDragStartStop(
+		eventRefs.current.handleMoveScroll,
+		eventRefs.current.handleMouseUp,
+		eventRefs.current.handleMouseDownParent
+	);
 
 	useEffect(() => {
 		window.addEventListener('resize', eventRefs.current.handleSetHeight);
@@ -119,10 +113,10 @@ function ScrollBar({ parentRef, childRef }) {
 		const parentObserve = new ResizeObserver(eventRefs.current.handleSetHeight);
 		parentObserve.observe(parentRef.current);
 
-		const parent = parentRef.current,
-			container = containerRef.current,
-			{ handleScroll } = eventRefs.current,
-			{ handleMouseMove } = eventRefs.current;
+		const parent = parentRef.current;
+		const container = containerRef.current;
+		const { handleScroll } = eventRefs.current;
+		const { handleMouseMove } = eventRefs.current;
 
 		parent.addEventListener('scroll', handleScroll);
 		container.addEventListener('mousemove', handleMouseMove);

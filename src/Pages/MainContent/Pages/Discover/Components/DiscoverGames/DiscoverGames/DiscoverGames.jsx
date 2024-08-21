@@ -238,15 +238,12 @@ const items = [
 ];
 
 export default function DiscoverGames({ headerTitle }) {
-	const cardsContainer = useRef(),
-	 screenWidth = useScreenWidth(),
-
-	 { reducer, initialState } = discoverGamesReducerInitialValue(),
-
-	 [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
-		useReducer(reducer, initialState),
-
-	 { handleClick, setReference, setCardsOnScreenWidthChange } = useGamesLogics();
+	const cardsContainer = useRef();
+	const screenWidth = useScreenWidth();
+	const { reducer, initialState } = discoverGamesReducerInitialValue();
+	const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
+		useReducer(reducer, initialState);
+	const { handleClick, setReference, setCardsOnScreenWidthChange } = useGamesLogics();
 
 	useEffect(() => {
 		dispatch({ type: 'fetch', data: items, dataLength: items.length });
@@ -258,23 +255,23 @@ export default function DiscoverGames({ headerTitle }) {
 	}, [screenWidth, setCardsOnScreenWidthChange]);
 
 	return (
-    <section className={styles.Games}>
-        <div className={styles.headerButtonContainer}>
-            <CardsHeader headerTitle={headerTitle} />
+		<section className={styles.Games}>
+			<div className={styles.headerButtonContainer}>
+				<CardsHeader headerTitle={headerTitle} />
 
-            <GamesButton
-                cardActive={cardActive}
-                handleClick={click => handleClick(click, cardActive, cardOnDeck)}
-                length={data.length - cardOnDeck}
-            />
-        </div>
+				<GamesButton
+					cardActive={cardActive}
+					handleClick={click => handleClick(click, cardActive, cardOnDeck)}
+					length={data.length - cardOnDeck}
+				/>
+			</div>
 
-        <DiscoverGamesCards
-            cardsWidth={cardsWidth}
-            data={data}
-            ref={cardsContainer}
-            style={{ translate, transition, margin }}
-        />
-    </section>
+			<DiscoverGamesCards
+				cardsWidth={cardsWidth}
+				data={data}
+				ref={cardsContainer}
+				style={{ translate, transition, margin }}
+			/>
+		</section>
 	);
 }
