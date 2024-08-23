@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
 import { useVideoPlayerProgress } from '../../../../../../Hooks/useVideoPlayerProgress';
 import styles from './ProgressTimeShow.module.css';
@@ -7,15 +7,16 @@ export default function ProgressTimeShow({ video }) {
 	const formatTime = useTimeFormat();
 	const time = useVideoPlayerProgress();
 	const videoRef = useRef(video.current);
-	const eventRef = useRef({
-		loadUpdate: () => {},
-	});
+	const eventRef = useRef(null);
 	const [durationTime, setDurationTime] = useState(0);
 
-	eventRef.current.loadUpdate = useCallback(({ target: { duration } }) => {
-		setDurationTime(duration);
-	}, []);
-
+	if (!eventRef.current) {
+		eventRef.current = {
+			loadUpdate: ({ target: { duration } }) => {
+				setDurationTime(duration);
+			},
+		};
+	}
 	useEffect(() => {
 		const { loadUpdate } = eventRef.current;
 

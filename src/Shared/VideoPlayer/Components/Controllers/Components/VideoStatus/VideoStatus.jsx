@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
@@ -7,74 +7,64 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 	const formatTime = useTimeFormat();
 	const timerId = useRef(null);
 	const videoRef = useRef(video.current);
-	const eventRefs = useRef({
-		loadMetaDataUpdate: () => {},
-		loadUpdate: () => {},
-		handlePlay: () => {},
-		handlePause: () => {},
-		handlePlaying: () => {},
-		handleWaiting: () => {},
-	});
+	const eventRefs = useRef(null);
 	const [status, setStatus] = useState({
 		duration: 0,
 		initialShow: true,
 		loading: false,
 	});
-	const handleTransition = () => {
-		if (!timerId.current) {
-			timerId.current = setTimeout(() => {
-				timerId.current = null;
-				setStatus(prev => ({ ...prev, animation: false }));
-			}, 500);
-		}
-	};
 
-	eventRefs.current.loadMetaDataUpdate = useCallback(({ target: { duration } }) => {
-		setStatus(prev => ({ ...prev, duration }));
-	}, []);
-
-	eventRefs.current.loadUpdate = useCallback(() => {
-		if (localStorage.getItem('autoplay') && videoRef.current.paused) {
-			videoRef.current.play();
-		}
-	}, []);
-
-	eventRefs.current.handlePlay = useCallback(() => {
-		if (isSeekedRef.current) {
-			setStatus(prev => {
-				if (!prev.initialShow) {
-					return { play: true, animation: true, loading: false };
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleTransition: () => {
+				if (!timerId.current) {
+					timerId.current = setTimeout(() => {
+						timerId.current = null;
+						setStatus(prev => ({ ...prev, animation: false }));
+					}, 500);
 				}
-				return {};
-			});
-			handleTransition();
-		}
-	}, [isSeekedRef]);
-
-	eventRefs.current.handlePause = useCallback(() => {
-		if (isSeekedRef.current && !videoRef.current.ended && !isChanging.current) {
-			setStatus({ play: false, animation: true, loading: false });
-			handleTransition();
-		}
-		if (isChanging.current) {
-			isChanging.current = false;
-		}
-	}, [isChanging, isSeekedRef]);
-
-	const initialBtnPlay = useCallback(() => {
-		if (videoRef.current.paused) {
-			videoRef.current.play();
-		}
-	}, []);
-
-	eventRefs.current.handlePlaying = useCallback(() => {
-		setStatus(prev => ({ ...prev, loading: false }));
-	}, []);
-
-	eventRefs.current.handleWaiting = useCallback(() => {
-		setStatus(prev => ({ ...prev, loading: true }));
-	}, []);
-
+			},
+			loadMetaDataUpdate: ({ target: { duration } }) => {
+				setStatus(prev => ({ ...prev, duration }));
+			},
+			loadUpdate: () => {
+				if (localStorage.getItem('autoplay') && videoRef.current.paused) {
+					videoRef.current.play();
+				}
+			},
+			handlePlay: () => {
+				if (isSeekedRef.current) {
+					setStatus(prev => {
+						if (!prev.initialShow) {
+							return { play: true, animation: true, loading: false };
+						}
+						return {};
+					});
+					eventRefs.current.handleTransition();
+				}
+			},
+			handlePause: () => {
+				if (isSeekedRef.current && !videoRef.current.ended && !isChanging.current) {
+					setStatus({ play: false, animation: true, loading: false });
+					eventRefs.current.handleTransition();
+				}
+				if (isChanging.current) {
+					isChanging.current = false;
+				}
+			},
+			initialBtnPlay: () => {
+				if (videoRef.current.paused) {
+					videoRef.current.play();
+				}
+			},
+			handlePlaying: () => {
+				setStatus(prev => ({ ...prev, loading: false }));
+			},
+			handleWaiting: () => {
+				setStatus(prev => ({ ...prev, loading: true }));
+			},
+		};
+	}
 	useEffect(() => {
 		const {
 			loadMetaDataUpdate,
@@ -144,7 +134,7 @@ export default function VideoStatus({ video, isSeekedRef, isChanging }) {
 				<div className={styles.initialPlaceholder}>
 					<button
 						className={styles.initialPlaceholderButton}
-						onClick={initialBtnPlay}
+						onClick={eventRefs.current.initialBtnPlay}
 						type="button"
 					>
 						<span className={styles.svgContainer}>

@@ -1,18 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useFullScreenLogic from '../useFullScreenLogic/useFullScreenLogic';
 import styles from './FullScreenButton.module.css';
 
 export default function FullScreenButton({ videoContainer }) {
 	const [isFullScreen, setIsFullScreen] = useState(false);
-	const eventRef = useRef({
-		handleFullscreenChange: () => {},
-	});
+	const eventRef = useRef(null);
 
 	const handleFullScreen = useFullScreenLogic();
-
-	eventRef.current.handleFullscreenChange = useCallback(() => {
-		setIsFullScreen(prev => !prev);
-	}, [setIsFullScreen]);
+	if (!eventRef.current) {
+		eventRef.current = {
+			handleFullscreenChange: () => {
+				setIsFullScreen(prev => !prev);
+			},
+		};
+	}
 
 	useEffect(() => {
 		let videoContainerRef;

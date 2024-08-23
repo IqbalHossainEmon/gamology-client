@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useDragStartStop from '../../../../../../Hooks/useDragStartStop';
 import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
 import styles from './VideoSlider.module.css';
@@ -17,27 +17,55 @@ export default function VideoSlider({
 	stateRef.current = position;
 	const pathRef = useRef(null);
 	const screenWidth = useScreenWidth();
-	const eventRef = useRef({
-		handleResize: () => {},
-	});
+	const eventRefs = useRef(null);
 
-	eventRef.current.handleResize = useCallback(() => {
-		pathRef.width = pathRef.current?.offsetWidth;
-		pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
-	}, []);
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleResize: () => {
+				pathRef.width = pathRef.current?.offsetWidth;
+				pathRef.offsetLeft = pathRef.current.getBoundingClientRect().left;
+			},
 
+			// Get cursor position while dragging
+			handleMove: e => {
+				let cursorInPercent =
+					((e?.touches
+						? e.touches[0].clientX - pathRef.offsetLeft
+						: e.clientX - pathRef.offsetLeft) /
+						pathRef.width) *
+					100;
+
+				if (cursorInPercent < 0) {
+					cursorInPercent = 0;
+				} else if (cursorInPercent > 100) {
+					cursorInPercent = 100;
+				}
+				if (
+					parseFloat(cursorInPercent.toFixed(3)) !==
+					parseFloat(stateRef.current.toFixed(3))
+				) {
+					setPosition(cursorInPercent);
+				}
+			},
+
+			handleMouseDownClick: e => {
+				eventRefs.current.handleMove(e);
+				handleMouseDown();
+			},
+		};
+	}
 	useEffect(() => {
-		eventRef.current.handleResize();
+		eventRefs.current.handleResize();
 	}, [screenWidth]);
 
 	useEffect(() => {
 		setTimeout(() => {
-			eventRef.current.handleResize();
+			eventRefs.current.handleResize();
 		}, 250);
 	}, [changePause]);
 
 	useEffect(() => {
-		const { handleResize } = eventRef.current;
+		const { handleResize } = eventRefs.current;
 		const addFullscreenEventListeners = element => {
 			element.addEventListener('fullscreenchange', handleResize);
 			element.addEventListener('mozfullscreenchange', handleResize);
@@ -65,44 +93,10 @@ export default function VideoSlider({
 		};
 	}, [videoContainer]);
 
-	const handleMoveEventRef = useRef(null);
-
-	// Get cursor position while dragging
-	handleMoveEventRef.current = useCallback(
-		e => {
-			let cursorInPercent =
-				((e?.touches
-					? e.touches[0].clientX - pathRef.offsetLeft
-					: e.clientX - pathRef.offsetLeft) /
-					pathRef.width) *
-				100;
-
-			if (cursorInPercent < 0) {
-				cursorInPercent = 0;
-			} else if (cursorInPercent > 100) {
-				cursorInPercent = 100;
-			}
-			if (
-				parseFloat(cursorInPercent.toFixed(3)) !== parseFloat(stateRef.current.toFixed(3))
-			) {
-				setPosition(cursorInPercent);
-			}
-		},
-		[setPosition]
-	);
-
-	const handleMouseDownClick = useCallback(
-		e => {
-			handleMoveEventRef.current(e);
-			handleMouseDown();
-		},
-		[handleMouseDown]
-	);
 	const onStart = useDragStartStop(
-		handleMoveEventRef.current,
+		eventRefs.current.handleMove,
 		handleMouseUp,
-		handleMouseDownClick,
-		false
+		eventRefs.current.handleMouseDownClick
 	);
 
 	return (

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import withVideoPlayerProgress from '../../../../../HOC/withVideoPlayerProgress';
 import FullScreenButton from '../Components/FullScreenButton/FullScreenButton/FullScreenButton';
 import useFullScreenLogic from '../Components/FullScreenButton/useFullScreenLogic/useFullScreenLogic';
@@ -48,25 +48,26 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 			}, 200);
 		}
 	};
-	const eventRef = useRef({
-		handlePlaying: () => {},
-		handleWaiting: () => {},
-	});
+	const eventRefs = useRef(null);
 
-	eventRef.current.handlePlaying = useCallback(() => {
-		canPlay.current = true;
-		if (shouldPause.current) {
-			videoRef.current.pause();
-			shouldPause.current = false;
-		}
-	}, []);
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handlePlaying: () => {
+				canPlay.current = true;
+				if (shouldPause.current) {
+					videoRef.current.pause();
+					shouldPause.current = false;
+				}
+			},
 
-	eventRef.current.handleWaiting = useCallback(() => {
-		canPlay.current = false;
-	}, []);
+			handleWaiting: () => {
+				canPlay.current = false;
+			},
+		};
+	}
 
 	useEffect(() => {
-		const { handlePlaying, handleWaiting } = eventRef.current;
+		const { handlePlaying, handleWaiting } = eventRefs.current;
 		const addEventListeners = videoElement => {
 			videoElement.addEventListener('playing', handlePlaying);
 			videoElement.addEventListener('waiting', handleWaiting);

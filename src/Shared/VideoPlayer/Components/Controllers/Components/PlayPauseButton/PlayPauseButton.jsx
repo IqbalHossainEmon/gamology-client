@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from './PlayPauseButton.module.css';
 
@@ -7,32 +7,32 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
 	const isPlayingRef = useRef(isPlaying);
 	isPlayingRef.current = isPlaying;
 
-	const eventRefs = useRef({
-		handlePlay: () => {},
-		handlePause: () => {},
-	});
+	const eventRefs = useRef(null);
 
-	eventRefs.current.handlePlay = useCallback(() => {
-		if (isSeekedRef.current && !isPlayingRef.current) {
-			setIsPlaying(true);
-		}
-	}, [isSeekedRef]);
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handlePlay: () => {
+				if (isSeekedRef.current && !isPlayingRef.current) {
+					setIsPlaying(true);
+				}
+			},
 
-	eventRefs.current.handlePause = useCallback(() => {
-		if (isSeekedRef.current && isPlayingRef.current) {
-			setIsPlaying(false);
-		}
-	}, [isSeekedRef]);
+			handlePause: () => {
+				if (isSeekedRef.current && isPlayingRef.current) {
+					setIsPlaying(false);
+				}
+			},
 
-	const handleCanToggle = () => {
-		if (canPlay.current) {
-			togglePausePlay();
-		} else if (isPlayingRef.current) {
-			setIsPlaying(false);
-			togglePausePlay();
-		}
-	};
-
+			handleCanToggle: () => {
+				if (canPlay.current) {
+					togglePausePlay();
+				} else if (isPlayingRef.current) {
+					setIsPlaying(false);
+					togglePausePlay();
+				}
+			},
+		};
+	}
 	useEffect(() => {
 		let videoRef;
 
@@ -53,7 +53,11 @@ export default function PlayPauseButton({ video, togglePausePlay, isSeekedRef, c
 	}, [video]);
 
 	return (
-		<button className={styles.playPauseButton} onClick={handleCanToggle} type="button">
+		<button
+			className={styles.playPauseButton}
+			onClick={eventRefs.current.handleCanToggle}
+			type="button"
+		>
 			<span>
 				<svg viewBox={isPlaying ? '0 0 10 14' : '0 0 11 14'}>
 					<path

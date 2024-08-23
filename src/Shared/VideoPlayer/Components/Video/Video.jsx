@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import styles from './Video.module.css';
 
 function Video({ videoContainer, src, captions, className }, ref) {
@@ -7,42 +7,41 @@ function Video({ videoContainer, src, captions, className }, ref) {
 		width: 0,
 		height: 0,
 	});
-	const eventRef = useRef({
-		handleSetFullscreenSize: () => {},
-		handleFullscreenChange: () => {},
-	});
+	const eventRefs = useRef(null);
 
-	eventRef.current.handleSetFullscreenSize = useCallback(() => {
-		const width = window.innerWidth;
-		const height = window.innerHeight;
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleSetFullscreenSize: () => {
+				const width = window.innerWidth;
+				const height = window.innerHeight;
 
-		if (height > width / 1.7777778) {
-			setFullscreenSize({
-				isFullScreen: true,
-				width,
-				height: width / 1.7777778,
-			});
-		} else {
-			setFullscreenSize({
-				isFullScreen: true,
-				width: height * 1.7777778,
-				height,
-			});
-		}
-	}, []);
-
-	eventRef.current.handleFullscreenChange = useCallback(() => {
-		if (document.fullscreenElement) {
-			eventRef.current.handleSetFullscreenSize();
-			window.addEventListener('resize', eventRef.current.handleSetFullscreenSize);
-		} else {
-			setFullscreenSize(prev => ({ ...prev, isFullScreen: false }));
-			window.removeEventListener('resize', eventRef.current.handleSetFullscreenSize);
-		}
-	}, []);
-
+				if (height > width / 1.7777778) {
+					setFullscreenSize({
+						isFullScreen: true,
+						width,
+						height: width / 1.7777778,
+					});
+				} else {
+					setFullscreenSize({
+						isFullScreen: true,
+						width: height * 1.7777778,
+						height,
+					});
+				}
+			},
+			handleFullscreenChange: () => {
+				if (document.fullscreenElement) {
+					eventRefs.current.handleSetFullscreenSize();
+					window.addEventListener('resize', eventRefs.current.handleSetFullscreenSize);
+				} else {
+					setFullscreenSize(prev => ({ ...prev, isFullScreen: false }));
+					window.removeEventListener('resize', eventRefs.current.handleSetFullscreenSize);
+				}
+			},
+		};
+	}
 	useEffect(() => {
-		const { handleFullscreenChange } = eventRef.current;
+		const { handleFullscreenChange } = eventRefs.current;
 		const addFullscreenEventListeners = element => {
 			element.addEventListener('fullscreenchange', handleFullscreenChange);
 			element.addEventListener('mozfullscreenchange', handleFullscreenChange);

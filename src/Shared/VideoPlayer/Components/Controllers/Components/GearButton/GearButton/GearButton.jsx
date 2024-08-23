@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
 import VideoPlayerToggleSwitch from '../VideoPlayerToggleSwitch/VideoPlayerToggleSwitch';
 import styles from './GearButton.module.css';
@@ -9,23 +9,32 @@ function GearButton({ gearRef }) {
 	const showRef = useRef(show);
 	showRef.current = show;
 
-	const eventRef = useRef({
-		handleClick: () => {},
-	});
 	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
 	const timerId = useRef(null);
-	const handleSwitchShowTimer = useCallback(() => {
-		if (timerId.current) {
-			clearTimeout(timerId.current);
-			timerId.current = null;
-		}
-		timerId.current = setTimeout(() => {
-			timerId.current = null;
-			setShow(false);
-			stopMenu();
-		}, 5000);
-	}, [stopMenu]);
 
+	const eventRef = useRef(null);
+
+	if (!eventRef.current) {
+		eventRef.current = {
+			handleSwitchShowTimer: () => {
+				if (timerId.current) {
+					clearTimeout(timerId.current);
+					timerId.current = null;
+				}
+				timerId.current = setTimeout(() => {
+					timerId.current = null;
+					setShow(false);
+					stopMenu();
+				}, 5000);
+			},
+
+			handleClick: () => {
+				setAutoplay(prev => ({
+					autoplay: !prev.autoplay,
+				}));
+			},
+		};
+	}
 	useEffect(() => {
 		setElement(gearRef.current);
 		if (localStorage.getItem('autoplay')) {
@@ -41,15 +50,9 @@ function GearButton({ gearRef }) {
 			localStorage.removeItem('autoplay');
 		}
 		if (showRef.current) {
-			handleSwitchShowTimer();
+			eventRef.current.handleSwitchShowTimer();
 		}
-	}, [autoplay, handleSwitchShowTimer]);
-
-	eventRef.current.handleClick = useCallback(() => {
-		setAutoplay(prev => ({
-			autoplay: !prev.autoplay,
-		}));
-	}, []);
+	}, [autoplay]);
 
 	return (
 		<>
@@ -62,7 +65,7 @@ function GearButton({ gearRef }) {
 							clearTimeout(timerId.current);
 						} else {
 							showMenu();
-							handleSwitchShowTimer();
+							eventRef.current.handleSwitchShowTimer();
 						}
 						return !prev;
 					})
@@ -85,7 +88,7 @@ function GearButton({ gearRef }) {
 			<VideoPlayerToggleSwitch
 				autoplay={autoplay.autoplay}
 				event={eventRef.current.handleClick}
-				mouseUpEvent={handleSwitchShowTimer}
+				mouseUpEvent={eventRef.current.handleSwitchShowTimer}
 				setAutoplay={setAutoplay}
 				show={show}
 				timerId={timerId}

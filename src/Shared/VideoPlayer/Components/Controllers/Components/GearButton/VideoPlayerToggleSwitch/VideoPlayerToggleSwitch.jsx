@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useRef } from 'react';
 import useAppearDisappear from '../../../../../../../Hooks/useAppearDisappear';
 import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
 import styles from './VideoPlayerToggleSwitch.module.css';
@@ -12,13 +12,19 @@ function VideoPlayerToggleSwitch({
 	mouseUpEvent,
 }) {
 	const { show, fadeIn } = useAppearDisappear(state);
-	const handleMouseDownTimer = useCallback(() => {
-		if (timerId.current) {
-			clearTimeout(timerId.current);
-			timerId.current = null;
-		}
-	}, [timerId]);
 
+	const eventRef = useRef(null);
+
+	if (!eventRef.current) {
+		eventRef.current = {
+			handleMouseDownTimer: () => {
+				if (timerId.current) {
+					clearTimeout(timerId.current);
+					timerId.current = null;
+				}
+			},
+		};
+	}
 	return (
 		show && (
 			<div className={`${styles.menuContainer}${fadeIn ? ` ${styles.zoomIn}` : ''}`}>
@@ -36,7 +42,7 @@ function VideoPlayerToggleSwitch({
 					<div className={styles.toggleSwitchContainer}>
 						<ToggleSwitch
 							event={event}
-							mouseDownEvent={handleMouseDownTimer}
+							mouseDownEvent={eventRef.current.handleMouseDownTimer}
 							mouseUpEvent={mouseUpEvent}
 							name="autoplay"
 							setState={setAutoplay}

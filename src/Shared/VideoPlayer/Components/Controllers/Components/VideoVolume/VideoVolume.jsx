@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
 import VolumeButton from '../VolumeButton/VolumeButton';
@@ -14,16 +14,22 @@ export default function VideoVolume({ video, videoContainer, changePause }) {
 		}
 	}, [video]);
 
-	const handleSetValue = useCallback(val => {
-		setVolume(val);
-		if (val > 0) {
-			videoRef.current.muted = false;
-		} else {
-			videoRef.current.muted = true;
-		}
+	const eventRef = useRef(null);
 
-		videoRef.current.volume = val / 100;
-	}, []);
+	if (!eventRef.current) {
+		eventRef.current = {
+			handleSetValue: val => {
+				setVolume(val);
+				if (val > 0) {
+					videoRef.current.muted = false;
+				} else {
+					videoRef.current.muted = true;
+				}
+
+				videoRef.current.volume = val / 100;
+			},
+		};
+	}
 
 	return (
 		<div className={styles.volume}>
@@ -34,7 +40,7 @@ export default function VideoVolume({ video, videoContainer, changePause }) {
 					<VideoSlider
 						changePause={changePause}
 						position={volume}
-						setPosition={handleSetValue}
+						setPosition={eventRef.current.handleSetValue}
 						videoContainer={videoContainer}
 					/>
 				</div>

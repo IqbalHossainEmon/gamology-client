@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Controllers from '../Components/Controllers/Controllers/Controllers';
 import Video from '../Components/Video/Video';
 import styles from './VideoPlayer.module.css';
@@ -9,31 +9,53 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 	const mouseMoveTimerId = useRef(null);
 	const onLoadedRef = useRef(false);
 	const isChanging = useRef(false);
-	const eventRef = useRef({
-		handleMouseMove: () => {},
-		handleLoadedMetaData: () => {},
-		handleMouseDown: () => {},
-	});
+	const eventRefs = useRef();
 	const [isControllerShowing, setIsControllerShowing] = useState(false);
-	// Show hide controllers by checking the time.
-	const handleShowHide = useCallback(() => {
-		if (onLoadedRef.current) {
-			if (mouseMoveTimerId.current) {
-				clearTimeout(mouseMoveTimerId.current);
-				mouseMoveTimerId.current = null;
-			} else {
-				setIsControllerShowing(true);
-			}
-			mouseMoveTimerId.current = setTimeout(() => {
-				mouseMoveTimerId.current = null;
-				setIsControllerShowing(false);
-			}, 5000);
-		}
-	}, []);
 
-	eventRef.current.handleMouseMove = useCallback(() => {
-		handleShowHide();
-	}, [handleShowHide]);
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			// Show hide controllers by checking the time.
+			handleShowHide: () => {
+				if (onLoadedRef.current) {
+					if (mouseMoveTimerId.current) {
+						clearTimeout(mouseMoveTimerId.current);
+						mouseMoveTimerId.current = null;
+					} else {
+						setIsControllerShowing(true);
+					}
+					mouseMoveTimerId.current = setTimeout(() => {
+						mouseMoveTimerId.current = null;
+						setIsControllerShowing(false);
+					}, 5000);
+				}
+			},
+			handleMouseMove: () => {
+				eventRefs.current.handleShowHide();
+			},
+			handleMouseUp: () => {
+				videoContainerRef?.current.addEventListener(
+					'mousemove',
+					eventRefs.current.handleMouseMove
+				);
+				eventRefs.current.handleShowHide();
+				document.removeEventListener('mouseup', eventRefs.current.handleMouseUp);
+			},
+			handleLoadedMetaData: () => {
+				onLoadedRef.current = true;
+			},
+			handleMouseDown: () => {
+				document.addEventListener('mouseup', eventRefs.current.handleMouseUp);
+				if (mouseMoveTimerId.current) {
+					clearTimeout(mouseMoveTimerId.current);
+					mouseMoveTimerId.current = null;
+				}
+				videoContainerRef?.current.removeEventListener(
+					'mousemove',
+					eventRefs.current.handleMouseMove
+				);
+			},
+		};
+	}
 
 	useEffect(() => {
 		if (!videoRef.current.paused) {
@@ -42,30 +64,8 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 		}
 	}, [changePause]);
 
-	const handleMouseUp = useCallback(() => {
-		videoContainerRef?.current.addEventListener('mousemove', eventRef.current.handleMouseMove);
-		handleShowHide();
-		document.removeEventListener('mouseup', handleMouseUp);
-	}, [handleShowHide]);
-
-	eventRef.current.handleLoadedMetaData = useCallback(() => {
-		onLoadedRef.current = true;
-	}, []);
-
-	eventRef.current.handleMouseDown = useCallback(() => {
-		document.addEventListener('mouseup', handleMouseUp);
-		if (mouseMoveTimerId.current) {
-			clearTimeout(mouseMoveTimerId.current);
-			mouseMoveTimerId.current = null;
-		}
-		videoContainerRef?.current.removeEventListener(
-			'mousemove',
-			eventRef.current.handleMouseMove
-		);
-	}, [handleMouseUp]);
-
 	useEffect(() => {
-		const { handleMouseMove, handleMouseDown, handleLoadedMetaData } = eventRef.current;
+		const { handleMouseMove, handleMouseDown, handleLoadedMetaData } = eventRefs.current;
 		const addEventListeners = (videoContainer, video) => {
 			if (videoContainer) {
 				videoContainer.addEventListener('mousemove', handleMouseMove);
@@ -92,7 +92,7 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 		return () => {
 			removeEventListeners(videoContainer, video);
 		};
-	}, [handleMouseUp, videoContainerRef]);
+	}, [videoContainerRef]);
 
 	return (
 		<div
