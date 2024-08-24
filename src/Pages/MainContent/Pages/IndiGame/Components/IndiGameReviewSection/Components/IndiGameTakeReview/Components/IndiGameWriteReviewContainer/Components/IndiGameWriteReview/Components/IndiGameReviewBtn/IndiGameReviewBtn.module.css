@@ -5,7 +5,6 @@
 	column-gap: 1rem;
 	flex-wrap: wrap;
 }
-
 .submitBtn {
 	background-color: rgb(14, 101, 182);
 	color: #ebebeb;
@@ -16,15 +15,12 @@
 	transition: background-color 200ms;
 	position: relative;
 }
-
 .submitBtn:hover {
 	background-color: rgb(15, 109, 197);
 }
-
 .submitBtn:active {
 	background-color: rgb(15, 121, 221);
 }
-
 .closeBtn {
 	background-color: rgb(187, 187, 187);
 	color: #000000;
@@ -36,17 +32,14 @@
 		color 200ms;
 	cursor: pointer;
 }
-
 .closeBtn:hover {
 	background-color: rgb(24, 24, 24);
 	color: #acacac;
 }
-
 .closeBtn:active {
 	background-color: rgb(32, 32, 32);
 	color: #acacac;
 }
-
 .cantSubmit:active {
 	background-color: rgb(211, 27, 27);
 }

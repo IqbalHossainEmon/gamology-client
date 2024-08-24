@@ -63,14 +63,13 @@ export default function TextField({
 	useEffect(() => {
 		const holdFieldRef = fieldRef.current;
 		if (field === 'textarea') {
-			eventRefs.current();
-
-			holdFieldRef.addEventListener('input', eventRefs.current);
+			eventRefs.current.handleInputEvent();
+			holdFieldRef.addEventListener('input', eventRefs.current.handleInputEvent);
 		}
 
 		return () => {
 			if (field === 'textarea') {
-				holdFieldRef.removeEventListener('input', eventRefs.current);
+				holdFieldRef.removeEventListener('input', eventRefs.current.handleInputEvent);
 			}
 		};
 	}, [field]);

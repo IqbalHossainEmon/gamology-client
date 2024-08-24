@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import styles from './IndiGameReviewInput.module.css';
-
 function IndiGameReviewInput({ setData, isTextArea }) {
 	const [value, setValue] = useState('');
 	const [scrollable, setScrollable] = useState(false);
-
 	return (
 		<div className={styles.container}>
 			{isTextArea ? (
@@ -48,7 +46,6 @@ function IndiGameReviewInput({ setData, isTextArea }) {
 					value={value}
 				/>
 			)}
-
 			<p
 				className={
 					value.length <= (isTextArea ? 2000 : 40) &&
