@@ -6,7 +6,7 @@ import RotateArrow from '../../RotateArrow/RotateArrow';
 import SelectionFieldList from '../SelectionFieldList/SelectionFieldList';
 import styles from './SelectionField.module.css';
 
-const ctx = document.createElement('canvas').getContext('2d');
+const span = document.createElement('span');
 
 export default function SelectionField({
 	placeholder = 'Type',
@@ -37,7 +37,7 @@ export default function SelectionField({
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
 	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
-
+	let width = 0;
 	useEffect(() => {
 		if (parentSetValueRef.current) {
 			setValue(parentSetValueRef.current);
@@ -48,37 +48,54 @@ export default function SelectionField({
 		setElement(containerRef.current);
 	}, [setElement]);
 
-	useEffect(() => {
-		if (inputRef.current) {
-			ctx.font = `${getComputedStyle(inputRef.current, null).fontSize} ${getComputedStyle(inputRef.current, null).fontFamily}`;
-		}
-	}, [screenWidth]);
+	const eventRefs = useRef(null);
 
-	const handleClick = () => {
-		const { height, y } = elementRef.current.getBoundingClientRect();
-		const bottomRemain = window.innerHeight - y - height;
-		if (list.length > 4) {
-			if (bottomRemain < 170) {
-				positionRef.current.bottom = false;
-				if (y < 420) {
-					positionRef.current.height = y;
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleClick: () => {
+				const { height, y } = elementRef.current.getBoundingClientRect();
+				const bottomRemain = window.innerHeight - y - height;
+				if (list.length > 4) {
+					if (bottomRemain < 170) {
+						positionRef.current.bottom = false;
+						if (y < 420) {
+							positionRef.current.height = y;
+						} else {
+							positionRef.current.height = 0;
+						}
+					} else {
+						positionRef.current.bottom = true;
+						if (bottomRemain < 420) {
+							positionRef.current.height = bottomRemain;
+						} else {
+							positionRef.current.height = 0;
+						}
+					}
+				} else if (bottomRemain < list.length * 40 + 10) {
+					positionRef.current.bottom = false;
 				} else {
-					positionRef.current.height = 0;
+					positionRef.current.bottom = true;
 				}
-			} else {
-				positionRef.current.bottom = true;
-				if (bottomRemain < 420) {
-					positionRef.current.height = bottomRemain;
-				} else {
-					positionRef.current.height = 0;
-				}
-			}
-		} else if (bottomRemain < list.length * 40 + 10) {
-			positionRef.current.bottom = false;
-		} else {
-			positionRef.current.bottom = true;
+			},
+			calculateWidth: () => {
+				document.body.appendChild(span);
+				width = span.offsetWidth;
+				document.body.removeChild(span);
+			},
+		};
+	}
+	useEffect(() => {
+		const input = inputRef.current;
+		if (input) {
+			span.style.font = window.getComputedStyle(input).font;
+			input.addEventListener('input', eventRefs.current.calculateWidth);
 		}
-	};
+		return () => {
+			if (input) {
+				input.removeEventListener('input', eventRefs.current.calculateWidth);
+			}
+		};
+	}, [screenWidth]);
 
 	return (
 		<div className={styles.container} ref={containerRef}>
@@ -86,7 +103,7 @@ export default function SelectionField({
 				type="button"
 				{...(enabled || { tabIndex: '-1' })}
 				{...(inputRef.current &&
-					ctx.measureText(value).width >
+					width >
 						inputRef.current.offsetWidth -
 							parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
 							parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && {
@@ -94,7 +111,7 @@ export default function SelectionField({
 					})}
 				className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
 				onClick={() => {
-					handleClick();
+					eventRefs.current.handleClick();
 					setShow(prev => {
 						if (!prev) {
 							showMenu();
