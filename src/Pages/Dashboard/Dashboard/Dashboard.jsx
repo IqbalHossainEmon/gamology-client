@@ -6,7 +6,6 @@ function Dashboard() {
 	return (
 		<div className={styles.dashboard}>
 			<Drawer />
-
 			<DashboardBody />
 		</div>
 	);

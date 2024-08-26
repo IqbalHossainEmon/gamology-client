@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
-import useDropDownHide from '../../Hooks/useDropDownHide';
-import ScrollBar from '../ScrollBar/ScrollBar';
-import styles from './Modal.module.css';
+import useDropDownHide from '../../../Hooks/useDropDownHide';
+import ScrollBar from '../../ScrollBar/ScrollBar';
+import styles from './ModalBody.module.css';
 
-function Modal({ children, setShow, fadeIn, hideEventRef }) {
+function ModalBody({ children, setShow, fadeIn, hideEventRef }) {
 	const elementRef = useRef(null);
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
 	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
-	const eventRef = useRef();
+	const eventRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = {
@@ -33,13 +33,11 @@ function Modal({ children, setShow, fadeIn, hideEventRef }) {
 					{children}
 				</div>
 			</div>
-
 			<ScrollBar childRef={childRef} parentRef={parentRef} />
-
 			<button className={styles.crossBtn} onClick={eventRef.current.handleHide} type="button">
 				<span className={styles.cross} />
 			</button>
 		</div>
 	);
 }
-export default Modal;
+export default ModalBody;

@@ -1,11 +1,10 @@
 import { useRef, useState } from 'react';
 import {
-	DashboardBodyModalContextSetContent,
-	DashboardBodyModalContextSetShow,
-} from '../Contexts/DashboardBodyModalContext';
-import useAppearDisappear from '../Hooks/useAppearDisappear';
+	DashboardModalContextSetContent,
+	DashboardModalContextSetShow,
+} from '../Contexts/DashboardModalContext';
 import DashboardModal from '../Pages/Dashboard/Components/DashboardBody/Components/DashboardModal/DashboardModal';
-import Modal from '../Shared/Modal/Modal';
+import Modal from '../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../Shared/ScreenShadow/ScreenShadow';
 
 const withDashboardModal = Component =>
@@ -16,7 +15,6 @@ const withDashboardModal = Component =>
 			modalBody: null,
 			modalFooter: null,
 		});
-		const { show, fadeIn } = useAppearDisappear(showModal);
 		const hideEventRef = useRef({
 			handleHide: () => {},
 		});
@@ -24,7 +22,7 @@ const withDashboardModal = Component =>
 
 		if (!eventRef.current) {
 			eventRef.current = {
-				handleShowHide: isTrue => {
+				handleToggleModal: isTrue => {
 					if (isTrue) {
 						setShowModal(true);
 					} else {
@@ -34,28 +32,25 @@ const withDashboardModal = Component =>
 			};
 		}
 		return (
-			<DashboardBodyModalContextSetShow.Provider value={eventRef.current.handleShowHide}>
-				<DashboardBodyModalContextSetContent.Provider value={setContent}>
+			<DashboardModalContextSetShow.Provider value={eventRef.current.handleToggleModal}>
+				<DashboardModalContextSetContent.Provider value={setContent}>
 					<Component
 						{...props}
 						render={
 							<>
-								{show ? (
-									<Modal
-										fadeIn={fadeIn}
-										hideEventRef={hideEventRef}
-										setShow={setShowModal}
-									>
-										<DashboardModal content={content} />
-									</Modal>
-								) : null}
-
+								<Modal
+									hideEventRef={hideEventRef}
+									setShow={setShowModal}
+									show={showModal}
+								>
+									<DashboardModal content={content} />
+								</Modal>
 								<ScreenShadow show={showModal} zIndex={3} />
 							</>
 						}
 					/>
-				</DashboardBodyModalContextSetContent.Provider>
-			</DashboardBodyModalContextSetShow.Provider>
+				</DashboardModalContextSetContent.Provider>
+			</DashboardModalContextSetShow.Provider>
 		);
 	};
 

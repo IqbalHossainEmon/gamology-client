@@ -48,9 +48,7 @@ function EditTags() {
 	return (
 		<div className={styles.addTags}>
 			<h2 className={styles.tagsHeader}>Tags</h2>
-
 			<ShowCategoryTags setTags={setTags} tags={tags} />
-
 			<AddTags setTags={setTags} tags={tags} />
 		</div>
 	);

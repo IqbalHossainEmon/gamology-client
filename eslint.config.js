@@ -56,6 +56,7 @@ export default [
 			'react/prop-types': 'off',
 			'react/jsx-no-target-blank': 'off',
 			'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+			'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],
 		},
 	},
 ];

@@ -25,6 +25,8 @@ export default function SelectionField({
 }) {
 	const [value, setValue] = useState(defaultValue);
 	const [show, setShow] = useState(false);
+	const [width, setWidth] = useState(0);
+
 	const screenWidth = useScreenWidth();
 	const valueRef = useRef(value);
 	valueRef.current = value;
@@ -37,7 +39,7 @@ export default function SelectionField({
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
 	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
-	let width = 0;
+
 	useEffect(() => {
 		if (parentSetValueRef.current) {
 			setValue(parentSetValueRef.current);
@@ -77,9 +79,10 @@ export default function SelectionField({
 					positionRef.current.bottom = true;
 				}
 			},
-			calculateWidth: () => {
+			calculateWidth: value => {
 				document.body.appendChild(span);
-				width = span.offsetWidth;
+				span.textContent = value;
+				setWidth(span.offsetWidth);
 				document.body.removeChild(span);
 			},
 		};
@@ -88,14 +91,9 @@ export default function SelectionField({
 		const input = inputRef.current;
 		if (input) {
 			span.style.font = window.getComputedStyle(input).font;
-			input.addEventListener('input', eventRefs.current.calculateWidth);
+			eventRefs.current.calculateWidth(defaultValue);
 		}
-		return () => {
-			if (input) {
-				input.removeEventListener('input', eventRefs.current.calculateWidth);
-			}
-		};
-	}, [screenWidth]);
+	}, [defaultValue, screenWidth]);
 
 	return (
 		<div className={styles.container} ref={containerRef}>
@@ -132,7 +130,6 @@ export default function SelectionField({
 				>
 					{placeholder}
 				</label>
-
 				<input
 					className={styles.field}
 					id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
@@ -142,14 +139,11 @@ export default function SelectionField({
 					value={value}
 					{...rest}
 				/>
-
 				<div className={styles.rotateArrow}>
 					<RotateArrow state={show} />
 				</div>
-
 				<ButtonWaterEffect btnRef={elementRef} />
 			</button>
-
 			<SelectionFieldList
 				childRef={childRef}
 				list={list}
@@ -159,7 +153,10 @@ export default function SelectionField({
 				positionRef={positionRef}
 				setShow={setShow}
 				setState={setState}
-				setValue={setValue}
+				setValue={value => {
+					setValue(value);
+					eventRefs.current.calculateWidth(value);
+				}}
 				state={show}
 				value={value}
 			/>
