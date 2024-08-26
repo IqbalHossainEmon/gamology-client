@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModalHook from '../../../../../../../../useDashboardModalHook/useDashboardModalHook';
 import styles from './AllGamesDeleteConfirmModal.module.css';
@@ -9,6 +10,9 @@ function AllGamesDeleteConfirmModal() {
 		errorChange: 0,
 		errorMessage: '',
 	});
+
+	const btnRef = useRef(null);
+
 	const { setDashboardModal } = useDashboardModalHook();
 	const handleDelete = () => {
 		if (
@@ -39,8 +43,9 @@ function AllGamesDeleteConfirmModal() {
 				}}
 				type="text"
 			/>
-			<button className={styles.deleteBtn} onClick={handleDelete} type="button">
+			<button ref={btnRef} className={styles.deleteBtn} onClick={handleDelete} type="button">
 				Delete
+				<ButtonWaterEffect btnRef={btnRef} long />
 			</button>
 		</div>
 	);

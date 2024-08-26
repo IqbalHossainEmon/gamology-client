@@ -55,7 +55,6 @@ const FullScreenButton = ({ videoContainer }) => {
 
 					<g fill="none" fillRule="evenodd">
 						<path d="M-5-5h24v24H-5z" />
-
 						<path
 							d={
 								isFullScreen

@@ -43,7 +43,7 @@ const items = [
 		logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
 		carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
 		coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
-		price: 'Free',
+		price: 0,
 	},
 	{
 		id: 3,

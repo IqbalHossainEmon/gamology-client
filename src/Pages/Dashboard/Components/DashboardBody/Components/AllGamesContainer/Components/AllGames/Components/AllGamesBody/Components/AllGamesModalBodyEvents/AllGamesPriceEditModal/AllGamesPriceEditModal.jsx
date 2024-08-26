@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModalHook from '../../../../../../../../useDashboardModalHook/useDashboardModalHook';
@@ -7,10 +7,22 @@ import styles from './AllGamesPriceEditModal.module.css';
 function AllGamesPriceEditModal({ price }) {
 	const btnRef = useRef(null);
 	const newPrice = useRef(null);
+
+	const [{ errorChange, errorMessage }, setError] = useState({
+		errorChange: 0,
+		errorMessage: '',
+	});
+
 	const { setDashboardModal } = useDashboardModalHook();
 	const handleSubmit = () => {
-		console.log('Price Submitted');
-		setDashboardModal(false);
+		if (newPrice.current && newPrice.current !== price) {
+			setDashboardModal(false);
+		} else {
+			setError(prev => ({
+				errorChange: prev.errorChange + 1,
+				errorMessage: 'New is same as previous price',
+			}));
+		}
 	};
 
 	return (
@@ -18,7 +30,7 @@ function AllGamesPriceEditModal({ price }) {
 			<div className={styles.inputContainer}>
 				<TextField
 					className={styles.input}
-					defaultValue={price}
+					defaultValue={price === 0 ? 0 : `$${price}`}
 					enabled={false}
 					field="input"
 					htmlFor="previous_price"
@@ -35,7 +47,6 @@ function AllGamesPriceEditModal({ price }) {
 						xmlns="http://www.w3.org/2000/svg"
 					>
 						<g id="SVGRepo_bgCarrier" strokeWidth="0" />
-
 						<g
 							id="SVGRepo_tracerCarrier"
 							stroke="#CCCCCC"
@@ -43,7 +54,6 @@ function AllGamesPriceEditModal({ price }) {
 							strokeLinejoin="round"
 							strokeWidth="1.024"
 						/>
-
 						<g id="SVGRepo_iconCarrier">
 							<path
 								d="M250.238,39.428c-13.664,13.664-13.664,35.818,0,49.482L382.34,221.011H45.189 c-19.324,0-34.989,15.665-34.989,34.989c0,19.324,15.665,34.989,34.989,34.989H382.34L250.238,423.091 c-13.664,13.664-13.664,35.818,0,49.482c13.664,13.664,35.819,13.664,49.482,0l191.832-191.832 c6.832-6.832,10.248-15.786,10.248-24.741s-3.416-17.909-10.248-24.741L299.721,39.428 C286.057,25.763,263.902,25.763,250.238,39.428z"
@@ -77,6 +87,8 @@ function AllGamesPriceEditModal({ price }) {
 					setState={val => {
 						newPrice.current = val;
 					}}
+					errorChange={errorChange}
+					errorMessage={errorMessage}
 				/>
 			</div>
 			<button className={styles.submitBtn} onClick={handleSubmit} ref={btnRef} type="button">

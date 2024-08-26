@@ -20,7 +20,6 @@ function AllGamesModalBodySelect({ type, detail }) {
 					</p>
 				</div>
 			</div>
-
 			{type === 'price' ? (
 				<AllGamesPriceEditModal
 					detail={detail}

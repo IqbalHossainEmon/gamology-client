@@ -126,7 +126,6 @@ function FileUploadButton({
 						>
 							{placeholder || 'Browse'}
 						</label>
-
 						<p
 							className={`${selected.selected ? `${styles.selected} ` : ''}${
 								styles.fileName

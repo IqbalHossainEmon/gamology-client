@@ -56,7 +56,6 @@ export default function IndiGameWriteReview({
 						<div className={styles.reviewStarsContainer}>
 							<ReviewStar name="active" newValue={reviewStar} setValue={setData} />
 						</div>
-
 						<IndiGameReviewInput setData={setData} />
 					</div>
 

@@ -30,7 +30,7 @@ const data = [
 		logoImg: '/assets/images/CarouselInfo/fortnite-logo.png',
 		carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
 		coverMobile: '/assets/images/CarouselCoverMobile/uncharted-carousel-mobile.jpg',
-		price: 'Free',
+		price: 0,
 		saleTill: [
 			[2, 11, 2022],
 			[24, 12, 2025],
@@ -46,7 +46,7 @@ const data = [
 		logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
 		carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
 		coverMobile: '/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
-		price: 'Free',
+		price: 0,
 		saleTill: [
 			[11, 12, 2024],
 			[15, 12, 2025],
@@ -62,7 +62,7 @@ const data = [
 		coverMobile: '/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
 		coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
 		logoImg: '/assets/images/CarouselInfo/fortnite-carousel-logo.png',
-		price: 'Free',
+		price: 0,
 		saleTill: [
 			[1, 11, 2024],
 			[23, 12, 2025],

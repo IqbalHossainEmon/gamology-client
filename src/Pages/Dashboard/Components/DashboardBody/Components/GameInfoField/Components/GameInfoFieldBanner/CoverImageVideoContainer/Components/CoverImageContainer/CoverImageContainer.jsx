@@ -115,7 +115,6 @@ function CoverImageContainer({
 								strokeWidth="4"
 							/>
 						</g>
-
 						<defs>
 							<clipPath id="clip0_14_1859">
 								<rect

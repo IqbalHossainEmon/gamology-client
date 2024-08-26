@@ -563,7 +563,7 @@ const drawers = [
 			},
 			{
 				id: '03',
-				name: 'Free',
+				name: 0,
 				icon: (
 					<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
@@ -753,7 +753,6 @@ function Drawer() {
 								</p>
 							</footer>
 						</div>
-
 						<ScrollBar childRef={scrollChildRef} parentRef={scrollParentRef} />
 					</div>
 				</div>

@@ -143,7 +143,6 @@ const VideoStatus = ({ video, isSeekedRef, isChanging }) => {
 								<path d="M0 0v14l11-7z" fill="black" fillRule="nonzero" />
 							</svg>
 						</span>
-
 						<span>{status.duration ? formatTime(status.duration) : '0:00'}</span>
 					</button>
 				</div>

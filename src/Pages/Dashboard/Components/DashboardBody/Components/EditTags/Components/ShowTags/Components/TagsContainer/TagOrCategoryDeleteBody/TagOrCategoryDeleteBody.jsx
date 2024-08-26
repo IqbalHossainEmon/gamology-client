@@ -1,10 +1,14 @@
 import { useRef, useState } from 'react';
+import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './TagOrCategoryDeleteBody.module.css';
 
 function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 	const [errorChange, setErrorChange] = useState(0);
 	const checkText = useRef('');
+
+	const btnRef = useRef(null);
+
 	return (
 		<div className={styles.modalBody}>
 			<p className={styles.modelBody}>{text}</p>
@@ -22,6 +26,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 			</div>
 			<div className={styles.btnContainer}>
 				<button
+					ref={btnRef}
 					className={styles.deleteBtn}
 					onClick={() => {
 						if (
@@ -39,9 +44,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					type="button"
 				>
 					Delete
-				</button>
-				<button className={styles.cancelBtn} onClick={handleHide} type="button">
-					Cancel
+					<ButtonWaterEffect btnRef={btnRef} long />
 				</button>
 			</div>
 		</div>

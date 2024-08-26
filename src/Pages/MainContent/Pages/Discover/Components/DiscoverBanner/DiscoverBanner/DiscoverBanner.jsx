@@ -33,7 +33,7 @@ const items = [
 		logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
 		carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
 		coverMobile: '/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
-		price: 'Free',
+		price: 0,
 	},
 	{
 		id: 1011,
@@ -42,7 +42,7 @@ const items = [
 		coverMobile: '/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
 		coverImg: '/assets/images/CarouselCoverDesktop/fortnite-carousel-desktop.jpg',
 		logoImg: '/assets/images/CarouselInfo/fortnite-carousel-logo.png',
-		price: 'Free',
+		price: 0,
 	},
 	{
 		id: 1100,

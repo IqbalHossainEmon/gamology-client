@@ -57,11 +57,8 @@ function CardDot({ item, lists, fadeIn, listShowRef, setParentShow, isOutside })
 
 					<g>
 						<circle cx="16" cy="16" fill="#F08A5D" r="2" />
-
 						<circle cx="16" cy="26" fill="#B83B5E" r="2" />
-
 						<circle cx="16" cy="6" fill="#B83B5E" r="2" />
-
 						<circle
 							cx="16"
 							cy="16"
@@ -73,7 +70,6 @@ function CardDot({ item, lists, fadeIn, listShowRef, setParentShow, isOutside })
 							strokeMiterlimit="10"
 							strokeWidth="0.00032"
 						/>
-
 						<circle
 							cx="16"
 							cy="26"
@@ -85,7 +81,6 @@ function CardDot({ item, lists, fadeIn, listShowRef, setParentShow, isOutside })
 							strokeMiterlimit="10"
 							strokeWidth="0.00032"
 						/>
-
 						<circle
 							cx="16"
 							cy="6"

@@ -51,7 +51,6 @@ export default function IndiGameReview({ review, index, length }) {
 
 							<h3 className={styles.title}>{review.title}</h3>
 						</div>
-
 						<div>
 							<p className={styles.date}>
 								{month[review.date.getMonth()]} {review.date.getDate()},

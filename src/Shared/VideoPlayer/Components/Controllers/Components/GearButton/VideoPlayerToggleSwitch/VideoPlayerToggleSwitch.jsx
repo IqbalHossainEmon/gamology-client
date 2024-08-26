@@ -35,7 +35,6 @@ function VideoPlayerToggleSwitch({
 				>
 					<div className={styles.textContainer}>
 						<h5>Autoplay</h5>
-
 						<p>Applies to all videos</p>
 					</div>
 

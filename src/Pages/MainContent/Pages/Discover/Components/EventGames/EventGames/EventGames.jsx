@@ -27,7 +27,7 @@ const newGames = [
 		id: 1011,
 		name: 'Fortnite',
 		carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-		price: 'Free',
+		price: 0,
 	},
 	{
 		id: 1100,

@@ -38,7 +38,6 @@ export default function IndiGameTakeReview() {
 							className={styles.userIcon}
 							src={user.current.src ? user.current.src : userIcon}
 						/>
-
 						<ReviewStar
 							name="active"
 							{...((writeReviewShow || userReviewDone) && { disabled: true })}
@@ -64,7 +63,6 @@ export default function IndiGameTakeReview() {
 				<div>
 					<div className={styles.overAllRatingContainer}>
 						<img alt="full star" className={styles.fullStar} src={fullStar} />
-
 						<p>
 							<span className={styles.overAllRating}>{overAllRating}</span>/
 							<span>5</span>
