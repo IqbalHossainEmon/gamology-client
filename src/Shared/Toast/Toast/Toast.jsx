@@ -1,12 +1,8 @@
 import useAppearDisappear from '../../../Hooks/useAppearDisappear';
-import styles from './Toast.module.css';
+import ToastBody from '../ToastBody/ToastBody';
 
-function Toast() {
-	const { show, fadeIn } = useAppearDisappear();
-	return (
-		<div className={styles.toast}>
-			<p>hello</p>
-		</div>
-	);
+function Toast({ show: toastShow, handleHide }) {
+	const { show, fadeIn } = useAppearDisappear(toastShow);
+	return show && <ToastBody fadeIn={fadeIn} handleHide={handleHide} />;
 }
 export default Toast;

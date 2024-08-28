@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import useAppearDisappear from '../../../../../../../Hooks/useAppearDisappear';
 import useIsTouchAble from '../../../../../../../Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
-import CardDot from '../Components/CardDot/CardDot';
+import CardDotBody from '../Components/CardDotBody/CardDotBody';
 
-function CardDotContainer({ parentRef, ...rest }) {
+function CardDot({ parentRef, ...rest }) {
 	const [dotShow, setDotShow] = useState(false);
 	const dotShowRef = useRef(false);
 	dotShowRef.current = dotShow;
@@ -23,7 +23,6 @@ function CardDotContainer({ parentRef, ...rest }) {
 				}
 				isOutside.current = false;
 			},
-
 			handleHideBtn: () => {
 				if (dotShowRef.current && !listShowRef.current) {
 					setDotShow(false);
@@ -66,7 +65,7 @@ function CardDotContainer({ parentRef, ...rest }) {
 
 	return (
 		show && (
-			<CardDot
+			<CardDotBody
 				{...rest}
 				fadeIn={fadeIn}
 				isOutside={isOutside}
@@ -76,4 +75,4 @@ function CardDotContainer({ parentRef, ...rest }) {
 		)
 	);
 }
-export default CardDotContainer;
+export default CardDot;

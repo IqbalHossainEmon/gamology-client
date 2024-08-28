@@ -4,7 +4,7 @@ import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import AllGames from '../Components/AllGamesContainer/Components/AllGames/AllGames/AllGames';
 import styles from './DashboardBody.module.css';
 
-function DashboardBody({ render }) {
+function DashboardBody({ children }) {
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
 
@@ -16,7 +16,7 @@ function DashboardBody({ render }) {
 				</div>
 			</div>
 			<ScrollBar childRef={childRef} parentRef={parentRef} />
-			{render}
+			{children}
 		</div>
 	);
 }

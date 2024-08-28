@@ -34,21 +34,12 @@ const withDashboardModal = Component =>
 		return (
 			<DashboardModalContextSetShow.Provider value={eventRef.current.handleToggleModal}>
 				<DashboardModalContextSetContent.Provider value={setContent}>
-					<Component
-						{...props}
-						render={
-							<>
-								<Modal
-									hideEventRef={hideEventRef}
-									setShow={setShowModal}
-									show={showModal}
-								>
-									<DashboardModal content={content} />
-								</Modal>
-								<ScreenShadow show={showModal} zIndex={3} />
-							</>
-						}
-					/>
+					<Component {...props}>
+						<Modal hideEventRef={hideEventRef} setShow={setShowModal} show={showModal}>
+							<DashboardModal content={content} />
+						</Modal>
+						<ScreenShadow show={showModal} zIndex={3} />
+					</Component>
 				</DashboardModalContextSetContent.Provider>
 			</DashboardModalContextSetShow.Provider>
 		);

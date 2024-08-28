@@ -1,5 +1,5 @@
 import Card from '../../../../../../../../../../../Shared/Card/Card';
-import CardDotContainer from '../../../../../../../Shared/CardDotContainer/CardDotContainer/CardDotContainer';
+import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
 import useDashboardModalHook from '../../../../../../useDashboardModalHook/useDashboardModalHook';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesBody.module.css';
@@ -19,7 +19,7 @@ function AllGamesBody({ items }) {
 						key={item.id}
 					>
 						{prop => (
-							<CardDotContainer
+							<CardDot
 								hoverClassName={styles.dots}
 								item={item}
 								lists={[

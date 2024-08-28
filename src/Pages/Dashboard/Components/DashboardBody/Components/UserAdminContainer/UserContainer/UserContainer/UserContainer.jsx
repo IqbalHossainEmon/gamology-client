@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CardDotContainer from '../../../../Shared/CardDotContainer/CardDotContainer/CardDotContainer';
+import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
 import useDashboardModalHook from '../../../useDashboardModalHook/useDashboardModalHook';
 import UserCard from '../../UserCard/UserCard';
 import UserDeleteModalBody from '../Components/UserDeleteModalBody/UserDeleteModalBody';
@@ -30,7 +30,7 @@ function UserContainer() {
 			{users.map(user => (
 				<UserCard data={user} key={user.id}>
 					{props => (
-						<CardDotContainer
+						<CardDot
 							item={user}
 							lists={[
 								{
