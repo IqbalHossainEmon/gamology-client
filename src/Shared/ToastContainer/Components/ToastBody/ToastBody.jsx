@@ -13,7 +13,7 @@ function ToastBody({ fadeIn, handleHide, data }) {
 					<p>{toastMessage}</p>
 				</div>
 			</div>
-			<button className={styles.crossBtn} onClick={handleHide}>
+			<button className={styles.crossBtn} onClick={handleHide} type='button'>
 				<span className={styles.cross} />
 			</button>
 		</li>
