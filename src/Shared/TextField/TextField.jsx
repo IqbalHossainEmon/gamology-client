@@ -121,12 +121,13 @@ export default function TextField({
 					{placeholder}
 				</label>
 
-				{field === 'input' ? (
+				{field === 'input' || field === 'number' ? (
 					<input
 						{...(enabled || { disabled: true, readOnly: true })}
 						autoComplete="off"
-						className={styles.field}
+						className={`${styles.field}${field === 'input' ? '' : ` ${styles.fieldNumber}`}`}
 						id={htmlFor}
+						type={field === 'input' ? 'text' : 'number'}
 						onBlur={eventRefs.current.handleBlur}
 						onChange={eventRefs.current.handleChange}
 						onFocus={eventRefs.current.handleFocus}

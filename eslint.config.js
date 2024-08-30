@@ -27,8 +27,8 @@ export default [
 			react,
 			'react-hooks': reactHooks,
 			'react-refresh': reactRefresh,
-			prettier: prettierPlugin,
 			'jsx-a11y': jsxA11y,
+			prettier: prettierPlugin,
 		},
 		rules: {
 			...js.configs.recommended.rules,
@@ -44,6 +44,7 @@ export default [
 				{
 					trailingComma: 'es5',
 					singleQuote: true,
+					jsxSingleQuote: true,
 					printWidth: 100,
 					tabWidth: 4,
 					useTabs: true,

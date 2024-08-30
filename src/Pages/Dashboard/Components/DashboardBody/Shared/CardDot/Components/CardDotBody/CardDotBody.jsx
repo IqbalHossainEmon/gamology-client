@@ -5,7 +5,7 @@ import useIsTouchAble from '../../../../../../../../Hooks/useIsTouchable';
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
-function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow, isOutside }) {
+function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 	const [listShow, setListShow] = useState(false);
 	const isTouchAble = useIsTouchAble();
 	const elementRef = useRef(null);
@@ -18,7 +18,7 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow, isOutsid
 		eventRefs.current = {
 			handleHide: () => {
 				setListShow(false);
-				if (!isTouchAble() && isOutside.current) {
+				if (!isTouchAble()) {
 					setParentShow(false);
 				}
 			},

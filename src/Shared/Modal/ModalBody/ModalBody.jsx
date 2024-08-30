@@ -21,9 +21,7 @@ function ModalBody({ children, setShow, fadeIn, hideEventRef }) {
 	useEffect(() => {
 		setElement(elementRef.current);
 		showMenu();
-		if (hideEventRef) {
-			hideEventRef.current.handleHide = eventRef.current.handleHide;
-		}
+		hideEventRef.current = eventRef.current.handleHide;
 	}, [hideEventRef, setElement, showMenu]);
 
 	return (

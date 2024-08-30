@@ -1,8 +1,5 @@
 import { useRef, useState } from 'react';
-import {
-	DashboardModalContextSetContent,
-	DashboardModalContextSetShow,
-} from '../Contexts/DashboardModalContext';
+import { SetContentDashboardModalContext, SetDashboardModalContext } from '../Contexts/DashboardModalContext';
 import DashboardModal from '../Pages/Dashboard/Components/DashboardBody/Components/DashboardModal/DashboardModal';
 import Modal from '../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../Shared/ScreenShadow/ScreenShadow';
@@ -15,9 +12,7 @@ const withDashboardModal = Component =>
 			modalBody: null,
 			modalFooter: null,
 		});
-		const hideEventRef = useRef({
-			handleHide: () => {},
-		});
+		const hideEventRef = useRef(null);
 		const eventRef = useRef(null);
 
 		if (!eventRef.current) {
@@ -26,22 +21,22 @@ const withDashboardModal = Component =>
 					if (isTrue) {
 						setShowModal(true);
 					} else {
-						hideEventRef.current.handleHide();
+						hideEventRef.current();
 					}
 				},
 			};
 		}
 		return (
-			<DashboardModalContextSetShow.Provider value={eventRef.current.handleToggleModal}>
-				<DashboardModalContextSetContent.Provider value={setContent}>
+			<SetDashboardModalContext.Provider value={eventRef.current.handleToggleModal}>
+				<SetContentDashboardModalContext.Provider value={setContent}>
 					<Component {...props}>
 						<Modal hideEventRef={hideEventRef} setShow={setShowModal} show={showModal}>
 							<DashboardModal content={content} />
 						</Modal>
 						<ScreenShadow show={showModal} zIndex={3} />
 					</Component>
-				</DashboardModalContextSetContent.Provider>
-			</DashboardModalContextSetShow.Provider>
+				</SetContentDashboardModalContext.Provider>
+			</SetDashboardModalContext.Provider>
 		);
 	};
 

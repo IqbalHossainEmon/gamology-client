@@ -11,7 +11,6 @@ function CardDot({ parentRef, ...rest }) {
 
 	const listShowRef = useRef(false);
 	const isEventAdded = useRef(false);
-	const isOutside = useRef(false);
 	const eventRef = useRef(null);
 
 	if (!eventRef.current) {
@@ -21,13 +20,11 @@ function CardDot({ parentRef, ...rest }) {
 				if (!dotShowRef.current) {
 					setDotShow(true);
 				}
-				isOutside.current = false;
 			},
 			handleHideBtn: () => {
 				if (dotShowRef.current && !listShowRef.current) {
 					setDotShow(false);
 				}
-				isOutside.current = true;
 			},
 		};
 	}
@@ -68,7 +65,6 @@ function CardDot({ parentRef, ...rest }) {
 			<CardDotBody
 				{...rest}
 				fadeIn={fadeIn}
-				isOutside={isOutside}
 				listShowRef={listShowRef}
 				setParentShow={setDotShow}
 			/>

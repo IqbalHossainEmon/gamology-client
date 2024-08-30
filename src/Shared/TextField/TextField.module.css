@@ -1,86 +1,95 @@
 .textFieldMainContainer {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 .container {
-    width: 100%;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.05);
-    backface-visibility: hidden;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    font-size: 1rem;
-    display: flex;
-    flex-direction: column;
-    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
+	width: 100%;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.05);
+	backface-visibility: hidden;
+	border: 2px solid transparent;
+	border-radius: 4px;
+	font-size: 1rem;
+	display: flex;
+	flex-direction: column;
+	transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	overflow: hidden;
 }
 .error {
-    border: 2px solid #cc2a24;
+	border: 2px solid #cc2a24;
 }
 #errorColor {
-    color: #cc2a24;
+	color: #cc2a24;
 }
 .label {
-    width: calc(100% - 10px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: absolute;
-    pointer-events: none;
-    color: rgb(173, 173, 173);
-    user-select: none;
-    left: 10px;
-    top: 50%;
-    translate: 0 -50%;
-    transform-origin: 0 0;
-    transition:
-        scale 150ms cubic-bezier(0.4, 0, 0.2, 1),
-        translate 150ms cubic-bezier(0.4, 0, 0.2, 1),
-        color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	width: calc(100% - 10px);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: absolute;
+	pointer-events: none;
+	color: rgb(173, 173, 173);
+	user-select: none;
+	left: 10px;
+	top: 50%;
+	translate: 0 -50%;
+	transform-origin: 0 0;
+	transition:
+		scale 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		translate 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .textareaLabel {
-    top: 30px;
+	top: 30px;
 }
 
 .field {
-    width: 100%;
-    outline: none;
-    font-size: 1rem;
-    background: transparent;
-    padding: 25px 10px 15px 10px;
-    color: rgb(173, 173, 173);
-    border: none;
-    user-select: none;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	background: transparent;
+	padding: 25px 10px 15px 10px;
+	color: rgb(173, 173, 173);
+	border: none;
+	user-select: none;
 }
 
 .textFilled {
-    translate: 0 -25px;
-    scale: 0.8;
-    color: rgb(173, 173, 173);
+	translate: 0 -25px;
+	scale: 0.8;
+	color: rgb(173, 173, 173);
 }
 
 .focused {
-    translate: 0 -25px;
-    scale: 0.8;
-    color: rgb(2, 99, 224);
+	translate: 0 -25px;
+	scale: 0.8;
+	color: rgb(2, 99, 224);
 }
 
 .focusBorder {
-    border: 2px solid rgba(1, 81, 185, 0.733);
+	border: 2px solid rgba(1, 81, 185, 0.733);
 }
 
 .textarea {
-    resize: none;
-    min-height: 150px;
-    overflow: hidden;
+	resize: none;
+	min-height: 150px;
+	overflow: hidden;
+}
+.fieldNumber::-webkit-outer-spin-button,
+.fieldNumber::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.fieldNumber {
+	appearance: textfield;
+	-moz-appearance: textfield;
 }
 @media screen and (max-width: 768px) {
-    .label {
-        font-size: 12px;
-    }
-    .field {
-        font-size: 12px;
-    }
+	.label {
+		font-size: 12px;
+	}
+	.field {
+		font-size: 12px;
+	}
 }

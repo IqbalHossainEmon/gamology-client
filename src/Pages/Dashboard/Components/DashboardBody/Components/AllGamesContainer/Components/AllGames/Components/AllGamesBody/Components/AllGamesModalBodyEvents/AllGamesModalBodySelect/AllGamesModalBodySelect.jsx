@@ -1,3 +1,4 @@
+import DiscountPrice from '../../../../../../../../../../../../../Shared/DiscountPrice/DiscountPrice';
 import AllGamesDeleteConfirmModal from '../AllGamesDeleteConfirmModal/AllGamesDeleteConfirmModal';
 import AllGamesPriceEditModal from '../AllGamesPriceEditModal/AllGamesPriceEditModal';
 import styles from './AllGamesModalBodySelect.module.css';
@@ -12,19 +13,12 @@ function AllGamesModalBodySelect({ type, detail }) {
 				</div>
 				<div className={styles.cardBody}>
 					<p className={styles.name}>{name}</p>
-
 					<p className={styles.category}>{category?.card}</p>
-
-					<p className={styles.price}>
-						${typeof price === 'object' ? price.regular : price}
-					</p>
+					<DiscountPrice price={price} />
 				</div>
 			</div>
 			{type === 'price' ? (
-				<AllGamesPriceEditModal
-					detail={detail}
-					price={typeof price === 'object' ? price.regular : price}
-				/>
+				<AllGamesPriceEditModal detail={detail} price={price} />
 			) : (
 				<AllGamesDeleteConfirmModal detail={detail} />
 			)}

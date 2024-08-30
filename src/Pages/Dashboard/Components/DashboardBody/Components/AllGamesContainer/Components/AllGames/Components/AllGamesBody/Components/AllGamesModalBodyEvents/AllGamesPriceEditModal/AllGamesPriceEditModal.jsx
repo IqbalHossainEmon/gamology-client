@@ -14,8 +14,21 @@ function AllGamesPriceEditModal({ price }) {
 	});
 
 	const { setDashboardModal } = useDashboardModalHook();
+
 	const handleSubmit = () => {
-		if (newPrice.current && newPrice.current !== price) {
+		if (newPrice.current) {
+			if (typeof price === 'object') {
+				if (price.discount > newPrice.current) {
+					setError(prev => ({
+						errorChange: prev.errorChange + 1,
+						errorMessage: 'New price is less than discount price',
+					}));
+				} else {
+					// update price
+				}
+			} else {
+				// update price
+			}
 			setDashboardModal(false);
 		} else {
 			setError(prev => ({
@@ -30,7 +43,7 @@ function AllGamesPriceEditModal({ price }) {
 			<div className={styles.inputContainer}>
 				<TextField
 					className={styles.input}
-					defaultValue={price === 0 ? 0 : `$${price}`}
+					defaultValue={typeof price === 'object' ? price.regular : `${price}`}
 					enabled={false}
 					field="input"
 					htmlFor="previous_price"
@@ -81,7 +94,7 @@ function AllGamesPriceEditModal({ price }) {
 				</div>
 				<TextField
 					className={styles.input}
-					field="input"
+					field="number"
 					htmlFor="new_price"
 					placeholder="New Price"
 					setState={val => {
