@@ -105,7 +105,9 @@ export default function VideoSlider({
 			onMouseDown={onStart}
 			onTouchStart={onStart}
 			ref={pathRef}
-			role='button'
+			role='slider'
+			aria-label='video slider'
+			aria-valuenow={position}
 			tabIndex='0'
 		>
 			<div className={styles.path} />

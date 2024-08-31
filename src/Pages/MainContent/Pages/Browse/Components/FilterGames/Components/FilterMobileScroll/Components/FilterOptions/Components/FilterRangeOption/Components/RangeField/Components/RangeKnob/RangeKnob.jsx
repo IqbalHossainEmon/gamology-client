@@ -47,7 +47,9 @@ function RangeKnob({
 				data-knob={name}
 				onMouseDown={onStart}
 				onTouchStart={onStart}
-				role='button'
+				role='slider'
+				aria-label='range knob'
+				aria-valuenow={state}
 				tabIndex={disabled ? -1 : 0}
 			/>
 		</div>

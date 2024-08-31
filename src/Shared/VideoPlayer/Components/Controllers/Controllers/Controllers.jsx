@@ -102,6 +102,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 			<ul className={styles.controllers} id={isControllerShowing ? styles.show : styles.hide}>
 				<li className={styles.videoProgressSlider}>
 					<VideoProgressBar
+						isControllerShowing={isControllerShowing}
 						changePause={changePause}
 						isSeekedRef={isSeekedRef}
 						src={src}

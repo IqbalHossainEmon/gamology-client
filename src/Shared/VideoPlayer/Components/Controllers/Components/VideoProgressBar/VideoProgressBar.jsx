@@ -9,6 +9,7 @@ export default function VideoProgressBar({
 	changePause,
 	setProgress,
 	progress,
+	isControllerShowing,
 }) {
 	const interval = useRef(null);
 	const [buffer, setBuffer] = useState(0);
@@ -74,8 +75,6 @@ export default function VideoProgressBar({
 			},
 
 			handleMouseUp: () => {
-				console.log('up');
-
 				isMouseDown.current = false;
 				videoRef.current.currentTime =
 					(progressRef.current / 100) * videoRef.current.duration;
@@ -99,6 +98,19 @@ export default function VideoProgressBar({
 			},
 		};
 	}
+
+	useEffect(() => {
+		const { progressUpdate, progressBufferUpdate } = eventRefs.current;
+
+		if (videoRef.current && isControllerShowing) {
+			videoRef.current.addEventListener('timeupdate', progressUpdate);
+			videoRef.current.addEventListener('progress', progressBufferUpdate);
+		} else {
+			videoRef.current.removeEventListener('timeupdate', progressUpdate);
+			videoRef.current.removeEventListener('progress', progressBufferUpdate);
+		}
+	}, [isControllerShowing]);
+
 	useEffect(() => {
 		const { progressUpdate, progressBufferUpdate, handleError, handlePlaying, handlePause } =
 			eventRefs.current;
