@@ -9,12 +9,12 @@ export default function DiscoverBannerButtons({ handleClick }) {
 			<ArrowButton
 				className={[styles.btn, styles.nextBtn].join(' ')}
 				handleClick={() => handleDebouncing(() => handleClick({ type: 'next' }))}
-				name="Next Button"
+				name='Next Button'
 			/>
 			<ArrowButton
 				className={[styles.btn, styles.prevBtn].join(' ')}
 				handleClick={() => handleDebouncing(() => handleClick({ type: 'prev' }))}
-				name="Previous Button"
+				name='Previous Button'
 			/>
 		</>
 	);

@@ -38,7 +38,7 @@ export default function GameInfoFieldBanner({
 							setFieldCount(prev => ++prev);
 							gameBanner.current.gameBanner.push({ cover: '', thumb: '', type: '' });
 						}}
-						text="Add More +"
+						text='Add More +'
 					/>
 				</div>
 				<div className={styles.btn}>
@@ -48,7 +48,7 @@ export default function GameInfoFieldBanner({
 							setFieldCount(prev => --prev);
 							gameBanner.current.gameBanner.pop();
 						}}
-						text="Remove One -"
+						text='Remove One -'
 					/>
 				</div>
 			</div>

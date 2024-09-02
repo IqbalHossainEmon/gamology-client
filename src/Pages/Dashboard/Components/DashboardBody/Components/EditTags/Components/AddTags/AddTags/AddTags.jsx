@@ -124,11 +124,11 @@ function AddTags({ tags, setTags }) {
 			</h3>
 			<div className={styles.selectionField}>
 				<SelectionField
-					htmlFor="add-what"
+					htmlFor='add-what'
 					list={['Tags', 'Category']}
-					name="Add What"
+					name='Add What'
 					none
-					placeholder="Add What?"
+					placeholder='Add What?'
 					setState={val => {
 						switch (val) {
 							case 'Tags':
@@ -226,7 +226,7 @@ function AddTags({ tags, setTags }) {
 								setErrorChange(prev => prev + 1);
 							}}
 							ref={addBtnRef}
-							type="button"
+							type='button'
 						>
 							Submit
 							<ButtonWaterEffect btnRef={addBtnRef} />

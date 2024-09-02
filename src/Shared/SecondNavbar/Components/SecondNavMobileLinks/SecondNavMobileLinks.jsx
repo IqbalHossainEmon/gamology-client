@@ -58,7 +58,7 @@ export default function SecondNavMobileLinks({ setNavShow }) {
 					showMenu();
 				}}
 				ref={midSliderElement2}
-				type="button"
+				type='button'
 			>
 				<div className={styles.navLinkOverFlow} id={navTextState}>
 					<p>Discover</p>

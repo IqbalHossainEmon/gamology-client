@@ -42,9 +42,9 @@ function SelectionFieldTextField({
 						enabled={enabled}
 						htmlFor={`${parentIndex}${name}${length}${i}${index}`}
 						list={listArr.filter(la => !selectedKeys.includes(la))}
-						name="Key Type"
+						name='Key Type'
 						onFocusClick={() => setHideParentErrorShow()}
-						placeholder="Required"
+						placeholder='Required'
 						setState={value => {
 							handleSetState(value, i, index, true);
 						}}
@@ -54,10 +54,10 @@ function SelectionFieldTextField({
 				<div className={styles.textField}>
 					<TextField
 						enabled={enabled}
-						field="input"
+						field='input'
 						htmlFor={`${name}_${length}`}
 						onFocusClick={() => handleHideErrorShow()}
-						placeholder="Required Specs"
+						placeholder='Required Specs'
 						setState={value => {
 							handleSetState(value, i, index);
 						}}

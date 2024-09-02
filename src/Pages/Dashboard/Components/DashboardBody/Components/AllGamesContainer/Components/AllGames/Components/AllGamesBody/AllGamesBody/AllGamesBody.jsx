@@ -46,7 +46,7 @@ function AllGamesBody({ items }) {
 												modalFooter: (
 													<AllGamesModalBodySelect
 														detail={detail}
-														type="price"
+														type='price'
 													/>
 												),
 											});
@@ -71,7 +71,7 @@ function AllGamesBody({ items }) {
 												modalFooter: (
 													<AllGamesModalBodySelect
 														detail={detail}
-														type="delete"
+														type='delete'
 													/>
 												),
 											});

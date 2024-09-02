@@ -34,12 +34,12 @@ export default function IndiGameTakeReview() {
 				<div>
 					<div className={styles.userStarContainer}>
 						<img
-							alt="user_icon"
+							alt='user_icon'
 							className={styles.userIcon}
 							src={user.current.src ? user.current.src : userIcon}
 						/>
 						<ReviewStar
-							name="active"
+							name='active'
 							{...((writeReviewShow || userReviewDone) && { disabled: true })}
 							setValue={setReviewStar}
 							{...(userReviewDone && { newValue: review.star - 1 })}
@@ -54,7 +54,7 @@ export default function IndiGameTakeReview() {
 									}
 								: { onClick: () => setWriteReviewShow(true) })}
 							className={styles.addReviewButton}
-							type="button"
+							type='button'
 						>
 							+ Add your review
 						</button>
@@ -62,7 +62,7 @@ export default function IndiGameTakeReview() {
 				</div>
 				<div>
 					<div className={styles.overAllRatingContainer}>
-						<img alt="full star" className={styles.fullStar} src={fullStar} />
+						<img alt='full star' className={styles.fullStar} src={fullStar} />
 						<p>
 							<span className={styles.overAllRating}>{overAllRating}</span>/
 							<span>5</span>

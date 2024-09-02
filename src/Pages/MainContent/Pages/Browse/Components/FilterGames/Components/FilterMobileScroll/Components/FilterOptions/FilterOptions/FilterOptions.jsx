@@ -27,7 +27,7 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
 				<button
 					className={styles.filterTitle}
 					onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
-					type="button"
+					type='button'
 				>
 					<h3 className={styles.title}>{title}</h3>
 

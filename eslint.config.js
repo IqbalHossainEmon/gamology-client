@@ -73,6 +73,10 @@ export default [
 			'import/no-mutable-exports': 'off',
 			'import/newline-after-import': 'off',
 			'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+			'react/jsx-props-no-spreading': 'off',
+			'no-param-reassign': 'off',
+			'no-plusplus': 'off',
+			'no-nested-ternary': 'off',
 		},
 	},
 ];

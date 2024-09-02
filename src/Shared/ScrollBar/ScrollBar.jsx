@@ -137,8 +137,8 @@ function ScrollBar({ parentRef, childRef }) {
 			onTouchStart={onStartParent}
 			ref={containerRef}
 			tabIndex={0}
-			role="scrollbar"
-			aria-controls="scrollbar"
+			role='scrollbar'
+			aria-controls='scrollbar'
 			aria-valuenow={scrolled}
 		>
 			<button
@@ -156,7 +156,7 @@ function ScrollBar({ parentRef, childRef }) {
 					height: `${height}%`,
 					translate: `0 ${scrolled < 0 ? 0 : scrolled}px`,
 				}}
-				type="button"
+				type='button'
 			/>
 		</div>
 	);

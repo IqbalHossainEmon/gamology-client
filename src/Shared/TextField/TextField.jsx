@@ -124,7 +124,7 @@ export default function TextField({
 				{field === 'input' || field === 'number' ? (
 					<input
 						{...(enabled || { disabled: true, readOnly: true })}
-						autoComplete="off"
+						autoComplete='off'
 						className={`${styles.field}${field === 'input' ? '' : ` ${styles.fieldNumber}`}`}
 						id={htmlFor}
 						type={field === 'input' ? 'text' : 'number'}

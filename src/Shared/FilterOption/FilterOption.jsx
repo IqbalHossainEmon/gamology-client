@@ -28,7 +28,7 @@ function FilterOption({ text, setState, border, state, name }) {
 				document.addEventListener('mouseup', eventRef.current.handleClick, { once: true });
 			}}
 			ref={btnRef}
-			type="button"
+			type='button'
 		>
 			<p className={styles.text}>{text}</p>
 			<div className={styles.toggleButtonContainer}>

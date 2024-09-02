@@ -31,7 +31,7 @@ export default function BannerInputFieldContainer({
 				errorChange={errorChange}
 				errorMessage={errorMessages[number]?.cover}
 				handleSetValues={handleSetValues}
-				name="cover"
+				name='cover'
 				number={number}
 				type={type}
 				{...(hasDefault && { defaultData: defaultGameBanner?.cover })}
@@ -39,13 +39,13 @@ export default function BannerInputFieldContainer({
 			/>
 			<FileUploadButton
 				{...(type || { disabled: true })}
-				accept="image/*"
-				defaultValue=""
+				accept='image/*'
+				defaultValue=''
 				errorChange={errorChange}
 				errorMessage={errorMessages[number]?.thumb}
-				field="input"
+				field='input'
 				htmlFor={`coverThumb${number}`}
-				name="thumb"
+				name='thumb'
 				placeholder={
 					type.type
 						? `Choose Game's Banner ${type.type}'s thumbnail`
@@ -58,8 +58,8 @@ export default function BannerInputFieldContainer({
 				<SelectionField
 					htmlFor={number}
 					list={['image', 'video']}
-					name="type"
-					placeholder="Content Type"
+					name='type'
+					placeholder='Content Type'
 					setState={(value, name) => {
 						setType(value);
 						handleSetValues(value, name);

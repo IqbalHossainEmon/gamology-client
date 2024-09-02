@@ -16,11 +16,11 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 						<TextField
 							errorChange={errorChange}
 							errorMessage={errorMessage[key]}
-							field="input"
+							field='input'
 							htmlFor={`tagName-${key}`}
 							key={key}
 							name={key}
-							placeholder="Tag Name"
+							placeholder='Tag Name'
 							setState={(val, name) => {
 								infoRef[name] = val;
 							}}
@@ -36,7 +36,7 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 							infoRef.push('');
 						}}
 						ref={addBtnREf}
-						type="button"
+						type='button'
 					>
 						Add More +
 						<ButtonWaterEffect btnRef={addBtnREf} />
@@ -57,7 +57,7 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 							});
 						}}
 						ref={removeBtnREf}
-						type="button"
+						type='button'
 					>
 						Remove One -
 						<ButtonWaterEffect btnRef={removeBtnREf} />

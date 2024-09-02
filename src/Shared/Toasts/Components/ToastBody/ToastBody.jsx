@@ -6,12 +6,10 @@ function ToastBody({ fadeIn, handleHide, data }) {
 	const { toastTitle, toastMessage, toastIcon } = data;
 	return (
 		<li className={`${fadeIn ? `${styles.zoomIn} ` : ''} ${styles.toast}`}>
-			<div>
-				<div className={styles.icon}>{toastIcon}</div>
-				<div className={styles.content}>
-					<h3>{toastTitle}</h3>
-					<p>{toastMessage}</p>
-				</div>
+			<div className={styles.icon}>{toastIcon}</div>
+			<div className={styles.content}>
+				<h3>{toastTitle}</h3>
+				<p>{toastMessage}</p>
 			</div>
 			<button className={styles.crossBtn} onClick={handleHide} type='button'>
 				<span className={styles.cross} />

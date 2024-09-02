@@ -97,7 +97,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 			<button
 				className={styles.fullDisplayPlayPauseBtn}
 				onClick={eventRefs.current.handleClick}
-				type="button"
+				type='button'
 			/>
 			<ul className={styles.controllers} id={isControllerShowing ? styles.show : styles.hide}>
 				<li className={styles.videoProgressSlider}>

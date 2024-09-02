@@ -28,10 +28,10 @@ export default function GameInfoFieldDescription({
 							errorMessages.current.gameDescriptionsError.descriptions[index]
 								?.mainHeader
 						}
-						field="input"
+						field='input'
 						htmlFor={`main_header_${index}${item.id}`}
-						name="mainHeader"
-						placeholder="Main Header"
+						name='mainHeader'
+						placeholder='Main Header'
 						setState={handleSetValues}
 						{...(defaultData && { defaultValue: defaultData.shortDesc })}
 					/>
@@ -46,10 +46,10 @@ export default function GameInfoFieldDescription({
 							errorMessages.current.gameDescriptionsError.descriptions[index]
 								?.subHeader
 						}
-						field="input"
+						field='input'
 						htmlFor={`sub_header_${index}${item.id}`}
-						name="subHeader"
-						placeholder="Sub Header"
+						name='subHeader'
+						placeholder='Sub Header'
 						setState={handleSetValues}
 						{...(defaultData && { defaultValue: defaultData.subHeader })}
 					/>
@@ -64,10 +64,10 @@ export default function GameInfoFieldDescription({
 							errorMessages.current.gameDescriptionsError.descriptions[index]
 								?.description
 						}
-						field="textarea"
+						field='textarea'
 						htmlFor={`description_${index}${item.id}`}
-						name="description"
-						placeholder="Description"
+						name='description'
+						placeholder='Description'
 						setState={handleSetValues}
 						{...(defaultData && { defaultValue: defaultData.description })}
 					/>

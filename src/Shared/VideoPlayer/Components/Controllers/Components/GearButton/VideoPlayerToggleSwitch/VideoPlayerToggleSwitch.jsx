@@ -31,7 +31,7 @@ function VideoPlayerToggleSwitch({
 				<button
 					className={styles.menu}
 					onMouseDown={() => document.addEventListener('mouseup', event, { once: true })}
-					type="button"
+					type='button'
 				>
 					<div className={styles.textContainer}>
 						<h5>Autoplay</h5>
@@ -43,7 +43,7 @@ function VideoPlayerToggleSwitch({
 							event={event}
 							mouseDownEvent={eventRef.current.handleMouseDownTimer}
 							mouseUpEvent={mouseUpEvent}
-							name="autoplay"
+							name='autoplay'
 							setState={setAutoplay}
 							state={autoplay}
 						/>

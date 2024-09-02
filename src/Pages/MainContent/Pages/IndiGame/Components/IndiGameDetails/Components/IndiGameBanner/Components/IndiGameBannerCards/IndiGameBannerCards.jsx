@@ -57,7 +57,7 @@ export default function IndiGameBannerCards({
 					dispatch({ type: 'prevCards' });
 					timerFunction(false, dispatch, 250);
 				}}
-				name="Previous Button"
+				name='Previous Button'
 			/>
 			<div className={styles.cardsWrapper}>
 				<ul
@@ -103,7 +103,7 @@ export default function IndiGameBannerCards({
 					dispatch({ type: 'nextCards' });
 					timerFunction(false, dispatch, 250);
 				}}
-				name="next Button"
+				name='next Button'
 			/>
 		</div>
 	);

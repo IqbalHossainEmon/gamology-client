@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { HideToastContext, SetToastContext } from '../Contexts/ToastContext';
-import Toasts from '../Shared/ToastContainer/Toasts/Toasts';
+import Toasts from '../Shared/Toasts/Toasts/Toasts';
 
 const withToast = Component =>
 	function InnerComponent(props) {

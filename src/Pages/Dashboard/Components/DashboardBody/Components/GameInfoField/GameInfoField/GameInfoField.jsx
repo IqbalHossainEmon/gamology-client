@@ -225,7 +225,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						errorMessage={errorMessages.current.outerErrorMessage}
 					/>
 
-					<ButtonForGameInfoFieldSection onClick={handleSubmit} text="Submit" />
+					<ButtonForGameInfoFieldSection onClick={handleSubmit} text='Submit' />
 				</form>
 			)}
 		</div>

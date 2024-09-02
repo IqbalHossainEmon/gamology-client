@@ -34,7 +34,7 @@ export default function ReviewStar({ setValue = () => {}, disabled, newValue = 0
 				<button
 					className={styles.starButton}
 					key={s}
-					type="button"
+					type='button'
 					{...(disabled && { disabled: true })}
 					{...(disabled || {
 						onMouseOver: () => eventRefs.current.handleMouseOver(i),
@@ -42,7 +42,7 @@ export default function ReviewStar({ setValue = () => {}, disabled, newValue = 0
 						onClick: () => eventRefs.current.handleClick(i),
 					})}
 				>
-					<img alt="" draggable="false" src={star.show >= i ? fullStar : emptyStar} />
+					<img alt='' draggable='false' src={star.show >= i ? fullStar : emptyStar} />
 				</button>
 			))}
 		</div>

@@ -34,9 +34,9 @@ export default function ExploreGames() {
 
 					<p>{data.details}</p>
 
-					<a href="#d" ref={buttonRef} type="button">
+					<a href='#d' ref={buttonRef} type='button'>
 						Learn More
-						<ButtonWaterEffect backGround="white" btnRef={buttonRef} long />
+						<ButtonWaterEffect backGround='white' btnRef={buttonRef} long />
 					</a>
 				</div>
 			</div>

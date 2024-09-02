@@ -41,7 +41,7 @@ function SelectionFieldList({
 										setState('', name);
 									}}
 									tabIndex={show ? 0 : -1}
-									type="button"
+									type='button'
 								>
 									None
 								</button>
@@ -62,7 +62,7 @@ function SelectionFieldList({
 										setValue(item);
 										setState(item, name);
 									}}
-									type="button"
+									type='button'
 								>
 									{item}
 								</button>

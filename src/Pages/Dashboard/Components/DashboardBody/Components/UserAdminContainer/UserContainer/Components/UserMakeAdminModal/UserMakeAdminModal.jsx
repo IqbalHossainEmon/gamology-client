@@ -33,15 +33,15 @@ function UserMakeAdminModal() {
 					className={styles.textField}
 					errorChange={errorChange}
 					errorMessage={errorMessage}
-					field="input"
+					field='input'
 					placeholder="Type 'CONFIRM' to continue"
 					setState={val => {
 						confirmText.current = val;
 					}}
-					type="text"
+					type='text'
 				/>
 				<div className={styles.btnContainer}>
-					<button className={styles.btn} onClick={handleMakeAdmin} type="button">
+					<button className={styles.btn} onClick={handleMakeAdmin} type='button'>
 						Yes
 					</button>
 				</div>

@@ -3,7 +3,7 @@ import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
 
-const VideoStatus = ({ video, isSeekedRef, isChanging }) => {
+function VideoStatus({ video, isSeekedRef, isChanging }) {
 	const formatTime = useTimeFormat();
 	const timerId = useRef(null);
 	const videoRef = useRef(video.current);
@@ -124,7 +124,7 @@ const VideoStatus = ({ video, isSeekedRef, isChanging }) => {
 						<svg viewBox={status.play ? '0 0 10 14' : '0 0 11 14'}>
 							<path
 								d={status.play ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'}
-								fill="white"
+								fill='white'
 							/>
 						</svg>
 					</span>
@@ -136,11 +136,11 @@ const VideoStatus = ({ video, isSeekedRef, isChanging }) => {
 					<button
 						className={styles.initialPlaceholderButton}
 						onClick={eventRefs.current.initialBtnPlay}
-						type="button"
+						type='button'
 					>
 						<span className={styles.svgContainer}>
-							<svg viewBox="0 0 11 14">
-								<path d="M0 0v14l11-7z" fill="black" fillRule="nonzero" />
+							<svg viewBox='0 0 11 14'>
+								<path d='M0 0v14l11-7z' fill='black' fillRule='nonzero' />
 							</svg>
 						</span>
 						<span>{status.duration ? formatTime(status.duration) : '0:00'}</span>
@@ -149,6 +149,6 @@ const VideoStatus = ({ video, isSeekedRef, isChanging }) => {
 			) : null}
 		</>
 	);
-};
+}
 
 export default memo(VideoStatus);

@@ -21,7 +21,7 @@ export default function ApplyButton({ filterState, state, dispatch, setShow }) {
 					setShow('filter');
 					dispatch({ type: 'filterChange', filter: state });
 				}}
-				type="button"
+				type='button'
 			>
 				Apply Change
 			</button>

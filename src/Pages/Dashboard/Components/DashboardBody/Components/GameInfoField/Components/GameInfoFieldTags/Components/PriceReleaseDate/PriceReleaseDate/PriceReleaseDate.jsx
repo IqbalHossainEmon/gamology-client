@@ -18,12 +18,12 @@ export default function PriceReleaseDate({
 	return (
 		<div className={styles.priceReleaseDateContainer}>
 			<div className={styles.priceContainer}>
-				<label htmlFor="price">Price $</label>
+				<label htmlFor='price'>Price $</label>
 				<div className={styles.inputContainer}>
 					<input
-						id="price"
+						id='price'
 						min={0}
-						name="price"
+						name='price'
 						onBlur={handleSetValue}
 						onChange={e => setPrice(e.target.value)}
 						onFocus={e => {
@@ -31,9 +31,9 @@ export default function PriceReleaseDate({
 								e.target.select();
 							}
 						}}
-						placeholder="0.00"
-						step="1"
-						type="number"
+						placeholder='0.00'
+						step='1'
+						type='number'
 						value={price}
 					/>
 				</div>

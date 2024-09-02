@@ -16,8 +16,8 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 				<TextField
 					errorChange={errorChange}
 					errorMessage={checkText.errorMessage}
-					field="input"
-					htmlFor="TagOrCategoryDelete"
+					field='input'
+					htmlFor='TagOrCategoryDelete'
 					placeholder={"Type 'delete' to confirm"}
 					setState={val => {
 						checkText.current = val;
@@ -41,7 +41,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 						handler();
 						handleHide();
 					}}
-					type="button"
+					type='button'
 				>
 					Delete
 					<ButtonWaterEffect btnRef={btnRef} long />

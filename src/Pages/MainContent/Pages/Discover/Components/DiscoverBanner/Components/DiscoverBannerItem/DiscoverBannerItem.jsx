@@ -16,7 +16,7 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 				src={coverImg}
 			/>
 			<div className={styles.itemButton}>
-				<button type="button">buy now</button>
+				<button type='button'>buy now</button>
 			</div>
 		</div>
 	);

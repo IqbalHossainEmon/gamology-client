@@ -72,8 +72,8 @@ function RangeField({
 				className={styles.rangeField}
 				onMouseDown={handlePathClick}
 				ref={rangePathRef}
-				role="button"
-				tabIndex="-1"
+				role='button'
+				tabIndex='-1'
 			>
 				<div
 					className={`${transition ? `${styles.activePathTransition} ` : ''}${styles.activePath}`}

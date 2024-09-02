@@ -9,7 +9,7 @@ const IndiGameOrderByList = ({ orderBy, setOrderBy, setShow, handleSort }) =>
 						? [styles.optionBtn, styles.activeBtn].join(' ')
 						: styles.optionBtn
 				}
-				type="button"
+				type='button'
 				{...(orderBy[index].active || {
 					onClick: () => {
 						setOrderBy(prev => {

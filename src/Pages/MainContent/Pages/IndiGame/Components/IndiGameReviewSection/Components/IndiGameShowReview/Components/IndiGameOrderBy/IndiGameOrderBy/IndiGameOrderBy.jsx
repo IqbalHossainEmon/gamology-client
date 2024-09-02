@@ -32,7 +32,7 @@ export default function IndiGameOrderBy({ handleSort }) {
 					});
 				}}
 				ref={btnRef}
-				type="button"
+				type='button'
 			>
 				<p className={styles.activeOrder}>
 					Order By:{' '}

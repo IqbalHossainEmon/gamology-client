@@ -105,8 +105,8 @@ export default function VideoSlider({
 			onMouseDown={onStart}
 			onTouchStart={onStart}
 			ref={pathRef}
-			role="button"
-			tabIndex="0"
+			role='button'
+			tabIndex='0'
 		>
 			<div className={styles.path} />
 			<div className={styles.activePath} style={{ scale: `${position / 100} 1` }} />

@@ -8,10 +8,10 @@ function AddCategoryNameAndTags({ errorRef, errorChange, addInfoRef }) {
 				defaultValue={addInfoRef.current.category.name}
 				errorChange={errorChange}
 				errorMessage={errorRef.current.category}
-				field="input"
-				htmlFor="category-name"
-				name="category"
-				placeholder="Enter New Category Name"
+				field='input'
+				htmlFor='category-name'
+				name='category'
+				placeholder='Enter New Category Name'
 				setState={(val, name) => {
 					addInfoRef.current[name].name = val;
 				}}

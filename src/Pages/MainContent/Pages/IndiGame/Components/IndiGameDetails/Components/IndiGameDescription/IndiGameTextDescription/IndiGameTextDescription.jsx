@@ -57,7 +57,7 @@ export default function IndiGameTextDescription({ descriptions }) {
 								setShow(prev => ({ ...prev, transition: false }));
 							}, 300);
 						}}
-						type="button"
+						type='button'
 					>
 						Show {show.show ? 'Less' : 'More'}
 						<div className={styles.rotateArrowContainer}>

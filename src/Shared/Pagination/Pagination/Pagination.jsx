@@ -15,7 +15,7 @@ export default function Pagination({ activePage, setActivePage, totalPage, pageN
 					className={`${styles.paginationButton} ${styles.prevButton} ${styles.number}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
 					disabled={activePage === 1}
 					onClick={() => setActivePage(activePage - 1)}
-					type="button"
+					type='button'
 				>
 					<ArrowIcon
 						className={styles.arrowIcon}
@@ -35,7 +35,7 @@ export default function Pagination({ activePage, setActivePage, totalPage, pageN
 						<button
 							className={`${styles.paginationButton} ${styles.numberButton}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
 							onClick={() => setActivePage(page)}
-							type="button"
+							type='button'
 							{...(activePage === page && { id: styles.active })}
 						>
 							{page}
@@ -49,7 +49,7 @@ export default function Pagination({ activePage, setActivePage, totalPage, pageN
 					className={`${styles.paginationButton} ${styles.nextButton} ${styles.number}${pageNumberStyle ? ` ${pageNumberStyle}` : ''}`}
 					disabled={activePage === totalPage}
 					onClick={() => setActivePage(activePage + 1)}
-					type="button"
+					type='button'
 				>
 					<ArrowIcon
 						className={styles.arrowIcon}

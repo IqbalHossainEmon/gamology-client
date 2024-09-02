@@ -10,9 +10,9 @@ export default function MobileSortAndFilterButton() {
 				<button
 					className={styles.sortButton}
 					onClick={() => setFilterSort('sort')}
-					type="button"
+					type='button'
 				>
-					<img alt="sort button" src="/assets/images/sortButton.png" />
+					<img alt='sort button' src='/assets/images/sortButton.png' />
 
 					<span>Sort</span>
 				</button>
@@ -20,9 +20,9 @@ export default function MobileSortAndFilterButton() {
 				<button
 					className={styles.filterButton}
 					onClick={() => setFilterSort('filter')}
-					type="button"
+					type='button'
 				>
-					<img alt="filter button" src="/assets/images/filterButton.png" />
+					<img alt='filter button' src='/assets/images/filterButton.png' />
 
 					<span>Filter</span>
 				</button>

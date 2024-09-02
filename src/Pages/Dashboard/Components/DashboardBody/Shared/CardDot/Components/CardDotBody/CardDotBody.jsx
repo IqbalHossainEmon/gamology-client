@@ -22,19 +22,22 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 					setParentShow(false);
 				}
 			},
-			handleToggle: () => {
-				if (!listShowRef.current) {
-					setListShow(true);
-					showMenu();
-				} else {
-					setListShow(false);
-					stopMenu();
-				}
-			},
 		};
 	}
 
 	const { setElement, stopMenu, showMenu } = useDropDownHide(eventRefs.current.handleHide);
+
+	if (!eventRefs.current.handleToggle) {
+		eventRefs.current.handleToggle = () => {
+			if (!listShowRef.current) {
+				setListShow(true);
+				showMenu();
+			} else {
+				setListShow(false);
+				stopMenu();
+			}
+		};
+	}
 
 	const { show, fadeIn: childFadeIn } = useAppearDisappear(listShow);
 
@@ -47,56 +50,56 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 			<button
 				className={`${styles.btnDot}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
 				onClick={eventRefs.current.handleToggle}
-				type="button"
+				type='button'
 			>
 				<svg
-					enableBackground="new 0 0 32 32"
-					fill="#ffffff"
-					version="1.1"
-					viewBox="0 0 32 32"
-					xmlSpace="preserve"
-					xmlns="http://www.w3.org/2000/svg"
+					enableBackground='new 0 0 32 32'
+					fill='#ffffff'
+					version='1.1'
+					viewBox='0 0 32 32'
+					xmlSpace='preserve'
+					xmlns='http://www.w3.org/2000/svg'
 				>
-					<g strokeWidth="0" />
+					<g strokeWidth='0' />
 
-					<g strokeLinecap="round" strokeLinejoin="round" />
+					<g strokeLinecap='round' strokeLinejoin='round' />
 
 					<g>
-						<circle cx="16" cy="16" fill="#F08A5D" r="2" />
-						<circle cx="16" cy="26" fill="#B83B5E" r="2" />
-						<circle cx="16" cy="6" fill="#B83B5E" r="2" />
+						<circle cx='16' cy='16' fill='#F08A5D' r='2' />
+						<circle cx='16' cy='26' fill='#B83B5E' r='2' />
+						<circle cx='16' cy='6' fill='#B83B5E' r='2' />
 						<circle
-							cx="16"
-							cy="16"
-							fill="none"
-							r="2"
-							stroke="#200F60"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeMiterlimit="10"
-							strokeWidth="0.00032"
+							cx='16'
+							cy='16'
+							fill='none'
+							r='2'
+							stroke='#200F60'
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							strokeMiterlimit='10'
+							strokeWidth='0.00032'
 						/>
 						<circle
-							cx="16"
-							cy="26"
-							fill="#F9ED69"
-							r="2"
-							stroke="#200F60"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeMiterlimit="10"
-							strokeWidth="0.00032"
+							cx='16'
+							cy='26'
+							fill='#F9ED69'
+							r='2'
+							stroke='#200F60'
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							strokeMiterlimit='10'
+							strokeWidth='0.00032'
 						/>
 						<circle
-							cx="16"
-							cy="6"
-							fill="none"
-							r="2"
-							stroke="#200F60"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeMiterlimit="10"
-							strokeWidth="0.00032"
+							cx='16'
+							cy='6'
+							fill='none'
+							r='2'
+							stroke='#200F60'
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							strokeMiterlimit='10'
+							strokeWidth='0.00032'
 						/>
 					</g>
 				</svg>

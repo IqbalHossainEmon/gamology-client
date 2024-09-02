@@ -57,7 +57,7 @@ export default function SortList({ state, setShow, handleChange }) {
 									},
 								})}
 						className={styles.sortButtons}
-						type="button"
+						type='button'
 					>
 						{link.name}
 					</button>

@@ -31,14 +31,14 @@ function UserDeleteConfirmModal() {
 				className={styles.textField}
 				errorChange={errorChange}
 				errorMessage={errorMessage}
-				field="input"
+				field='input'
 				placeholder="Type 'DELETE' to Delete User"
 				setState={val => {
 					confirmText.current = val;
 				}}
-				type="text"
+				type='text'
 			/>
-			<button className={styles.deleteBtn} onClick={handleDelete} type="button">
+			<button className={styles.deleteBtn} onClick={handleDelete} type='button'>
 				Delete
 			</button>
 		</div>

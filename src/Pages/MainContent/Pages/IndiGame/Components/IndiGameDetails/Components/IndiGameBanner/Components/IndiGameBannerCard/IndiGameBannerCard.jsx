@@ -7,7 +7,7 @@ export default function IndiGameBannerCard({ data, active, dispatch, index, time
 				className={
 					active !== index ? [styles.button, styles.notActive].join(' ') : styles.button
 				}
-				type="button"
+				type='button'
 				{...(active !== index && {
 					onClick: () => {
 						dispatch({ type: 'setBanner', active: index });
@@ -23,8 +23,8 @@ export default function IndiGameBannerCard({ data, active, dispatch, index, time
 								: styles.videoLogo
 						}
 					>
-						<svg viewBox="0 0 11 14" xmlns="http://www.w3.org/2000/svg">
-							<path d="M0 0v14l11-7z" fill="white" fillRule="nonzero" />
+						<svg viewBox='0 0 11 14' xmlns='http://www.w3.org/2000/svg'>
+							<path d='M0 0v14l11-7z' fill='white' fillRule='nonzero' />
 						</svg>
 					</div>
 				)}

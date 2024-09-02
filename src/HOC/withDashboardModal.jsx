@@ -1,5 +1,8 @@
 import { useRef, useState } from 'react';
-import { SetContentDashboardModalContext, SetDashboardModalContext } from '../Contexts/DashboardModalContext';
+import {
+	SetContentDashboardModalContext,
+	SetDashboardModalContext,
+} from '../Contexts/DashboardModalContext';
 import DashboardModal from '../Pages/Dashboard/Components/DashboardBody/Components/DashboardModal/DashboardModal';
 import Modal from '../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../Shared/ScreenShadow/ScreenShadow';

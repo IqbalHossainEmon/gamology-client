@@ -70,7 +70,7 @@ export default function RangeInput({
 				float={float}
 				handleEnter={handleEnter}
 				inputRef={leftInputRef}
-				name="smaller"
+				name='smaller'
 				state={state.smaller}
 				val={limit.lower.toFixed(float)}
 			/>
@@ -80,7 +80,7 @@ export default function RangeInput({
 				float={float}
 				handleEnter={handleEnter}
 				inputRef={rightInputRef}
-				name="bigger"
+				name='bigger'
 				state={state.bigger}
 				val={limit.higher.toFixed(float)}
 			/>

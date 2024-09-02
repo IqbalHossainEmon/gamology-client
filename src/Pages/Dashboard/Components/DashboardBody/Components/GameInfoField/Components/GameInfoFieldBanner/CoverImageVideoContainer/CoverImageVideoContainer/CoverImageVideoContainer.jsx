@@ -130,7 +130,7 @@ function CoverImageVideoContainer({
 				</div>
 
 				{mainValueRef.current?.image.file && touchAble ? (
-					<button className={styles.previewBtn} ref={previewBtnRef} type="button">
+					<button className={styles.previewBtn} ref={previewBtnRef} type='button'>
 						Preview
 						<ButtonWaterEffect btnRef={previewBtnRef} long />
 					</button>

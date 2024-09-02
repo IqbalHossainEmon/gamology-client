@@ -82,7 +82,7 @@ export default function GameInfoFieldSpecification({
 			<div className={styles.switch}>
 				<FilterOption
 					border
-					name="enabled"
+					name='enabled'
 					setState={eventRefs.current.handleSetEnable}
 					state={enabled.enabled}
 					text={state.name}
@@ -143,7 +143,7 @@ export default function GameInfoFieldSpecification({
 				<div className={styles.buttonsContainer}>
 					<div className={styles.btnContainer}>
 						<ButtonForGameInfoFieldSection
-							text="Add More +"
+							text='Add More +'
 							{...(requiredLength === 10 && { disabled: true })}
 							{...(enabled.enabled || { tabIndexOff: true })}
 							onClick={() => {
@@ -161,7 +161,7 @@ export default function GameInfoFieldSpecification({
 
 					<div className={styles.btnContainer}>
 						<ButtonForGameInfoFieldSection
-							text="Remove one -"
+							text='Remove one -'
 							{...(requiredLength === 1 && { disabled: true })}
 							onClick={() => {
 								setRequiredLength(prev => prev - 1);

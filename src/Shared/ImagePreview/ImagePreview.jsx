@@ -26,7 +26,7 @@ function ImagePreview({ file, show }) {
 	return (
 		<div className={styles.imagePreviewContainer}>
 			<div className={`${styles.imagePreview}${show ? ` ${styles.show}` : ''}`}>
-				<img alt="preview" className={styles.img} ref={imageRef} src={srcRef.current} />
+				<img alt='preview' className={styles.img} ref={imageRef} src={srcRef.current} />
 			</div>
 		</div>
 	);

@@ -126,7 +126,7 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 
 			{screenWidth < 769 && (
 				<div className={styles.closeButton}>
-					<CloseButton setState={setFilterSort} state="filter" />
+					<CloseButton setState={setFilterSort} state='filter' />
 				</div>
 			)}
 		</aside>

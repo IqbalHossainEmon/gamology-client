@@ -32,7 +32,7 @@ function ModalBody({ children, setShow, fadeIn, hideEventRef }) {
 				</div>
 			</div>
 			<ScrollBar childRef={childRef} parentRef={parentRef} />
-			<button className={styles.crossBtn} onClick={eventRef.current.handleHide} type="button">
+			<button className={styles.crossBtn} onClick={eventRef.current.handleHide} type='button'>
 				<span className={styles.cross} />
 			</button>
 		</div>

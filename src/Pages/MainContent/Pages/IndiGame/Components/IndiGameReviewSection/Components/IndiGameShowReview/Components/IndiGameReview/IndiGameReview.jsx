@@ -30,7 +30,7 @@ export default function IndiGameReview({ review, index, length }) {
 		<>
 			<div className={styles.individualGameReview}>
 				<div className={styles.userDetails}>
-					<img alt="" className={styles.userIcon} src={userIcon} />
+					<img alt='' className={styles.userIcon} src={userIcon} />
 
 					<p className={styles.name}>{user.name}</p>
 
@@ -76,7 +76,7 @@ export default function IndiGameReview({ review, index, length }) {
 									<button
 										className={styles.feedbackBtn}
 										onClick={() => setFeedbackState({ state: -1 })}
-										type="button"
+										type='button'
 									>
 										yes
 									</button>
@@ -84,7 +84,7 @@ export default function IndiGameReview({ review, index, length }) {
 									<button
 										className={styles.feedbackBtn}
 										onClick={() => setFeedbackState({ state: 1 })}
-										type="button"
+										type='button'
 									>
 										no
 									</button>
@@ -103,7 +103,7 @@ export default function IndiGameReview({ review, index, length }) {
 							<button
 								className={styles.reportBtn}
 								onClick={handleReport}
-								type="button"
+								type='button'
 							>
 								report
 							</button>

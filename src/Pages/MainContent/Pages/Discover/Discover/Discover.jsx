@@ -9,8 +9,8 @@ export default function Discover() {
 	return (
 		<div className={styles.discover}>
 			<DiscoverBanner />
-			<DiscoverGames headerTitle="Game on sale" />
-			<DiscoverGames headerTitle="Summer Spotlight" />
+			<DiscoverGames headerTitle='Game on sale' />
+			<DiscoverGames headerTitle='Summer Spotlight' />
 			<FreeGames />
 			<EventGames />
 			<ExploreGames />

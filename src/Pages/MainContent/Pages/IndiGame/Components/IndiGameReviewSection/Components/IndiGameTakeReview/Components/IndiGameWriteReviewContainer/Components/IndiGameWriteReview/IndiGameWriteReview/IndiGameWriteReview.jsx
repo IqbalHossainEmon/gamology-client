@@ -37,7 +37,7 @@ export default function IndiGameWriteReview({
 		>
 			<div className={styles.individualGameWriteReview} ref={elementRef}>
 				<div className={styles.userDetails}>
-					<img alt="" className={styles.userIcon} src={userIcon} />
+					<img alt='' className={styles.userIcon} src={userIcon} />
 
 					<p className={styles.name}>{user.name}</p>
 
@@ -54,7 +54,7 @@ export default function IndiGameWriteReview({
 				<div className={styles.writingField}>
 					<div className={styles.reviewTitleContainer}>
 						<div className={styles.reviewStarsContainer}>
-							<ReviewStar name="active" newValue={reviewStar} setValue={setData} />
+							<ReviewStar name='active' newValue={reviewStar} setValue={setData} />
 						</div>
 						<IndiGameReviewInput setData={setData} />
 					</div>

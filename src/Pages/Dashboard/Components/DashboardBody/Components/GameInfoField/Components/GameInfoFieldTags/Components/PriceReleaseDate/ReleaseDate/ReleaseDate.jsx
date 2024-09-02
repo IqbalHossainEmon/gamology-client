@@ -71,14 +71,14 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 							defaultValue={hasDefault ? defaultReleaseDate.day : ''}
 							htmlFor={1}
 							list={Array.from(Array(day.max), (_, idx) => ++idx)}
-							name="day"
+							name='day'
 							onFocusClick={() => {
 								if (errorShow) {
 									setErrorShow(false);
 								}
 							}}
 							parentSetValue={day.day}
-							placeholder="Day"
+							placeholder='Day'
 							setState={handleReleaseValue}
 						/>
 					</div>
@@ -88,13 +88,13 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 							defaultValue={hasDefault ? months[defaultReleaseDate.month - 1] : ''}
 							htmlFor={2}
 							list={months}
-							name="month"
+							name='month'
 							onFocusClick={() => {
 								if (errorShow) {
 									setErrorShow(false);
 								}
 							}}
-							placeholder="Month"
+							placeholder='Month'
 							setState={handleReleaseValue}
 						/>
 					</div>
@@ -107,13 +107,13 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 								Array(100),
 								(_, idx) => new Date().getFullYear() + 1 - ++idx
 							)}
-							name="year"
+							name='year'
 							onFocusClick={() => {
 								if (errorShow) {
 									setErrorShow(false);
 								}
 							}}
-							placeholder="Year"
+							placeholder='Year'
 							setState={handleReleaseValue}
 						/>
 					</div>

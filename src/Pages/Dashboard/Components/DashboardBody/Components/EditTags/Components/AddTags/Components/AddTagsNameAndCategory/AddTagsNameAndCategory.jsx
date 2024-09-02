@@ -25,11 +25,11 @@ function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, tags }) {
 				defaultValue={addInfoRef.current.tag.name}
 				errorChange={errorChange}
 				errorMessage={errorRef.current.tag}
-				field="input"
-				htmlFor="tag-name"
-				name="tag"
+				field='input'
+				htmlFor='tag-name'
+				name='tag'
 				parentErrorShow={parentErrorShow}
-				placeholder="Enter New  Tag Name"
+				placeholder='Enter New  Tag Name'
 				setState={(val, name) => {
 					addInfoRef.current[name].name = val;
 				}}
@@ -38,10 +38,10 @@ function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, tags }) {
 				errorChange={errorChange}
 				errorMessage={errorRef.current.category}
 				handleCheck={handleCheck}
-				htmlFor="category"
+				htmlFor='category'
 				list={tags.map(tag => tag.category)}
-				name="category"
-				placeholder="Select Category"
+				name='category'
+				placeholder='Select Category'
 				setState={val => {
 					addInfoRef.current.tag.category = val;
 				}}

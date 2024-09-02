@@ -27,7 +27,7 @@ function CoverVideoContainer({
 			}}
 			onFocus={onFocus}
 			ref={inputRef}
-			type="text"
+			type='text'
 			value={value}
 		/>
 	);

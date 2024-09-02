@@ -3,7 +3,7 @@ import styles from './SortButton.module.css';
 
 export default function SortButton({ setShow, show, state }) {
 	return (
-		<button className={styles.button} onClick={() => setShow('sort')} type="button">
+		<button className={styles.button} onClick={() => setShow('sort')} type='button'>
 			Show : <span className={styles.sortBy}>{state.sortBy}</span>
 			<div className={styles.downArrow}>
 				<RotateArrow state={show} />

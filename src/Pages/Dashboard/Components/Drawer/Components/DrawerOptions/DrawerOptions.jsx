@@ -22,7 +22,7 @@ function DrawerOptions({ option, parentState }) {
 						show: !prev.show,
 					}))
 				}
-				type="button"
+				type='button'
 			>
 				<span className={styles.iconContainer}>{option.icon}</span>
 

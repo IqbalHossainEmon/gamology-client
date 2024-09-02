@@ -46,7 +46,7 @@ export default function SortContainer({ state, handleChange }) {
 
 				{screenWidth < 769 && (
 					<div className={styles.closeButton}>
-						<CloseButton setState={setFilterSort} state="sort" />
+						<CloseButton setState={setFilterSort} state='sort' />
 					</div>
 				)}
 			</div>

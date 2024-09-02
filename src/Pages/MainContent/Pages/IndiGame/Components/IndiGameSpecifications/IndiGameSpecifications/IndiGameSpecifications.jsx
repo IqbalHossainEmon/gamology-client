@@ -125,7 +125,7 @@ export default function IndiGameSpecifications() {
 							<button
 								className={`${toggle === i ? `${styles.active} ` : ''}${styles.mainHeaderBtn}`}
 								onClick={() => setToggle(i)}
-								type="button"
+								type='button'
 							>
 								{s.for}
 							</button>

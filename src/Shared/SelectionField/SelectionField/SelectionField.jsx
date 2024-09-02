@@ -79,9 +79,9 @@ export default function SelectionField({
 					positionRef.current.bottom = true;
 				}
 			},
-			calculateWidth: value => {
+			calculateWidth: val => {
 				document.body.appendChild(span);
-				span.textContent = value;
+				span.textContent = val;
 				setWidth(span.offsetWidth);
 				document.body.removeChild(span);
 			},
@@ -98,7 +98,7 @@ export default function SelectionField({
 	return (
 		<div className={styles.container} ref={containerRef}>
 			<button
-				type="button"
+				type='button'
 				{...(enabled || { tabIndex: '-1' })}
 				{...(inputRef.current &&
 					width >
@@ -135,7 +135,7 @@ export default function SelectionField({
 					id={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
 					readOnly
 					ref={inputRef}
-					tabIndex="-1"
+					tabIndex='-1'
 					value={value}
 					{...rest}
 				/>
@@ -153,9 +153,9 @@ export default function SelectionField({
 				positionRef={positionRef}
 				setShow={setShow}
 				setState={setState}
-				setValue={value => {
-					setValue(value);
-					eventRefs.current.calculateWidth(value);
+				setValue={val => {
+					setValue(val);
+					eventRefs.current.calculateWidth(val);
 				}}
 				state={show}
 				value={value}

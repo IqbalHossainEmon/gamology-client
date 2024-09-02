@@ -19,8 +19,8 @@ export default function FirstNavbar() {
 	return (
 		<nav className={styles.FirstNavbar}>
 			<div className={styles.gamologyLogo}>
-				<a href="/">
-					<img alt="game controller" src="/assets/images/game-controller.png" />
+				<a href='/'>
+					<img alt='game controller' src='/assets/images/game-controller.png' />
 				</a>
 			</div>
 

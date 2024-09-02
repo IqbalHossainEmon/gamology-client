@@ -61,7 +61,7 @@ function UserContainer() {
 											modalFooter: (
 												<UserDeleteModalBody
 													detail={detail}
-													type="delete"
+													type='delete'
 												/>
 											),
 										});
@@ -90,7 +90,7 @@ function UserContainer() {
 											modalFooter: (
 												<UserDeleteModalBody
 													detail={detail}
-													type="makeAdmin"
+													type='makeAdmin'
 												/>
 											),
 										});

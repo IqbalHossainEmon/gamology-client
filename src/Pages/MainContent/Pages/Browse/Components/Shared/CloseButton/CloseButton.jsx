@@ -5,7 +5,7 @@ export default function CloseButton({ setState, state }) {
 		<button
 			className={`${styles.container} ${styles.zoom_shrink}`}
 			onClick={() => setState(state)}
-			type="button"
+			type='button'
 		>
 			<div className={`${styles.close_icon} ${styles.zoom_shrink}`} />
 		</button>

@@ -8,7 +8,7 @@ function IndiGameReviewInput({ setData, isTextArea }) {
 			{isTextArea ? (
 				<textarea
 					className={`${styles.description}${scrollable ? ` ${styles.scrollable}` : ''}`}
-					name="review description"
+					name='review description'
 					onBlur={e => {
 						if (value.length <= 40) {
 							setData(prev => ({ ...prev, text: e.target.value }));
@@ -24,15 +24,15 @@ function IndiGameReviewInput({ setData, isTextArea }) {
 							setScrollable(false);
 						}
 					}}
-					placeholder="Review text..."
-					rows="10"
+					placeholder='Review text...'
+					rows='10'
 					value={value}
 				/>
 			) : (
 				<input
 					className={styles.reviewTitle}
-					id="review-title"
-					name="review title"
+					id='review-title'
+					name='review title'
 					onBlur={e => {
 						if (value.length <= 40) {
 							setData(prev => ({ ...prev, title: e.target.value }));
@@ -41,8 +41,8 @@ function IndiGameReviewInput({ setData, isTextArea }) {
 						}
 					}}
 					onChange={e => setValue(e.target.value)}
-					placeholder="Review Title..."
-					type="text"
+					placeholder='Review Title...'
+					type='text'
 					value={value}
 				/>
 			)}

@@ -16,7 +16,7 @@ export default function ButtonForGameInfoFieldSection({
 				className={styles.btn}
 				onClick={onClick}
 				ref={btnRef}
-				type="button"
+				type='button'
 				{...(disabled && { disabled })}
 				{...(tabIndexOff && { tabIndex: '-1' })}
 			>

@@ -39,10 +39,10 @@ function GameInfoFieldDescriptions({
 				<TextField
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameDescriptionsError.sortDesc}
-					field="textarea"
-					htmlFor="short_description"
-					name="shortDesc"
-					placeholder="Short description..."
+					field='textarea'
+					htmlFor='short_description'
+					name='shortDesc'
+					placeholder='Short description...'
 					setState={handleSetSortDescription}
 					{...(hasDefault && { defaultValue: defaultGameDescriptions.shortDesc })}
 				/>
@@ -75,7 +75,7 @@ function GameInfoFieldDescriptions({
 								description: '',
 							});
 						}}
-						text="Add more +"
+						text='Add more +'
 					/>
 				</div>
 				<div className={styles.btn}>
@@ -88,7 +88,7 @@ function GameInfoFieldDescriptions({
 								return prevState;
 							});
 						}}
-						text="Remove last one -"
+						text='Remove last one -'
 					/>
 				</div>
 				<div className={styles.mainBtn}>
@@ -106,7 +106,7 @@ function GameInfoFieldDescriptions({
 								gameDescriptions.current.gameDescriptions.descriptions.length - 1
 							].mainHeader = '';
 						}}
-						text="Add Main Header +"
+						text='Add Main Header +'
 					/>
 				</div>
 				<div className={styles.mainBtn}>
@@ -124,7 +124,7 @@ function GameInfoFieldDescriptions({
 								gameDescriptions.current.gameDescriptions.descriptions.length - 1
 							].mainHeader;
 						}}
-						text="Remove Main Header -"
+						text='Remove Main Header -'
 					/>
 				</div>
 				<div className={styles.mainBtn}>
@@ -135,7 +135,7 @@ function GameInfoFieldDescriptions({
 								subHeader: '',
 							});
 						}}
-						text="Add Only Sub Header +"
+						text='Add Only Sub Header +'
 					/>
 				</div>
 			</div>

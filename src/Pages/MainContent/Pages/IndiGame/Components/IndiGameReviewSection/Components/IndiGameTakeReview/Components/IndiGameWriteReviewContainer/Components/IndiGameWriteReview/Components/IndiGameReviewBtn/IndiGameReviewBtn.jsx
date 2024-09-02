@@ -10,13 +10,13 @@ export default function IndiGameReviewButtons({ setWriteReviewShow, handleSubmit
 			<button
 				className={styles.closeBtn}
 				onClick={() => setWriteReviewShow(false)}
-				type="button"
+				type='button'
 			>
 				Close
 			</button>
 			<button
 				ref={buttonRef}
-				type="button"
+				type='button'
 				{...(canSubmit && { onClick: handleSubmit })}
 				className={`${styles.submitBtn}${canSubmit ? '' : ` ${styles.cantSubmit}`}`}
 			>

@@ -131,9 +131,9 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 						}`}
 						onMouseDown={eventRefs.current.handleBeginning}
 						onTouchStart={eventRefs.current.handleBeginning}
-						role="switch"
+						role='switch'
 						aria-checked={mainStateRef.current}
-						tabIndex="0"
+						tabIndex='0'
 					/>
 				</div>
 			</div>

@@ -34,7 +34,7 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 							list.event(item);
 							handleHide();
 						}}
-						type="button"
+						type='button'
 					>
 						{list.name}
 					</button>

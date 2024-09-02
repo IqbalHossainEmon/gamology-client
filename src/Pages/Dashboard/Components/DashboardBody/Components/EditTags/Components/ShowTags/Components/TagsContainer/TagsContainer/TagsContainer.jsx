@@ -102,7 +102,7 @@ function TagsContainer({ tag, setTags }) {
 				<button
 					className={styles.crossBtn}
 					onClick={eventRefs.current.handleCategoryDelete}
-					type="button"
+					type='button'
 				>
 					<strong className={styles.cross} />
 				</button>
@@ -116,7 +116,7 @@ function TagsContainer({ tag, setTags }) {
 							onClick={() =>
 								eventRefs.current.handleTagDelete(option.text, option.filter)
 							}
-							type="button"
+							type='button'
 						>
 							<strong className={styles.cross} />
 						</button>

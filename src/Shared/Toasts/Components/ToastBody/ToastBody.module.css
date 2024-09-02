@@ -1,0 +1,62 @@
+.toast {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #262629;
+	color: #fff;
+	padding: 16px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 16px;
+}
+
+.zoomIn {
+}
+
+.icon {
+	margin-right: 16px;
+}
+
+.content {
+	flex-grow: 1;
+}
+
+.crossBtn {
+	background: none;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	padding: 0;
+}
+
+.cross {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('path/to/cross-icon.svg') no-repeat center center;
+	background-size: contain;
+}
+
+.icon {
+	margin-right: 16px;
+}
+
+.content {
+	flex-grow: 1;
+}
+
+.crossBtn {
+	background: none;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	padding: 0;
+}
+
+.cross {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('path/to/cross-icon.svg') no-repeat center center;
+	background-size: contain;
+}

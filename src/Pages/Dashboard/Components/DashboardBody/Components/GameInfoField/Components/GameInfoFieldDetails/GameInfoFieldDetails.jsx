@@ -23,21 +23,21 @@ export default function GameInfoFieldDetails({
 			<TextField
 				errorChange={errorChange}
 				errorMessage={errorMessages.current.gameInfoError.name}
-				field="input"
-				name="name"
+				field='input'
+				name='name'
 				placeholder="Game's Name"
 				setState={handleSetValue}
 				{...(hasDefault && { defaultValue: defaultGameInfo.name })}
-				htmlFor="gameName"
+				htmlFor='gameName'
 			/>
 			<div className={styles.flexContainer}>
 				<TextField
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameInfoError.developer}
-					field="input"
-					htmlFor="developer"
-					name="developer"
-					placeholder="Developer"
+					field='input'
+					htmlFor='developer'
+					name='developer'
+					placeholder='Developer'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.developer })}
 				/>
@@ -45,33 +45,33 @@ export default function GameInfoFieldDetails({
 					className={styles.marginRight}
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameInfoError.publisher}
-					field="input"
-					htmlFor="publisher"
-					name="publisher"
-					placeholder="Publisher"
+					field='input'
+					htmlFor='publisher'
+					name='publisher'
+					placeholder='Publisher'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
 				/>
 			</div>
 			<div className={styles.flexContainer}>
 				<FileUploadButton
-					accept="image/*"
+					accept='image/*'
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameInfoError.logo}
-					htmlFor="gameLogo"
-					name="logo"
-					placeholder="Choose cover image"
+					htmlFor='gameLogo'
+					name='logo'
+					placeholder='Choose cover image'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.logo })}
 				/>
 				<FileUploadButton
-					accept="image/*"
+					accept='image/*'
 					className={styles.marginRight}
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameInfoError.phoneLogo}
-					htmlFor="phoneLogo"
-					name="phoneLogo"
-					placeholder="Choose portrait cover image"
+					htmlFor='phoneLogo'
+					name='phoneLogo'
+					placeholder='Choose portrait cover image'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.phoneLogo })}
 				/>

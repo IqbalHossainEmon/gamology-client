@@ -34,7 +34,7 @@ export default function RangeInputField({ inputRef, disabled, state, handleEnter
 			}}
 			onKeyDown={handleEnter}
 			ref={inputRef}
-			type="text"
+			type='text'
 			value={value}
 		/>
 	);

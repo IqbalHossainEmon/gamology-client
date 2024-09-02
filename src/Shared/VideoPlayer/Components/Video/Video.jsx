@@ -72,9 +72,9 @@ function Video({ videoContainer, src, captions, className }, ref) {
 	return (
 		<video
 			className={[className, styles.video].join(' ')}
-			crossOrigin="anonymous"
+			crossOrigin='anonymous'
 			muted
-			preload="auto"
+			preload='auto'
 			ref={ref}
 			src={src}
 			{...(fullscreenSize.isFullScreen && {
@@ -84,7 +84,7 @@ function Video({ videoContainer, src, captions, className }, ref) {
 				},
 			})}
 		>
-			<track kind="captions" src={captions} />
+			<track kind='captions' src={captions} />
 			<p>Your browser does not support the video tag.</p>
 		</video>
 	);

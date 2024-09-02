@@ -51,13 +51,13 @@ function GameInfoFieldSpecsLangsSupported({
 				<TextField
 					errorChange={errorChange}
 					errorMessage={errorMessages[0]}
-					field="textarea"
-					htmlFor="lang_support_text"
-					name="text"
+					field='textarea'
+					htmlFor='lang_support_text'
+					name='text'
 					placeholder={
 						separate.separate ? 'Text Languages Supported' : 'Languages Supported'
 					}
-					rows="3"
+					rows='3'
 					setState={(value, name) => {
 						language.current[name] = value;
 					}}
@@ -74,11 +74,11 @@ function GameInfoFieldSpecsLangsSupported({
 					<TextField
 						errorChange={errorChange}
 						errorMessage={errorMessages[1]}
-						field="textarea"
-						htmlFor="lang_support_audio"
-						name="audio"
-						placeholder="Audio Languages Supported"
-						rows="3"
+						field='textarea'
+						htmlFor='lang_support_audio'
+						name='audio'
+						placeholder='Audio Languages Supported'
+						rows='3'
 						setState={(value, name) => {
 							language.current[name] = value;
 						}}
@@ -92,12 +92,12 @@ function GameInfoFieldSpecsLangsSupported({
 
 			<div className={styles.switch}>
 				<FilterOption
-					name="separate"
+					name='separate'
 					setState={obj => {
 						setSeparate(obj);
 					}}
 					state={separate.separate}
-					text="Show Audio"
+					text='Show Audio'
 				/>
 			</div>
 		</div>

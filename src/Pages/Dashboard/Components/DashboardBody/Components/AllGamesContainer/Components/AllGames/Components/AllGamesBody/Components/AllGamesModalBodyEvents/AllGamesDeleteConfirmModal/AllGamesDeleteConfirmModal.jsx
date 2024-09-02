@@ -35,15 +35,15 @@ function AllGamesDeleteConfirmModal() {
 				className={styles.textField}
 				errorChange={errorChange}
 				errorMessage={errorMessage}
-				field="input"
-				htmlFor="delete_game"
+				field='input'
+				htmlFor='delete_game'
 				placeholder="Type 'DELETE' to Delete"
 				setState={val => {
 					confirmText.current = val;
 				}}
-				type="text"
+				type='text'
 			/>
-			<button ref={btnRef} className={styles.deleteBtn} onClick={handleDelete} type="button">
+			<button ref={btnRef} className={styles.deleteBtn} onClick={handleDelete} type='button'>
 				Delete
 				<ButtonWaterEffect btnRef={btnRef} long />
 			</button>
