@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import VideoSlider from '../VideoSlider/VideoSlider';
 
 export default function VideoProgressBar({
-	video,
+	video: videoRef,
 	videoContainer,
 	src,
 	isSeekedRef,
@@ -13,7 +13,6 @@ export default function VideoProgressBar({
 }) {
 	const interval = useRef(null);
 	const [buffer, setBuffer] = useState(0);
-	const videoRef = useRef(video.current);
 	const progressRef = useRef(progress);
 	progressRef.current = progress;
 
@@ -102,39 +101,42 @@ export default function VideoProgressBar({
 	useEffect(() => {
 		const { progressUpdate, progressBufferUpdate } = eventRefs.current;
 
-		if (videoRef.current && isControllerShowing) {
-			videoRef.current.addEventListener('timeupdate', progressUpdate);
-			videoRef.current.addEventListener('progress', progressBufferUpdate);
-		} else {
-			videoRef.current.removeEventListener('timeupdate', progressUpdate);
-			videoRef.current.removeEventListener('progress', progressBufferUpdate);
+		if (videoRef.current) {
+			if (isControllerShowing) {
+				videoRef.current.addEventListener('timeupdate', progressUpdate);
+				videoRef.current.addEventListener('progress', progressBufferUpdate);
+			} else {
+				videoRef.current.removeEventListener('timeupdate', progressUpdate);
+				videoRef.current.removeEventListener('progress', progressBufferUpdate);
+			}
 		}
-	}, [isControllerShowing]);
+	}, [isControllerShowing, videoRef]);
 
 	useEffect(() => {
 		const { progressUpdate, progressBufferUpdate, handleError, handlePlaying, handlePause } =
 			eventRefs.current;
+		const video = videoRef.current;
 		const addEventListeners = () => {
-			videoRef.current.addEventListener('timeupdate', progressUpdate);
-			videoRef.current.addEventListener('progress', progressBufferUpdate);
-			videoRef.current.addEventListener('error', handleError);
-			videoRef.current.addEventListener('playing', handlePlaying);
-			videoRef.current.addEventListener('pause', handlePause);
+			video.addEventListener('timeupdate', progressUpdate);
+			video.addEventListener('progress', progressBufferUpdate);
+			video.addEventListener('error', handleError);
+			video.addEventListener('playing', handlePlaying);
+			video.addEventListener('pause', handlePause);
 		};
 		const removeEventListeners = () => {
-			videoRef.current.removeEventListener('timeupdate', progressUpdate);
-			videoRef.current.removeEventListener('progress', progressBufferUpdate);
-			videoRef.current.removeEventListener('error', handleError);
-			videoRef.current.removeEventListener('playing', handlePlaying);
-			videoRef.current.removeEventListener('pause', handlePause);
+			video.removeEventListener('timeupdate', progressUpdate);
+			video.removeEventListener('progress', progressBufferUpdate);
+			video.removeEventListener('error', handleError);
+			video.removeEventListener('playing', handlePlaying);
+			video.removeEventListener('pause', handlePause);
 		};
 		const initializeInterval = () => {
 			interval.count = 0;
 			interval.current = setInterval(() => {
-				if (videoRef.current.buffered.length === 0) {
-					videoRef.current.load(src);
+				if (video.buffered.length === 0) {
+					video.load(src);
 				} else {
-					progressBufferUpdate({ target: videoRef.current });
+					progressBufferUpdate({ target: video });
 					clearInterval(interval.current);
 					interval.current = null;
 				}
@@ -147,8 +149,7 @@ export default function VideoProgressBar({
 			}, 500);
 		};
 
-		if (video.current) {
-			videoRef.current = video.current;
+		if (video) {
 			addEventListeners();
 
 			if (!interval.current) {
@@ -157,11 +158,11 @@ export default function VideoProgressBar({
 		}
 
 		return () => {
-			if (videoRef.current) {
+			if (video) {
 				removeEventListeners();
 			}
 		};
-	}, [src, video]);
+	}, [src, videoRef]);
 
 	return (
 		<VideoSlider

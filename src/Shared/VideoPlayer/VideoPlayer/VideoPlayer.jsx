@@ -15,7 +15,7 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			// Show hide controllers by checking the time.
-			handleShowHide: () => {
+			handleShowHide: time => {
 				if (onLoadedRef.current) {
 					if (mouseMoveTimerId.current) {
 						clearTimeout(mouseMoveTimerId.current);
@@ -26,18 +26,18 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 					mouseMoveTimerId.current = setTimeout(() => {
 						mouseMoveTimerId.current = null;
 						setIsControllerShowing(false);
-					}, 5000);
+					}, time);
 				}
 			},
 			handleMouseMove: () => {
-				eventRefs.current.handleShowHide();
+				eventRefs.current.handleShowHide(4000);
 			},
 			handleMouseUp: () => {
 				videoContainerRef?.current.addEventListener(
 					'mousemove',
 					eventRefs.current.handleMouseMove
 				);
-				eventRefs.current.handleShowHide();
+				eventRefs.current.handleShowHide(1000);
 				document.removeEventListener('mouseup', eventRefs.current.handleMouseUp);
 			},
 			handleLoadedMetaData: () => {
@@ -54,6 +54,9 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 					eventRefs.current.handleMouseMove
 				);
 			},
+			handleMouseLeave: () => {
+				eventRefs.current.handleShowHide(1000);
+			},
 		};
 	}
 
@@ -65,11 +68,13 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 	}, [changePause]);
 
 	useEffect(() => {
-		const { handleMouseMove, handleMouseDown, handleLoadedMetaData } = eventRefs.current;
+		const { handleMouseMove, handleMouseDown, handleLoadedMetaData, handleMouseLeave } =
+			eventRefs.current;
 		const addEventListeners = (videoContainer, video) => {
 			if (videoContainer) {
 				videoContainer.addEventListener('mousemove', handleMouseMove);
 				videoContainer.addEventListener('mousedown', handleMouseDown);
+				videoContainer.addEventListener('mouseleave', handleMouseLeave);
 			}
 			if (video) {
 				video.addEventListener('loadedmetadata', handleLoadedMetaData);

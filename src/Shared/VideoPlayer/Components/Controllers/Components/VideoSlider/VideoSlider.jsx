@@ -50,7 +50,7 @@ export default function VideoSlider({
 
 			handleMouseDownClick: e => {
 				eventRefs.current.handleMove(e);
-				handleMouseDown();
+				if (typeof handleMouseDown === 'function') handleMouseDown();
 			},
 		};
 	}
