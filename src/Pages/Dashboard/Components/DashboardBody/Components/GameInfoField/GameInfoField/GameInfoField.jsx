@@ -9,7 +9,7 @@ import OuterErrorMessage from '../Components/OuterErrorMessage/OuterErrorMessage
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
-export default function GameInfoField({ handleGameInfo, hasDefault, defaultData = {} }) {
+export default function GameInfoField({ handleGameInfo, hasDefault, defaultData }) {
 	const [loading, setLoading] = useState(true);
 	const gameData = useRef({
 		gameInfo: {
@@ -65,6 +65,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 		gameTags: {},
 	});
 	const [errorChange, setErrorChange] = useState(0);
+
 	const errorMessages = useRef({
 		gameInfoError: {
 			name: '',
@@ -76,7 +77,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 		},
 		gameBannerError: [{ cover: '', thumb: '', type: '' }],
 		gameTagsError: {},
-		gameDescriptionsError: { descriptions: [] },
+		gameDescriptionsError: { descriptions: [], shortDesc: '' },
 		gameSpecificationsError: {
 			spec: [{}, {}, {}],
 			others: [],
@@ -87,14 +88,16 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 		gameData,
 		errorMessages,
 	});
+
 	const handleSubmit = e => {
 		e.preventDefault();
-
 		if (checkValidation()) {
 			setErrorChange(prev => ++prev);
+			console.log(errorMessages);
 			return;
 		}
 		const cleanData = handleUnnecessaryRemove();
+
 		const errorMessage = handleGameInfo(cleanData);
 		errorMessages.current.outerErrorMessage = errorMessage;
 		if (errorMessages.current.outerErrorMessage !== errorMessages.current.isThereError) {
@@ -179,7 +182,6 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						hasDefault={hasDefault}
 						{...(hasDefault && { defaultGameInfo: defaultData.gameInfo })}
 					/>
-
 					<GameInfoFieldBanner
 						errorChange={errorChange}
 						errorMessages={errorMessages}
@@ -187,7 +189,6 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						hasDefault={hasDefault}
 						{...(hasDefault && { defaultGameBanner: defaultData.gameBanner })}
 					/>
-
 					<GameInfoFieldTags
 						errorChange={errorChange}
 						errorMessages={errorMessages}
@@ -199,7 +200,6 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						})}
 						{...(hasDefault && { defaultPrice: defaultData.gameInfo.price })}
 					/>
-
 					<GameInfoFieldDescriptions
 						errorChange={errorChange}
 						errorMessages={errorMessages}
@@ -209,7 +209,6 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 							defaultGameDescriptions: defaultData.gameDescriptions,
 						})}
 					/>
-
 					<GameInfoFieldSpecifications
 						errorChange={errorChange}
 						errorMessages={errorMessages}

@@ -26,8 +26,8 @@ function AllGamesDeleteConfirmModal() {
 		) {
 			// API call to delete game
 			setToast({
-				toastTitle: 'Game Deleted',
-				toastMessage: 'Game has been deleted successfully',
+				title: 'Game Deleted',
+				message: 'Game has been deleted successfully',
 				type: 'success',
 			});
 

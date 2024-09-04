@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useToast from '../../../../../../../../../Hooks/useToast';
 import GameInfoField from '../../../../GameInfoField/GameInfoField/GameInfoField';
 import styles from './EditGame.module.css';
 
@@ -325,10 +326,17 @@ function EditGame() {
 		}, 10);
 	}, []);
 
+	const { setToast } = useToast();
+
 	const handleSubmit = newData => {
-		console.log(newData);
 		if (JSON.stringify(mainDefaultData.current) !== JSON.stringify(newData)) {
-			console.log(newData);
+			console.log('Data Updated');
+
+			setToast({
+				title: 'Game Details Updated',
+				message: 'Game details have been updated successfully.',
+				type: 'success',
+			});
 			return '';
 		}
 		return 'No changes made.';

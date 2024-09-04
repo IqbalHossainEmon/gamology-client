@@ -9,7 +9,7 @@ const withToast = Component =>
 		const toastsRef = useRef(toasts);
 		toastsRef.current = toasts;
 
-		const toastIdRef = useRef(7);
+		const toastIdRef = useRef(0);
 
 		const eventRefs = useRef(null);
 
@@ -35,7 +35,7 @@ const withToast = Component =>
 				},
 				handleSetToast: toast => {
 					if (typeof toast === 'object') {
-						if (!toast.toastTitle || !toast.toastMessage || !toast.type) {
+						if (!toast.title || !toast.message || !toast.type) {
 							return;
 						}
 					} else {

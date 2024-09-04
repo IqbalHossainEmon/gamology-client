@@ -31,7 +31,7 @@ function ToastBody({ fadeIn: show, data }) {
 		};
 	}
 
-	const { toastTitle, toastMessage, type } = data;
+	const { title, message, type } = data;
 	return (
 		<li
 			onMouseMove={eventRefs.current.onMouseMove}
@@ -40,8 +40,8 @@ function ToastBody({ fadeIn: show, data }) {
 		>
 			<div className={styles.icon}>{toastIcon[type]}</div>
 			<div className={styles.content}>
-				<h3 className={styles.title}>{toastTitle}</h3>
-				<p className={styles.message}>{toastMessage}</p>
+				<h3 className={styles.title}>{title}</h3>
+				<p className={styles.message}>{message}</p>
 			</div>
 			<button
 				className={styles.crossBtn}

@@ -38,7 +38,7 @@ function GameInfoFieldDescriptions({
 			<div className={styles.sortDescription}>
 				<TextField
 					errorChange={errorChange}
-					errorMessage={errorMessages.current.gameDescriptionsError.sortDesc}
+					errorMessage={errorMessages.current.gameDescriptionsError.shortDesc}
 					field='textarea'
 					htmlFor='short_description'
 					name='shortDesc'

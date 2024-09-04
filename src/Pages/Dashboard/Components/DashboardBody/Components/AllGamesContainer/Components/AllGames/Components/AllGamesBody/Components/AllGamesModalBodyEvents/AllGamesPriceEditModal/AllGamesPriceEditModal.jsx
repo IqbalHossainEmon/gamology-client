@@ -37,8 +37,8 @@ function AllGamesPriceEditModal({ price }) {
 			}
 			// API call to update price
 			setToast({
-				toastTitle: 'Price Updated',
-				toastMessage: 'Price has been updated successfully',
+				title: 'Price Updated',
+				message: 'Price has been updated successfully',
 				type: 'success',
 			});
 			setDashboardModal(false);
