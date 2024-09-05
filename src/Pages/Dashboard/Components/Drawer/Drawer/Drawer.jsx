@@ -48,7 +48,7 @@ function Drawer() {
 	if (!eventRefs.current.handleButtonClick) {
 		eventRefs.current.handleButtonClick = () => {
 			setCollapse(prev => {
-				if (!prev && screenWidthRef < 1100) {
+				if (!prev && screenWidthRef.current < 1100) {
 					showMenu();
 				}
 				return !prev;
@@ -61,7 +61,7 @@ function Drawer() {
 		if (screenWidth < 1100 && collapseRef.current) {
 			setCollapse(false);
 			wasDrawerOpen.current = true;
-		} else if (wasDrawerOpen.current) {
+		} else if (wasDrawerOpen.current && screenWidth >= 1100) {
 			setCollapse(true);
 			wasDrawerOpen.current = false;
 		}

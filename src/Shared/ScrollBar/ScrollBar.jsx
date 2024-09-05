@@ -108,11 +108,33 @@ function ScrollBar({ parentRef, childRef }) {
 		eventRefs.current.handleMouseUp,
 		eventRefs.current.handleMouseDownBar
 	);
-	const onStartParent = useDragStartStop(
+	const handleStartParent = useDragStartStop(
 		eventRefs.current.handleMoveScroll,
 		eventRefs.current.handleMouseUp,
 		eventRefs.current.handleMouseDownParent
 	);
+
+	if (!eventRefs.current.onStartParent) {
+		eventRefs.current.onStartParent = e => {
+			e.stopPropagation();
+			onStartScroll(e);
+		};
+	}
+
+	useEffect(() => {
+		const container = containerRef.current;
+		const knob = thumbRef.current;
+
+		container.addEventListener('mousedown', handleStartParent);
+		container.addEventListener('touchstart', handleStartParent, {
+			passive: false,
+		});
+
+		knob.addEventListener('mousedown', eventRefs.current.onStartParent);
+		knob.addEventListener('touchstart', eventRefs.current.onStartParent, { passive: false });
+
+		return () => {};
+	});
 
 	useEffect(() => {
 		window.addEventListener('resize', eventRefs.current.handleSetHeight);
@@ -147,8 +169,6 @@ function ScrollBar({ parentRef, childRef }) {
 	return (
 		<div
 			className={`${height <= 0 || height >= parentRef.current.clientHeight ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}
-			onMouseDown={onStartParent}
-			onTouchStart={onStartParent}
 			ref={containerRef}
 			tabIndex={0}
 			role='scrollbar'
@@ -157,14 +177,7 @@ function ScrollBar({ parentRef, childRef }) {
 		>
 			<button
 				className={`${show ? `${styles.show} ` : ''}${styles.scrollThumb}`}
-				onMouseDown={e => {
-					e.stopPropagation();
-					onStartScroll(e);
-				}}
-				onTouchStart={e => {
-					e.stopPropagation();
-					onStartScroll(e);
-				}}
+				aria-label='scroll thumb'
 				ref={thumbRef}
 				style={{
 					height: `${height}px`,

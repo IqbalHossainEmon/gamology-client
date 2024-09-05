@@ -6,7 +6,7 @@ const withScreenWidthProvider = Component =>
 		const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
 		const screenWidthRef = useRef(screenWidth);
-		screenWidthRef.current = screenWidthRef;
+		screenWidthRef.current = screenWidth;
 
 		const handleChange = useRef(null);
 
@@ -23,7 +23,7 @@ const withScreenWidthProvider = Component =>
 
 		return (
 			<ScreenWidthContext.Provider value={screenWidth}>
-				<ScreenWidthRefContext.Provider value={screenWidthRef.current}>
+				<ScreenWidthRefContext.Provider value={screenWidthRef}>
 					<Component />
 				</ScreenWidthRefContext.Provider>
 			</ScreenWidthContext.Provider>
