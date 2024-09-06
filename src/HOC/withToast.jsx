@@ -9,10 +9,11 @@ const withToast = Component =>
 				id: 0,
 				toastTitle: 'Hello',
 				toastMessage: 'This is a toast msg',
-				toastIcon: 'success',
+				type: 'success',
 			},
-			{ id: 1, toastTitle: 'Hello', toastMessage: 'This is a toast msg' },
-			{ id: 2, toastTitle: 'Hello', toastMessage: 'This is a toast msg' },
+			{ id: 1, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'error' },
+			{ id: 2, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'warning' },
+			{ id: 3, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'info' },
 		]);
 
 		const eventRefs = useRef(null);

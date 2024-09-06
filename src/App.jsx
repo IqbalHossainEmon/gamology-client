@@ -2,15 +2,15 @@ import { memo } from 'react';
 import './App.css';
 import withScreenWidthProvider from './HOC/withScreenWidthProvider';
 import withToast from './HOC/withToast';
-import MainContent from './Pages/MainContent/MainContent/MainContent';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import MainHeader from './Shared/MainHeader/MainHeader';
 
 function App({ children }) {
 	return (
 		<>
 			<MainHeader />
-			<MainContent />
-			{/* {children} */}
+			<Dashboard />
+			{children}
 		</>
 	);
 }
