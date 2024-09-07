@@ -13,7 +13,7 @@ export default function IndiGameBannerCards({
 	cardActive,
 	thumbTransition,
 }) {
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const cardsOnDeckRef = useRef(cardsOnDeck);
 	cardsOnDeckRef.current = cardsOnDeck;
 

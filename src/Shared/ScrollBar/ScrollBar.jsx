@@ -12,6 +12,9 @@ function ScrollBar({ parentRef, childRef }) {
 	const timerID = useRef(null);
 	const eventRefs = useRef(null);
 
+	const scrolledRef = useRef(scrolled);
+	scrolledRef.current = scrolled;
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			moveSetEventRef: cursorInEle => {
@@ -55,13 +58,24 @@ function ScrollBar({ parentRef, childRef }) {
 			},
 			handleSetHeight: () => {
 				setHeight(() => {
-					const heightCheck =
-						(parentRef.current.clientHeight / parentRef.current.scrollHeight) * 100;
+					const parentHeight = parentRef.current.clientHeight;
+					const { scrollHeight } = parentRef.current;
 
-					if (heightCheck > 100) {
-						return 100;
+					// Calculate the thumb height in pixels directly
+					let thumbHeight = (parentHeight / scrollHeight) * parentHeight;
+
+					// Ensure the thumb height does not exceed the parent height
+					if (thumbHeight > parentHeight) {
+						thumbHeight = parentHeight;
 					}
-					return heightCheck;
+
+					setScrolled(
+						(parentRef.current.scrollTop /
+							(parentRef.current.scrollHeight - parentRef.current.clientHeight)) *
+							(parentRef.current.clientHeight - thumbRef.current.clientHeight)
+					);
+
+					return thumbHeight;
 				});
 			},
 			handleScroll: () => {
@@ -132,7 +146,7 @@ function ScrollBar({ parentRef, childRef }) {
 
 	return (
 		<div
-			className={`${height <= 0 || height >= 100 ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}
+			className={`${height <= 0 || height >= parentRef.current.clientHeight ? `${styles.noHeight} ` : ''}${styles.scrollBarContainers}`}
 			onMouseDown={onStartParent}
 			onTouchStart={onStartParent}
 			ref={containerRef}
@@ -153,7 +167,7 @@ function ScrollBar({ parentRef, childRef }) {
 				}}
 				ref={thumbRef}
 				style={{
-					height: `${height}%`,
+					height: `${height}px`,
 					translate: `0 ${scrolled < 0 ? 0 : scrolled}px`,
 				}}
 				type='button'

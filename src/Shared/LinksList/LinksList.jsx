@@ -1,7 +1,7 @@
 import useScreenWidth from '../../Hooks/useScreenWidth';
 
 export default function LinksList({ styles, links, onclick, active }) {
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	return links.map(link => (
 		<li
 			className={styles.navOption}

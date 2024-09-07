@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
-import useDashboardModalHook from '../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../useDashboardModal/useDashboardModal';
 import UserCard from '../../UserCard/UserCard';
 import UserDeleteModalBody from '../Components/UserDeleteModalBody/UserDeleteModalBody';
 import UserInfo from '../Components/UserInfo/UserInfo';
@@ -19,7 +19,7 @@ for (let i = 0; i < 96; i++) {
 
 function UserContainer() {
 	const [users, setUsers] = useState([]);
-	const { setDashboardContent, setDashboardModal } = useDashboardModalHook();
+	const { setDashboardContent, setDashboardModal } = useDashboardModal();
 
 	useEffect(() => {
 		setUsers(userDetail);

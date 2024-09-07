@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
-import useDashboardModalHook from '../../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserDeleteConfirmModal.module.css';
 
 function UserDeleteConfirmModal() {
@@ -9,7 +9,7 @@ function UserDeleteConfirmModal() {
 		errorMessage: '',
 	});
 	const confirmText = useRef(null);
-	const { setDashboardModal } = useDashboardModalHook();
+	const { setDashboardModal } = useDashboardModal();
 	const handleDelete = () => {
 		if (
 			confirmText.current === 'DELETE' ||

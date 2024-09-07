@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-import useDashboardModalHook from '../../../../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
 
 function TagsContainer({ tag, setTags }) {
-	const { setDashboardContent, setDashboardModal } = useDashboardModalHook();
+	const { setDashboardContent, setDashboardModal } = useDashboardModal();
 
 	const eventRefs = useRef(null);
 

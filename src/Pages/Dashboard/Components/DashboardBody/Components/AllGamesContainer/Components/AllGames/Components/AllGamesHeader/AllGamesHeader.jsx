@@ -7,7 +7,7 @@ import styles from './AllGamesHeader.module.css';
 function AllGamesHeader({ setSearchText }) {
 	const [search, setSearch] = useState('');
 	const [navShow, setNavShow] = useState(false);
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const timerId = useRef(null);
 	const searchRef = useRef(search);
 	searchRef.current = search;

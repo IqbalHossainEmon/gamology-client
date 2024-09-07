@@ -106,7 +106,7 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 	const [state, setState] = useState(filterState);
 	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
 	const { filter } = filterSortState;
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 
 	return (
 		<aside
@@ -123,7 +123,6 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 				setState={setState}
 				state={state}
 			/>
-
 			{screenWidth < 769 && (
 				<div className={styles.closeButton}>
 					<CloseButton setState={setFilterSort} state='filter' />

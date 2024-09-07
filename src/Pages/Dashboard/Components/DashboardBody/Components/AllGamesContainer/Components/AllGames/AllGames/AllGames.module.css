@@ -1,9 +1,10 @@
 .allGames {
-  width: 100%;
+	width: 100%;
 }
 .paginationContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
 }

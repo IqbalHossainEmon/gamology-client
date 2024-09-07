@@ -1,5 +1,4 @@
 import { createContext } from 'react';
 
-const ScreenWidthContext = createContext(window.innerWidth);
-
-export default ScreenWidthContext;
+export const ScreenWidthContext = createContext(window.innerWidth);
+export const ScreenWidthRefContext = createContext(window.innerWidth);

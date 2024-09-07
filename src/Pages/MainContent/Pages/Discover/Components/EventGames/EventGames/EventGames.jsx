@@ -39,7 +39,7 @@ const newGames = [
 const header = ['New Releases', 'Top Rated', 'Coming Soon'];
 
 export default function EventGames() {
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const [cardPosition, setCardPosition] = useState(0);
 
 	return (

@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
+import useToast from '../../../../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
-import useDashboardModalHook from '../../../../../../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../../../../../../useDashboardModal/useDashboardModal';
 import styles from './AllGamesPriceEditModal.module.css';
 
 function AllGamesPriceEditModal({ price }) {
@@ -13,7 +14,9 @@ function AllGamesPriceEditModal({ price }) {
 		errorMessage: '',
 	});
 
-	const { setDashboardModal } = useDashboardModalHook();
+	const { setToast } = useToast();
+
+	const { setDashboardModal } = useDashboardModal();
 
 	const handleSubmit = () => {
 		if (newPrice.current) {
@@ -23,17 +26,26 @@ function AllGamesPriceEditModal({ price }) {
 						errorChange: prev.errorChange + 1,
 						errorMessage: 'New price is less than discount price',
 					}));
-				} else {
-					// update price
+					return;
 				}
-			} else {
-				// update price
+			} else if (newPrice.current === price) {
+				setError(prev => ({
+					errorChange: prev.errorChange + 1,
+					errorMessage: 'Price is same',
+				}));
+				return;
 			}
+			// API call to update price
+			setToast({
+				toastTitle: 'Price Updated',
+				toastMessage: 'Price has been updated successfully',
+				type: 'success',
+			});
 			setDashboardModal(false);
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,
-				errorMessage: 'New is same as previous price',
+				errorMessage: 'Enter new price',
 			}));
 		}
 	};

@@ -19,7 +19,7 @@ const withFilterSortProvider = Component =>
 		const filterSortStateRef = useRef(filterSortState);
 		filterSortStateRef.current = filterSortState;
 
-		const screenWidth = useScreenWidth();
+		const { screenWidth } = useScreenWidth();
 		const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
 		useEffect(() => {

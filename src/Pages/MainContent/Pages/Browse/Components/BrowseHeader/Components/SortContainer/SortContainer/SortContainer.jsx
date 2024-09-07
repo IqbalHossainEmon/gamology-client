@@ -10,7 +10,7 @@ import styles from './SortContainer.module.css';
 export default function SortContainer({ state, handleChange }) {
 	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
 	const { sort } = filterSortState;
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const dropDownRef = useRef();
 
 	useEffect(() => {
@@ -32,7 +32,6 @@ export default function SortContainer({ state, handleChange }) {
 						state={state}
 					/>
 				)}
-
 				{screenWidth < 769 && (
 					<div className={styles.sortLists}>
 						<h2>Sort by</h2>
@@ -43,14 +42,12 @@ export default function SortContainer({ state, handleChange }) {
 						/>
 					</div>
 				)}
-
 				{screenWidth < 769 && (
 					<div className={styles.closeButton}>
 						<CloseButton setState={setFilterSort} state='sort' />
 					</div>
 				)}
 			</div>
-
 			{screenWidth < 769 && <ScreenShadow show={!sort} zIndex={3} />}
 		</>
 	);

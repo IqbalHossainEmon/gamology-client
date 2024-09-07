@@ -22,14 +22,12 @@ function FilterMobileScroll({
 			<div className={styles.parentContainer} ref={parentRef}>
 				<div className={styles.childContainer} ref={childRef}>
 					{screenWidth < 769 && <h2 className={styles.filterText}>Filters</h2>}
-
 					<FilterOptionList
 						limits={limits}
 						options={options}
 						setState={setState}
 						state={state}
 					/>
-
 					<ApplyButton
 						dispatch={dispatch}
 						filterState={filterState}

@@ -6,7 +6,7 @@ import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({ option, state, setState, limits = {} }) {
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const { title, optionList } = option;
 	const optionRef = useRef(null);
 	const [show, setShow] = useState({

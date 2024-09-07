@@ -4,11 +4,10 @@ import ScreenShadow from '../../ScreenShadow/ScreenShadow';
 import SearchField from '../../SearchField/SearchField';
 import SecondNavLeftLinks from '../Components/SecondNavLeftLinks/SecondNavLeftLinks';
 import SecondNavRightLinks from '../Components/SecondNavRightLinks/SecondNavRightLinks';
-
 import styles from './SecondNavbar.module.css';
 
 export default function SecondNavbar() {
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const [navShow, setNavShow] = useState(false);
 
 	return (

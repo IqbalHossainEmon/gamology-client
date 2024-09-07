@@ -15,7 +15,7 @@ export default function IndiGameWriteReview({
 }) {
 	const [data, setData] = useState({ active: 0, title: '', text: '' });
 	const elementRef = useRef(null);
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 
 	useEffect(() => {
 		elementRef.height = elementRef.current.clientHeight;

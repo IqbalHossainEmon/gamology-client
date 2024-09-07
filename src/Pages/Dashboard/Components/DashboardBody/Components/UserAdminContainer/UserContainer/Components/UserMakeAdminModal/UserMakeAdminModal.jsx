@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
-import useDashboardModalHook from '../../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserMakeAdminModal.module.css';
 
 function UserMakeAdminModal() {
@@ -9,7 +9,7 @@ function UserMakeAdminModal() {
 		errorMessage: '',
 	});
 	const confirmText = useRef(null);
-	const { setDashboardModal } = useDashboardModalHook();
+	const { setDashboardModal } = useDashboardModal();
 	const handleMakeAdmin = () => {
 		if (
 			confirmText.current === 'CONFIRM' ||

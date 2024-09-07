@@ -239,7 +239,7 @@ const items = [
 
 export default function DiscoverGames({ headerTitle }) {
 	const cardsContainer = useRef();
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const { reducer, initialState } = discoverGamesReducerInitialValue();
 	const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
 		useReducer(reducer, initialState);

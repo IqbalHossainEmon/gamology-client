@@ -27,7 +27,7 @@ export default function SelectionField({
 	const [show, setShow] = useState(false);
 	const [width, setWidth] = useState(0);
 
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const valueRef = useRef(value);
 	valueRef.current = value;
 	const parentSetValueRef = useRef(parentSetValue);

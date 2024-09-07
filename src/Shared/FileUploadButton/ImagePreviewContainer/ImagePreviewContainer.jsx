@@ -2,12 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import useAppearDisappear from '../../../Hooks/useAppearDisappear';
 import useDropDownHide from '../../../Hooks/useDropDownHide';
 import useIsTouchAble from '../../../Hooks/useIsTouchable';
+import useScreenWidth from '../../../Hooks/useScreenWidth';
 import ImagePreview from '../../ImagePreview/ImagePreview';
 
-function ImagePreviewContainer({ containerRef, btnRef, previewBtnRef, screenWidth, ...rest }) {
+function ImagePreviewContainer({ containerRef, btnRef, previewBtnRef, ...rest }) {
 	const [showPreview, setShowPreview] = useState(false);
 	const showPreviewRef = useRef(showPreview);
 	showPreviewRef.current = showPreview;
+
+	const { screenWidth } = useScreenWidth();
 
 	const isTouchAble = useIsTouchAble();
 	const { show, fadeIn } = useAppearDisappear(showPreview);

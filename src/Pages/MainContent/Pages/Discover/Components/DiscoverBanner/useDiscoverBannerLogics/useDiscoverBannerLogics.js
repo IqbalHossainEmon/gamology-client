@@ -70,7 +70,7 @@ function reducer(state, action) {
 function useTimer(callbackRef) {
 	const timerRef = useRef(null);
 	const startTimeRef = useRef(null);
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const screenWidthRef = useRef(screenWidth);
 	const remainingTimeRef = useRef(TIMER_INTERVAL);
 	const eventRefs = useRef(null);

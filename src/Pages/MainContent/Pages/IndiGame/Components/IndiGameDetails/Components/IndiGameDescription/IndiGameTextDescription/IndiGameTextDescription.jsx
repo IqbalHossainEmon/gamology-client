@@ -6,7 +6,7 @@ import styles from './IndiGameTextDescription.module.css';
 export default function IndiGameTextDescription({ descriptions }) {
 	const elementRef = useRef(null);
 	const [show, setShow] = useState({ show: false, height: NaN, transition: false });
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 
 	useEffect(() => {
 		setShow(prev => ({ ...prev, height: elementRef.current.offsetHeight }));

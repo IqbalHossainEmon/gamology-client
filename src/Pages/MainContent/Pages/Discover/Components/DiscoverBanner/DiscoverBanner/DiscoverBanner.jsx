@@ -62,7 +62,7 @@ export default function DiscoverBanner() {
 		reducer,
 		initialState
 	);
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const handleClick = type => {
 		dispatch(type);
 		reset();
@@ -90,7 +90,6 @@ export default function DiscoverBanner() {
 				/>
 			</div>
 			<BannerButtons handleClick={handleClick} />
-
 			{screenWidth > 768 && (
 				<DiscoverBannerItemCards
 					cardsPosition={cardsPosition}

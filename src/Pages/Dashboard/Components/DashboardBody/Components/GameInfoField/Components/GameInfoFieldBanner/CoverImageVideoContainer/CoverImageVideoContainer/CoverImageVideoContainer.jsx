@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import useIsTouchAble from '../../../../../../../../../../Hooks/useIsTouchable';
-import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer';
@@ -41,7 +40,6 @@ function CoverImageVideoContainer({
 	const btnRef = useRef(null);
 	const isTouchAble = useIsTouchAble();
 	const touchAble = isTouchAble();
-	const screenWidth = useScreenWidth();
 
 	useEffect(() => {
 		if (errorChange && errorMessage) {
@@ -143,7 +141,6 @@ function CoverImageVideoContainer({
 					containerRef={containerRef}
 					file={mainValueRef.current?.image.file}
 					previewBtnRef={previewBtnRef}
-					screenWidth={screenWidth}
 				/>
 			) : null}
 

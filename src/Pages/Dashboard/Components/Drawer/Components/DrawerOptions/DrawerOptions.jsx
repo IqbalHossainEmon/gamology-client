@@ -4,7 +4,7 @@ import RotateArrow from '../../../../../../Shared/RotateArrow/RotateArrow';
 import styles from './DrawerOptions.module.css';
 
 function DrawerOptions({ option, parentState }) {
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const [show, setShow] = useState({ show: false, height: NaN });
 	const containerRef = useRef(null);
 

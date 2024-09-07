@@ -1,11 +1,11 @@
 import Card from '../../../../../../../../../../../Shared/Card/Card';
 import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
-import useDashboardModalHook from '../../../../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesBody.module.css';
 
 function AllGamesBody({ items }) {
-	const { setDashboardContent, setDashboardModal } = useDashboardModalHook();
+	const { setDashboardContent, setDashboardModal } = useDashboardModal();
 
 	return (
 		<div className={styles.allGamesBody}>

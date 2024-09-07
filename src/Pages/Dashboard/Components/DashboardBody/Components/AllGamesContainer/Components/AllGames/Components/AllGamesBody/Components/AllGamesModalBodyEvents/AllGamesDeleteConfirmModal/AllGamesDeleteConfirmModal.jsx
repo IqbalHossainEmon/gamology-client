@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
+import useToast from '../../../../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
-import useDashboardModalHook from '../../../../../../../../useDashboardModalHook/useDashboardModalHook';
+import useDashboardModal from '../../../../../../../../useDashboardModal/useDashboardModal';
 import styles from './AllGamesDeleteConfirmModal.module.css';
 
 function AllGamesDeleteConfirmModal() {
@@ -13,14 +14,23 @@ function AllGamesDeleteConfirmModal() {
 
 	const btnRef = useRef(null);
 
-	const { setDashboardModal } = useDashboardModalHook();
+	const { setDashboardModal } = useDashboardModal();
+
+	const { setToast } = useToast();
+
 	const handleDelete = () => {
 		if (
 			confirmText.current === 'DELETE' ||
 			confirmText.current === 'delete' ||
 			confirmText.current === 'Delete'
 		) {
-			console.log('Deleted');
+			// API call to delete game
+			setToast({
+				toastTitle: 'Game Deleted',
+				toastMessage: 'Game has been deleted successfully',
+				type: 'success',
+			});
+
 			setDashboardModal(false);
 		} else {
 			setError(prev => ({

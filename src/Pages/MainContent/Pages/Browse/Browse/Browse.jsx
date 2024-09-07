@@ -254,7 +254,7 @@ const items = [
 
 function Browse() {
 	const { initialState, reducer } = useBrowseLogics();
-	const screenWidth = useScreenWidth();
+	const { screenWidth } = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	useEffect(() => {
@@ -272,7 +272,6 @@ function Browse() {
 				/>
 				<GameCards dispatch={dispatch} state={state} />
 			</div>
-
 			{screenWidth < 769 && <MobileSortAndFilterButton />}
 		</section>
 	);
