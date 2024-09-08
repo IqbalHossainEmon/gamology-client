@@ -7,8 +7,8 @@ const withToast = Component =>
 		const [toasts, setToasts] = useState([
 			{
 				id: 0,
-				toastTitle: 'Hello',
-				toastMessage: 'This is a toast msg',
+				toastTitle: 'Successful',
+				toastMessage: 'User Deleted Successfully',
 				type: 'success',
 			},
 			{ id: 1, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'error' },

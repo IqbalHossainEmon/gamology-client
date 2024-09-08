@@ -77,6 +77,7 @@ export default [
 			'no-param-reassign': 'off',
 			'no-plusplus': 'off',
 			'no-nested-ternary': 'off',
+			'consistent-return': 'off',
 		},
 	},
 ];

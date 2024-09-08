@@ -1,9 +1,10 @@
 .toast {
-	display: flex;
-	justify-content: space-between;
+	display: inline-flex;
+	width: max-content;
+	max-width: 100%;
 	align-items: center;
 	color: #fff;
-	padding: 1rem;
+	padding: 1rem 1.5rem 1rem 1rem;
 	background-color: #2f2f2f;
 	border-radius: 4px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -30,11 +31,19 @@
 	background-image: linear-gradient(125deg, rgba(0, 153, 204, 0.25), rgba(0, 153, 204, 0) 50%);
 }
 
-.zoomIn {
+.icon {
+	height: 2rem;
+	width: 2rem;
 }
 
-.icon {
-	margin-right: 16px;
+.content {
+	margin-left: 1.5rem;
+}
+
+.title {
+	font-size: 1.25rem;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
 }
 
 .crossBtn {
@@ -62,7 +71,11 @@
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
-	transition: background-color 200ms;
+	transition: background-color 100ms;
+}
+.crossBtn:active .cross::after,
+.crossBtn:active .cross::before {
+	transition: background-color 0ms;
 }
 .cross::after {
 	rotate: 45deg;

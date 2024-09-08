@@ -1,7 +1,4 @@
-import styles from './ToastBody.module.css';
-
-// svg icons
-const icons = {
+export default {
 	success: (
 		<svg
 			fill='#007e33'
@@ -9,8 +6,8 @@ const icons = {
 			viewBox='0 0 52 52'
 			enableBackground='new 0 0 52 52'
 			xmlSpace='preserve'
-			width={24}
-			height={24}
+			width='2rem'
+			height='2rem'
 		>
 			<g strokeWidth='0' />
 			<g strokeLinecap='round' strokeLinejoin='round' />
@@ -22,8 +19,8 @@ const icons = {
 	error: (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
+			width='2rem'
+			height='2rem'
 			viewBox='0 0 1200 1200'
 			fill='#cc0000'
 			stroke='#cc0000'
@@ -36,8 +33,8 @@ const icons = {
 	),
 	info: (
 		<svg
-			width='24'
-			height='24'
+			width='2rem'
+			height='2rem'
 			viewBox='0 0 24.00 24.00'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
@@ -62,8 +59,8 @@ const icons = {
 			viewBox='0 0 24 24'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
-			width={24}
-			height={24}
+			width='2rem'
+			height='2rem'
 		>
 			<g strokeWidth='0' />
 			<g strokeLinecap='round' strokeLinejoin='round' />
@@ -93,23 +90,3 @@ const icons = {
 		</svg>
 	),
 };
-
-function ToastBody({ fadeIn, handleHide, data }) {
-	console.log(data);
-
-	const { toastTitle, toastMessage, type } = data;
-	return (
-		<li className={`${fadeIn ? `${styles.zoomIn} ` : ''} ${styles.toast} ${styles[type]}`}>
-			<div className={styles.icon}>{icons[type]}</div>
-			<div className={styles.content}>
-				<h3>{toastTitle}</h3>
-				<p>{toastMessage}</p>
-			</div>
-			<button className={styles.crossBtn} onClick={handleHide} type='button'>
-				<span className={styles.cross} />
-			</button>
-		</li>
-	);
-}
-
-export default ToastBody;
