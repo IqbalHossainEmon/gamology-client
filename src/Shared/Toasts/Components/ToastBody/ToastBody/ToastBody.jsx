@@ -3,7 +3,7 @@ import toastIcon from '../Components/toastIcon/toastIcon';
 import ToastTimer from '../Components/ToastTimer/ToastTimer';
 import styles from './ToastBody.module.css';
 
-function ToastBody({ fadeIn, handleHide, data }) {
+function ToastBody({ fadeIn: show, handleHide, data }) {
 	const [isHover, setIsHover] = useState(false);
 
 	const eventRefs = useRef(null);
@@ -30,7 +30,7 @@ function ToastBody({ fadeIn, handleHide, data }) {
 		<li
 			onMouseMove={eventRefs.current.onMouseMove}
 			onMouseLeave={eventRefs.current.onMouseLeave}
-			className={`${fadeIn ? `${styles.zoomIn} ` : ''} ${styles.toast} ${styles[type]}`}
+			className={`${show ? `${styles.show} ` : ''} ${styles.toast} ${styles[type]}`}
 		>
 			<div className={styles.icon}>{toastIcon[type]}</div>
 			<div className={styles.content}>
