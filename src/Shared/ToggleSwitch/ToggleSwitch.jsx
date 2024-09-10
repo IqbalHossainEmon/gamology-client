@@ -19,6 +19,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 
 	const roundRef = useRef(null);
 	const positionsRef = useRef(0);
+	const startPositionRef = useRef(0);
 	const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
 
 	useEffect(() => {
@@ -42,7 +43,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 				document.removeEventListener('mouseup', event);
 
 				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
-				const newPosition = positionsRef.start + move;
+				const newPosition = startPositionRef.current + move;
 
 				if (move > 0) {
 					if (newPosition > rangePathWidth) {
@@ -58,7 +59,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 			},
 			handleStart: e => {
 				positionsRef.current = e.touches ? e.touches[0].clientX : e.clientX;
-				positionsRef.start = stateRef.current;
+				startPositionRef.current = stateRef.current;
 			},
 			handleSetValue: () => {
 				// If switch is below 50

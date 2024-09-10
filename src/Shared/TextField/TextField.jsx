@@ -44,8 +44,6 @@ export default function TextField({
 			},
 			handleFocus: () => {
 				setFocused(true);
-				console.log(errorShow);
-
 				if (errorShowRef.current) {
 					setErrorShow(false);
 				}

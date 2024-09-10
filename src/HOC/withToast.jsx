@@ -4,17 +4,12 @@ import Toasts from '../Shared/Toasts/Toasts/Toasts';
 
 const withToast = Component =>
 	function InnerComponent(props) {
-		const [toasts, setToasts] = useState([
-			{
-				id: 0,
-				toastTitle: 'Successful',
-				toastMessage: 'User Deleted Successfully',
-				type: 'success',
-			},
-			{ id: 1, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'error' },
-			{ id: 2, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'warning' },
-			{ id: 3, toastTitle: 'Hello', toastMessage: 'This is a toast msg', type: 'info' },
-		]);
+		const [toasts, setToasts] = useState([]);
+
+		const toastsRef = useRef(toasts);
+		toastsRef.current = toasts;
+
+		const toastIdRef = useRef(7);
 
 		const eventRefs = useRef(null);
 
@@ -23,7 +18,9 @@ const withToast = Component =>
 				hideToastAnimation: id => {
 					setToasts(prevState => {
 						const newState = [...prevState];
-						newState[id].fadeOut = true;
+						console.log(id);
+
+						newState[newState.findIndex(toast => toast.id === id)].fadeOut = true;
 						setTimeout(() => {
 							setToasts(prev => prev.filter(toast => toast.id !== id));
 						}, 500);
@@ -34,23 +31,27 @@ const withToast = Component =>
 					if (id) {
 						eventRefs.current.hideToastAnimation(id);
 					} else {
-						eventRefs.current.hideToastAnimation(toasts.length);
+						eventRefs.current.hideToastAnimation(toastsRef.current[0].id);
 					}
 				},
 				handleSetToast: toast => {
 					if (typeof toast === 'object') {
-						if (!toast.toastTitle || toast.toastMessage || toast.type) {
+						if (!toast.toastTitle || !toast.toastMessage || !toast.type) {
 							return;
 						}
 					} else {
 						return;
 					}
-					let id;
+
 					setToasts(prevState => {
-						id = prevState.length;
-						return [...prevState, { ...toast, id: prevState.length }];
+						toastIdRef.current++;
+
+						if (toastsRef.current.length > 5) {
+							eventRefs.current.hideToastAnimation(toastsRef.current[0].id);
+						}
+						return [...prevState, { ...toast, id: toastIdRef.current }];
 					});
-					return id;
+					return toastIdRef.current;
 				},
 			};
 		}
