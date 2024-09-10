@@ -20,12 +20,37 @@ const withToast = Component =>
 
 		if (!eventRefs.current) {
 			eventRefs.current = {
+				hideToastAnimation: id => {
+					setToasts(prevState => {
+						const newState = [...prevState];
+						newState[id].fadeOut = true;
+						setTimeout(() => {
+							setToasts(prev => prev.filter(toast => toast.id !== id));
+						}, 500);
+						return newState;
+					});
+				},
 				handleHideToast: id => {
-					setToasts(prevState => prevState.filter(toast => toast.id !== id));
+					if (id) {
+						eventRefs.current.hideToastAnimation(id);
+					} else {
+						eventRefs.current.hideToastAnimation(toasts.length);
+					}
 				},
 				handleSetToast: toast => {
-					setToasts(prevState => [...prevState, { ...toast, id: prevState.length }]);
-					return toast.id;
+					if (typeof toast === 'object') {
+						if (!toast.toastTitle || toast.toastMessage || toast.type) {
+							return;
+						}
+					} else {
+						return;
+					}
+					let id;
+					setToasts(prevState => {
+						id = prevState.length;
+						return [...prevState, { ...toast, id: prevState.length }];
+					});
+					return id;
 				},
 			};
 		}

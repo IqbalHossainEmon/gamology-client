@@ -3,10 +3,10 @@ import styles from './Toasts.module.css';
 
 function Toasts({ toasts }) {
 	return (
-		toasts.length && (
+		toasts.length > 0 && (
 			<ul className={styles.toastContainer}>
 				{toasts.map(toast => (
-					<Toast key={toast.id} data={toast} show />
+					<Toast key={toast.id} fadeOut={toast.fadeOut} data={toast} show />
 				))}
 			</ul>
 		)

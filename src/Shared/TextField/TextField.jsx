@@ -23,6 +23,8 @@ export default function TextField({
 	const fieldRef = useRef(null);
 	const containerRef = useRef(null);
 	const eventRefs = useRef(null);
+	const errorShowRef = useRef(errorShow);
+	errorShowRef.current = errorShow;
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -42,7 +44,9 @@ export default function TextField({
 			},
 			handleFocus: () => {
 				setFocused(true);
-				if (errorShow) {
+				console.log(errorShow);
+
+				if (errorShowRef.current) {
 					setErrorShow(false);
 				}
 				if (onFocusClick) {

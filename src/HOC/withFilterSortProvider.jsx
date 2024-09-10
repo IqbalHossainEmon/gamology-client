@@ -14,8 +14,9 @@ const withFilterSortProvider = Component =>
 			filter: true,
 			sort: true,
 		});
-		const filterSortRef = useRef();
-		const filterSortStateRef = useRef(filterSortRef);
+		const filterSortElementRef = useRef();
+
+		const filterSortStateRef = useRef(filterSortState);
 		filterSortStateRef.current = filterSortState;
 
 		const screenWidth = useScreenWidth();
@@ -58,7 +59,7 @@ const withFilterSortProvider = Component =>
 						});
 						break;
 					case 'sort':
-						setElement(filterSortRef.sort);
+						setElement(filterSortElementRef.sort);
 						showMenu();
 						setFilterSortState(prev => {
 							if (prev.sort && screenWidth < 769) {
@@ -77,7 +78,7 @@ const withFilterSortProvider = Component =>
 		return (
 			<FilterSortContext.Provider value={filterSortState}>
 				<SetFilterSortContext.Provider value={eventRefs.current.setFilterSort}>
-					<FilterSortRefContext.Provider value={filterSortRef}>
+					<FilterSortRefContext.Provider value={filterSortElementRef}>
 						<Component />
 					</FilterSortRefContext.Provider>
 				</SetFilterSortContext.Provider>

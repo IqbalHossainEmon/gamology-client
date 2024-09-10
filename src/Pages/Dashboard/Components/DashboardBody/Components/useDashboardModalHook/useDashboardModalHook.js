@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import {
 	SetContentDashboardModalContext,
 	SetDashboardModalContext,
-} from '../../../../../../Contexts/DashboardModalContext';
+} from '../Contexts/DashboardModalContext';
 
 export default () => ({
 	setDashboardContent: useContext(SetContentDashboardModalContext),
