@@ -2,8 +2,10 @@ import { useState } from 'react';
 import useAnimationFrame from '../../../../../../Hooks/useAnimationFrame';
 import styles from './ToastTimer.module.css';
 
-function ToastTimer({ type, isPaused, duration = 5000 }) {
+function ToastTimer({ type, isPaused, id, duration = 5000 }) {
 	const [scaleX, setScaleX] = useState(100);
+
+	console.log(scaleX);
 
 	useAnimationFrame(
 		progress => setScaleX(100 - Math.min(progress * 100, 100)),

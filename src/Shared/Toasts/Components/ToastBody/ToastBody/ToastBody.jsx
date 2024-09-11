@@ -40,7 +40,7 @@ function ToastBody({ fadeIn: show, handleHide, data }) {
 			<button className={styles.crossBtn} onClick={handleHide} type='button'>
 				<span className={styles.cross} />
 			</button>
-			<ToastTimer type={type} isPaused={isHover} duration={6000} />
+			<ToastTimer type={type} id={data.id} isPaused={isHover} duration={6000} />
 		</li>
 	);
 }

@@ -18,7 +18,6 @@ const withToast = Component =>
 				hideToastAnimation: id => {
 					setToasts(prevState => {
 						const newState = [...prevState];
-						console.log(id);
 
 						newState[newState.findIndex(toast => toast.id === id)].fadeOut = true;
 						setTimeout(() => {
@@ -46,8 +45,10 @@ const withToast = Component =>
 					setToasts(prevState => {
 						toastIdRef.current++;
 
-						if (toastsRef.current.length > 5) {
-							eventRefs.current.hideToastAnimation(toastsRef.current[0].id);
+						if (toastsRef.current.length > 3) {
+							for (let i = 0; i < toastsRef.current.length - 3; i++) {
+								eventRefs.current.hideToastAnimation(toastsRef.current[i].id);
+							}
 						}
 						return [...prevState, { ...toast, id: toastIdRef.current }];
 					});
