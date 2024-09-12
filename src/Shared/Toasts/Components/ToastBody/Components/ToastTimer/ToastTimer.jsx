@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAnimationFrame from '../../../../../../Hooks/useAnimationFrame';
 import styles from './ToastTimer.module.css';
 
-function ToastTimer({ type, isPaused, id, duration = 5000 }) {
+function ToastTimer({ type, isPaused, handleHide, duration = 5000 }) {
 	const [scaleX, setScaleX] = useState(100);
+	const eventRef = useRef(null);
 
-	console.log(scaleX);
+	useEffect(() => {
+		if (scaleX === 0) {
+			handleHide();
+		}
+	}, [scaleX, handleHide]);
 
-	useAnimationFrame(
-		progress => setScaleX(100 - Math.min(progress * 100, 100)),
-		duration,
-		isPaused
-	);
+	if (!eventRef.current) {
+		eventRef.current = progress => setScaleX(100 - Math.min(progress * 100, 100));
+	}
+
+	useAnimationFrame(eventRef.current, duration, isPaused);
 
 	return (
 		<div
