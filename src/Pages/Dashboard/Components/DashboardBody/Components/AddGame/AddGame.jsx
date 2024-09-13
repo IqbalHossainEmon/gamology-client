@@ -3,7 +3,7 @@ import styles from './AddGame.module.css';
 
 function AddGame() {
 	const handleGameInfo = data => {
-		// console.log(data);
+		console.log(data);
 	};
 
 	return (

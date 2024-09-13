@@ -20,8 +20,8 @@ function CoverImageContainer({
 	if (!eventRef.current) {
 		eventRef.current = {
 			handleSelect: e => {
-				setFocused(false);
 				if (e.target.files) {
+					setFocused(false);
 					let select;
 					if (e.target.files[0]) {
 						const { name: fileName } = e.target.files[0] || {};
@@ -36,11 +36,14 @@ function CoverImageContainer({
 					mainValue.name = selectName;
 					mainValue.file = file;
 
-					const object = {
-						type: 'FormData',
-						file: e.target.files[0],
-					};
+					let object;
 
+					if (file) {
+						object = {
+							type: 'FormData',
+							file: e.target.files[0],
+						};
+					}
 					handleSetValues(object, name);
 				}
 			},
@@ -55,7 +58,7 @@ function CoverImageContainer({
 		const input = inputRef.current;
 		const { handleCancel } = eventRef.current;
 
-		inputRef.current.addEventListener('cancel', handleCancel);
+		input.addEventListener('cancel', handleCancel);
 
 		return () => {
 			input.removeEventListener('cancel', handleCancel);

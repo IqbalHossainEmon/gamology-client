@@ -91,9 +91,11 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 
 	const handleSubmit = e => {
 		e.preventDefault();
+
+		console.log(gameData.current);
+
 		if (checkValidation()) {
 			setErrorChange(prev => ++prev);
-			console.log(errorMessages);
 			return;
 		}
 		const cleanData = handleUnnecessaryRemove();

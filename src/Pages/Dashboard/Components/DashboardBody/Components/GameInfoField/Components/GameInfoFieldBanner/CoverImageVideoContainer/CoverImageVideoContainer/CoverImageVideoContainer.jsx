@@ -64,7 +64,7 @@ function CoverImageVideoContainer({
 						<label
 							className={`${
 								errorShow
-									? `${styles.errorColor} `
+									? `${styles.errorColor} ${mainValueRef.current.image ? styles.textFilled : ''} `
 									: focused
 										? `${styles.focused} `
 										: (type === 'image' &&

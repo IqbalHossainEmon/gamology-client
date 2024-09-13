@@ -48,16 +48,20 @@ function FileUploadButton({
 			},
 			handleSelect: e => {
 				setActive(false);
+
 				if (e.target.files) {
 					if (e.target.files[0]) {
 						const { name: fileName } = e.target.files[0] || {};
+
 						const object = {
 							type: 'FormData',
 							file: e.target.files[0],
 						};
+
 						setState(object, name);
 						setSelected({ selected: true, name: fileName, file: e.target.files[0] });
 					} else {
+						setState(undefined, name);
 						setSelected({ selected: false, name: 'name' });
 					}
 				}
