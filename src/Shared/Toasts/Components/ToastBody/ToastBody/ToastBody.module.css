@@ -4,7 +4,7 @@
 	max-width: 100%;
 	align-items: center;
 	color: #fff;
-	padding: 1rem 1.5rem 1rem 1rem;
+	padding: 1rem 2rem 1rem 1rem;
 	background-color: #2f2f2f;
 	border-radius: 4px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,9 +49,13 @@
 }
 
 .title {
-	font-size: 1.25rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 	margin-bottom: 0.5rem;
+}
+
+.message {
+	font-size: 1rem;
 }
 
 .crossBtn {

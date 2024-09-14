@@ -10,11 +10,8 @@ export default function GameInfoFieldDetails({
 	defaultGameInfo,
 }) {
 	const handleSetValue = (value, name) => {
-		if (value.type === 'FormData' && !value.file) {
-			delete gameInfo.current.gameInfo[name];
-		} else {
-			gameInfo.current.gameInfo[name] = value;
-		}
+		gameInfo.current.gameInfo[name] = value;
+		console.log(gameInfo.current.gameInfo);
 	};
 
 	return (

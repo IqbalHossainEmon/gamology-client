@@ -91,26 +91,28 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 
 	const handleSubmit = e => {
 		e.preventDefault();
-
-		console.log(gameData.current);
-
 		if (checkValidation()) {
-			setErrorChange(prev => ++prev);
+			errorMessages.current.previousOuterErrorMessage =
+				errorMessages.current.outerErrorMessage;
+			setErrorChange(prev => prev + 1);
 			return;
 		}
+		if (errorMessages.current.previousOuterErrorMessage) {
+			errorMessages.current.previousOuterErrorMessage = '';
+			setErrorChange(prev => prev + 1);
+		}
 		const cleanData = handleUnnecessaryRemove();
-
 		const errorMessage = handleGameInfo(cleanData);
 		errorMessages.current.outerErrorMessage = errorMessage;
 		if (errorMessages.current.outerErrorMessage !== errorMessages.current.isThereError) {
-			setErrorChange(prev => ++prev);
+			setErrorChange(prev => prev + 1);
 		}
 		errorMessages.current.isThereError = errorMessage;
 	};
 
 	useEffect(() => {
 		const categories = ['Genre', 'Features'];
-		if (hasDefault && Object.keys(defaultData).length) {
+		if (defaultData && hasDefault && Object.keys(defaultData).length) {
 			const defaultGameData = JSON.parse(JSON.stringify(defaultData));
 			const specList = defaultGameData.gameSpecifications.spec.map(spec => spec.for);
 			const defSpec = {
@@ -150,7 +152,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 				}
 				return { ...acc, ...obj };
 			}, {});
-		} else {
+		} else if (!gameData.current.gameTags[categories[0]]) {
 			gameData.current.gameTags = categories.reduce((acc, category) => {
 				const obj = {};
 				obj[category] = {};

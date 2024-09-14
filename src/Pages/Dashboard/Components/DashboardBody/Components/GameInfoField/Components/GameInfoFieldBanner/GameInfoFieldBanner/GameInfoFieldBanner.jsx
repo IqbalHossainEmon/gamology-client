@@ -35,7 +35,7 @@ export default function GameInfoFieldBanner({
 					<ButtonForGameInfoFieldSection
 						{...(fieldCount === 15 && { disabled: true })}
 						onClick={() => {
-							setFieldCount(prev => ++prev);
+							setFieldCount(prev => prev + 1);
 							gameBanner.current.gameBanner.push({ cover: '', thumb: '', type: '' });
 						}}
 						text='Add More +'

@@ -101,7 +101,6 @@ function FileUploadButton({
 						ref={inputRef}
 						type='file'
 					/>
-
 					<button
 						ref={btnRef}
 						{...(disabled && { disabled })}

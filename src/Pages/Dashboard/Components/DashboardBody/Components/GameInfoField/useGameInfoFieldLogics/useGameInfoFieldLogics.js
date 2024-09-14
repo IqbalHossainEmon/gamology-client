@@ -261,9 +261,10 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
 				if (error) {
 					errorMessages.current.outerErrorMessage =
 						'There is some validation mistake above, Please Check.';
-				} else {
+				} else if (errorMessages.current.outerErrorMessage) {
 					errorMessages.current.outerErrorMessage = '';
 				}
+
 				return error;
 			},
 			handleUnnecessaryRemove: () => {
