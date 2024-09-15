@@ -1,12 +1,20 @@
 import { useRef } from 'react';
+import useToast from '../../../../../../../../../../../Hooks/useToast';
 import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
+
+function capitalizeFirstLetter(string) {
+	if (!string) return '';
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function TagsContainer({ tag, setTags }) {
 	const { setDashboardContent, setDashboardModal } = useDashboardModal();
 
 	const eventRefs = useRef(null);
+
+	const { setToast } = useToast();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -14,6 +22,11 @@ function TagsContainer({ tag, setTags }) {
 				console.log(tag.category, 'Category Deleted');
 				const checkTags = true;
 				if (checkTags) {
+					setToast({
+						title: 'Category Deleted',
+						message: `${capitalizeFirstLetter(tag.category)} category has been deleted.`,
+						type: 'success',
+					});
 					setTags(prevTags =>
 						prevTags.filter(prevTag => prevTag.category !== tag.category)
 					);
@@ -53,6 +66,11 @@ function TagsContainer({ tag, setTags }) {
 				// Send request to backend to delete tag than delete tag from frontend
 				const checkTags = true;
 				if (checkTags) {
+					setToast({
+						title: 'Tag Deleted',
+						message: `${capitalizeFirstLetter(data)} tag has been deleted.`,
+						type: 'success',
+					});
 					setTags(prevTags =>
 						prevTags.map(prevTag => {
 							if (prevTag.category === tag.category) {

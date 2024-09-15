@@ -11,7 +11,6 @@ export default function GameInfoFieldDetails({
 }) {
 	const handleSetValue = (value, name) => {
 		gameInfo.current.gameInfo[name] = value;
-		console.log(gameInfo.current.gameInfo);
 	};
 
 	return (
