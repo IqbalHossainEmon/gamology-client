@@ -107,6 +107,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					setState={setState}
 					list={['User', 'Admin']}
 					defaultValue='User'
+					name='role'
 				/>
 			</div>
 		</>

@@ -19,7 +19,7 @@ for (let i = 0; i < 96; i++) {
 
 function UserContainer() {
 	const [users, setUsers] = useState([]);
-	const { setDashboardContent, setDashboardModal } = useDashboardModal();
+	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
 
 	useEffect(() => {
 		setUsers(userDetail);
@@ -43,9 +43,9 @@ function UserContainer() {
 									name: 'Delete',
 									event: detail => {
 										setDashboardModal(true);
-										setDashboardContent({
-											modalTitle: 'Delete User',
-											modalBody: (
+										setDashboardModalContent({
+											title: 'Delete User',
+											body: (
 												<div>
 													<p>
 														Are you sure you want to delete{' '}
@@ -57,7 +57,7 @@ function UserContainer() {
 													<UserInfo user={user} />
 												</div>
 											),
-											modalFooter: (
+											footer: (
 												<UserModalBody
 													detail={detail}
 													type='delete'
@@ -78,9 +78,9 @@ function UserContainer() {
 									name: 'Make Admin',
 									event: detail => {
 										setDashboardModal(true);
-										setDashboardContent({
-											modalTitle: 'Make Admin',
-											modalBody: (
+										setDashboardModalContent({
+											title: 'Make Admin',
+											body: (
 												<div>
 													<p>
 														Are you sure you want to make{' '}
@@ -93,7 +93,7 @@ function UserContainer() {
 													<UserInfo user={user} />
 												</div>
 											),
-											modalFooter: (
+											footer: (
 												<UserModalBody
 													detail={detail}
 													type='makeAdmin'

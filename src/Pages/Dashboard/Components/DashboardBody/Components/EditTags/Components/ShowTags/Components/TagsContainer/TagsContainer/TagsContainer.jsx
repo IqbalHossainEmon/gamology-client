@@ -10,7 +10,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function TagsContainer({ tag, setTags }) {
-	const { setDashboardContent, setDashboardModal } = useDashboardModal();
+	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
 
 	const eventRefs = useRef(null);
 
@@ -34,16 +34,16 @@ function TagsContainer({ tag, setTags }) {
 			},
 			handleCategoryDelete: () => {
 				setDashboardModal(true);
-				setDashboardContent({
-					modalTitle: 'Delete Category',
-					modalBody: (
+				setDashboardModalContent({
+					title: 'Delete Category',
+					body: (
 						<>
 							Are you sure you want to delete{' '}
 							<strong className={styles.categoryText}>{tag.category}</strong>{' '}
 							category?
 						</>
 					),
-					modalFooter: (
+					footer: (
 						<TagOrCategoryDeleteBody
 							handleHide={() => setDashboardModal(false)}
 							handler={eventRefs.current.categoryDeleteHandler}
@@ -88,15 +88,15 @@ function TagsContainer({ tag, setTags }) {
 			},
 			handleTagDelete: (text, data) => {
 				setDashboardModal(true);
-				setDashboardContent({
-					modalTitle: 'Delete Tag',
-					modalBody: (
+				setDashboardModalContent({
+					title: 'Delete Tag',
+					body: (
 						<>
 							Are you sure you want to delete{' '}
 							<strong className={styles.categoryText}>{text}</strong> Tag?
 						</>
 					),
-					modalFooter: (
+					footer: (
 						<TagOrCategoryDeleteBody
 							handleHide={() => setDashboardModal(false)}
 							handler={() => eventRefs.current.tagDeleteHandler(data)}

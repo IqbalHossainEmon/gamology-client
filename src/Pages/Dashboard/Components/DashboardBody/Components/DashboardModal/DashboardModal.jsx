@@ -1,15 +1,15 @@
 import styles from './DashboardModal.module.css';
 
 function DashboardModal({ content }) {
-	const { modalTitle, modalBody, modalFooter } = content;
-	if (!modalTitle || !modalBody) {
+	const { title, body, footer } = content;
+	if (!title || !body) {
 		return null;
 	}
 	return (
 		<>
-			<h2 className={styles.header}>{modalTitle}</h2>
-			<div className={styles.headerQuestion}>{modalBody}</div>
-			<div>{modalFooter}</div>
+			<h2 className={styles.header}>{title}</h2>
+			<div className={styles.headerQuestion}>{body}</div>
+			<div>{footer}</div>
 		</>
 	);
 }

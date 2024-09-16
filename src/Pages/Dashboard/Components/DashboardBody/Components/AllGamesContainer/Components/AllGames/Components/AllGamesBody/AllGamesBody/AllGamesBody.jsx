@@ -5,7 +5,7 @@ import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGa
 import styles from './AllGamesBody.module.css';
 
 function AllGamesBody({ items }) {
-	const { setDashboardContent, setDashboardModal } = useDashboardModal();
+	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
 
 	return (
 		<div className={styles.allGamesBody}>
@@ -33,9 +33,9 @@ function AllGamesBody({ items }) {
 										name: 'Price',
 										event: detail => {
 											setDashboardModal(true);
-											setDashboardContent({
-												modalTitle: 'Edit Price',
-												modalBody: (
+											setDashboardModalContent({
+												title: 'Edit Price',
+												body: (
 													<h3 className={styles.priceChangeHeader}>
 														What price you want to set for
 														<span className={styles.nameContainer}>
@@ -43,7 +43,7 @@ function AllGamesBody({ items }) {
 														</span>
 													</h3>
 												),
-												modalFooter: (
+												footer: (
 													<AllGamesModalBodySelect
 														detail={detail}
 														type='price'
@@ -57,9 +57,9 @@ function AllGamesBody({ items }) {
 										name: 'Delete',
 										event: detail => {
 											setDashboardModal(true);
-											setDashboardContent({
-												modalTitle: 'Delete Game',
-												modalBody: (
+											setDashboardModalContent({
+												title: 'Delete Game',
+												body: (
 													<h3 className={styles.priceChangeHeader}>
 														Are you sure you want to delete
 														<span className={styles.nameContainer}>
@@ -68,7 +68,7 @@ function AllGamesBody({ items }) {
 														?
 													</h3>
 												),
-												modalFooter: (
+												footer: (
 													<AllGamesModalBodySelect
 														detail={detail}
 														type='delete'

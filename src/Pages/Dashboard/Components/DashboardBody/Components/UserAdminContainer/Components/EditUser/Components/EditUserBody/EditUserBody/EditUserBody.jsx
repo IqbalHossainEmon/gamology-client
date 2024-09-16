@@ -3,6 +3,7 @@ import useObjectUtilities from '../../../../../../../../../../../Hooks/useObject
 import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
+import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
 import styles from './EditUserBody.module.css';
 
@@ -22,6 +23,8 @@ function EditUserBody({ user }) {
 	const { areObjectsEqual, cloneObject } = useObjectUtilities();
 
 	const userData = useRef(cloneObject(user));
+
+	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
 
 	const eventRefs = useRef(null);
 
@@ -67,10 +70,23 @@ function EditUserBody({ user }) {
 			handleSaveChanges: () => {
 				if (eventRefs.current.handleValidation()) {
 					setErrorChange(prev => prev + 1);
+					errorMessages.current.wasOuterError = true;
 					return;
 				}
+				if (errorMessages.current.wasOuterError) {
+					setErrorChange(prev => prev + 1);
+					delete errorMessages.current.wasOuterError;
+				}
 				// Save Changes
-				console.log('Save Changes');
+				if (userData.current.role === 'Admin') {
+					setDashboardModalContent({
+						title: 'Make Admin',
+						body: `Are you sure you want to make ${userData.current.name.lastName} an admin?`,
+						footer: <button type='button'>Make Admin</button>,
+					});
+					setDashboardModal(true);
+				}
+				console.log(userData.current);
 			},
 		};
 	}

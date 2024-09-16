@@ -11,9 +11,9 @@ const withDashboardModal = Component =>
 	function InnerComponent(props) {
 		const [showModal, setShowModal] = useState(false);
 		const [content, setContent] = useState({
-			modalTitle: null,
-			modalBody: null,
-			modalFooter: null,
+			title: null,
+			body: null,
+			footer: null,
 		});
 		const hideEventRef = useRef(null);
 		const eventRef = useRef(null);

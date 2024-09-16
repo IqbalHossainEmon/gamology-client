@@ -5,6 +5,6 @@ import {
 } from '../Contexts/DashboardModalContext';
 
 export default () => ({
-	setDashboardContent: useContext(SetContentDashboardModalContext),
+	setDashboardModalContent: useContext(SetContentDashboardModalContext),
 	setDashboardModal: useContext(SetDashboardModalContext),
 });
