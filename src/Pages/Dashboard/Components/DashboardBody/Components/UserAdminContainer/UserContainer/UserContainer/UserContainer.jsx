@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
 import useDashboardModal from '../../../useDashboardModal/useDashboardModal';
-import UserCard from '../../UserCard/UserCard';
-import UserDeleteModalBody from '../Components/UserDeleteModalBody/UserDeleteModalBody';
+import UserCard from '../../Components/UserCard/UserCard';
 import UserInfo from '../Components/UserInfo/UserInfo';
+import UserModalBody from '../Components/UserModalBody/UserModalBody';
 import styles from './UserContainer.module.css';
 
 const userDetail = [];
@@ -54,14 +54,20 @@ function UserContainer() {
 														</span>
 														?
 													</p>
-
 													<UserInfo user={user} />
 												</div>
 											),
 											modalFooter: (
-												<UserDeleteModalBody
+												<UserModalBody
 													detail={detail}
 													type='delete'
+													data={user}
+													handleRemoveUser={() => {
+														const newUsers = users.filter(
+															item => item.id !== user.id
+														);
+														setUsers(newUsers);
+													}}
 												/>
 											),
 										});
@@ -88,9 +94,16 @@ function UserContainer() {
 												</div>
 											),
 											modalFooter: (
-												<UserDeleteModalBody
+												<UserModalBody
 													detail={detail}
 													type='makeAdmin'
+													data={user}
+													handleRemoveUser={() => {
+														const newUsers = users.filter(
+															item => item.id !== user.id
+														);
+														setUsers(newUsers);
+													}}
 												/>
 											),
 										});

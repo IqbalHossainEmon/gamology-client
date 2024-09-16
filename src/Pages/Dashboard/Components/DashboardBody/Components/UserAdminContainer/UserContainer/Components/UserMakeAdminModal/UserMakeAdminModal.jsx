@@ -1,22 +1,30 @@
 import { useRef, useState } from 'react';
+import useToast from '../../../../../../../../../Hooks/useToast';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserMakeAdminModal.module.css';
 
-function UserMakeAdminModal() {
+function UserMakeAdminModal({ data, handleRemove }) {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
 	});
 	const confirmText = useRef(null);
 	const { setDashboardModal } = useDashboardModal();
+
+	const { setToast } = useToast();
+
 	const handleMakeAdmin = () => {
-		if (
-			confirmText.current === 'CONFIRM' ||
-			confirmText.current === 'confirm' ||
-			confirmText.current === 'Confirm'
-		) {
+		if (confirmText.current.toUpperCase() === 'CONFIRM') {
 			setDashboardModal(false);
+
+			setToast({
+				title: 'User Made Admin',
+				message: `${data.name} has been made admin successfully`,
+				type: 'success',
+			});
+			handleRemove();
+
 			console.log('Made Admin');
 		} else {
 			setError(prev => ({

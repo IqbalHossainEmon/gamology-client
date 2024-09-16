@@ -19,11 +19,7 @@ function AllGamesDeleteConfirmModal() {
 	const { setToast } = useToast();
 
 	const handleDelete = () => {
-		if (
-			confirmText.current === 'DELETE' ||
-			confirmText.current === 'delete' ||
-			confirmText.current === 'Delete'
-		) {
+		if (confirmText.current.toUpperCase() === 'DELETE') {
 			// API call to delete game
 			setToast({
 				title: 'Game Deleted',

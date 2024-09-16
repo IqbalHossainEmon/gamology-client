@@ -18,7 +18,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					errorMessage={checkText.errorMessage}
 					field='input'
 					htmlFor='TagOrCategoryDelete'
-					placeholder={"Type 'Delete' to confirm"}
+					placeholder={"Type 'DELETE' to confirm"}
 					setState={val => {
 						checkText.current = val;
 					}}
@@ -29,12 +29,8 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					ref={btnRef}
 					className={styles.deleteBtn}
 					onClick={() => {
-						if (
-							checkText.current !== 'delete' &&
-							checkText.current !== 'Delete' &&
-							checkText.current !== 'DELETE'
-						) {
-							checkText.errorMessage = 'Please type "delete" to confirm';
+						if (checkText.current.toLowerCase() !== 'delete') {
+							checkText.errorMessage = 'Please type "DELETE" to confirm';
 							setErrorChange(prev => prev + 1);
 							return;
 						}

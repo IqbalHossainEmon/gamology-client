@@ -1,21 +1,27 @@
 import { useRef, useState } from 'react';
+import useToast from '../../../../../../../../../Hooks/useToast';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserDeleteConfirmModal.module.css';
 
-function UserDeleteConfirmModal() {
+function UserDeleteConfirmModal({ data, handleRemove }) {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
 	});
 	const confirmText = useRef(null);
 	const { setDashboardModal } = useDashboardModal();
+
+	const { setToast } = useToast();
+
 	const handleDelete = () => {
-		if (
-			confirmText.current === 'DELETE' ||
-			confirmText.current === 'delete' ||
-			confirmText.current === 'Delete'
-		) {
+		if (confirmText.current.toUpperCase() === 'DELETE') {
+			setToast({
+				title: 'User Deleted',
+				message: `${data.name} has been deleted successfully`,
+				type: 'success',
+			});
+			handleRemove();
 			console.log('Deleted');
 			setDashboardModal(false);
 		} else {
