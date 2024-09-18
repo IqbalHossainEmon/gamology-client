@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import withDashboardModal from '../Components/HOC/withDashboardModal';
-import EditUser from '../Components/UserAdminContainer/Components/EditUser/EditUser';
+import EditUser from '../Components/UserAdminContainer/Components/EditUser/EditUser/EditUser';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody({ children }) {

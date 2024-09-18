@@ -10,8 +10,8 @@ const userDetail = [];
 for (let i = 0; i < 96; i++) {
 	const user = {
 		id: i,
-		img: '/assets/images/user-1.png',
-		name: `User ${i}`,
+		profileImage: '/assets/images/user-1.png',
+		name: { firstName: 'User', lastName: `Name${i}`, middleName: 'Middle' },
 		email: `user${i}@example.com`,
 	};
 	userDetail.push(user);

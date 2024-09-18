@@ -3,17 +3,22 @@ import styles from './UserCard.module.css';
 
 function UserCard({ data, children }) {
 	const containerRef = useRef(null);
-	const { img, name, email } = data;
+	const { profileImage, name, email } = data;
+	const { firstName, lastName, middleName } = name;
 	return (
 		<div className={styles.cardContainer} ref={containerRef}>
 			<div className={styles.cardContainerImg}>
-				<img alt={name} src={img} />
+				<img
+					src={profileImage}
+					alt={`${firstName}${middleName ? ` ${middleName}` : ''} ${lastName}`}
+				/>
 			</div>
 			<div className={styles.cardContainerInfo}>
-				<h4>{name}</h4>
+				<h3>
+					{firstName} {middleName} {lastName}
+				</h3>
 				<p>{email}</p>
 			</div>
-
 			{children(containerRef)}
 		</div>
 	);
