@@ -62,7 +62,7 @@ function UserContainer() {
 													detail={detail}
 													type='delete'
 													data={user}
-													handleRemoveUser={() => {
+													handleEvent={() => {
 														const newUsers = users.filter(
 															item => item.id !== user.id
 														);
@@ -98,7 +98,7 @@ function UserContainer() {
 													detail={detail}
 													type='makeAdmin'
 													data={user}
-													handleRemoveUser={() => {
+													handleEvent={() => {
 														const newUsers = users.filter(
 															item => item.id !== user.id
 														);

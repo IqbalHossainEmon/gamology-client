@@ -4,7 +4,7 @@ import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
 import styles from './UserMakeAdminModal.module.css';
 
-function UserMakeAdminModal({ data, handleRemove }) {
+function UserMakeAdminModal({ data, handleMakeAdmin: handleEvent }) {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
 		errorMessage: '',
@@ -19,11 +19,11 @@ function UserMakeAdminModal({ data, handleRemove }) {
 			setDashboardModal(false);
 
 			setToast({
-				title: 'User Made Admin',
+				title: 'Admin Made',
 				message: `${data.name} has been made admin successfully`,
 				type: 'success',
 			});
-			handleRemove();
+			handleEvent();
 
 			console.log('Made Admin');
 		} else {

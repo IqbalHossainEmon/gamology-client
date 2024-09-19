@@ -1,9 +1,11 @@
 import { useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../../../../../Hooks/useObjectUtilities';
+import useToast from '../../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
+import UserMakeAdminModal from '../../../../../UserContainer/Components/UserMakeAdminModal/UserMakeAdminModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
 import styles from './EditUserBody.module.css';
 
@@ -25,6 +27,7 @@ function EditUserBody({ user }) {
 	const userData = useRef(cloneObject(user));
 
 	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
+	const { setToast } = useToast();
 
 	const eventRefs = useRef(null);
 
@@ -67,6 +70,17 @@ function EditUserBody({ user }) {
 				}
 				return error;
 			},
+			handleBackEndRequest: () => {
+				console.log('Request Sent');
+				const check = true;
+				if (check) {
+					setToast({
+						title: 'User Updated',
+						message: `${userData.current.name.lastName} has been updated successfully`,
+						type: 'success',
+					});
+				}
+			},
 			handleSaveChanges: () => {
 				if (eventRefs.current.handleValidation()) {
 					setErrorChange(prev => prev + 1);
@@ -81,12 +95,30 @@ function EditUserBody({ user }) {
 				if (userData.current.role === 'Admin') {
 					setDashboardModalContent({
 						title: 'Make Admin',
-						body: `Are you sure you want to make ${userData.current.name.lastName} an admin?`,
-						footer: <button type='button'>Make Admin</button>,
+						body: (
+							<p>
+								Are you sure you want to make{' '}
+								<span className={styles.boldName}>
+									{userData.current.name.lastName}
+								</span>{' '}
+								an admin?
+							</p>
+						),
+						footer: (
+							<UserMakeAdminModal
+								data={{ name: userData.current.name.lastName }}
+								handleMakeAdmin={() => {
+									console.log('Made Admin');
+
+									eventRefs.current.handleBackEndRequest();
+								}}
+							/>
+						),
 					});
 					setDashboardModal(true);
+					return;
 				}
-				console.log(userData.current);
+				eventRefs.current.handleBackEndRequest();
 			},
 		};
 	}
