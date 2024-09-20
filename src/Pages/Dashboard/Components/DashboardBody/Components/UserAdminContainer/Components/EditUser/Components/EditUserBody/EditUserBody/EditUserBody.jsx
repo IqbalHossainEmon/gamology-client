@@ -5,6 +5,7 @@ import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWat
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
+import UserDeleteConfirmModal from '../../../../../UserContainer/Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
 import UserMakeAdminModal from '../../../../../UserContainer/Components/UserMakeAdminModal/UserMakeAdminModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
 import styles from './EditUserBody.module.css';
@@ -109,7 +110,6 @@ function EditUserBody({ user }) {
 								data={{ name: userData.current.name.lastName }}
 								handleMakeAdmin={() => {
 									console.log('Made Admin');
-
 									eventRefs.current.handleBackEndRequest();
 								}}
 							/>
@@ -119,6 +119,29 @@ function EditUserBody({ user }) {
 					return;
 				}
 				eventRefs.current.handleBackEndRequest();
+			},
+			handleDelete: () => {
+				setDashboardModalContent({
+					title: 'Delete User',
+					body: (
+						<p>
+							Are you sure you want to Delete{' '}
+							<span className={styles.boldName}>
+								{userData.current.name.lastName}
+							</span>
+							&apos;s profile
+						</p>
+					),
+					footer: (
+						<UserDeleteConfirmModal
+							data={{ name: userData.current.name.lastName }}
+							handleRemove={() => {
+								console.log('delete user');
+							}}
+						/>
+					),
+				});
+				setDashboardModal(true);
 			},
 		};
 	}
@@ -152,6 +175,7 @@ function EditUserBody({ user }) {
 			/>
 			<h3 className={styles.subHeader}>Delete User</h3>
 			<button
+				onClick={eventRefs.current.handleDelete}
 				ref={deleteBtnRef}
 				type='button'
 				className={`${styles.btn} ${styles.deleteButton}`}
