@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import ProfilePhotoUploader from '../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
 import EditUserHeader from '../Components/EditUserHeader/EditUserHeader';
 import styles from './EditUser.module.css';
 
@@ -10,9 +12,27 @@ const user = {
 };
 
 function EditUser() {
+	const userData = useRef({
+		name: { firstName: '', middleName: '', lastName: '' },
+		email: '',
+		role: '',
+		profileImage: '',
+	});
+
+	const eventRefs = useRef(null);
+
+	if (eventRefs.current === null) {
+		eventRefs.current = {
+			setPhoto: photo => {
+				userData.current.profileImage = photo;
+			},
+		};
+	}
+
 	return (
 		<div className={styles.editUser}>
 			<EditUserHeader name={user.name} />
+			<ProfilePhotoUploader data={user.profileImage} setPhoto={eventRefs.current.setPhoto} />
 		</div>
 	);
 }

@@ -134,7 +134,6 @@ function FileUploadButton({
 						>
 							{selected.name}
 						</p>
-
 						{disabled || (
 							<div className={styles.uploadImage}>
 								<svg
@@ -184,10 +183,8 @@ function FileUploadButton({
 
 						<ButtonWaterEffect btnRef={btnRef} long />
 					</button>
-
 					<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 				</div>
-
 				{selected.file && touchAble ? (
 					<button className={styles.previewBtn} ref={previewBtnRef} type='button'>
 						Preview
@@ -195,8 +192,7 @@ function FileUploadButton({
 					</button>
 				) : null}
 			</div>
-
-			{selected.file ? (
+			{selected.file && /image|jpg|jpeg|png|gif/i.test(accept) ? (
 				<ImagePreviewContainer
 					btnRef={btnRef}
 					containerRef={containerRef}

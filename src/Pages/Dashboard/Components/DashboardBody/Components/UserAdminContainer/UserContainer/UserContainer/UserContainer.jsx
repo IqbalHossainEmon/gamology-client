@@ -10,7 +10,7 @@ const userDetail = [];
 for (let i = 0; i < 96; i++) {
 	const user = {
 		id: i,
-		profileImage: '/assets/images/user-1.png',
+		profileImage: '/assets/images/user-1.svg',
 		name: { firstName: 'User', lastName: `Name${i}`, middleName: 'Middle' },
 		email: `user${i}@example.com`,
 	};

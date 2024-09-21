@@ -6,17 +6,19 @@ function ImagePreview({ file, show }) {
 	const srcRef = useRef(null);
 
 	useEffect(() => {
-		if ((file && !srcRef.current) || srcRef.file !== file) {
-			if (file instanceof File) {
-				srcRef.current = URL.createObjectURL(file);
-			} else {
-				srcRef.current = file;
-			}
-			srcRef.file = file;
+		let isUrlCreated = false;
+
+		if (file instanceof File) {
+			srcRef.current.url = URL.createObjectURL(file);
+			srcRef.current.name = file.name;
+			isUrlCreated = true;
+		} else if (typeof file === 'string') {
+			srcRef.current.url = file;
+			srcRef.current.name = file.split('/').pop();
 		}
 
 		return () => {
-			if (srcRef.current) {
+			if (isUrlCreated) {
 				URL.revokeObjectURL(srcRef.current);
 				srcRef.current = null;
 			}
@@ -26,7 +28,12 @@ function ImagePreview({ file, show }) {
 	return (
 		<div className={styles.imagePreviewContainer}>
 			<div className={`${styles.imagePreview}${show ? ` ${styles.show}` : ''}`}>
-				<img alt='preview' className={styles.img} ref={imageRef} src={srcRef.current} />
+				<img
+					className={styles.img}
+					ref={imageRef}
+					src={srcRef.current}
+					alt={`preview ${srcRef.current.name}`}
+				/>
 			</div>
 		</div>
 	);

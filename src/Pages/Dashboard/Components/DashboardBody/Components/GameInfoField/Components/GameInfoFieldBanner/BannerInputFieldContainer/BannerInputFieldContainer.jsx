@@ -16,8 +16,6 @@ export default function BannerInputFieldContainer({
 		hasDefault && defaultGameBanner?.type ? defaultGameBanner.type : ''
 	);
 	const handleSetValues = (value, name) => {
-		console.log(value, name);
-
 		gameBanner.current.gameBanner[number][name] = value;
 
 		if (errorMessages[number]?.type) {

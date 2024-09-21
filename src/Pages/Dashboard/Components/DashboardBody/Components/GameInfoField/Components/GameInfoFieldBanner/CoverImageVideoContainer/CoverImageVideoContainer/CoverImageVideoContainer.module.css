@@ -45,8 +45,7 @@
 	color: rgb(173, 173, 173);
 }
 
-.focused,
-.textFilled {
+.focused {
 	width: 100%;
 	top: 0%;
 	translate: 0 5px;
