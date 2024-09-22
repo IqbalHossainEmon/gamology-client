@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useObjectUtilities from '../../../../../../../../../Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../Hooks/useToast';
 import GameInfoField from '../../../../GameInfoField/GameInfoField/GameInfoField';
 import styles from './EditGame.module.css';
@@ -315,21 +316,25 @@ function EditGame() {
 	const [AddGameDetails, setAddGameDetails] = useState({});
 	const mainDefaultData = useRef(data);
 
+	const { cloneObject } = useObjectUtilities();
+
 	useEffect(() => {
 		setTimeout(() => {
-			const defaultData = JSON.parse(JSON.stringify(data));
+			const defaultData = cloneObject(data);
 
 			defaultData.gameSpecifications.spec.forEach((spec, index) => {
 				defaultData.gameSpecifications.spec[index].isActive = true;
 			});
 			setAddGameDetails(defaultData);
 		}, 10);
-	}, []);
+	}, [cloneObject]);
 
 	const { setToast } = useToast();
 
+	const { areObjectsEqual } = useObjectUtilities();
+
 	const handleSubmit = newData => {
-		if (JSON.stringify(mainDefaultData.current) !== JSON.stringify(newData)) {
+		if (areObjectsEqual(mainDefaultData.current, newData)) {
 			console.log('Data Updated');
 
 			setToast({

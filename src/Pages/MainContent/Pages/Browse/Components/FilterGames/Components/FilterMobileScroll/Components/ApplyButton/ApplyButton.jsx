@@ -1,3 +1,4 @@
+import useObjectUtilities from '../../../../../../../../../../Hooks/useObjectUtilities';
 import styles from './ApplyButton.module.css';
 
 export default function ApplyButton({ filterState, state, dispatch, setShow }) {
@@ -9,11 +10,13 @@ export default function ApplyButton({ filterState, state, dispatch, setShow }) {
 		delete newState.price;
 	}
 
+	const { areObjectsEqual } = useObjectUtilities();
+
 	return (
 		<div className={styles.buttonContainer}>
 			<button
 				className={`${styles.applyButton} ${
-					JSON.stringify(newFilterState) !== JSON.stringify(newState)
+					areObjectsEqual(newFilterState, newState)
 						? styles.activeButton
 						: styles.disableButton
 				}`}

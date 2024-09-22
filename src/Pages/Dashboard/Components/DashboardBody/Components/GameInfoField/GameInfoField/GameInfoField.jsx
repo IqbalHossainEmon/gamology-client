@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import useObjectUtilities from '../../../../../../../Hooks/useObjectUtilities';
+import OuterErrorMessage from '../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import ButtonForGameInfoFieldSection from '../Components/ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
 import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';
 import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/GameInfoFieldDescriptions/GameInfoFieldDescriptions';
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
 import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
-import OuterErrorMessage from '../Components/OuterErrorMessage/OuterErrorMessage';
 import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
@@ -110,10 +111,12 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 		errorMessages.current.isThereError = errorMessage;
 	};
 
+	const { cloneObject } = useObjectUtilities();
+
 	useEffect(() => {
 		const categories = ['Genre', 'Features'];
 		if (defaultData && hasDefault && Object.keys(defaultData).length) {
-			const defaultGameData = JSON.parse(JSON.stringify(defaultData));
+			const defaultGameData = cloneObject(defaultData);
 			const specList = defaultGameData.gameSpecifications.spec.map(spec => spec.for);
 			const defSpec = {
 				systemReq: [
@@ -126,7 +129,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 			};
 			['Windows', 'MacOs', 'Linux'].forEach((spec, index) => {
 				if (!specList.includes(spec)) {
-					const newSpec = JSON.parse(JSON.stringify(defSpec));
+					const newSpec = cloneObject(defSpec);
 					newSpec.for = spec;
 					switch (index) {
 						case 0:
@@ -167,7 +170,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 		) {
 			setLoading(false);
 		}
-	}, [defaultData, hasDefault]);
+	}, [cloneObject, defaultData, hasDefault]);
 
 	return (
 		<div className={styles.gameInfoField}>
@@ -222,12 +225,10 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 							defaultGameSpecifications: defaultData.gameSpecifications,
 						})}
 					/>
-
 					<OuterErrorMessage
 						errorChange={errorChange}
 						errorMessage={errorMessages.current.outerErrorMessage}
 					/>
-
 					<ButtonForGameInfoFieldSection onClick={handleSubmit} text='Submit' />
 				</form>
 			)}

@@ -31,8 +31,7 @@ function SelectionFieldList({
 					<div ref={childRef}>
 						{none ? (
 							<li
-								className={styles.item}
-								{...(value === '' && { id: styles.selected })}
+								className={`${styles.item}${value === '' ? ` ${styles.selected}` : ''}`}
 							>
 								<button
 									onClick={() => {
@@ -50,8 +49,7 @@ function SelectionFieldList({
 
 						{list.map(item => (
 							<li
-								className={styles.item}
-								{...(value === item && { id: styles.selected })}
+								className={`${styles.item}${value === item ? ` ${styles.selected}` : ''}`}
 								key={item}
 							>
 								<button

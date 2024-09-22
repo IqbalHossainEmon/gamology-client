@@ -1,12 +1,15 @@
+import SelectionField from '../../../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import TextField from '../../../../../../../../../../../../Shared/TextField/TextField';
 import styles from './EditUserBodyTextFields.module.css';
 
-function EditUserBodyTextFields({ setState, user }) {
+function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) {
 	return (
 		<>
 			<h4 className={styles.subHeader}>Personal Details</h4>
 			<div className={styles.fieldContainer}>
 				<TextField
+					errorChange={errorChange}
+					errorMessage={errorMessages.name.firstName}
 					className={styles.textField}
 					placeholder='First Name'
 					field='input'
@@ -25,6 +28,8 @@ function EditUserBodyTextFields({ setState, user }) {
 					name='middleName'
 				/>
 				<TextField
+					errorChange={errorChange}
+					errorMessage={errorMessages.name.lastName}
 					className={styles.textField}
 					placeholder='Last Name'
 					field='input'
@@ -37,6 +42,8 @@ function EditUserBodyTextFields({ setState, user }) {
 			<h4 className={styles.subHeader}>Account Information</h4>
 			<div className={styles.fieldContainer}>
 				<TextField
+					errorChange={errorChange}
+					errorMessage={errorMessages.displayName}
 					className={styles.textField}
 					placeholder='Display Name'
 					field='input'
@@ -46,6 +53,8 @@ function EditUserBodyTextFields({ setState, user }) {
 					name='displayName'
 				/>
 				<TextField
+					errorChange={errorChange}
+					errorMessage={errorMessages.email}
 					className={styles.textField}
 					placeholder='Email'
 					field='input'
@@ -88,6 +97,16 @@ function EditUserBodyTextFields({ setState, user }) {
 					htmlFor='region'
 					setState={setState}
 					name='region'
+				/>
+			</div>
+			<h4 className={styles.subHeader}>Role</h4>
+			<div className={styles.roleFieldContainer}>
+				<SelectionField
+					className={styles.textField}
+					placeholder='Role'
+					setState={setState}
+					list={['User', 'Admin']}
+					defaultValue='User'
 				/>
 			</div>
 		</>

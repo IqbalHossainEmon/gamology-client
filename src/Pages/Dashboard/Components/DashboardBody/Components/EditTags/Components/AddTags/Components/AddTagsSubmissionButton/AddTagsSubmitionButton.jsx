@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import useObjectUtilities from '../../../../../../../../../../Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './AddTagsSubmissionButton.module.css';
@@ -17,6 +18,8 @@ function AddTagsSubmissionButton({
 
 	const { setToast } = useToast();
 
+	const { cloneObject, areObjectsEqual } = useObjectUtilities();
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			// LowerCase first letter of the string and remove (-) and space and make it camelCase and return it
@@ -27,7 +30,7 @@ function AddTagsSubmissionButton({
 			handleButtonClick: () => {
 				if (handleValidation()) {
 					setTags(prev => {
-						const newPrev = JSON.parse(JSON.stringify(prev));
+						const newPrev = cloneObject(prev);
 						if (tagOrCategory.current) {
 							const index = newPrev.findIndex(
 								category => category.category === addInfoRef.current.tag.category
@@ -59,7 +62,7 @@ function AddTagsSubmissionButton({
 							});
 						}
 
-						return JSON.stringify(newPrev) !== JSON.stringify(prev) ? newPrev : prev;
+						return areObjectsEqual(newPrev, prev) ? newPrev : prev;
 					});
 					addInfoRef.current = {};
 					setTagOrCategory(null);

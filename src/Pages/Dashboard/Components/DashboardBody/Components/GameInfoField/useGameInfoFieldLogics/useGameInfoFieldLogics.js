@@ -1,9 +1,12 @@
 import { useRef } from 'react';
+import useObjectUtilities from '../../../../../../../Hooks/useObjectUtilities';
 
 const systemReqMustArr = ['CPU', 'Memory', 'GPU', 'Storage'];
 
 export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
 	const eventRefs = useRef(null);
+
+	const { cloneObject } = useObjectUtilities();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -268,7 +271,7 @@ export default function useGameInfoFieldLogics({ gameData, errorMessages }) {
 				return error;
 			},
 			handleUnnecessaryRemove: () => {
-				const cleanData = JSON.parse(JSON.stringify(gameData.current));
+				const cleanData = cloneObject(gameData.current);
 				cleanData.gameSpecifications.spec = cleanData.gameSpecifications.spec.filter(
 					spec => spec.isActive
 				);

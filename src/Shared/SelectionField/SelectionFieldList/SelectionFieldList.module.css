@@ -48,9 +48,11 @@
 	border: none;
 	font-size: 1rem;
 	text-align: center;
-	transition: color 200ms;
+	transition:
+		color 200ms,
+		opacity 0ms 300ms;
 }
-.item button:hover button {
+.item:hover button {
 	color: rgb(196, 196, 196);
 }
 .item button:hover::after {
@@ -67,11 +69,14 @@
 	bottom: 0;
 	transition: background-color 200ms;
 }
-#selected,
-#selected button {
+
+.selected button {
 	opacity: 0.5;
 	cursor: default;
 	pointer-events: none;
+}
+.selected:hover button {
+	color: rgb(140, 140, 140);
 }
 .noDataItem {
 	width: 100%;
