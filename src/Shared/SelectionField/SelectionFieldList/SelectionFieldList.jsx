@@ -15,7 +15,7 @@ function SelectionFieldList({
 	value,
 	none,
 }) {
-	const { show, fadeIn } = useAppearDisappear(state);
+	const [show, fadeIn] = useAppearDisappear(state);
 	return (
 		show && (
 			<ul

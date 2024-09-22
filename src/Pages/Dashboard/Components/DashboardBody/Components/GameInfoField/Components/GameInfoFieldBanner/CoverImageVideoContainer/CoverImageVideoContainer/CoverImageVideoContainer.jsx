@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useIsTouchAble from '../../../../../../../../../../Hooks/useIsTouchable';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer';
 import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';

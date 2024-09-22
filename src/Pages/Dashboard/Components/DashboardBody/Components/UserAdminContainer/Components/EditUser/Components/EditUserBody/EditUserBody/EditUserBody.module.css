@@ -1,0 +1,32 @@
+.editUserBody {
+	margin: 3rem 0;
+}
+
+.btn {
+	margin: 2rem 0;
+	border: none;
+	background-color: rgb(38, 38, 226);
+	color: white;
+	padding: 1rem 2rem;
+	border-radius: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 200ms;
+	position: relative;
+}
+.saveButton {
+	background-color: rgb(38, 38, 226);
+}
+
+.deleteButton {
+	background-color: rgb(226, 38, 38);
+}
+
+.saveButton:hover {
+	background-color: rgb(54, 54, 231);
+}
+
+.subHeader {
+	font-size: 1.5rem;
+	font-weight: 500;
+}

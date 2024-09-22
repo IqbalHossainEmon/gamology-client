@@ -11,7 +11,7 @@ function VideoPlayerToggleSwitch({
 	timerId,
 	mouseUpEvent,
 }) {
-	const { show, fadeIn } = useAppearDisappear(state);
+	const [show, fadeIn] = useAppearDisappear(state);
 
 	const eventRef = useRef(null);
 

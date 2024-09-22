@@ -2,7 +2,7 @@ import useAppearDisappear from '../../../../../../../../../../../Hooks/useAppear
 import IndiGameWriteReview from '../Components/IndiGameWriteReview/IndiGameWriteReview/IndiGameWriteReview';
 
 function IndiGameWriteReviewContainer({ state, ...rest }) {
-	const { show, fadeIn } = useAppearDisappear(state);
+	const [show, fadeIn] = useAppearDisappear(state);
 
 	return show && <IndiGameWriteReview fadeHeight={fadeIn} {...rest} />;
 }

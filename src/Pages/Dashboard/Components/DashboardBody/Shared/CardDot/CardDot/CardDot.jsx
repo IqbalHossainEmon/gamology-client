@@ -30,7 +30,7 @@ function CardDot({ parentRef, ...rest }) {
 	}
 	const isTouchAble = useIsTouchAble();
 	const { screenWidth } = useScreenWidth();
-	const { show, fadeIn } = useAppearDisappear(dotShow);
+	const [show, fadeIn] = useAppearDisappear(dotShow);
 
 	useEffect(() => {
 		const parent = parentRef.current;

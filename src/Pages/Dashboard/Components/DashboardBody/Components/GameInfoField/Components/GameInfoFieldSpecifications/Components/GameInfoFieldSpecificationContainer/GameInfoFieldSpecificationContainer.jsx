@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import GameInfoFieldSpecification from '../GameInfoFieldSpecification/GameInfoFieldSpecification';
 import styles from './GameInfoFieldSpecificationContainer.module.css';
 

@@ -13,7 +13,7 @@ function ImagePreviewContainer({ containerRef, btnRef, previewBtnRef, ...rest })
 	const { screenWidth } = useScreenWidth();
 
 	const isTouchAble = useIsTouchAble();
-	const { show, fadeIn } = useAppearDisappear(showPreview);
+	const [show, fadeIn] = useAppearDisappear(showPreview);
 	const { showMenu, stopMenu, setElement } = useDropDownHide(setShowPreview);
 	const timerId = useRef(null);
 	const eventRefs = useRef(null);

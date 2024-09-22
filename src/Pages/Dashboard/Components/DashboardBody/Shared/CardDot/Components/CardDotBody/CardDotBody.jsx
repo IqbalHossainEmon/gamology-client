@@ -39,7 +39,7 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 		};
 	}
 
-	const { show, fadeIn: childFadeIn } = useAppearDisappear(listShow);
+	const [show, childFadeIn] = useAppearDisappear(listShow);
 
 	useEffect(() => {
 		setElement(elementRef.current);

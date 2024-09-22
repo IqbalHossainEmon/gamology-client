@@ -4,7 +4,7 @@ import DiscoverBannerItemCardShadow from '../DiscoverBannerItemCardShadow/Discov
 import styles from './CardNameContainer.module.css';
 
 function CardNameContainer({ state, name, isPause }) {
-	const { show, fadeIn } = useAppearDisappear(state, true);
+	const [show, fadeIn] = useAppearDisappear(state, true);
 	const timerId = useRef(null);
 	const [showShadow, setShowShadow] = useState(false);
 

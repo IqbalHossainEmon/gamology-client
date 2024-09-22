@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import SelectionField from '../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField';
 import styles from './SelectionFieldTextField.module.css';

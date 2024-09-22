@@ -3,7 +3,7 @@ import IndiGameOrderByList from '../IndiGameOrderByList/IndiGameOrderByList';
 import styles from './IndiGameOrderByListContainer.module.css';
 
 function IndiGameOrderByListContainer({ state, listRef, ...rest }) {
-	const { show, fadeIn } = useAppearDisappear(state);
+	const [show, fadeIn] = useAppearDisappear(state);
 	return (
 		show && (
 			<ul

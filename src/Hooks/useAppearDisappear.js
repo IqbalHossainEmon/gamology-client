@@ -73,5 +73,5 @@ export default function useAppearDisappear(state, isAppear, condition = true) {
 		}
 	}, [state, condition, isAppear]);
 
-	return { show, fadeIn };
+	return [show, fadeIn];
 }

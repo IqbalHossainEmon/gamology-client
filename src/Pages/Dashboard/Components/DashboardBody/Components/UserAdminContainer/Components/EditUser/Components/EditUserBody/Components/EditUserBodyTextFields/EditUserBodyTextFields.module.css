@@ -1,0 +1,20 @@
+.fieldContainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.subHeader {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
+.addressTextField {
+	flex: 1 1 calc(50% - 1rem);
+}
+
+.textField {
+	flex: 1 1 calc(33.33333% - 1rem);
+}

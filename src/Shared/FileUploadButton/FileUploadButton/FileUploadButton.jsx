@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useIsTouchAble from '../../../Hooks/useIsTouchable';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../ImagePreviewContainer/ImagePreviewContainer';
 import styles from './FileUploadButton.module.css';
 

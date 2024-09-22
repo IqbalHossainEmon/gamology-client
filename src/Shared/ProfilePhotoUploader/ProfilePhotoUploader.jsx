@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useToast from '../../Hooks/useToast';
 import styles from './ProfilePhotoUploader.module.css';
 
 function ProfilePhotoUploader({ data, setPhoto }) {
@@ -28,6 +29,8 @@ function ProfilePhotoUploader({ data, setPhoto }) {
 	const inputFieldRef = useRef(null);
 	const eventRefs = useRef(null);
 
+	const { setToast } = useToast();
+
 	if (eventRefs.current === null) {
 		eventRefs.current = {
 			handleClick: () => {
@@ -36,6 +39,16 @@ function ProfilePhotoUploader({ data, setPhoto }) {
 			handleFileChange: e => {
 				if (e.target.files[0]) {
 					const { name: fileName } = e.target.files[0] || {};
+
+					// reject if file is not an image
+					if (!fileName.match(/\.(jpg|jpeg|png|gif)$/)) {
+						setToast({
+							title: 'Invalid File',
+							message: 'Please select an image file',
+							type: 'error',
+						});
+						return;
+					}
 
 					setPhoto(e.target.files[0]);
 

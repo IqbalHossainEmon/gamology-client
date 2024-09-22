@@ -4,7 +4,10 @@ function EditUserHeader({ name }) {
 	const { firstName, middleName, lastName } = name;
 	return (
 		<h2 className={styles.header}>
-			Edit User: {`${firstName} ${middleName ? `${middleName} ${lastName}` : lastName}`}
+			Edit User{' '}
+			<span className={styles.name}>
+				({`${firstName} ${middleName ? `${middleName} ${lastName}` : lastName}`})
+			</span>
 		</h2>
 	);
 }

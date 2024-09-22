@@ -2,7 +2,7 @@ import useAppearDisappear from '../../Hooks/useAppearDisappear';
 import styles from './ScreenShadow.module.css';
 
 export default function ScreenShadow({ show: state, zIndex }) {
-	const { show, fadeIn } = useAppearDisappear(state, true);
+	const [show, fadeIn] = useAppearDisappear(state, true);
 
 	return (
 		show && (

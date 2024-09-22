@@ -4,7 +4,7 @@ import SortButton from '../SortButton/SortButton';
 import styles from './PcSortList.module.css';
 
 function PcSortList({ sort, state, dropDownRef, setFilterSort, handleChange }) {
-	const { show, fadeIn } = useAppearDisappear(!sort, false);
+	const [show, fadeIn] = useAppearDisappear(!sort, false);
 	return (
 		<>
 			<SortButton
