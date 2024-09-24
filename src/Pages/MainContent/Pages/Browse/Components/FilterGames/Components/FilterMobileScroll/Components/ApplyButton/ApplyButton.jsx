@@ -2,23 +2,13 @@ import useObjectUtilities from '../../../../../../../../../../Hooks/useObjectUti
 import styles from './ApplyButton.module.css';
 
 export default function ApplyButton({ filterState, state, dispatch, setShow }) {
-	const newFilterState = { ...filterState };
-	const newState = { ...state };
-
-	if (state.ShowOnlyFreeGames) {
-		delete newFilterState.price;
-		delete newState.price;
-	}
-
 	const { areObjectsEqual } = useObjectUtilities();
 
 	return (
 		<div className={styles.buttonContainer}>
 			<button
 				className={`${styles.applyButton} ${
-					areObjectsEqual(newFilterState, newState)
-						? styles.activeButton
-						: styles.disableButton
+					areObjectsEqual(filterState, state) ? styles.disableButton : styles.activeButton
 				}`}
 				onClick={() => {
 					setShow('filter');

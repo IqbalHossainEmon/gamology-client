@@ -252,7 +252,7 @@ const items = [
 	},
 ];
 
-function Browse() {
+function BrowseMain() {
 	const { initialState, reducer } = useBrowseLogics();
 	const { screenWidth } = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -276,6 +276,7 @@ function Browse() {
 		</section>
 	);
 }
-const BrowseWithFilterSort = withFilterSortProvider(memo(Browse));
 
-export default BrowseWithFilterSort;
+const Browse = withFilterSortProvider(memo(BrowseMain));
+
+export default Browse;

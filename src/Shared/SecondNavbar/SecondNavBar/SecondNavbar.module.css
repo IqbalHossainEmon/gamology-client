@@ -2,13 +2,14 @@
 	width: 100%;
 	position: sticky;
 	position: -webkit-sticky;
+	left: 0;
 	top: 0;
 	padding: 1rem 0;
 	z-index: 2;
 	background-color: #121212;
 	display: flex;
 	justify-content: center;
-	width: max-content;
+	user-select: none;
 }
 .SecondNavbar {
 	width: 75vw;
