@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../../../../../Utils/Hooks/useDropDownHide';
 import VideoPlayerToggleSwitch from '../VideoPlayerToggleSwitch/VideoPlayerToggleSwitch';
 import styles from './GearButton.module.css';
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import useDragStartStop from '../../../../../../Hooks/useDragStartStop';
-import useScreenWidth from '../../../../../../Hooks/useScreenWidth';
+import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
+import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './VideoSlider.module.css';
 
 export default function VideoSlider({

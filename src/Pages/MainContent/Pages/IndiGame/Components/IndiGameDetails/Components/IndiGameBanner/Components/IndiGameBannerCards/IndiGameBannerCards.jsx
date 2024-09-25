@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowButton';
+import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import IndiGameBannerCard from '../IndiGameBannerCard/IndiGameBannerCard';
 import styles from './IndiGameBannerCards.module.css';
 

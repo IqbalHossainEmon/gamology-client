@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import useDropDownHide from '../../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../../Utils/Hooks/useDropDownHide';
 import RotateArrow from '../../../RotateArrow/RotateArrow';
 import SecondNavLinkLists from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
 import styles from './SecondNavMobileLinks.module.css';

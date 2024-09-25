@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useIsTouchAble from '../../../Hooks/useIsTouchable';
+import useIsTouchAble from '../../../Utils/Hooks/useIsTouchable';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../ImagePreviewContainer/ImagePreviewContainer';

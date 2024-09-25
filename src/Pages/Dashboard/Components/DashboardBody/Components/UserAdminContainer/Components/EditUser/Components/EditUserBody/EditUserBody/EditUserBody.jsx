@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import useObjectUtilities from '../../../../../../../../../../../Hooks/useObjectUtilities';
-import useToast from '../../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
+import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
 import UserDeleteConfirmModal from '../../../../../UserContainer/Components/UserDeleteConfirmModal/UserDeleteConfirmModal';

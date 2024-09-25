@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import useDropDownHide from '../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
 import ScrollBar from '../../ScrollBar/ScrollBar';
 import styles from './ModalBody.module.css';
 

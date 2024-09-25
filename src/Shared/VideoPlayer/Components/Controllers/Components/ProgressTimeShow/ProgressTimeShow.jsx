@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
+import useTimeFormat from '../../../../../../Utils/Hooks/useTimeFormate';
 import styles from './ProgressTimeShow.module.css';
 
 export default function ProgressTimeShow({ video, progress }) {

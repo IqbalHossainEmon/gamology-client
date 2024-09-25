@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useAnimationFrame from '../../../../../../Hooks/useAnimationFrame';
+import useAnimationFrame from '../../../../../../Utils/Hooks/useAnimationFrame';
 import styles from './ToastTimer.module.css';
 
 function ToastTimer({ type, isPaused, handleHide, duration = 5000 }) {

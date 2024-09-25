@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import CloseButton from '../../Shared/CloseButton/CloseButton';
 import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
 

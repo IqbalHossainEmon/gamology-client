@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useAppearDisappear from '../../../../../../../../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../../../../../../../../Utils/Hooks/useAppearDisappear';
 import DiscoverBannerItemCardShadow from '../DiscoverBannerItemCardShadow/DiscoverBannerItemCardShadow';
 import styles from './CardNameContainer.module.css';
 

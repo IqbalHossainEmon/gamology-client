@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../../../../../../../Hooks/useScreenWidth';
 import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
 import RotateArrow from '../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
+import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptions.module.css';
 

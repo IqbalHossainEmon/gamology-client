@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useScreenWidth from '../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScreenShadow from '../../ScreenShadow/ScreenShadow';
 import SearchField from '../../SearchField/SearchField';
 import SecondNavLeftLinks from '../Components/SecondNavLeftLinks/SecondNavLeftLinks';

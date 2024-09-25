@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import useAppearDisappear from '../../../Hooks/useAppearDisappear';
-import useDropDownHide from '../../../Hooks/useDropDownHide';
-import useIsTouchAble from '../../../Hooks/useIsTouchable';
-import useScreenWidth from '../../../Hooks/useScreenWidth';
+import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
+import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
+import useIsTouchAble from '../../../Utils/Hooks/useIsTouchable';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ImagePreview from '../../ImagePreview/ImagePreview';
 
 function ImagePreviewContainer({ containerRef, btnRef, previewBtnRef, ...rest }) {

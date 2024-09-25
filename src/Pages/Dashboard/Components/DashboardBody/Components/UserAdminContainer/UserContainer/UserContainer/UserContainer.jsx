@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import useToast from '../../../../../../../../Hooks/useToast';
 import Pagination from '../../../../../../../../Shared/Pagination/Pagination/Pagination';
+import useToast from '../../../../../../../../Utils/Hooks/useToast';
 import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
 import useDashboardModal from '../../../useDashboardModal/useDashboardModal';
 import UserCard from '../../Components/UserCard/UserCard';

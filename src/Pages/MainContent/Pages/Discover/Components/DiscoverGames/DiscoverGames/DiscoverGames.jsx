@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from 'react';
-import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import GamesButton from '../Components/DiscoverGamesButtons/DiscoverGamesButtons';
 import DiscoverGamesCards from '../Components/DiscoverGamesCards/DiscoverGamesCards';
 import CardsHeader from '../Components/DiscoverGamesCardsHeader/DiscoverGamesCardsHeader';

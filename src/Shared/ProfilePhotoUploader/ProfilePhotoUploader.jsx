@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useToast from '../../Hooks/useToast';
+import useToast from '../../Utils/Hooks/useToast';
 import styles from './ProfilePhotoUploader.module.css';
 
 function ProfilePhotoUploader({ data, setPhoto }) {

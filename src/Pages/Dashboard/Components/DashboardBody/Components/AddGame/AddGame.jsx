@@ -1,4 +1,4 @@
-import useToast from '../../../../../../Hooks/useToast';
+import useToast from '../../../../../../Utils/Hooks/useToast';
 import GameInfoField from '../GameInfoField/GameInfoField/GameInfoField';
 import styles from './AddGame.module.css';
 

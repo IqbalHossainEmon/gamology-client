@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../../Hooks/useDropDownHide';
-import useScreenWidth from '../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
+import useDropDownHide from '../../../../../Utils/Hooks/useDropDownHide';
+import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import DrawerFooter from '../Components/DrawerFooter/DrawerFooter';
 import drawerIcon from '../Components/drawerIcon/drawerIcon';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';

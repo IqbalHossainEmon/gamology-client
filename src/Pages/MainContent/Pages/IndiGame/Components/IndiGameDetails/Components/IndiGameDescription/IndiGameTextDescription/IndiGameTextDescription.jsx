@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../../../../../Hooks/useScreenWidth';
 import RotateArrow from '../../../../../../../../../Shared/RotateArrow/RotateArrow';
+import useScreenWidth from '../../../../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './IndiGameTextDescription.module.css';
 
 export default function IndiGameTextDescription({ descriptions }) {

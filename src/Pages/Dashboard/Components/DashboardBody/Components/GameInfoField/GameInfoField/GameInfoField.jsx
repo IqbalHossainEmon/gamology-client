@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useObjectUtilities from '../../../../../../../Hooks/useObjectUtilities';
+import useObjectUtilities from '../../../../../../../Utils/Hooks/useObjectUtilities';
 import OuterErrorMessage from '../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import ButtonForGameInfoFieldSection from '../Components/ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
 import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';

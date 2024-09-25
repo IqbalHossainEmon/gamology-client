@@ -1,4 +1,4 @@
-import useAppearDisappear from '../../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../../Utils/Hooks/useAppearDisappear';
 import ToastBody from '../ToastBody/ToastBody/ToastBody';
 
 function Toast({ show: toastShow, fadeOut, ...rest }) {

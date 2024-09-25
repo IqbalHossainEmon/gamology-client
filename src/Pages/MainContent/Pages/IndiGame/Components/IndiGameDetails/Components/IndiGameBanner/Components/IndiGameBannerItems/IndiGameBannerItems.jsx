@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import useHandleDebouncing from '../../../../../../../../../../Hooks/useHandleDebouncing';
 import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowButton';
+import useHandleDebouncing from '../../../../../../../../../../Utils/Hooks/useHandleDebouncing';
 import IndiGameBannerItem from '../IndiGameBannerItem/IndiGameBannerItem';
 import styles from './IndiGameBannerItems.module.css';
 

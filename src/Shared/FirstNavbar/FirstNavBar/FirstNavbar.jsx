@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import useChangeBodyOverflow from '../../../Hooks/useChangeBodyOverflow';
-import useScreenWidth from '../../../Hooks/useScreenWidth';
+import useChangeBodyOverflow from '../../../Utils/Hooks/useChangeBodyOverflow';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import FirstNavLinks from '../Components/FirstNavLinks/FirstNavLinks';
 import MobileBurgerMenu from '../Components/MobileBurgerMenu/MobileBurgerMenu';
 import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';

@@ -1,4 +1,4 @@
-import useAppearDisappear from '../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import ModalBody from '../ModalBody/ModalBody';
 
 function Modal({ show: showModal, ...rest }) {

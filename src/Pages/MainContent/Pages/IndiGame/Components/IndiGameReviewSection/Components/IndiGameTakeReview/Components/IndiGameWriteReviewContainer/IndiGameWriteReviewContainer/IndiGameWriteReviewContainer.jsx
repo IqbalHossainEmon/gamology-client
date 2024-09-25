@@ -1,4 +1,4 @@
-import useAppearDisappear from '../../../../../../../../../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../../../../../../../../../Utils/Hooks/useAppearDisappear';
 import IndiGameWriteReview from '../Components/IndiGameWriteReview/IndiGameWriteReview/IndiGameWriteReview';
 
 function IndiGameWriteReviewContainer({ state, ...rest }) {

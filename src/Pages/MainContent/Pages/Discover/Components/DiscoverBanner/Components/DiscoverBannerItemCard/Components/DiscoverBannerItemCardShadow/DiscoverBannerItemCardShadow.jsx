@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import useAnimationFrame from '../../../../../../../../../../Hooks/useAnimationFrame';
+import useAnimationFrame from '../../../../../../../../../../Utils/Hooks/useAnimationFrame';
 import styles from './DiscoverBannerItemCardShadow.module.css';
 
 function DiscoverBannerItemCardShadow({ isPause }) {

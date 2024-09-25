@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../Hooks/useDropDownHide';
+import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
 import styles from './SearchField.module.css';
 
 export default function SearchField({ setNavShow = () => {}, setChangedValue }) {

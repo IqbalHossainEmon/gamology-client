@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import useToast from '../../../../../Hooks/useToast';
+import useToast from '../../../../../Utils/Hooks/useToast';
 import toastIcon from '../Components/toastIcon/toastIcon';
 import ToastTimer from '../Components/ToastTimer/ToastTimer';
 import styles from './ToastBody.module.css';

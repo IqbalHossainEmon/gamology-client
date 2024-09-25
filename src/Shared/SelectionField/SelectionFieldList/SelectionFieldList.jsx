@@ -1,4 +1,4 @@
-import useAppearDisappear from '../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import ScrollBar from '../../ScrollBar/ScrollBar';
 import styles from './SelectionFieldList.module.css';
 

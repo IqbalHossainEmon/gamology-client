@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import useScreenWidth from '../../../../../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
+import useScreenWidth from '../../../../../../../../../Utils/Hooks/useScreenWidth';
 import useFilterSortState from '../../../../FilterGames/Components/useFilterSortState/useFilterSortState';
 import CloseButton from '../../../../Shared/CloseButton/CloseButton';
 import PcSortList from '../Components/PcSortList/PcSortList/PcSortList';

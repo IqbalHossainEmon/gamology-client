@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useAppearDisappear from '../../../../../../../Hooks/useAppearDisappear';
-import useIsTouchAble from '../../../../../../../Hooks/useIsTouchable';
-import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
+import useAppearDisappear from '../../../../../../../Utils/Hooks/useAppearDisappear';
+import useIsTouchAble from '../../../../../../../Utils/Hooks/useIsTouchable';
+import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import CardDotBody from '../Components/CardDotBody/CardDotBody';
 
 function CardDot({ parentRef, ...rest }) {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../../../Hooks/useDropDownHide';
+import useDropDownHide from '../../../../Utils/Hooks/useDropDownHide';
 
 import FirstNavMobileNavLinks from '../FirstNavMobileNavLinks/FirstNavMobileNavLinks';
 import styles from './MobileBurgerMenu.module.css';

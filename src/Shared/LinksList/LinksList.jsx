@@ -1,4 +1,4 @@
-import useScreenWidth from '../../Hooks/useScreenWidth';
+import useScreenWidth from '../../Utils/Hooks/useScreenWidth';
 
 export default function LinksList({ styles, links, onclick, active }) {
 	const { screenWidth } = useScreenWidth();

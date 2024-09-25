@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useAppearDisappear from '../../../../../../../../Hooks/useAppearDisappear';
-import useDropDownHide from '../../../../../../../../Hooks/useDropDownHide';
-import useIsTouchAble from '../../../../../../../../Hooks/useIsTouchable';
+import useAppearDisappear from '../../../../../../../../Utils/Hooks/useAppearDisappear';
+import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide';
+import useIsTouchAble from '../../../../../../../../Utils/Hooks/useIsTouchable';
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 

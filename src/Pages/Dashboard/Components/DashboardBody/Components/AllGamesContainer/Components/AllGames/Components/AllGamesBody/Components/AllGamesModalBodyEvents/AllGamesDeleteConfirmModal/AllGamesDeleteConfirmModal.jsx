@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import useToast from '../../../../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
+import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToast';
 import useDashboardModal from '../../../../../../../../useDashboardModal/useDashboardModal';
 import styles from './AllGamesDeleteConfirmModal.module.css';
 

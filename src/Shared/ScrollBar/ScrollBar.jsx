@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useDragStartStop from '../../Hooks/useDragStartStop';
+import useDragStartStop from '../../Utils/Hooks/useDragStartStop';
 import styles from './ScrollBar.module.css';
 
 function ScrollBar({ parentRef, childRef }) {

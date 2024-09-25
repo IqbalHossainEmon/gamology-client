@@ -15,4 +15,5 @@
 
 .card {
 	flex-shrink: 0;
+	cursor: pointer;
 }

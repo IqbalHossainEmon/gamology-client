@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../../../../../../../../../Hooks/useScreenWidth';
 import LineBreak from '../../../../../../../../../../../../../Shared/LineBreak/LineBreak';
 import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
+import useScreenWidth from '../../../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn';
 import IndiGameReviewInput from '../Components/IndiGameReviewInput/IndiGameReviewInput';
 import styles from './IndiGameWriteReview.module.css';

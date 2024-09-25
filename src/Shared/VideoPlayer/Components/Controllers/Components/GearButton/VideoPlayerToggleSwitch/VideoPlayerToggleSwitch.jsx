@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import useAppearDisappear from '../../../../../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../../../../../Utils/Hooks/useAppearDisappear';
 import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
 import styles from './VideoPlayerToggleSwitch.module.css';
 

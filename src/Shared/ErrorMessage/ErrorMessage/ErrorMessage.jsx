@@ -1,4 +1,4 @@
-import useAppearDisappear from '../../../Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import ErrorMessageBody from '../ErrorMessageBody/ErrorMessageBody';
 
 function ErrorMessage({ errorMessage, enable }) {

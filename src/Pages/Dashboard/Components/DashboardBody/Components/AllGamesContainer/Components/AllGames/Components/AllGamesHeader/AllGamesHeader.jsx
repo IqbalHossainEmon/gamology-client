@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../../../../../../../../Hooks/useScreenWidth';
 import ScreenShadow from '../../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
 import SearchField from '../../../../../../../../../../Shared/SearchField/SearchField';
+import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './AllGamesHeader.module.css';
 
 function AllGamesHeader({ setSearchText }) {

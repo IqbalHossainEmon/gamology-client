@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import useTimeFormat from '../../../../../../Hooks/useTimeFormate';
+import useTimeFormat from '../../../../../../Utils/Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
 

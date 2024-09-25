@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import useDragStartStop from '../../Hooks/useDragStartStop';
-import useHandleTimerTransition from '../../Hooks/useHandleTimerTransition';
+import useDragStartStop from '../../Utils/Hooks/useDragStartStop';
+import useHandleTimerTransition from '../../Utils/Hooks/useHandleTimerTransition';
 import styles from './ToggleSwitch.module.css';
 
 const rangePathWidth = 13;

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import useObjectUtilities from '../../../../../../../../../../Hooks/useObjectUtilities';
-import useToast from '../../../../../../../../../../Hooks/useToast';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import useToast from '../../../../../../../../../../Utils/Hooks/useToast';
 import styles from './AddTagsSubmissionButton.module.css';
 
 function AddTagsSubmissionButton({

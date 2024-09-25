@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import useScreenWidth from '../../../../../../../Hooks/useScreenWidth';
+import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 
 const BANNER_COUNT = 5;
 const TIMER_INTERVAL = 9000;
