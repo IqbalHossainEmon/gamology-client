@@ -1,5 +1,5 @@
 import { memo, useEffect, useReducer } from 'react';
-import withFilterSortProvider from '../../../../../HOC/withFilterSortProvider';
+import withFilterSortProvider from '../../../../../Utils/HOC/withFilterSortProvider';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import BrowseHeader from '../Components/BrowseHeader/BrowseHeader/BrowseHeader';
 import FilterGames from '../Components/FilterGames/FilterGames/FilterGames';

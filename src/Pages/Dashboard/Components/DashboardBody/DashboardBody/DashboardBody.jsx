@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
-import withDashboardModal from '../Components/HOC/withDashboardModal';
 import UserContainer from '../Components/UserAdminContainer/UserContainer/UserContainer/UserContainer';
+import withDashboardModal from '../Components/Utils/HOC/withDashboardModal';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody({ children }) {

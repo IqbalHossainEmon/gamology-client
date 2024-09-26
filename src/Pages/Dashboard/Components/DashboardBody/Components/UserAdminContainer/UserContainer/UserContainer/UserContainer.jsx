@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import Pagination from '../../../../../../../../Shared/Pagination/Pagination/Pagination';
 import useToast from '../../../../../../../../Utils/Hooks/useToast';
 import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
-import useDashboardModal from '../../../useDashboardModal/useDashboardModal';
+import useDashboardModal from '../../../Utils/Hooks/useDashboardModal';
 import UserCard from '../../Components/UserCard/UserCard';
+import UserDeleteConfirmModal from '../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
 import UserInfo from '../Components/UserInfo/UserInfo';
-import UserModalBody from '../Components/UserModalBody/UserModalBody';
+import UserMakeAdminModal from '../Components/UserMakeAdminModal/UserMakeAdminModal';
 import styles from './UserContainer.module.css';
 
 const userDetail = [];
@@ -48,7 +49,7 @@ function UserContainer() {
 									{
 										id: 2,
 										name: 'Delete',
-										event: detail => {
+										event: () => {
 											setDashboardModal(true);
 											setDashboardModalContent({
 												title: 'Delete User',
@@ -65,11 +66,14 @@ function UserContainer() {
 													</div>
 												),
 												footer: (
-													<UserModalBody
-														detail={detail}
-														type='delete'
-														data={user}
-														handleEvent={() => {
+													<UserDeleteConfirmModal
+														handleRemove={confirmText => {
+															if (
+																confirmText.toUpperCase() !==
+																'DELETE'
+															) {
+																return true;
+															}
 															const newUsers = users.filter(
 																item => item.id !== user.id
 															);
@@ -80,6 +84,11 @@ function UserContainer() {
 																type: 'success',
 															});
 														}}
+														btnText='Delete User'
+														placeHolder={'Type "DELETE" to confirm'}
+														errorMessage={
+															"Please type 'DELETE' to confirm"
+														}
 													/>
 												),
 											});
@@ -88,7 +97,7 @@ function UserContainer() {
 									{
 										id: 3,
 										name: 'Make Admin',
-										event: detail => {
+										event: () => {
 											setDashboardModal(true);
 											setDashboardModalContent({
 												title: 'Make Admin',
@@ -106,11 +115,8 @@ function UserContainer() {
 													</div>
 												),
 												footer: (
-													<UserModalBody
-														detail={detail}
-														type='makeAdmin'
-														data={user}
-														handleEvent={() => {
+													<UserMakeAdminModal
+														handleMakeAdmin={() => {
 															const newUsers = users.filter(
 																item => item.id !== user.id
 															);

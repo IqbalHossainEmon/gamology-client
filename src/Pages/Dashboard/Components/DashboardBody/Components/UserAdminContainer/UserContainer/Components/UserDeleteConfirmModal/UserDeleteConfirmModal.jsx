@@ -1,26 +1,28 @@
 import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
-import useDashboardModal from '../../../../useDashboardModal/useDashboardModal';
+import useDashboardModal from '../../../../Utils/Hooks/useDashboardModal';
 import styles from './UserDeleteConfirmModal.module.css';
 
-function UserDeleteConfirmModal({ handleRemove, btnText = 'delete', textConfirm = 'DELETE' }) {
+function UserDeleteConfirmModal({
+	handleRemove,
+	btnText,
+	placeHolder,
+	errorMessage: childErrorMessage,
+}) {
 	const [{ errorChange, errorMessage }, setError] = useState({
 		errorChange: 0,
-		errorMessage: '',
+		errorMessage: childErrorMessage,
 	});
 	const confirmText = useRef(null);
+
 	const { setDashboardModal } = useDashboardModal();
 
 	const handleDelete = () => {
-		if (confirmText.current.toUpperCase() === textConfirm.toUpperCase()) {
-			handleRemove();
-			setDashboardModal(false);
-		} else {
-			setError(prev => ({
-				errorChange: prev.errorChange + 1,
-				errorMessage: 'Please type delete to confirm',
-			}));
+		if (handleRemove(confirmText.current)) {
+			setError(prev => ({ ...prev, errorChange: prev.errorChange + 1 }));
+			return;
 		}
+		setDashboardModal(false);
 	};
 	return (
 		<div className={styles.deleteModal}>
@@ -29,7 +31,7 @@ function UserDeleteConfirmModal({ handleRemove, btnText = 'delete', textConfirm 
 				errorChange={errorChange}
 				errorMessage={errorMessage}
 				field='input'
-				placeholder={`Type '${textConfirm}' to confirm`}
+				placeholder={placeHolder}
 				setState={val => {
 					confirmText.current = val;
 				}}

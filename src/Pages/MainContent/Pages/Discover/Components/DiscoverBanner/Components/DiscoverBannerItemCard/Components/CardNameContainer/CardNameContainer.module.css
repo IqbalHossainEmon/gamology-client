@@ -9,9 +9,10 @@
 
 .cardName {
 	position: relative;
-	background-color: rgba(0, 0, 0, 0.507);
+	background-color: rgba(0, 0, 0, 0.2);
 	height: 100%;
 	display: flex;
+	text-align: center;
 	justify-content: center;
 	align-items: center;
 	translate: -100% 0px;

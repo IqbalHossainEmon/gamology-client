@@ -4,7 +4,7 @@ import ProfilePhotoUploader from '../../../../../../../../../../../Shared/Profil
 import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
-import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
+import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
 import UserDeleteConfirmModal from '../../../../../UserContainer/Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
 import UserMakeAdminModal from '../../../../../UserContainer/Components/UserMakeAdminModal/UserMakeAdminModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
@@ -134,10 +134,16 @@ function EditUserBody({ user }) {
 					),
 					footer: (
 						<UserDeleteConfirmModal
+							btnText='Delete User'
 							data={{ name: userData.current.name.lastName }}
-							handleRemove={() => {
-								console.log('delete user');
+							handleRemove={text => {
+								if (text.toUpperCase() !== 'DELETE') {
+									return true;
+								}
+								console.log('Deleted');
 							}}
+							placeholder='Type DELETE to confirm'
+							errorMessage={"Please type 'DELETE' to confirm"}
 						/>
 					),
 				});
