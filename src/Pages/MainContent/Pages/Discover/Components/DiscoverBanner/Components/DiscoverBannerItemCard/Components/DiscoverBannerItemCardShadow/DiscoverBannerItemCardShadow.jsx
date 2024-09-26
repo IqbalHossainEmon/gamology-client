@@ -1,14 +1,13 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import useAnimationFrame from '../../../../../../../../../../Utils/Hooks/useAnimationFrame';
 import styles from './DiscoverBannerItemCardShadow.module.css';
 
-function DiscoverBannerItemCardShadow({ isPause }) {
+function DiscoverBannerItemCardShadow({ cardShadowUtils }) {
 	const [translate, setTranslate] = useState(0);
 
-	const translateRef = useRef(translate);
-	translateRef.current = translate;
+	const { isPause, dispatch } = cardShadowUtils;
 
-	useAnimationFrame(progress => setTranslate(progress * 100), 7600, isPause);
+	useAnimationFrame(progress => setTranslate(progress * 100), 8500, isPause, dispatch);
 
 	return (
 		<div className={styles.shadowContainer}>

@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerButtons';
 import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
@@ -56,17 +56,26 @@ const items = [
 ];
 
 export default function DiscoverBanner() {
-	const { reducer, initialState, reset, start, stop, activeBanner, setDispatch } =
+	const { reducer, initialState, start, stop, activeBanner, setDispatch } =
 		useDiscoverBannerLogics();
 	const [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(
 		reducer,
 		initialState
 	);
 	const { screenWidth } = useScreenWidth();
-	const handleClick = type => {
-		dispatch(type);
-		reset();
-	};
+
+	const eventRefs = useRef(null);
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleClick: type => {
+				dispatch(type);
+			},
+			handleShadowDispatch: () => {
+				dispatch({ type: 'next' });
+			},
+		};
+	}
 
 	useEffect(() => {
 		setDispatch(dispatch);
@@ -89,13 +98,13 @@ export default function DiscoverBanner() {
 					data={data}
 				/>
 			</div>
-			<BannerButtons handleClick={handleClick} />
+			<BannerButtons handleClick={eventRefs.current.handleClick} />
 			{screenWidth > 768 && (
 				<DiscoverBannerItemCards
 					cardsPosition={cardsPosition}
+					cardShadowUtils={{ dispatch: eventRefs.current.handleShadowDispatch, isPause }}
 					data={data}
-					handleClick={handleClick}
-					isPause={isPause}
+					handleClick={eventRefs.current.handleClick}
 				/>
 			)}
 		</section>

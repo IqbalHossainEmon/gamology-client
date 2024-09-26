@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function useAnimationFrame(setState, duration, isPaused) {
+export default function useAnimationFrame(setState, duration, isPaused, handleDone) {
 	const animationRef = useRef(null);
 	const startTimeRef = useRef(null);
 	const elapsedTimeRef = useRef(0);
@@ -30,6 +30,8 @@ export default function useAnimationFrame(setState, duration, isPaused) {
 
 				if (progress < 1) {
 					animationRef.current = requestAnimationFrame(eventRefs.current.animate);
+				} else if (handleDone) {
+					handleDone();
 				}
 			},
 			handleStartOrResume: () => {

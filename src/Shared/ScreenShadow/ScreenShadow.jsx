@@ -7,9 +7,8 @@ export default function ScreenShadow({ show: state, zIndex }) {
 	return (
 		show && (
 			<div
-				className={styles.shadowPage}
+				className={`${styles.shadowPage}${fadeIn ? ` ${styles.shadowShow}` : ''}`}
 				{...(zIndex && { style: { zIndex } })}
-				id={fadeIn ? styles.shadowShow : styles.shadowHide}
 			/>
 		)
 	);
