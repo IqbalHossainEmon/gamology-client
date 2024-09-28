@@ -6,6 +6,11 @@
 	gap: 1rem;
 }
 
+.userContainerHeader {
+	font-weight: 400;
+	font-size: 2rem;
+}
+
 .nameContainer {
 	font-weight: 600;
 }

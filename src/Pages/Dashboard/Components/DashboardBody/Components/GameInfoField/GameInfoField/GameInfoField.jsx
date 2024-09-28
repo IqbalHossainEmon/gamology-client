@@ -7,7 +7,7 @@ import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/G
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
 import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
-import useGameInfoFieldLogics from '../useGameInfoFieldLogics/useGameInfoFieldLogics';
+import useGameInfoFieldLogics from '../Utils/Hooks/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
 export default function GameInfoField({ handleGameInfo, hasDefault, defaultData }) {

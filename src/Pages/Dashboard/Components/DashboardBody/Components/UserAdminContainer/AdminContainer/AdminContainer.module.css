@@ -5,6 +5,10 @@
 	grid-template-columns: repeat(6, 1fr);
 	gap: 1rem;
 }
+.adminContainerHeader {
+	font-weight: 400;
+	font-size: 2rem;
+}
 
 .paginationContainer {
 	width: 100%;

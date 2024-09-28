@@ -60,6 +60,7 @@ function AdminContainer() {
 	return (
 		<>
 			<div className={styles.adminContainer}>
+				<h2 className={styles.adminContainerHeader}>Admins</h2>
 				{admins.map(admin => (
 					<UserCard admin data={admin} key={admin.id}>
 						{props => (

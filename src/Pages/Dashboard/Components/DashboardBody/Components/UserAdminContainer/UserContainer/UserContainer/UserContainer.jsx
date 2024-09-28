@@ -35,6 +35,7 @@ function UserContainer() {
 	return (
 		<>
 			<div className={styles.userContainer}>
+				<h2 className={styles.userContainerHeader}>Users</h2>
 				{users.map(user => (
 					<UserCard data={user} key={user.id}>
 						{props => (
