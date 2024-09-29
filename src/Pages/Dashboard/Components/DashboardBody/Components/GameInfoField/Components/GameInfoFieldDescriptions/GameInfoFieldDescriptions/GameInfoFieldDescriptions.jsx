@@ -15,7 +15,6 @@ function GameInfoFieldDescriptions({
 		hasDefault
 			? defaultGameDescriptions.descriptions.map((desc, index) => {
 					const item = { id: index };
-					console.log(desc);
 
 					if (desc.mainHeader) {
 						item.main = true;

@@ -23,6 +23,10 @@ function cloneObject(obj) {
 		return obj;
 	}
 
+	if (Array.isArray(obj)) {
+		return obj.map(item => cloneObject(item));
+	}
+
 	const clone = Object.create(Object.getPrototypeOf(obj));
 
 	const keys = Object.keys(obj);

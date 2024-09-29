@@ -9,12 +9,16 @@ function ImagePreview({ file, show }) {
 		let isUrlCreated = false;
 
 		if (file instanceof File) {
-			srcRef.current.url = URL.createObjectURL(file);
-			srcRef.current.name = file.name;
+			srcRef.current = {
+				url: URL.createObjectURL(file),
+				name: file.name,
+			};
 			isUrlCreated = true;
 		} else if (typeof file === 'string') {
-			srcRef.current.url = file;
-			srcRef.current.name = file.split('/').pop();
+			srcRef.current = {
+				url: file,
+				name: file.split('/').pop(),
+			};
 		}
 
 		return () => {
@@ -31,8 +35,8 @@ function ImagePreview({ file, show }) {
 				<img
 					className={styles.img}
 					ref={imageRef}
-					src={srcRef.current}
-					alt={`preview ${srcRef.current.name}`}
+					src={srcRef.current?.url}
+					alt={`preview ${srcRef.current?.name}`}
 				/>
 			</div>
 		</div>

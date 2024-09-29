@@ -111,11 +111,7 @@ export default function TextField({
 			>
 				<label
 					className={`${
-						focused
-							? `${styles.focused} `
-							: value || defaultValue
-								? `${styles.textFilled} `
-								: ''
+						focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''
 					}${styles.label}${field === 'textarea' ? ` ${styles.textareaLabel}` : ''}`}
 					{...(errorShow && { id: styles.errorColor })}
 					htmlFor={htmlFor}
