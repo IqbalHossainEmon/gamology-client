@@ -1,22 +1,14 @@
-import { useRef } from 'react';
-import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import EditGame from '../Components/AllGamesContainer/Components/EditGame/EditGame/EditGame';
 import withDashboardModal from '../Components/Utils/HOC/withDashboardModal';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody({ children }) {
-	const parentRef = useRef(null);
-	const childRef = useRef(null);
-
 	return (
-		<div className={styles.dashboardBodyScrollContainer}>
-			<div className={styles.dashboardBodyContainer} ref={parentRef}>
-				<div className={styles.dashboardBody} ref={childRef}>
-					<EditGame />
-				</div>
+		<div className={`${styles.dashboardBodyContainer} scroll-style`}>
+			<div className={styles.dashboardBody}>
+				<EditGame />
+				{children}
 			</div>
-			<ScrollBar childRef={childRef} parentRef={parentRef} />
-			{children}
 		</div>
 	);
 }

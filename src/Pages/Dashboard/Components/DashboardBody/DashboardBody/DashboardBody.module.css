@@ -1,15 +1,6 @@
-.dashboardBodyScrollContainer {
-	flex-grow: 1;
-	position: relative;
-	overflow: hidden;
-	height: 100%;
-}
 .dashboardBodyContainer {
-	height: 100%;
-	padding: 1rem 0;
 	overflow-y: scroll;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+	width: 100%;
 }
 .dashboardBody {
 	width: 75vw;
@@ -20,9 +11,6 @@
 	margin: 0 auto;
 }
 
-.dashboardBodyContainer::-webkit-scrollbar {
-	display: none;
-}
 @media only screen and (max-width: 1099px) {
 	.dashboardBodyContainer {
 		width: 100%;

@@ -334,8 +334,8 @@ function EditGame() {
 	const { areObjectsEqual } = useObjectUtilities();
 
 	const handleSubmit = newData => {
-		if (areObjectsEqual(mainDefaultData.current, newData)) {
-			console.log('Data Updated');
+		if (!areObjectsEqual(mainDefaultData.current, newData)) {
+			console.log(newData);
 
 			setToast({
 				title: 'Game Details Updated',

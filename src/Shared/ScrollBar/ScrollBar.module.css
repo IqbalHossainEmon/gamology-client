@@ -13,21 +13,25 @@
 	pointer-events: none;
 }
 .scrollThumb {
-	width: 8px;
+	width: 6px;
 	min-height: 1rem;
 	background-color: #474747;
 	position: absolute;
 	right: 0;
-	border-radius: 4px;
 	outline: 0;
 	border: 0;
 	user-select: none;
 	pointer-events: none;
 	opacity: 0;
-	transition: background-color 200ms, opacity 200ms;
+	transition:
+		background-color 200ms,
+		opacity 200ms;
 }
 .scrollThumb:hover {
-	background-color: rgb(90, 90, 90);
+	background-color: #5a5959;
+}
+.scrollThumb:active {
+	background-color: #363636;
 }
 .show {
 	opacity: 1;

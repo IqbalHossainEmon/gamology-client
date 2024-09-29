@@ -17,7 +17,7 @@ function ImagePreview({ file, show }) {
 		} else if (typeof file === 'string') {
 			srcRef.current = {
 				url: file,
-				name: file.split('/').pop(),
+				name: file.split('/').pop().split('.')[0],
 			};
 		}
 

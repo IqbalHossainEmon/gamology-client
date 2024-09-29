@@ -180,7 +180,6 @@ function FileUploadButton({
 								</svg>
 							</div>
 						)}
-
 						<ButtonWaterEffect btnRef={btnRef} long />
 					</button>
 					<ErrorMessage enable={errorShow} errorMessage={errorMessage} />

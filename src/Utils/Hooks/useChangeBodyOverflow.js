@@ -18,19 +18,19 @@ export default function useChangeBodyOverflow() {
 				touchAble.current = isTouchable();
 				if (
 					!touchAble.current &&
-					!root.current.classList.contains('margin-right-8px') &&
+					!root.current.classList.contains('margin-right-6px') &&
 					!document.body.classList.contains('overflow-y-hidden') &&
 					root.current.scrollHeight > window.innerHeight
 				) {
 					document.body.classList.add('overflow-y-hidden');
-					root.current.classList.add('margin-right-8px');
+					root.current.classList.add('margin-right-6px');
 				} else if (touchAble.current) {
 					document.body.classList.add('overflow-y-hidden');
 				}
 			},
 
 			showBodyOverflow: () => {
-				if (root.current.classList.contains('margin-right-8px')) {
+				if (root.current.classList.contains('margin-right-6px')) {
 					root.current.removeAttribute('class');
 				}
 				if (document.body.classList.contains('overflow-y-hidden')) {
