@@ -4,7 +4,7 @@ import styles from './DashboardBody.module.css';
 
 function DashboardBody({ children }) {
 	return (
-		<div className={`${styles.dashboardBodyContainer} scroll-style`}>
+		<div className={`${styles.dashboardBodyContainer} scroll-style`} id='dashboard-body'>
 			<div className={styles.dashboardBody}>
 				<EditGame />
 				{children}

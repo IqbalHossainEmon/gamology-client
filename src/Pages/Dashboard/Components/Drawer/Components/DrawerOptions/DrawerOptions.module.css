@@ -52,6 +52,7 @@
 	list-style-type: none;
 	transition: height 200ms;
 	overflow: hidden;
+	padding-left: 0.5rem;
 }
 
 .arrowButton {

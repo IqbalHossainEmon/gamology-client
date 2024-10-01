@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function useAppearDisappear(state, isAppear, condition = true) {
+export default function useAppearDisappear(state, isAppear, condition = true, duration = 200) {
 	const [show, setShow] = useState(false);
 	const [fadeIn, setFadeIn] = useState(false);
 	const startTimeRef = useRef(null);
@@ -24,7 +24,7 @@ export default function useAppearDisappear(state, isAppear, condition = true) {
 				endTimeRef.current = setTimeout(() => {
 					setShow(false);
 					endTimeRef.current = null;
-				}, 200);
+				}, duration);
 			},
 			handleShow: () => {
 				if (endTimeRef.current) {

@@ -19,6 +19,8 @@ function CoverImageVideoContainer({
 }) {
 	const [errorShow, setErrorShow] = useState(Boolean(errorMessage));
 	const [focused, setFocused] = useState(false);
+	const [loading, setLoading] = useState(false);
+
 	const mainValueRef = useRef({
 		image:
 			type === 'image'
@@ -58,7 +60,7 @@ function CoverImageVideoContainer({
 				<div
 					className={`${
 						errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''
-					}${styles.container}${type ? '' : ` ${styles.padding} `}`}
+					}${styles.container}${loading ? ` ${styles.loading}` : ''}${type ? '' : ` ${styles.padding} `}`}
 				>
 					{type ? (
 						<label
@@ -137,13 +139,14 @@ function CoverImageVideoContainer({
 
 			{type === 'image' && mainValueRef.current?.image.file ? (
 				<ImagePreviewContainer
+					setLoading={setLoading}
+					loading={loading}
 					btnRef={btnRef}
 					containerRef={containerRef}
 					file={mainValueRef.current?.image.file}
 					previewBtnRef={previewBtnRef}
 				/>
 			) : null}
-
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);

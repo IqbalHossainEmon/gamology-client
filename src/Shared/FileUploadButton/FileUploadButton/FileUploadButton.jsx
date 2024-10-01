@@ -28,6 +28,8 @@ function FileUploadButton({
 	});
 	const [active, setActive] = useState(false);
 	const [errorShow, setErrorShow] = useState(Boolean(errorMessage));
+	const [loading, setLoading] = useState(false);
+
 	const containerRef = useRef(null);
 	const inputRef = useRef(null);
 	const btnRef = useRef(null);
@@ -106,7 +108,7 @@ function FileUploadButton({
 						{...(disabled && { disabled })}
 						className={`${errorShow ? `${styles.errorBorder} ` : ''}${
 							styles.fileUploadButton
-						}${active ? ` ${styles.activeBorder}` : ''}`}
+						}${loading ? ` ${styles.loading}` : ''}${active ? ` ${styles.activeBorder}` : ''}`}
 						onClick={() => {
 							inputRef.current.click();
 							setActive(true);
@@ -197,6 +199,8 @@ function FileUploadButton({
 					containerRef={containerRef}
 					file={selected.file}
 					previewBtnRef={previewBtnRef}
+					setLoading={setLoading}
+					loading={loading}
 				/>
 			) : null}
 		</div>

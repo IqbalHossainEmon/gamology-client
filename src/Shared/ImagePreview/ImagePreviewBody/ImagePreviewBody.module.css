@@ -1,0 +1,40 @@
+.imagePreviewContainer {
+	position: absolute;
+	overflow: hidden;
+	z-index: 1;
+	height: auto;
+	max-height: calc(100vh - 10rem);
+	width: 100%;
+	pointer-events: none;
+	transform-origin: bottom center;
+}
+.imagePreviewContainerTop {
+	bottom: 100%;
+}
+
+.imagePreview {
+	width: 100%;
+	background-color: #18181c;
+	border-radius: 4px;
+	display: flex;
+	pointer-events: auto;
+	justify-content: center;
+	transition: translate 200ms;
+}
+
+.imagePreviewTop {
+	translate: 0 100%;
+	transform-origin: bottom center;
+}
+
+.imagePreviewBottom {
+	translate: 0 -100%;
+	transform-origin: top center;
+}
+
+.imagePreviewTop.show {
+	translate: 0 0%;
+}
+.imagePreviewBottom.show {
+	translate: 0 0%;
+}

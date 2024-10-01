@@ -57,26 +57,30 @@ body {
 		filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
 	}
 
-	.scroll-style::-webkit-scrollbar,
-	html::-webkit-scrollbar {
+	.scroll-style {
+		scrollbar-color: transparent transparent;
+		scrollbar-width: thin;
+		transition: scrollbar-color 100ms;
+	}
+
+	.scroll-style:hover {
+		scrollbar-color: #474747 transparent;
+	}
+
+	.scroll-style::-webkit-scrollbar {
 		width: 6px;
+		background-color: transparent;
 	}
 
-	.scroll-style::-webkit-scrollbar-track,
-	html::-webkit-scrollbar-track {
-		background: transparent;
+	.scroll-style::-webkit-scrollbar-thumb {
+		background-color: #47474700;
 	}
 
-	.scroll-style::-webkit-scrollbar-thumb,
-	html::-webkit-scrollbar-thumb {
-		background-color: #474747;
-	}
-	.scroll-style::-webkit-scrollbar-thumb:hover,
-	html::-webkit-scrollbar-thumb:hover {
+	.scroll-style:hover::-webkit-scrollbar-thumb {
 		background-color: #5a5959;
 	}
-	.scroll-style::-webkit-scrollbar-thumb:active,
-	html::-webkit-scrollbar-thumb:active {
+
+	.scroll-style::-webkit-scrollbar-thumb:active {
 		background-color: #363636;
 	}
 }
