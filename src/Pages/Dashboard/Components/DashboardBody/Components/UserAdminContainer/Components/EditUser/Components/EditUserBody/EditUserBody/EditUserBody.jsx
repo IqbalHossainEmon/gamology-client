@@ -5,8 +5,8 @@ import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/use
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
-import UserDeleteConfirmModal from '../../../../../UserContainer/Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
-import UserMakeAdminModal from '../../../../../UserContainer/Components/UserMakeAdminModal/UserMakeAdminModal';
+import UserMakeAdminModal from '../../../../../Users/Components/UserMakeAdminModal/UserMakeAdminModal';
+import UserDeleteConfirmModal from '../../../../UserDeleteConfirmModal/UserDeleteConfirmModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
 import styles from './EditUserBody.module.css';
 

@@ -1,14 +1,14 @@
 import Card from '../../../../../../../../../../../Shared/Card/Card';
 import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
-import useDashboardModal from '../../../../../../useDashboardModal/useDashboardModal';
+import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
-import styles from './AllGamesBody.module.css';
+import styles from './AllGamesContent.module.css';
 
-function AllGamesBody({ items }) {
+function AllGamesContent({ items }) {
 	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
 
 	return (
-		<div className={styles.allGamesBody}>
+		<div className={styles.allGamesContent}>
 			<ul className={styles.cardsContainer}>
 				{items.map(item => (
 					<Card
@@ -87,4 +87,4 @@ function AllGamesBody({ items }) {
 		</div>
 	);
 }
-export default AllGamesBody;
+export default AllGamesContent;

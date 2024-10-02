@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Pagination from '../../../../../../../../../Shared/Pagination/Pagination/Pagination';
-import AllGamesBody from '../Components/AllGamesBody/AllGamesBody/AllGamesBody';
+import AllGamesContent from '../Components/AllGamesContent/AllGamesContent/AllGamesContent';
 import AllGamesHeader from '../Components/AllGamesHeader/AllGamesHeader';
-import styles from './AllGames.module.css';
+import styles from './AllGamesLists.module.css';
 
 const data = [
 	{
@@ -294,7 +294,7 @@ const data = [
 		price: { regular: 49.99, discount: 15.99 },
 	},
 ];
-function AllGames({ setModal }) {
+function AllGamesLists({ setModal }) {
 	const [searchText, setSearchText] = useState('');
 	const [items, setItems] = useState([]);
 	const [page, setPage] = useState({ totalPage: 69, active: 1 });
@@ -312,7 +312,7 @@ function AllGames({ setModal }) {
 	return (
 		<div className={styles.allGames}>
 			<AllGamesHeader setSearchText={setSearchText} />
-			<AllGamesBody items={items} setModal={setModal} />
+			<AllGamesContent items={items} setModal={setModal} />
 			<div className={styles.paginationContainer}>
 				<Pagination
 					activePage={page.active}
@@ -323,4 +323,4 @@ function AllGames({ setModal }) {
 		</div>
 	);
 }
-export default AllGames;
+export default AllGamesLists;

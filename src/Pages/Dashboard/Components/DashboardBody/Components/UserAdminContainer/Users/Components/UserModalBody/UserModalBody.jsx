@@ -1,4 +1,4 @@
-import UserDeleteConfirmModal from '../UserDeleteConfirmModal/UserDeleteConfirmModal';
+import UserDeleteConfirmModal from '../../../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
 import UserMakeAdminModal from '../UserMakeAdminModal/UserMakeAdminModal';
 
 function UserModalBody({ type, handleEvent }) {

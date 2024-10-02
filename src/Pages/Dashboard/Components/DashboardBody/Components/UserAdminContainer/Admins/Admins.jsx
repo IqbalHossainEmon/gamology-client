@@ -4,9 +4,9 @@ import useToast from '../../../../../../../Utils/Hooks/useToast';
 import CardDot from '../../../Shared/CardDot/CardDot/CardDot';
 import useDashboardModal from '../../Utils/Hooks/useDashboardModal';
 import UserCard from '../Components/UserCard/UserCard';
-import UserDeleteConfirmModal from '../UserContainer/Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
-import UserInfo from '../UserContainer/Components/UserInfo/UserInfo';
-import styles from './AdminContainer.module.css';
+import UserDeleteConfirmModal from '../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
+import UserInfo from '../Users/Components/UserInfo/UserInfo';
+import styles from './Admins.module.css';
 
 const adminDetail = [];
 for (let i = 0; i < 96; i++) {
@@ -45,7 +45,7 @@ function ReportAdminWithIcon() {
 	);
 }
 
-function AdminContainer() {
+function Admins() {
 	const [admins, setAdmins] = useState([]);
 	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
 
@@ -59,8 +59,8 @@ function AdminContainer() {
 
 	return (
 		<>
+			<h2 className={styles.adminContainerHeader}>Admins</h2>
 			<div className={styles.adminContainer}>
-				<h2 className={styles.adminContainerHeader}>Admins</h2>
 				{admins.map(admin => (
 					<UserCard admin data={admin} key={admin.id}>
 						{props => (
@@ -178,4 +178,4 @@ function AdminContainer() {
 		</>
 	);
 }
-export default AdminContainer;
+export default Admins;

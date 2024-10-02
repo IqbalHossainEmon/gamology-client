@@ -18,7 +18,7 @@ function FileUploadButton({
 	defaultValue,
 }) {
 	const [selected, setSelected] = useState({
-		selected: Boolean(defaultValue),
+		selected: !!defaultValue,
 		name: defaultValue
 			? defaultValue instanceof File
 				? defaultValue.name
@@ -27,7 +27,7 @@ function FileUploadButton({
 		file: defaultValue || null,
 	});
 	const [active, setActive] = useState(false);
-	const [errorShow, setErrorShow] = useState(Boolean(errorMessage));
+	const [errorShow, setErrorShow] = useState(!!errorMessage);
 	const [loading, setLoading] = useState(false);
 
 	const containerRef = useRef(null);

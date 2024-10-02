@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import TextField from '../../../../../../../../../Shared/TextField/TextField';
-import useDashboardModal from '../../../../Utils/Hooks/useDashboardModal';
+import TextField from '../../../../../../../../Shared/TextField/TextField';
+import useDashboardModal from '../../../Utils/Hooks/useDashboardModal';
 import styles from './UserDeleteConfirmModal.module.css';
 
 function UserDeleteConfirmModal({

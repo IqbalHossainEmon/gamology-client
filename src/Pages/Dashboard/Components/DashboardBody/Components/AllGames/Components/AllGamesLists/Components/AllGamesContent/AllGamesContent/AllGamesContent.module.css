@@ -1,45 +1,48 @@
-.userContainer {
-	width: 100%;
-	height: 100%;
+.cardsContainer {
+	list-style: none;
 	display: grid;
+	padding: 10px 5px;
 	grid-template-columns: repeat(6, 1fr);
-	gap: 1rem;
+	gap: 3rem 1rem;
+}
+.list {
+	position: relative;
+}
+.priceChangeHeader {
+	font-weight: 500;
+}
+.list:hover .dots {
+	opacity: 1;
 }
 
-.userContainerHeader {
-	font-weight: 400;
-	font-size: 2rem;
-}
-
-.nameContainer {
-	font-weight: 600;
-}
-
-.paginationContainer {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	margin-top: 3rem;
-	margin-bottom: 3rem;
+@media only screen and (hover: none) {
+	.dots {
+		opacity: 1;
+	}
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 769px) {
-	.userContainer {
+	.cardsContainer {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
 @media only screen and (max-width: 768px) and (min-width: 553px) {
-	.userContainer {
+	.cardsContainer {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
 @media only screen and (max-width: 552px) and (min-width: 250px) {
-	.userContainer {
+	.cardsContainer {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 @media only screen and (max-width: 340px) {
-	.userContainer {
+	.cardsContainer {
 		grid-template-columns: repeat(1, 1fr);
+	}
+}
+@media only screen and (max-width: 1099px) {
+	.allGamesContent {
+		padding: 0 0.5rem;
 	}
 }

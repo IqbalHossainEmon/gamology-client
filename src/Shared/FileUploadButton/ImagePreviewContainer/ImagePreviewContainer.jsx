@@ -33,7 +33,14 @@ function ImagePreviewContainer({
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleHover: () => {
-				if (!showPreviewRef.current && !timerIdShow.current) {
+				if (timerIdHide.current) {
+					clearTimeout(timerIdHide.current);
+					timerIdHide.current = false;
+				}
+				if (!showPreviewRef.current) {
+					if (timerIdShow.current) {
+						clearTimeout(timerIdShow.current);
+					}
 					timerIdShow.current = setTimeout(() => {
 						setShowPreview(true);
 						setShow(true);
@@ -48,7 +55,8 @@ function ImagePreviewContainer({
 				if (timerIdShow.current) {
 					clearTimeout(timerIdShow.current);
 					timerIdShow.current = null;
-				} else if (showPreviewRef.current) {
+				}
+				if (showPreviewRef.current) {
 					if (timerIdHide.current) {
 						clearTimeout(timerIdHide.current);
 					}
@@ -73,6 +81,7 @@ function ImagePreviewContainer({
 			},
 		};
 	}
+
 	useEffect(() => {
 		const previewBtn = previewBtnRef?.current;
 		const container = containerRef?.current;
@@ -117,6 +126,7 @@ function ImagePreviewContainer({
 		}
 		return removeMouseEvent;
 	}, [isTouchAble, previewBtnRef, containerRef, btnRef, screenWidth, setElement]);
+
 	return (
 		showPreview && (
 			<ImagePreview
