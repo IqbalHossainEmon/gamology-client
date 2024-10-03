@@ -8,6 +8,9 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 	const prevStateRef = useRef(state);
 	const eventRefs = useRef(null);
 
+	const fadeInRef = useRef(fadeIn);
+	fadeInRef.current = fadeIn;
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleHideBtn: () => {
@@ -20,11 +23,13 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 				if (endTimeRef.current) {
 					return;
 				}
-				setFadeIn(false);
-				endTimeRef.current = setTimeout(() => {
-					setShow(false);
-					endTimeRef.current = null;
-				}, duration);
+				if (fadeInRef.current) {
+					setFadeIn(false);
+					endTimeRef.current = setTimeout(() => {
+						setShow(false);
+						endTimeRef.current = null;
+					}, duration);
+				}
 			},
 			handleShow: () => {
 				if (endTimeRef.current) {
@@ -36,11 +41,13 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 				if (startTimeRef.current) {
 					return;
 				}
-				setShow(true);
-				startTimeRef.current = setTimeout(() => {
-					setFadeIn(true);
-					startTimeRef.current = null;
-				}, 60);
+				if (!fadeInRef.current) {
+					setShow(true);
+					startTimeRef.current = setTimeout(() => {
+						setFadeIn(true);
+						startTimeRef.current = null;
+					}, 60);
+				}
 			},
 		};
 	}

@@ -18,33 +18,56 @@ function ImagePreviewContainer({
 	const showPreviewRef = useRef(showPreview);
 	showPreviewRef.current = showPreview;
 
+	const showRef = useRef(show);
+	showRef.current = show;
+
 	const { screenWidth } = useScreenWidth();
 
 	const isTouchAble = useIsTouchAble();
 
-	const { showMenu, stopMenu, setElement } = useDropDownHide(setShowPreview);
+	const eventRefs = useRef(null);
 	const timerIdShow = useRef(null);
 	const timerIdHide = useRef(null);
-	const eventRefs = useRef(null);
+
+	const imgRef = useRef(null);
+	const positionRef = useRef(null);
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleHide: () => {
+				if (timerIdHide.current) {
+					clearTimeout(timerIdHide.current);
+				}
+				setShow(false);
+				timerIdHide.current = setTimeout(() => {
+					setShowPreview(false);
+				}, 200);
+			},
+		};
+	}
+
+	const { showMenu, stopMenu, setElement } = useDropDownHide(eventRefs.current.handleHide);
 
 	const loadingRef = useRef(loading);
 	loadingRef.current = loading;
 
-	if (!eventRefs.current) {
+	if (!eventRefs.current.handleHover) {
 		eventRefs.current = {
+			...eventRefs.current,
 			handleHover: () => {
 				if (timerIdHide.current) {
 					clearTimeout(timerIdHide.current);
 					timerIdHide.current = false;
 				}
-				if (!showPreviewRef.current) {
+				if (!showPreviewRef.current || !showRef.current) {
 					if (timerIdShow.current) {
 						clearTimeout(timerIdShow.current);
 					}
 					timerIdShow.current = setTimeout(() => {
-						setShowPreview(true);
 						setShow(true);
-						if (!loadingRef.current) {
+
+						setShowPreview(true);
+						if (!loadingRef.current && !imgRef.current) {
 							setLoading(true);
 						}
 						timerIdShow.current = null;
@@ -55,29 +78,23 @@ function ImagePreviewContainer({
 				if (timerIdShow.current) {
 					clearTimeout(timerIdShow.current);
 					timerIdShow.current = null;
-				}
-				if (showPreviewRef.current) {
-					if (timerIdHide.current) {
-						clearTimeout(timerIdHide.current);
-					}
-					setShow(false);
-					timerIdHide.current = setTimeout(() => {
-						setShowPreview(false);
-					}, 200);
+				} else if (showPreviewRef.current) {
+					eventRefs.current.handleHide();
 					if (loadingRef.current) {
 						setLoading(false);
 					}
 				}
 			},
 			handleToggle: () => {
-				setShowPreview(prev => {
-					if (prev) {
-						stopMenu();
-					} else {
-						showMenu();
-					}
-					return !prev;
-				});
+				if (showPreviewRef.current) {
+					stopMenu();
+					setShow(false);
+					eventRefs.current.handleHide();
+				} else {
+					setShow(true);
+					showMenu();
+					setShowPreview(true);
+				}
 			},
 		};
 	}
@@ -96,14 +113,14 @@ function ImagePreviewContainer({
 			isMouseEventAdded = false;
 		};
 		const mouseEvent = () => {
-			container.addEventListener('mouseover', eventRefs.current.handleHover);
+			container.addEventListener('mousemove', eventRefs.current.handleHover);
 			container.addEventListener('mouseleave', eventRefs.current.handleLeave);
 			btn.addEventListener('click', eventRefs.current.handleLeave);
 			isEventAdded = true;
 			isMouseEventAdded = true;
 		};
 		const removeMouseEvent = () => {
-			container.removeEventListener('mouseover', eventRefs.current.handleHover);
+			container.removeEventListener('mousemove', eventRefs.current.handleHover);
 			container.removeEventListener('mouseleave', eventRefs.current.handleLeave);
 			btn.removeEventListener('click', eventRefs.current.handleLeave);
 			isEventAdded = false;
@@ -134,6 +151,8 @@ function ImagePreviewContainer({
 				containerRef={containerRef}
 				setLoading={setLoading}
 				isShow={show}
+				imgRef={imgRef}
+				positionRef={positionRef}
 				{...rest}
 			/>
 		)

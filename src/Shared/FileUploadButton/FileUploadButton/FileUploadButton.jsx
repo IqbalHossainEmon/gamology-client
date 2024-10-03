@@ -151,7 +151,6 @@ function FileUploadButton({
 											strokeLinejoin='round'
 											strokeWidth='4'
 										/>
-
 										<path
 											d='M31.999 13V40'
 											stroke='#426AB2'
@@ -159,7 +158,6 @@ function FileUploadButton({
 											strokeLinejoin='round'
 											strokeWidth='4'
 										/>
-
 										<path
 											d='M41 19L31.999 13L23 19'
 											stroke='#426AB2'
@@ -168,7 +166,6 @@ function FileUploadButton({
 											strokeWidth='4'
 										/>
 									</g>
-
 									<defs>
 										<clipPath id='clip0_14_1859'>
 											<rect

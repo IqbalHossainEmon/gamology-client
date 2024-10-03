@@ -3,16 +3,22 @@ import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import ImagePreviewBody from '../ImagePreviewBody/ImagePreviewBody';
 import styles from './ImagePreview.module.css';
 
-function ImagePreview({ file, isShow, containerIdName, containerRef, setLoading }) {
-	const [position, setPosition] = useState(0);
-
-	const imgRef = useRef(null);
+function ImagePreview({
+	file,
+	isShow,
+	containerIdName,
+	containerRef,
+	setLoading,
+	imgRef,
+	positionRef,
+}) {
+	const [position, setPosition] = useState(positionRef.current || 0);
 
 	const isFirstRef = useRef(true);
 
 	useEffect(() => {
 		let isUrlCreated;
-		if (isFirstRef.current) {
+		if (isFirstRef.current && !imgRef.current) {
 			isFirstRef.current = false;
 
 			const img = new Image();
@@ -36,8 +42,10 @@ function ImagePreview({ file, isShow, containerIdName, containerRef, setLoading 
 
 					if (containerRef.current.offsetTop + height > mainContainer.scrollHeight - 72) {
 						setPosition(1);
+						positionRef.current = 1;
 					} else {
 						setPosition(-1);
+						positionRef.current = -1;
 					}
 					setLoading(false);
 
@@ -50,9 +58,9 @@ function ImagePreview({ file, isShow, containerIdName, containerRef, setLoading 
 				URL.revokeObjectURL(isUrlCreated);
 			}
 		};
-	}, [containerIdName, containerRef, file, setLoading]);
+	}, [containerIdName, containerRef, file, imgRef, positionRef, setLoading]);
 
-	const [show, appear] = useAppearDisappear(position !== 0 && isShow);
+	const [show, appear] = useAppearDisappear(position !== 0 && isShow, true);
 
 	return show && <ImagePreviewBody position={position} appear={appear} img={imgRef.current} />;
 }

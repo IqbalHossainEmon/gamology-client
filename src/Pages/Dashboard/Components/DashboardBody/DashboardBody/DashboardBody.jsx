@@ -1,4 +1,4 @@
-import Admins from '../Components/UserAdminContainer/Admins/Admins';
+import EditBanner from '../Components/Events/EditBanner/EditBanner';
 import withDashboardModal from '../Components/Utils/HOC/withDashboardModal';
 import styles from './DashboardBody.module.css';
 
@@ -6,7 +6,7 @@ function DashboardBody({ children }) {
 	return (
 		<div className={`${styles.dashboardBodyContainer} scroll-style`} id='dashboard-body'>
 			<div className={styles.dashboardBody}>
-				<Admins />
+				<EditBanner />
 				{children}
 			</div>
 		</div>
