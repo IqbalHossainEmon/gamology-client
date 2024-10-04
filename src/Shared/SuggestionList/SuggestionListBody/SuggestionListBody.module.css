@@ -12,15 +12,15 @@
 	cursor: default;
 	list-style: none;
 	z-index: 1;
-	scale: 0.9;
+	translate: 1%;
 	opacity: 0;
 	transition:
 		opacity 200ms,
-		scale 200ms;
+		translate 200ms;
 }
 .fadeIn {
+	translate: 0%;
 	opacity: 1;
-	scale: 1;
 }
 .listScrollContainer {
 	position: relative;

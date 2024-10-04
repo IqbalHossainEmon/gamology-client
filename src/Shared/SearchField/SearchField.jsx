@@ -59,7 +59,7 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
 		};
 	}
 
-	const { showMenu, setElement, stopMenu } = useDropDownHide(eventRefs.current.handleClose);
+	const { showMenu, setElement, onHide } = useDropDownHide(eventRefs.current.handleClose);
 
 	if (!eventRefs.current.handleSearchClick) {
 		eventRefs.current.handleSearchClick = e => {
@@ -76,10 +76,10 @@ export default function SearchField({ setNavShow = () => {}, setChangedValue }) 
 		setElement(searchRef.current);
 		const cleanUp = eventRefs.current.handleClose;
 		return () => {
-			stopMenu();
+			onHide();
 			cleanUp(true);
 		};
-	}, [setElement, searchRef, stopMenu]);
+	}, [setElement, searchRef, onHide]);
 
 	return (
 		<button

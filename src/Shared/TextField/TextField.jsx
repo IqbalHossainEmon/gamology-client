@@ -19,7 +19,7 @@ export default function TextField({
 }) {
 	const [focused, setFocused] = useState(false);
 	const [value, setValue] = useState(defaultValue);
-	const [errorShow, setErrorShow] = useState(Boolean(errorMessage));
+	const [errorShow, setErrorShow] = useState(!!errorMessage);
 	const fieldRef = useRef(null);
 	const containerRef = useRef(null);
 	const eventRefs = useRef(null);
@@ -118,7 +118,6 @@ export default function TextField({
 				>
 					{placeholder}
 				</label>
-
 				{field === 'input' || field === 'number' ? (
 					<input
 						{...(enabled || { disabled: true, readOnly: true })}

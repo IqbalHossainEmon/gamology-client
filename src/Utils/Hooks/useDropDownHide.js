@@ -6,50 +6,41 @@ const useDropDownHide = setState => {
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
+			setElement: ele => {
+				element.current = ele;
+			},
+			showMenu: () => {
+				document.addEventListener('mousedown', eventRefs.current.closeMenu);
+				window.addEventListener('blur', eventRefs.current.stopMenu);
+			},
+			removeEvents: () => {
+				document.removeEventListener('mousedown', eventRefs.current.closeMenu);
+				window.removeEventListener('blur', eventRefs.current.stopMenu);
+			},
+			stopMenu: () => {
+				setState(false);
+				eventRefs.current.removeEvents();
+			},
 			closeMenu: e => {
 				switch (Array.isArray(element.current)) {
 					case true:
 						if (!element.current.some(ele => ele?.contains(e.target)) && e) {
-							document.removeEventListener('mousedown', eventRefs.current.closeMenu);
-							window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
-							setState(false);
+							eventRefs.current.stopMenu();
 						}
 						break;
 					default:
 						if (element.current && e && !element.current.contains(e.target)) {
-							document.removeEventListener('mousedown', eventRefs.current.closeMenu);
-							window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
-							setState(false);
+							eventRefs.current.stopMenu();
 						}
 						break;
 				}
-			},
-
-			closeMenuBlur: () => {
-				setState(false);
-				window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
-				document.removeEventListener('mousedown', eventRefs.current.closeMenu);
-			},
-
-			stopMenu: () => {
-				document.removeEventListener('mousedown', eventRefs.current.closeMenu);
-				window.removeEventListener('blur', eventRefs.current.closeMenuBlur);
-			},
-
-			setElement: ele => {
-				element.current = ele;
-			},
-
-			showMenu: () => {
-				document.addEventListener('mousedown', eventRefs.current.closeMenu);
-				window.addEventListener('blur', eventRefs.current.closeMenuBlur);
 			},
 		};
 	}
 	return {
 		showMenu: eventRefs.current.showMenu,
 		setElement: eventRefs.current.setElement,
-		stopMenu: eventRefs.current.stopMenu,
+		onHide: eventRefs.current.removeEvents,
 	};
 };
 

@@ -13,7 +13,7 @@ export default function IndiGameOrderBy({ handleSort }) {
 		{ id: 3, name: 'Most recent', link: 'most-recent', active: false },
 	]);
 	const [show, setShow] = useState(false);
-	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
+	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 
 	return (
 		<div className={styles.individualGameOrderBy}>
@@ -25,7 +25,7 @@ export default function IndiGameOrderBy({ handleSort }) {
 							showMenu();
 							setElement([btnRef.current, listRef.current]);
 						} else {
-							stopMenu();
+							onHide();
 							setElement(null);
 						}
 						return !prev;

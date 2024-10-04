@@ -9,7 +9,7 @@ function GearButton({ gearRef }) {
 	const showRef = useRef(show);
 	showRef.current = show;
 
-	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
+	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 	const timerId = useRef(null);
 
 	const eventRef = useRef(null);
@@ -24,7 +24,7 @@ function GearButton({ gearRef }) {
 				timerId.current = setTimeout(() => {
 					timerId.current = null;
 					setShow(false);
-					stopMenu();
+					onHide();
 				}, 5000);
 			},
 
@@ -61,7 +61,7 @@ function GearButton({ gearRef }) {
 				onClick={() =>
 					setShow(prev => {
 						if (prev) {
-							stopMenu();
+							onHide();
 							clearTimeout(timerId.current);
 						} else {
 							showMenu();

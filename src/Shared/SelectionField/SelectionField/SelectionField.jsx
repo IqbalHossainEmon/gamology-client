@@ -38,7 +38,7 @@ export default function SelectionField({
 	const positionRef = useRef({ height: 0, bottom: true });
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
-	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
+	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 
 	useEffect(() => {
 		if (parentSetValueRef.current) {
@@ -96,7 +96,10 @@ export default function SelectionField({
 	}, [defaultValue, screenWidth]);
 
 	return (
-		<div className={styles.container} ref={containerRef}>
+		<div
+			className={`${styles.container}${className ? ` ${className}` : ''}`}
+			ref={containerRef}
+		>
 			<button
 				type='button'
 				{...(enabled || { tabIndex: '-1' })}
@@ -107,14 +110,14 @@ export default function SelectionField({
 							parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && {
 						title: value,
 					})}
-				className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${className ? `${className} ` : ''}${styles.button}`}
+				className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${styles.button}`}
 				onClick={() => {
 					eventRefs.current.handleClick();
 					setShow(prev => {
 						if (!prev) {
 							showMenu();
 						} else {
-							stopMenu();
+							onHide();
 						}
 						return !prev;
 					});

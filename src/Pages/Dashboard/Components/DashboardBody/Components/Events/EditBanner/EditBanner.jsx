@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import FileUploadButton from '../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
+import TypeableSelectionField from '../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import styles from './EditBanner.module.css';
 
 const data = [
@@ -96,6 +97,12 @@ function EditBanner() {
 						htmlFor={`logo#${index}`}
 						defaultValue={item.logoImg}
 						accept={'image/*'}
+					/>
+					<TypeableSelectionField
+						className={styles.marginTop}
+						name={`gameName#${index}`}
+						htmlFor={`gameName#${index}`}
+						defaultValue={item.name}
 					/>
 				</div>
 			))}

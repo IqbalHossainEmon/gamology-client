@@ -25,7 +25,7 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 		};
 	}
 
-	const { setElement, stopMenu, showMenu } = useDropDownHide(eventRefs.current.handleHide);
+	const { setElement, onHide, showMenu } = useDropDownHide(eventRefs.current.handleHide);
 
 	if (!eventRefs.current.handleToggle) {
 		eventRefs.current.handleToggle = () => {
@@ -34,7 +34,7 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 				showMenu();
 			} else {
 				setListShow(false);
-				stopMenu();
+				onHide();
 			}
 		};
 	}

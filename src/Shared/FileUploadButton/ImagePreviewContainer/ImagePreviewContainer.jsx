@@ -46,7 +46,7 @@ function ImagePreviewContainer({
 		};
 	}
 
-	const { showMenu, stopMenu, setElement } = useDropDownHide(eventRefs.current.handleHide);
+	const { showMenu, onHide, setElement } = useDropDownHide(eventRefs.current.handleHide);
 
 	const loadingRef = useRef(loading);
 	loadingRef.current = loading;
@@ -87,7 +87,7 @@ function ImagePreviewContainer({
 			},
 			handleToggle: () => {
 				if (showPreviewRef.current) {
-					stopMenu();
+					onHide();
 					setShow(false);
 					eventRefs.current.handleHide();
 				} else {

@@ -7,14 +7,14 @@ function ModalBody({ children, setShow, fadeIn, hideEventRef }) {
 	const elementRef = useRef(null);
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
-	const { showMenu, setElement, stopMenu } = useDropDownHide(setShow);
+	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 	const eventRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = {
 			handleHide: () => {
 				setShow(false);
-				stopMenu();
+				onHide();
 			},
 		};
 	}
