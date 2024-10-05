@@ -86,6 +86,15 @@
 	padding: 10px 0;
 }
 
+.itemContainer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.itemContainer img {
+	width: 30px;
+}
+
 @media screen and (max-width: 768px) {
 	.item button {
 		font-size: 12px;

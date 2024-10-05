@@ -101,7 +101,7 @@ export default function TypeableSelectionField({
 					onChange={eventRefs.current.handleChange}
 					onFocus={eventRefs.current.handleFocus}
 					ref={fieldRef}
-					value={value}
+					value={typeof value === 'string' ? value : value.name}
 					{...rest}
 				/>
 			</div>
@@ -115,7 +115,7 @@ export default function TypeableSelectionField({
 					setValue(val);
 				}}
 				state={show}
-				value={value}
+				value={typeof value === 'string' ? value : value.name}
 				elementRef={elementRef}
 			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />

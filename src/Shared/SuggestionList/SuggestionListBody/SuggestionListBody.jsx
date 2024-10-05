@@ -20,7 +20,7 @@ function SuggestionListBody({
 		if (parentRef.current.clientHeight > positionRef.current.height) {
 			parentRef.current.style.height = `${positionRef.current.height}px`;
 		}
-	}, [positionRef]);
+	}, [positionRef, positionRef.current.height]);
 
 	return (
 		<ul
@@ -30,8 +30,8 @@ function SuggestionListBody({
 				<div ref={childRef}>
 					{list.map(item => (
 						<li
-							className={`${styles.item}${value === item ? ` ${styles.selected}` : ''}`}
-							key={item}
+							className={`${styles.item}${value.id === item.id ? ` ${styles.selected}` : ''}`}
+							key={item.id}
 						>
 							<button
 								tabIndex={show ? 0 : -1}
@@ -43,7 +43,10 @@ function SuggestionListBody({
 								}}
 								type='button'
 							>
-								{item}
+								<div className={styles.itemContainer}>
+									<img src={item.carouselThumb} alt={item.alt} />
+									<p>{item.editedName || item.name}</p>
+								</div>
 							</button>
 						</li>
 					))}
