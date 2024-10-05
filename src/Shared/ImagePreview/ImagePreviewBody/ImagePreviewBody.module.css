@@ -7,6 +7,7 @@
 	width: 100%;
 	pointer-events: none;
 	transform-origin: bottom center;
+	z-index: 2;
 }
 .imagePreviewContainerTop {
 	bottom: 100%;

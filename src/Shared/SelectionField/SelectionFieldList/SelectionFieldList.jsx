@@ -18,8 +18,8 @@ function SelectionFieldList({
 	const [show, fadeIn] = useAppearDisappear(state);
 	return (
 		show && (
-			<ul
-				className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
+			<div
+				className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>
 				<div
 					className={styles.listScrollContainer}
@@ -28,7 +28,7 @@ function SelectionFieldList({
 						style: { maxHeight: `${positionRef.current.height}px` },
 					})}
 				>
-					<div ref={childRef}>
+					<ul ref={childRef}>
 						{none ? (
 							<li
 								className={`${styles.item}${value === '' ? ` ${styles.selected}` : ''}`}
@@ -70,10 +70,10 @@ function SelectionFieldList({
 						{list.length === 0 && (
 							<li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>
 						)}
-					</div>
+					</ul>
 				</div>
 				<ScrollBar childRef={childRef} parentRef={parentRef} />
-			</ul>
+			</div>
 		)
 	);
 }

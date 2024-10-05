@@ -8,7 +8,6 @@ export default function TypeableSelectionField({
 	placeholder = 'Type',
 	className,
 	htmlFor,
-	list = [],
 	defaultValue = '',
 	name = '',
 	onFocusClick,
@@ -28,7 +27,6 @@ export default function TypeableSelectionField({
 	valueRef.current = value;
 	const elementRef = useRef(null);
 	const containerRef = useRef(null);
-	const positionRef = useRef({ height: 0, bottom: true });
 	const fieldRef = useRef(null);
 
 	const errorShowRef = useRef(errorShow);
@@ -101,22 +99,21 @@ export default function TypeableSelectionField({
 					onChange={eventRefs.current.handleChange}
 					onFocus={eventRefs.current.handleFocus}
 					ref={fieldRef}
-					value={value}
+					value={typeof value === 'string' ? value : value.name}
 					{...rest}
 				/>
 			</div>
 			<SuggestionList
-				list={list}
 				name={name}
-				positionRef={positionRef}
 				setShow={setShow}
 				setState={setState}
 				setValue={val => {
 					setValue(val);
 				}}
 				state={show}
-				value={value}
+				value={typeof value === 'string' ? value : value.name}
 				elementRef={elementRef}
+				link='http://localhost:5173/api/autocomplete'
 			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>

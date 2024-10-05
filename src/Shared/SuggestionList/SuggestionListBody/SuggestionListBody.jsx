@@ -12,26 +12,34 @@ function SuggestionListBody({
 	setShow,
 	show,
 	positionRef,
+	className,
+	height,
+	setSuggestionRef,
 }) {
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
 
+	const suggestionRef = useRef(null);
+
 	useEffect(() => {
-		if (parentRef.current.clientHeight > positionRef.current.height) {
-			parentRef.current.style.height = `${positionRef.current.height}px`;
-		}
-	}, [positionRef]);
+		if (setSuggestionRef) setSuggestionRef(suggestionRef.current);
+	}, [setSuggestionRef]);
 
 	return (
-		<ul
-			className={`${positionRef.current.bottom ? styles.showBottom : styles.showAbove} ${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
+		<div
+			className={`${positionRef.current.bottom ? styles.showBottom : styles.showAbove} ${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}${className ? ` ${className}` : ''}`}
+			{...(suggestionRef && { ref: suggestionRef })}
 		>
-			<div className={styles.listScrollContainer} ref={parentRef}>
-				<div ref={childRef}>
+			<div
+				className={styles.listScrollContainer}
+				ref={parentRef}
+				style={{ height: `${height}px` }}
+			>
+				<ul ref={childRef} className={styles.listContainer}>
 					{list.map(item => (
 						<li
-							className={`${styles.item}${value === item ? ` ${styles.selected}` : ''}`}
-							key={item}
+							className={`${styles.item}${value.id === item.id ? ` ${styles.selected}` : ''}`}
+							key={item.id}
 						>
 							<button
 								tabIndex={show ? 0 : -1}
@@ -43,17 +51,20 @@ function SuggestionListBody({
 								}}
 								type='button'
 							>
-								{item}
+								<div className={styles.itemContainer}>
+									<img src={item.carouselThumb} alt={item.alt} />
+									<p>{item.editedName || item.name}</p>
+								</div>
 							</button>
 						</li>
 					))}
 					{list.length === 0 && (
 						<li className={`${styles.item} ${styles.noDataItem}`}>No Match Found</li>
 					)}
-				</div>
+				</ul>
 			</div>
 			<ScrollBar childRef={childRef} parentRef={parentRef} />
-		</ul>
+		</div>
 	);
 }
 export default SuggestionListBody;
