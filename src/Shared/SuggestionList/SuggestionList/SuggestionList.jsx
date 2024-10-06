@@ -550,8 +550,6 @@ function SuggestionList({
 	const positionRef = useRef({ bottom: true, height: 0 });
 	const eventRefs = useRef(null);
 
-	const previousLength = useRef(list.length);
-
 	const valueRef = useRef(value);
 	valueRef.current = value;
 
@@ -573,13 +571,15 @@ function SuggestionList({
 						}
 					}
 					setHeight(240);
-				} else if (bottomRemain < length * 60) {
+				} else if (bottomRemain < (length || 1) * 60) {
 					if (!noPositionChange) {
 						positionRef.current.bottom = false;
 					}
 					setHeight((length || 1) * 60);
 				} else {
-					positionRef.current.bottom = true;
+					if (!noPositionChange) {
+						positionRef.current.bottom = true;
+					}
 					setHeight((length || 1) * 60);
 				}
 			},
@@ -598,10 +598,8 @@ function SuggestionList({
 					);
 				});
 
-				if (givenList.length !== previousLength.current) {
-					eventRefs.current.handleCalcPosition(givenList.length);
-					previousLength.current = givenList.length;
-				}
+				eventRefs.current.handleCalcPosition(givenList.length);
+
 				setList(givenList);
 			},
 			fetchData: () => {
@@ -622,7 +620,11 @@ function SuggestionList({
 	}
 
 	useEffect(() => {
-		handleDebouncing(eventRefs.current.fetchData);
+		if (value !== '' && value !== ' ') {
+			handleDebouncing(() => {
+				eventRefs.current.fetchData();
+			});
+		}
 	}, [handleDebouncing, value]);
 
 	return (
