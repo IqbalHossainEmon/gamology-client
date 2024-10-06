@@ -15,6 +15,7 @@ function SuggestionListBody({
 	className,
 	height,
 	setSuggestionRef,
+	loading,
 }) {
 	const parentRef = useRef(null);
 	const childRef = useRef(null);
@@ -27,7 +28,7 @@ function SuggestionListBody({
 
 	return (
 		<div
-			className={`${positionRef.current.bottom ? styles.showBottom : styles.showAbove} ${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}${className ? ` ${className}` : ''}`}
+			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}${loading ? ' loading' : ''}`}
 			{...(suggestionRef && { ref: suggestionRef })}
 		>
 			<div
@@ -35,7 +36,10 @@ function SuggestionListBody({
 				ref={parentRef}
 				style={{ height: `${height}px` }}
 			>
-				<ul ref={childRef} className={styles.listContainer}>
+				<ul
+					ref={childRef}
+					className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
+				>
 					{list.map(item => (
 						<li
 							className={`${styles.item}${value.id === item.id ? ` ${styles.selected}` : ''}`}

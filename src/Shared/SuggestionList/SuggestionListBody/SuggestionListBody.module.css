@@ -1,9 +1,3 @@
-.showBottom {
-	top: 100%;
-}
-.showAbove {
-	bottom: 100%;
-}
 .mainContainer {
 	position: absolute;
 	width: 100%;
@@ -11,16 +5,15 @@
 	background-color: rgb(37, 37, 37);
 	cursor: default;
 	z-index: 1;
-	translate: 1%;
-	opacity: 0;
-	transition:
-		opacity 200ms,
-		translate 200ms;
 }
-.fadeIn {
-	translate: 0%;
-	opacity: 1;
+
+.showBottom {
+	top: 100%;
 }
+.showAbove {
+	bottom: 100%;
+}
+
 .listScrollContainer {
 	position: relative;
 	padding: 0px 10px;
@@ -88,6 +81,23 @@
 .listContainer {
 	width: 100%;
 	list-style: none;
+	opacity: 0;
+	transition:
+		opacity 200ms,
+		translate 200ms;
+}
+
+.showBottom .listContainer {
+	translate: 0 -10px;
+}
+.showAbove .listContainer {
+	translate: 0 10px;
+}
+
+.showAbove .listContainer.fadeIn,
+.showBottom .listContainer.fadeIn {
+	translate: 0 0px;
+	opacity: 1;
 }
 
 .itemContainer {

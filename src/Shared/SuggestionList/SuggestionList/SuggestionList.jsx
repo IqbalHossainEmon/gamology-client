@@ -544,10 +544,13 @@ function SuggestionList({
 }) {
 	const [show, fadeIn] = useAppearDisappear(state);
 	const [list, setList] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	const [height, setHeight] = useState(0);
 
-	const positionRef = useRef({ bottom: true, height: 0 });
+	const positionRef = useRef(false);
+
+	const previousBottomRemain = useRef(0);
 	const eventRefs = useRef(null);
 
 	const valueRef = useRef(value);
@@ -562,26 +565,31 @@ function SuggestionList({
 			handleCalcPosition: length => {
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
+
+				if (bottomRemain >= 120) {
+					if (!noPositionChange && previousBottomRemain.current !== bottomRemain) {
+						positionRef.current = false;
+					}
+				} else if (!noPositionChange && previousBottomRemain.current !== bottomRemain) {
+					positionRef.current = true;
+				}
+				const checkRemain = parseInt(bottomRemain / 60, 10);
+
 				if (length > 4) {
-					if (!noPositionChange) {
-						if (bottomRemain < 240) {
-							positionRef.current.bottom = false;
-						} else {
-							positionRef.current.bottom = true;
-						}
+					switch (checkRemain) {
+						case 2:
+							setHeight(120);
+							break;
+						case 3:
+							setHeight(180);
+							break;
+						default:
+							setHeight(240);
 					}
-					setHeight(240);
-				} else if (bottomRemain < (length || 1) * 60) {
-					if (!noPositionChange) {
-						positionRef.current.bottom = false;
-					}
-					setHeight((length || 1) * 60);
 				} else {
-					if (!noPositionChange) {
-						positionRef.current.bottom = true;
-					}
 					setHeight((length || 1) * 60);
 				}
+				return bottomRemain;
 			},
 			handleAddStrongMatch: givenList => {
 				givenList.forEach(item => {
@@ -598,7 +606,9 @@ function SuggestionList({
 					);
 				});
 
-				eventRefs.current.handleCalcPosition(givenList.length);
+				previousBottomRemain.current = eventRefs.current.handleCalcPosition(
+					givenList.length
+				);
 
 				setList(givenList);
 			},
@@ -619,8 +629,10 @@ function SuggestionList({
 		};
 	}
 
+	const prevValueRef = useRef(value);
+
 	useEffect(() => {
-		if (value !== '' && value !== ' ') {
+		if (value !== '' && value !== ' ' && value !== prevValueRef.current) {
 			handleDebouncing(() => {
 				eventRefs.current.fetchData();
 			});
@@ -642,6 +654,7 @@ function SuggestionList({
 				positionRef={positionRef}
 				className={className}
 				height={height}
+				loading={loading}
 			/>
 		)
 	);
