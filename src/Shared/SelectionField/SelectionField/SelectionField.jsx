@@ -3,6 +3,7 @@ import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../../RotateArrow/RotateArrow';
+import Tooltip from '../../Tooltip/Tooltip/Tooltip';
 import SelectionFieldList from '../SelectionFieldList/SelectionFieldList';
 import styles from './SelectionField.module.css';
 
@@ -163,6 +164,13 @@ export default function SelectionField({
 				state={show}
 				value={value}
 			/>
+			{inputRef.current &&
+				width >
+					inputRef.current.offsetWidth -
+						parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
+						parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && (
+					<Tooltip message={value} containerRef={containerRef} />
+				)}
 		</div>
 	);
 }

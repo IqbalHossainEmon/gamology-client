@@ -597,6 +597,8 @@ function SuggestionList({
 					const firstPart = item.name.slice(0, index);
 					const secondPart = item.name.slice(index, index + valueRef.current.length);
 					const thirdPart = item.name.slice(index + valueRef.current.length);
+					console.log(firstPart, secondPart, thirdPart, valueRef.current);
+
 					item.editedName = (
 						<>
 							{firstPart}
@@ -635,6 +637,7 @@ function SuggestionList({
 		if (value !== '' && value !== ' ' && value !== prevValueRef.current) {
 			handleDebouncing(() => {
 				eventRefs.current.fetchData();
+				prevValueRef.current = value;
 			});
 		}
 	}, [handleDebouncing, value]);
