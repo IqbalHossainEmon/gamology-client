@@ -60,7 +60,7 @@ body {
 	.scroll-style {
 		scrollbar-color: transparent transparent;
 		scrollbar-width: thin;
-		transition: scrollbar-color 100ms;
+		transition: scrollbar-color 200ms;
 	}
 
 	.scroll-style:hover {

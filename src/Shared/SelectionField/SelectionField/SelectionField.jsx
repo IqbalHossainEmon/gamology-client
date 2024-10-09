@@ -36,8 +36,6 @@ export default function SelectionField({
 	const containerRef = useRef(null);
 	const inputRef = useRef(null);
 	const positionRef = useRef({ height: 0, bottom: true });
-	const parentRef = useRef(null);
-	const childRef = useRef(null);
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 
 	useEffect(() => {
@@ -61,7 +59,7 @@ export default function SelectionField({
 					if (bottomRemain < 170) {
 						positionRef.current.bottom = false;
 						if (y < 420) {
-							positionRef.current.height = y;
+							positionRef.current.height = y - 72;
 						} else {
 							positionRef.current.height = 0;
 						}
@@ -143,11 +141,9 @@ export default function SelectionField({
 				<ButtonWaterEffect btnRef={elementRef} />
 			</button>
 			<SelectionFieldList
-				childRef={childRef}
 				list={list}
 				name={name}
 				none={none}
-				parentRef={parentRef}
 				positionRef={positionRef}
 				setShow={setShow}
 				setState={setState}

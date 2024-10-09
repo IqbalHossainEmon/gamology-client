@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../Utils/Hooks/useDragStartStop';
 import styles from './ScrollBar.module.css';
 
-function ScrollBar({ parentRef, childRef }) {
+function ScrollBar({ parentRef, childRef, mainParentRef }) {
 	const [scrolled, setScrolled] = useState(0);
 	const [show, setShow] = useState(false);
 	const [height, setHeight] = useState(0);
@@ -16,6 +16,9 @@ function ScrollBar({ parentRef, childRef }) {
 
 	const scrolledRef = useRef(scrolled);
 	scrolledRef.current = scrolled;
+
+	const showRef = useRef(show);
+	showRef.current = show;
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -109,59 +112,63 @@ function ScrollBar({ parentRef, childRef }) {
 		eventRefs.current.handleMouseUp,
 		eventRefs.current.handleMouseDownBar
 	);
-	const handleStartParent = useDragStartStop(
-		eventRefs.current.handleMoveScroll,
-		eventRefs.current.handleMouseUp,
-		eventRefs.current.handleMouseDownParent
-	);
 
 	if (!eventRefs.current.onStartParent) {
 		eventRefs.current.onStartParent = e => {
 			e.stopPropagation();
 			onStartScroll(e);
 		};
+		eventRefs.current.onMouseMoveShow = () => {
+			if (!showRef.current) setShow(true);
+			eventRefs.current.handleScrollHide();
+		};
+		eventRefs.current.onMouseLeaveOnParent = () => {
+			if (showRef.current) setShow(false);
+		};
 	}
 
 	useEffect(() => {
-		const container = containerRef.current;
 		const knob = thumbRef.current;
 		const parent = parentRef.current;
-
-		// Add event listeners
-		container.addEventListener('mousedown', handleStartParent);
-		container.addEventListener('touchstart', handleStartParent, { passive: false });
-		knob.addEventListener('mousedown', eventRefs.current.onStartParent);
-		knob.addEventListener('touchstart', eventRefs.current.onStartParent, { passive: false });
-		window.addEventListener('resize', eventRefs.current.handleSetHeight);
-		parent.addEventListener('scroll', eventRefs.current.handleScroll);
-		container.addEventListener('mousemove', eventRefs.current.handleMouseMove);
-		let parentObserve, mutationObserver;
-		// Set up ResizeObserver
-		if (!isAdded.current) {
-			parentObserve = new ResizeObserver(() => {
-				if (scrollHeightRef.current !== parent.scrollHeight) {
-					scrollHeightRef.current = parent.scrollHeight;
-					eventRefs.current.handleSetHeight();
-				}
+		const mainParent = mainParentRef.current;
+		let parentObserve;
+		if (parent) {
+			// Add event listeners
+			mainParent.addEventListener('mousemove', eventRefs.current.onMouseMoveShow);
+			mainParent.addEventListener('mouseleave', eventRefs.current.onMouseLeaveOnParent);
+			knob.addEventListener('mousedown', eventRefs.current.onStartParent);
+			knob.addEventListener('touchstart', eventRefs.current.onStartParent, {
+				passive: false,
 			});
-			parentObserve.observe(childRef.current);
+			window.addEventListener('resize', eventRefs.current.handleSetHeight);
+			parent.addEventListener('scroll', eventRefs.current.handleScroll);
+
+			// Set up ResizeObserver
+			if (!isAdded.current) {
+				parentObserve = new ResizeObserver(() => {
+					if (scrollHeightRef.current !== parent.scrollHeight) {
+						scrollHeightRef.current = parent.scrollHeight;
+						eventRefs.current.handleSetHeight();
+					}
+				});
+				parentObserve.observe(childRef.current);
+				isAdded.current = true;
+			}
 		}
 		// Cleanup function
 		return () => {
-			container.removeEventListener('mousedown', handleStartParent);
-			container.removeEventListener('touchstart', handleStartParent);
+			mainParent.removeEventListener('mousemove', eventRefs.current.onMouseMoveOnParent);
+			mainParent.removeEventListener('mouseleave', eventRefs.current.onMouseLeaveOnParent);
 			knob.removeEventListener('mousedown', eventRefs.current.onStartParent);
 			knob.removeEventListener('touchstart', eventRefs.current.onStartParent);
 			window.removeEventListener('resize', eventRefs.current.handleSetHeight);
 			parent.removeEventListener('scroll', eventRefs.current.handleScroll);
-			container.removeEventListener('mousemove', eventRefs.current.handleMouseMove);
 			if (isAdded.current) {
 				parentObserve.disconnect();
-				mutationObserver.disconnect();
 				isAdded.current = false;
 			}
 		};
-	}, [handleStartParent, childRef, parentRef]);
+	}, [childRef, mainParentRef, parentRef]);
 
 	return (
 		<div

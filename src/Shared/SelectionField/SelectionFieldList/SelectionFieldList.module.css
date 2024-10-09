@@ -29,12 +29,15 @@
 }
 .listScrollContainer {
 	position: relative;
-	padding: 10px 10px 0px 10px;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+	padding: 0px 10px;
 	overflow-y: auto;
 	max-height: 410px;
 }
+
+.scrollbarPresent {
+	padding-right: 0px;
+}
+
 .listScrollContainer::-webkit-scrollbar {
 	display: none;
 }
@@ -57,6 +60,7 @@
 		color 200ms,
 		opacity 0ms 300ms;
 }
+
 .item:hover button {
 	color: rgb(196, 196, 196);
 }

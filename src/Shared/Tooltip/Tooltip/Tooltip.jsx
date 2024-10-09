@@ -57,6 +57,7 @@ function Tooltip({ message, containerRef }) {
 			container = containerRef.current;
 			container.addEventListener('mousemove', eventRefs.current.onMouseMove);
 			container.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
+			window.addEventListener('scroll', eventRefs.current.calculatePosition);
 		}
 		return () => {
 			if (container) {

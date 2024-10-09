@@ -1,13 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
-import ScrollBar from '../../ScrollBar/ScrollBar';
 import styles from './SelectionFieldList.module.css';
 
 function SelectionFieldList({
 	state,
 	setShow,
 	positionRef,
-	parentRef,
-	childRef,
 	list,
 	setValue,
 	setState,
@@ -16,63 +14,72 @@ function SelectionFieldList({
 	none,
 }) {
 	const [show, fadeIn] = useAppearDisappear(state);
+
+	const [hasScrollbar, setHasScrollbar] = useState(false);
+	const listRef = useRef(null);
+
+	useEffect(() => {
+		const checkScrollbar = () => {
+			if (listRef.current) {
+				setHasScrollbar(listRef.current.scrollHeight > listRef.current.clientHeight);
+			}
+		};
+		checkScrollbar();
+	}, [show]);
+
 	return (
 		show && (
 			<div
 				className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>
-				<div
-					className={styles.listScrollContainer}
-					ref={parentRef}
+				<ul
+					className={`${styles.listScrollContainer} scroll-style${hasScrollbar ? ` ${styles.scrollbarPresent}` : ''}`}
 					{...(positionRef.current.height && {
-						style: { maxHeight: `${positionRef.current.height}px` },
+						style: { height: `${positionRef.current.height}px` },
 					})}
+					ref={listRef}
 				>
-					<ul ref={childRef}>
-						{none ? (
-							<li
-								className={`${styles.item}${value === '' ? ` ${styles.selected}` : ''}`}
+					{none ? (
+						<li
+							className={`${styles.item}${value === '' ? ` ${styles.selected}` : ''}`}
+						>
+							<button
+								onClick={() => {
+									setShow(false);
+									setValue('');
+									setState('', name);
+								}}
+								tabIndex={0}
+								type='button'
 							>
-								<button
-									onClick={() => {
-										setShow(false);
-										setValue('');
-										setState('', name);
-									}}
-									tabIndex={show ? 0 : -1}
-									type='button'
-								>
-									None
-								</button>
-							</li>
-						) : null}
-
-						{list.map(item => (
-							<li
-								className={`${styles.item}${value === item ? ` ${styles.selected}` : ''}`}
-								key={item}
+								None
+							</button>
+						</li>
+					) : null}
+					{list.map(item => (
+						<li
+							className={`${styles.item}${value === item ? ` ${styles.selected}` : ''}`}
+							key={item}
+						>
+							<button
+								tabIndex={0}
+								{...(value === item && { disabled: true })}
+								onClick={() => {
+									setShow(false);
+									setValue(item);
+									setState(item, name);
+								}}
+								type='button'
 							>
-								<button
-									tabIndex={show ? 0 : -1}
-									{...(value === item && { disabled: true })}
-									onClick={() => {
-										setShow(false);
-										setValue(item);
-										setState(item, name);
-									}}
-									type='button'
-								>
-									{item}
-								</button>
-							</li>
-						))}
+								{item}
+							</button>
+						</li>
+					))}
 
-						{list.length === 0 && (
-							<li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>
-						)}
-					</ul>
-				</div>
-				<ScrollBar childRef={childRef} parentRef={parentRef} />
+					{list.length === 0 && (
+						<li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>
+					)}
+				</ul>
 			</div>
 		)
 	);

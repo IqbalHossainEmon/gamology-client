@@ -16,6 +16,7 @@ function Drawer() {
 
 	const { screenWidth, screenWidthRef } = useScreenWidth();
 
+	const mainParentRef = useRef(null);
 	const scrollParentRef = useRef(null);
 	const scrollChildRef = useRef(null);
 	const elementRef = useRef(null);
@@ -78,7 +79,7 @@ function Drawer() {
 				ref={elementRef}
 			>
 				<div className={styles.drawerImmediateContainer}>
-					<div className={styles.drawerScrollContainer}>
+					<div className={styles.drawerScrollContainer} ref={mainParentRef}>
 						<div className={styles.drawer} ref={scrollParentRef}>
 							<ul className={styles.optionContainer} ref={scrollChildRef}>
 								{drawerIcon.map(drawer => (
@@ -91,7 +92,11 @@ function Drawer() {
 							</ul>
 							<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
 						</div>
-						<ScrollBar childRef={scrollChildRef} parentRef={scrollParentRef} />
+						<ScrollBar
+							childRef={scrollChildRef}
+							parentRef={scrollParentRef}
+							mainParentRef={mainParentRef}
+						/>
 					</div>
 				</div>
 				<button
