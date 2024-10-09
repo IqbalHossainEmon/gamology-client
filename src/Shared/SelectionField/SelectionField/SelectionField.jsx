@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
-import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../../RotateArrow/RotateArrow';
 import Tooltip from '../../Tooltip/Tooltip/Tooltip';
@@ -28,7 +27,7 @@ export default function SelectionField({
 	const [show, setShow] = useState(false);
 	const [width, setWidth] = useState(0);
 
-	const { screenWidth } = useScreenWidth();
+	// const { screenWidth } = useScreenWidth();
 	const valueRef = useRef(value);
 	valueRef.current = value;
 	const parentSetValueRef = useRef(parentSetValue);
@@ -88,13 +87,15 @@ export default function SelectionField({
 			},
 		};
 	}
+
 	useEffect(() => {
 		const input = inputRef.current;
+
 		if (input) {
 			span.style.font = window.getComputedStyle(input).font;
 			eventRefs.current.calculateWidth(defaultValue);
 		}
-	}, [defaultValue, screenWidth]);
+	}, [defaultValue]);
 
 	return (
 		<div
@@ -104,13 +105,6 @@ export default function SelectionField({
 			<button
 				type='button'
 				{...(enabled || { tabIndex: '-1' })}
-				{...(inputRef.current &&
-					width >
-						inputRef.current.offsetWidth -
-							parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
-							parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && {
-						title: value,
-					})}
 				className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${styles.button}`}
 				onClick={() => {
 					eventRefs.current.handleClick();
@@ -164,13 +158,9 @@ export default function SelectionField({
 				state={show}
 				value={value}
 			/>
-			{inputRef.current &&
-				width >
-					inputRef.current.offsetWidth -
-						parseFloat(getComputedStyle(inputRef.current, null).paddingLeft) -
-						parseFloat(getComputedStyle(inputRef.current, null).paddingRight) && (
-					<Tooltip message={value} containerRef={containerRef} />
-				)}
+			{containerRef.current && width + 45 > containerRef.current.clientWidth && (
+				<Tooltip message={value} containerRef={containerRef} />
+			)}
 		</div>
 	);
 }

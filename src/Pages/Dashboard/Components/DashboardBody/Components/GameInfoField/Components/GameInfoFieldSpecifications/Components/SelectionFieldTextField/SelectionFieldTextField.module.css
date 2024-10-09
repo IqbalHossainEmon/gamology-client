@@ -1,21 +1,16 @@
-.selectionField {
-  width: 200px;
-  margin-right: 10px;
-}
-.textField {
-  width: 100%;
-}
 .specsContainer {
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+	gap: 20px;
 }
-@media screen and (max-width: 768px) {
-  .selectionField {
-    width: 100px;
-    margin-bottom: 10px;
-  }
-  .specsContainer {
-    flex-direction: column;
-  }
+
+.selectionField {
+	flex: 1 1 150px;
+	min-width: 150px;
+}
+
+.textField {
+	flex: 1 1 0;
+	width: 70%;
 }

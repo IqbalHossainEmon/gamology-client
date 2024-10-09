@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import TooltipBody from '../TooltipBody/TooltipBody';
 
 function Tooltip({ message, containerRef }) {
 	const [show, setShow] = useState(false);
-	const [position, setPosition] = useState('top');
+	const [position, setPosition] = useState({ x: 0, y: 0 });
 
 	const showRef = useRef(show);
 	showRef.current = show;
@@ -22,8 +23,33 @@ function Tooltip({ message, containerRef }) {
 					setShow(false);
 				}
 			},
+			calculatePosition: () => {
+				const container = containerRef.current;
+				const { x, y, width } = container.getBoundingClientRect();
+				const { innerWidth } = window;
+
+				const top = y;
+				const left = x;
+				const right = innerWidth - x - width;
+
+				if (left >= 250) {
+					setPosition('left');
+				} else if (right >= 250) {
+					setPosition('right');
+				} else if (top >= 100) {
+					setPosition('top');
+				} else {
+					setPosition('bottom');
+				}
+			},
 		};
 	}
+
+	const screenWidth = useScreenWidth();
+
+	useEffect(() => {
+		eventRefs.current.calculatePosition();
+	}, [screenWidth]);
 
 	useEffect(() => {
 		let container;

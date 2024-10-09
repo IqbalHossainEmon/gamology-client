@@ -2,11 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../Utils/Hooks/useObjectUtilities';
 import OuterErrorMessage from '../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import ButtonForGameInfoFieldSection from '../Components/ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
-import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';
-import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/GameInfoFieldDescriptions/GameInfoFieldDescriptions';
-import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
 import GameInfoFieldSpecifications from '../Components/GameInfoFieldSpecifications/GameInfoFieldSpecifications/GameInfoFieldSpecifications';
-import GameInfoFieldTags from '../Components/GameInfoFieldTags/GameInfoFieldTags/GameInfoFieldTags';
 import useGameInfoFieldLogics from '../Utils/Hooks/useGameInfoFieldLogics';
 import styles from './GameInfoField.module.css';
 
@@ -182,7 +178,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 				<h3>Loading...</h3>
 			) : (
 				<form>
-					<GameInfoFieldDetails
+					{/* 	<GameInfoFieldDetails
 						errorChange={errorChange}
 						errorMessages={errorMessages}
 						gameInfo={gameData}
@@ -215,7 +211,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						{...(hasDefault && {
 							defaultGameDescriptions: defaultData.gameDescriptions,
 						})}
-					/>
+					/> */}
 					<GameInfoFieldSpecifications
 						errorChange={errorChange}
 						errorMessages={errorMessages}

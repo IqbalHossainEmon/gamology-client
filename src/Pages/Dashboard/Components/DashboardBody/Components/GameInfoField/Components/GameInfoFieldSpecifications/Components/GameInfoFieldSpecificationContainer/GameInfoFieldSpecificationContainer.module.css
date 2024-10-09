@@ -1,22 +1,10 @@
 .specsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: space-between;
 }
 .specs {
-  flex-grow: 1;
-  padding: 10px;
-  margin-top: 30px;
+	flex: 1 1 30%;
+	min-width: 380px;
 }
-
-@media screen and (max-width: 1895px) and (min-width: 1024px) {
-  .specs {
-    max-width: 50%;
-  }
-}
-@media screen and (max-width: 768px) {
-  .specs {
-    width: 100%;
-  }
-}
-

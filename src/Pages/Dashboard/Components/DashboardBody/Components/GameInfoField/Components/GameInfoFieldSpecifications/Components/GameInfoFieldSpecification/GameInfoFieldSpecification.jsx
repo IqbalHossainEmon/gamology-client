@@ -79,22 +79,19 @@ export default function GameInfoFieldSpecification({
 	}
 	return (
 		<div className={styles.addGameSpecification}>
-			<div className={styles.switch}>
-				<FilterOption
-					border
-					name='enabled'
-					setState={eventRefs.current.handleSetEnable}
-					state={enabled.enabled}
-					text={state.name}
-				/>
-			</div>
+			<FilterOption
+				border
+				name='enabled'
+				setState={eventRefs.current.handleSetEnable}
+				state={enabled.enabled}
+				text={state.name}
+			/>
 			<div
 				className={styles.systemReqContainer}
 				{...(!enabled.enabled && { disabled: true, tabIndex: '-1' })}
 			>
 				<div className={styles.systemReq}>
 					<h4 className={styles.type}>Minimum</h4>
-
 					<SectionFieldTextFieldContainer
 						defaultData={defaultSpecs?.systemReq}
 						enabled={enabled.enabled}
@@ -118,7 +115,6 @@ export default function GameInfoFieldSpecification({
 				</div>
 				<div className={styles.systemReq}>
 					<h4 className={styles.type}>Recommended</h4>
-
 					<SectionFieldTextFieldContainer
 						defaultData={defaultSpecs?.systemReq}
 						enabled={enabled.enabled}
