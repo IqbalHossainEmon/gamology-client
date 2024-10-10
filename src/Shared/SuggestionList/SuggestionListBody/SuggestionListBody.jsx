@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import ScrollBar from '../../ScrollBar/ScrollBar';
 import styles from './SuggestionListBody.module.css';
 
 function SuggestionListBody({
@@ -31,43 +30,36 @@ function SuggestionListBody({
 			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}${loading ? ' loading' : ''}`}
 			{...(suggestionRef && { ref: suggestionRef })}
 		>
-			<div
-				className={styles.listScrollContainer}
-				ref={parentRef}
+			<ul
 				style={{ height: `${height}px` }}
+				className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''} scroll-style`}
 			>
-				<ul
-					ref={childRef}
-					className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
-				>
-					{list.map(item => (
-						<li
-							className={`${styles.item}${value.id === item.id ? ` ${styles.selected}` : ''}`}
-							key={item.id}
+				{list.map(item => (
+					<li
+						className={`${styles.item}${value.id === item.id ? ` ${styles.selected}` : ''}`}
+						key={item.id}
+					>
+						<button
+							tabIndex={show ? 0 : -1}
+							{...(value === item && { disabled: true })}
+							onClick={() => {
+								setShow(false);
+								setValue(item);
+								setState(item, name);
+							}}
+							type='button'
 						>
-							<button
-								tabIndex={show ? 0 : -1}
-								{...(value === item && { disabled: true })}
-								onClick={() => {
-									setShow(false);
-									setValue(item);
-									setState(item, name);
-								}}
-								type='button'
-							>
-								<div className={styles.itemContainer}>
-									<img src={item.carouselThumb} alt={item.alt} />
-									<p>{item.editedName || item.name}</p>
-								</div>
-							</button>
-						</li>
-					))}
-					{list.length === 0 && (
-						<li className={`${styles.item} ${styles.noDataItem}`}>No Match Found</li>
-					)}
-				</ul>
-			</div>
-			<ScrollBar childRef={childRef} parentRef={parentRef} />
+							<div className={styles.itemContainer}>
+								<img src={item.carouselThumb} alt={item.alt} />
+								<p>{item.editedName || item.name}</p>
+							</div>
+						</button>
+					</li>
+				))}
+				{list.length === 0 && (
+					<li className={`${styles.item} ${styles.noDataItem}`}>No Match Found</li>
+				)}
+			</ul>
 		</div>
 	);
 }

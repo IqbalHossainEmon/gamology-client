@@ -10,7 +10,6 @@
 	border-radius: 4px;
 	background-color: rgb(37, 37, 37);
 	cursor: default;
-	list-style: none;
 	z-index: 1;
 	scale: 0.9;
 	opacity: 0;
@@ -18,11 +17,7 @@
 		opacity 200ms,
 		scale 200ms;
 }
-.listContainer {
-	width: 100%;
-	cursor: default;
-	list-style: none;
-}
+
 .fadeIn {
 	opacity: 1;
 	scale: 1;
@@ -32,6 +27,7 @@
 	padding: 0px 10px;
 	overflow-y: auto;
 	max-height: 410px;
+	list-style-type: none;
 }
 
 .scrollbarPresent {
@@ -44,6 +40,7 @@
 
 .item {
 	position: relative;
+	height: 40px;
 }
 
 .item button {

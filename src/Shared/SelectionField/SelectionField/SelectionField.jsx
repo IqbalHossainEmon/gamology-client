@@ -53,28 +53,32 @@ export default function SelectionField({
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleClick: () => {
-				const { height, y } = elementRef.current.getBoundingClientRect();
-				const bottomRemain = window.innerHeight - y - height;
-				if (list.length > 4) {
-					if (bottomRemain < 170) {
-						positionRef.current.bottom = false;
-						if (y < 420) {
-							positionRef.current.height = y - 72;
-						} else {
-							positionRef.current.height = 0;
-						}
-					} else {
-						positionRef.current.bottom = true;
-						if (bottomRemain < 420) {
-							positionRef.current.height = bottomRemain;
-						} else {
-							positionRef.current.height = 0;
-						}
-					}
-				} else if (bottomRemain < list.length * 40 + 10) {
-					positionRef.current.bottom = false;
-				} else {
+				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
+				const bottomRemain = window.innerHeight - y - eleHeight;
+
+				if (bottomRemain >= 80 || y < 80) {
 					positionRef.current.bottom = true;
+				} else {
+					positionRef.current.bottom = false;
+				}
+				const checkRemain = parseInt(
+					(positionRef.current.bottom ? bottomRemain : y) / 60,
+					10
+				);
+
+				if (list.length > 8) {
+					switch (checkRemain) {
+						case 2:
+							positionRef.current.bottom = 80;
+							break;
+						case 3:
+							positionRef.current.bottom = 120;
+							break;
+						default:
+							positionRef.current.bottom = 240;
+					}
+				} else {
+					positionRef.current.bottom = (list.length || 1) * 60;
 				}
 			},
 			calculateWidth: val => {

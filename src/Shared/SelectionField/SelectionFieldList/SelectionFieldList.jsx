@@ -27,6 +27,8 @@ function SelectionFieldList({
 		checkScrollbar();
 	}, [show]);
 
+	console.log(positionRef.current.height);
+
 	return (
 		show && (
 			<div
@@ -35,7 +37,7 @@ function SelectionFieldList({
 				<ul
 					className={`${styles.listScrollContainer} scroll-style${hasScrollbar ? ` ${styles.scrollbarPresent}` : ''}`}
 					{...(positionRef.current.height && {
-						style: { height: `${positionRef.current.height}px` },
+						style: { maxHeight: `${positionRef.current.height}px` },
 					})}
 					ref={listRef}
 				>

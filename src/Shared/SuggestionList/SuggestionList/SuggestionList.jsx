@@ -553,6 +553,8 @@ function SuggestionList({
 	const previousBottomRemain = useRef(0);
 	const eventRefs = useRef(null);
 
+	const prevLength = useRef(list.length);
+
 	const valueRef = useRef(value);
 	valueRef.current = value;
 
@@ -566,26 +568,32 @@ function SuggestionList({
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
 
-				if (bottomRemain >= 120) {
-					if (!noPositionChange && previousBottomRemain.current !== bottomRemain) {
+				if (bottomRemain >= 120 || y < 120) {
+					if (
+						!noPositionChange &&
+						(previousBottomRemain.current !== bottomRemain ||
+							prevLength.current !== length)
+					) {
 						positionRef.current = false;
+						prevLength.current = length;
 					}
-				} else if (!noPositionChange && previousBottomRemain.current !== bottomRemain) {
-					positionRef.current = true;
+				} else if (
+					!noPositionChange &&
+					(previousBottomRemain.current !== bottomRemain || prevLength.current !== length)
+				) {
+					if (length < 2 && bottomRemain >= 60) {
+						positionRef.current = false;
+						prevLength.current = length;
+					} else positionRef.current = true;
 				}
-				const checkRemain = parseInt(bottomRemain / 60, 10);
 
 				if (length > 4) {
-					switch (checkRemain) {
-						case 2:
-							setHeight(120);
-							break;
-						case 3:
-							setHeight(180);
-							break;
-						default:
-							setHeight(240);
-					}
+					setHeight(
+						Math.min(
+							parseInt((positionRef.current ? y : bottomRemain) / 60, 10) * 60,
+							240
+						)
+					);
 				} else {
 					setHeight((length || 1) * 60);
 				}
@@ -597,7 +605,6 @@ function SuggestionList({
 					const firstPart = item.name.slice(0, index);
 					const secondPart = item.name.slice(index, index + valueRef.current.length);
 					const thirdPart = item.name.slice(index + valueRef.current.length);
-					console.log(firstPart, secondPart, thirdPart, valueRef.current);
 
 					item.editedName = (
 						<>
@@ -616,6 +623,7 @@ function SuggestionList({
 			},
 			fetchData: () => {
 				// fetch data
+
 				const filteredList = data.filter(
 					item =>
 						item.name.toLowerCase().includes(valueRef.current.toLowerCase()) &&
@@ -624,17 +632,21 @@ function SuggestionList({
 				);
 
 				// clone the filtered list
-
+				setLoading(false);
 				const newFilteredList = cloneObject(filteredList);
 				eventRefs.current.handleAddStrongMatch(newFilteredList);
 			},
 		};
 	}
 
+	const loadingRef = useRef(loading);
+	loadingRef.current = loading;
+
 	const prevValueRef = useRef(value);
 
 	useEffect(() => {
 		if (value !== '' && value !== ' ' && value !== prevValueRef.current) {
+			if (!loadingRef.current) setLoading(true);
 			handleDebouncing(() => {
 				eventRefs.current.fetchData();
 				prevValueRef.current = value;
