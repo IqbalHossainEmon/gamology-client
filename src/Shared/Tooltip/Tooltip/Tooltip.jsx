@@ -4,7 +4,7 @@ import TooltipBody from '../TooltipBody/TooltipBody';
 
 function Tooltip({ message, containerRef }) {
 	const [show, setShow] = useState(false);
-	const [position, setPosition] = useState({ x: 0, y: 0 });
+	const [position, setPosition] = useState({ x: 0, y: 0, position: 'left' });
 
 	const showRef = useRef(show);
 	showRef.current = show;

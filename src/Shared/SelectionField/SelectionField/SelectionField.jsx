@@ -61,24 +61,14 @@ export default function SelectionField({
 				} else {
 					positionRef.current.bottom = false;
 				}
-				const checkRemain = parseInt(
-					(positionRef.current.bottom ? bottomRemain : y) / 60,
-					10
-				);
 
 				if (list.length > 8) {
-					switch (checkRemain) {
-						case 2:
-							positionRef.current.bottom = 80;
-							break;
-						case 3:
-							positionRef.current.bottom = 120;
-							break;
-						default:
-							positionRef.current.bottom = 240;
-					}
+					positionRef.current.height = Math.min(
+						parseInt((positionRef.current.bottom ? bottomRemain : y) / 40, 10) * 40,
+						320
+					);
 				} else {
-					positionRef.current.bottom = (list.length || 1) * 60;
+					positionRef.current.height = (list.length || 1) * 40;
 				}
 			},
 			calculateWidth: val => {

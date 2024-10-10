@@ -1,4 +1,4 @@
-import EditBanner from '../Components/Events/EditBanner/EditBanner';
+import AddGame from '../Components/AddGame/AddGame';
 import withDashboardModal from '../Components/Utils/HOC/withDashboardModal';
 import styles from './DashboardBody.module.css';
 
@@ -6,7 +6,7 @@ function DashboardBody({ children }) {
 	return (
 		<div className={`${styles.dashboardBodyContainer} scroll-style`} id='dashboard-body'>
 			<div className={styles.dashboardBody}>
-				<EditBanner />
+				<AddGame />
 				{children}
 			</div>
 		</div>
