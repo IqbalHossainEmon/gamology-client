@@ -27,8 +27,6 @@ function SelectionFieldList({
 		checkScrollbar();
 	}, [show]);
 
-	console.log(positionRef.current.height);
-
 	return (
 		show && (
 			<div

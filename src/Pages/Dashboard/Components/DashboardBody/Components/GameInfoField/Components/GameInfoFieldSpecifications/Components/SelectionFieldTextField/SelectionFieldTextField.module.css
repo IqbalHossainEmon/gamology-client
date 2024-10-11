@@ -3,14 +3,14 @@
 	flex-wrap: wrap;
 	margin-top: 20px;
 	gap: 20px;
+	width: 100%;
 }
 
 .selectionField {
-	flex: 1 1 150px;
+	flex: 0 1 150px;
 	min-width: 150px;
 }
 
 .textField {
-	flex: 1 1 0;
-	width: 70%;
+	flex: 1 1;
 }

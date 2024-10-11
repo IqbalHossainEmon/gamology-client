@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
+import useTooltip from '../../../Utils/Hooks/useTooltip';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../../RotateArrow/RotateArrow';
-import Tooltip from '../../Tooltip/Tooltip/Tooltip';
 import SelectionFieldList from '../SelectionFieldList/SelectionFieldList';
 import styles from './SelectionField.module.css';
 
@@ -80,14 +80,18 @@ export default function SelectionField({
 		};
 	}
 
+	const setTooltip = useTooltip();
+
 	useEffect(() => {
 		const input = inputRef.current;
+
+		setTooltip(containerRef.current, placeholder);
 
 		if (input) {
 			span.style.font = window.getComputedStyle(input).font;
 			eventRefs.current.calculateWidth(defaultValue);
 		}
-	}, [defaultValue]);
+	}, [defaultValue, placeholder, setTooltip]);
 
 	return (
 		<div
@@ -148,9 +152,9 @@ export default function SelectionField({
 				state={show}
 				value={value}
 			/>
-			{containerRef.current && width + 45 > containerRef.current.clientWidth && (
-				<Tooltip message={value} containerRef={containerRef} />
-			)}
+			{/* 	{containerRef.current && width + 45 > containerRef.current.clientWidth && ( */}
+
+			{/* 		)} */}
 		</div>
 	);
 }

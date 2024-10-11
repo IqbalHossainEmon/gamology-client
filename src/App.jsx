@@ -1,9 +1,7 @@
-import { memo } from 'react';
 import './App.css';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import MainHeader from './Shared/MainHeader/MainHeader';
-import withScreenWidthProvider from './Utils/HOC/withScreenWidthProvider';
-import withToast from './Utils/HOC/withToast';
+import withAppsHOCs from './Utils/HOC/withAppsHOCs';
 
 function App({ children }) {
 	return (
@@ -15,6 +13,6 @@ function App({ children }) {
 	);
 }
 
-const EnhancedApp = withScreenWidthProvider(withToast(memo(App)));
+const EnhancedApp = withAppsHOCs(App);
 
 export default EnhancedApp;

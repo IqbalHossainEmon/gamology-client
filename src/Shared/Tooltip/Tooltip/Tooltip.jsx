@@ -1,72 +1,55 @@
 import { useEffect, useRef, useState } from 'react';
-import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import TooltipBody from '../TooltipBody/TooltipBody';
+import styles from './Tooltip.module.css';
 
 function Tooltip({ message, containerRef }) {
-	const [show, setShow] = useState(false);
-	const [position, setPosition] = useState({ x: 0, y: 0, position: 'left' });
+	const [fadeIn, setFadeIn] = useState(false);
+	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
 
-	const showRef = useRef(show);
-	showRef.current = show;
-
-	const eventRefs = useRef(null);
-
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			onMouseMove: () => {
-				if (!showRef.current) {
-					setShow(true);
-				}
-			},
-			onMouseLeave: () => {
-				if (showRef.current) {
-					setShow(false);
-				}
-			},
-			calculatePosition: () => {
-				const container = containerRef.current;
-				const { x, y, width } = container.getBoundingClientRect();
-				const { innerWidth } = window;
-
-				const top = y;
-				const left = x;
-				const right = innerWidth - x - width;
-
-				if (left >= 250) {
-					setPosition('left');
-				} else if (right >= 250) {
-					setPosition('right');
-				} else if (top >= 100) {
-					setPosition('top');
-				} else {
-					setPosition('bottom');
-				}
-			},
-		};
-	}
-
-	const screenWidth = useScreenWidth();
+	const tooltipRef = useRef(null);
 
 	useEffect(() => {
-		eventRefs.current.calculatePosition();
-	}, [screenWidth]);
-
-	useEffect(() => {
-		let container;
 		if (containerRef.current) {
-			container = containerRef.current;
-			container.addEventListener('mousemove', eventRefs.current.onMouseMove);
-			container.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
-			window.addEventListener('scroll', eventRefs.current.calculatePosition);
-		}
-		return () => {
-			if (container) {
-				container.removeEventListener('mousemove', eventRefs.current.onMouseMove);
-				container.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
+			const { top, left, width, height } = containerRef.current.getBoundingClientRect();
+			const { height: tooltipHeight, width: tooltipWidth } =
+				tooltipRef.current.getBoundingClientRect();
+
+			if (left - (tooltipHeight + 20) > 0) {
+				setPosition({
+					top: top + height / 2 - tooltipHeight / 2,
+					left: left - tooltipWidth - 10,
+					arrowOn: 'right',
+				});
+			} else if (window.innerWidth - left - width - 20 > tooltipWidth + 20) {
+				setPosition({
+					top: top + height / 2 - tooltipHeight / 2,
+					left: left + width + 10,
+					arrowOn: 'left',
+				});
+			} else if (top - (tooltipHeight + 20) > 0) {
+				setPosition({
+					top: top - tooltipHeight - 10,
+					left: left + width / 2 - tooltipWidth / 2,
+					arrowOn: 'bottom',
+				});
+			} else {
+				setPosition({
+					top: top + height + 10,
+					left: left + width / 2 - tooltipWidth / 2,
+					arrowOn: 'top',
+				});
 			}
-		};
+
+			setFadeIn(true);
+		}
 	}, [containerRef]);
 
-	return <TooltipBody message={message} state={show} position={position} />;
+	return (
+		<div
+			className={`${styles.toolTips}${fadeIn ? ` ${styles.fadeIn}` : ''} ${styles[position.arrowOn]}`}
+			style={{ top: position.top, left: position.left }}
+		>
+			<p ref={tooltipRef}>{message}</p>
+		</div>
+	);
 }
 export default Tooltip;

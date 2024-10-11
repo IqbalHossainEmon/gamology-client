@@ -1,0 +1,66 @@
+.toolTips {
+	position: absolute;
+	background-color: #1b1b1b;
+	opacity: 0;
+	transition: opacity 300ms;
+	z-index: 5;
+	border-radius: 4px;
+	width: auto;
+	height: auto;
+}
+
+.toolTips p {
+	position: relative;
+	color: white;
+	font-size: 12px;
+	padding: 1rem;
+	opacity: 0.8;
+	max-width: 250px;
+	width: max-content;
+}
+
+.fadeIn {
+	opacity: 1;
+}
+
+.top::after,
+.bottom::after,
+.right::after,
+.left::after {
+	content: '';
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #1b1b1b;
+}
+
+.top::after,
+.right::after,
+.left::after,
+.bottom::after {
+	rotate: -45deg;
+}
+
+.top::after {
+	bottom: 100%;
+	left: 50%;
+	translate: -50% 5px;
+}
+
+.right::after {
+	top: 50%;
+	left: 100%;
+	translate: -5px -50%;
+}
+
+.left::after {
+	top: 50%;
+	right: 100%;
+	translate: 5px -50%;
+}
+
+.bottom::after {
+	top: 100%;
+	left: 50%;
+	translate: -50% -5px;
+}

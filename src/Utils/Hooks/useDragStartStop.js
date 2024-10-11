@@ -33,7 +33,7 @@ export default function useDragStartStop(
 				}
 			},
 			onStart: e => {
-				e.preventDefault();
+				if (e.defaultPrevented) e.preventDefault();
 				handleMouseDown(e);
 				const touchAble = isTouchAble();
 

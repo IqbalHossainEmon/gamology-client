@@ -5,6 +5,5 @@
 	justify-content: space-between;
 }
 .specs {
-	flex: 1 1 30%;
-	min-width: 380px;
+	flex: 1 1 300px;
 }
