@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Tooltip from '../../Shared/Tooltip/Tooltip/Tooltip';
 import SetTooltipContext from '../Contexts/TooltipContext';
-import useScreenWidth from '../Hooks/useScreenWidth';
 
 const withTooltip = Component =>
 	function InnerComponent(props) {
@@ -13,15 +12,15 @@ const withTooltip = Component =>
 		showRef.current = show;
 
 		const containerRef = useRef(null);
-
 		const eventRefs = useRef(null);
+		const listenerAdded = useRef(false);
 
 		if (!eventRefs.current) {
 			eventRefs.current = {
 				onMouseMove: e => {
 					if (!showRef.current) {
 						setShow(true);
-						containerRef.current = e.target;
+						containerRef.current = e.currentTarget;
 					}
 				},
 				onMouseLeave: () => {
@@ -32,15 +31,24 @@ const withTooltip = Component =>
 				},
 
 				contextEvents: (element, msg) => {
-					setMessage(msg);
+					if (element && msg && !listenerAdded.current) {
+						setMessage(msg);
+						element.addEventListener('mousemove', eventRefs.current.onMouseMove);
+						element.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
+						listenerAdded.current = true;
+					} else if (element && !msg && listenerAdded.current) {
+						if (showRef.current) {
+							setShow(false);
+						}
 
-					element.addEventListener('mousemove', eventRefs.current.onMouseMove);
-					element.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
+						setMessage('');
+						element.removeEventListener('mousemove', eventRefs.current.onMouseMove);
+						element.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
+						listenerAdded.current = false;
+					}
 				},
 			};
 		}
-
-		const screenWidth = useScreenWidth();
 
 		useEffect(
 			() => () => {
@@ -55,15 +63,13 @@ const withTooltip = Component =>
 					);
 				}
 			},
-			[screenWidth]
+			[]
 		);
-
-		useEffect(() => () => {}, [containerRef]);
 
 		return (
 			<SetTooltipContext.Provider value={eventRefs.current.contextEvents}>
 				<Component {...props}>
-					{show && <Tooltip message={message} containerRef={containerRef} />}
+					<Tooltip message={message} containerRef={containerRef} state={show} />
 				</Component>
 			</SetTooltipContext.Provider>
 		);

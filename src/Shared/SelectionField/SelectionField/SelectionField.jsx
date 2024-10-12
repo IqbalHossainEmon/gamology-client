@@ -82,10 +82,20 @@ export default function SelectionField({
 
 	const setTooltip = useTooltip();
 
+	const isAdded = useRef(false);
+
+	useEffect(() => {
+		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
+			setTooltip(elementRef.current, value);
+			isAdded.current = true;
+		} else if (isAdded.current) {
+			isAdded.current = false;
+			setTooltip(elementRef.current, null);
+		}
+	}, [setTooltip, value, width]);
+
 	useEffect(() => {
 		const input = inputRef.current;
-
-		setTooltip(containerRef.current, placeholder);
 
 		if (input) {
 			span.style.font = window.getComputedStyle(input).font;
@@ -152,9 +162,6 @@ export default function SelectionField({
 				state={show}
 				value={value}
 			/>
-			{/* 	{containerRef.current && width + 45 > containerRef.current.clientWidth && ( */}
-
-			{/* 		)} */}
 		</div>
 	);
 }
