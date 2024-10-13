@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react';
+import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import TooltipBody from '../TooltipBody/TooltipBody';
 
 function Tooltip({ state, ...props }) {
-	const [show, setShow] = useState(false);
+	const [show, fadeIn] = useAppearDisappear(state);
 
-	useEffect(() => {
-		if (state) {
-			setShow(true);
-		}
-	}, [state]);
-
-	return show && <TooltipBody setShow={setShow} state={state} {...props} />;
+	return show && <TooltipBody fadeIn={fadeIn} state={state} {...props} />;
 }
 export default Tooltip;

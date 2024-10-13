@@ -1,13 +1,8 @@
 import { useRef } from 'react';
-import ButtonWaterEffect from '../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import styles from './ButtonForGameInfoFieldSection.module.css';
+import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import styles from './InfoFieldActionButton.module.css';
 
-export default function ButtonForGameInfoFieldSection({
-	onClick,
-	text,
-	disabled = false,
-	tabIndexOff,
-}) {
+export default function InfoFieldActionButton({ onClick, text, disabled = false, tabIndexOff }) {
 	const btnRef = useRef(null);
 
 	return (

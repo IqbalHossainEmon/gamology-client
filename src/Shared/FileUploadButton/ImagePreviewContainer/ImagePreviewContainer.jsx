@@ -57,7 +57,7 @@ function ImagePreviewContainer({
 			handleHover: () => {
 				if (timerIdHide.current) {
 					clearTimeout(timerIdHide.current);
-					timerIdHide.current = false;
+					timerIdHide.current = null;
 				}
 				if (!showPreviewRef.current || !showRef.current) {
 					if (timerIdShow.current) {

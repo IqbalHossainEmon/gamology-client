@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../Utils/Hooks/useObjectUtilities';
+import InfoFieldActionButton from '../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
 import OuterErrorMessage from '../../../Shared/OuterErrorMessage/OuterErrorMessage';
-import ButtonForGameInfoFieldSection from '../Components/ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
 import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';
 import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/GameInfoFieldDescriptions/GameInfoFieldDescriptions';
 import GameInfoFieldDetails from '../Components/GameInfoFieldDetails/GameInfoFieldDetails';
@@ -229,7 +229,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						errorChange={errorChange}
 						errorMessage={errorMessages.current.outerErrorMessage}
 					/>
-					<ButtonForGameInfoFieldSection onClick={handleSubmit} text='Submit' />
+					<InfoFieldActionButton onClick={handleSubmit} text='Submit' />
 				</form>
 			)}
 		</div>

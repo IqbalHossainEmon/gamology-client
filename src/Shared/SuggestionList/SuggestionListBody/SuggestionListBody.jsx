@@ -16,9 +16,6 @@ function SuggestionListBody({
 	setSuggestionRef,
 	loading,
 }) {
-	const parentRef = useRef(null);
-	const childRef = useRef(null);
-
 	const suggestionRef = useRef(null);
 
 	useEffect(() => {
@@ -36,8 +33,8 @@ function SuggestionListBody({
 			>
 				{list.map(item => (
 					<li
-						className={`${styles.item}${value.id === item.id ? ` ${styles.selected}` : ''}`}
-						key={item.id}
+						className={`${styles.item}${value.name === item.name ? ` ${styles.selected}` : ''}`}
+						key={item.name}
 					>
 						<button
 							tabIndex={show ? 0 : -1}

@@ -1,26 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './TooltipBody.module.css';
 
-function TooltipBody({ message, containerRef, state, setShow }) {
-	const [fadeIn, setFadeIn] = useState(false);
+function TooltipBody({ message, containerRef, fadeIn }) {
 	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
 
 	const tooltipRef = useRef(null);
-
-	const timerId = useRef(null);
-
-	useEffect(() => {
-		if (!state) {
-			setFadeIn(false);
-
-			if (timerId.current) {
-				clearTimeout(timerId.current);
-			}
-			timerId.current = setTimeout(() => {
-				setShow(false);
-			}, 200);
-		}
-	}, [setShow, state]);
 
 	useEffect(() => {
 		if (containerRef.current) {
@@ -53,8 +37,6 @@ function TooltipBody({ message, containerRef, state, setShow }) {
 					arrowOn: 'top',
 				});
 			}
-
-			setFadeIn(true);
 		}
 	}, [containerRef]);
 

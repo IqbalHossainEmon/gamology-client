@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ButtonForGameInfoFieldSection from '../../ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
+import InfoFieldActionButton from '../../../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
 import BannerInputFieldContainer from '../BannerInputFieldContainer/BannerInputFieldContainer';
 import styles from './GameInfoFieldBanner.module.css';
 
@@ -32,7 +32,7 @@ export default function GameInfoFieldBanner({
 			</div>
 			<div className={styles.btnContainer}>
 				<div className={styles.btn}>
-					<ButtonForGameInfoFieldSection
+					<InfoFieldActionButton
 						{...(fieldCount === 15 && { disabled: true })}
 						onClick={() => {
 							setFieldCount(prev => prev + 1);
@@ -42,7 +42,7 @@ export default function GameInfoFieldBanner({
 					/>
 				</div>
 				<div className={styles.btn}>
-					<ButtonForGameInfoFieldSection
+					<InfoFieldActionButton
 						{...(fieldCount === 1 && { disabled: true })}
 						onClick={() => {
 							setFieldCount(prev => --prev);

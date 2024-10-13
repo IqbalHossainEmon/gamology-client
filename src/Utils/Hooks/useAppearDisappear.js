@@ -17,7 +17,7 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 				if (startTimeRef.current) {
 					clearTimeout(startTimeRef.current);
 					startTimeRef.current = null;
-					setFadeIn(false);
+					setShow(false);
 					return;
 				}
 				if (endTimeRef.current) {

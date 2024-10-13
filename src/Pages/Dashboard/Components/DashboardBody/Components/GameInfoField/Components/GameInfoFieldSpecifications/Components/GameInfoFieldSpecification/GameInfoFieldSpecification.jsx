@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption';
-import ButtonForGameInfoFieldSection from '../../../ButtonForGameInfoFieldSection/ButtonForGameInfoFieldSection';
+import InfoFieldActionButton from '../../../../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
 import SectionFieldTextFieldContainer from '../SectionFieldTextFieldContainer/SectionFieldTextFieldContainer';
 import styles from './GameInfoFieldSpecification.module.css';
 
@@ -138,7 +138,7 @@ export default function GameInfoFieldSpecification({
 				</div>
 				<div className={styles.buttonsContainer}>
 					<div className={styles.btnContainer}>
-						<ButtonForGameInfoFieldSection
+						<InfoFieldActionButton
 							text='Add More +'
 							{...(requiredLength === 10 && { disabled: true })}
 							{...(enabled.enabled || { tabIndexOff: true })}
@@ -156,7 +156,7 @@ export default function GameInfoFieldSpecification({
 					</div>
 
 					<div className={styles.btnContainer}>
-						<ButtonForGameInfoFieldSection
+						<InfoFieldActionButton
 							text='Remove one -'
 							{...(requiredLength === 1 && { disabled: true })}
 							onClick={() => {

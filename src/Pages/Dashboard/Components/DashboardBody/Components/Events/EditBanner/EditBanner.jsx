@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FileUploadButton from '../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import TypeableSelectionField from '../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
+import InfoFieldActionButton from '../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
 import styles from './EditBanner.module.css';
 
 const data = [
 	{
-		id: 1000,
 		name: "Marvel's Spider-Man Remastered",
 		coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
 		logoImg: '/assets/images/CarouselInfo/spiderman-logo.png',
@@ -14,7 +14,6 @@ const data = [
 		price: { regular: 59.99, discount: 29.99 },
 	},
 	{
-		id: 1001,
 		name: 'UNCHARTED™: Legacy of Thieves Collection',
 		coverImg: '/assets/images/CarouselCoverDesktop/fortnite.png',
 		logoImg: '/assets/images/CarouselInfo/fortnite-logo.png',
@@ -23,7 +22,6 @@ const data = [
 		price: { regular: 49.99, discount: 15.99 },
 	},
 	{
-		id: 1010,
 		name: 'Fall Guy',
 		coverImg: '/assets/images/CarouselCoverDesktop/fall-guy.png',
 		logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
@@ -32,7 +30,6 @@ const data = [
 		price: 0,
 	},
 	{
-		id: 1011,
 		name: 'Fortnite',
 		carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb-2.jpg',
 		coverMobile: '/assets/images/CarouselCoverMobile/fortnite-carousel-mobile.jpg',
@@ -41,7 +38,6 @@ const data = [
 		price: 0,
 	},
 	{
-		id: 1100,
 		name: 'A Plague Tale Requiem',
 		logoImg: '/assets/images/CarouselInfo/a-plague-tale-requiem-logo.png',
 		coverImg: '/assets/images/CarouselCoverDesktop/a-plague-tale-requiem-cover.jpg',
@@ -54,6 +50,9 @@ const data = [
 function EditBanner() {
 	const [items, setItems] = useState([]);
 
+	const bannerData = useRef(items);
+	bannerData.current = items;
+
 	useEffect(() => {
 		setItems(data);
 	}, []);
@@ -62,50 +61,71 @@ function EditBanner() {
 		<div className={styles.editBanner}>
 			<h2 className={styles.editBannerHeader}>Edit Banner</h2>
 			{items.map((item, index) => (
-				<div key={item.id + 1}>
+				<div key={item.name}>
 					<h3 className={`${styles.marginTop} ${styles.subHeader}`}>
 						Upload Image #{index + 1}
 					</h3>
 					<FileUploadButton
 						className={styles.marginTop}
 						placeholder={`Upload The banner Cover #${index + 1}`}
-						name={`cover#${index}`}
+						name='coverImg'
 						htmlFor={`cover#${index}`}
 						defaultValue={item.coverImg}
 						accept={'image/*'}
+						setState={(object, name) => {
+							bannerData.current[index][name] = object;
+						}}
 					/>
 					<FileUploadButton
 						className={styles.marginTop}
 						placeholder={`Upload The banner Cover Mobile #${index + 1}`}
-						name={`coverMobile#${index}`}
+						name='coverMobile'
 						htmlFor={`coverMobile#${index}`}
 						defaultValue={item.coverMobile}
 						accept={'image/*'}
+						setState={(object, name) => {
+							bannerData.current[index][name] = object;
+						}}
 					/>
 					<FileUploadButton
 						className={styles.marginTop}
 						placeholder={`Upload The banner Carousel Thumb #${index + 1}`}
-						name={`carouselThumb#${index}`}
+						name='carouselThumb'
 						htmlFor={`carouselThumb#${index}`}
 						defaultValue={item.carouselThumb}
 						accept={'image/*'}
+						setState={(object, name) => {
+							bannerData.current[index][name] = object;
+						}}
 					/>
 					<FileUploadButton
 						className={styles.marginTop}
 						placeholder={`Upload The banner Logo #${index + 1}`}
-						name={`logo#${index}`}
+						name='logoImg'
 						htmlFor={`logo#${index}`}
 						defaultValue={item.logoImg}
 						accept={'image/*'}
+						setState={(object, name) => {
+							bannerData.current[index][name] = object;
+						}}
 					/>
 					<TypeableSelectionField
 						className={styles.marginTop}
-						name={`gameName#${index}`}
+						name='name'
 						htmlFor={`gameName#${index}`}
 						defaultValue={item.name}
+						setState={(object, name) => {
+							bannerData.current[index][name] = object.name;
+						}}
 					/>
 				</div>
 			))}
+			<div className={styles.btnContainer}>
+				<InfoFieldActionButton
+					text='Save'
+					onClick={() => console.log(bannerData.current)}
+				/>
+			</div>
 		</div>
 	);
 }

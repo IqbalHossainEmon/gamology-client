@@ -67,10 +67,6 @@ export default function TypeableSelectionField({
 					setShow(false);
 				}
 			},
-			handleBlur: e => {
-				setState(e.target.value, e.target.name);
-				setFocused(false);
-			},
 		};
 	}
 
@@ -95,7 +91,6 @@ export default function TypeableSelectionField({
 					className={styles.field}
 					id={htmlFor}
 					type='input'
-					onBlur={eventRefs.current.handleBlur}
 					onChange={eventRefs.current.handleChange}
 					onFocus={eventRefs.current.handleFocus}
 					ref={fieldRef}
