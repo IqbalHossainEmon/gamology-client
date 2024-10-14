@@ -1,4 +1,4 @@
-import EditBanner from '../Components/Events/EditBanner/EditBanner';
+import EditBanner from '../Components/Events/EditBanner/EditBanner/EditBanner';
 import withDashboardModal from '../Components/Utils/HOC/withDashboardModal';
 import styles from './DashboardBody.module.css';
 

@@ -13,6 +13,10 @@
 	font-size: 1rem;
 	display: flex;
 	flex-direction: column;
+	position: relative;
+}
+#errorColor {
+	color: #cc2a24;
 }
 .label {
 	position: absolute;

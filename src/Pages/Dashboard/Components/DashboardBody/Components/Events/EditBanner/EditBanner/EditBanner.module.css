@@ -5,13 +5,7 @@
 	font-size: 1.5rem;
 	font-weight: 400;
 }
-.marginTop {
-	margin-top: 1rem;
-}
-.subHeader {
-	font-weight: 400;
-}
-
-.btnContainer {
+.btnContainer,
+.outErrorMessageContainer {
 	margin-top: 2rem;
 }

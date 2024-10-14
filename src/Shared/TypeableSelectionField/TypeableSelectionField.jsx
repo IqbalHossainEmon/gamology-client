@@ -12,10 +12,10 @@ export default function TypeableSelectionField({
 	name = '',
 	onFocusClick,
 	enabled = true,
-	errorBorder = false,
 	setState = () => {},
 	handleChange = () => {},
 	errorMessage,
+	errorChange = () => {},
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
@@ -43,6 +43,17 @@ export default function TypeableSelectionField({
 
 	const eventRefs = useRef(null);
 
+	useEffect(() => {
+		if (defaultValue && !valueRef.current) {
+			setValue(defaultValue);
+		} else if (!defaultValue && valueRef.current) {
+			setValue('');
+		}
+		if (errorShowRef.current) {
+			setErrorShow(false);
+		}
+	}, [defaultValue]);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleFocus: () => {
@@ -67,8 +78,18 @@ export default function TypeableSelectionField({
 					setShow(false);
 				}
 			},
+			handleBlur: () => {
+				setFocused(false);
+			},
 		};
 	}
+	useEffect(() => {
+		if (errorChange && errorMessage) {
+			setErrorShow(true);
+		} else {
+			setErrorShow(false);
+		}
+	}, [errorChange, errorMessage]);
 
 	return (
 		<div
@@ -76,11 +97,12 @@ export default function TypeableSelectionField({
 			ref={containerRef}
 		>
 			<div
-				className={`${errorBorder ? `${styles.errorBorder} ` : focused ? `${styles.focusBorder} ` : ''}${styles.innerContainer}`}
+				className={`${errorShow ? `${styles.errorBorder} ` : focused ? `${styles.focusBorder} ` : ''}${styles.innerContainer}`}
 				ref={elementRef}
 			>
 				<label
 					className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
+					{...(errorShow && { id: styles.errorColor })}
 					htmlFor={htmlFor}
 				>
 					{placeholder}
@@ -93,6 +115,7 @@ export default function TypeableSelectionField({
 					type='input'
 					onChange={eventRefs.current.handleChange}
 					onFocus={eventRefs.current.handleFocus}
+					onBlur={eventRefs.current.handleBlur}
 					ref={fieldRef}
 					value={typeof value === 'string' ? value : value.name}
 					{...rest}

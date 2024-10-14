@@ -1,0 +1,36 @@
+.headerContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1rem;
+}
+.headerBtn {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.headerBtn button {
+	padding: 0.5rem 1rem;
+	position: relative;
+	border-radius: 4px;
+}
+
+.clearBtn {
+	background-color: #00000000;
+	border: 1px solid #ffffffc2;
+	color: #ffffffc2;
+}
+.resetBtn {
+	background-color: #c6ebffad;
+	color: #000000;
+	border: transparent;
+}
+
+.marginTop {
+	margin-top: 1rem;
+}
+.subHeader {
+	font-weight: 400;
+}

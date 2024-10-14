@@ -35,6 +35,8 @@ function FileUploadButton({
 	const btnRef = useRef(null);
 	const previewBtnRef = useRef(null);
 	const eventRefs = useRef(null);
+	const errorShowRef = useRef(errorShow);
+	errorShowRef.current = errorShow;
 
 	useEffect(() => {
 		if (errorChange && errorMessage) {
@@ -43,6 +45,25 @@ function FileUploadButton({
 			setErrorShow(false);
 		}
 	}, [errorChange, errorMessage]);
+
+	const selectedRef = useRef(selected);
+	selectedRef.current = selected;
+
+	useEffect(() => {
+		if (defaultValue && !selectedRef.current.selected) {
+			setSelected({
+				selected: true,
+				name: defaultValue instanceof File ? defaultValue.name : defaultValue,
+				file: defaultValue,
+			});
+		} else if (!defaultValue && selectedRef.current.selected) {
+			setSelected({ selected: false, name: 'name' });
+		}
+		if (errorShowRef.current) {
+			setErrorShow(false);
+		}
+	}, [defaultValue]);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleCancel: () => {

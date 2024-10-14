@@ -1,5 +1,6 @@
 const areObjectsEqual = (firstObject, secondObject) => {
 	if (firstObject === secondObject) return true;
+
 	if (
 		typeof firstObject !== 'object' ||
 		firstObject === null ||
@@ -7,6 +8,13 @@ const areObjectsEqual = (firstObject, secondObject) => {
 		secondObject === null
 	)
 		return false;
+
+	if (Array.isArray(firstObject) && Array.isArray(secondObject)) {
+		if (firstObject.length !== secondObject.length) return false;
+		return firstObject.every((item, index) => areObjectsEqual(item, secondObject[index]));
+	}
+
+	if (Array.isArray(firstObject) !== Array.isArray(secondObject)) return false;
 
 	const keysA = Object.keys(firstObject);
 	const keysB = Object.keys(secondObject);

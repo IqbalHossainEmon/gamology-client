@@ -84,6 +84,20 @@ export default function TextField({
 		}
 	}, [errorChange, errorMessage]);
 
+	const valueRef = useRef(value);
+	valueRef.current = value;
+
+	useEffect(() => {
+		if (defaultValue && !valueRef.current) {
+			setValue(defaultValue);
+		} else if (!defaultValue && valueRef.current) {
+			setValue('');
+		}
+		if (errorShowRef.current) {
+			setErrorShow(false);
+		}
+	}, [defaultValue]);
+
 	useEffect(() => {
 		if (!parentErrorShow) {
 			setErrorShow(false);
