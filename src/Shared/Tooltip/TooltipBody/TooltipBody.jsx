@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './TooltipBody.module.css';
 
-function TooltipBody({ message, containerRef, fadeIn }) {
+function TooltipBody({ message, containerRef, fadeIn, scrollElementId, extra = 0 }) {
 	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
 
 	const tooltipRef = useRef(null);
@@ -12,9 +12,15 @@ function TooltipBody({ message, containerRef, fadeIn }) {
 			const { height: tooltipHeight, width: tooltipWidth } =
 				tooltipRef.current.getBoundingClientRect();
 
+			let scrollY = 0;
+
+			if (scrollElementId) {
+				scrollY = document.getElementById(scrollElementId).getBoundingClientRect().top;
+			}
+
 			if (left - (tooltipHeight + 20) > 0) {
 				setPosition({
-					top: top + height / 2 - tooltipHeight / 2,
+					top: top + Math.abs(scrollY) + extra + height / 2 - tooltipHeight / 2,
 					left: left - tooltipWidth - 10,
 					arrowOn: 'right',
 				});
@@ -38,12 +44,12 @@ function TooltipBody({ message, containerRef, fadeIn }) {
 				});
 			}
 		}
-	}, [containerRef, fadeIn]);
+	}, [containerRef, extra, fadeIn, scrollElementId]);
 
 	return (
 		<div
 			className={`${styles.toolTips}${fadeIn ? ` ${styles.fadeIn}` : ''} ${styles[position.arrowOn]}`}
-			style={{ top: position.top, left: position.left }}
+			style={{ translate: `${position.left}px ${position.top}px` }}
 		>
 			<p ref={tooltipRef}>{message}</p>
 		</div>

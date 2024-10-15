@@ -1,6 +1,6 @@
 import Card from '../../../../../../../../../../../Shared/Card/Card';
+import useDashboardModal from '../../../../../../../../../Utils/Hooks/useDashboardModal';
 import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
-import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesContent.module.css';
 

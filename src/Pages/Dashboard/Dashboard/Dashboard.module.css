@@ -3,4 +3,6 @@
 	height: calc(100vh - 72px);
 	display: flex;
 	column-gap: 1rem;
+	position: relative;
+	overflow-y: auto;
 }

@@ -76,6 +76,7 @@ function Drawer() {
 		<>
 			<div
 				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawerContainer}`}
+				id='dashboard-drawer'
 				ref={elementRef}
 			>
 				<div className={styles.drawerImmediateContainer}>

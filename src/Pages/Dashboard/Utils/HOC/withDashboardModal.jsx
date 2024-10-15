@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
-import Modal from '../../../../../../../Shared/Modal/Modal/Modal';
-import ScreenShadow from '../../../../../../../Shared/ScreenShadow/ScreenShadow';
-import DashboardModal from '../../../Shared/DashboardModal/DashboardModal';
+import Modal from '../../../../Shared/Modal/Modal/Modal';
+import ScreenShadow from '../../../../Shared/ScreenShadow/ScreenShadow';
+import DashboardModal from '../../Components/DashboardBody/Shared/DashboardModal/DashboardModal';
 import {
-	SetContentDashboardModalContext,
-	SetDashboardModalContext,
+    SetContentDashboardModalContext,
+    SetDashboardModalContext,
 } from '../Contexts/DashboardModalContext';
 
 const withDashboardModal = Component =>

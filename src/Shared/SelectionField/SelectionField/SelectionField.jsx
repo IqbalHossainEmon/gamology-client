@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useDashboardTooltip from '../../../Pages/Dashboard/Components/DashboardBody/Components/Utils/Hooks/useDashboardTooltip';
+import useDashboardTooltip from '../../../Pages/Dashboard/Utils/Hooks/useDashboardTooltip';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
 import useTooltip from '../../../Utils/Hooks/useTooltip';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';

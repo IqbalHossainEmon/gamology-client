@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
+import useDashboardModal from '../../../../../../../../../Utils/Hooks/useDashboardModal';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
 

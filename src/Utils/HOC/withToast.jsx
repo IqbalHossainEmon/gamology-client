@@ -4,16 +4,7 @@ import { HideToastContext, SetToastContext } from '../Contexts/ToastContext';
 
 const withToast = Component =>
 	function InnerComponent(props) {
-		const [toasts, setToasts] = useState([
-			{
-				id: 0,
-				title: 'Welcome to the app!',
-				message: 'You can start by adding a new task.',
-				type: 'info',
-			},
-		]);
-
-		console.log(toasts);
+		const [toasts, setToasts] = useState([]);
 
 		const toastsRef = useRef(toasts);
 		toastsRef.current = toasts;
@@ -68,9 +59,8 @@ const withToast = Component =>
 		return (
 			<SetToastContext.Provider value={eventRefs.current.handleSetToast}>
 				<HideToastContext.Provider value={eventRefs.current.handleHideToast}>
-					<Component {...props}>
-						<Toasts toasts={toasts} />
-					</Component>
+					<Component {...props} />
+					<Toasts toasts={toasts} />
 				</HideToastContext.Provider>
 			</SetToastContext.Provider>
 		);

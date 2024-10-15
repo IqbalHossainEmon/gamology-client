@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Pagination from '../../../../../../../../Shared/Pagination/Pagination/Pagination';
 import useToast from '../../../../../../../../Utils/Hooks/useToast';
+import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
 import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
-import useDashboardModal from '../../../Utils/Hooks/useDashboardModal';
 import UserCard from '../../Components/UserCard/UserCard';
 import UserDeleteConfirmModal from '../../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
 import UserInfo from '../Components/UserInfo/UserInfo';

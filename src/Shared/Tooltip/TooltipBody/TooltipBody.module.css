@@ -1,14 +1,26 @@
 .toolTips {
 	position: absolute;
-	background-color: #1b1b1b;
+	background-color: transparent;
 	opacity: 0;
 	left: 0;
 	top: 0;
 	transition: opacity 100ms;
-	z-index: 5;
+	z-index: 1;
 	border-radius: 4px;
+	overflow: hidden;
 	width: auto;
 	height: auto;
+}
+.toolTips::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #1b1b1b50;
+	backdrop-filter: blur(10px);
+	z-index: -1;
 }
 
 .toolTips p {

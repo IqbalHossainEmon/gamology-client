@@ -1,7 +1,8 @@
 .drawerContainer {
-	position: relative;
+	position: sticky;
 	width: 240px;
 	background-color: #18181c;
+	top: 0;
 }
 .containerTransition {
 	transition: width 200ms linear;
