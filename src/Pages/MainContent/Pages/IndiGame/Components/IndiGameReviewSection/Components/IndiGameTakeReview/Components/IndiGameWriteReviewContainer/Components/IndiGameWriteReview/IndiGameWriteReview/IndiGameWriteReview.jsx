@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import LineBreak from '../../../../../../../../../../../../../Shared/LineBreak/LineBreak';
+import HorizontalDivider from '../../../../../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import useScreenWidth from '../../../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn';
@@ -68,7 +68,7 @@ export default function IndiGameWriteReview({
 					/>
 				</div>
 			</div>
-			<LineBreak />
+			<HorizontalDivider />
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import LineBreak from '../../../../../../../../../Shared/LineBreak/LineBreak';
+import HorizontalDivider from '../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import ReviewStar from '../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndiGameOwnReview from '../Components/IndiGameOwnReview/IndiGameOwnReview';
 import IndiGameWriteReviewContainer from '../Components/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer';
@@ -74,7 +74,7 @@ export default function IndiGameTakeReview() {
 					</div>
 				</div>
 			</div>
-			<LineBreak />
+			<HorizontalDivider />
 
 			{userReviewDone ? (
 				<IndiGameOwnReview review={review} />

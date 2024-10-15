@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import Modal from '../../../../../../../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../../../../../../../Shared/ScreenShadow/ScreenShadow';
-import DashboardModal from '../../DashboardModal/DashboardModal';
+import DashboardModal from '../../../Shared/DashboardModal/DashboardModal';
 import {
 	SetContentDashboardModalContext,
 	SetDashboardModalContext,
@@ -32,12 +32,11 @@ const withDashboardModal = Component =>
 		return (
 			<SetDashboardModalContext.Provider value={eventRef.current.handleToggleModal}>
 				<SetContentDashboardModalContext.Provider value={setContent}>
-					<Component {...props}>
-						<Modal hideEventRef={hideEventRef} setShow={setShowModal} show={showModal}>
-							<DashboardModal content={content} />
-						</Modal>
-						<ScreenShadow show={showModal} zIndex={3} />
-					</Component>
+					<Component {...props} />
+					<Modal hideEventRef={hideEventRef} setShow={setShowModal} show={showModal}>
+						<DashboardModal content={content} />
+					</Modal>
+					<ScreenShadow show={showModal} zIndex={3} />
 				</SetContentDashboardModalContext.Provider>
 			</SetDashboardModalContext.Provider>
 		);

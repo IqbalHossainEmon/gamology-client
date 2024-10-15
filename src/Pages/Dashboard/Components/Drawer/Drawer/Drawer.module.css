@@ -1,7 +1,6 @@
 .drawerContainer {
 	position: relative;
 	width: 240px;
-	height: calc(100vh - 72px);
 	background-color: #18181c;
 }
 .containerTransition {

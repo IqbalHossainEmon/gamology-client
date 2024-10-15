@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import LineBreak from '../../../../../../../Shared/LineBreak/LineBreak';
+import HorizontalDivider from '../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import IndiGameMultipleSpecification from '../Components/IndiGameMultipleSpecification/IndiGameMultipleSpecification';
 import IndiGameSpecificationOther from '../Components/IndiGameSpecificationOther/IndiGameSpecificationOther';
 import styles from './IndiGameSpecifications.module.css';
@@ -137,7 +137,7 @@ export default function IndiGameSpecifications() {
 
 					{spec.others ? <IndiGameSpecificationOther others={spec.others} /> : null}
 				</div>
-				<LineBreak />
+				<HorizontalDivider />
 				<div>
 					<p className={styles.copyWrite}>{spec.copyWrite}</p>
 				</div>

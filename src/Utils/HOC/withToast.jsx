@@ -4,7 +4,16 @@ import { HideToastContext, SetToastContext } from '../Contexts/ToastContext';
 
 const withToast = Component =>
 	function InnerComponent(props) {
-		const [toasts, setToasts] = useState([]);
+		const [toasts, setToasts] = useState([
+			{
+				id: 0,
+				title: 'Welcome to the app!',
+				message: 'You can start by adding a new task.',
+				type: 'info',
+			},
+		]);
+
+		console.log(toasts);
 
 		const toastsRef = useRef(toasts);
 		toastsRef.current = toasts;

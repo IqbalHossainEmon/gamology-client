@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import LineBreak from '../../../../../../../../../../Shared/LineBreak/LineBreak';
+import HorizontalDivider from '../../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import ReviewStar from '../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import styles from './IndiGameReview.module.css';
 
@@ -112,7 +112,7 @@ export default function IndiGameReview({ review, index, length }) {
 				</div>
 			</div>
 
-			{index !== length - 1 && <LineBreak />}
+			{index !== length - 1 && <HorizontalDivider />}
 		</>
 	);
 }

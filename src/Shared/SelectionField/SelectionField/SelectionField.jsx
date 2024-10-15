@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useDashboardTooltip from '../../../Pages/Dashboard/Components/DashboardBody/Components/Utils/Hooks/useDashboardTooltip';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
 import useTooltip from '../../../Utils/Hooks/useTooltip';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
@@ -21,6 +22,7 @@ export default function SelectionField({
 	parentSetValue = '',
 	errorBorder = false,
 	none,
+	isDashboard = false,
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
@@ -80,17 +82,19 @@ export default function SelectionField({
 		};
 	}
 
-	const setTooltip = useTooltip();
+	const tooltipHook = isDashboard ? useDashboardTooltip : useTooltip;
+
+	const setTooltip = tooltipHook();
 
 	const isAdded = useRef(false);
 
 	useEffect(() => {
 		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
-			setTooltip(elementRef.current, value);
+			setTooltip(elementRef.current, value, 'dashboard-body');
 			isAdded.current = true;
 		} else if (isAdded.current) {
 			isAdded.current = false;
-			setTooltip(elementRef.current, null);
+			setTooltip(elementRef.current, null, 'dashboard-body');
 		}
 	}, [setTooltip, value, width]);
 

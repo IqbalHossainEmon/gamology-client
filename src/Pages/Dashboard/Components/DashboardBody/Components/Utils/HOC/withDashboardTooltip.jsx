@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import Tooltip from '../../Shared/Tooltip/Tooltip/Tooltip';
-import SetTooltipContext from '../Contexts/TooltipContext';
+import DashboardTooltip from '../../../Shared/DashboardTooltip/DashboardTooltip/DashboardTooltip';
+import SetDashboardTooltipContext from '../Contexts/DashboardTooltipContext';
 
-const withTooltip = Component =>
+const withDashboardTooltip = Component =>
 	function InnerComponent(props) {
 		const [show, setShow] = useState(false);
+
+		console.log('wkwk');
 
 		const [message, setMessage] = useState('');
 
@@ -27,9 +29,7 @@ const withTooltip = Component =>
 						containerRef.current = e.currentTarget;
 					}
 				},
-				scrollUp: e => {
-					console.log(e);
-				},
+
 				onMouseLeave: () => {
 					if (timerId.current) {
 						clearTimeout(timerId.current);
@@ -46,15 +46,6 @@ const withTooltip = Component =>
 						setMessage(msg);
 						element.addEventListener('mousemove', eventRefs.current.onMouseMove);
 						element.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
-
-						if (elementId) {
-							document
-								.getElementById(elementId)
-								.addEventListener('scroll', eventRefs.current.scrollUp);
-						}
-
-						window.addEventListener('scroll', eventRefs.current.onMouseLeave);
-						window.addEventListener('scroll', eventRefs.current.onMouseLeave);
 
 						listenerAdded.current = true;
 					} else if (element && !msg && listenerAdded.current) {
@@ -94,11 +85,11 @@ const withTooltip = Component =>
 		);
 
 		return (
-			<SetTooltipContext.Provider value={eventRefs.current.contextEvents}>
+			<SetDashboardTooltipContext.Provider value={eventRefs.current.contextEvents}>
 				<Component {...props} />
-				<Tooltip message={message} containerRef={containerRef} state={show} />
-			</SetTooltipContext.Provider>
+				<DashboardTooltip message={message} containerRef={containerRef} state={show} />
+			</SetDashboardTooltipContext.Provider>
 		);
 	};
 
-export default withTooltip;
+export default withDashboardTooltip;
