@@ -27,13 +27,18 @@ function ImagePreviewContainer({
 	const imgRef = useRef(null);
 	const positionRef = useRef(null);
 
+	const loadingRef = useRef(loading);
+	loadingRef.current = loading;
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleHide: () => {
 				if (timerIdHide.current) {
 					clearTimeout(timerIdHide.current);
 				}
-
+				if (loadingRef.current) {
+					setLoading(false);
+				}
 				setShow(false);
 				timerIdHide.current = setTimeout(() => {
 					setShowPreview(false);
@@ -43,9 +48,6 @@ function ImagePreviewContainer({
 	}
 
 	const { showMenu, onHide, setElement } = useDropDownHide(eventRefs.current.handleHide);
-
-	const loadingRef = useRef(loading);
-	loadingRef.current = loading;
 
 	if (!eventRefs.current.handleHover) {
 		eventRefs.current = {
@@ -85,6 +87,11 @@ function ImagePreviewContainer({
 					onHide();
 					eventRefs.current.handleHide();
 				} else {
+					if (!loadingRef.current && !imgRef.current) {
+						setLoading(true);
+					}
+					console.log(!loadingRef.current && !imgRef.current);
+
 					setShow(true);
 					setShowPreview(true);
 					showMenu();
@@ -153,6 +160,8 @@ function ImagePreviewContainer({
 			}
 		};
 	}, [containerRef, btnRef, touchAble, previewBtnRef, setElement]);
+
+	console.log(loading);
 
 	return (
 		showPreview && (

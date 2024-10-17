@@ -33,6 +33,16 @@
 	scale: 1;
 }
 
+.header {
+	text-align: center;
+	font-weight: 400;
+	margin-bottom: 1rem;
+}
+.headerQuestion {
+	font-weight: 400;
+	margin-bottom: 1rem;
+}
+
 .crossBtn {
 	width: 1.5rem;
 	height: 1.5rem;
@@ -65,6 +75,10 @@
 }
 .cross::before {
 	rotate: -45deg;
+}
+
+.modalContentContainer {
+	position: relative;
 }
 
 @media (hover: hover) and (pointer: fine) {

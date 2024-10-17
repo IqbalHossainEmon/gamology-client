@@ -28,7 +28,6 @@ export default function useChangeBodyOverflow() {
 					document.body.classList.add('overflow-y-hidden');
 				}
 			},
-
 			showBodyOverflow: () => {
 				if (root.current.classList.contains('margin-right-6px')) {
 					root.current.removeAttribute('class');

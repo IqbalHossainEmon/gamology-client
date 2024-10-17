@@ -1,11 +1,11 @@
 import Card from '../../../../../../../../../../../Shared/Card/Card';
-import useDashboardModal from '../../../../../../../../../Utils/Hooks/useDashboardModal';
+import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesContent.module.css';
 
 function AllGamesContent({ items }) {
-	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
+	const setModal = useModal();
 
 	return (
 		<div className={styles.allGamesContent}>
@@ -24,16 +24,15 @@ function AllGamesContent({ items }) {
 								item={item}
 								lists={[
 									{
-										id: 1,
+										id: 0,
 										name: 'Edit',
 										event: () => console.log('Edit'),
 									},
 									{
-										id: 2,
+										id: 1,
 										name: 'Price',
 										event: detail => {
-											setDashboardModal(true);
-											setDashboardModalContent({
+											setModal({
 												title: 'Edit Price',
 												body: (
 													<h3 className={styles.priceChangeHeader}>
@@ -53,11 +52,33 @@ function AllGamesContent({ items }) {
 										},
 									},
 									{
+										id: 2,
+										name: 'Sales',
+										event: detail => {
+											setModal({
+												title: 'Edit Sales',
+												body: (
+													<h3 className={styles.priceChangeHeader}>
+														What sales you want to set for
+														<span className={styles.nameContainer}>
+															{item.name}
+														</span>
+													</h3>
+												),
+												footer: (
+													<AllGamesModalBodySelect
+														detail={detail}
+														type='sales'
+													/>
+												),
+											});
+										},
+									},
+									{
 										id: 3,
 										name: 'Delete',
 										event: detail => {
-											setDashboardModal(true);
-											setDashboardModalContent({
+											setModal({
 												title: 'Delete Game',
 												body: (
 													<h3 className={styles.priceChangeHeader}>
