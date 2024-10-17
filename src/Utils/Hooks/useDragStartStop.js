@@ -14,7 +14,9 @@ export default function useDragStartStop(
 	if (eventRefs.current === null) {
 		eventRefs.current = {
 			onStop: e => {
-				e.preventDefault();
+				if (e.cancelable) {
+					e.preventDefault();
+				}
 
 				if (isTouchAdd.current) {
 					document.removeEventListener('touchmove', moveEvent);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField';
 import InfoFieldActionButton from '../../../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
-import GameInfoFieldDescription from '../Components/GameInfoFieldDescription/GameInfoFieldDescription';
+import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 
 function GameInfoFieldDescriptions({

@@ -3,6 +3,7 @@ import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterE
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer';
 import useIsTouchAble from '../../../../../../../../../../Utils/Hooks/useIsTouchable';
+import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
 import styles from './CoverImageVideoContainer.module.css';
@@ -40,8 +41,11 @@ function CoverImageVideoContainer({
 	const containerRef = useRef(null);
 	const previewBtnRef = useRef(null);
 	const btnRef = useRef(null);
+
 	const isTouchAble = useIsTouchAble();
 	const touchAble = isTouchAble();
+
+	useScreenWidth();
 
 	useEffect(() => {
 		if (errorChange && errorMessage) {
@@ -145,6 +149,7 @@ function CoverImageVideoContainer({
 					containerRef={containerRef}
 					file={mainValueRef.current?.image.file}
 					previewBtnRef={previewBtnRef}
+					touchAble={touchAble}
 				/>
 			) : null}
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />

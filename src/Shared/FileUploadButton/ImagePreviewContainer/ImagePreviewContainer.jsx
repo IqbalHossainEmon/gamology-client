@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
-import useIsTouchAble from '../../../Utils/Hooks/useIsTouchable';
-import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ImagePreview from '../../ImagePreview/ImagePreview/ImagePreview';
 
 function ImagePreviewContainer({
@@ -10,6 +8,7 @@ function ImagePreviewContainer({
 	previewBtnRef,
 	setLoading,
 	loading,
+	touchAble,
 	...rest
 }) {
 	const [showPreview, setShowPreview] = useState(false);
@@ -20,10 +19,6 @@ function ImagePreviewContainer({
 
 	const showRef = useRef(show);
 	showRef.current = show;
-
-	const { screenWidth } = useScreenWidth();
-
-	const isTouchAble = useIsTouchAble();
 
 	const eventRefs = useRef(null);
 	const timerIdShow = useRef(null);
@@ -38,6 +33,7 @@ function ImagePreviewContainer({
 				if (timerIdHide.current) {
 					clearTimeout(timerIdHide.current);
 				}
+
 				setShow(false);
 				timerIdHide.current = setTimeout(() => {
 					setShowPreview(false);
@@ -65,7 +61,6 @@ function ImagePreviewContainer({
 					}
 					timerIdShow.current = setTimeout(() => {
 						setShow(true);
-
 						setShowPreview(true);
 						if (!loadingRef.current && !imgRef.current) {
 							setLoading(true);
@@ -85,64 +80,79 @@ function ImagePreviewContainer({
 					}
 				}
 			},
-			handleToggle: () => {
+			toggle: () => {
 				if (showPreviewRef.current) {
 					onHide();
-					setShow(false);
 					eventRefs.current.handleHide();
 				} else {
 					setShow(true);
-					showMenu();
 					setShowPreview(true);
+					showMenu();
 				}
 			},
 		};
 	}
 
 	useEffect(() => {
-		const previewBtn = previewBtnRef?.current;
-		const container = containerRef?.current;
 		const btn = btnRef?.current;
-		let isEventAdded = false;
-		let isMouseEventAdded = true;
-		const touchAble = isTouchAble();
-		const touchEvent = () => {
-			previewBtn.addEventListener('click', eventRefs.current.handleToggle);
-			setElement(previewBtn);
-			isEventAdded = true;
-			isMouseEventAdded = false;
-		};
-		const mouseEvent = () => {
-			container.addEventListener('mousemove', eventRefs.current.handleHover);
-			container.addEventListener('mouseleave', eventRefs.current.handleLeave);
-			btn.addEventListener('click', eventRefs.current.handleLeave);
-			isEventAdded = true;
-			isMouseEventAdded = true;
-		};
-		const removeMouseEvent = () => {
-			container.removeEventListener('mousemove', eventRefs.current.handleHover);
-			container.removeEventListener('mouseleave', eventRefs.current.handleLeave);
+		btn.addEventListener('click', eventRefs.current.handleLeave);
+		return () => {
 			btn.removeEventListener('click', eventRefs.current.handleLeave);
-			isEventAdded = false;
-			isMouseEventAdded = false;
 		};
+	}, [btnRef]);
+
+	useEffect(() => {
+		const container = containerRef.current;
+		const prevBtn = previewBtnRef?.current;
+
+		let isMouseEventAdded = false;
+		let isTouchEventAdded = false;
+
+		const mouseEvent = () => {
+			if (!isMouseEventAdded) {
+				container.addEventListener('mousemove', eventRefs.current.handleHover);
+				container.addEventListener('mouseleave', eventRefs.current.handleLeave);
+				isMouseEventAdded = true;
+			}
+			if (isTouchEventAdded) {
+				prevBtn.removeEventListener('click', eventRefs.current.toggle);
+				isTouchEventAdded = false;
+			}
+		};
+		const touchEvent = () => {
+			if (isMouseEventAdded) {
+				container.removeEventListener('mousemove', eventRefs.current.handleHover);
+				container.removeEventListener('mouseleave', eventRefs.current.handleLeave);
+				isMouseEventAdded = false;
+			}
+			if (!isTouchEventAdded) {
+				setElement(prevBtn);
+				prevBtn.addEventListener('click', eventRefs.current.toggle);
+				isTouchEventAdded = false;
+			}
+		};
+
 		if (showPreviewRef.current) {
 			setShowPreview(false);
 		}
-		if (isEventAdded) {
-			if (isMouseEventAdded && touchAble) {
-				removeMouseEvent();
-				touchEvent();
-			} else {
-				mouseEvent();
-			}
-		} else if (touchAble) {
+
+		if (touchAble) {
 			touchEvent();
 		} else {
 			mouseEvent();
 		}
-		return removeMouseEvent;
-	}, [isTouchAble, previewBtnRef, containerRef, btnRef, screenWidth, setElement]);
+		return () => {
+			if (isMouseEventAdded) {
+				container.removeEventListener('mousemove', eventRefs.current.handleHover);
+				container.removeEventListener('mouseleave', eventRefs.current.handleLeave);
+				isMouseEventAdded = false;
+			}
+			if (isTouchEventAdded) {
+				prevBtn.removeEventListener('click', eventRefs.current.toggle);
+				isTouchEventAdded = false;
+			}
+		};
+	}, [containerRef, btnRef, touchAble, previewBtnRef, setElement]);
 
 	return (
 		showPreview && (

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useIsTouchAble from '../../../Utils/Hooks/useIsTouchable';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../ImagePreviewContainer/ImagePreviewContainer';
@@ -34,7 +35,7 @@ function FileUploadButton({
 	const inputRef = useRef(null);
 	const btnRef = useRef(null);
 	const previewBtnRef = useRef(null);
-	const eventRefs = useRef(null);
+
 	const errorShowRef = useRef(errorShow);
 	errorShowRef.current = errorShow;
 
@@ -63,6 +64,8 @@ function FileUploadButton({
 			setErrorShow(false);
 		}
 	}, [defaultValue]);
+
+	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -93,6 +96,8 @@ function FileUploadButton({
 	}
 	const isTouchAble = useIsTouchAble();
 	const touchAble = isTouchAble();
+
+	useScreenWidth();
 
 	useEffect(() => {
 		const input = inputRef.current;
@@ -219,6 +224,7 @@ function FileUploadButton({
 					previewBtnRef={previewBtnRef}
 					setLoading={setLoading}
 					loading={loading}
+					touchAble={touchAble}
 				/>
 			) : null}
 		</div>

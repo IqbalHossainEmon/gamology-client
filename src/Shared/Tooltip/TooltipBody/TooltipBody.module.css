@@ -7,7 +7,6 @@
 	transition: opacity 100ms;
 	z-index: 1;
 	border-radius: 4px;
-	overflow: hidden;
 	width: auto;
 	height: auto;
 }
@@ -18,7 +17,8 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #1b1b1b50;
+	background-color: #22222250;
+	border-radius: 4px;
 	backdrop-filter: blur(10px);
 	z-index: -1;
 }
@@ -45,7 +45,8 @@
 	position: absolute;
 	width: 10px;
 	height: 10px;
-	background-color: #1b1b1b;
+	background-color: #22222250;
+	backdrop-filter: blur(10px);
 }
 
 .top::after,
