@@ -8,7 +8,8 @@
 	position: absolute;
 	width: 100%;
 	border-radius: 4px;
-	background-color: rgb(37, 37, 37);
+	background-color: rgba(37, 37, 37, 0.719);
+	backdrop-filter: blur(10px);
 	cursor: default;
 	z-index: 1;
 	scale: 0.9;
@@ -16,25 +17,31 @@
 	transition:
 		opacity 200ms,
 		scale 200ms;
+	user-select: none;
 }
 
 .fadeIn {
 	opacity: 1;
 	scale: 1;
 }
+
 .listScrollContainer {
-	position: relative;
-	padding: 0px 10px;
 	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.listContainer {
+	position: relative;
+	padding: 0px 12px;
 	max-height: 410px;
 	list-style-type: none;
 }
 
-.scrollbarPresent {
-	padding-right: 0px;
+.listContainer::-webkit-scrollbar {
+	display: none;
 }
 
-.listScrollContainer::-webkit-scrollbar {
+.listContainer::-webkit-scrollbar {
 	display: none;
 }
 

@@ -24,13 +24,12 @@ const withModal = Component =>
 			eventRefs.current = {
 				hideModal: () => {
 					setShow(false);
-					showBodyOverflow();
 					setTimeout(() => {
+						showBodyOverflow();
 						setContent(emptyModal);
-					}, 250);
+					}, 200);
 				},
 				setContent: (...args) => {
-					// handle overflow of body
 					if (args[0].title && args[0].body) {
 						setShow(true);
 						hideBodyOverflow();

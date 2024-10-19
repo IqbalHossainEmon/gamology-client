@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
+import useModal from '../../../../../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../../../../../../../Utils/Hooks/useDashboardModal';
 import styles from './AllGamesPriceEditModal.module.css';
 
 function AllGamesPriceEditModal({ price }) {
@@ -16,7 +16,7 @@ function AllGamesPriceEditModal({ price }) {
 
 	const { setToast } = useToast();
 
-	const { setDashboardModal } = useDashboardModal();
+	const setModal = useModal();
 
 	const handleSubmit = () => {
 		if (newPrice.current) {
@@ -41,7 +41,12 @@ function AllGamesPriceEditModal({ price }) {
 				message: 'Price has been updated successfully',
 				type: 'success',
 			});
-			setDashboardModal(false);
+			setModal({
+				title: null,
+				body: null,
+				footer: null,
+				triggerContainer: null,
+			});
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,

@@ -11,7 +11,7 @@
 	z-index: 1;
 	width: max-content;
 }
-#show #searchIcon {
+.show .searchIcon {
 	fill: rgb(0, 0, 0);
 }
 .searchField input {
@@ -32,21 +32,21 @@
 .searchField input {
 	outline: 0;
 }
-#show input {
+.show input {
 	outline: 0;
 	background-color: rgb(255, 255, 255);
 	color: #000;
 	border: none;
 }
 
-#show input::placeholder {
+.show input::placeholder {
 	color: rgba(0, 0, 0, 0.5);
 }
-#show {
+.show {
 	background-color: rgb(255, 255, 255);
 }
 
-#searchIcon {
+.searchIcon {
 	width: 25px;
 	height: 30px;
 	display: flex;
@@ -54,6 +54,11 @@
 	aspect-ratio: 1/1;
 	fill: rgb(255, 255, 255, 0.5);
 	transition: fill 300ms;
+}
+
+.suggestionList {
+	max-width: min(100%, 600px);
+	translate: 0 10px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -64,7 +69,10 @@
 		transition: all 300ms;
 		z-index: 2;
 	}
-	#show {
+	.suggestionList {
+		max-width: 100%;
+	}
+	.show {
 		padding: 0 10px;
 		width: 100%;
 		background-color: white;
@@ -72,10 +80,10 @@
 		border-radius: 0;
 		z-index: 3;
 	}
-	#hide {
+	.hide {
 		width: 45px;
 	}
-	#hide input {
+	.hide input {
 		opacity: 0;
 	}
 }

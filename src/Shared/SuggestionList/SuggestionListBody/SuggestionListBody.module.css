@@ -1,8 +1,8 @@
 .mainContainer {
 	position: absolute;
 	width: 100%;
+	overflow: hidden;
 	border-radius: 4px;
-	background-color: rgb(37, 37, 37);
 	cursor: default;
 	z-index: 1;
 }
@@ -70,6 +70,8 @@
 	width: 100%;
 	list-style: none;
 	overflow-y: auto;
+	background-color: rgba(37, 37, 37, 0.856);
+	backdrop-filter: blur(10px);
 	padding: 0 1rem;
 	opacity: 0;
 	transition:
@@ -78,7 +80,7 @@
 }
 
 .showBottom .listContainer {
-	translate: 0 -10px;
+	translate: 0 -50%;
 }
 .showAbove .listContainer {
 	translate: 0 10px;

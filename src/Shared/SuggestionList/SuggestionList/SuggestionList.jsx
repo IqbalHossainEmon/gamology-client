@@ -188,7 +188,7 @@ const data = [
 		carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
 	},
 	{
-		name: 'Control',
+		name: 'Contro 1',
 		carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
 	},
 	{
@@ -332,7 +332,7 @@ const data = [
 		carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
 	},
 	{
-		name: 'Control',
+		name: 'Control 2',
 		carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
 	},
 	{

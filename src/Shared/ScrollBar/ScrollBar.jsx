@@ -6,8 +6,8 @@ function ScrollBar({ parentRef, childRef, mainParentRef }) {
 	const [scrolled, setScrolled] = useState(0);
 	const [show, setShow] = useState(false);
 	const [height, setHeight] = useState(0);
+
 	const thumbRef = useRef(null);
-	const downElement = useRef(null);
 	const containerRef = useRef(null);
 	const timerID = useRef(null);
 	const eventRefs = useRef(null);
@@ -25,17 +25,17 @@ function ScrollBar({ parentRef, childRef, mainParentRef }) {
 			moveSetEventRef: cursorInEle => {
 				setScrolled(prev => {
 					if (
-						prev + cursorInEle - downElement.current > 0 &&
-						prev + cursorInEle - downElement.current <
-							parentRef.current.clientHeight - thumbRef.current.clientHeight
+						prev + cursorInEle > thumbRef.current.clientHeight / 2 &&
+						prev + cursorInEle <
+							parentRef.current.clientHeight - thumbRef.current.clientHeight / 2
 					) {
 						parentRef.current.scrollTop =
-							((prev + cursorInEle - downElement.current) /
+							((prev + cursorInEle - thumbRef.current.clientHeight / 2) /
 								(parentRef.current.clientHeight - thumbRef.current.clientHeight)) *
 							(parentRef.current.scrollHeight - parentRef.current.clientHeight);
-						return prev + cursorInEle - downElement.current;
+						return prev + cursorInEle - thumbRef.current.clientHeight / 2;
 					}
-					if (prev + cursorInEle - downElement.current < 0) {
+					if (prev + cursorInEle <= thumbRef.current.clientHeight / 2) {
 						parentRef.current.scrollTop = 0;
 						return 0;
 					}
@@ -52,15 +52,7 @@ function ScrollBar({ parentRef, childRef, mainParentRef }) {
 			handleMoveScroll: e => {
 				eventRefs.current.moveSetEventRef(eventRefs.current.cursorInElementCalc(e));
 			},
-			handleMouseUp: () => {
-				downElement.current = null;
-			},
-			handleMouseDownBar: e => {
-				downElement.current = eventRefs.current.cursorInElementCalc(e);
-			},
-			handleMouseDownParent: () => {
-				downElement.current = thumbRef.current.clientHeight / 2;
-			},
+
 			handleSetHeight: () => {
 				setHeight(() => {
 					const { clientHeight } = parentRef.current;
@@ -81,19 +73,6 @@ function ScrollBar({ parentRef, childRef, mainParentRef }) {
 					return thumbHeight;
 				});
 			},
-			handleScroll: () => {
-				setShow(true);
-				eventRefs.current.handleScrollHide();
-				setScrolled(
-					(parentRef.current.scrollTop /
-						(parentRef.current.scrollHeight - parentRef.current.clientHeight)) *
-						(parentRef.current.clientHeight - thumbRef.current.clientHeight)
-				);
-			},
-			handleMouseMove: () => {
-				setShow(true);
-				eventRefs.current.handleScrollHide();
-			},
 			handleScrollHide: () => {
 				if (timerID.current) {
 					clearTimeout(timerID.current);
@@ -107,39 +86,40 @@ function ScrollBar({ parentRef, childRef, mainParentRef }) {
 		};
 	}
 
-	const onStartScroll = useDragStartStop(
-		eventRefs.current.handleMoveScroll,
-		eventRefs.current.handleMouseUp,
-		eventRefs.current.handleMouseDownBar
-	);
+	const onStartScroll = useDragStartStop(eventRefs.current.handleMoveScroll);
 
 	if (!eventRefs.current.onStartParent) {
-		eventRefs.current.onStartParent = e => {
-			e.stopPropagation();
-			onStartScroll(e);
-		};
-		eventRefs.current.onMouseMoveShow = () => {
-			if (!showRef.current) setShow(true);
-			eventRefs.current.handleScrollHide();
-		};
-		eventRefs.current.onMouseLeaveOnParent = () => {
-			if (showRef.current) setShow(false);
+		eventRefs.current = {
+			...eventRefs.current,
+			onStartParent: e => {
+				e.stopPropagation();
+				onStartScroll(e);
+			},
+			onMouseMoveShow: () => {
+				if (!showRef.current) setShow(true);
+				eventRefs.current.handleScrollHide();
+			},
+			onMouseDownOnParent: e => {
+				if (mainParentRef.current.clientWidth - e.offsetX < 6) {
+					onStartScroll(e);
+				}
+			},
+			onMouseLeaveOnParent: () => {
+				if (showRef.current) setShow(false);
+			},
 		};
 	}
 
 	useEffect(() => {
-		const knob = thumbRef.current;
 		const parent = parentRef.current;
 		const mainParent = mainParentRef.current;
 		let parentObserve;
 		if (parent) {
 			// Add event listeners
 			mainParent.addEventListener('mousemove', eventRefs.current.onMouseMoveShow);
+			mainParent.addEventListener('mousedown', eventRefs.current.onMouseDownOnParent);
 			mainParent.addEventListener('mouseleave', eventRefs.current.onMouseLeaveOnParent);
-			knob.addEventListener('mousedown', eventRefs.current.onStartParent);
-			knob.addEventListener('touchstart', eventRefs.current.onStartParent, {
-				passive: false,
-			});
+
 			window.addEventListener('resize', eventRefs.current.handleSetHeight);
 			parent.addEventListener('scroll', eventRefs.current.handleScroll);
 
@@ -159,8 +139,7 @@ function ScrollBar({ parentRef, childRef, mainParentRef }) {
 		return () => {
 			mainParent.removeEventListener('mousemove', eventRefs.current.onMouseMoveOnParent);
 			mainParent.removeEventListener('mouseleave', eventRefs.current.onMouseLeaveOnParent);
-			knob.removeEventListener('mousedown', eventRefs.current.onStartParent);
-			knob.removeEventListener('touchstart', eventRefs.current.onStartParent);
+
 			window.removeEventListener('resize', eventRefs.current.handleSetHeight);
 			parent.removeEventListener('scroll', eventRefs.current.handleScroll);
 			if (isAdded.current) {

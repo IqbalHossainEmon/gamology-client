@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField';
+import useModal from '../../../../../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../../../../../../../Utils/Hooks/useDashboardModal';
 import styles from './AllGamesDeleteConfirmModal.module.css';
 
 function AllGamesDeleteConfirmModal() {
@@ -14,7 +14,7 @@ function AllGamesDeleteConfirmModal() {
 
 	const btnRef = useRef(null);
 
-	const { setDashboardModal } = useDashboardModal();
+	const setModal = useModal();
 
 	const { setToast } = useToast();
 
@@ -27,7 +27,12 @@ function AllGamesDeleteConfirmModal() {
 				type: 'success',
 			});
 
-			setDashboardModal(false);
+			setModal({
+				title: null,
+				body: null,
+				footer: null,
+				triggerContainer: null,
+			});
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,

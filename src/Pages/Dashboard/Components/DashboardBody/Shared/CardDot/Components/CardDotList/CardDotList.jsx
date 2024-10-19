@@ -37,7 +37,7 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 	return (
 		<ul
 			ref={listContainerRef}
-			className={`${styles.listContainer} ${position > 0 ? styles.left : position < 0 ? styles.top : styles.bottom}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
+			className={`${styles.listContainer} ${position > 0 ? styles.left : position < 0 ? styles.top : styles.bottom}${fadeIn ? ` ${styles.zoomIn}` : ''} transparent-blur-bg`}
 		>
 			{lists.map(list => (
 				<li key={list.id}>

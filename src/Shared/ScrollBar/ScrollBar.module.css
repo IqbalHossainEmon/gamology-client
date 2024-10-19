@@ -26,13 +26,7 @@
 		background-color 200ms,
 		opacity 200ms;
 }
-.scrollThumb:hover {
-	background-color: #5a5959;
-}
-.scrollThumb:active {
-	background-color: #363636;
-}
+
 .show {
 	opacity: 1;
-	pointer-events: auto;
 }
