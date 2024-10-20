@@ -76,11 +76,12 @@
 	opacity: 0;
 	transition:
 		opacity 200ms,
-		translate 200ms;
+		translate 200ms,
+		height 200ms;
 }
 
 .showBottom .listContainer {
-	translate: 0 -50%;
+	translate: 0 -10%;
 }
 .showAbove .listContainer {
 	translate: 0 10px;
@@ -88,7 +89,7 @@
 
 .showAbove .listContainer.fadeIn,
 .showBottom .listContainer.fadeIn {
-	translate: 0 0px;
+	translate: 0 0;
 	opacity: 1;
 }
 

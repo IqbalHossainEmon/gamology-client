@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
+import useScreenWidth from '../../Utils/Hooks/useScreenWidth';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './SearchField.module.css';
 
-export default function SearchField({ setNavShow, screenWidth }) {
+export default function SearchField({ setNavShow }) {
 	const [btnShow, setBtnShow] = useState(false);
 	const [value, setValue] = useState('');
 	const [listShow, setListShow] = useState(false);
@@ -14,6 +15,8 @@ export default function SearchField({ setNavShow, screenWidth }) {
 
 	const isListShownRef = useRef(listShow);
 	isListShownRef.current = listShow;
+
+	const { screenWidth } = useScreenWidth();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {

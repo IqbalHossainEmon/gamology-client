@@ -47,7 +47,6 @@ function AllGamesHeader({ setSearchText }) {
 					/>
 				</div>
 			</div>
-
 			{screenWidth < 769 && <ScreenShadow show={navShow} zIndex={3} />}
 		</div>
 	);

@@ -6,12 +6,12 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	transition:
+		background-color 200ms,
+		backdrop-filter 200ms;
 }
 
 .shadowShow {
 	background-color: rgba(0, 0, 0, 0.6);
 	backdrop-filter: blur(1px);
-	transition:
-		background-color 200ms linear,
-		backdrop-filter 200ms linear;
 }

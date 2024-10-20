@@ -25,9 +25,7 @@ function DrawerOptions({ option, parentState }) {
 				type='button'
 			>
 				<span className={styles.iconContainer}>{option.icon}</span>
-
 				{option.name}
-
 				<div
 					className={`${parentState ? `${styles.btnBottom} ` : ''}${styles.arrowButton}`}
 				>
@@ -35,7 +33,7 @@ function DrawerOptions({ option, parentState }) {
 				</div>
 			</button>
 			<ul
-				className={styles.innerOptionsContainer}
+				className={`${styles.innerOptionsContainer}${parentState ? ` ${styles.noPaddingLeft}` : ''}`}
 				ref={containerRef}
 				style={show.show ? { height: `${show.height}px` } : { height: '0px' }}
 			>

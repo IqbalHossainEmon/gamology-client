@@ -49,10 +49,17 @@
 }
 
 .innerOptionsContainer {
+	width: calc(100% - 1rem);
 	list-style-type: none;
-	transition: height 200ms;
 	overflow: hidden;
-	padding-left: 0.5rem;
+	translate: 0.5rem;
+	transition:
+		translate 200ms,
+		height 200ms;
+}
+
+.noPaddingLeft {
+	translate: 0rem;
 }
 
 .arrowButton {
