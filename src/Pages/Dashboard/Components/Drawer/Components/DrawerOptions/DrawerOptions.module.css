@@ -70,8 +70,8 @@
 	top: 50%;
 	transform: translateY(-50%);
 	transition:
-		top 200ms linear,
-		right 200ms linear;
+		top 200ms,
+		right 200ms;
 	transition-delay: 20ms;
 }
 

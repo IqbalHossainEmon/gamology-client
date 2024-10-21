@@ -9,6 +9,7 @@ const withToast = Component =>
 		const toastsRef = useRef(toasts);
 		toastsRef.current = toasts;
 
+		console.log(toasts);
 		const toastIdRef = useRef(0);
 
 		const eventRefs = useRef(null);
@@ -34,6 +35,8 @@ const withToast = Component =>
 					}
 				},
 				handleSetToast: toast => {
+					console.log(toast);
+
 					if (typeof toast === 'object') {
 						if (!toast.title || !toast.message || !toast.type) {
 							return;

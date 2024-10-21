@@ -6,6 +6,6 @@ import withToast from './withToast';
 import withTooltip from './withTooltip';
 
 const withAppsHOCs = Component =>
-	withScreenWidthProvider(withModal(withToast(withTooltip(memo(Component), SetTooltipContext))));
+	withScreenWidthProvider(withToast(withModal(withTooltip(memo(Component), SetTooltipContext))));
 
 export default withAppsHOCs;

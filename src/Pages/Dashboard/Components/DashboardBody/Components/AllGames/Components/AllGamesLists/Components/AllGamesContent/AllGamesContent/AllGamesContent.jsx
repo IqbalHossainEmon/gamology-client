@@ -40,6 +40,7 @@ function AllGamesContent({ items }) {
 														<span className={styles.nameContainer}>
 															{item.name}
 														</span>
+														?
 													</h3>
 												),
 												footer: (
@@ -51,29 +52,31 @@ function AllGamesContent({ items }) {
 											});
 										},
 									},
-									{
-										id: 2,
-										name: 'Sales',
-										event: detail => {
-											setModal({
-												title: 'Edit Sales',
-												body: (
-													<h3 className={styles.priceChangeHeader}>
-														What sales you want to set for
-														<span className={styles.nameContainer}>
-															{item.name}
-														</span>
-													</h3>
-												),
-												footer: (
-													<AllGamesModalBodySelect
-														detail={detail}
-														type='sales'
-													/>
-												),
-											});
+									typeof item.price !== 'object' &&
+										item.price !== 0 && {
+											id: 2,
+											name: 'Sales',
+											event: detail => {
+												setModal({
+													title: 'Edit Sales',
+													body: (
+														<h3 className={styles.priceChangeHeader}>
+															What price you want to set for{' '}
+															<span className={styles.nameContainer}>
+																{item.name}
+															</span>
+															?
+														</h3>
+													),
+													footer: (
+														<AllGamesModalBodySelect
+															detail={detail}
+															type='sales'
+														/>
+													),
+												});
+											},
 										},
-									},
 									{
 										id: 3,
 										name: 'Delete',

@@ -39,19 +39,22 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 			ref={listContainerRef}
 			className={`${styles.listContainer} ${position > 0 ? styles.left : position < 0 ? styles.top : styles.bottom}${fadeIn ? ` ${styles.zoomIn}` : ''} transparent-blur-bg`}
 		>
-			{lists.map(list => (
-				<li key={list.id}>
-					<button
-						onClick={() => {
-							list.event(item);
-							handleHide();
-						}}
-						type='button'
-					>
-						{list.name}
-					</button>
-				</li>
-			))}
+			{lists.map(
+				list =>
+					list.name && (
+						<li key={list.id}>
+							<button
+								onClick={() => {
+									list.event(item);
+									handleHide();
+								}}
+								type='button'
+							>
+								{list.name}
+							</button>
+						</li>
+					)
+			)}
 		</ul>
 	);
 }

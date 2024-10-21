@@ -5,7 +5,7 @@
 	top: 0;
 }
 .containerTransition {
-	transition: width 200ms linear;
+	transition: width 200ms;
 }
 .drawerImmediateContainer {
 	width: 100%;
@@ -64,7 +64,7 @@
 	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 .containerTransition .collapseButton {
-	transition: right 200ms linear;
+	transition: right 200ms;
 }
 
 .arrowBtn {
@@ -89,7 +89,7 @@
 }
 
 .containerTransition .arrowBtn::before {
-	transition: rotate 200ms linear;
+	transition: rotate 200ms;
 }
 
 .arrowBtn::after {
@@ -106,7 +106,7 @@
 }
 
 .containerTransition .arrowBtn::after {
-	transition: rotate 200ms linear;
+	transition: rotate 200ms;
 }
 
 .collapsePosition .arrowBtn::before {
@@ -146,7 +146,7 @@
 		translate: -100%;
 	}
 	.containerTransition {
-		transition: translate 200ms linear;
+		transition: translate 200ms;
 	}
 	.arrowBtn::before {
 		rotate: 45deg;

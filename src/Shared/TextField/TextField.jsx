@@ -14,6 +14,7 @@ export default function TextField({
 	onFocusClick,
 	enabled = true,
 	defaultValue = '',
+	pattern,
 	parentErrorShow = true,
 	...rest
 }) {
@@ -25,6 +26,8 @@ export default function TextField({
 	const eventRefs = useRef(null);
 	const errorShowRef = useRef(errorShow);
 	errorShowRef.current = errorShow;
+
+	const regexPattern = useRef(new RegExp(pattern));
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -53,6 +56,11 @@ export default function TextField({
 				document.addEventListener('click', eventRefs.current.handleStop);
 			},
 			handleChange: e => {
+				if (field === 'number') {
+					if (!regexPattern.current.test(e.target.value)) {
+						return;
+					}
+				}
 				setValue(e.target.value);
 				handleChange(e.target.value);
 			},
@@ -138,7 +146,10 @@ export default function TextField({
 						autoComplete='off'
 						className={`${styles.field}${field === 'input' ? '' : ` ${styles.fieldNumber}`}`}
 						id={htmlFor}
-						type={field === 'input' ? 'text' : 'number'}
+						type='text'
+						{...(field === 'number'
+							? { inputMode: 'numeric', ...(pattern && { pattern }) }
+							: {})}
 						onBlur={eventRefs.current.handleBlur}
 						onChange={eventRefs.current.handleChange}
 						onFocus={eventRefs.current.handleFocus}

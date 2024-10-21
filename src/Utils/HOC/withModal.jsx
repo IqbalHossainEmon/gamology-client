@@ -33,11 +33,12 @@ const withModal = Component =>
 					if (args[0].title && args[0].body) {
 						setShow(true);
 						hideBodyOverflow();
+						setContent(...args);
 					} else {
 						setShow(false);
 						showBodyOverflow();
+						eventRefs.current.hideModal();
 					}
-					setContent(...args);
 				},
 			};
 		}

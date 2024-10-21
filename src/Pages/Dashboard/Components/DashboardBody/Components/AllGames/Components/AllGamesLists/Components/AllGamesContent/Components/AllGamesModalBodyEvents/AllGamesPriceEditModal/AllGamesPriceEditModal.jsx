@@ -14,7 +14,7 @@ function AllGamesPriceEditModal({ price }) {
 		errorMessage: '',
 	});
 
-	const { setToast } = useToast();
+	const { setToast } = useToast('price');
 
 	const setModal = useModal();
 
@@ -35,7 +35,15 @@ function AllGamesPriceEditModal({ price }) {
 				}));
 				return;
 			}
+			if (!/^\d+(\.\d{1})?$/.test(newPrice.current)) {
+				setError(prev => ({
+					errorChange: prev.errorChange + 1,
+					errorMessage: 'Invalid price',
+				}));
+				return;
+			}
 			// API call to update price
+
 			setToast({
 				title: 'Price Updated',
 				message: 'Price has been updated successfully',
@@ -112,6 +120,7 @@ function AllGamesPriceEditModal({ price }) {
 				<TextField
 					className={styles.input}
 					field='number'
+					pattern={/^$|^\d{1,}(\.\d{0,2})?$/}
 					htmlFor='new_price'
 					placeholder='New Price'
 					setState={val => {

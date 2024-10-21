@@ -1,4 +1,5 @@
 .toastContainer {
+	max-width: calc(100% - 1rem);
 	position: fixed;
 	right: 0;
 	bottom: 1rem;
