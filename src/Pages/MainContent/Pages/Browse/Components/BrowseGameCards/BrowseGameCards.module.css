@@ -1,0 +1,59 @@
+.gameCards {
+  width: 75%;
+  margin-bottom: 3rem;
+}
+
+.cardsContainer {
+  list-style: none;
+  display: grid;
+  padding: 10px 5px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3rem 1rem;
+}
+.pagination {
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1600px) and (min-width: 865px) {
+  .cardsContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media only screen and (max-width: 864px) and (min-width: 769px) {
+  .gameCards {
+    width: 70%;
+  }
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 768px) and (min-width: 553px) {
+  .cardsContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media only screen and (max-width: 552px) and (min-width: 250px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 250px) {
+  .cardsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .gameCards {
+    width: 100%;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card {
+    cursor: pointer;
+  }
+}

@@ -1,9 +1,9 @@
 import { memo, useEffect, useReducer } from 'react';
 import withFilterSortProvider from '../../../../../Utils/HOC/withFilterSortProvider';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
+import BrowseGameCards from '../Components/BrowseGameCards/BrowseGameCards';
 import BrowseHeader from '../Components/BrowseHeader/BrowseHeader/BrowseHeader';
 import FilterGames from '../Components/FilterGames/FilterGames/FilterGames';
-import GameCards from '../Components/GameCards/GameCards';
 import MobileSortAndFilterButton from '../Components/MobileSortAndFilterButton/MobileSortAndFilterButton';
 import useBrowseLogics from '../Components/useBrowseLogics/useBrowseLogics';
 import styles from './Browse.module.css';
@@ -270,7 +270,7 @@ function BrowseMain() {
 					filterState={state.filterState}
 					limits={state.rangeLimits}
 				/>
-				<GameCards dispatch={dispatch} state={state} />
+				<BrowseGameCards dispatch={dispatch} state={state} />
 			</div>
 			{screenWidth < 769 && <MobileSortAndFilterButton />}
 		</section>

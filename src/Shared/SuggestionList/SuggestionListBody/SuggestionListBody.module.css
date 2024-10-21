@@ -71,7 +71,7 @@
 	list-style: none;
 	overflow-y: auto;
 	background-color: rgba(37, 37, 37, 0.856);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(50px);
 	padding: 0 1rem;
 	opacity: 0;
 	transition:

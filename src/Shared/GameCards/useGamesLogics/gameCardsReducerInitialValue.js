@@ -85,6 +85,6 @@ const reducer = (state, action) => {
 	}
 };
 
-export default function discoverGamesReducerInitialValue() {
+export default function gameCardsReducerInitialValue() {
 	return { initialState, reducer };
 }

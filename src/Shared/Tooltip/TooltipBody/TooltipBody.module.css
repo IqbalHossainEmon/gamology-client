@@ -19,7 +19,7 @@
 	bottom: 0;
 	background-color: #22222250;
 	border-radius: 4px;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(50px);
 	z-index: -1;
 }
 
@@ -46,7 +46,7 @@
 	width: 10px;
 	height: 10px;
 	background-color: #22222250;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(50px);
 }
 
 .top::after,

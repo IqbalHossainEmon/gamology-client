@@ -1,0 +1,39 @@
+.Buttons {
+	display: flex;
+	gap: 1rem;
+}
+
+.btn:disabled {
+	border: 1px solid rgb(41, 41, 41);
+	cursor: default;
+}
+
+.btn:disabled svg {
+	fill: rgb(36, 36, 36);
+	cursor: default;
+}
+
+.btn:disabled svg {
+	fill: rgb(36, 36, 36);
+}
+
+.btn {
+	width: 2rem;
+	height: 2rem;
+	border: 1px solid rgb(92, 92, 92);
+	padding: 0.5rem;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.btn:active:enabled {
+	background-color: rgb(58, 58, 58);
+}
+
+.nextBtn {
+	rotate: -90deg;
+}
+
+.prevBtn {
+	rotate: 90deg;
+}

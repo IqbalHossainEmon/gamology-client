@@ -21,7 +21,7 @@
 	height: 100%;
 	z-index: -1;
 	background-color: #18181cd0;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(50px);
 }
 
 .bottom {

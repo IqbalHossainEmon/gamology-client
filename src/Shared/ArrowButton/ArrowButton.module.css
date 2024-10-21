@@ -1,15 +1,15 @@
 .btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
 .btnImg {
-  fill: #ffffff3d;
-  transition: fill 500ms;
+	fill: #ffffff3d;
+	transition: fill 500ms;
 }
 
 @media only screen and (hover: hover) {
-  .btn:hover .btnImg {
-    fill: rgb(255, 255, 255);
-  }
+	.btn:hover:not(:disabled) .btnImg {
+		fill: rgb(255, 255, 255);
+	}
 }

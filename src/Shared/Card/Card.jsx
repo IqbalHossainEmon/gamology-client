@@ -21,7 +21,7 @@ export default function Card({ cardInfo, style, className, children }) {
 			<div className={styles.price}>
 				<DiscountPriceWithPercent price={price} />
 			</div>
-			{children ? children(parentRef) : null}
+			{children ? children(parentRef, cardInfo) : null}
 		</li>
 	);
 }

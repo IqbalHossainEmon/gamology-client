@@ -9,7 +9,7 @@
 	width: 100%;
 	border-radius: 4px;
 	background-color: rgba(37, 37, 37, 0.719);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(50px);
 	cursor: default;
 	z-index: 1;
 	opacity: 0;
