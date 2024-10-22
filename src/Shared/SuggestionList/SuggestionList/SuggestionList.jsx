@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
-import useHandleDebouncing from '../../../Utils/Hooks/useHandleDebouncing';
 import useObjectUtilities from '../../../Utils/Hooks/useObjectUtilities';
 import SuggestionListBody from '../SuggestionListBody/SuggestionListBody';
 
@@ -456,8 +455,6 @@ function SuggestionList({
 
 	const { cloneObject } = useObjectUtilities();
 
-	const handleDebouncing = useHandleDebouncing(200);
-
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleCalcPosition: length => {
@@ -540,15 +537,21 @@ function SuggestionList({
 
 	const prevValueRef = useRef(value);
 
+	const typeTimerId = useRef(null);
+
 	useEffect(() => {
 		if (value !== '' && value !== ' ' && value !== prevValueRef.current) {
 			if (!loadingRef.current) setLoading(true);
-			handleDebouncing(() => {
+
+			if (typeTimerId.current) {
+				clearTimeout(typeTimerId.current);
+			}
+			typeTimerId.current = setTimeout(() => {
 				eventRefs.current.fetchData();
-				prevValueRef.current = value;
-			});
+				typeTimerId.current = null;
+			}, 200);
 		}
-	}, [handleDebouncing, value]);
+	}, [value]);
 
 	return (
 		show && (

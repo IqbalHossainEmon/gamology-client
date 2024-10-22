@@ -12,6 +12,7 @@ const increaseByOne = (state, fadeIn) => ({
 		cardPosition > 0 ? cardPosition - 1 : BANNER_COUNT - 1
 	),
 });
+
 const decreaseByOne = (state, fadeIn) => ({
 	...state,
 	active: null,
@@ -21,6 +22,7 @@ const decreaseByOne = (state, fadeIn) => ({
 		cardPosition < BANNER_COUNT - 1 ? cardPosition + 1 : 0
 	),
 });
+
 // Initial state of the banner
 const initialState = {
 	data: [],
@@ -101,7 +103,6 @@ export default function useDiscoverBannerLogics() {
 		initialState,
 		reducer,
 		activeBanner,
-
 		setDispatch: eventRefs.current.setDispatch,
 	};
 }

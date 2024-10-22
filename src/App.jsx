@@ -3,7 +3,7 @@ import MainContent from './Pages/MainContent/MainContent/MainContent';
 import MainHeader from './Shared/MainHeader/MainHeader';
 import withAppsHOCs from './Utils/HOC/withAppsHOCs';
 
-function App() {
+function AppMain() {
 	return (
 		<>
 			<MainHeader />
@@ -12,6 +12,6 @@ function App() {
 	);
 }
 
-const EnhancedApp = withAppsHOCs(App);
+const App = withAppsHOCs(AppMain);
 
-export default EnhancedApp;
+export default App;

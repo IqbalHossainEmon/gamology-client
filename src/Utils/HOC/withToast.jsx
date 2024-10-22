@@ -9,7 +9,6 @@ const withToast = Component =>
 		const toastsRef = useRef(toasts);
 		toastsRef.current = toasts;
 
-		console.log(toasts);
 		const toastIdRef = useRef(0);
 
 		const eventRefs = useRef(null);

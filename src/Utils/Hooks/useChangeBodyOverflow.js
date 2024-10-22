@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
 export default function useChangeBodyOverflow() {
-	const touchAble = useRef();
 	const root = useRef();
 	const eventRefs = useRef(null);
 
@@ -15,25 +14,25 @@ export default function useChangeBodyOverflow() {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			hideBodyOverflow: () => {
-				touchAble.current = isTouchable();
+				const touchAble = isTouchable();
+
 				if (
-					!touchAble.current &&
+					!touchAble &&
 					!root.current.classList.contains('margin-right-6px') &&
-					!document.body.classList.contains('overflow-y-hidden') &&
+					!root.current.classList.contains('overflow-y-hidden') &&
 					root.current.scrollHeight > window.innerHeight
 				) {
-					document.body.classList.add('overflow-y-hidden');
-					root.current.classList.add('margin-right-6px');
-				} else if (touchAble.current) {
-					document.body.classList.add('overflow-y-hidden');
+					root.current.classList.add('overflow-y-hidden', 'margin-right-6px');
+				} else if (touchAble) {
+					root.current.classList.add('overflow-y-hidden');
 				}
 			},
 			showBodyOverflow: () => {
 				if (root.current.classList.contains('margin-right-6px')) {
-					root.current.removeAttribute('class');
+					root.current.classList.remove('margin-right-6px');
 				}
-				if (document.body.classList.contains('overflow-y-hidden')) {
-					document.body.removeAttribute('class');
+				if (root.current.classList.contains('overflow-y-hidden')) {
+					root.current.classList.remove('overflow-y-hidden');
 				}
 			},
 		};
