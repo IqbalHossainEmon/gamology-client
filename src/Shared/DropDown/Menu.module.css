@@ -1,0 +1,44 @@
+.optionButton {
+	background: transparent;
+	border: none;
+	text-align: left;
+	position: relative;
+	transition: padding 200ms;
+}
+
+.outerOption {
+	padding: 0.6rem 0 0.6rem 0;
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	color: rgb(196, 196, 196);
+	width: 100%;
+}
+
+.outerOption {
+	transition:
+		padding 200ms,
+		background-color 200ms;
+}
+
+.outerOption:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.innerOptionsContainer {
+	overflow: hidden;
+	height: 0px;
+	transition: height 200ms;
+}
+
+@media only screen and (max-width: 1099px) {
+	.arrowBottom {
+		right: 1rem;
+		top: 50%;
+	}
+}
+@media (hover: hover) and (pointer: fine) {
+	.optionButton {
+		cursor: pointer;
+	}
+}

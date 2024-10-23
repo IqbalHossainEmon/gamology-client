@@ -32,7 +32,6 @@ export default function TextField({
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleInputEvent: () => {
-				fieldRef.current.style.height = 'auto';
 				fieldRef.current.style.height = `${fieldRef.current.scrollHeight}px`;
 			},
 			handleStop: e => {
@@ -74,12 +73,12 @@ export default function TextField({
 		const holdFieldRef = fieldRef.current;
 		if (field === 'textarea') {
 			eventRefs.current.handleInputEvent();
-			holdFieldRef.addEventListener('input', eventRefs.current.handleInputEvent);
+			holdFieldRef.addEventListener('scroll', eventRefs.current.handleInputEvent);
 		}
 
 		return () => {
 			if (field === 'textarea') {
-				holdFieldRef.removeEventListener('input', eventRefs.current.handleInputEvent);
+				holdFieldRef.removeEventListener('scroll', eventRefs.current.handleInputEvent);
 			}
 		};
 	}, [field]);

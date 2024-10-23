@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
 import RotateArrow from '../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
@@ -14,29 +14,19 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
 		height: NaN,
 	});
 
-	useEffect(() => {
-		setShow(prev => ({
-			...prev,
-			height: optionRef.current.scrollHeight,
-		}));
-	}, [screenWidth]);
-
 	return (
 		<div className={styles.filterOptions}>
-			{title ? (
-				<button
-					className={styles.filterTitle}
-					onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
-					type='button'
-				>
-					<h3 className={styles.title}>{title}</h3>
+			<button
+				className={styles.filterTitle}
+				onClick={() => setShow(prev => ({ ...prev, show: !prev.show }))}
+				type='button'
+			>
+				<h3 className={styles.title}>{title}</h3>
 
-					<div className={styles.downArrow}>
-						<RotateArrow state={show.show} />
-					</div>
-				</button>
-			) : null}
-
+				<div className={styles.downArrow}>
+					<RotateArrow state={show.show} />
+				</div>
+			</button>
 			<div
 				className={styles.optionList}
 				ref={optionRef}
