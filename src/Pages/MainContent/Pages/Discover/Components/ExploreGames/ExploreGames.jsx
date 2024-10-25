@@ -12,7 +12,7 @@ const fetched = {
 
 export default function ExploreGames() {
 	const buttonRef = useRef(null);
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const [data, setData] = useState({});
 
 	useEffect(() => {

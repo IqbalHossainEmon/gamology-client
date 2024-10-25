@@ -5,7 +5,7 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 	// Get value cursors value left right side value and left difference and right difference depending on cursors position inside the cursor.
 
 	const pathInfoRef = useRef();
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 
 	useEffect(() => {
 		setTimeout(() => {

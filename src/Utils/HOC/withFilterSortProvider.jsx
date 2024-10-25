@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-	FilterSortContext,
-	FilterSortRefContext,
-	SetFilterSortContext,
+    FilterSortContext,
+    FilterSortRefContext,
+    SetFilterSortContext,
 } from '../Contexts/FilterSortContext';
 import useChangeBodyOverflow from '../Hooks/useChangeBodyOverflow';
 import useDropDownHide from '../Hooks/useDropDownHide';
@@ -19,7 +19,7 @@ const withFilterSortProvider = Component =>
 		const filterSortStateRef = useRef(filterSortState);
 		filterSortStateRef.current = filterSortState;
 
-		const { screenWidth } = useScreenWidth();
+		const screenWidth = useScreenWidth();
 		const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
 		useEffect(() => {

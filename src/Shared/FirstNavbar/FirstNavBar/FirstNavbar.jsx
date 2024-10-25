@@ -7,7 +7,7 @@ import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';
 import styles from './FirstNavbar.module.css';
 
 export default function FirstNavbar() {
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
 	useEffect(() => {

@@ -16,7 +16,7 @@ export default function SearchField({ setNavShow }) {
 	const isListShownRef = useRef(listShow);
 	isListShownRef.current = listShow;
 
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {

@@ -1,19 +1,7 @@
 import { useRef } from 'react';
 import Menu from '../../../../../../Shared/Menu/Menu';
-import RotateArrow from '../../../../../../Shared/RotateArrow/RotateArrow';
+import MenuTitle from '../../../../../../Shared/MenuTitle/MenuTitle';
 import styles from './DrawerOptions.module.css';
-
-function MenuTitle({ option, parentState, state }) {
-	return (
-		<>
-			<span className={styles.iconContainer}>{option.icon}</span>
-			{option.name}
-			<div className={`${parentState ? `${styles.arrowBottom} ` : ``}${styles.arrow}`}>
-				<RotateArrow state={state} />
-			</div>
-		</>
-	);
-}
 
 function DrawerOptions({ option, parentState }) {
 	const toggleBtnRef = useRef(null);

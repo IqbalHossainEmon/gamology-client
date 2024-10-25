@@ -239,7 +239,7 @@ const items = [
 
 export default function GameCards({ headerTitle, link, extraCard, cardHovers }) {
 	const cardsContainer = useRef();
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const { reducer, initialState } = gameCardsReducerInitialValue();
 	const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
 		useReducer(reducer, initialState);

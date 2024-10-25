@@ -12,6 +12,15 @@
 	width: 100%;
 }
 
+.outerOption:hover,
+.innerOption:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.outerOptionCollapse {
+	padding-bottom: 1rem;
+}
+
 .iconContainer {
 	width: 1.2rem;
 	height: 100%;
@@ -22,17 +31,9 @@
 
 .iconContainer svg {
 	width: 100%;
+	min-width: 19px;
 	height: 100%;
 	fill: rgb(196, 196, 196);
-}
-
-.outerOption:hover,
-.innerOption:hover {
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
-.outerOptionCollapse {
-	padding-bottom: 1rem;
 }
 
 .innerOptionsContainer {
@@ -45,27 +46,10 @@
 		height 200ms;
 }
 
-.arrow {
-	position: absolute;
-	width: 0.5rem;
-	height: 0.5rem;
-	right: 1rem;
-	top: 50%;
-	transform: translateY(-50%);
-	transition:
-		top 200ms,
-		right 200ms;
-	transition-delay: 20ms;
-}
-
-.arrowBottom {
-	right: calc(100% - 1.9rem);
-	top: calc(100% - 4px);
-	transition-delay: 0ms;
-}
-
-.noPaddingLeft {
-	translate: 0rem;
+@media only screen and (min-width: 1100px) {
+	.noPaddingLeft {
+		translate: 0rem;
+	}
 }
 
 @media only screen and (max-width: 1099px) {

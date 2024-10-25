@@ -14,7 +14,10 @@ function Drawer() {
 	const collapseRef = useRef(collapse);
 	collapseRef.current = collapse;
 
-	const { screenWidth, screenWidthRef } = useScreenWidth();
+	const screenWidth = useScreenWidth();
+
+	const screenWidthRef = useRef(screenWidth);
+	screenWidthRef.current = screenWidth;
 
 	const mainParentRef = useRef(null);
 	const scrollParentRef = useRef(null);

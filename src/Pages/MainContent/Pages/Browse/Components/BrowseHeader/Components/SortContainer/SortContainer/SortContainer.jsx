@@ -10,7 +10,7 @@ import styles from './SortContainer.module.css';
 export default function SortContainer({ state, handleChange }) {
 	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
 	const { sort } = filterSortState;
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const dropDownRef = useRef();
 
 	useEffect(() => {

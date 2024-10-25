@@ -24,7 +24,7 @@
 
 .drawer {
 	width: 240px;
-	height: calc(100vh - 72px - 3rem);
+	height: calc(100vh - 4.5rem - 3rem);
 	overflow-y: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -134,12 +134,12 @@
 
 @media only screen and (max-width: 1099px) {
 	.drawerContainer {
-		position: absolute;
-		top: 0;
+		position: fixed;
+		top: 4.5rem;
 		left: 0;
 		max-width: 240px;
 		width: 100%;
-		height: calc(100vh - 72px);
+		height: calc(100vh - 4.5rem);
 		background-color: #18181c;
 		z-index: 3;
 		transform-origin: 0 0;

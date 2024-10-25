@@ -254,7 +254,7 @@ const items = [
 
 function BrowseMain() {
 	const { initialState, reducer } = useBrowseLogics();
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	useEffect(() => {

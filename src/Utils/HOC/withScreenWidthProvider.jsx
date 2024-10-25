@@ -1,12 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { ScreenWidthContext, ScreenWidthRefContext } from '../Contexts/ScreenWidthContext';
+import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
 const withScreenWidthProvider = Component =>
 	function InnerComponent({ ...props }) {
 		const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-		const screenWidthRef = useRef(screenWidth);
-		screenWidthRef.current = screenWidth;
 
 		const handleChange = useRef(null);
 
@@ -23,9 +20,7 @@ const withScreenWidthProvider = Component =>
 
 		return (
 			<ScreenWidthContext.Provider value={screenWidth}>
-				<ScreenWidthRefContext.Provider value={screenWidthRef}>
-					<Component {...props} />
-				</ScreenWidthRefContext.Provider>
+				<Component {...props} />
 			</ScreenWidthContext.Provider>
 		);
 	};

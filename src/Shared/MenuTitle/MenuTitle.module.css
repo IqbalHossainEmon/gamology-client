@@ -1,0 +1,33 @@
+.iconContainer {
+	width: 1.2rem;
+	height: 100%;
+	margin: 0 1rem;
+	display: flex;
+	align-items: center;
+}
+
+.iconContainer svg {
+	width: 100%;
+	min-width: 19px;
+	height: 100%;
+	fill: rgb(196, 196, 196);
+}
+
+.arrow {
+	position: absolute;
+	width: 0.5rem;
+	height: 0.5rem;
+	right: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	transition:
+		top 200ms,
+		right 200ms;
+	transition-delay: 20ms;
+}
+
+.arrowBottom {
+	right: calc(100% - 1.9rem);
+	top: calc(100% - 4px);
+	transition-delay: 0ms;
+}

@@ -106,7 +106,7 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 	const [state, setState] = useState(filterState);
 	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
 	const { filter } = filterSortState;
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 
 	return (
 		<aside

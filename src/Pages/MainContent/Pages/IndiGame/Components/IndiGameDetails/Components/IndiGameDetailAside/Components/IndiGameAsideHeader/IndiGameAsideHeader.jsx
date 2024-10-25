@@ -3,7 +3,7 @@ import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenW
 import styles from './IndiGameAsideHeader.module.css';
 
 export default function IndiGameAsideHeader({ src, name, price, phoneSrc }) {
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 
 	return (
 		<div className={styles.individualGameAsideHeader}>

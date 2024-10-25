@@ -62,7 +62,7 @@ export default function DiscoverBanner() {
 		reducer,
 		initialState
 	);
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 
 	const eventRefs = useRef(null);
 

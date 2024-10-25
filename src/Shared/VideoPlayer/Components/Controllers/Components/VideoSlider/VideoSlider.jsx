@@ -16,7 +16,7 @@ export default function VideoSlider({
 	const stateRef = useRef(position);
 	stateRef.current = position;
 	const pathRef = useRef(null);
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {

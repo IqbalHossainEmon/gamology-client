@@ -7,7 +7,7 @@ import SecondNavRightLinks from '../Components/SecondNavRightLinks/SecondNavRigh
 import styles from './SecondNavbar.module.css';
 
 export default function SecondNavbar() {
-	const { screenWidth } = useScreenWidth();
+	const screenWidth = useScreenWidth();
 	const [navShow, setNavShow] = useState(false);
 
 	return (

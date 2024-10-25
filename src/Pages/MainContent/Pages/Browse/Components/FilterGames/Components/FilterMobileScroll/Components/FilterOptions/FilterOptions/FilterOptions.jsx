@@ -1,12 +1,10 @@
 import { useRef, useState } from 'react';
 import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
 import RotateArrow from '../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
-import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({ option, state, setState, limits = {} }) {
-	const { screenWidth } = useScreenWidth();
 	const { title, optionList } = option;
 	const optionRef = useRef(null);
 	const [show, setShow] = useState({
@@ -22,7 +20,6 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
 				type='button'
 			>
 				<h3 className={styles.title}>{title}</h3>
-
 				<div className={styles.downArrow}>
 					<RotateArrow state={show.show} />
 				</div>

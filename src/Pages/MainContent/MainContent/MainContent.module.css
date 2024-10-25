@@ -1,6 +1,6 @@
 .mainContent {
 	width: 100%;
-	height: calc(100vh - 72px);
+	height: calc(100vh - 4.5rem);
 }
 .main {
 	width: 75%;
