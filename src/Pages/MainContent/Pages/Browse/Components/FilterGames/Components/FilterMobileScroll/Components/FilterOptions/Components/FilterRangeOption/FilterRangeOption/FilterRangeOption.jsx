@@ -13,15 +13,14 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 	const { float, rangeName } = option;
 	const leftInputRef = useRef(null);
 	const rightInputRef = useRef(null);
-	const singleStepRef = useRef(0);
+	const singleStepRef = useRef(100 / (limit.higher - limit.lower));
 	const disableState = typeof limit !== 'object' || limit.higher <= limit.lower || disabled;
 	const bigger = parseFloat(
-		((knob1 > knob2 ? knob1 : knob2) / singleStepRef.current + limit.lower).toFixed(float)
+		(Math.max(knob1, knob2) / singleStepRef.current + limit.lower).toFixed(float)
 	);
+
 	const smaller = parseFloat(
-		(((knob1 < knob2 ? knob1 : knob2) / singleStepRef.current || 0) + limit.lower).toFixed(
-			float
-		)
+		((Math.min(knob1, knob2) / singleStepRef.current || 0) + limit.lower).toFixed(float)
 	);
 	const stateRef = useRef({ bigger, smaller });
 	stateRef.current.bigger = bigger;

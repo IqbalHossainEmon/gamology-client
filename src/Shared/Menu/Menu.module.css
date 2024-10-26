@@ -7,22 +7,12 @@
 }
 
 .outerOption {
-	padding: 0.6rem 0 0.6rem 0;
-	display: flex;
-	align-items: center;
-	font-size: 1rem;
 	color: rgb(196, 196, 196);
 	width: 100%;
 }
 
 .outerOption {
-	transition:
-		padding 200ms,
-		background-color 200ms;
-}
-
-.outerOption:hover {
-	background-color: rgba(255, 255, 255, 0.1);
+	transition: padding 200ms;
 }
 
 .innerOptionsContainer {

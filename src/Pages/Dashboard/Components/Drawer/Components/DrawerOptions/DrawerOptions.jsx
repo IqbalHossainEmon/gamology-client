@@ -1,14 +1,14 @@
-import { useRef } from 'react';
 import Menu from '../../../../../../Shared/Menu/Menu';
 import MenuTitle from '../../../../../../Shared/MenuTitle/MenuTitle';
 import styles from './DrawerOptions.module.css';
 
 function DrawerOptions({ option, parentState }) {
-	const toggleBtnRef = useRef(null);
-
 	return option.subDrawer ? (
 		<li className={styles.outerOptionContainer}>
-			<Menu toggleBtn={toggleBtnRef} Title={MenuTitle} titleParams={{ option, parentState }}>
+			<Menu
+				Title={MenuTitle}
+				titleParams={{ name: option.name, icon: option.icon, parentState }}
+			>
 				<ul
 					className={`${styles.innerOptionsContainer}${parentState ? ` ${styles.noPaddingLeft}` : ''}`}
 				>

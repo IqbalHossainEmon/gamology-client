@@ -1,6 +1,6 @@
 import Card from '../../../../../../Shared/Card/Card';
 import Pagination from '../../../../../../Shared/Pagination/Pagination/Pagination';
-import styles from './GameCards.module.css';
+import styles from './BrowseGameCards.module.css';
 
 export default function BrowseGameCards({ state, dispatch }) {
 	const { items } = state;

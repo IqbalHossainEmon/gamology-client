@@ -1,15 +1,15 @@
 import RotateArrow from '../RotateArrow/RotateArrow';
 import styles from './MenuTitle.module.css';
 
-function MenuTitle({ option, parentState, state }) {
+function MenuTitle({ name, icon, parentState, state, noHover }) {
 	return (
-		<>
-			<span className={styles.iconContainer}>{option.icon}</span>
-			{option.name}
+		<div className={`${noHover ? '' : `${styles.hover} `}${styles.container}`}>
+			{icon && <span className={styles.iconContainer}>{icon}</span>}
+			{name}
 			<div className={`${parentState ? `${styles.arrowBottom} ` : ``}${styles.arrow}`}>
 				<RotateArrow state={state} />
 			</div>
-		</>
+		</div>
 	);
 }
 

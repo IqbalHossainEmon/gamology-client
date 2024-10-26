@@ -1,9 +1,15 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Menu.module.css';
 
-export default function Menu({ children, parentState = true, Title, titleParams }) {
-	const [height, setHeight] = useState(0);
-	const [isAuto, setIsAuto] = useState(false);
+export default function Menu({
+	children,
+	parentState = true,
+	Title,
+	titleParams,
+	defaultOpen = false,
+}) {
+	const [height, setHeight] = useState(defaultOpen || 0);
+	const [isAuto, setIsAuto] = useState(defaultOpen);
 
 	const containerRef = useRef(null);
 
@@ -11,6 +17,10 @@ export default function Menu({ children, parentState = true, Title, titleParams 
 
 	const showTimerId = useRef(null);
 	const hideTimerId = useRef(null);
+
+	useEffect(() => {
+		setHeight(defaultOpen ? containerRef.current.scrollHeight : 0);
+	}, [defaultOpen]);
 
 	if (!eventRef.current) {
 		eventRef.current = {
@@ -23,14 +33,13 @@ export default function Menu({ children, parentState = true, Title, titleParams 
 				showTimerId.current = setTimeout(() => {
 					setIsAuto(true);
 					showTimerId.current = null;
-				}, 300);
+				}, 200);
 			},
 			hide: () => {
 				if (showTimerId.current) {
 					clearTimeout(showTimerId.current);
 					showTimerId.current = null;
 				}
-
 				setIsAuto(false);
 				hideTimerId.current = setTimeout(() => {
 					setHeight(0);
@@ -45,10 +54,13 @@ export default function Menu({ children, parentState = true, Title, titleParams 
 			<button
 				className={`${styles.outerOption} ${styles.optionButton}`}
 				onClick={() => {
-					if (!height) {
-						eventRef.current.show();
-					} else {
-						eventRef.current.hide();
+					switch (!height) {
+						case true:
+							eventRef.current.show();
+							break;
+						default:
+							eventRef.current.hide();
+							break;
 					}
 				}}
 				type='button'

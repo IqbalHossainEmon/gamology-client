@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './RangeInputField.module.css';
 
 export default function RangeInputField({ inputRef, disabled, state, handleEnter, name, float }) {
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useState(state[name].toFixed(float));
 	const eventRef = useRef({
 		handleMouseDown: () => {},
 	});
 
 	useEffect(() => {
-		setValue(state.toFixed(float));
-	}, [float, state]);
+		setValue(state[name].toFixed(float));
+	}, [float, name, state]);
 
 	eventRef.current.handleMouseDown = e => {
 		if (e.target !== inputRef.current) {

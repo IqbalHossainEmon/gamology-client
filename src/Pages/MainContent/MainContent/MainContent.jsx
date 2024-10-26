@@ -2,7 +2,7 @@ import Footer from '../../../Shared/Footer/Footer';
 import SecondNavbar from '../../../Shared/SecondNavbar/SecondNavBar/SecondNavbar';
 import SetTooltipContext from '../../../Utils/Contexts/TooltipContext';
 import withTooltip from '../../../Utils/HOC/withTooltip';
-import Discover from '../Pages/Discover/Discover/Discover';
+import Browse from '../Pages/Browse/Browse/Browse';
 import styles from './MainContent.module.css';
 
 function MainContentMain() {
@@ -10,7 +10,7 @@ function MainContentMain() {
 		<>
 			<SecondNavbar />
 			<main className={styles.main}>
-				<Discover />
+				<Browse />
 			</main>
 			<Footer />
 		</>

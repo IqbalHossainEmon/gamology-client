@@ -19,7 +19,6 @@ function RangeField({
 	const once = useRef(true);
 
 	useEffect(() => {
-		singleStepRef.current = 100 / (limit.higher - limit.lower);
 		if (once.current && conditionStep) {
 			once.current = false;
 			conditionStepRef.current.sort((a, b) => a.ifLess - b.ifLess);

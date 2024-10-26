@@ -1,3 +1,20 @@
+.container {
+	width: 100%;
+	padding: 0.6rem 0 0.6rem 0;
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+}
+
+.hover {
+	background-color: #ffffff00;
+	transition: background-color 200ms;
+}
+
+.hover:hover {
+	background-color: #ffffff11;
+}
+
 .iconContainer {
 	width: 1.2rem;
 	height: 100%;
