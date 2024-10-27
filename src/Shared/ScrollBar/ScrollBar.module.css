@@ -1,32 +1,31 @@
-.scrollBarContainers {
-	height: 100%;
-	width: 6px;
-	position: absolute;
-	user-select: none;
-	top: 0;
-	right: 0;
-	pointer-events: none;
-}
-.noHeight {
+.scrollContainer::-webkit-scrollbar {
 	display: none;
-	pointer-events: none;
-}
-.scrollThumb {
-	width: 6px;
-	min-height: 1rem;
-	background-color: #474747;
-	position: absolute;
-	right: 0;
-	outline: 0;
-	border: 0;
-	user-select: none;
-	pointer-events: none;
-	opacity: 0;
-	transition:
-		background-color 200ms,
-		opacity 200ms;
 }
 
-.show {
-	opacity: 1;
+.scrollContainer {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow: hidden auto;
+	perspective: 1px;
+	perspective-origin: right top;
+	-webkit-overflow-scrolling: touch;
+}
+
+.scrollInnerContainer {
+	transform-style: preserve-3d;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 8px;
+	z-index: 3;
+}
+
+.thumb {
+	width: 8px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: rgba(252, 252, 252, 0.5);
+	transform-origin: right top;
 }
