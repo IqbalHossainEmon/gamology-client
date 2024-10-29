@@ -62,7 +62,7 @@ function ImagePreview({
 
 	const [show, appear] = useAppearDisappear(position !== 0 && isShow, true);
 
-	return show && <ImagePreviewBody position={0} appear={appear} img={imgRef.current} />;
+	return show && <ImagePreviewBody position={position} appear={appear} img={imgRef.current} />;
 }
 
 export default ImagePreview;

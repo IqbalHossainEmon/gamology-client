@@ -40,7 +40,13 @@ function ScrollBar() {
 			}
 		});
 
+		const multiObserver = new MutationObserver(() => {
+			console.log('change');
+		});
+
 		const resizeObserver = new ResizeObserver(() => {
+			console.log('resize');
+
 			updateThumb();
 		});
 

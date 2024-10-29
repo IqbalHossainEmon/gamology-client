@@ -1,23 +1,21 @@
 .NavLinks {
-	height: 100vh;
-	width: 80vw;
-	top: 0;
-	right: 0;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	z-index: 4;
-	opacity: 0;
-	visibility: hidden;
-	transition:
-		opacity 300ms,
-		visibility 300ms 300ms;
+    height: 100vh;
+    width: 80vw;
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms, visibility 300ms 300ms;
 }
 
 #show {
-	opacity: 1;
-	visibility: visible;
-	transition: opacity 300ms 300ms;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 300ms 300ms;
 }
