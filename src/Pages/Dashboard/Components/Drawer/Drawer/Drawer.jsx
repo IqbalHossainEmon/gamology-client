@@ -79,25 +79,28 @@ function Drawer() {
 				ref={elementRef}
 			>
 				<div className={styles.drawer}>
-					<ul className={styles.optionContainer}>
-						{drawerIcon.map(drawer => (
-							<DrawerOptions
-								{...(screenWidth > 1099 && { parentState: collapse })}
-								key={drawer.id}
-								option={drawer}
-							/>
-						))}
-					</ul>
+					<div className={styles.drawerOptions}>
+						<ul className={styles.optionContainer}>
+							{drawerIcon.map(drawer => (
+								<DrawerOptions
+									{...(screenWidth > 1099 && { parentState: collapse })}
+									key={drawer.id}
+									option={drawer}
+								/>
+							))}
+						</ul>
+					</div>
 					<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
 					{/* <ScrollBar /> */}
+					<button
+						title='Collapse Drawer'
+						className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
+						onClick={eventRefs.current.handleButtonClick}
+						type='button'
+					>
+						<span className={styles.arrowBtn} />
+					</button>
 				</div>
-				<button
-					className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
-					onClick={eventRefs.current.handleButtonClick}
-					type='button'
-				>
-					<span className={styles.arrowBtn} />
-				</button>
 			</div>
 			{screenWidth < 1100 && <ScreenShadow show={collapse} zIndex={1} />}
 		</>

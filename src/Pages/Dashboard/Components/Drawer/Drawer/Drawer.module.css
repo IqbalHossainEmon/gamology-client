@@ -1,20 +1,22 @@
 .drawerContainer {
-	position: sticky;
-	position: -webkit-sticky;
 	width: 240px;
 	background-color: #18181c;
-	top: 0;
 	flex-shrink: 0;
+	padding-top: 2rem;
+	position: relative;
 }
 .containerTransition {
 	transition: width 200ms;
 }
 .drawer {
 	width: 100%;
-	position: absolute;
-	overflow: hidden;
+	position: sticky;
 	top: 2rem;
 	left: 0px;
+	height: calc(100vh - 2rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .containerCollapse {
 	width: 3.2rem;
@@ -33,11 +35,15 @@
 	right: 0.65rem;
 }
 
+.drawerOptions {
+	overflow: hidden;
+}
+
 .collapseButton {
 	width: 2rem;
 	height: 2rem;
 	position: absolute;
-	top: 0;
+	top: -2rem;
 	cursor: pointer;
 	background-color: rgba(255, 255, 255, 0.2);
 	border: none;

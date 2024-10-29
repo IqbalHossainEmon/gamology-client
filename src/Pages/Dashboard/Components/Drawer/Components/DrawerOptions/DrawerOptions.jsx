@@ -7,7 +7,12 @@ function DrawerOptions({ option, parentState }) {
 		<li className={styles.outerOptionContainer}>
 			<Menu
 				Title={MenuTitle}
-				titleParams={{ name: option.name, icon: option.icon, parentState }}
+				titleParams={{
+					name: option.name,
+					icon: option.icon,
+					parentState,
+					paddingRight: true,
+				}}
 			>
 				<ul
 					className={`${styles.innerOptionsContainer}${parentState ? ` ${styles.noPaddingLeft}` : ''}`}
