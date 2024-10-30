@@ -1,0 +1,14 @@
+.scrollContainer::-webkit-scrollbar {
+	display: none;
+}
+
+.scrollContainer {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow: hidden auto;
+	perspective: 1px;
+	perspective-origin: right top;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+	max-height: 100%;
+}

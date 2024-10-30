@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import ScrollBar from '../../ScrollBar/ScrollBar';
+import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './ModalBody.module.css';
 
 function ModalBody({ content, fadeIn, hideModal }) {

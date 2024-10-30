@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
-import ScrollBar from '../../ScrollBar/ScrollBar';
+import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './SelectionFieldList.module.css';
 
 function SelectionFieldList({
@@ -16,23 +16,20 @@ function SelectionFieldList({
 }) {
 	const [show, fadeIn] = useAppearDisappear(state);
 
-	const listRef = useRef(null);
-	const mainParentRef = useRef(null);
 	const parentRef = useRef(null);
 
 	return (
 		show && (
 			<div
-				ref={mainParentRef}
+				ref={parentRef}
 				className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>
-				<div ref={parentRef} className={styles.listScrollContainer}>
+				<div className={styles.listScrollContainer}>
 					<ul
 						className={styles.listContainer}
 						{...(positionRef.current.height && {
 							style: { maxHeight: `${positionRef.current.height}px` },
 						})}
-						ref={listRef}
 					>
 						{none ? (
 							<li
@@ -75,7 +72,7 @@ function SelectionFieldList({
 						)}
 					</ul>
 				</div>
-				<ScrollBar childRef={listRef} parentRef={parentRef} mainParentRef={mainParentRef} />
+				<ScrollBar parentRef={parentRef} />
 			</div>
 		)
 	);

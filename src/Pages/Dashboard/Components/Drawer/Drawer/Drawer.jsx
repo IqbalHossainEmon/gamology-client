@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
+import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
 import useDropDownHide from '../../../../../Utils/Hooks/useDropDownHide';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import DrawerFooter from '../Components/DrawerFooter/DrawerFooter';
@@ -21,6 +22,8 @@ function Drawer() {
 	const elementRef = useRef(null);
 	const transitionId = useRef(null);
 	const eventRefs = useRef(null);
+
+	const scrollContainerRef = useRef(null);
 
 	const wasDrawerOpen = useRef(false);
 
@@ -74,12 +77,10 @@ function Drawer() {
 	return (
 		<>
 			<div
-				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawerContainer}`}
-				id='dashboard-drawer'
-				ref={elementRef}
+				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}`}
 			>
-				<div className={styles.drawer}>
-					<div className={styles.drawerOptions}>
+				<div className={styles.drawerOptions}>
+					<div ref={scrollContainerRef}>
 						<ul className={styles.optionContainer}>
 							{drawerIcon.map(drawer => (
 								<DrawerOptions
@@ -89,18 +90,18 @@ function Drawer() {
 								/>
 							))}
 						</ul>
+						<ScrollBar parentRef={scrollContainerRef} />{' '}
 					</div>
-					<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
-					{/* <ScrollBar /> */}
-					<button
-						title='Collapse Drawer'
-						className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
-						onClick={eventRefs.current.handleButtonClick}
-						type='button'
-					>
-						<span className={styles.arrowBtn} />
-					</button>
 				</div>
+				<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
+				<button
+					title='Collapse Drawer'
+					className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
+					onClick={eventRefs.current.handleButtonClick}
+					type='button'
+				>
+					<span className={styles.arrowBtn} />
+				</button>
 			</div>
 			{screenWidth < 1100 && <ScreenShadow show={collapse} zIndex={1} />}
 		</>
