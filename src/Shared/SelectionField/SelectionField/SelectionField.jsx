@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import useDashboardTooltip from '../../../Pages/Dashboard/Utils/Hooks/useDashboardTooltip';
+import useCalculateTextSize from '../../../Utils/Hooks/useCalculateTextSize';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import useTooltip from '../../../Utils/Hooks/useTooltip';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../../RotateArrow/RotateArrow';
@@ -22,14 +23,12 @@ export default function SelectionField({
 	parentSetValue = '',
 	errorBorder = false,
 	none,
-	isDashboard = false,
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
 	const [show, setShow] = useState(false);
 	const [width, setWidth] = useState(0);
 
-	// const screenWidth = useScreenWidth();
 	const valueRef = useRef(value);
 	valueRef.current = value;
 	const parentSetValueRef = useRef(parentSetValue);
@@ -38,7 +37,11 @@ export default function SelectionField({
 	const containerRef = useRef(null);
 	const inputRef = useRef(null);
 	const positionRef = useRef({ height: 0, bottom: true });
+
+	const screenWidth = useScreenWidth();
+
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
+	const calculateTextWidth = useCalculateTextSize();
 
 	useEffect(() => {
 		if (parentSetValueRef.current) {
@@ -73,39 +76,33 @@ export default function SelectionField({
 					positionRef.current.height = (list.length || 1) * 40;
 				}
 			},
-			calculateWidth: val => {
-				document.body.appendChild(span);
-				span.textContent = val;
-				setWidth(span.offsetWidth);
-				document.body.removeChild(span);
-			},
 		};
 	}
 
-	const tooltipHook = isDashboard ? useDashboardTooltip : useTooltip;
-
-	const setTooltip = tooltipHook();
+	const setTooltip = useTooltip();
 
 	const isAdded = useRef(false);
 
 	useEffect(() => {
 		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
-			setTooltip(elementRef.current, value, 'dashboard-body');
+			setTooltip(elementRef.current, value);
+			console.log('Tooltip added');
+
 			isAdded.current = true;
 		} else if (isAdded.current) {
 			isAdded.current = false;
-			setTooltip(elementRef.current, null, 'dashboard-body');
+			setTooltip(elementRef.current, null);
 		}
-	}, [setTooltip, value, width]);
+	}, [setTooltip, value, width, screenWidth]);
 
 	useEffect(() => {
 		const input = inputRef.current;
 
 		if (input) {
 			span.style.font = window.getComputedStyle(input).font;
-			eventRefs.current.calculateWidth(defaultValue);
+			setWidth(calculateTextWidth(defaultValue, '16px Inter'));
 		}
-	}, [defaultValue, placeholder, setTooltip]);
+	}, [calculateTextWidth, defaultValue, placeholder, setTooltip]);
 
 	return (
 		<div
@@ -161,7 +158,7 @@ export default function SelectionField({
 				setState={setState}
 				setValue={val => {
 					setValue(val);
-					eventRefs.current.calculateWidth(val);
+					setWidth(calculateTextWidth(val, '16px Inter'));
 				}}
 				state={show}
 				value={value}

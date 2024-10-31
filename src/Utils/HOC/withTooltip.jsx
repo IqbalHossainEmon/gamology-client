@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Tooltip from '../../Shared/Tooltip/Tooltip/Tooltip';
+import SetTooltipContext from '../Contexts/TooltipContext';
 
-const withTooltip = (Component, Context, scrollElementId, extra) =>
+const withTooltip = Component =>
 	function InnerComponent(props) {
 		const [show, setShow] = useState(false);
 
@@ -35,23 +36,18 @@ const withTooltip = (Component, Context, scrollElementId, extra) =>
 						containerRef.current = null;
 					}
 				},
-				contextEvents: (element, msg, elementId) => {
+				contextEvents: (element, msg) => {
 					if (element && msg) {
 						setMessage(msg);
-						element.addEventListener('mousemove', eventRefs.current.onMouseMove);
+						element.addEventListener('mouseover', eventRefs.current.onMouseMove);
 						element.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 					} else if (element && !msg) {
 						if (showRef.current) {
 							setShow(false);
 						}
 						setMessage('');
-						element.removeEventListener('mousemove', eventRefs.current.onMouseMove);
+						element.removeEventListener('mouseover', eventRefs.current.onMouseMove);
 						element.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
-						if (elementId) {
-							document
-								.getElementById(elementId)
-								.removeEventListener('scroll', eventRefs.current.onMouseLeave);
-						}
 					}
 				},
 			};
@@ -61,7 +57,7 @@ const withTooltip = (Component, Context, scrollElementId, extra) =>
 			() => () => {
 				if (containerRef.current) {
 					containerRef.current.removeEventListener(
-						'mousemove',
+						'mouseover',
 						eventRefs.current.onMouseMove
 					);
 					containerRef.current.removeEventListener(
@@ -74,16 +70,15 @@ const withTooltip = (Component, Context, scrollElementId, extra) =>
 		);
 
 		return (
-			<Context.Provider value={eventRefs.current.contextEvents}>
+			<SetTooltipContext.Provider value={eventRefs.current.contextEvents}>
 				<Component {...props} />
 				<Tooltip
 					message={message}
 					containerRef={containerRef}
 					state={show}
-					extra={extra}
-					scrollElementId={scrollElementId}
+					scrollElementId='root'
 				/>
-			</Context.Provider>
+			</SetTooltipContext.Provider>
 		);
 	};
 

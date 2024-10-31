@@ -74,6 +74,23 @@ function Drawer() {
 		setElement(elementRef.current);
 	}, [setElement]);
 
+	// test
+
+	const ulRef = useRef(null);
+
+	useEffect(() => {
+		const ul = ulRef.current;
+		const observer = new ResizeObserver(() => {
+			console.log('resize');
+		});
+
+		observer.observe(ul);
+
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
+
 	return (
 		<>
 			<div
@@ -81,7 +98,7 @@ function Drawer() {
 			>
 				<div className={styles.drawerOptions}>
 					<div ref={scrollContainerRef}>
-						<ul className={styles.optionContainer}>
+						<ul className={styles.optionContainer} ref={ulRef}>
 							{drawerIcon.map(drawer => (
 								<DrawerOptions
 									{...(screenWidth > 1099 && { parentState: collapse })}
@@ -90,7 +107,7 @@ function Drawer() {
 								/>
 							))}
 						</ul>
-						<ScrollBar parentRef={scrollContainerRef} />{' '}
+						<ScrollBar parentRef={scrollContainerRef} />
 					</div>
 				</div>
 				<DrawerFooter collapse={collapse} screenWidth={screenWidth} />

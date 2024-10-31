@@ -39,7 +39,6 @@ function SelectionFieldTextField({
 			<div className={styles.specsContainer}>
 				<div className={styles.selectionField}>
 					<SelectionField
-						isDashboard
 						enabled={enabled}
 						htmlFor={`${parentIndex}${name}${length}${i}${index}`}
 						list={listArr.filter(la => !selectedKeys.includes(la))}
