@@ -90,7 +90,6 @@ function ImagePreviewContainer({
 					if (!loadingRef.current && !imgRef.current) {
 						setLoading(true);
 					}
-					console.log(!loadingRef.current && !imgRef.current);
 
 					setShow(true);
 					setShowPreview(true);
@@ -160,8 +159,6 @@ function ImagePreviewContainer({
 			}
 		};
 	}, [containerRef, btnRef, touchAble, previewBtnRef, setElement]);
-
-	console.log(loading);
 
 	return (
 		showPreview && (

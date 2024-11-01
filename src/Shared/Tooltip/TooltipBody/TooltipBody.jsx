@@ -1,16 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './TooltipBody.module.css';
 
-function TooltipBody({ message, containerRef, fadeIn, scrollElementId }) {
+function TooltipBody({
+	message,
+	containerRef,
+	fadeIn,
+	scrollElementId,
+	onMouseOver,
+	onMouseLeave,
+}) {
 	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
 
 	const tooltipRef = useRef(null);
 
 	useEffect(() => {
+		const tooltip = tooltipRef.current;
 		if (containerRef.current) {
 			const { top, left, width, height } = containerRef.current.getBoundingClientRect();
-			const { height: tooltipHeight, width: tooltipWidth } =
-				tooltipRef.current.getBoundingClientRect();
+			const { height: tooltipHeight, width: tooltipWidth } = tooltip.getBoundingClientRect();
+
+			tooltip.addEventListener('mouseover', onMouseOver);
+			tooltip.addEventListener('mouseleave', onMouseLeave);
 
 			let scrollY = 0;
 
@@ -44,7 +54,13 @@ function TooltipBody({ message, containerRef, fadeIn, scrollElementId }) {
 				});
 			}
 		}
-	}, [containerRef, scrollElementId]);
+		return () => {
+			if (tooltip) {
+				tooltip.removeEventListener('mouseover', onMouseOver);
+				tooltip.removeEventListener('mouseleave', onMouseLeave);
+			}
+		};
+	}, [containerRef, onMouseLeave, onMouseOver, scrollElementId]);
 
 	return (
 		<div

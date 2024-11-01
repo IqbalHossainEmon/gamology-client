@@ -12,41 +12,53 @@ const withTooltip = Component =>
 		showRef.current = show;
 
 		const containerRef = useRef(null);
+
 		const eventRefs = useRef(null);
 
-		const timerId = useRef(null);
+		const hoverTimerRef = useRef(null);
+		const leaveTimerRef = useRef(null);
 
 		if (!eventRefs.current) {
 			eventRefs.current = {
-				onMouseMove: e => {
-					if (!showRef.current && !timerId.current) {
-						timerId.current = setTimeout(() => {
+				onMouseOver: e => {
+					if (leaveTimerRef.current) {
+						clearTimeout(leaveTimerRef.current);
+						leaveTimerRef.current = null;
+						return;
+					}
+					if (!showRef.current && !hoverTimerRef.current) {
+						hoverTimerRef.current = setTimeout(() => {
 							setShow(true);
+							hoverTimerRef.current = null;
 						}, 200);
 						containerRef.current = e.currentTarget;
 					}
 				},
 				onMouseLeave: () => {
-					if (timerId.current) {
-						clearTimeout(timerId.current);
-						timerId.current = null;
+					if (hoverTimerRef.current) {
+						clearTimeout(hoverTimerRef.current);
+						hoverTimerRef.current = null;
+						return;
 					}
 					if (showRef.current) {
-						setShow(false);
-						containerRef.current = null;
+						leaveTimerRef.current = setTimeout(() => {
+							setShow(false);
+							leaveTimerRef.current = null;
+							containerRef.current = null;
+						}, 200);
 					}
 				},
 				contextEvents: (element, msg) => {
 					if (element && msg) {
 						setMessage(msg);
-						element.addEventListener('mouseover', eventRefs.current.onMouseMove);
+						element.addEventListener('mouseover', eventRefs.current.onMouseOver);
 						element.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 					} else if (element && !msg) {
 						if (showRef.current) {
 							setShow(false);
 						}
 						setMessage('');
-						element.removeEventListener('mouseover', eventRefs.current.onMouseMove);
+						element.removeEventListener('mouseover', eventRefs.current.onMouseOver);
 						element.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 					}
 				},
@@ -58,7 +70,7 @@ const withTooltip = Component =>
 				if (containerRef.current) {
 					containerRef.current.removeEventListener(
 						'mouseover',
-						eventRefs.current.onMouseMove
+						eventRefs.current.onMouseOver
 					);
 					containerRef.current.removeEventListener(
 						'mouseleave',
@@ -73,6 +85,8 @@ const withTooltip = Component =>
 			<SetTooltipContext.Provider value={eventRefs.current.contextEvents}>
 				<Component {...props} />
 				<Tooltip
+					onMouseOver={eventRefs.current.onMouseOver}
+					onMouseLeave={eventRefs.current.onMouseLeave}
 					message={message}
 					containerRef={containerRef}
 					state={show}
