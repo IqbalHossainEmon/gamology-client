@@ -21,7 +21,9 @@ export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow })
 			if (prev) {
 				onHide();
 				showBodyOverflow();
+				console.log('hide');
 			} else {
+				console.log('show');
 				showMenu();
 				hideBodyOverflow();
 				document.documentElement.scrollTop = 0;

@@ -6,9 +6,9 @@ import MobileBurgerMenu from '../Components/MobileBurgerMenu/MobileBurgerMenu';
 import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';
 import styles from './FirstNavbar.module.css';
 
-export default function FirstNavbar() {
+export default function FirstNavbar({ scrollContainer }) {
 	const screenWidth = useScreenWidth();
-	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
+	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow(scrollContainer.current);
 
 	useEffect(() => {
 		if (screenWidth > 768) {
@@ -27,7 +27,6 @@ export default function FirstNavbar() {
 			{screenWidth > 768 ? (
 				<div className={styles.navOptions}>
 					<FirstNavLinks />
-
 					<NavProfileInfo />
 				</div>
 			) : (

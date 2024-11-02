@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Thumb from '../Thumb/Thumb';
+import styles from './Scroller.module.css';
 
 function Scroller({ innerContainerRef, outerContainerRef }) {
 	const [show, setShow] = useState(false);
@@ -13,12 +14,17 @@ function Scroller({ innerContainerRef, outerContainerRef }) {
 		const outerContainer = outerContainerRef.current;
 		const innerContainer = innerContainerRef.current;
 
+		innerContainer.classList.add(styles.scrollContainer);
+
 		const updateThumb = () => {
 			const containerHeight = outerContainer.clientHeight;
 			const scrollerContainer = innerContainer.scrollHeight;
 			const thumbHeight = (containerHeight / scrollerContainer) * containerHeight;
 
 			if (scrollerContainer <= containerHeight) {
+				if (!showRef.current) {
+					return;
+				}
 				setShow(false);
 				return;
 			}
@@ -42,6 +48,10 @@ function Scroller({ innerContainerRef, outerContainerRef }) {
 		};
 	}, [innerContainerRef, outerContainerRef]);
 
-	return show && <Thumb style={style} />;
+	return (
+		show && (
+			<Thumb style={style} thumbClass={styles.thumb} container={outerContainerRef.current} />
+		)
+	);
 }
 export default Scroller;

@@ -47,9 +47,8 @@
 		right 200ms;
 	transition-delay: 20ms;
 }
-
 .paddingRight {
-	right: 0.5rem;
+	right: 1rem;
 }
 
 .arrowBottom {

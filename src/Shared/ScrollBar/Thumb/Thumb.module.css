@@ -5,5 +5,13 @@
 	top: 0;
 	background-color: rgba(252, 252, 252, 0.5);
 	transform-origin: right top;
-	transition: background-color 0.3s;
+	z-index: 10;
+	pointer-events: initial;
+}
+.thumbPath {
+	width: 8px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
 }

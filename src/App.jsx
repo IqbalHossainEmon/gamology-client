@@ -1,14 +1,17 @@
+import { useRef } from 'react';
 import './App.css';
-import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import MainContent from './Pages/MainContent/MainContent/MainContent';
 import MainHeader from './Shared/MainHeader/MainHeader';
+import ScrollBar from './Shared/ScrollBar/ScrollBar/ScrollBar';
 import withAppsHOCs from './Utils/HOC/withAppsHOCs';
 
 function AppMain() {
+	const scrollContainer = useRef(null);
 	return (
-		<>
-			<MainHeader />
-			<Dashboard />
-		</>
+		<ScrollBar scrollContainer={scrollContainer}>
+			<MainHeader scrollContainer={scrollContainer} />
+			<MainContent />
+		</ScrollBar>
 	);
 }
 
