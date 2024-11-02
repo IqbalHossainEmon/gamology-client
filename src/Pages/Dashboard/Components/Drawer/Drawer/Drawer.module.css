@@ -36,6 +36,7 @@
 .drawerOptions {
 	overflow: hidden;
 	height: calc(100vh - 11.5rem);
+	min-height: 2rem;
 }
 
 .collapseButton {

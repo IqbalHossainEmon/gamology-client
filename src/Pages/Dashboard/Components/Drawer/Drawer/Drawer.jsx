@@ -23,8 +23,6 @@ function Drawer() {
 	const transitionId = useRef(null);
 	const eventRefs = useRef(null);
 
-	const scrollContainerRef = useRef(null);
-
 	const wasDrawerOpen = useRef(false);
 
 	if (!eventRefs.current) {
@@ -74,31 +72,14 @@ function Drawer() {
 		setElement(elementRef.current);
 	}, [setElement]);
 
-	// test
-
-	const ulRef = useRef(null);
-
-	useEffect(() => {
-		const ul = ulRef.current;
-		const observer = new ResizeObserver(() => {
-			console.log('resize');
-		});
-
-		observer.observe(ul);
-
-		return () => {
-			observer.disconnect();
-		};
-	}, []);
-
 	return (
 		<>
 			<div
 				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}`}
 			>
 				<div className={styles.drawerOptions}>
-					<div ref={scrollContainerRef}>
-						<ul className={styles.optionContainer} ref={ulRef}>
+					<ScrollBar>
+						<ul className={styles.optionContainer}>
 							{drawerIcon.map(drawer => (
 								<DrawerOptions
 									{...(screenWidth > 1099 && { parentState: collapse })}
@@ -107,8 +88,7 @@ function Drawer() {
 								/>
 							))}
 						</ul>
-						<ScrollBar parentRef={scrollContainerRef} />
-					</div>
+					</ScrollBar>
 				</div>
 				<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
 				<button
