@@ -11,7 +11,7 @@ function ScrollBar({ children, scrollContainer }) {
 			className={styles.outerScrollContainer}
 			ref={element => {
 				outerContainerRef.current = element;
-				if (scrollContainer) scrollContainer.current = element;
+				if (scrollContainer.current === null) scrollContainer.current = element;
 			}}
 		>
 			<div className={styles.scrollContainer} ref={innerContainerRef}>

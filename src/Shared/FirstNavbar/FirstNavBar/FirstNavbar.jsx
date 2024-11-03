@@ -8,7 +8,7 @@ import styles from './FirstNavbar.module.css';
 
 export default function FirstNavbar({ scrollContainer }) {
 	const screenWidth = useScreenWidth();
-	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow(scrollContainer.current);
+	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow(scrollContainer);
 
 	useEffect(() => {
 		if (screenWidth > 768) {

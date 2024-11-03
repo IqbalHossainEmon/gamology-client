@@ -1,8 +1,0 @@
-.thumb {
-	opacity: 0;
-	transition: opacity 200ms;
-}
-
-.scrollContainer:hover .thumb {
-	opacity: 1;
-}

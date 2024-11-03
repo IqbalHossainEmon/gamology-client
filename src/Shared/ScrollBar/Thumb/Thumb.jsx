@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import useDragStartStop from '../../../Utils/Hooks/useDragStartStop';
 import styles from './Thumb.module.css';
 
-function Thumb({ style, thumbClass, container }) {
+function Thumb({ style, container, show }) {
 	const { factor, height } = style;
 
 	const eventRefs = useRef(null);
@@ -12,21 +12,24 @@ function Thumb({ style, thumbClass, container }) {
 	factorRef.current = factor;
 
 	if (!eventRefs.current) {
+		const root = document.getElementById('root');
 		eventRefs.current = {
 			onMove: e => {
 				if (startingPosition.current === null) return;
 				const clientY = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
 				container.scrollTop += (clientY - startingPosition.current) / factorRef.current;
+
 				startingPosition.current = clientY;
 			},
 			onMouseDown: e => {
-				e.preventDefault();
 				startingPosition.current =
 					e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
+				root.style.userSelect = 'none';
+				root.style.pointerEvents = 'none';
 			},
-			onMouseUp: e => {
-				e.preventDefault();
+			onMouseUp: () => {
 				startingPosition.current = null;
+				root.removeAttribute('style');
 			},
 		};
 	}
@@ -39,9 +42,8 @@ function Thumb({ style, thumbClass, container }) {
 
 	return (
 		<div
-			className={`${styles.thumb} ${thumbClass}`}
+			className={`${styles.thumb} ${show ? styles.show : styles.hide}`}
 			onMouseDown={onStart}
-			onTouchStart={onStart}
 			style={{
 				height,
 				transform: `
