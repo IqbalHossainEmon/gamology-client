@@ -8,7 +8,6 @@ function Thumb({ style, container }) {
 
 	const eventRefs = useRef(null);
 
-	const startingPosition = useRef(null);
 	const factorRef = useRef(factor);
 	factorRef.current = factor;
 
@@ -21,20 +20,45 @@ function Thumb({ style, container }) {
 
 	if (!eventRefs.current) {
 		const root = document.getElementById('root');
+		let startingPosition = null;
+		let elementTop = 0;
+		let elementBottom = 0;
 		eventRefs.current = {
 			onMove: e => {
-				if (startingPosition.current === null) return;
+				if (startingPosition === null) return;
 				const clientY = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
-				container.scrollTop += (clientY - startingPosition.current) / factorRef.current;
-				thumbRef.current.setAttribute('aria-valuenow', container.scrollTop);
+
+				if (clientY + elementBottom > container.clientHeight) {
+					container.scrollTop = container.scrollHeight;
+					thumbRef.current.setAttribute('aria-valuenow', 100);
+					return;
+				}
+
+				if (clientY - elementTop < 0) {
+					container.scrollTop = 0;
+					thumbRef.current.setAttribute('aria-valuenow', 0);
+					return;
+				}
+
+				const deltaY = (clientY - startingPosition) / factorRef.current;
+				if (container.scrollTop >= 0 && container.scrollTop <= container.scrollHeight) {
+					container.scrollTop += deltaY;
+					startingPosition = clientY;
+
+					const scrollPercent =
+						(container.scrollTop / (container.scrollHeight - container.clientHeight)) *
+						100;
+					thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
+				}
 			},
 			onMouseDown: e => {
-				startingPosition.current =
-					e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
+				startingPosition = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
+				elementTop = startingPosition - e.target.getBoundingClientRect().top;
+				elementBottom = e.target.getBoundingClientRect().bottom - startingPosition;
 				root.style.userSelect = 'none';
 			},
 			onMouseUp: () => {
-				startingPosition.current = null;
+				startingPosition = null;
 				root.style.userSelect = '';
 			},
 			onEnter: () => {
@@ -43,11 +67,15 @@ function Thumb({ style, container }) {
 				}
 			},
 			onLeave: () => {
-				if (showRef.current && !startingPosition.current) {
+				if (showRef.current && !startingPosition) {
 					setShow(false);
 				}
 			},
 			onscroll: () => {
+				const scrollPercent =
+					(container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+				thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
+
 				if (!showRef.current) {
 					if (timerId.current) {
 						clearTimeout(timerId.current);
