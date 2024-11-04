@@ -1,15 +1,23 @@
-import { useRef } from 'react';
-import useDragStartStop from '../../../Utils/Hooks/useDragStartStop';
+import { useEffect, useRef, useState } from 'react';
+import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
 import styles from './Thumb.module.css';
 
-function Thumb({ style, container, show }) {
+function Thumb({ style, container }) {
 	const { factor, height } = style;
+	const [show, setShow] = useState(false);
 
 	const eventRefs = useRef(null);
 
 	const startingPosition = useRef(null);
 	const factorRef = useRef(factor);
 	factorRef.current = factor;
+
+	const thumbRef = useRef(null);
+
+	const timerId = useRef(null);
+
+	const showRef = useRef(show);
+	showRef.current = show;
 
 	if (!eventRefs.current) {
 		const root = document.getElementById('root');
@@ -18,21 +26,56 @@ function Thumb({ style, container, show }) {
 				if (startingPosition.current === null) return;
 				const clientY = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
 				container.scrollTop += (clientY - startingPosition.current) / factorRef.current;
-
-				startingPosition.current = clientY;
+				thumbRef.current.setAttribute('aria-valuenow', container.scrollTop);
 			},
 			onMouseDown: e => {
 				startingPosition.current =
 					e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
 				root.style.userSelect = 'none';
-				root.style.pointerEvents = 'none';
 			},
 			onMouseUp: () => {
 				startingPosition.current = null;
-				root.removeAttribute('style');
+				root.style.userSelect = '';
+			},
+			onEnter: () => {
+				if (!showRef.current) {
+					setShow(true);
+				}
+			},
+			onLeave: () => {
+				if (showRef.current && !startingPosition.current) {
+					setShow(false);
+				}
+			},
+			onscroll: () => {
+				if (!showRef.current) {
+					if (timerId.current) {
+						clearTimeout(timerId.current);
+					}
+					setShow(true);
+					timerId.current = setTimeout(() => {
+						if (showRef.current) setShow(false);
+					}, 1000);
+				}
 			},
 		};
 	}
+
+	console.log('Thumb rendered');
+
+	useEffect(() => {
+		container.addEventListener('mouseenter', eventRefs.current.onEnter);
+		container.addEventListener('mouseleave', eventRefs.current.onLeave);
+		container.addEventListener('scroll', eventRefs.current.onscroll);
+
+		setShow(true);
+
+		return () => {
+			container.removeEventListener('mouseenter', eventRefs.current.onEnter);
+			container.removeEventListener('mouseleave', eventRefs.current.onLeave);
+			container.removeEventListener('scroll', eventRefs.current.onscroll);
+		};
+	}, [container]);
 
 	const onStart = useDragStartStop(
 		eventRefs.current.onMove,
@@ -57,6 +100,7 @@ function Thumb({ style, container, show }) {
                     translateZ(${1 - 1 / factor - 2}px)
                 `,
 			}}
+			ref={thumbRef}
 			role='scrollbar'
 			aria-controls='scrollContainer'
 			aria-valuenow={0}
