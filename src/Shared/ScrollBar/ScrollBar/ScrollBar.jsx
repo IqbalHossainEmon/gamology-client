@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import Scroller from '../Components/Scroller/Scroller/Scroller';
-import ScrollPath from '../Components/Scroller/ScrollPath/ScrollPath';
+import Scroller from '../Components/Scroller/Components/Scroller/Scroller';
 import styles from './ScrollBar.module.css';
 
 function ScrollBar({ children, scrollContainer }) {
@@ -17,7 +16,6 @@ function ScrollBar({ children, scrollContainer }) {
 		>
 			<div className={styles.scrollContainer} ref={innerContainerRef}>
 				{children}
-				<ScrollPath container={outerContainerRef.current} />
 			</div>
 			<Scroller innerContainerRef={innerContainerRef} outerContainerRef={outerContainerRef} />
 		</div>

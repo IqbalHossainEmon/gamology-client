@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
 import styles from './Thumb.module.css';
 
-function Thumb({ style, container }) {
+function Thumb({ style, container, thumbRef }) {
 	const { factor, height } = style;
 	const [show, setShow] = useState(false);
 
@@ -10,8 +10,6 @@ function Thumb({ style, container }) {
 
 	const factorRef = useRef(factor);
 	factorRef.current = factor;
-
-	const thumbRef = useRef(null);
 
 	const timerId = useRef(null);
 
@@ -51,15 +49,16 @@ function Thumb({ style, container }) {
 					thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
 				}
 			},
+			onMouseUp: () => {
+				startingPosition = null;
+				root.style.userSelect = '';
+			},
 			onMouseDown: e => {
 				startingPosition = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
 				elementTop = startingPosition - e.target.getBoundingClientRect().top;
 				elementBottom = e.target.getBoundingClientRect().bottom - startingPosition;
+				document.addEventListener('blur', eventRefs.current.onMouseUp);
 				root.style.userSelect = 'none';
-			},
-			onMouseUp: () => {
-				startingPosition = null;
-				root.style.userSelect = '';
 			},
 			onEnter: () => {
 				if (!showRef.current) {
@@ -88,8 +87,6 @@ function Thumb({ style, container }) {
 			},
 		};
 	}
-
-	console.log('Thumb rendered');
 
 	useEffect(() => {
 		container.addEventListener('mouseenter', eventRefs.current.onEnter);

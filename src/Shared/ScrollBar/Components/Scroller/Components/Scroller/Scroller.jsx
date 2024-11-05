@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import Thumb from '../Components/Thumb/Thumb';
+import ScrollPath from '../ScrollPath/ScrollPath';
+import Thumb from '../Thumb/Thumb';
 
 function Scroller({ innerContainerRef, outerContainerRef }) {
 	const [show, setShow] = useState(false);
 
 	const [style, setStyle] = useState({ height: 0, factor: 0 });
+
+	const thumbRef = useRef(null);
 
 	const showRef = useRef(show);
 	showRef.current = show;
@@ -23,7 +26,6 @@ function Scroller({ innerContainerRef, outerContainerRef }) {
 					return;
 				}
 				setShow(false);
-
 				return;
 			}
 			if (!showRef.current) {
@@ -39,8 +41,10 @@ function Scroller({ innerContainerRef, outerContainerRef }) {
 				if (entry.attributeName === 'style') {
 					const entryStyle = entry.target.getAttribute('style');
 					if (entryStyle && entryStyle.includes('overflow-y: hidden')) {
-						setShow(false);
-					} else {
+						if (!showRef.current) {
+							setShow(false);
+						}
+					} else if (!showRef.current) {
 						setShow(true);
 					}
 				}
@@ -62,6 +66,18 @@ function Scroller({ innerContainerRef, outerContainerRef }) {
 		};
 	}, [innerContainerRef, outerContainerRef]);
 
-	return show && <Thumb style={style} container={outerContainerRef.current} />;
+	return (
+		show && (
+			<>
+				<Thumb style={style} container={outerContainerRef.current} thumbRef={thumbRef} />
+				<ScrollPath
+					container={outerContainerRef}
+					innerContainer={innerContainerRef}
+					thumb={thumbRef}
+					factor={style.factor}
+				/>
+			</>
+		)
+	);
 }
 export default Scroller;

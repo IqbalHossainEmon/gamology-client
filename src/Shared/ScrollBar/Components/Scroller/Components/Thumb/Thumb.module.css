@@ -3,9 +3,9 @@
 	position: absolute;
 	right: 0;
 	top: 0;
-	background-color: rgba(252, 252, 252, 0.5);
+	background-color: #ffffff5f;
 	transform-origin: right top;
-	z-index: 10;
+	z-index: 5;
 	pointer-events: initial;
 	transition: opacity 300ms;
 }
