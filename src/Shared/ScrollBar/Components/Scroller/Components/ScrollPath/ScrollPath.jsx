@@ -1,16 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styles from './ScrollPath.module.css';
-
-function ScrollPath({ container, innerContainer, thumb, factor }) {
-	const [height, setHeight] = useState(0);
-
+function ScrollPath({ container, thumb, height }) {
 	const eventRefs = useRef(null);
 	const pathRef = useRef(null);
-
 	if (!eventRefs.current) {
 		let isGoingDown = false;
 		let animationFrameId = null;
-
 		const scroll = () => {
 			switch (isGoingDown) {
 				case true:
@@ -19,7 +14,7 @@ function ScrollPath({ container, innerContainer, thumb, factor }) {
 						container.current.scrollHeight - container.current.clientHeight
 					) {
 						case true:
-							container.current.scrollTop += 25;
+							container.current.scrollTop += 35;
 							animationFrameId = requestAnimationFrame(scroll);
 							break;
 						default:
@@ -31,7 +26,7 @@ function ScrollPath({ container, innerContainer, thumb, factor }) {
 				default:
 					switch (container.current.scrollTop > 0) {
 						case true:
-							container.current.scrollTop -= 25;
+							container.current.scrollTop -= 35;
 							animationFrameId = requestAnimationFrame(scroll);
 							break;
 						default:
@@ -40,24 +35,39 @@ function ScrollPath({ container, innerContainer, thumb, factor }) {
 					}
 			}
 		};
-
+		let mouseMoveAdded = false;
 		const root = document.getElementById('root');
 		eventRefs.current = {
-			pauseEvent: () => {},
+			resumeEvent: () => {
+				if (animationFrameId) return;
+				scroll();
+				pathRef.current.removeEventListener('mousemove', eventRefs.current.resumeEvent);
+				mouseMoveAdded = false;
+			},
+			pauseEvent: () => {
+				cancelAnimationFrame(animationFrameId);
+				animationFrameId = null;
+				pathRef.current.addEventListener('mousemove', eventRefs.current.resumeEvent);
+				mouseMoveAdded = true;
+			},
 			stopEvent: () => {
 				cancelAnimationFrame(animationFrameId);
 				animationFrameId = null;
 				document.removeEventListener('mouseup', eventRefs.current.stopEvent);
-				document.removeEventListener('blur', eventRefs.current.stopEvent);
+				window.removeEventListener('blur', eventRefs.current.stopEvent);
 				root.style.userSelect = '';
+				pathRef.current.removeEventListener('mouseleave', eventRefs.current.pauseEvent);
+				thumb.current.style.pointerEvents = '';
+				if (mouseMoveAdded) {
+					pathRef.current.removeEventListener('mousemove', eventRefs.current.resumeEvent);
+					mouseMoveAdded = false;
+				}
 			},
 			scroll,
 			onMouseDown: e => {
-				const y = e.clientY - e.target.getBoundingClientRect().y;
-
-				console.log(thumb.current.getBoundingClientRect().y / factor);
-
-				switch (container.current.scrollTop < y) {
+				const { y, height: thumbHeight } = thumb.current.getBoundingClientRect();
+				const midY = y + thumbHeight / 2;
+				switch (e.clientY > midY) {
 					case true:
 						isGoingDown = true;
 						break;
@@ -68,18 +78,13 @@ function ScrollPath({ container, innerContainer, thumb, factor }) {
 				if (animationFrameId) return;
 				scroll();
 				document.addEventListener('mouseup', eventRefs.current.stopEvent);
-				document.addEventListener('blur', eventRefs.current.stopEvent);
+				window.addEventListener('blur', eventRefs.current.stopEvent);
+				e.target.addEventListener('mouseleave', eventRefs.current.pauseEvent);
 				root.style.userSelect = 'none';
+				thumb.current.style.pointerEvents = 'none';
 			},
 		};
 	}
-
-	useEffect(() => {
-		setTimeout(() => {
-			setHeight(innerContainer.current.clientHeight);
-		}, 0);
-	}, [innerContainer]);
-
 	return (
 		<div
 			ref={pathRef}

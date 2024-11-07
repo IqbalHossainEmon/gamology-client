@@ -1,80 +1,72 @@
 import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
 import styles from './Thumb.module.css';
-
 function Thumb({ style, container, thumbRef }) {
 	const { factor, height } = style;
 	const [show, setShow] = useState(false);
-
 	const eventRefs = useRef(null);
-
 	const factorRef = useRef(factor);
 	factorRef.current = factor;
-
 	const timerId = useRef(null);
-
 	const showRef = useRef(show);
 	showRef.current = show;
-
+	const isAdded = useRef(false);
 	if (!eventRefs.current) {
 		const root = document.getElementById('root');
 		let startingPosition = null;
-		let elementTop = 0;
-		let elementBottom = 0;
+		let prevDiff = 0;
+		let diff;
+		let isLeft = false;
 		eventRefs.current = {
 			onMove: e => {
 				if (startingPosition === null) return;
-				const clientY = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
+				const { clientY } = e;
+				diff = clientY - startingPosition + prevDiff;
 
-				if (clientY + elementBottom > container.clientHeight) {
-					container.scrollTop = container.scrollHeight;
-					thumbRef.current.setAttribute('aria-valuenow', 100);
-					return;
-				}
+				const containerHeight = container.clientHeight;
+				const scrollerContainer = container.scrollHeight;
 
-				if (clientY - elementTop < 0) {
-					container.scrollTop = 0;
-					thumbRef.current.setAttribute('aria-valuenow', 0);
-					return;
-				}
+				container.scrollTop = (scrollerContainer / containerHeight) * diff;
 
-				const deltaY = (clientY - startingPosition) / factorRef.current;
-				if (container.scrollTop >= 0 && container.scrollTop <= container.scrollHeight) {
-					container.scrollTop += deltaY;
-					startingPosition = clientY;
-
-					const scrollPercent =
-						(container.scrollTop / (container.scrollHeight - container.clientHeight)) *
-						100;
-					thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
-				}
+				console.log(
+					(scrollerContainer / containerHeight) * diff,
+					scrollerContainer / containerHeight,
+					diff
+				);
 			},
 			onMouseUp: () => {
 				startingPosition = null;
 				root.style.userSelect = '';
+				prevDiff = diff;
+				window.removeEventListener('blur', eventRefs.current.onMouseUp);
+				if (isLeft) setShow(false);
 			},
 			onMouseDown: e => {
-				startingPosition = e.clientY || e.clientY === 0 ? e.clientY : e.touches[0].clientY;
-				elementTop = startingPosition - e.target.getBoundingClientRect().top;
-				elementBottom = e.target.getBoundingClientRect().bottom - startingPosition;
-				document.addEventListener('blur', eventRefs.current.onMouseUp);
+				startingPosition = e.clientY;
+				window.addEventListener('blur', eventRefs.current.onMouseUp);
 				root.style.userSelect = 'none';
 			},
 			onEnter: () => {
 				if (!showRef.current) {
 					setShow(true);
+					container.removeEventListener('mousemove', eventRefs.current.onEnter);
+					isAdded.current = false;
 				}
+				isLeft = false;
 			},
 			onLeave: () => {
 				if (showRef.current && !startingPosition) {
 					setShow(false);
+					return;
+				}
+				if (!startingPosition) {
+					isLeft = true;
 				}
 			},
 			onscroll: () => {
 				const scrollPercent =
 					(container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
 				thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
-
 				if (!showRef.current) {
 					if (timerId.current) {
 						clearTimeout(timerId.current);
@@ -87,43 +79,35 @@ function Thumb({ style, container, thumbRef }) {
 			},
 		};
 	}
-
 	useEffect(() => {
-		container.addEventListener('mouseenter', eventRefs.current.onEnter);
+		if (!show) {
+			container.addEventListener('mousemove', eventRefs.current.onEnter);
+			isAdded.current = true;
+		}
+	}, [container, show]);
+	useEffect(() => {
 		container.addEventListener('mouseleave', eventRefs.current.onLeave);
 		container.addEventListener('scroll', eventRefs.current.onscroll);
-
 		setShow(true);
-
 		return () => {
-			container.removeEventListener('mouseenter', eventRefs.current.onEnter);
+			if (isAdded.current)
+				container.removeEventListener('mousemove', eventRefs.current.onEnter);
 			container.removeEventListener('mouseleave', eventRefs.current.onLeave);
 			container.removeEventListener('scroll', eventRefs.current.onscroll);
 		};
 	}, [container]);
-
 	const onStart = useDragStartStop(
 		eventRefs.current.onMove,
 		eventRefs.current.onMouseUp,
 		eventRefs.current.onMouseDown
 	);
-
 	return (
 		<div
 			className={`${styles.thumb} ${show ? styles.show : styles.hide}`}
 			onMouseDown={onStart}
 			style={{
 				height,
-				transform: `
-                    matrix3d(
-                        1, 0, 0, 0,
-                        0, 1, 0, 0,
-                        0, 0, 1, 0,
-                        0, 0, 0, -1
-                    )
-                    scale(${1 / factor})
-                    translateZ(${1 - 1 / factor - 2}px)
-                `,
+				transform: `matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1) scale(${1 / factor}) translateZ(${1 - 1 / factor - 2}px)`,
 			}}
 			ref={thumbRef}
 			role='scrollbar'

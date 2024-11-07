@@ -1,13 +1,1 @@
-.scrollPath {
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 8px;
-	background-color: #ffffff1f;
-	opacity: 0;
-	z-index: 4;
-	transition: opacity 300ms;
-}
-.scrollPath:hover {
-	opacity: 1;
-}
+.scrollPath {	position: absolute;	right: 0;	top: 0;	width: 8px;	background-color: #ffffff1f;	opacity: 0;	z-index: 4;	transition: opacity 300ms;}.hoverEffect {	pointer-events: none;}.scrollPath:hover {	opacity: 1;}
