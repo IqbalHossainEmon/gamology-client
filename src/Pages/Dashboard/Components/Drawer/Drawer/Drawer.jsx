@@ -78,7 +78,7 @@ function Drawer() {
 				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}`}
 			>
 				<div className={styles.drawerOptions}>
-					<ScrollBar>
+					<ScrollBar showPath={false}>
 						<ul className={styles.optionContainer}>
 							{drawerIcon.map(drawer => (
 								<DrawerOptions

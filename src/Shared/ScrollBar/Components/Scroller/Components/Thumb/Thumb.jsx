@@ -12,10 +12,10 @@ function Thumb({ style, container, thumbRef }) {
 	showRef.current = show;
 	const isAdded = useRef(false);
 	if (!eventRefs.current) {
-		const root = document.getElementById('root');
 		let startingPosition = null;
 		let prevDiff = 0;
 		let diff;
+		let lastDiff = 0;
 		let isLeft = false;
 		eventRefs.current = {
 			onMove: e => {
@@ -25,26 +25,35 @@ function Thumb({ style, container, thumbRef }) {
 
 				const containerHeight = container.clientHeight;
 				const scrollerContainer = container.scrollHeight;
+				const thumb = thumbRef.current;
+				diff = parseInt(diff, 10);
 
-				container.scrollTop = (scrollerContainer / containerHeight) * diff;
+				const ratio = (scrollerContainer / containerHeight) * diff;
 
-				console.log(
-					(scrollerContainer / containerHeight) * diff,
-					scrollerContainer / containerHeight,
-					diff
-				);
+				if (ratio <= scrollerContainer - containerHeight && ratio >= 0) {
+					container.scrollTop = ratio;
+					lastDiff = diff;
+					const scrollPercent = (ratio / (scrollerContainer - containerHeight)) * 100;
+					thumb.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
+				} else if (ratio > scrollerContainer - containerHeight) {
+					container.scrollTop = scrollerContainer - containerHeight;
+					thumb.setAttribute('aria-valuenow', '100.00');
+				} else {
+					container.scrollTop = 0;
+					thumb.setAttribute('aria-valuenow', '0.00');
+				}
 			},
 			onMouseUp: () => {
 				startingPosition = null;
-				root.style.userSelect = '';
-				prevDiff = diff;
+				container.style.userSelect = '';
+				prevDiff = lastDiff;
 				window.removeEventListener('blur', eventRefs.current.onMouseUp);
 				if (isLeft) setShow(false);
 			},
 			onMouseDown: e => {
 				startingPosition = e.clientY;
 				window.addEventListener('blur', eventRefs.current.onMouseUp);
-				root.style.userSelect = 'none';
+				container.style.userSelect = 'none';
 			},
 			onEnter: () => {
 				if (!showRef.current) {
@@ -64,8 +73,15 @@ function Thumb({ style, container, thumbRef }) {
 				}
 			},
 			onscroll: () => {
+				if (startingPosition) return;
+
+				const containerHeight = container.clientHeight;
+				const scrollerContainer = container.scrollHeight;
+
+				prevDiff = (container.scrollTop * containerHeight) / scrollerContainer;
+
 				const scrollPercent =
-					(container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+					(container.scrollTop / (scrollerContainer - containerHeight)) * 100;
 				thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
 				if (!showRef.current) {
 					if (timerId.current) {

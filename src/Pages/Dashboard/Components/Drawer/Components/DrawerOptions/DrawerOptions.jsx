@@ -14,14 +14,16 @@ function DrawerOptions({ option, parentState }) {
 					paddingRight: true,
 				}}
 			>
-				<ul
-					className={`${styles.innerOptionsContainer}${parentState ? ` ${styles.noPaddingLeft}` : ''}`}
-				>
+				<ul className={styles.innerOptionsContainer}>
 					{option.subDrawer.map(subOption => (
 						<li className={styles.innerOptionContainer} key={subOption.id}>
 							<p className={styles.innerOption}>
-								<span className={styles.iconContainer}>{subOption.icon}</span>
-								{subOption.name}
+								<span
+									className={`${styles.iconContainer}${parentState ? ` ${styles.noTranslate}` : ''}`}
+								>
+									{subOption.icon}
+								</span>
+								<span>{subOption.name}</span>
 							</p>
 						</li>
 					))}

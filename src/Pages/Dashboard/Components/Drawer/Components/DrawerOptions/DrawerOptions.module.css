@@ -29,6 +29,11 @@
 	display: flex;
 	align-items: center;
 }
+.innerOption .iconContainer {
+	translate: 0.5rem;
+	margin-right: 1rem;
+	transition: translate 200ms;
+}
 
 .iconContainer svg {
 	width: 100%;
@@ -38,17 +43,14 @@
 }
 
 .innerOptionsContainer {
-	width: calc(100% - 1rem);
+	width: 100%;
 	list-style-type: none;
 	overflow: hidden;
-	translate: 0.5rem;
-	transition:
-		translate 200ms,
-		height 200ms;
+	transition: height 200ms;
 }
 
 @media only screen and (min-width: 1100px) {
-	.noPaddingLeft {
+	.innerOption .iconContainer.noTranslate {
 		translate: 0rem;
 	}
 }

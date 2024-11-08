@@ -1,8 +1,19 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './ScrollPath.module.css';
 function ScrollPath({ container, thumb, height }) {
 	const eventRefs = useRef(null);
 	const pathRef = useRef(null);
+
+	const changingValueRef = useRef(0);
+
+	const scrollWidth = useScreenWidth();
+
+	useEffect(() => {
+		changingValueRef.current =
+			(container.current.scrollHeight / container.current.clientHeight) * 4;
+	}, [container, scrollWidth]);
+
 	if (!eventRefs.current) {
 		let isGoingDown = false;
 		let animationFrameId = null;
@@ -14,7 +25,7 @@ function ScrollPath({ container, thumb, height }) {
 						container.current.scrollHeight - container.current.clientHeight
 					) {
 						case true:
-							container.current.scrollTop += 35;
+							container.current.scrollTop += changingValueRef.current;
 							animationFrameId = requestAnimationFrame(scroll);
 							break;
 						default:
@@ -26,7 +37,7 @@ function ScrollPath({ container, thumb, height }) {
 				default:
 					switch (container.current.scrollTop > 0) {
 						case true:
-							container.current.scrollTop -= 35;
+							container.current.scrollTop -= changingValueRef.current;
 							animationFrameId = requestAnimationFrame(scroll);
 							break;
 						default:
