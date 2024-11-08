@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import useIsTouchAble from '../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './ScrollPath.module.css';
 function ScrollPath({ container, thumb, height }) {
@@ -8,11 +9,14 @@ function ScrollPath({ container, thumb, height }) {
 	const changingValueRef = useRef(0);
 
 	const scrollWidth = useScreenWidth();
+	const isTouchEnabled = useIsTouchAble()();
 
 	useEffect(() => {
 		changingValueRef.current =
 			(container.current.scrollHeight / container.current.clientHeight) * 4;
 	}, [container, scrollWidth]);
+
+	if (isTouchEnabled) return null;
 
 	if (!eventRefs.current) {
 		let isGoingDown = false;

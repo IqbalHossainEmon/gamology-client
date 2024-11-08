@@ -1,9 +1,9 @@
 import { useEffect, useReducer, useRef } from 'react';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerButtons';
-import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
-import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards';
-import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems';
+import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
+import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards/DiscoverBannerItemCards';
+import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems/DiscoverBannerItems';
 import useDiscoverBannerLogics from '../useDiscoverBannerLogics/useDiscoverBannerLogics';
 import styles from './DiscoverBanner.module.css';
 

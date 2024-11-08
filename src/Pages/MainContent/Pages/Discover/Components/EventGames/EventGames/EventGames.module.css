@@ -12,6 +12,7 @@
 
 @media only screen and (max-width: 768px) {
 	.EventGamesContainer {
+		width: calc(100% - 1rem);
 		overflow: hidden;
 	}
 	.EventGames {

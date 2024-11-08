@@ -1,24 +1,24 @@
 .banner {
-  position: relative;
-  margin: 5rem 0;
-  user-select: none;
-  width: 100%;
+	position: relative;
+	margin: 5rem 0;
+	user-select: none;
+	width: 100%;
 }
 
 .bannerOverflow {
-  overflow: hidden;
-  position: relative;
+	overflow: hidden;
+	position: relative;
 }
 
 @media only screen and (max-width: 768px) {
-  .bannerOverflow {
-    width: 100%;
-    aspect-ratio: 1/1.0675;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .banner {
-    margin-top: 2rem;
-  }
+	.bannerOverflow {
+		width: 100%;
+		aspect-ratio: 1/1.06020942;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.banner {
+		margin-top: 2rem;
+	}
 }

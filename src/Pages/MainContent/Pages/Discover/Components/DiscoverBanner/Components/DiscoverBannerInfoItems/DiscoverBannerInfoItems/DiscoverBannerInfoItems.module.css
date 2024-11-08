@@ -1,0 +1,10 @@
+.infoItems {
+	z-index: 1;
+	height: 100%;
+	position: absolute;
+	top: 100%;
+}
+.itemsContainer {
+	position: absolute;
+	translate: 0 -80px;
+}

@@ -3,7 +3,7 @@ import styles from './DiscountPrice.module.css';
 export default function DiscountPrice({ price, className }) {
 	if (typeof price === 'object') {
 		return (
-			<span className={`${styles.DiscountPrice}${className ? ` ${className}` : ''}`}>
+			<span className={`${styles.discountPrice}${className ? ` ${className}` : ''}`}>
 				<del className={styles.regular}>${price.regular}</del>
 				<ins className={styles.discount}>${price.discount}</ins>
 			</span>

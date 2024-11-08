@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useAnimationFrame from '../../../../../../../../../../Utils/Hooks/useAnimationFrame';
+import useAnimationFrame from '../../../../../../../../../../../Utils/Hooks/useAnimationFrame';
 import styles from './DiscoverBannerItemCardShadow.module.css';
 
 function DiscoverBannerItemCardShadow({ cardShadowUtils }) {

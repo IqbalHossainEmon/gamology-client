@@ -1,0 +1,7 @@
+.itemCards {
+    position: absolute;
+    top: 0;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
