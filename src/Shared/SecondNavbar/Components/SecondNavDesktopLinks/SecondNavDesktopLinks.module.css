@@ -1,63 +1,69 @@
 .secondNavLinks {
 	list-style: none;
 	display: flex;
-	margin-left: 15px;
 }
 
-.navOption {
-	margin-left: 30px;
+.option {
+	margin-left: 2rem;
 }
-.navOption a {
+.option a {
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.5);
 	transition: color 200ms;
 }
 
-.navOption a:hover {
+.option a:hover {
 	color: rgba(255, 255, 255, 0.8);
 }
 
-#active {
+.active {
 	cursor: default;
 }
 
-#active a {
+.active a {
 	color: #fff;
-	pointer-events: none;
 }
 
 @media only screen and (max-width: 768px) {
+	.navLinksContainer {
+		position: absolute;
+		width: 100%;
+		display: flex;
+		overflow: hidden;
+		top: 100%;
+	}
 	.secondNavLinks {
 		display: flex;
 		position: relative;
-		padding: 10px;
+		padding: 1rem;
 		margin-left: 0px;
 		flex-direction: column;
 		background-color: rgba(0, 0, 0, 0.6);
 		width: 100%;
-		left: 0;
-		transition:
-			bottom 300ms,
-			visibility 300ms;
+		translate: 0 -100%;
+		transition: translate 300ms;
 	}
 
-	.navOption {
-		margin: 10px;
-		border-bottom: 1px solid grey;
+	.option {
+		margin-top: 1rem;
+		margin-left: 0px;
 	}
 
-	.navOption a {
+	.option::after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: rgba(255, 255, 255, 0.5);
+	}
+
+	.option a {
 		width: 100%;
 		display: inline-block;
 	}
 
-	#navShow {
-		bottom: 0;
+	.navShow {
+		translate: 0 0%;
 		z-index: 1;
-		visibility: visible;
-	}
-	#navHide {
-		z-index: -1;
-		visibility: hidden;
 	}
 }

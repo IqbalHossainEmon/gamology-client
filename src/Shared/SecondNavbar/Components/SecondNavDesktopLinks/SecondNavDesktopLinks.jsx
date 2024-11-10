@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import useAppearDisappear from '../../../../Utils/Hooks/useAppearDisappear';
+import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import LinksList from '../../../LinksList/LinksList';
 import styles from './SecondNavDesktopLinks.module.css';
 
@@ -9,27 +10,22 @@ const links = [
 		URL: '#discover',
 	},
 	{ no: 1, name: 'Browse', URL: '#browse' },
-	{ no: 2, name: 'News', URL: '#news' },
 ];
 
-export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState }) {
-	const [style, setStyle] = useState({});
-	const sliderElementRef = useRef();
+export default function SecondNavDesktopLinks({ navMidShow, setNavTextState, firstElement }) {
+	const screenWidth = useScreenWidth();
 
-	useEffect(() => {
-		if (sliderElementRef) {
-			setStyle({ bottom: `${sliderElementRef.current?.offsetHeight}px` });
-		}
-	}, [sliderElementRef]);
+	const [show, fadeIn] = useAppearDisappear(navMidShow);
 
 	return (
-		<ul
-			ref={sliderElementRef}
-			{...(!navMidShow && { style })}
-			className={styles.secondNavLinks}
-			id={styles[id]}
-		>
-			<LinksList active={3} links={links} onclick={setNavTextState} styles={styles} />
-		</ul>
+		(show || screenWidth > 768) && (
+			<div className={styles.navLinksContainer} ref={firstElement}>
+				<ul
+					className={`${styles.secondNavLinks}${fadeIn && screenWidth < 769 ? ` ${styles.navShow}` : ''}`}
+				>
+					<LinksList active={3} links={links} onclick={setNavTextState} styles={styles} />
+				</ul>
+			</div>
+		)
 	);
 }
