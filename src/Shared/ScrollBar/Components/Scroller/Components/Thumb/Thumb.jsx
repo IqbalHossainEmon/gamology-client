@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
 import styles from './Thumb.module.css';
-function Thumb({ style, container, thumbRef }) {
+function Thumb({ style, container, thumbRef, isIOS }) {
 	const { factor, height } = style;
 	const [show, setShow] = useState(false);
 	const eventRefs = useRef(null);
@@ -101,6 +101,16 @@ function Thumb({ style, container, thumbRef }) {
 			isAdded.current = true;
 		}
 	}, [container, show]);
+
+	useEffect(() => {
+		if (isIOS) {
+			thumbRef.current.style.right = '';
+			thumbRef.current.style.left = '100%';
+			thumbRef.current.style.position = '-webkit-sticky';
+			thumbRef.current.nextElementSibling.style.marginTop = `-${height}px`;
+		}
+	}, [height, isIOS, thumbRef]);
+
 	useEffect(() => {
 		container.addEventListener('mouseleave', eventRefs.current.onLeave);
 		container.addEventListener('scroll', eventRefs.current.onscroll);
@@ -123,7 +133,9 @@ function Thumb({ style, container, thumbRef }) {
 			onMouseDown={onStart}
 			style={{
 				height,
-				transform: `matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1) scale(${1 / factor}) translateZ(${1 - 1 / factor - 2}px)`,
+				transform: isIOS
+					? `translateZ(${factor}px) scale(${1 - factor}) translateX(-200px)`
+					: `matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1) scale(${1 / factor}) translateZ(${1 - 1 / factor - 2}px)`,
 			}}
 			ref={thumbRef}
 			role='scrollbar'

@@ -6,12 +6,31 @@ function Scroller({ innerContainerRef, outerContainerRef, showPath }) {
 	const [style, setStyle] = useState(
 		showPath ? { height: 0, factor: 0, scrollerHeight: 0 } : { height: 0, factor: 0 }
 	);
+	const [isIOS, setIsIOS] = useState(false);
+
+	const isIosRef = useRef(isIOS);
+	isIosRef.current = isIOS;
+
 	const thumbRef = useRef(null);
 	const showRef = useRef(show);
 	showRef.current = show;
 	useEffect(() => {
 		const outerContainer = outerContainerRef.current;
 		const innerContainer = innerContainerRef.current;
+
+		let isIos = false;
+
+		if (getComputedStyle(outerContainer).webkitOverflowScrolling) {
+			setIsIOS(true);
+			isIos = true;
+			innerContainer.style.perspective = '1px';
+			innerContainer.style.height = '';
+			innerContainer.style.width = '';
+			innerContainer.style.position = '';
+		} else if (isIosRef.current) {
+			setIsIOS(false);
+		}
+
 		const updateThumb = () => {
 			const containerHeight = outerContainer.clientHeight;
 			const scrollerContainer = innerContainer.scrollHeight;
@@ -26,7 +45,12 @@ function Scroller({ innerContainerRef, outerContainerRef, showPath }) {
 			if (!showRef.current) {
 				setShow(true);
 			}
-			const factor = (containerHeight - thumbHeight) / (scrollerContainer - containerHeight);
+			let factor = (containerHeight - thumbHeight) / (scrollerContainer - containerHeight);
+
+			if (isIos) {
+				factor = 1 - 1 / (1 + factor);
+			}
+
 			if (showPath) {
 				setStyle({ height: thumbHeight, factor, scrollerHeight: scrollerContainer });
 			} else {
@@ -60,7 +84,12 @@ function Scroller({ innerContainerRef, outerContainerRef, showPath }) {
 	return (
 		show && (
 			<>
-				<Thumb style={style} container={outerContainerRef.current} thumbRef={thumbRef} />
+				<Thumb
+					style={style}
+					container={outerContainerRef.current}
+					thumbRef={thumbRef}
+					isIOS={isIOS}
+				/>
 				{showPath && (
 					<ScrollPath
 						container={outerContainerRef}

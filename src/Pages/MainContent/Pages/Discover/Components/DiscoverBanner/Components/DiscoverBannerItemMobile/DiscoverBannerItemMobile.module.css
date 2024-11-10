@@ -1,45 +1,49 @@
 .carouselItem {
-    top: 0;
-    width: 80vw;
-    position: absolute;
-    aspect-ratio: 1/1.33273662;
-    transition: opacity 500ms, translate 500ms, z-index 0ms, scale 500ms,
-        opacity 300ms;
+	top: 0;
+	width: 80vw;
+	position: absolute;
+	aspect-ratio: 1/1.33273662;
+	transition:
+		opacity 500ms,
+		translate 500ms,
+		z-index 0ms,
+		scale 500ms,
+		opacity 300ms;
 }
 
 #five {
-    translate: -90% 0;
-    scale: 0.9;
-    opacity: 0.3;
-    z-index: 0;
+	translate: -95% 0;
+	scale: 0.9;
+	opacity: 0.3;
+	z-index: 0;
 }
 
 #first {
-    opacity: 1;
-    z-index: 1;
-    translate: 0 0;
+	opacity: 1;
+	z-index: 1;
+	translate: 0 0;
 }
 
 #two {
-    opacity: 0.3;
-    scale: 0.9;
-    z-index: 0;
-    translate: 90% 0;
+	opacity: 0.3;
+	scale: 0.9;
+	z-index: 0;
+	translate: 95% 0;
 }
 
 #three {
-    scale: 0;
-    z-index: -1;
-    translate: 90% 0;
+	scale: 0;
+	z-index: -1;
+	translate: 95% 0;
 }
 
 #four {
-    scale: 0;
-    z-index: -1;
-    translate: -90% 0;
+	scale: 0;
+	z-index: -1;
+	translate: -95% 0;
 }
 
 .carouselImg {
-    width: 100%;
-    border-radius: 0;
+	width: 100%;
+	border-radius: 0;
 }
