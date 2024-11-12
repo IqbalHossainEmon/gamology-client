@@ -1,10 +1,10 @@
-import AllGames from '../Components/AllGames/AllGames/AllGames';
+import EditGameCards from '../Components/Events/EditGameCards/EditGameCards/EditSales';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody() {
 	return (
 		<div className={styles.dashboardBody} id='dashboard-body'>
-			<AllGames />
+			<EditGameCards />
 		</div>
 	);
 }
