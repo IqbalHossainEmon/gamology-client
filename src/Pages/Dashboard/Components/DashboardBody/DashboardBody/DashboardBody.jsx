@@ -1,11 +1,11 @@
 import { forwardRef } from 'react';
-import EditGame from '../Components/AllGames/Components/EditGame/EditGame/EditGame';
+import EditTags from '../Components/EditTags/EditTags/EditTags';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody(_, ref) {
 	return (
 		<div className={styles.dashboardBody} ref={ref}>
-			<EditGame />
+			<EditTags />
 		</div>
 	);
 }

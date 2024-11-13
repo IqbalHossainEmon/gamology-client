@@ -1,6 +1,6 @@
 import { useRef } from 'react';
+import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../../../../../Utils/Hooks/useDashboardModal';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
 
@@ -10,7 +10,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function TagsContainer({ tag, setTags }) {
-	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
+	const setModal = useModal();
 
 	const eventRefs = useRef(null);
 
@@ -33,8 +33,7 @@ function TagsContainer({ tag, setTags }) {
 				}
 			},
 			handleCategoryDelete: () => {
-				setDashboardModal(true);
-				setDashboardModalContent({
+				setModal({
 					title: 'Delete Category',
 					body: (
 						<>
@@ -45,7 +44,13 @@ function TagsContainer({ tag, setTags }) {
 					),
 					footer: (
 						<TagOrCategoryDeleteBody
-							handleHide={() => setDashboardModal(false)}
+							handleHide={() =>
+								setModal({
+									title: null,
+									body: null,
+									footer: null,
+								})
+							}
 							handler={eventRefs.current.categoryDeleteHandler}
 							text={
 								<>
@@ -87,8 +92,7 @@ function TagsContainer({ tag, setTags }) {
 				}
 			},
 			handleTagDelete: (text, data) => {
-				setDashboardModal(true);
-				setDashboardModalContent({
+				setModal({
 					title: 'Delete Tag',
 					body: (
 						<>
@@ -98,7 +102,13 @@ function TagsContainer({ tag, setTags }) {
 					),
 					footer: (
 						<TagOrCategoryDeleteBody
-							handleHide={() => setDashboardModal(false)}
+							handleHide={() =>
+								setModal({
+									title: null,
+									body: null,
+									footer: null,
+								})
+							}
 							handler={() => eventRefs.current.tagDeleteHandler(data)}
 							text={
 								<>

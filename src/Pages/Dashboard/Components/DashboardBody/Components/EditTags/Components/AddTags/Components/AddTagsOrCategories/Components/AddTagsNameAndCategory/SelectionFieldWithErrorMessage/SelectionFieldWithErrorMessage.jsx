@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
-import SelectionField from '../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
+import ErrorMessage from '../../../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
+import SelectionField from '../../../../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import styles from './SelectionFieldWithErrorMessage.module.css';
 
 function SelectionFieldWithErrorMessage({

@@ -53,7 +53,6 @@ function AllGamesPriceEditModal({ price }) {
 				title: null,
 				body: null,
 				footer: null,
-				triggerContainer: null,
 			});
 		} else {
 			setError(prev => ({

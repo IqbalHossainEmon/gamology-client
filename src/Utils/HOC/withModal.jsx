@@ -8,7 +8,6 @@ const emptyModal = {
 	title: null,
 	body: null,
 	footer: null,
-	triggerContainer: null,
 };
 
 const withModal = Component =>

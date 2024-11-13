@@ -48,16 +48,6 @@ body {
 
 /* Common css */
 
-.scroll-style {
-	scrollbar-color: transparent transparent;
-	scrollbar-width: thin;
-	transition: scrollbar-color 200ms;
-}
-
-.scroll-style:hover {
-	scrollbar-color: #474747 transparent;
-}
-
 .loading {
 	background-image: linear-gradient(
 		90deg,
@@ -85,7 +75,8 @@ body {
 }
 
 .scroll-style {
-	overflow-y: auto;
+	overflow-y: scroll;
+	transition: padding 200ms;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -93,7 +84,7 @@ body {
 		filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
 	}
 	.scroll-style::-webkit-scrollbar {
-		width: 11px;
+		width: 8px;
 		background-color: transparent;
 	}
 
@@ -116,5 +107,17 @@ body {
 	}
 	* {
 		transition: none !important;
+	}
+}
+
+@supports not (-webkit-appearance: none) {
+	.scroll-style {
+		scrollbar-color: transparent transparent;
+		scrollbar-width: thin;
+		transition: scrollbar-color 200ms;
+	}
+
+	.scroll-style:hover {
+		scrollbar-color: #474747 transparent;
 	}
 }

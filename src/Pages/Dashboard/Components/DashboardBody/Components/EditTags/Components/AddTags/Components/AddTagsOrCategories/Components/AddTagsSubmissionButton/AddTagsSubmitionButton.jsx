@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
-import useToast from '../../../../../../../../../../Utils/Hooks/useToast';
+import ButtonWaterEffect from '../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import useObjectUtilities from '../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import useToast from '../../../../../../../../../../../../Utils/Hooks/useToast';
 import styles from './AddTagsSubmissionButton.module.css';
 
 function AddTagsSubmissionButton({
@@ -10,7 +10,7 @@ function AddTagsSubmissionButton({
 	setTags,
 	tagOrCategory,
 	setErrorChange,
-	setTagOrCategory,
+	setNone,
 }) {
 	const addBtnRef = useRef(null);
 
@@ -64,8 +64,7 @@ function AddTagsSubmissionButton({
 
 						return areObjectsEqual(newPrev, prev) ? newPrev : prev;
 					});
-					addInfoRef.current = {};
-					setTagOrCategory(null);
+					setNone();
 					return;
 				}
 				setErrorChange(prev => prev + 1);

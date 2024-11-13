@@ -31,7 +31,6 @@ function AllGamesDeleteConfirmModal() {
 				title: null,
 				body: null,
 				footer: null,
-				triggerContainer: null,
 			});
 		} else {
 			setError(prev => ({

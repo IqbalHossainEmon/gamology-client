@@ -20,7 +20,6 @@ export default function SelectionField({
 	name = '',
 	onFocusClick,
 	enabled = true,
-	parentSetValue = '',
 	errorBorder = false,
 	none,
 	...rest
@@ -31,8 +30,6 @@ export default function SelectionField({
 
 	const valueRef = useRef(value);
 	valueRef.current = value;
-	const parentSetValueRef = useRef(parentSetValue);
-	parentSetValueRef.current = parentSetValue;
 	const elementRef = useRef(null);
 	const containerRef = useRef(null);
 	const inputRef = useRef(null);
@@ -42,12 +39,6 @@ export default function SelectionField({
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 	const calculateTextWidth = useCalculateTextSize();
-
-	useEffect(() => {
-		if (parentSetValueRef.current) {
-			setValue(parentSetValueRef.current);
-		}
-	}, []);
 
 	useEffect(() => {
 		setElement(containerRef.current);
@@ -67,13 +58,13 @@ export default function SelectionField({
 					positionRef.current.bottom = false;
 				}
 
-				if (list.length > 8) {
+				if (none ? list.length + 1 : list.length > 8) {
 					positionRef.current.height = Math.min(
 						parseInt((positionRef.current.bottom ? bottomRemain : y) / 40, 10) * 40,
 						320
 					);
 				} else {
-					positionRef.current.height = (list.length || 1) * 40;
+					positionRef.current.height = (none ? list.length + 1 : list.length || 1) * 40;
 				}
 			},
 		};
@@ -86,8 +77,6 @@ export default function SelectionField({
 	useEffect(() => {
 		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
 			setTooltip(elementRef.current, value);
-			console.log('Tooltip added');
-
 			isAdded.current = true;
 		} else if (isAdded.current) {
 			isAdded.current = false;

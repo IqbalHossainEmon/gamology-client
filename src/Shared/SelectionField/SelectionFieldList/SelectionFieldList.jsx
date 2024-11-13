@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './SelectionFieldList.module.css';
@@ -16,22 +15,19 @@ function SelectionFieldList({
 }) {
 	const [show, fadeIn] = useAppearDisappear(state);
 
-	const parentRef = useRef(null);
-
 	return (
 		show && (
 			<div
-				ref={parentRef}
-				className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
+				className={`${positionRef.current.bottom ? `${styles.showBottom} ` : `${styles.showAbove} `}${styles.mainContainer}${fadeIn ? ` ${styles.fadeIn}` : ''} ${Math.floor(Math.random() * 2 + 1) === 1 ? styles.left : styles.right}`}
 			>
-				<ScrollBar>
-					<div className={styles.listScrollContainer}>
-						<ul
-							className={styles.listContainer}
-							{...(positionRef.current.height && {
-								style: { maxHeight: `${positionRef.current.height}px` },
-							})}
-						>
+				<div
+					className={styles.listScrollContainer}
+					{...(positionRef.current.height && {
+						style: { maxHeight: `${positionRef.current.height}px` },
+					})}
+				>
+					<ScrollBar>
+						<ul className={styles.listContainer}>
 							{none ? (
 								<li
 									className={`${styles.item}${value === '' ? ` ${styles.selected}` : ''}`}
@@ -72,8 +68,8 @@ function SelectionFieldList({
 								<li className={`${styles.item} ${styles.noDataItem}`}>No Data</li>
 							)}
 						</ul>
-					</div>
-				</ScrollBar>
+					</ScrollBar>
+				</div>
 			</div>
 		)
 	);

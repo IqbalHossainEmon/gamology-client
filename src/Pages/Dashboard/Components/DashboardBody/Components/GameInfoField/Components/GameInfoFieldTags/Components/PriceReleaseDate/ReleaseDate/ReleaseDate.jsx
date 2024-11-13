@@ -77,7 +77,6 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 									setErrorShow(false);
 								}
 							}}
-							parentSetValue={day.day}
 							placeholder='Day'
 							setState={handleReleaseValue}
 						/>

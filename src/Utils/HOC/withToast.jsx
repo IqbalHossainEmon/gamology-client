@@ -34,8 +34,6 @@ const withToast = Component =>
 					}
 				},
 				handleSetToast: toast => {
-					console.log(toast);
-
 					if (typeof toast === 'object') {
 						if (!toast.title || !toast.message || !toast.type) {
 							return;

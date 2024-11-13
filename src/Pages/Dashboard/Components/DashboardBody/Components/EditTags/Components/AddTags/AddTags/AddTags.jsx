@@ -1,12 +1,10 @@
 import { useRef, useState } from 'react';
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
-import AddCategoryNameAndTags from '../Components/AddCategoryNameAndTags/AddCategoryNameAndTags';
-import AddTagsNameAndCategory from '../Components/AddTagsNameAndCategory/AddTagsNameAndCategory';
-import AddTagsSubmissionButton from '../Components/AddTagsSubmissionButton/AddTagsSubmitionButton';
+import AddTagsOrCategories from '../Components/AddTagsOrCategories/AddTagsOrCategories/AddTagsOrCategories';
 import styles from './AddTags.module.css';
 
 function AddTags({ tags, setTags }) {
-	const [tagOrCategory, setTagOrCategory] = useState(null);
+	const [tagOrCategory, setTagOrCategory] = useState('');
 	const [errorChange, setErrorChange] = useState(0);
 	const addInfoRef = useRef({});
 	const errorRef = useRef(null);
@@ -126,7 +124,7 @@ function AddTags({ tags, setTags }) {
 			setState: val => {
 				switch (val) {
 					case 'Tags':
-						setTagOrCategory(true);
+						setTagOrCategory('tag');
 						addInfoRef.current.tag = {
 							name: addInfoRef.current.category?.name
 								? addInfoRef.current.category.name
@@ -139,9 +137,9 @@ function AddTags({ tags, setTags }) {
 						errorRef.current = { tag: '', category: '' };
 						break;
 					case 'Category':
-						setTagOrCategory(false);
+						setTagOrCategory('category');
 						addInfoRef.current.category = {
-							name: addInfoRef.current.tag?.name ? addInfoRef.current.tag.name : '',
+							name: addInfoRef.current.tag?.name || '',
 							tags: [''],
 						};
 						if (addInfoRef.current.tag) {
@@ -150,19 +148,18 @@ function AddTags({ tags, setTags }) {
 						errorRef.current = { category: '', tags: [''] };
 						break;
 					default:
-						setTagOrCategory(null);
+						setTagOrCategory('');
 						addInfoRef.current = {};
 						break;
 				}
 			},
 		};
 	}
+
+	const prevTagOrCategoryRef = useRef('');
+
 	return (
 		<div className={styles.addTags}>
-			<h3 className={styles.addHeader}>
-				Add
-				{tagOrCategory ? 'Tag' : 'Category'}
-			</h3>
 			<div className={styles.selectionField}>
 				<SelectionField
 					htmlFor='add-what'
@@ -173,33 +170,20 @@ function AddTags({ tags, setTags }) {
 					setState={eventRefs.current.setState}
 				/>
 			</div>
-			{tagOrCategory !== null && (
-				<>
-					<div>
-						{tagOrCategory ? (
-							<AddTagsNameAndCategory
-								addInfoRef={addInfoRef}
-								errorChange={errorChange}
-								errorRef={errorRef}
-								tags={tags}
-							/>
-						) : (
-							<AddCategoryNameAndTags
-								addInfoRef={addInfoRef}
-								errorChange={errorChange}
-								errorRef={errorRef}
-							/>
-						)}
-					</div>
-					<AddTagsSubmissionButton
-						setTags={setTags}
-						tagOrCategory={tagOrCategoryRef}
-						setErrorChange={setErrorChange}
-						handleValidation={eventRefs.current.handleValidation}
-						addInfoRef={addInfoRef}
-						setTagOrCategory={setTagOrCategory}
-					/>
-				</>
+			{tagOrCategory && (
+				<AddTagsOrCategories
+					tagOrCategory={tagOrCategory}
+					setTagOrCategory={setTagOrCategory}
+					tags={tags}
+					setTags={setTags}
+					setErrorChange={setErrorChange}
+					addInfoRef={addInfoRef}
+					errorChange={errorChange}
+					errorRef={errorRef}
+					tagOrCategoryRef={tagOrCategoryRef}
+					eventRefs={eventRefs}
+					setNone={eventRefs.current.setState}
+				/>
 			)}
 		</div>
 	);
