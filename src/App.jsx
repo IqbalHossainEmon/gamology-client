@@ -1,12 +1,12 @@
 import './App.css';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
-import MainHeader from './Shared/MainHeader/MainHeader';
+import FirstNavbar from './Shared/FirstNavbar/FirstNavBar/FirstNavbar';
 import withAppsHOCs from './Utils/HOC/withAppsHOCs';
 
 function AppMain() {
 	return (
 		<>
-			<MainHeader />
+			<FirstNavbar />
 			<Dashboard />
 		</>
 	);

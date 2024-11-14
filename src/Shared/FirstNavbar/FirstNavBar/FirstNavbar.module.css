@@ -1,4 +1,9 @@
-.FirstNavbar {
+.header {
+	width: 100%;
+	height: 4.5rem;
+}
+
+.firstNavbar {
 	display: flex;
 	align-items: stretch;
 	width: 100%;
@@ -28,9 +33,9 @@
 	width: 60px;
 }
 
-@media only screen and (max-width: 8px) {
-	.FirstNavbar {
+@media only screen and (max-width: 768px) {
+	.header {
 		position: relative;
-		justify-content: space-between;
+		z-index: 5;
 	}
 }

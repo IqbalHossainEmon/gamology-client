@@ -17,24 +17,26 @@ export default function FirstNavbar() {
 	}, [showBodyOverflow, screenWidth]);
 
 	return (
-		<nav className={styles.FirstNavbar}>
-			<div className={styles.gamologyLogo}>
-				<a href='/'>
-					<img alt='game controller' src='/assets/images/game-controller.png' />
-				</a>
-			</div>
-
-			{screenWidth > 768 ? (
-				<div className={styles.navOptions}>
-					<FirstNavLinks />
-					<NavProfileInfo />
+		<header className={styles.header}>
+			<nav className={styles.firstNavbar}>
+				<div className={styles.gamologyLogo}>
+					<a href='/'>
+						<img alt='game controller' src='/assets/images/game-controller.png' />
+					</a>
 				</div>
-			) : (
-				<MobileBurgerMenu
-					hideBodyOverflow={hideBodyOverflow}
-					showBodyOverflow={showBodyOverflow}
-				/>
-			)}
-		</nav>
+
+				{screenWidth > 768 ? (
+					<div className={styles.navOptions}>
+						<FirstNavLinks />
+						<NavProfileInfo />
+					</div>
+				) : (
+					<MobileBurgerMenu
+						hideBodyOverflow={hideBodyOverflow}
+						showBodyOverflow={showBodyOverflow}
+					/>
+				)}
+			</nav>
+		</header>
 	);
 }

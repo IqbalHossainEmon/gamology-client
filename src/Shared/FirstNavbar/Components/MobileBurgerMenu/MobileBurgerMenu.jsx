@@ -33,9 +33,11 @@ export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow })
 	return (
 		<div ref={elementRef}>
 			<FirstNavMobileNavLinks navState={navState} setNavState={setNavState} />
-			<div className={styles.navOptionBg} {...(navState && { id: styles.hamburgerActive })} />
+			<div
+				className={`${styles.navOptionBg}${navState ? ` ${styles.hamburgerActive}` : ''}`}
+			/>
 			<button className={styles.hamburgerButton} onClick={handleClick} type='button'>
-				<div className={styles.hamburger} {...(navState && { id: styles.cross })} />
+				<div className={`${styles.hamburger}${navState ? ` ${styles.cross}` : ''}`} />
 			</button>
 		</div>
 	);
