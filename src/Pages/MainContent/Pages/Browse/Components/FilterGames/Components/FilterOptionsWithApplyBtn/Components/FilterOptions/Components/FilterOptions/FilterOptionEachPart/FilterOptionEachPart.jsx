@@ -1,6 +1,5 @@
 import FilterOption from '../../../../../../../../../../../../../Shared/FilterOption/FilterOption';
-import Menu from '../../../../../../../../../../../../../Shared/Menu/Menu';
-import MenuTitle from '../../../../../../../../../../../../../Shared/MenuTitle/MenuTitle';
+import Menu from '../../../../../../../../../../../../../Shared/Menu/Menu/Menu';
 import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
 import styles from './FilterOptionEachPart.module.css';
 
@@ -47,7 +46,7 @@ export default function FilterOptionEachPart({ option, state, setState, limits =
 	return (
 		<div className={styles.filterOptions}>
 			{category ? (
-				<Menu Title={MenuTitle} defaultOpen titleParams={{ name: category, noHover: true }}>
+				<Menu defaultOpen name={category} noHover>
 					{body}
 				</Menu>
 			) : (

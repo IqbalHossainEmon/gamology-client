@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import MenuTitle from '../MenuTitle/MenuTitle';
 import styles from './Menu.module.css';
 
 export default function Menu({
 	children,
-	parentState = true,
-	Title,
-	titleParams,
+	parentState,
 	defaultOpen = false,
+	name,
+	icon,
+	noHover,
+	paddingRight,
 }) {
 	const [height, setHeight] = useState(defaultOpen || 0);
 	const [isAuto, setIsAuto] = useState(defaultOpen);
@@ -50,7 +53,7 @@ export default function Menu({
 	}
 
 	return (
-		<>
+		<div>
 			<button
 				className={`${styles.outerOption} ${styles.optionButton}`}
 				onClick={() => {
@@ -65,15 +68,22 @@ export default function Menu({
 				}}
 				type='button'
 			>
-				<Title {...titleParams} state={!!height} />
+				<MenuTitle
+					name={name}
+					icon={icon}
+					state={!!height}
+					noHover={noHover}
+					parentState={parentState}
+					paddingRight={paddingRight}
+				/>
 			</button>
 			<div
 				className={styles.innerOptionsContainer}
 				ref={containerRef}
-				style={{ height: parentState ? (isAuto && height ? 'auto' : height) : 0 }}
+				style={{ height: isAuto && height ? 'auto' : height }}
 			>
 				{children}
 			</div>
-		</>
+		</div>
 	);
 }

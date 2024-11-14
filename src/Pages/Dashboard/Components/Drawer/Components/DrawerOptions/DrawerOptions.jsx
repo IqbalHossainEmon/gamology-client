@@ -1,19 +1,10 @@
-import Menu from '../../../../../../Shared/Menu/Menu';
-import MenuTitle from '../../../../../../Shared/MenuTitle/MenuTitle';
+import Menu from '../../../../../../Shared/Menu/Menu/Menu';
 import styles from './DrawerOptions.module.css';
 
 function DrawerOptions({ option, parentState }) {
 	return option.subDrawer ? (
 		<li className={styles.outerOptionContainer}>
-			<Menu
-				Title={MenuTitle}
-				titleParams={{
-					name: option.name,
-					icon: option.icon,
-					parentState,
-					paddingRight: true,
-				}}
-			>
+			<Menu name={option.name} icon={option.icon} parentState={parentState} paddingRight>
 				<ul className={styles.innerOptionsContainer}>
 					{option.subDrawer.map(subOption => (
 						<li className={styles.innerOptionContainer} key={subOption.id}>
