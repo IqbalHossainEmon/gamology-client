@@ -15,7 +15,6 @@ export default function useChangeBodyOverflow() {
 		eventRefs.current = {
 			hideBodyOverflow: () => {
 				const touchAble = isTouchable();
-
 				if (
 					!touchAble &&
 					!root.current.classList.contains('margin-right-6px') &&

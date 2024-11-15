@@ -1,47 +1,28 @@
 .drawerContainer {
 	position: sticky;
+	position: -webkit-sticky;
 	width: 240px;
 	background-color: #18181c;
 	top: 0;
+	flex-shrink: 0;
 }
 .containerTransition {
 	transition: width 200ms;
 }
-.drawerImmediateContainer {
+.drawer {
 	width: 100%;
-	height: 100%;
-	position: relative;
+	position: absolute;
 	overflow: hidden;
-}
-.drawerScrollContainer {
-	margin-top: 3rem;
-	position: relative;
-	height: calc(100% - 3rem);
+	top: 2rem;
+	left: 0px;
 }
 .containerCollapse {
 	width: 3.2rem;
 }
 
-.drawer {
-	width: 240px;
-	height: calc(100vh - 4.5rem - 3rem);
-	overflow-y: scroll;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding-right: 6px;
-	user-select: none;
-}
-
-.drawer::-webkit-scrollbar {
-	display: none;
-}
 .optionContainer {
-	flex-grow: 1;
+	width: 240px;
 	list-style-type: none;
-	width: 100%;
 }
 
 .expandedPosition {

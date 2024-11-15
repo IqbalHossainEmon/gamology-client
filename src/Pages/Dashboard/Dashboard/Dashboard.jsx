@@ -4,7 +4,7 @@ import styles from './Dashboard.module.css';
 
 function Dashboard() {
 	return (
-		<div className={`${styles.dashboard} scroll-style`}>
+		<div className={styles.dashboard}>
 			<Drawer />
 			<DashboardBody />
 		</div>

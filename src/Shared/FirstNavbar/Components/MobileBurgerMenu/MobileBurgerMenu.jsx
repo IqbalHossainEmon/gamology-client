@@ -7,7 +7,7 @@ import styles from './MobileBurgerMenu.module.css';
 export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow }) {
 	const [navState, setNavState] = useState(false);
 	const elementRef = useRef();
-	const { showMenu, setElement } = useDropDownHide(prop => {
+	const { showMenu, setElement, onHide } = useDropDownHide(prop => {
 		setNavState(prop);
 		showBodyOverflow();
 	});
@@ -17,14 +17,17 @@ export default function MobileBurgerMenu({ hideBodyOverflow, showBodyOverflow })
 	}, [setElement, elementRef]);
 
 	const handleClick = () => {
-		setNavState(prev => !prev);
-		showMenu();
-		if (!navState) {
-			hideBodyOverflow();
-		} else {
-			showBodyOverflow();
-		}
-		document.documentElement.scrollTop = 0;
+		setNavState(prev => {
+			if (prev) {
+				onHide();
+				showBodyOverflow();
+			} else {
+				showMenu();
+				hideBodyOverflow();
+				document.documentElement.scrollTop = 0;
+			}
+			return !prev;
+		});
 	};
 
 	return (

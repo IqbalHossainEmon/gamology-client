@@ -8,6 +8,8 @@
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	position: sticky;
+	bottom: 0;
 }
 
 .footerHide {

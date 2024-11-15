@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
-import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar';
 import useDropDownHide from '../../../../../Utils/Hooks/useDropDownHide';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import DrawerFooter from '../Components/DrawerFooter/DrawerFooter';
@@ -19,9 +18,6 @@ function Drawer() {
 	const screenWidthRef = useRef(screenWidth);
 	screenWidthRef.current = screenWidth;
 
-	const mainParentRef = useRef(null);
-	const scrollParentRef = useRef(null);
-	const scrollChildRef = useRef(null);
 	const elementRef = useRef(null);
 	const transitionId = useRef(null);
 	const eventRefs = useRef(null);
@@ -82,26 +78,18 @@ function Drawer() {
 				id='dashboard-drawer'
 				ref={elementRef}
 			>
-				<div className={styles.drawerImmediateContainer}>
-					<div className={styles.drawerScrollContainer} ref={mainParentRef}>
-						<div className={styles.drawer} ref={scrollParentRef}>
-							<ul className={styles.optionContainer} ref={scrollChildRef}>
-								{drawerIcon.map(drawer => (
-									<DrawerOptions
-										{...(screenWidth > 1099 && { parentState: collapse })}
-										key={drawer.id}
-										option={drawer}
-									/>
-								))}
-							</ul>
-							<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
-						</div>
-						<ScrollBar
-							childRef={scrollChildRef}
-							parentRef={scrollParentRef}
-							mainParentRef={mainParentRef}
-						/>
-					</div>
+				<div className={styles.drawer}>
+					<ul className={styles.optionContainer}>
+						{drawerIcon.map(drawer => (
+							<DrawerOptions
+								{...(screenWidth > 1099 && { parentState: collapse })}
+								key={drawer.id}
+								option={drawer}
+							/>
+						))}
+					</ul>
+					<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
+					{/* <ScrollBar /> */}
 				</div>
 				<button
 					className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
