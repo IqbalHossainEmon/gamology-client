@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ScreenShadow from '../../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
-import SearchField from '../../../../../../../../../../Shared/SearchField/SearchField/SearchField';
+import SearchField from '../../../../../../../../../../Shared/SearchField/Components/SearchFieldBox/SearchFieldBox';
 import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './AllGamesHeader.module.css';
 

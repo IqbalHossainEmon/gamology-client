@@ -17,7 +17,7 @@ const items = [
 		name: "Marvel's Spider-Man Remastered",
 		coverImg: '/assets/images/CarouselCoverDesktop/spiderman.png',
 		logoImg: '/assets/images/wWJ85k7/spiderman-logo.png',
-		cardImg: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
+		cardImg: '/assets/images/CfarouselCard/spiderman-carousel-thumb.png',
 		coverMobile: '/assets/images/M19978g/spider-man-remaster-carousel-mobile.png',
 		price: { regular: 59.99, discount: 29.99 },
 	},

@@ -1,10 +1,10 @@
-import EditUser from '../Components/UserAdminContainer/Components/EditUser/EditUser/EditUser';
+import EditBanner from '../Components/Events/EditBanner/EditBanner/EditBanner';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody() {
 	return (
 		<div className={styles.dashboardBody}>
-			<EditUser />
+			<EditBanner />
 		</div>
 	);
 }

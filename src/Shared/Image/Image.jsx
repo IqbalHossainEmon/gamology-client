@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { createRoot } from 'react-dom/client';
 import styles from './Image.module.css';
 
 function Image({ data, alt, aspectRatio, placeholder, className }) {
@@ -27,7 +26,7 @@ function Image({ data, alt, aspectRatio, placeholder, className }) {
 				containerRef.current.appendChild(image);
 			}
 		};
-
+		/* 
 		image.onerror = () => {
 			if (containerRef.current) {
 				containerRef.current.innerHTML = '';
@@ -50,7 +49,7 @@ function Image({ data, alt, aspectRatio, placeholder, className }) {
 				}
 				rootRef.current.render(svg);
 			}
-		};
+		}; */
 
 		return () => {
 			if (imageSrc && (data instanceof Blob || data instanceof File)) {

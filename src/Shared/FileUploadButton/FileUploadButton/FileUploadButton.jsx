@@ -54,7 +54,10 @@ function FileUploadButton({
 		if (defaultValue && !selectedRef.current.selected) {
 			setSelected({
 				selected: true,
-				name: defaultValue instanceof File ? defaultValue.name : defaultValue,
+				name:
+					defaultValue instanceof File
+						? defaultValue.name
+						: defaultValue.substr(defaultValue.lastIndexOf('/') + 1),
 				file: defaultValue,
 			});
 		} else if (!defaultValue && selectedRef.current.selected) {

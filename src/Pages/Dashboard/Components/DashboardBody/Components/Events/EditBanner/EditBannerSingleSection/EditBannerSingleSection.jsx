@@ -2,10 +2,15 @@ import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import TypeableSelectionField from '../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
+import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import styles from './EditBannerSingleSection.module.css';
 
 function EditBannerSingleSection({ index, item, bannerData, errorMessages, errorChange }) {
 	const [defaultData, setDefaultData] = useState(item);
+
+	const { cloneObject } = useObjectUtilities();
+
+	const initialData = useRef(cloneObject(item));
 
 	const resetBtnRef = useRef(null);
 	const clearBtnRef = useRef(null);
@@ -22,7 +27,16 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 						className={styles.resetBtn}
 						type='button'
 						onClick={() => {
-							setDefaultData(item);
+							setDefaultData({
+								coverImg: '',
+								coverMobile: '',
+								carouselThumb: '',
+								logoImg: '',
+								name: '',
+							});
+							setTimeout(() => {
+								setDefaultData(initialData.current);
+							}, 0);
 							bannerData.current[index] = item;
 						}}
 					>
@@ -110,6 +124,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 			<TypeableSelectionField
 				className={styles.marginTop}
 				name='name'
+				placeholder='Enter the game name'
 				htmlFor={`gameName#${index}`}
 				defaultValue={defaultData.name}
 				setState={(object, name) => {

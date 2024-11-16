@@ -14,7 +14,6 @@ export default function VideoPlayer({
 	const videoContainerRef = useRef(null);
 	const mouseMoveTimerId = useRef(null);
 	const onLoadedRef = useRef(false);
-	const isChanging = useRef(false);
 	const eventRefs = useRef();
 	const [isControllerShowing, setIsControllerShowing] = useState(false);
 
@@ -67,13 +66,6 @@ export default function VideoPlayer({
 	}
 
 	useEffect(() => {
-		if (!videoRef.current.paused) {
-			videoRef.current.pause();
-			isChanging.current = true;
-		}
-	}, [changePause]);
-
-	useEffect(() => {
 		const { handleMouseMove, handleMouseDown, handleLoadedMetaData, handleMouseLeave } =
 			eventRefs.current;
 		const addEventListeners = (videoContainer, video) => {
@@ -124,7 +116,6 @@ export default function VideoPlayer({
 			/>
 			<Controllers
 				changePause={changePause}
-				isChanging={isChanging}
 				isControllerShowing={isControllerShowing}
 				src={src}
 				video={videoRef}

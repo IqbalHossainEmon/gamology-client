@@ -9,9 +9,11 @@ import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
-function Controllers({ video, videoContainer, src, isControllerShowing, isChanging, changePause }) {
+function Controllers({ video, videoContainer, src, isControllerShowing, changePause }) {
 	const handleFullScreen = useFullScreenLogic();
 	const [progress, setProgress] = useState(0);
+	const [isPlaying, setIsPlaying] = useState(false);
+
 	const gearRef = useRef(null);
 	const clickTimerId = useRef(null);
 	const videoRef = useRef(video);
@@ -30,7 +32,6 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 					shouldPause.current = false;
 				}
 			},
-
 			handleWaiting: () => {
 				canPlay.current = false;
 			},
@@ -118,6 +119,8 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 						isSeekedRef={isSeekedRef}
 						togglePausePlay={eventRefs.current.togglePausePlay}
 						video={video}
+						isPlaying={isPlaying}
+						setIsPlaying={setIsPlaying}
 					/>
 				</li>
 				<li>
@@ -137,7 +140,7 @@ function Controllers({ video, videoContainer, src, isControllerShowing, isChangi
 					<FullScreenButton videoContainer={videoContainer} />
 				</li>
 			</ul>
-			<VideoStatus isChanging={isChanging} isSeekedRef={isSeekedRef} video={video} />
+			<VideoStatus video={video} isPlaying={isPlaying} />
 		</>
 	);
 }

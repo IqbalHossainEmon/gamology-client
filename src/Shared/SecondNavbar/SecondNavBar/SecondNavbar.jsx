@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScreenShadow from '../../ScreenShadow/ScreenShadow';
-import SearchField from '../../SearchField/SearchField/SearchField';
+import SearchField from '../../SearchField/SearchFIeld/SearchFIeld';
 import SecondNavLeftLinks from '../Components/SecondNavLeftLinks/SecondNavLeftLinks';
 import SecondNavRightLinks from '../Components/SecondNavRightLinks/SecondNavRightLinks';
 import styles from './SecondNavbar.module.css';
