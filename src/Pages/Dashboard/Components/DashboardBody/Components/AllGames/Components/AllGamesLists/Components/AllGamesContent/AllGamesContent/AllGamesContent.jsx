@@ -28,12 +28,10 @@ function AllGamesContent({ items }) {
 								item={item}
 								lists={[
 									{
-										id: 0,
 										name: 'Edit',
 										event: () => console.log('Edit'),
 									},
 									{
-										id: 1,
 										name: 'Price',
 										event: detail => {
 											setModal({
@@ -58,7 +56,6 @@ function AllGamesContent({ items }) {
 									},
 									typeof item.price !== 'object' &&
 										item.price !== 0 && {
-											id: 2,
 											name: 'Sales',
 											event: detail => {
 												setModal({
@@ -82,7 +79,6 @@ function AllGamesContent({ items }) {
 											},
 										},
 									{
-										id: 3,
 										name: 'Delete',
 										event: detail => {
 											setModal({

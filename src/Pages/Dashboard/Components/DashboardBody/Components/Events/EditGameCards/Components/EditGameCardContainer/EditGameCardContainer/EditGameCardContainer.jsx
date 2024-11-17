@@ -3,6 +3,7 @@ import GameCards from '../../../../../../../../../../Shared/GameCards/GameCards/
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import CardDot from '../../../../../../Shared/CardDot/CardDot/CardDot';
 import NormalButtonWithEffects from '../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardAddCard from '../Components/EditGameCardAddCard/EditGameCardAddCard';
 import styles from './EditGameCardContainer.module.css';
@@ -11,7 +12,15 @@ const handleExtraCard = (width, margin, handleCLick) => (
 	<EditGameCardAddCard width={width} margin={margin} onClick={handleCLick} />
 );
 
-function EditGameCardContainer({ defaultData, id, onClear, onDelete, onReset, setGameCard }) {
+function EditGameCardContainer({
+	defaultData,
+	id,
+	onClear,
+	onDelete,
+	onReset,
+	setGameCard,
+	setHeader,
+}) {
 	const [cards, setCards] = useState(defaultData || { header: '', cards: [] });
 
 	const handleCardSelection = card => {
@@ -77,14 +86,35 @@ function EditGameCardContainer({ defaultData, id, onClear, onDelete, onReset, se
 							placeholder='Write the title'
 							htmlFor={`header-of-${id}`}
 							defaultValue={cards.header}
-							setState={value => setCards(prev => ({ ...prev, header: value }))}
+							setState={value => {
+								setCards(prev => ({ ...prev, header: value }));
+								setHeader(value);
+							}}
 						/>
 					</div>
 				}
 				items={cards.cards}
 				extraCard={(width, margin) => handleExtraCard(width, margin, handleCardSelection)}
 				scrollToLast
-			/>
+			>
+				{(parentRef, cardInfo) => (
+					<CardDot
+						parentRef={parentRef}
+						lists={[
+							{
+								name: 'Delete',
+								event: () => {
+									const newCards = cards.cards.filter(
+										card => card.id !== cardInfo.id
+									);
+									setCards(prev => ({ ...prev, cards: newCards }));
+									// onDelete(cardInfo.index);
+								},
+							},
+						]}
+					/>
+				)}
+			</GameCards>
 			<div className={styles.headerBtnContainer}>
 				<NormalButtonWithEffects
 					className={styles.btn}

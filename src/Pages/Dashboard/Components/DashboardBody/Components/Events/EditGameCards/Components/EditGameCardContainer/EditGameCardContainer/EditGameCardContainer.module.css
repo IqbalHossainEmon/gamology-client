@@ -23,10 +23,10 @@
 }
 
 .yesBtn {
-	background-color: rgb(153, 0, 0);
+	background-color: #d32f2f;
 	color: white;
 }
 .noBtn {
-	background-color: rgba(0, 255, 0, 0.5);
+	background-color: #388e3c;
 	color: white;
 }

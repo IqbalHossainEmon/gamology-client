@@ -1,25 +1,13 @@
 import { useRef } from 'react';
 
 const useDropDownHide = setState => {
-	const element = useRef();
+	const element = useRef(null);
 	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			setElement: ele => {
 				element.current = ele;
-			},
-			showMenu: () => {
-				document.addEventListener('mousedown', eventRefs.current.closeMenu);
-				window.addEventListener('blur', eventRefs.current.stopMenu);
-			},
-			removeEvents: () => {
-				document.removeEventListener('mousedown', eventRefs.current.closeMenu);
-				window.removeEventListener('blur', eventRefs.current.stopMenu);
-			},
-			stopMenu: () => {
-				setState(false);
-				eventRefs.current.removeEvents();
 			},
 			closeMenu: e => {
 				switch (Array.isArray(element.current)) {
@@ -34,6 +22,18 @@ const useDropDownHide = setState => {
 						}
 						break;
 				}
+			},
+			showMenu: () => {
+				document.addEventListener('click', eventRefs.current.closeMenu);
+				window.addEventListener('blur', eventRefs.current.stopMenu);
+			},
+			removeEvents: () => {
+				document.removeEventListener('click', eventRefs.current.closeMenu);
+				window.removeEventListener('blur', eventRefs.current.stopMenu);
+			},
+			stopMenu: () => {
+				setState(false);
+				eventRefs.current.removeEvents();
 			},
 		};
 	}

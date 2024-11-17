@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardFirstPart from '../Components/EditGameCardFirstPart/EditGameCardFirstPart';
 import styles from './EditGameCards.module.css';
 
@@ -268,6 +269,7 @@ function EditGameCards() {
 					/>
 				</>
 			)}
+			<NormalButtonWithEffects text='Check' onClick={() => console.log(cardsRef.current)} />
 		</div>
 	);
 }

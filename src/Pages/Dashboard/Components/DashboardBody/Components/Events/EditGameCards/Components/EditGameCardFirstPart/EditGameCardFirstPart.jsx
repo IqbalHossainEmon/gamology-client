@@ -14,6 +14,9 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef }) {
 					key={gameCard.id}
 					defaultData={gameCard}
 					id={gameCard.id}
+					setHeader={header => {
+						cardsRef.current[0][index].header = header;
+					}}
 					setGameCard={card => {
 						cardsRef.current[0][index].cards.push(card);
 					}}
@@ -43,7 +46,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef }) {
 					}}
 				/>
 			))}
-			<NormalButtonWithEffects text='Check' onClick={() => console.log(cardsRef.current)} />
+
 			{!!gameCards[1] || (
 				<NormalButtonWithEffects
 					onClick={() =>

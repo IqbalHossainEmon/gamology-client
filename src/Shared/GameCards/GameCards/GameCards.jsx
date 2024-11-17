@@ -10,7 +10,7 @@ export default function GameCards({
 	headerTitle,
 	items,
 	extraCard,
-	cardHovers,
+	children,
 	customHeader,
 	scrollToLast,
 }) {
@@ -67,7 +67,7 @@ export default function GameCards({
 				cardActive={cardActive}
 				margin={margin}
 				transition={transition}
-				cardHovers={cardHovers}
+				cardHovers={children}
 				extraCard={extraCard}
 			/>
 		</div>

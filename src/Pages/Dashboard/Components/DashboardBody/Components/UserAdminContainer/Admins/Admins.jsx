@@ -68,7 +68,6 @@ function Admins() {
 								item={admin}
 								lists={[
 									{
-										id: 0,
 										name: 'Remove Admin',
 										event: () => {
 											setModal({
@@ -114,7 +113,6 @@ function Admins() {
 										},
 									},
 									{
-										id: 1,
 										name: <ReportAdminWithIcon />,
 										event: () => {
 											setModal({

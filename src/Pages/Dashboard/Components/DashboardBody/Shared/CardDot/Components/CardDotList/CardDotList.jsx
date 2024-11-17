@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './CardDotList.module.css';
 
-function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
+function CardDotList({ lists, handleBlur, item, parentRef, fadeIn, setHide }) {
 	const [position, setPosition] = useState(0);
 	const positionRef = useRef(position);
 	positionRef.current = position;
@@ -9,6 +9,8 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 	const listContainerRef = useRef(null);
 
 	useEffect(() => {
+		handleBlur(listContainerRef.current);
+
 		const { x, width, y, height } = parentRef.current.getBoundingClientRect();
 
 		const rightRemain = window.innerWidth - x - width / 2;
@@ -32,7 +34,7 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 		if (positionRef.current !== -1) {
 			setPosition(-1);
 		}
-	}, [parentRef]);
+	}, [handleBlur, parentRef]);
 
 	return (
 		<ul
@@ -42,11 +44,11 @@ function CardDotList({ lists, handleHide, item, parentRef, fadeIn }) {
 			{lists.map(
 				list =>
 					list.name && (
-						<li key={list.id}>
+						<li key={list.name}>
 							<button
 								onClick={() => {
 									list.event(item);
-									handleHide();
+									setHide();
 								}}
 								type='button'
 							>

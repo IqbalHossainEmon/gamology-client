@@ -13,14 +13,27 @@ function TooltipBody({
 
 	const tooltipRef = useRef(null);
 
+	const eventRefs = useRef(null);
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			onMouseOver: e => {
+				onMouseOver(e, true);
+			},
+			onMouseLeave: e => {
+				onMouseLeave(e, true);
+			},
+		};
+	}
+
 	useEffect(() => {
 		const tooltip = tooltipRef.current;
 		if (containerRef.current) {
 			const { top, left, width, height } = containerRef.current.getBoundingClientRect();
 			const { height: tooltipHeight, width: tooltipWidth } = tooltip.getBoundingClientRect();
 
-			tooltip.addEventListener('mouseover', onMouseOver);
-			tooltip.addEventListener('mouseleave', onMouseLeave);
+			tooltip.addEventListener('mouseover', eventRefs.current.onMouseOver);
+			tooltip.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			tooltip.toolTipElement = true;
 
 			let scrollY = 0;
@@ -37,7 +50,7 @@ function TooltipBody({
 				});
 			} else if (window.innerWidth - left - width - 20 > tooltipWidth + 20) {
 				setPosition({
-					top: top + height / 2 - tooltipHeight / 2,
+					top: top + Math.abs(scrollY) + height / 2 - tooltipHeight / 2,
 					left: left + width + 10,
 					arrowOn: 'left',
 				});
@@ -57,8 +70,8 @@ function TooltipBody({
 		}
 		return () => {
 			if (tooltip) {
-				tooltip.removeEventListener('mouseover', onMouseOver);
-				tooltip.removeEventListener('mouseleave', onMouseLeave);
+				tooltip.removeEventListener('mouseover', eventRefs.current.onMouseOver);
+				tooltip.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			}
 		};
 	}, [containerRef, onMouseLeave, onMouseOver, scrollElementId]);

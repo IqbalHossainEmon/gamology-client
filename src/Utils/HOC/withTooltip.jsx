@@ -5,7 +5,6 @@ import SetTooltipContext from '../Contexts/TooltipContext';
 const withTooltip = Component =>
 	function InnerComponent(props) {
 		const [show, setShow] = useState(false);
-
 		const [message, setMessage] = useState('');
 
 		const showRef = useRef(show);
@@ -20,42 +19,63 @@ const withTooltip = Component =>
 
 		if (!eventRefs.current) {
 			eventRefs.current = {
-				onMouseOver: e => {
-					if (leaveTimerRef.current) {
-						clearTimeout(leaveTimerRef.current);
-						leaveTimerRef.current = null;
-						return;
-					}
-
-					if (
-						showRef.current &&
-						containerRef.current !== e.currentTarget &&
-						!e.target.toolTipElement
-					) {
-						setShow(false);
-					}
-					if (!showRef.current && !hoverTimerRef.current) {
-						hoverTimerRef.current = setTimeout(() => {
-							setMessage(e.target.toolTipMsg);
-							setShow(true);
-							hoverTimerRef.current = null;
-						}, 200);
-						containerRef.current = e.currentTarget;
+				handleShow: shouldAlwaysStart => {
+					if (!showRef.current || shouldAlwaysStart) {
+						hoverTimerRef.current = setTimeout(
+							() => {
+								setShow(true);
+								hoverTimerRef.current = null;
+							},
+							shouldAlwaysStart ? 250 : 200
+						);
 					}
 				},
-				onMouseLeave: () => {
-					if (hoverTimerRef.current) {
-						clearTimeout(hoverTimerRef.current);
-						hoverTimerRef.current = null;
-						return;
-					}
+				handleHide: () => {
 					if (showRef.current) {
 						leaveTimerRef.current = setTimeout(() => {
 							setShow(false);
 							leaveTimerRef.current = null;
-							containerRef.current = null;
 						}, 200);
 					}
+				},
+				removeShowTimer: () => {
+					if (hoverTimerRef.current) {
+						clearTimeout(hoverTimerRef.current);
+						hoverTimerRef.current = null;
+					}
+				},
+				removeHideTimer: () => {
+					if (leaveTimerRef.current) {
+						clearTimeout(leaveTimerRef.current);
+						leaveTimerRef.current = null;
+					}
+				},
+
+				onMouseOver: (e, isTooltip) => {
+					eventRefs.current.removeHideTimer();
+
+					if (
+						isTooltip ||
+						(containerRef.current === e.currentTarget && showRef.current)
+					) {
+						return;
+					}
+
+					if (!isTooltip && containerRef.current !== e.currentTarget && showRef.current) {
+						setShow(false);
+						eventRefs.current.handleShow(true);
+						containerRef.current = e.currentTarget;
+						setMessage(e.currentTarget.toolTipMsg);
+						return;
+					}
+
+					containerRef.current = e.currentTarget;
+					setMessage(e.currentTarget.toolTipMsg);
+					eventRefs.current.handleShow();
+				},
+				onMouseLeave: () => {
+					eventRefs.current.removeShowTimer();
+					eventRefs.current.handleHide();
 				},
 				contextEvents: (element, msg) => {
 					if (element && msg) {

@@ -1,55 +1,48 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useAppearDisappear from '../../../../../../../../Utils/Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide';
-import useIsTouchAble from '../../../../../../../../Utils/Hooks/useIsTouchable';
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
-function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
+function CardDotBody({ item, lists, fadeIn }) {
 	const [listShow, setListShow] = useState(false);
-	const isTouchAble = useIsTouchAble();
+
 	const elementRef = useRef(null);
 
+	const listShowRef = useRef(listShow);
 	listShowRef.current = listShow;
 
+	const fadeInRef = useRef(fadeIn);
+	fadeInRef.current = fadeIn;
+
 	const eventRefs = useRef(null);
+	const { setElement, showMenu, onHide } = useDropDownHide(setListShow);
+
+	const [show, childFadeIn] = useAppearDisappear(listShow);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			handleHide: () => {
-				setListShow(false);
-				if (!isTouchAble()) {
-					setParentShow(false);
-				}
+			onClick: () => {
+				setListShow(prev => {
+					if (prev) {
+						onHide();
+					}
+					return !prev;
+				});
+			},
+			handleBlur: element => {
+				setElement(element);
+				showMenu();
 			},
 		};
 	}
 
-	const { setElement, onHide, showMenu } = useDropDownHide(eventRefs.current.handleHide);
-
-	if (!eventRefs.current.handleToggle) {
-		eventRefs.current.handleToggle = () => {
-			if (!listShowRef.current) {
-				setListShow(true);
-				showMenu();
-			} else {
-				setListShow(false);
-				onHide();
-			}
-		};
-	}
-
-	const [show, childFadeIn] = useAppearDisappear(listShow);
-
-	useEffect(() => {
-		setElement(elementRef.current);
-	}, [setElement]);
-
 	return (
-		<div className={styles.cardDots} ref={elementRef}>
+		<div className={styles.cardDots}>
 			<button
-				className={`${styles.btnDot}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
-				onClick={eventRefs.current.handleToggle}
+				ref={elementRef}
+				className={`${styles.btnDot}${fadeIn || listShow ? ` ${styles.zoomIn}` : ''}`}
+				onClick={eventRefs.current.onClick}
 				type='button'
 			>
 				<svg
@@ -105,10 +98,13 @@ function CardDotBody({ item, lists, fadeIn, listShowRef, setParentShow }) {
 			{show ? (
 				<CardDotList
 					fadeIn={childFadeIn}
-					handleHide={eventRefs.current.handleHide}
+					handleBlur={eventRefs.current.handleBlur}
 					item={item}
 					lists={lists}
 					parentRef={elementRef}
+					setHide={() => {
+						setListShow(false);
+					}}
 				/>
 			) : null}
 		</div>

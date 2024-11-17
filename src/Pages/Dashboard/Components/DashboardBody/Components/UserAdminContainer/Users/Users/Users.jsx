@@ -43,12 +43,10 @@ function Users() {
 								item={user}
 								lists={[
 									{
-										id: 1,
 										name: 'Edit',
 										event: () => console.log('Edit'),
 									},
 									{
-										id: 2,
 										name: 'Delete',
 										event: () => {
 											setModal({
@@ -93,7 +91,6 @@ function Users() {
 										},
 									},
 									{
-										id: 3,
 										name: 'Make Admin',
 										event: () => {
 											setModal({

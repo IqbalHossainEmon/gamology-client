@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import useAppearDisappear from '../../../../../../../Utils/Hooks/useAppearDisappear';
 import useIsTouchAble from '../../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import CardDotBody from '../Components/CardDotBody/CardDotBody';
@@ -9,7 +8,6 @@ function CardDot({ parentRef, ...rest }) {
 	const dotShowRef = useRef(false);
 	dotShowRef.current = dotShow;
 
-	const listShowRef = useRef(false);
 	const isEventAdded = useRef(false);
 	const eventRef = useRef(null);
 
@@ -22,29 +20,30 @@ function CardDot({ parentRef, ...rest }) {
 				}
 			},
 			handleHideBtn: () => {
-				if (dotShowRef.current && !listShowRef.current) {
+				if (dotShowRef.current) {
 					setDotShow(false);
 				}
 			},
 		};
 	}
+
 	const isTouchAble = useIsTouchAble();
 	const screenWidth = useScreenWidth();
-	const [show, fadeIn] = useAppearDisappear(dotShow);
 
 	useEffect(() => {
 		const parent = parentRef.current;
+
 		const touchable = isTouchAble();
 
 		if (parent && !touchable && !isEventAdded.current) {
-			parent.addEventListener('mousemove', eventRef.current.handleShowBtn);
+			parent.addEventListener('mouseover', eventRef.current.handleShowBtn);
 			parent.addEventListener('mouseleave', eventRef.current.handleHideBtn);
 			isEventAdded.current = true;
 			if (dotShowRef.current) {
 				setDotShow(false);
 			}
 		} else if (isEventAdded.current && touchable) {
-			parent.removeEventListener('mousemove', eventRef.current.handleShowBtn);
+			parent.removeEventListener('mouseover', eventRef.current.handleShowBtn);
 			parent.removeEventListener('mouseleave', eventRef.current.handleHideBtn);
 			isEventAdded.current = false;
 			setDotShow(true);
@@ -53,22 +52,13 @@ function CardDot({ parentRef, ...rest }) {
 		}
 		return () => {
 			if (parent && isEventAdded.current) {
-				parent.removeEventListener('mousemove', eventRef.current.handleShowBtn);
+				parent.removeEventListener('mouseover', eventRef.current.handleShowBtn);
 				parent.removeEventListener('mouseleave', eventRef.current.handleHideBtn);
 				isEventAdded.current = false;
 			}
 		};
 	}, [isTouchAble, parentRef, screenWidth]);
 
-	return (
-		show && (
-			<CardDotBody
-				{...rest}
-				fadeIn={fadeIn}
-				listShowRef={listShowRef}
-				setParentShow={setDotShow}
-			/>
-		)
-	);
+	return <CardDotBody {...rest} fadeIn={dotShow} setParentShow={setDotShow} />;
 }
 export default CardDot;
