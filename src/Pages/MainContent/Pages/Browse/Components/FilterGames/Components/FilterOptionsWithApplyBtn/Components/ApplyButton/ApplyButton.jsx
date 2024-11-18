@@ -4,6 +4,8 @@ import styles from './ApplyButton.module.css';
 export default function ApplyButton({ filterState, state, dispatch, setShow }) {
 	const { areObjectsEqual } = useObjectUtilities();
 
+	console.log(filterState, state);
+
 	return (
 		<div className={styles.buttonContainer}>
 			<button

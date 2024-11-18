@@ -10,8 +10,11 @@
 }
 
 .regular {
+	scale: 0.9;
 	color: rgb(145, 145, 145);
 	display: inline-block;
+	text-decoration: line-through;
+	text-decoration-color: rgb(222, 222, 222);
 }
 
 .discount {

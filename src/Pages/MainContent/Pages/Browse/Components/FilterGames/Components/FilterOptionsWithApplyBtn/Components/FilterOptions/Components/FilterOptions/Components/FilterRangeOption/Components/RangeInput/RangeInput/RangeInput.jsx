@@ -30,6 +30,7 @@ export default function RangeInput({
 				const { knob1, knob2 } = prev;
 				switch (name) {
 					case 'smaller':
+						handleSetValue(undefined, val);
 						if (knob1 < knob2) {
 							if (knob1 !== val) {
 								return { ...prev, knob1: val };
@@ -43,6 +44,7 @@ export default function RangeInput({
 						e.target.value = limit.lower;
 						return prev;
 					case 'bigger':
+						handleSetValue(val, undefined);
 						if (knob2 > knob1) {
 							if (knob2 !== val) {
 								return { ...prev, knob2: val };
@@ -59,7 +61,6 @@ export default function RangeInput({
 						return prev;
 				}
 			});
-			handleSetValue();
 		}
 	};
 

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import useObjectUtilities from '../../../../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import RangeField from '../Components/RangeField/RangeField/RangeField';
 import RangeInput from '../Components/RangeInput/RangeInput/RangeInput';
 import styles from './FilterRangeOption.module.css';
@@ -28,58 +29,85 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 
 	const eventRef = useRef(null);
 
+	const { cloneObject } = useObjectUtilities();
+
 	if (!eventRef.current) {
 		eventRef.current = {
-			handleSetValue: () => {
-				setTimeout(() => {
-					setValue(prev => {
-						if (prev[rangeName].higher !== stateRef.current.bigger) {
-							return {
-								...prev,
-								[rangeName]: {
-									...prev[rangeName],
-									higher: stateRef.current.bigger,
-								},
-							};
-						}
-						if (prev[rangeName].lower !== stateRef.current.smaller) {
-							return {
-								...prev,
-								[rangeName]: {
-									...prev[rangeName],
-									lower: stateRef.current.smaller,
-								},
-							};
-						}
-						return prev;
-					});
-				}, 0);
+			handleSetValue: (higher, lower) => {
+				let actualHigher, actualLower;
+
+				if (typeof higher === 'number')
+					actualHigher = parseFloat(
+						(higher / singleStepRef.current + limit.lower).toFixed(float)
+					);
+				else actualHigher = stateRef.current.bigger;
+
+				if (typeof lower === 'number')
+					actualLower = parseFloat(
+						((lower / singleStepRef.current || 0) + limit.lower).toFixed(float)
+					);
+				else actualLower = stateRef.current.smaller;
+
+				setValue(prev => {
+					const newPrev = cloneObject(prev);
+
+					if (
+						newPrev[rangeName].higher !== actualHigher &&
+						newPrev[rangeName].lower !== actualLower
+					) {
+						return {
+							...newPrev,
+							[rangeName]: {
+								higher: actualHigher,
+								lower: actualLower,
+							},
+						};
+					}
+					if (newPrev[rangeName].higher !== actualHigher) {
+						return {
+							...newPrev,
+							[rangeName]: {
+								...newPrev[rangeName],
+								higher: actualHigher,
+							},
+						};
+					}
+					if (newPrev[rangeName].lower !== actualLower) {
+						return {
+							...newPrev,
+							[rangeName]: {
+								...newPrev[rangeName],
+								lower: actualLower,
+							},
+						};
+					}
+					return newPrev;
+				});
 			},
 		};
 	}
+
 	return (
 		<div className={styles.filterRange} {...(disableState && { disabled: true })}>
 			<RangeField
 				conditionStep={option.stepCondition}
 				disabled={disableState}
-				handleSetValue={eventRef.current.handleSetValue}
-				leftInputRef={leftInputRef}
 				limit={limit}
-				rightInputRef={rightInputRef}
 				setState={setState}
 				singleStepRef={singleStepRef}
 				state={state}
+				handleSetValue={eventRef.current.handleSetValue}
 			/>
 			<RangeInput
 				disabled={disableState}
 				float={float}
-				handleSetValue={eventRef.current.handleSetValue}
 				leftInputRef={leftInputRef}
-				limit={limit}
 				rightInputRef={rightInputRef}
+				limit={limit}
 				setState={setState}
 				singleStepRef={singleStepRef}
 				state={{ bigger, smaller }}
+				handleSetValue={eventRef.current.handleSetValue}
 			/>
 		</div>
 	);

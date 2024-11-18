@@ -45,22 +45,24 @@ function RangeField({
 						Math.abs(pointerLeftStep - prev.knob1) <=
 						Math.abs(pointerLeftStep - prev.knob2)
 					) {
+						handleSetValue(pointerRightStep, undefined);
 						return { ...prev, knob1: pointerLeftStep };
 					}
+					handleSetValue(undefined, pointerRightStep);
 					return { ...prev, knob2: pointerLeftStep };
 				});
-				handleSetValue();
 			} else if (leftDiff > rightDiff) {
 				setState(prev => {
 					if (
 						Math.abs(pointerRightStep - prev.knob1) <=
 						Math.abs(pointerRightStep - prev.knob2)
 					) {
+						handleSetValue(pointerRightStep, undefined);
 						return { ...prev, knob1: pointerRightStep };
 					}
+					handleSetValue(undefined, pointerRightStep);
 					return { ...prev, knob2: pointerRightStep };
 				});
-				handleSetValue();
 			}
 		}
 	};

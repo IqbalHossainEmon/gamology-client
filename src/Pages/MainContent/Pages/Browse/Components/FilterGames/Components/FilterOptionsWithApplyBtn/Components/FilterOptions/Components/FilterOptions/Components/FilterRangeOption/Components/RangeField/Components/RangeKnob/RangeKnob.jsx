@@ -7,10 +7,10 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
 	stateRef.current = state;
 
 	// Calculate move value
-	const eventRef = useRef(null);
+	const eventRefs = useRef(null);
 
-	if (!eventRef.current) {
-		eventRef.current = {
+	if (!eventRefs.current) {
+		eventRefs.current = {
 			handleMove: e => {
 				const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
 
@@ -31,10 +31,11 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
 					setState(prev => ({ ...prev, [name]: value }));
 				}
 			},
+			
 		};
 	}
 
-	const onStart = useDragStartStop(eventRef.current.handleMove, handleSetValue, true);
+	const onStart = useDragStartStop(eventRefs.current.handleMove, handleSetValue, true);
 
 	return (
 		<div
