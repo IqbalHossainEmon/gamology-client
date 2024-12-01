@@ -27,7 +27,7 @@ export default function ExploreGames() {
 				// Adjust the threshold
 				angleDeg = 6;
 			} else {
-				angleDeg = 6 + (20 - 6) * (1 - mainContainerWidth / 1600); // Linear interpolation
+				angleDeg = 6 + (15 - 6) * (1 - mainContainerWidth / 1600); // Linear interpolation
 			}
 			angleDeg = parseFloat(angleDeg.toFixed(2));
 			const rad = angleDeg * (Math.PI / 180);

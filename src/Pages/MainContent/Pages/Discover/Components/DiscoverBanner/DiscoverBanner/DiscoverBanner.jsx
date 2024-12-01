@@ -82,6 +82,27 @@ export default function DiscoverBanner() {
 		dispatch({ type: 'fetch', data: items });
 	}, [setDispatch, start, stop]);
 
+	const timerIdRef = useRef(null);
+
+	useEffect(() => {
+		const clearTimer = () => {
+			clearTimeout(timerIdRef.current);
+			timerIdRef.current = null;
+		};
+		if (timerIdRef.current) {
+			clearTimer();
+		}
+
+		if (screenWidth < 768) {
+			if (!isPause) {
+				timerIdRef.current = setTimeout(() => {
+					dispatch({ type: 'next' });
+				}, 9000);
+			}
+		}
+		return clearTimer;
+	}, [isPause, screenWidth, fadeIn]);
+
 	return (
 		<section className={styles.banner}>
 			<div className={styles.bannerOverflow}>
