@@ -48,6 +48,7 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 				container.style.userSelect = '';
 				prevDiff = lastDiff;
 				window.removeEventListener('blur', eventRefs.current.onMouseUp);
+
 				if (isLeft) setShow(false);
 			},
 			onMouseDown: e => {
@@ -68,7 +69,8 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 					setShow(false);
 					return;
 				}
-				if (!startingPosition) {
+
+				if (startingPosition) {
 					isLeft = true;
 				}
 			},

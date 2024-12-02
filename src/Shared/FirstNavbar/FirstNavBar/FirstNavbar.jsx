@@ -6,9 +6,9 @@ import MobileBurgerMenu from '../Components/MobileBurgerMenu/MobileBurgerMenu';
 import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';
 import styles from './FirstNavbar.module.css';
 
-export default function FirstNavbar({ scrollContainer }) {
+export default function FirstNavbar() {
 	const screenWidth = useScreenWidth();
-	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow(scrollContainer);
+	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
 	useEffect(() => {
 		if (screenWidth > 768) {

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Scroller from '../Components/Scroller/Components/Scroller/Scroller';
 import styles from './ScrollBar.module.css';
-function ScrollBar({ children, scrollContainer, showPath = true }) {
+function ScrollBar({ children, showPath = true }) {
 	const outerContainerRef = useRef(null);
 	const innerContainerRef = useRef(null);
 	return (
@@ -9,7 +9,6 @@ function ScrollBar({ children, scrollContainer, showPath = true }) {
 			className={styles.outerScrollContainer}
 			ref={element => {
 				outerContainerRef.current = element;
-				if (scrollContainer?.current === null) scrollContainer.current = element;
 			}}
 		>
 			<div className={styles.scrollContainer} ref={innerContainerRef}>

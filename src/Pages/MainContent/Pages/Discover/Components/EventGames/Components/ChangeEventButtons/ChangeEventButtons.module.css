@@ -1,27 +1,41 @@
 .ChangeEventButtons {
-  margin: 2rem 0;
-  display: flex;
-  justify-content: center;
+	margin: 2rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .ChangeEventButtons > div {
-  width: 60px;
-  display: flex;
-  justify-content: space-between;
+	width: 60px;
+	display: flex;
+	justify-content: space-between;
+}
+.prevBtn {
+	width: 1rem;
+	rotate: -90deg;
+}
+.nextBtn {
+	width: 1rem;
+	rotate: 90deg;
+}
+.middleButton {
+	height: fit-content;
+	display: flex;
+	align-items: center;
 }
 .button {
-  background-color: rgb(255, 255, 255);
-  cursor: pointer;
-  padding: 3px;
-  border-radius: 50%;
-  border: 1px solid rgb(0, 0, 0);
-  transition:
-    background-color 400ms,
-    border 400ms;
+	background-color: rgb(255, 255, 255);
+	cursor: pointer;
+	padding: 3px;
+	border-radius: 50%;
+	border: 1px solid rgb(0, 0, 0);
+	transition:
+		background-color 400ms,
+		border 400ms;
 }
 .button:hover {
-  background-color: rgb(160, 160, 160);
+	background-color: rgb(160, 160, 160);
 }
 #active {
-  background-color: #121212;
-  border: 1px solid rgb(85, 85, 85);
+	background-color: #121212;
+	border: 1px solid rgb(85, 85, 85);
 }

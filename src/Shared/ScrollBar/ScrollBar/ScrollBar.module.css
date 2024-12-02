@@ -12,5 +12,7 @@
 	height: 100%;
 }
 .scrollContainer {
+	transform: none;
+	perspective: none;
 	transform: translateZ(0);
 }

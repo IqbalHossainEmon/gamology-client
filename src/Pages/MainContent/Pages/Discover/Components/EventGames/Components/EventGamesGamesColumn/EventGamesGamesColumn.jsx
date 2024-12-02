@@ -7,11 +7,7 @@ export default function EventGamesGamesColumn({ header, games, bar, colNum, card
 	const btnRef = useRef(null);
 	return (
 		<li
-			className={
-				colNum === cardPosition
-					? styles.GameColumn
-					: [styles.GameColumn, styles.Opacity0].join(' ')
-			}
+			className={`${styles.gameColumn}${colNum !== cardPosition ? ` ${styles.opacity0}` : ''}`}
 		>
 			<div className={styles.heading}>
 				<h2>{header}</h2>
@@ -20,6 +16,7 @@ export default function EventGamesGamesColumn({ header, games, bar, colNum, card
 					<ButtonWaterEffect btnRef={btnRef} />
 				</button>
 			</div>
+			<p className={styles.text}>test text</p>
 			<ul className={`${bar ? `${styles.bar} ` : ''}${styles.column}`}>
 				{games.map(game => (
 					<GameInColumn game={game} key={game.id} length={games.length} />

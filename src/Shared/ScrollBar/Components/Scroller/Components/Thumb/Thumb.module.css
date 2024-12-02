@@ -7,9 +7,7 @@
 	transform-origin: right top;
 	z-index: 5;
 	pointer-events: initial;
-	transition:
-		opacity 300ms,
-		height 200ms;
+	transition: opacity 300ms;
 }
 .show {
 	opacity: 1;

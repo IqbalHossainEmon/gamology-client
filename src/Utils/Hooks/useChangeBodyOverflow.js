@@ -1,19 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import useIsTouchAble from './useIsTouchable';
 
-export default function useChangeBodyOverflow(element) {
-	const root = useRef();
+export default function useChangeBodyOverflow() {
+	const root = useRef(document.getElementById('root'));
 	const eventRefs = useRef(null);
 
-	useEffect(() => {
-		if (element) {
-			root.current = element.current;
-		} else root.current = document.getElementById('root');
-	}, [element]);
+	const isTouchable = useIsTouchAble();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			hideBodyOverflow: () => {
 				root.current.style.overflowY = 'hidden';
+				if (isTouchable) root.current.style.marginRight = '11px';
 			},
 			showBodyOverflow: () => {
 				root.current.removeAttribute('style');
