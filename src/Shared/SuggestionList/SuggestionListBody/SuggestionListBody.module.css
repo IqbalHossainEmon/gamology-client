@@ -5,6 +5,7 @@
 	border-radius: 4px;
 	cursor: default;
 	z-index: 1;
+	backdrop-filter: blur(500px);
 }
 
 .showBottom {
@@ -70,9 +71,9 @@
 	width: 100%;
 	list-style: none;
 	overflow-y: auto;
-	background-color: rgba(37, 37, 37, 0.856);
-	backdrop-filter: blur(50px);
+	background-color: rgba(37, 37, 37, 0.9);
 	padding: 0 1rem;
+	backdrop-filter: blur(500px);
 	opacity: 0;
 	transition:
 		opacity 200ms,

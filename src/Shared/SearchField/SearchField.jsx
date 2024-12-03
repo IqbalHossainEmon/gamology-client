@@ -4,7 +4,7 @@ import useScreenWidth from '../../Utils/Hooks/useScreenWidth';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './SearchField.module.css';
 
-export default function SearchField({ setNavShow }) {
+export default function SearchField() {
 	const [btnShow, setBtnShow] = useState(false);
 	const [value, setValue] = useState('');
 	const [listShow, setListShow] = useState(false);
@@ -13,6 +13,9 @@ export default function SearchField({ setNavShow }) {
 	const searchInputRef = useRef(null);
 	const eventRefs = useRef(null);
 
+	const btnShowRef = useRef(btnShow);
+	btnShowRef.current = btnShow;
+
 	const isListShownRef = useRef(listShow);
 	isListShownRef.current = listShow;
 
@@ -20,14 +23,9 @@ export default function SearchField({ setNavShow }) {
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			setShowState: state => {
-				if (typeof setNavShow === 'function') {
-					setNavShow(state);
-				}
-				setBtnShow(state);
-			},
 			handleClose: isFormDismount => {
-				eventRefs.current.setShowState(false);
+				console.log('setShowState');
+				setBtnShow(false);
 				if (!isFormDismount) {
 					searchInputRef.current.blur();
 					searchRef.current.removeEventListener(
@@ -46,6 +44,7 @@ export default function SearchField({ setNavShow }) {
 		eventRefs.current = {
 			...eventRefs.current,
 			handleChange: e => {
+				console.log('setShowState');
 				setValue(e.target.value);
 				if (!isListShownRef.current && e.target.value) {
 					showMenu();
@@ -57,23 +56,27 @@ export default function SearchField({ setNavShow }) {
 				}
 			},
 			handleSearchClick: e => {
-				e.stopPropagation();
+				if (btnShowRef.current) return;
+				console.log('setShowState');
+				e.preventDefault();
 				setElement(searchRef.current);
-				eventRefs.current.setShowState(true);
+				setBtnShow(true);
 				showMenu();
 				searchInputRef.current.focus();
 				searchRef.current.addEventListener('keydown', eventRefs.current.handleBlurEsc);
 				window.addEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
 			},
 			handleBlurOnWindowBlur: () => {
-				eventRefs.current.setShowState(false);
+				console.log('setShowState');
+				setBtnShow(false);
 				searchInputRef.current.blur();
 				searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
 				window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
 			},
 			handleBlurEsc: e => {
+				console.log('setShowState');
 				if (e.key === 'Escape' || e.key === 'Enter') {
-					eventRefs.current.setShowState(false);
+					setBtnShow(false);
 					searchInputRef.current.blur();
 					searchRef.current.removeEventListener(
 						'keydown',
@@ -88,7 +91,7 @@ export default function SearchField({ setNavShow }) {
 	useEffect(() => {
 		const cleanUp = eventRefs.current.handleClose;
 		return () => {
-			onHide();
+			if (btnShowRef.current) onHide();
 			cleanUp(true);
 		};
 	}, [searchRef, onHide]);
@@ -98,14 +101,6 @@ export default function SearchField({ setNavShow }) {
 			<button
 				ref={searchRef}
 				type='button'
-				{...(btnShow
-					? {
-							onMouseDown: e => {
-								e.preventDefault();
-								e.stopPropagation();
-							},
-						}
-					: { onClick: eventRefs.current.handleSearchClick })}
 				onClick={eventRefs.current.handleSearchClick}
 				className={`${styles.searchField}${btnShow ? ` ${styles.show}` : screenWidth <= 768 ? ` ${styles.hide}` : ''}`}
 			>
@@ -135,7 +130,7 @@ export default function SearchField({ setNavShow }) {
 					setValue(val);
 				}}
 				className={styles.suggestionList}
-				state={listShow && btnShow}
+				state={listShow /* && btnShow */}
 				value={typeof value === 'string' ? value : value.name}
 				elementRef={searchRef}
 				noPositionChange

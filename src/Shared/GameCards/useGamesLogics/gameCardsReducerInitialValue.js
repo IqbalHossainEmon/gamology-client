@@ -8,52 +8,54 @@ const initialState = {
 	margin: 0,
 	transition: false,
 	oneDeckLength: 0,
+	extraCard: 0,
 };
+
+const calculateTranslate = (width, cardActive, cardOnDeck, margin) =>
+	width * cardActive - margin * -cardActive;
+
 const reducer = (state, action) => {
 	switch (action.type) {
 		case 'fetch':
 			return { ...state, data: action.data, dataLength: action.dataLength };
 		case 'screenWidthChange':
+			console.log(state.cardActive % action.cardOnDeck !== 0);
+
+			const newCardActive =
+				action.cardOnDeck !== state.cardOnDeck &&
+				state.cardOnDeck &&
+				state.cardActive % action.cardOnDeck !== 0
+					? state.cardActive - (state.cardActive % action.cardOnDeck)
+					: state.cardActive;
 			return {
 				...state,
 				cardsWidth: action.width,
 				cardOnDeck: action.cardOnDeck,
-				cardActive:
-					action.cardOnDeck !== state.cardOnDeck &&
-					state.cardOnDeck &&
-					state.cardActive % action.cardOnDeck !== 0
-						? state.cardActive - (state.cardActive % action.cardOnDeck)
-						: state.cardActive,
-				translate:
-					action.cardOnDeck !== state.cardOnDeck &&
-					state.cardOnDeck &&
-					state.cardActive % action.cardOnDeck !== 0
-						? action.width *
-								(state.cardActive - (state.cardActive % action.cardOnDeck)) -
-							state.margin *
-								-(state.cardActive - (state.dataLength % state.cardOnDeck))
-						: action.width * state.cardActive - state.margin * -state.cardActive,
+				cardActive: newCardActive,
+				translate: calculateTranslate(
+					action.width,
+					newCardActive,
+					action.cardOnDeck,
+					action.margin
+				),
 				transition: false,
-				extraCard: 0,
 				margin: action.margin,
 			};
 		case 'next':
+			const nextCardActive =
+				state.dataLength - (state.dataLength % state.cardOnDeck) ===
+				action.nextActiveCard * -1
+					? state.cardActive - (state.dataLength % state.cardOnDeck)
+					: action.nextActiveCard;
 			return {
 				...state,
-				cardActive:
-					state.dataLength - (state.dataLength % state.cardOnDeck) ===
-					action.nextActiveCard * -1
-						? state.cardActive - (state.dataLength % state.cardOnDeck)
-						: action.nextActiveCard,
-				translate:
-					state.dataLength - (state.dataLength % state.cardOnDeck) ===
-					action.nextActiveCard * -1
-						? state.cardsWidth *
-								(state.cardActive - (state.dataLength % state.cardOnDeck)) -
-							state.margin *
-								-(state.cardActive - (state.dataLength % state.cardOnDeck))
-						: state.cardsWidth * action.nextActiveCard -
-							state.margin * -action.nextActiveCard,
+				cardActive: nextCardActive,
+				translate: calculateTranslate(
+					state.cardsWidth,
+					nextCardActive,
+					state.cardOnDeck,
+					state.margin
+				),
 				transition: true,
 				extraCard:
 					state.dataLength - (state.dataLength % state.cardOnDeck) ===
@@ -62,16 +64,19 @@ const reducer = (state, action) => {
 						: 0,
 			};
 		case 'prev':
+			const prevCardActive = state.extraCard
+				? state.cardActive + state.extraCard
+				: action.nextActiveCard;
 			return {
 				...state,
-				cardActive: state.extraCard
-					? state.cardActive + state.extraCard
-					: action.nextActiveCard,
-				translate: state.extraCard
-					? state.cardsWidth * (state.cardActive + state.extraCard) -
-						state.margin * -(state.cardActive + state.extraCard)
-					: state.cardsWidth * action.nextActiveCard -
-						state.margin * -action.nextActiveCard,
+				cardActive: prevCardActive,
+				translate: calculateTranslate(
+					state.cardsWidth,
+					prevCardActive,
+					state.cardOnDeck,
+					state.margin,
+					state.dataLength
+				),
 				transition: true,
 				extraCard: 0,
 			};

@@ -257,7 +257,7 @@ export default function GameCards({ headerTitle, link, extraCard, cardHovers }) 
 	}, [screenWidth, setCardsOnScreenWidthChange]);
 
 	return (
-		<section className={styles.games}>
+		<div className={styles.games}>
 			<div className={styles.headerButtonContainer}>
 				<CardsHeader headerTitle={headerTitle} />
 				<GamesButton
@@ -274,6 +274,6 @@ export default function GameCards({ headerTitle, link, extraCard, cardHovers }) 
 				cardHovers={cardHovers}
 				extraCard={extraCard}
 			/>
-		</section>
+		</div>
 	);
 }

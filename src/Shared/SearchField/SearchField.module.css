@@ -57,7 +57,6 @@
 
 .suggestionList {
 	max-width: min(100%, 600px);
-	translate: 0 10px;
 }
 
 @media only screen and (max-width: 768px) {

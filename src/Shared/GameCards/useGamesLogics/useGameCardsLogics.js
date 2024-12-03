@@ -72,7 +72,7 @@ export default function useGameCardsLogics() {
 				referenceRef.dispatch({
 					type: 'screenWidthChange',
 					width:
-						cardsContainer.offsetWidth / cardOnOneDeck -
+						(cardsContainer.offsetWidth - 16) / cardOnOneDeck -
 						(margin * (cardOnOneDeck - 1)) / cardOnOneDeck,
 					margin,
 					cardOnDeck: cardOnOneDeck,

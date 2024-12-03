@@ -1,4 +1,4 @@
-.CardsHeader {
+.cardsHeader {
 	background-color: transparent;
 	display: inline;
 	color: rgb(222, 222, 222);
@@ -6,6 +6,7 @@
 	flex-grow: 1;
 	font-size: 18px;
 	font-weight: 400;
+	max-width: fit-content;
 }
 
 .arrow svg {
@@ -14,6 +15,6 @@
 	transition: translate 100ms;
 }
 
-.CardsHeader:hover .arrow svg {
+.cardsHeader:hover .arrow svg {
 	translate: 100%;
 }

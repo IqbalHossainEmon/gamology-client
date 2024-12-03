@@ -79,6 +79,7 @@ export default [
 			'no-nested-ternary': 'off',
 			'consistent-return': 'off',
 			'no-multi-assign': 'off',
+			'no-case-declarations': 'off',
 		},
 	},
 ];

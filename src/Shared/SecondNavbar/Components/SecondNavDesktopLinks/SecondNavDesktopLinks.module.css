@@ -2,6 +2,13 @@
 	list-style: none;
 	display: flex;
 	margin-left: 15px;
+	pointer-events: auto;
+	translate: 0 -100%;
+	transition: translate 300ms;
+}
+
+.show {
+	translate: 0%;
 }
 
 .navOption {
@@ -36,9 +43,6 @@
 		background-color: rgba(0, 0, 0, 0.9);
 		width: 100%;
 		left: 0;
-		transition:
-			bottom 300ms,
-			visibility 300ms;
 	}
 
 	.navOption {

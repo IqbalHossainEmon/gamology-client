@@ -62,7 +62,7 @@ function Scroller({ innerContainerRef, outerContainerRef, showPath }) {
 				if (entry.attributeName === 'style') {
 					const entryStyle = entry.target.getAttribute('style');
 					if (entryStyle && entryStyle.includes('overflow-y: hidden')) {
-						if (!showRef.current) {
+						if (showRef.current) {
 							setShow(false);
 						}
 					} else if (!showRef.current) {

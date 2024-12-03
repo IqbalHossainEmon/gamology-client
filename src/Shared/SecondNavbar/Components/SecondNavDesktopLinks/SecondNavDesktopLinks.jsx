@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import LinksList from '../../../LinksList/LinksList';
 import styles from './SecondNavDesktopLinks.module.css';
 
@@ -12,23 +11,9 @@ const links = [
 	{ no: 2, name: 'News', URL: '#news' },
 ];
 
-export default function SecondNavDesktopLinks({ navMidShow, id, setNavTextState }) {
-	const [style, setStyle] = useState({});
-	const sliderElementRef = useRef();
-
-	useEffect(() => {
-		if (sliderElementRef) {
-			setStyle({ bottom: `${sliderElementRef.current?.offsetHeight}px` });
-		}
-	}, [sliderElementRef]);
-
+export default function SecondNavDesktopLinks({ navMidShow, setNavTextState }) {
 	return (
-		<ul
-			ref={sliderElementRef}
-			{...(!navMidShow && { style })}
-			className={styles.SecondNavLinks}
-			id={styles[id]}
-		>
+		<ul className={`${styles.SecondNavLinks}${navMidShow ? ` ${styles.show}` : ''}`}>
 			<LinksList active={3} links={links} onclick={setNavTextState} styles={styles} />
 		</ul>
 	);

@@ -8,6 +8,7 @@
 	list-style: none;
 	position: relative;
 	display: flex;
+	padding: 0 0.5rem;
 }
 .transition {
 	transition: translate 300ms;

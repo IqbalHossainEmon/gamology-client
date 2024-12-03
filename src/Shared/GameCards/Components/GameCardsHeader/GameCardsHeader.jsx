@@ -2,7 +2,7 @@ import styles from './GameCardsHeader.module.css';
 
 export default function GameCardsHeader({ headerTitle }) {
 	return (
-		<h4 className={styles.CardsHeader}>
+		<h4 className={styles.cardsHeader}>
 			{headerTitle}
 			<span className={styles.arrow}>
 				<svg className='svg css-uwwqev' viewBox='0 0 5 9'>
