@@ -43,8 +43,11 @@ export default function useGameCardsLogics() {
 			},
 
 			// This function checks screen widths and set cards on deck and send it through dispatch.
-			setCardsOnScreenWidthChange: (screenWidth, cardsContainer) => {
+			setCardsOnScreenWidthChange: cardsContainer => {
 				let cardOnOneDeck, margin;
+
+				const screenWidth = window.innerWidth;
+
 				if (screenWidth >= 1600) {
 					cardOnOneDeck = 6;
 					margin = 32;

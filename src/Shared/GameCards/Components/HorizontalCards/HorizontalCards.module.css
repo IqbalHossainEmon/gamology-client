@@ -1,14 +1,15 @@
 .Cards {
-	padding: 20px 0;
+	padding: 20px 0.5rem;
+	width: calc(100% + 1rem);
+	max-width: 100vw;
+	translate: -0.5rem;
 	overflow: hidden;
-	width: 100%;
 }
 
 .CardSlider {
 	list-style: none;
 	position: relative;
 	display: flex;
-	padding: 0 0.5rem;
 }
 .transition {
 	transition: translate 300ms;

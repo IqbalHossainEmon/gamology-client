@@ -1,5 +1,4 @@
 import { useEffect, useReducer, useRef } from 'react';
-import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import GamesButton from '../Components/GameCardsButtons/GameCardsButtons';
 import CardsHeader from '../Components/GameCardsHeader/GameCardsHeader';
 import HorizontalCards from '../Components/HorizontalCards/HorizontalCards';
@@ -239,7 +238,6 @@ const items = [
 
 export default function GameCards({ headerTitle, link, extraCard, cardHovers }) {
 	const cardsContainer = useRef();
-	const screenWidth = useScreenWidth();
 	const { reducer, initialState } = gameCardsReducerInitialValue();
 	const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
 		useReducer(reducer, initialState);
@@ -253,8 +251,18 @@ export default function GameCards({ headerTitle, link, extraCard, cardHovers }) 
 	}, [extraCard, setReference]);
 
 	useEffect(() => {
-		setCardsOnScreenWidthChange(screenWidth, cardsContainer.current);
-	}, [screenWidth, setCardsOnScreenWidthChange]);
+		const observerFunction = () => {
+			setCardsOnScreenWidthChange(cardsContainer.current);
+		};
+
+		const observer = new ResizeObserver(observerFunction);
+
+		observer.observe(cardsContainer.current);
+
+		return () => {
+			observer.disconnect();
+		};
+	}, [setCardsOnScreenWidthChange]);
 
 	return (
 		<div className={styles.games}>
