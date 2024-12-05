@@ -239,8 +239,10 @@ const items = [
 export default function GameCards({ headerTitle, link, extraCard, cardHovers }) {
 	const cardsContainer = useRef();
 	const { reducer, initialState } = gameCardsReducerInitialValue();
-	const [{ data, translate, transition, cardActive, cardsWidth, cardOnDeck, margin }, dispatch] =
-		useReducer(reducer, initialState);
+	const [{ data, cardActive, cardsWidth, cardOnDeck, margin, transition }, dispatch] = useReducer(
+		reducer,
+		initialState
+	);
 	const { handleClick, setReference, setCardsOnScreenWidthChange } = useGameCardsLogics();
 
 	useEffect(() => {
@@ -270,7 +272,7 @@ export default function GameCards({ headerTitle, link, extraCard, cardHovers }) 
 				<CardsHeader headerTitle={headerTitle} />
 				<GamesButton
 					cardActive={cardActive}
-					handleClick={click => handleClick(click, cardActive, cardOnDeck)}
+					handleClick={event => handleClick(event)}
 					length={data.length - cardOnDeck}
 				/>
 			</div>
@@ -278,7 +280,9 @@ export default function GameCards({ headerTitle, link, extraCard, cardHovers }) 
 				cardsWidth={cardsWidth}
 				data={data}
 				ref={cardsContainer}
-				style={{ translate, transition, margin }}
+				cardActive={cardActive}
+				margin={margin}
+				transition={transition}
 				cardHovers={cardHovers}
 				extraCard={extraCard}
 			/>

@@ -12,7 +12,7 @@ export default function GameCardsButtons({ handleClick, cardActive, length }) {
 			/>
 			<ArrowButton
 				className={[styles.btn, styles.prevBtn].join(' ')}
-				enable={length === -cardActive}
+				enable={length === cardActive}
 				handleClick={() => handleClick('next')}
 				name='Next Button'
 			/>

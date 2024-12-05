@@ -20,26 +20,26 @@ export default function useGameCardsLogics() {
 			},
 
 			// This function handles clicks in the cards change.
-			handleClick: (click, cardActive, cardOnDeck) => {
-				if (click === 'next') {
-					referenceRef.dispatch({
-						type: 'next',
-						nextActiveCard: cardActive - cardOnDeck,
-					});
-				} else if (click === 'prev') {
-					referenceRef.dispatch({
-						type: 'prev',
-						nextActiveCard: cardActive + cardOnDeck,
-					});
+			handleClick: click => {
+				switch (click) {
+					case 'next':
+						referenceRef.dispatch({
+							type: 'next',
+						});
+						break;
+					case 'prev':
+						referenceRef.dispatch({
+							type: 'prev',
+						});
+						break;
+					default:
 				}
 
 				if (referenceRef.timerId) {
 					clearTimeout(referenceRef.timerId);
 					referenceRef.timerId = null;
-					eventRefs.current.timerFunction();
-				} else {
-					eventRefs.current.timerFunction();
 				}
+				eventRefs.current.timerFunction();
 			},
 
 			// This function checks screen widths and set cards on deck and send it through dispatch.
