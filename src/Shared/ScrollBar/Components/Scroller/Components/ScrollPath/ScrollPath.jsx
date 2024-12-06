@@ -2,19 +2,31 @@ import { useEffect, useRef } from 'react';
 import useIsTouchAble from '../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './ScrollPath.module.css';
-function ScrollPath({ container, thumb, height }) {
+function ScrollPath({ container, innerContainer, thumb, height }) {
 	const eventRefs = useRef(null);
 	const pathRef = useRef(null);
 
-	const changingValueRef = useRef(0);
-
-	const scrollWidth = useScreenWidth();
 	const isTouchEnabled = useIsTouchAble()();
 
+	const changingValue = useRef(0);
+
+	const screenWidth = useScreenWidth();
+
 	useEffect(() => {
-		changingValueRef.current =
-			(container.current.scrollHeight / container.current.clientHeight) * 4;
-	}, [container, scrollWidth]);
+		pathRef.current.addEventListener(
+			'mousedown',
+			() => {
+				changingValue.current =
+					(innerContainer.current.scrollHeight / container.current.clientHeight) * 2.5;
+			},
+			{ once: true }
+		);
+	}, [container, innerContainer]);
+
+	useEffect(() => {
+		changingValue.current =
+			(innerContainer.current.scrollHeight / container.current.clientHeight) * 2.5;
+	}, [container, innerContainer, screenWidth]);
 
 	if (isTouchEnabled) return null;
 
@@ -26,10 +38,10 @@ function ScrollPath({ container, thumb, height }) {
 				case true:
 					switch (
 						container.current.scrollTop <
-						container.current.scrollHeight - container.current.clientHeight
+						innerContainer.current.scrollHeight - container.current.clientHeight
 					) {
 						case true:
-							container.current.scrollTop += changingValueRef.current;
+							container.current.scrollTop += changingValue.current;
 							animationFrameId = requestAnimationFrame(scroll);
 							break;
 						default:
@@ -41,7 +53,7 @@ function ScrollPath({ container, thumb, height }) {
 				default:
 					switch (container.current.scrollTop > 0) {
 						case true:
-							container.current.scrollTop -= changingValueRef.current;
+							container.current.scrollTop -= changingValue.current;
 							animationFrameId = requestAnimationFrame(scroll);
 							break;
 						default:
@@ -51,7 +63,6 @@ function ScrollPath({ container, thumb, height }) {
 			}
 		};
 		let mouseMoveAdded = false;
-		const root = document.getElementById('root');
 		eventRefs.current = {
 			resumeEvent: () => {
 				if (animationFrameId) return;
@@ -70,7 +81,7 @@ function ScrollPath({ container, thumb, height }) {
 				animationFrameId = null;
 				document.removeEventListener('mouseup', eventRefs.current.stopEvent);
 				window.removeEventListener('blur', eventRefs.current.stopEvent);
-				root.style.userSelect = '';
+				container.current.style.userSelect = '';
 				pathRef.current.removeEventListener('mouseleave', eventRefs.current.pauseEvent);
 				thumb.current.style.pointerEvents = '';
 				if (mouseMoveAdded) {
@@ -95,7 +106,7 @@ function ScrollPath({ container, thumb, height }) {
 				document.addEventListener('mouseup', eventRefs.current.stopEvent);
 				window.addEventListener('blur', eventRefs.current.stopEvent);
 				e.target.addEventListener('mouseleave', eventRefs.current.pauseEvent);
-				root.style.userSelect = 'none';
+				container.current.style.userSelect = 'none';
 				thumb.current.style.pointerEvents = 'none';
 			},
 		};

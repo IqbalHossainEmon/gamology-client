@@ -6,17 +6,6 @@
 	cursor: default;
 	z-index: 1;
 }
-.mainContainer::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(37, 37, 37, 0.342);
-	filter: blur(5px);
-	top: 0;
-	left: 0;
-	z-index: -1;
-}
 
 .showBottom {
 	top: 100%;
@@ -28,6 +17,7 @@
 .item {
 	position: relative;
 	height: 60px;
+	margin: 0 1rem;
 }
 
 .item button {
@@ -81,15 +71,17 @@
 	width: 100%;
 	list-style: none;
 	overflow-y: auto;
-	padding: 0 1rem;
 	position: relative;
+	background-color: rgba(37, 37, 37);
+	opacity: 0;
 	transition:
 		translate 200ms,
-		height 200ms;
+		height 200ms,
+		opacity 200ms;
 }
 
 .showBottom .listContainer {
-	translate: 0 -10%;
+	translate: 0 -30%;
 }
 .showAbove .listContainer {
 	translate: 0 10px;
@@ -98,6 +90,7 @@
 .showAbove .listContainer.fadeIn,
 .showBottom .listContainer.fadeIn {
 	translate: 0 0;
+	opacity: 1;
 }
 
 .itemContainer {

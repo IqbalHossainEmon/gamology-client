@@ -24,7 +24,6 @@ export default function SearchField() {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleClose: isFormDismount => {
-				console.log('setShowState');
 				setBtnShow(false);
 				if (!isFormDismount) {
 					searchInputRef.current.blur();
@@ -44,7 +43,6 @@ export default function SearchField() {
 		eventRefs.current = {
 			...eventRefs.current,
 			handleChange: e => {
-				console.log('setShowState');
 				setValue(e.target.value);
 				if (!isListShownRef.current && e.target.value) {
 					showMenu();
@@ -57,7 +55,7 @@ export default function SearchField() {
 			},
 			handleSearchClick: e => {
 				if (btnShowRef.current) return;
-				console.log('setShowState');
+
 				e.preventDefault();
 				setElement(searchRef.current);
 				setBtnShow(true);
@@ -67,14 +65,12 @@ export default function SearchField() {
 				window.addEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
 			},
 			handleBlurOnWindowBlur: () => {
-				console.log('setShowState');
 				setBtnShow(false);
 				searchInputRef.current.blur();
 				searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
 				window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
 			},
 			handleBlurEsc: e => {
-				console.log('setShowState');
 				if (e.key === 'Escape' || e.key === 'Enter') {
 					setBtnShow(false);
 					searchInputRef.current.blur();
@@ -130,7 +126,7 @@ export default function SearchField() {
 					setValue(val);
 				}}
 				className={styles.suggestionList}
-				state={listShow /* && btnShow */}
+				state={listShow && btnShow}
 				value={typeof value === 'string' ? value : value.name}
 				elementRef={searchRef}
 				noPositionChange

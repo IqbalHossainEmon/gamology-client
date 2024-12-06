@@ -1,1 +1,16 @@
-.outerScrollContainer::-webkit-scrollbar {	display: none;}.outerScrollContainer {	-ms-overflow-style: none;	scrollbar-width: none;	overflow: hidden auto;	perspective: 1px;	perspective-origin: right top;	-webkit-overflow-scrolling: touch;	position: relative;	height: 100%;}.scrollContainer {	transform-style: preserve-3d;}
+.outerScrollContainer::-webkit-scrollbar {
+	display: none;
+}
+.outerScrollContainer {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow: hidden auto;
+	perspective: 1px;
+	perspective-origin: right top;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+	height: 100%;
+}
+.scrollContainer {
+	transform-style: preserve-3d;
+}
