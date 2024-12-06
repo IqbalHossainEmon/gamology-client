@@ -3,15 +3,18 @@
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0);
 	backdrop-filter: blur(0);
+	-web-kit-backdrop-filter: blur(0);
 	position: fixed;
 	top: 0;
 	left: 0;
 	transition:
 		background-color 200ms,
-		backdrop-filter 200ms;
+		backdrop-filter 200ms,
+		-web-kit-backdrop-filter 200ms;
 }
 
 .shadowShow {
 	background-color: rgba(0, 0, 0, 0.6);
 	backdrop-filter: blur(1px);
+	-web-kit-backdrop-filter: blur(1px);
 }

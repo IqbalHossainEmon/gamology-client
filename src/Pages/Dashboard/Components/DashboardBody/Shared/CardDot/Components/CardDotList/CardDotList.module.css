@@ -22,6 +22,7 @@
 	z-index: -1;
 	background-color: #18181cd0;
 	backdrop-filter: blur(50px);
+	-web-kit-backdrop-filter: blur(50px);
 }
 
 .bottom {

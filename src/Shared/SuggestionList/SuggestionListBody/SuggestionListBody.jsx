@@ -24,7 +24,7 @@ function SuggestionListBody({
 
 	return (
 		<div
-			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}${loading ? ' loading' : ''}`}
+			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}`}
 			{...(suggestionRef && { ref: suggestionRef })}
 		>
 			<ul
