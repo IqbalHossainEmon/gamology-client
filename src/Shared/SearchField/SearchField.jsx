@@ -4,7 +4,7 @@ import useScreenWidth from '../../Utils/Hooks/useScreenWidth';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './SearchField.module.css';
 
-export default function SearchField() {
+export default function SearchField({ setNavShow }) {
 	const [btnShow, setBtnShow] = useState(false);
 	const [value, setValue] = useState('');
 	const [listShow, setListShow] = useState(false);
@@ -25,6 +25,7 @@ export default function SearchField() {
 		eventRefs.current = {
 			handleClose: isFormDismount => {
 				setBtnShow(false);
+				setNavShow(false);
 				if (!isFormDismount) {
 					searchInputRef.current.blur();
 					searchRef.current.removeEventListener(
@@ -59,6 +60,7 @@ export default function SearchField() {
 				e.preventDefault();
 				setElement(searchRef.current);
 				setBtnShow(true);
+				setNavShow(true);
 				showMenu();
 				searchInputRef.current.focus();
 				searchRef.current.addEventListener('keydown', eventRefs.current.handleBlurEsc);
@@ -66,6 +68,7 @@ export default function SearchField() {
 			},
 			handleBlurOnWindowBlur: () => {
 				setBtnShow(false);
+				setNavShow(false);
 				searchInputRef.current.blur();
 				searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
 				window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
@@ -73,6 +76,7 @@ export default function SearchField() {
 			handleBlurEsc: e => {
 				if (e.key === 'Escape' || e.key === 'Enter') {
 					setBtnShow(false);
+					setNavShow(false);
 					searchInputRef.current.blur();
 					searchRef.current.removeEventListener(
 						'keydown',

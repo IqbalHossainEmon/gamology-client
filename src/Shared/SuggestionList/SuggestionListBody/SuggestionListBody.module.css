@@ -26,7 +26,7 @@
 	cursor: pointer;
 	height: 100%;
 	background-color: transparent;
-	color: rgb(140, 140, 140);
+	color: rgb(211, 211, 211);
 	border: none;
 	font-size: 1rem;
 	text-align: center;
@@ -72,7 +72,8 @@
 	list-style: none;
 	overflow-y: auto;
 	position: relative;
-	background-color: rgba(37, 37, 37);
+	background-color: rgba(37, 37, 37, 0.7);
+	backdrop-filter: blur(10px);
 	opacity: 0;
 	transition:
 		translate 200ms,

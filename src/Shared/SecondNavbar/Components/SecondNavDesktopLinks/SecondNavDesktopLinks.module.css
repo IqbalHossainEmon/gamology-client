@@ -1,14 +1,7 @@
-.SecondNavLinks {
+.secondNavLinks {
 	list-style: none;
 	display: flex;
 	margin-left: 15px;
-	pointer-events: auto;
-	/* translate: 0 -100%; */
-	transition: translate 300ms;
-}
-
-.show {
-	translate: 0%;
 }
 
 .navOption {
@@ -16,7 +9,7 @@
 }
 .navOption a {
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.5);
+	color: rgba(255, 255, 255, 0.7);
 	transition: color 200ms;
 }
 
@@ -34,15 +27,18 @@
 }
 
 @media only screen and (max-width: 768px) {
-	.SecondNavLinks {
+	.secondNavLinks {
 		display: flex;
 		position: relative;
 		padding: 10px;
 		margin-left: 0px;
 		flex-direction: column;
-		background-color: rgba(0, 0, 0, 0.9);
+		background-color: rgba(0, 0, 0, 0.6);
 		width: 100%;
 		left: 0;
+		transition:
+			bottom 300ms,
+			visibility 300ms;
 	}
 
 	.navOption {

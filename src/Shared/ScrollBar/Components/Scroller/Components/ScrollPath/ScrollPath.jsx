@@ -13,7 +13,7 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 	const screenWidth = useScreenWidth();
 
 	useEffect(() => {
-		pathRef.current.addEventListener(
+		pathRef.current?.addEventListener(
 			'mousedown',
 			() => {
 				changingValue.current =

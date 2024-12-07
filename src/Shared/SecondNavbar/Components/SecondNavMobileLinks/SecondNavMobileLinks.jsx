@@ -5,26 +5,32 @@ import RotateArrow from '../../../RotateArrow/RotateArrow';
 import SecondNavLinkLists from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
 import styles from './SecondNavMobileLinks.module.css';
 
-export default function SecondNavMobileLinks() {
+export default function SecondNavMobileLinks({ setNavShow }) {
 	const [navTextState, setNavTextState] = useState(styles.discover);
 	const [navMidShow, setNavMidShow] = useState();
-	const midSliderElement1 = useRef(null);
-	const midSliderElement2 = useRef(null);
-
-	const { showMenu, setElement } = useDropDownHide(setNavMidShow);
+	const midSliderElement1 = useRef();
+	const midSliderElement2 = useRef();
+	const setShowState = state => {
+		setNavShow(state);
+		setNavMidShow(state);
+	};
+	const { showMenu, setElement } = useDropDownHide(setShowState);
 
 	useEffect(() => {
 		setElement([midSliderElement1.current, midSliderElement2.current]);
 	}, [setElement, midSliderElement1]);
 
 	const handleClick = no => {
-		setNavMidShow(false);
+		setShowState(false);
 		switch (no) {
 			case 1:
 				setNavTextState(styles.browse);
 				break;
 			case 2:
 				setNavTextState(styles.news);
+				break;
+			case 3:
+				setNavTextState(styles.insertGame);
 				break;
 			default:
 				setNavTextState(styles.discover);
@@ -34,13 +40,21 @@ export default function SecondNavMobileLinks() {
 
 	return (
 		<div className={styles.mobileLinks}>
-			<div className={styles.navLinksContainer} ref={midSliderElement1}>
-				<SecondNavLinkLists navMidShow={navMidShow} setNavTextState={handleClick} />
+			<div
+				className={styles.navLinksContainer}
+				ref={midSliderElement1}
+				style={navMidShow ? { visibility: 'visible' } : { visibility: 'hidden' }}
+			>
+				<SecondNavLinkLists
+					id={navMidShow ? 'navShow' : 'navHide'}
+					navMidShow={navMidShow}
+					setNavTextState={handleClick}
+				/>
 			</div>
 			<button
 				className={styles.navLinkToggleButton}
 				onClick={() => {
-					setNavMidShow(prev => !prev);
+					setShowState(prev => !prev);
 					showMenu();
 				}}
 				ref={midSliderElement2}

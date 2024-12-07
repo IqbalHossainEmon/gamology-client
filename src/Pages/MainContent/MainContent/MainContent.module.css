@@ -1,6 +1,9 @@
 .mainContent {
 	width: 100%;
 	height: calc(100vh - 4.5rem);
+	transform: translate3d(0, 0, 0);
+	perspective: 0px;
+	transform-style: flat;
 }
 .main {
 	width: 75%;

@@ -1,11 +1,15 @@
 import SecondNavLinkLists from '../SecondNavDesktopLinks/SecondNavDesktopLinks';
-import SecondNavMobileLinks from '../SecondNavMiddleLinks/SecondNavMobileLinks';
+import SecondNavMobileLinks from '../SecondNavMobileLinks/SecondNavMobileLinks';
 import styles from './SecondNavLeftLinks.module.css';
 
-export default function SecondNavLeftLinks({ screenWidth }) {
+export default function SecondNavLeftLinks({ screenWidth, setNavShow }) {
 	return (
 		<div className={styles.middleLinks}>
-			{screenWidth <= 768 ? <SecondNavMobileLinks /> : <SecondNavLinkLists />}
+			{screenWidth <= 768 ? (
+				<SecondNavMobileLinks {...(screenWidth <= 768 && { setNavShow })} />
+			) : (
+				<SecondNavLinkLists />
+			)}
 		</div>
 	);
 }
