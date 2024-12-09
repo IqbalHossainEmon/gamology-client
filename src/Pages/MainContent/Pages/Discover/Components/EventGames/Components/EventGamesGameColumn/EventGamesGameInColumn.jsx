@@ -3,7 +3,7 @@ import styles from './EventGamesGameInColumn.module.css';
 
 export default function EventGamesGameColumn({ game }) {
 	return (
-		<li className={styles.GameColumn}>
+		<li className={styles.gameColumn}>
 			<div className={styles.gameImage}>
 				<img
 					alt={`${game.name}-${game.id}`}

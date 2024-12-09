@@ -1,30 +1,20 @@
 .ChangeEventButtons {
 	margin: 2rem 1rem;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 }
 .ChangeEventButtons > div {
 	width: 60px;
+	overflow: visible;
 	display: flex;
 	justify-content: space-between;
 }
-.prevBtn {
-	width: 1rem;
-	rotate: -90deg;
-}
-.nextBtn {
-	width: 1rem;
-	rotate: 90deg;
-}
-.middleButton {
-	height: fit-content;
-	display: flex;
-	align-items: center;
-}
+
 .button {
 	background-color: rgb(255, 255, 255);
 	cursor: pointer;
+	margin: 0 0.5rem;
 	padding: 3px;
 	border-radius: 50%;
 	border: 1px solid rgb(0, 0, 0);

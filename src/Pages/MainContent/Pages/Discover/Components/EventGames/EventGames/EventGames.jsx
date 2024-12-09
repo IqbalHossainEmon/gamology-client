@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import ChangeEventButtons from '../Components/ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../Components/EventGamesGamesColumn/EventGamesGamesColumn';
+import StickyChangeButtons from '../Components/StickyChangeButtons/StickyChangeButtons';
 import styles from './EventGames.module.css';
 
 const newGames = [
@@ -43,25 +44,27 @@ export default function EventGames() {
 	const [cardPosition, setCardPosition] = useState(0);
 
 	return (
-		<section className={styles.EventGamesContainer}>
-			<ul
-				className={styles.EventGames}
-				{...(screenWidth < 768 && {
-					style: { translate: `-${100 * cardPosition}%` },
-				})}
-			>
-				{header.map((item, index) => (
-					<GamesColumn
-						bar={index !== header.length - 1}
-						cardPosition={cardPosition}
-						colNum={index}
-						games={newGames}
-						header={item}
-						key={item}
-					/>
-				))}
-			</ul>
-
+		<section className={styles.container}>
+			{screenWidth <= 768 && <StickyChangeButtons setCardPosition={setCardPosition} />}
+			<div className={styles.eventGamesContainer}>
+				<ul
+					className={styles.eventGames}
+					{...(screenWidth < 768 && {
+						style: { translate: `-${100 * cardPosition}%` },
+					})}
+				>
+					{header.map((item, index) => (
+						<GamesColumn
+							bar={index !== header.length - 1}
+							cardPosition={cardPosition}
+							colNum={index}
+							games={newGames}
+							header={item}
+							key={item}
+						/>
+					))}
+				</ul>
+			</div>
 			{screenWidth <= 768 && (
 				<ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
 			)}
