@@ -1,4 +1,4 @@
-.ExploreGames {
+.exploreGames {
 	width: 100%;
 	height: 100vh;
 }
@@ -10,32 +10,46 @@
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
-	clip-path: polygon(0 30%, 100% 0, 100% 70%, 10% 100%);
 	background-repeat: no-repeat;
 	background-origin: border-box;
 	display: flex;
 	align-items: center;
 	position: absolute;
 	left: 0;
+	overflow: hidden;
+	--bars-width: 150%;
+	--bars-height: 150%;
 }
 
-.ExploreTexts {
+.exploreGamesBackground::before {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	right: 0;
+	transform-origin: bottom right;
+	width: var(--bars-width);
+	height: var(--bars-height);
+	rotate: -6deg;
+	background-color: rgb(255, 255, 255);
+}
+
+.exploreTexts {
 	position: absolute;
 	width: 20%;
 	top: 50%;
 	translate: 0 -50%;
 	left: 20%;
 }
-.ExploreTexts h4 {
+.exploreTexts h4 {
 	font-size: 16px;
 	font-weight: 400;
 }
-.ExploreTexts p {
+.exploreTexts p {
 	margin: 1rem 0;
 	font-size: 14px;
 }
 
-.ExploreTexts a {
+.exploreTexts a {
 	position: relative;
 	padding: 1rem 2rem;
 	border-radius: 5px;
@@ -49,29 +63,29 @@
 	border: 1px solid white;
 	font-size: 14px;
 }
-.ExploreTexts a:hover {
+.exploreTexts a:hover {
 	background-color: rgba(0, 0, 0, 0.4);
 	color: white;
 	border: 1px solid white;
 }
-.ExploreTexts a:active {
+.exploreTexts a:active {
 	background-color: rgb(78, 78, 78);
 }
 
 @media only screen and (max-width: 768px) {
-	.ExploreTexts {
+	.exploreTexts {
 		width: 30%;
 		left: 10%;
 	}
 
-	.ExploreTexts h4 {
+	.exploreTexts h4 {
 		font-size: 14px;
 	}
-	.ExploreTexts p,
-	.ExploreTexts a {
+	.exploreTexts p,
+	.exploreTexts a {
 		font-size: 12px;
 	}
-	.ExploreGames {
+	.exploreGames {
 		width: 100%;
 		aspect-ratio: 2/3;
 	}
@@ -82,27 +96,27 @@
 	}
 }
 @media only screen and (max-width: 356px) {
-	.ExploreTexts {
+	.exploreTexts {
 		width: 80%;
 		translate: 0 -40%;
 		left: 10px;
 	}
 }
 @media only screen and (max-width: 267px) {
-	.ExploreTexts a {
+	.exploreTexts a {
 		padding: 0.5rem 1rem;
 	}
 }
 @media only screen and (min-width: 2134px) {
-	.ExploreGames {
+	.exploreGames {
 		aspect-ratio: 5/3;
 	}
 
-	.ExploreTexts h4 {
+	.exploreTexts h4 {
 		font-size: 18px;
 	}
-	.ExploreTexts p,
-	.ExploreTexts a {
+	.exploreTexts p,
+	.exploreTexts a {
 		font-size: 16px;
 	}
 }
