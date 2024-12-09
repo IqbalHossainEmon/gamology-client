@@ -6,7 +6,6 @@
 	cursor: pointer;
 	justify-content: stretch;
 	align-items: stretch;
-	width: 100%;
 }
 
 .gameColumn:hover {
@@ -43,6 +42,7 @@
 @media only screen and (max-width: 768px) {
 	.gameColumn {
 		padding: 0.1rem;
+		margin-right: 0.5rem;
 	}
 	.gameDetails {
 		margin-left: 0.5rem;
