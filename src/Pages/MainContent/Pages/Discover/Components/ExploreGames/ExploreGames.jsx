@@ -19,16 +19,53 @@ export default function ExploreGames() {
 	useEffect(() => {
 		setData(fetched);
 
-		const a = containerRef.current.getBoundingClientRect().width;
-		const b = containerRef.current.getBoundingClientRect().height;
-		const f = a * 0.10510423526567647;
-		const x = Math.ceil(Math.sqrt(a ** 2 + f ** 2));
-		const y = Math.ceil(Math.sqrt((a - x) ** 2 + (b - f) ** 2));
+		const calculateObserver = () => {
+			const mainContainerWidth = containerRef.current.getBoundingClientRect().width;
 
-		containerRef.current.style.setProperty('--bars-width', `${x}px`);
-		containerRef.current.style.setProperty('--bars-height', `${y}px`);
+			let angleDeg;
+			if (mainContainerWidth > 1600) {
+				// Adjust the threshold
+				angleDeg = 4;
+			} else {
+				angleDeg = 4 + (15 - 4) * (1 - mainContainerWidth / 1600); // Linear interpolation
+			}
+			angleDeg = parseFloat(angleDeg.toFixed(2));
+			const rad = angleDeg * (Math.PI / 180);
 
-		console.log(Math.sqrt(a ** 2 + f ** 2), a, y);
+			const lengthOfIntersectionHeight = mainContainerWidth * rad;
+			const widthOfAngledSquare = Math.ceil(
+				Math.sqrt(mainContainerWidth ** 2 + lengthOfIntersectionHeight ** 2)
+			);
+
+			const heightOfAngledSquare = Math.ceil(
+				mainContainerWidth *
+					Math.sin(
+						Math.atan(
+							lengthOfIntersectionHeight /
+								(mainContainerWidth -
+									Math.ceil(
+										lengthOfIntersectionHeight -
+											widthOfAngledSquare * Math.tan(rad)
+									) *
+										Math.tan(rad))
+						)
+					)
+			);
+
+			containerRef.current.style.setProperty('--angle-deg', `${angleDeg}deg`);
+			containerRef.current.style.setProperty(
+				'--bars-height',
+				`${heightOfAngledSquare + 2}px`
+			);
+			containerRef.current.style.setProperty('--bars-width', `${widthOfAngledSquare + 2}px`);
+		};
+
+		const observer = new ResizeObserver(calculateObserver);
+		observer.observe(containerRef.current);
+
+		return () => {
+			observer.disconnect();
+		};
 	}, []);
 
 	return (

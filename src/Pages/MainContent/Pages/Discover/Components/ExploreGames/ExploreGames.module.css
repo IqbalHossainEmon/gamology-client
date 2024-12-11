@@ -19,6 +19,7 @@
 	overflow: hidden;
 	--bars-width: 150%;
 	--bars-height: 150%;
+	--angle-deg: 6deg;
 }
 
 .exploreGamesBackground::before {
@@ -29,8 +30,20 @@
 	transform-origin: bottom right;
 	width: var(--bars-width);
 	height: var(--bars-height);
-	rotate: -6deg;
-	background-color: rgb(255, 255, 255);
+	rotate: calc(-1 * var(--angle-deg));
+	background-color: #121212;
+}
+
+.exploreGamesBackground::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	transform-origin: top left;
+	width: var(--bars-width);
+	height: var(--bars-height);
+	rotate: calc(-1 * var(--angle-deg));
+	background-color: #121212;
 }
 
 .exploreTexts {
