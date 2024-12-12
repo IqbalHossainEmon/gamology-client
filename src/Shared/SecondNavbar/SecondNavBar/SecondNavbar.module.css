@@ -1,5 +1,6 @@
-.SecondNavContainer {
+.secondNavContainer {
 	width: 100%;
+	height: 72px;
 	position: sticky;
 	position: -webkit-sticky;
 	left: 0;
@@ -11,7 +12,7 @@
 	justify-content: center;
 	user-select: none;
 }
-.SecondNavbar {
+.secondNavbar {
 	width: 75vw;
 	position: relative;
 	max-width: 1600px;

@@ -11,8 +11,8 @@ export default function SecondNavbar() {
 	const [navShow, setNavShow] = useState(false);
 
 	return (
-		<section className={styles.SecondNavContainer}>
-			<div className={styles.SecondNavbar}>
+		<section className={styles.secondNavContainer}>
+			<div className={styles.secondNavbar}>
 				<SearchField setNavShow={setNavShow} />
 				<SecondNavLeftLinks
 					{...(screenWidth <= 768 && { setNavShow })}
