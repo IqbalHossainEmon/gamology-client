@@ -70,15 +70,15 @@ export default function ExploreGames() {
 
 	return (
 		<section className={styles.exploreGames}>
-			<div
-				className={styles.exploreGamesBackground}
-				ref={containerRef}
-				style={
-					screenWidth >= 769
-						? { backgroundImage: `url(${fetched.backgroundDesktop})` }
-						: { backgroundImage: `url(${fetched.backgroundPhone})` }
-				}
-			>
+			<div className={styles.exploreGamesBackground} ref={containerRef}>
+				<div
+					className={styles.imageBackground}
+					style={
+						screenWidth >= 769
+							? { backgroundImage: `url(${fetched.backgroundDesktop})` }
+							: { backgroundImage: `url(${fetched.backgroundPhone})` }
+					}
+				/>
 				<div className={styles.exploreTexts}>
 					<h4>{data.heading}</h4>
 					<p>{data.details}</p>
