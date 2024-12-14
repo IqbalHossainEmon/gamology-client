@@ -45,7 +45,7 @@ export default function SortList({ state, setShow, handleChange }) {
 				<li key={link.no}>
 					<button
 						{...(link.name === state.sortBy
-							? { id: styles.active }
+							? { disabled: true }
 							: {
 									onClick: () => {
 										setShow('sort');
@@ -56,7 +56,7 @@ export default function SortList({ state, setShow, handleChange }) {
 										});
 									},
 								})}
-						className={styles.sortButtons}
+						className={`${styles.sortButtons}${link.name === state.sortBy ? ` ${styles.active}` : ''}`}
 						type='button'
 					>
 						{link.name}

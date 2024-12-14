@@ -15,10 +15,10 @@
 	margin-bottom: 5px;
 }
 
-#active {
+.active {
 	color: rgba(255, 255, 255, 0.4);
 }
-#active:hover {
+.active:hover {
 	color: rgba(255, 255, 255, 0.4);
 	cursor: default;
 	text-decoration: none;
@@ -63,10 +63,10 @@
 		height: 1px;
 		background-color: rgb(136, 136, 136);
 	}
-	#active {
+	.active {
 		color: rgba(255, 255, 255, 0.2);
 	}
-	#active:hover {
+	.active:hover {
 		color: rgba(255, 255, 255, 0.2);
 		cursor: default;
 		text-decoration: none;

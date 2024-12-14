@@ -9,10 +9,6 @@
 	perspective-origin: right top;
 	-webkit-overflow-scrolling: touch;
 	position: relative;
-	height: 100%;
-}
-.scrollContainer {
-	transform: none;
-	perspective: none;
-	transform: translateZ(0);
+	max-height: 100%;
+	width: 100%;
 }

@@ -109,3 +109,12 @@ body {
 		background-color: #363636;
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.loading {
+		animation: none;
+	}
+	* {
+		transition: none !important;
+	}
+}
