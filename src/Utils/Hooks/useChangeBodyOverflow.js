@@ -11,7 +11,7 @@ export default function useChangeBodyOverflow() {
 		eventRefs.current = {
 			hideBodyOverflow: () => {
 				root.current.style.overflowY = 'hidden';
-				if (isTouchable) root.current.style.marginRight = '11px';
+				if (!isTouchable()) root.current.style.marginRight = '11px';
 			},
 			showBodyOverflow: () => {
 				root.current.removeAttribute('style');

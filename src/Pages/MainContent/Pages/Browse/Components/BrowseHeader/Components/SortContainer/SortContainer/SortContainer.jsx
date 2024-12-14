@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import ScreenShadow from '../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
+import ScrollBar from '../../../../../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
 import useScreenWidth from '../../../../../../../../../Utils/Hooks/useScreenWidth';
 import useFilterSortState from '../../../../FilterGames/Components/useFilterSortState/useFilterSortState';
 import CloseButton from '../../../../Shared/CloseButton/CloseButton';
@@ -33,13 +34,17 @@ export default function SortContainer({ state, handleChange }) {
 					/>
 				)}
 				{screenWidth < 769 && (
-					<div className={styles.sortLists}>
-						<h2>Sort by</h2>
-						<SortList
-							handleChange={handleChange}
-							setShow={setFilterSort}
-							state={state}
-						/>
+					<div className={styles.sortDropDown}>
+						<ScrollBar>
+							<div className={styles.sortLists}>
+								<h2>Sort by</h2>
+								<SortList
+									handleChange={handleChange}
+									setShow={setFilterSort}
+									state={state}
+								/>
+							</div>
+						</ScrollBar>
 					</div>
 				)}
 				{screenWidth < 769 && (

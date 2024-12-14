@@ -1,5 +1,10 @@
 .sortContainer {
 	position: relative;
+	max-height: 100vh;
+}
+.sortDropDown {
+	height: 100vh;
+	position: relative;
 }
 
 @media only screen and (max-width: 768px) {
