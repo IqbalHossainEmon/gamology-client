@@ -9,7 +9,7 @@ import drawerIcon from '../Components/drawerIcon/drawerIcon';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
 import styles from './Drawer.module.css';
 
-function Drawer() {
+function Drawer({ dashboardBody }) {
 	const [collapse, setCollapse] = useState(false);
 	const [transition, setTransition] = useState(false);
 	const [willScroll, setWillScroll] = useState(false);
@@ -78,11 +78,13 @@ function Drawer() {
 
 		let wasScrolling = false;
 		const parentResizeObserve = new ResizeObserver(([{ target }]) => {
-			if (target.scrollHeight > target.clientHeight) {
+			if (target.scrollHeight + 72 > window.innerHeight) {
 				wasScrolling = true;
 			} else {
 				wasScrolling = false;
 			}
+
+			console.log(wasScrolling, prevWasScrollingRef.current);
 
 			if (wasScrolling !== prevWasScrollingRef.current) {
 				setWillScroll(wasScrolling);
@@ -90,7 +92,7 @@ function Drawer() {
 			}
 		});
 
-		parentResizeObserve.observe(document.getElementById('root'));
+		parentResizeObserve.observe(dashboardBody.current);
 
 		return () => {
 			parentResizeObserve.disconnect();

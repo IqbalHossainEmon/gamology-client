@@ -163,7 +163,6 @@ function ImagePreviewContainer({
 	return (
 		showPreview && (
 			<ImagePreview
-				containerIdName='dashboard-body'
 				containerRef={containerRef}
 				setLoading={setLoading}
 				isShow={show}

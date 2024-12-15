@@ -1,12 +1,13 @@
-import AddGame from '../Components/AddGame/AddGame';
+import { forwardRef } from 'react';
+import EditGameCards from '../Components/Events/EditGameCards/EditGameCards/EditGameCards';
 import styles from './DashboardBody.module.css';
 
-function DashboardBody() {
+function DashboardBody(_, ref) {
 	return (
-		<div className={styles.dashboardBody} id='dashboard-body'>
-			<AddGame />
+		<div className={styles.dashboardBody} ref={ref}>
+			<EditGameCards />
 		</div>
 	);
 }
 
-export default DashboardBody;
+export default forwardRef(DashboardBody);

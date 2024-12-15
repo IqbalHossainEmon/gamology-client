@@ -34,24 +34,27 @@ function ImagePreview({
 
 			img.className = styles.img;
 
-			if (containerIdName) {
-				img.onload = e => {
-					const height = Math.min(window.innerHeight - 10 * 16, e.target.naturalHeight);
+			img.onload = e => {
+				const height = Math.min(window.innerHeight - 10 * 16, e.target.naturalHeight);
 
-					const mainContainer = document.getElementById(containerIdName);
+				let mainContainer;
+				if (containerIdName) {
+					mainContainer = document.getElementById(containerIdName);
+				} else {
+					mainContainer = document.getElementById('root');
+				}
 
-					if (containerRef.current.offsetTop + height > mainContainer.scrollHeight - 72) {
-						setPosition(1);
-						positionRef.current = 1;
-					} else {
-						setPosition(-1);
-						positionRef.current = -1;
-					}
-					setLoading(false);
+				if (containerRef.current.offsetTop + height > mainContainer.scrollHeight - 72) {
+					setPosition(1);
+					positionRef.current = 1;
+				} else {
+					setPosition(-1);
+					positionRef.current = -1;
+				}
+				setLoading(false);
 
-					imgRef.current = img;
-				};
-			}
+				imgRef.current = img;
+			};
 		}
 		return () => {
 			if (isUrlCreated) {
