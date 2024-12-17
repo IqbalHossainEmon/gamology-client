@@ -1,22 +1,19 @@
 .footer {
-	width: 100%;
-	height: 81px;
-	position: sticky;
-	bottom: 0;
+	width: fit-content;
+	height: fit-content;
+	position: fixed;
 	scale: 1 1;
 	overflow: hidden;
 	transition: scale 200ms;
+	transform-origin: left;
+	max-width: 13rem;
+	left: 1rem;
+	bottom: 0.5rem;
+	z-index: 5;
 }
 
 .footerHide {
 	scale: 0 1;
-}
-
-.footerInnerContainer {
-	width: 216px;
-	left: 1rem;
-	bottom: 1rem;
-	position: absolute;
 }
 
 .footerLinks {

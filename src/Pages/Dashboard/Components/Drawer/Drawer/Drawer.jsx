@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
+import useChangeBodyOverflow from '../../../../../Utils/Hooks/useChangeBodyOverflow';
 import useDropDownHide from '../../../../../Utils/Hooks/useDropDownHide';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import DrawerFooter from '../Components/DrawerFooter/DrawerFooter';
@@ -96,6 +97,18 @@ function Drawer() {
 		};
 	}, [setElement]);
 
+	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
+
+	useEffect(() => {
+		if (screenWidth < 1100) {
+			if (collapse) {
+				hideBodyOverflow();
+			} else {
+				showBodyOverflow();
+			}
+		}
+	}, [collapse, hideBodyOverflow, screenWidth, showBodyOverflow]);
+
 	return (
 		<>
 			<div
@@ -117,15 +130,14 @@ function Drawer() {
 				</div>
 				<button
 					title='Collapse Drawer'
-					className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
+					className={`${(screenWidth > 1099 ? collapse : !collapse) ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
 					onClick={eventRefs.current.handleButtonClick}
 					type='button'
 				>
 					<span className={styles.arrowBtn} />
 				</button>
-
-				<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
 			</div>
+			<DrawerFooter collapse={screenWidth > 1099 ? collapse : !collapse} />
 			{screenWidth < 1100 && <ScreenShadow show={collapse} zIndex={1} />}
 		</>
 	);

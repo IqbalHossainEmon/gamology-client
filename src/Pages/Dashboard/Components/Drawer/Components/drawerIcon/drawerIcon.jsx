@@ -196,7 +196,7 @@ export default [
 
 	{
 		id: '0003',
-		name: 'Tags / Category',
+		name: 'Tags / Categories',
 		icon: (
 			<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'>
 				<path
