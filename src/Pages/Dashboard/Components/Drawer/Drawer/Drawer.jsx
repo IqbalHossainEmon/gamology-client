@@ -11,6 +11,8 @@ import styles from './Drawer.module.css';
 function Drawer() {
 	const [collapse, setCollapse] = useState(false);
 	const [transition, setTransition] = useState(false);
+	const [willScroll, setWillScroll] = useState(false);
+
 	const collapseRef = useRef(collapse);
 	collapseRef.current = collapse;
 
@@ -19,11 +21,11 @@ function Drawer() {
 	const screenWidthRef = useRef(screenWidth);
 	screenWidthRef.current = screenWidth;
 
-	const elementRef = useRef(null);
 	const transitionId = useRef(null);
 	const eventRefs = useRef(null);
 
 	const wasDrawerOpen = useRef(false);
+	const drawerRef = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -68,14 +70,37 @@ function Drawer() {
 		}
 	}, [screenWidth]);
 
+	const prevWasScrollingRef = useRef(false);
+
 	useEffect(() => {
-		setElement(elementRef.current);
+		setElement(drawerRef.current);
+
+		let wasScrolling = false;
+		const parentResizeObserve = new ResizeObserver(([{ target }]) => {
+			if (target.scrollHeight > target.clientHeight) {
+				wasScrolling = true;
+			} else {
+				wasScrolling = false;
+			}
+
+			if (wasScrolling !== prevWasScrollingRef.current) {
+				setWillScroll(wasScrolling);
+				prevWasScrollingRef.current = wasScrolling;
+			}
+		});
+
+		parentResizeObserve.observe(document.getElementById('root'));
+
+		return () => {
+			parentResizeObserve.disconnect();
+		};
 	}, [setElement]);
 
 	return (
 		<>
 			<div
-				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}`}
+				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}${willScroll ? ` ${styles.willScroll}` : ''}`}
+				ref={drawerRef}
 			>
 				<div className={styles.drawerOptions}>
 					<ScrollBar showPath={false}>
@@ -90,7 +115,6 @@ function Drawer() {
 						</ul>
 					</ScrollBar>
 				</div>
-				<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
 				<button
 					title='Collapse Drawer'
 					className={`${collapse ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
@@ -99,6 +123,8 @@ function Drawer() {
 				>
 					<span className={styles.arrowBtn} />
 				</button>
+
+				<DrawerFooter collapse={collapse} screenWidth={screenWidth} />
 			</div>
 			{screenWidth < 1100 && <ScreenShadow show={collapse} zIndex={1} />}
 		</>

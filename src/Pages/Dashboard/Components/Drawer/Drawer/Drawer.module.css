@@ -1,15 +1,18 @@
 .drawer {
-	width: 240px;
+	width: 15rem;
 	position: sticky;
 	background-color: #18181c;
 	flex-shrink: 0;
 	padding-top: 2rem;
 	top: 0rem;
 	left: 0px;
-	height: 100vh;
+	height: calc(100vh - 4.5rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+.willScroll {
+	height: 100vh;
 }
 
 .containerTransition {
@@ -120,20 +123,14 @@
 }
 
 @media only screen and (max-width: 1099px) {
-	.drawerContainer {
-		position: fixed;
-		top: 4.5rem;
-		left: 0;
-		max-width: 240px;
-		width: 100%;
-		height: calc(100vh - 4.5rem);
-		background-color: #18181c;
+	.drawer {
+		max-width: 0px;
 		z-index: 3;
-		transform-origin: 0 0;
-		translate: -100%;
+		padding-top: 0rem;
 	}
+
 	.containerTransition {
-		transition: translate 200ms;
+		transition: max-width 200ms;
 	}
 	.arrowBtn::before {
 		rotate: 45deg;
@@ -151,12 +148,10 @@
 		rotate: 45deg;
 		background-image: linear-gradient(to left, #8200ff, #df00ff);
 	}
-	.drawer {
-		width: 100%;
-	}
+
 	.containerCollapse {
+		max-width: 15rem;
 		width: 100%;
-		translate: 0%;
 	}
 
 	.expandedPosition {
