@@ -1,4 +1,4 @@
-import TextField from '../../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import AddTagsUnderCategory from '../AddTagsUnderCategory/AddTagsUnderCategory';
 
 function AddCategoryNameAndTags({ errorRef, errorChange, addInfoRef }) {

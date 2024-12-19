@@ -1,8 +1,10 @@
 import styles from './DrawerFooter.module.css';
 
-function DrawerFooter({ collapse }) {
+function DrawerFooter({ collapse, transition }) {
 	return (
-		<footer className={`${collapse ? `${styles.footerHide} ` : ''}${styles.footer}`}>
+		<footer
+			className={`${collapse ? `${styles.footerHide} ` : ''}${styles.footer}${transition ? ` ${styles.footerTransition}` : ''}`}
+		>
 			<ol className={styles.footerLinks}>
 				{[
 					{ text: 'Privacy Policy', link: 'privacyPolicy' },

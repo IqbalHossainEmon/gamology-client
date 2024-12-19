@@ -1,5 +1,5 @@
 import SelectionField from '../../../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
-import TextField from '../../../../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import styles from './EditUserBodyTextFields.module.css';
 
 function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) {

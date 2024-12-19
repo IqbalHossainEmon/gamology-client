@@ -1,16 +1,11 @@
-import { useRef } from 'react';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './ModalBody.module.css';
 
 function ModalBody({ content, fadeIn, hideModal }) {
-	const elementRef = useRef(null);
-	const parentRef = useRef(null);
-	const childRef = useRef(null);
-
 	return (
-		<div className={`${fadeIn ? `${styles.zoomIn} ` : ''}${styles.modal}`} ref={elementRef}>
-			<div className={styles.modalScrollContainer} ref={parentRef}>
-				<div className={styles.modalContentContainer} ref={childRef}>
+		<div className={`${fadeIn ? `${styles.zoomIn} ` : ''}${styles.modal}`}>
+			<ScrollBar>
+				<div className={styles.modalContentContainer}>
 					<h2 className={styles.header}>{content.title}</h2>
 					<div className={styles.headerQuestion}>{content.body}</div>
 					<div>{content.footer}</div>
@@ -18,8 +13,7 @@ function ModalBody({ content, fadeIn, hideModal }) {
 						<span className={styles.cross} />
 					</button>
 				</div>
-			</div>
-			<ScrollBar childRef={childRef} parentRef={parentRef} mainParentRef={elementRef} />
+			</ScrollBar>
 		</div>
 	);
 }

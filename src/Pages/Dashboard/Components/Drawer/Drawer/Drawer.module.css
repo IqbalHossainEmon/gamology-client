@@ -11,9 +11,6 @@
 	flex-direction: column;
 	justify-content: space-between;
 }
-.willScroll {
-	height: 100vh;
-}
 
 .containerTransition {
 	transition: width 200ms;
@@ -119,7 +116,7 @@
 	.drawerOptions {
 		max-width: 100vw;
 		width: 15rem;
-		height: 100vh;
+		height: calc(100vh - 4.5rem);
 		background-color: #18181c;
 		position: absolute;
 		translate: -100%;
@@ -149,4 +146,7 @@
 	.containerTransition .drawerOptions {
 		transition: translate 200ms;
 	}
+}
+.willScroll {
+	height: 100vh;
 }

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import TextField from '../../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import styles from './AddTagsUnderCategory.module.css';
 
 function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {

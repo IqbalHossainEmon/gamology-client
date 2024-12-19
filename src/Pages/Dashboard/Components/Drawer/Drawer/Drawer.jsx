@@ -84,8 +84,6 @@ function Drawer({ dashboardBody }) {
 				wasScrolling = false;
 			}
 
-			console.log(wasScrolling, prevWasScrollingRef.current);
-
 			if (wasScrolling !== prevWasScrollingRef.current) {
 				setWillScroll(wasScrolling);
 				prevWasScrollingRef.current = wasScrolling;
@@ -97,7 +95,7 @@ function Drawer({ dashboardBody }) {
 		return () => {
 			parentResizeObserve.disconnect();
 		};
-	}, [setElement]);
+	}, [dashboardBody, setElement]);
 
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
@@ -117,7 +115,9 @@ function Drawer({ dashboardBody }) {
 				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}${willScroll ? ` ${styles.willScroll}` : ''}`}
 				ref={drawerRef}
 			>
-				<div className={styles.drawerOptions}>
+				<div
+					className={`${styles.drawerOptions}${willScroll ? ` ${styles.willScroll}` : ''}`}
+				>
 					<ScrollBar showPath={false}>
 						<ul className={styles.optionContainer}>
 							{drawerIcon.map(drawer => (
@@ -139,7 +139,10 @@ function Drawer({ dashboardBody }) {
 					<span className={styles.arrowBtn} />
 				</button>
 			</div>
-			<DrawerFooter collapse={screenWidth > 1099 ? collapse : !collapse} />
+			<DrawerFooter
+				collapse={screenWidth > 1099 ? collapse : !collapse}
+				transition={transition}
+			/>
 			{screenWidth < 1100 && <ScreenShadow show={collapse} zIndex={1} />}
 		</>
 	);

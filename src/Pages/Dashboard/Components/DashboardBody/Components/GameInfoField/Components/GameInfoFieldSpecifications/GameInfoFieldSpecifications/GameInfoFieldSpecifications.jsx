@@ -1,4 +1,4 @@
-import TextField from '../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../Shared/TextField/TextField/TextField';
 import GameInfoFieldSpecificationContainer from '../Components/GameInfoFieldSpecificationContainer/GameInfoFieldSpecificationContainer';
 import GameInfoFieldSpecsLangsSupported from '../Components/GameInfoFieldSpecsLangsSupported/GameInfoFieldSpecsLangsSupported';
 import styles from './GameInfoFieldSpecifications.module.css';

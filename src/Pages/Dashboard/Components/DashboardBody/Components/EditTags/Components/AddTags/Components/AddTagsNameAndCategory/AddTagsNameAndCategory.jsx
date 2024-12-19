@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import TextField from '../../../../../../../../../../Shared/TextField/TextField';
+import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import SelectionFieldWithErrorMessage from '../SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
 
 function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, tags }) {

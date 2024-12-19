@@ -4,12 +4,15 @@
 	position: fixed;
 	scale: 1 1;
 	overflow: hidden;
-	transition: scale 200ms;
 	transform-origin: left;
 	max-width: 13rem;
 	left: 1rem;
 	bottom: 0.5rem;
 	z-index: 5;
+}
+
+.footerTransition {
+	transition: scale 200ms;
 }
 
 .footerHide {
