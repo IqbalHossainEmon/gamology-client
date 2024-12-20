@@ -124,7 +124,7 @@ function AddTags({ tags, setTags }) {
 			setState: val => {
 				switch (val) {
 					case 'Tags':
-						setTagOrCategory('tag');
+						setTagOrCategory('Tags');
 						addInfoRef.current.tag = {
 							name: addInfoRef.current.category?.name
 								? addInfoRef.current.category.name
@@ -136,8 +136,8 @@ function AddTags({ tags, setTags }) {
 						}
 						errorRef.current = { tag: '', category: '' };
 						break;
-					case 'Category':
-						setTagOrCategory('category');
+					case 'Categories':
+						setTagOrCategory('Categories');
 						addInfoRef.current.category = {
 							name: addInfoRef.current.tag?.name || '',
 							tags: [''],
@@ -156,14 +156,13 @@ function AddTags({ tags, setTags }) {
 		};
 	}
 
-	const prevTagOrCategoryRef = useRef('');
-
 	return (
 		<div className={styles.addTags}>
 			<div className={styles.selectionField}>
 				<SelectionField
 					htmlFor='add-what'
-					list={['Tags', 'Category']}
+					list={['Tags', 'Categories']}
+					defaultValue={tagOrCategory}
 					name='Add What'
 					none
 					placeholder='Add What?'

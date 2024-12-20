@@ -1,13 +1,12 @@
-import { forwardRef } from 'react';
 import EditTags from '../Components/EditTags/EditTags/EditTags';
 import styles from './DashboardBody.module.css';
 
-function DashboardBody(_, ref) {
+function DashboardBody() {
 	return (
-		<div className={styles.dashboardBody} ref={ref}>
+		<div className={styles.dashboardBody}>
 			<EditTags />
 		</div>
 	);
 }
 
-export default forwardRef(DashboardBody);
+export default DashboardBody;

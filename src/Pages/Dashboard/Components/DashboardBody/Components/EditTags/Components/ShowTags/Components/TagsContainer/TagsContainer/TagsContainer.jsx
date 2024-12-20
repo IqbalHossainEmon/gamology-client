@@ -36,11 +36,11 @@ function TagsContainer({ tag, setTags }) {
 				setModal({
 					title: 'Delete Category',
 					body: (
-						<>
+						<p>
 							Are you sure you want to delete{' '}
 							<strong className={styles.categoryText}>{tag.category}</strong>{' '}
 							category?
-						</>
+						</p>
 					),
 					footer: (
 						<TagOrCategoryDeleteBody
@@ -67,7 +67,6 @@ function TagsContainer({ tag, setTags }) {
 			},
 			tagDeleteHandler: data => {
 				console.log(data, 'Tag Deleted');
-
 				// Send request to backend to delete tag than delete tag from frontend
 				const checkTags = true;
 				if (checkTags) {

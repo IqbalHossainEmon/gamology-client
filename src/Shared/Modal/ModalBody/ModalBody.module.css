@@ -1,7 +1,8 @@
 .modal {
-	max-width: 100%;
+	max-width: calc(100% - 1rem);
 	max-height: calc(100% - 1rem);
-	position: absolute;
+	width: fit-content;
+	position: fixed;
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
@@ -100,7 +101,7 @@
 
 @media only screen and (max-width: 768px) {
 	.modal {
-		min-width: 90%;
+		width: max-content;
 	}
 }
 @media only screen and (max-width: 364px) {

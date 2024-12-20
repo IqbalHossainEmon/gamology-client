@@ -18,7 +18,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					errorMessage={checkText.errorMessage}
 					field='input'
 					htmlFor='TagOrCategoryDelete'
-					placeholder={"Type 'DELETE' to confirm"}
+					placeholder="Type 'DELETE' to confirm"
 					setState={val => {
 						checkText.current = val;
 					}}

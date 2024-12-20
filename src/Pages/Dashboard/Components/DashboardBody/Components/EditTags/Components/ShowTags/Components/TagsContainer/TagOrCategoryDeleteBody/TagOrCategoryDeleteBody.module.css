@@ -1,6 +1,9 @@
 .modalBody {
 	margin-top: 1rem;
 }
+.modalBody p {
+	line-break: loose;
+}
 .btnContainer {
 	width: 100%;
 	display: flex;
@@ -24,4 +27,27 @@
 	position: relative;
 	margin-left: auto;
 	display: inline-block;
+}
+
+@media screen and (min-width: 1701px) {
+	.modalBody p {
+		max-width: 30vw;
+	}
+}
+
+@media screen and (max-width: 1700px) and (min-width: 1225px) {
+	.modalBody p {
+		max-width: 40vw;
+	}
+}
+@media screen and (max-width: 1224px) and (min-width: 1000px) {
+	.modalBody p {
+		max-width: 65vw;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.modalBody p {
+		max-width: 80vw;
+	}
 }

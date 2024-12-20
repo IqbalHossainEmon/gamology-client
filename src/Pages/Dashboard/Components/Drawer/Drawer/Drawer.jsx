@@ -9,7 +9,7 @@ import drawerIcon from '../Components/drawerIcon/drawerIcon';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
 import styles from './Drawer.module.css';
 
-function Drawer({ dashboardBody }) {
+function Drawer() {
 	const [collapse, setCollapse] = useState(false);
 	const [transition, setTransition] = useState(false);
 	const [willScroll, setWillScroll] = useState(false);
@@ -90,12 +90,12 @@ function Drawer({ dashboardBody }) {
 			}
 		});
 
-		parentResizeObserve.observe(dashboardBody.current);
+		parentResizeObserve.observe(document.getElementById('root'));
 
 		return () => {
 			parentResizeObserve.disconnect();
 		};
-	}, [dashboardBody, setElement]);
+	}, [setElement]);
 
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 

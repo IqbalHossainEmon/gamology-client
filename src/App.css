@@ -76,7 +76,6 @@ body {
 
 .scroll-style {
 	overflow-y: scroll;
-	transition: padding 200ms;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -120,4 +119,12 @@ body {
 	.scroll-style:hover {
 		scrollbar-color: #474747 transparent;
 	}
+}
+
+.scrollbar-replace-padding {
+	padding-right: 8px;
+}
+
+.overflow-y-hidden {
+	overflow-y: hidden;
 }

@@ -8,8 +8,6 @@ import RotateArrow from '../../RotateArrow/RotateArrow';
 import SelectionFieldList from '../SelectionFieldList/SelectionFieldList';
 import styles from './SelectionField.module.css';
 
-const span = document.createElement('span');
-
 export default function SelectionField({
 	placeholder = 'Type',
 	className,
@@ -34,6 +32,12 @@ export default function SelectionField({
 	const containerRef = useRef(null);
 	const inputRef = useRef(null);
 	const positionRef = useRef({ height: 0, bottom: true });
+
+	useEffect(() => {
+		if (valueRef.current !== defaultValue) {
+			setValue(defaultValue);
+		}
+	}, [defaultValue]);
 
 	const screenWidth = useScreenWidth();
 
@@ -88,7 +92,6 @@ export default function SelectionField({
 		const input = inputRef.current;
 
 		if (input) {
-			span.style.font = window.getComputedStyle(input).font;
 			setWidth(calculateTextWidth(defaultValue, '16px Inter'));
 		}
 	}, [calculateTextWidth, defaultValue, placeholder, setTooltip]);

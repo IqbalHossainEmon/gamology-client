@@ -17,9 +17,9 @@ function AddTagsOrCategories({
 }) {
 	return (
 		<>
-			<h3 className={styles.addHeader}>Add {tagOrCategory ? 'Tag' : 'Category'}</h3>
+			<h3 className={styles.addHeader}>Add {tagOrCategory ? 'Tags' : 'Category'}</h3>
 			<div>
-				{tagOrCategory === 'tag' ? (
+				{tagOrCategory === 'Tags' ? (
 					<AddTagsNameAndCategory
 						addInfoRef={addInfoRef}
 						errorChange={errorChange}
