@@ -5,51 +5,47 @@ import styles from './EditTags.module.css';
 
 const data = [
 	{
-		id: 0,
 		category: 'Genre',
-		optionList: [
-			{ id: 0, text: 'Action', filter: 'action' },
-			{ id: 1, text: 'Adventure', filter: 'adventure' },
-			{ id: 2, text: 'Racing', filter: 'racing' },
-			{ id: 3, text: 'Shooter', filter: 'shooter' },
-			{ id: 4, text: 'Role-playing', filter: 'rolePlaying' },
-			{ id: 5, text: 'Sports', filter: 'sports' },
-			{ id: 6, text: 'Strategy', filter: 'strategy' },
-			{ id: 7, text: 'Simulation', filter: 'simulation' },
+		tags: [
+			{ tag: 'Action' },
+			{ tag: 'Adventure' },
+			{ tag: 'Racing' },
+			{ tag: 'Shooter' },
+			{ tag: 'Role-playing' },
+			{ tag: 'Sports' },
+			{ tag: 'Strategy' },
+			{ tag: 'Simulation' },
 		],
 	},
 	{
-		id: 1,
 		category: 'Features',
-		optionList: [
-			{ id: 0, text: 'Single-player', filter: 'singlePlayer' },
-			{ id: 1, text: 'Multi-player', filter: 'multiPlayer' },
-			{ id: 2, text: 'Co-op', filter: 'coOp' },
-			{ id: 3, text: 'Achievements', filter: 'achievements' },
-			{ id: 4, text: 'Leader Boards', filter: 'leaderBoards' },
+		tags: [
+			{ tag: 'Single-player' },
+			{ tag: 'Multi-player' },
+			{ tag: 'Co-op' },
+			{ tag: 'Achievements' },
+			{ tag: 'Leader Boards' },
 			{
-				id: 5,
-				text: 'Controller support',
-				filter: 'controllerSupport',
+				tag: 'Controller support',
 			},
-			{ id: 6, text: 'Cloud saves', filter: 'cloudSaves' },
-			{ id: 7, text: 'Overlay', filter: 'overlay' },
+			{ tag: 'Cloud saves' },
+			{ tag: 'Overlay' },
 		],
 	},
 ];
 
 function EditTags() {
-	const [tags, setTags] = useState([]);
+	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
-		setTags(data);
+		setCategories(data);
 	}, []);
 
 	return (
 		<div className={styles.addTags}>
 			<h2 className={styles.tagsHeader}>Tags</h2>
-			<ShowCategoryTags setTags={setTags} tags={tags} />
-			<AddTags setTags={setTags} tags={tags} />
+			<ShowCategoryTags setCategories={setCategories} categories={categories} />
+			<AddTags setCategories={setCategories} categories={categories} />
 		</div>
 	);
 }

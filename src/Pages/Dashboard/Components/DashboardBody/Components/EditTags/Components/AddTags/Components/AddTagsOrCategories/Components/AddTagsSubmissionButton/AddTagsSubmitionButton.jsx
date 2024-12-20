@@ -31,7 +31,7 @@ function AddTagsSubmissionButton({
 				if (handleValidation()) {
 					setTags(prev => {
 						const newPrev = cloneObject(prev);
-						if (tagOrCategory.current) {
+						if (tagOrCategory.current === 'Tags') {
 							const index = newPrev.findIndex(
 								category => category.category === addInfoRef.current.tag.category
 							);
@@ -61,8 +61,9 @@ function AddTagsSubmissionButton({
 								})),
 							});
 						}
+						console.log(areObjectsEqual(newPrev, prev));
 
-						return areObjectsEqual(newPrev, prev) ? newPrev : prev;
+						return areObjectsEqual(newPrev, prev) ? prev : newPrev;
 					});
 					setNone();
 					return;

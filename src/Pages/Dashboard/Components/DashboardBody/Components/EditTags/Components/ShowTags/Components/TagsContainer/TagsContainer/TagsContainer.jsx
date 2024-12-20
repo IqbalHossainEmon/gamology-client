@@ -4,12 +4,7 @@ import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
 
-function capitalizeFirstLetter(string) {
-	if (!string) return '';
-	return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function TagsContainer({ tag, setTags }) {
+function TagsContainer({ tags, setTags }) {
 	const setModal = useModal();
 
 	const eventRefs = useRef(null);
@@ -18,70 +13,25 @@ function TagsContainer({ tag, setTags }) {
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			categoryDeleteHandler: () => {
-				console.log(tag.category, 'Category Deleted');
-				const checkTags = true;
-				if (checkTags) {
-					setToast({
-						title: 'Category Deleted',
-						message: `${capitalizeFirstLetter(tag.category)} category has been deleted.`,
-						type: 'success',
-					});
-					setTags(prevTags =>
-						prevTags.filter(prevTag => prevTag.category !== tag.category)
-					);
-				}
-			},
-			handleCategoryDelete: () => {
-				setModal({
-					title: 'Delete Category',
-					body: (
-						<p>
-							Are you sure you want to delete{' '}
-							<strong className={styles.categoryText}>{tag.category}</strong>{' '}
-							category?
-						</p>
-					),
-					footer: (
-						<TagOrCategoryDeleteBody
-							handleHide={() =>
-								setModal({
-									title: null,
-									body: null,
-									footer: null,
-								})
-							}
-							handler={eventRefs.current.categoryDeleteHandler}
-							text={
-								<>
-									All tags under{' '}
-									<strong className={styles.categoryText}>{tag.category}</strong>{' '}
-									category will be deleted. All Games that has tags under the{' '}
-									<strong className={styles.categoryText}>{tag.category}</strong>{' '}
-									category will be effected.
-								</>
-							}
-						/>
-					),
-				});
-			},
+			// This function is used to delete the tag first request to backend to delete tag than delete tag from frontend
 			tagDeleteHandler: data => {
 				console.log(data, 'Tag Deleted');
 				// Send request to backend to delete tag than delete tag from frontend
 				const checkTags = true;
 				if (checkTags) {
+					// if tag is deleted successfully than show toast message and delete tag from frontend
 					setToast({
 						title: 'Tag Deleted',
-						message: `${capitalizeFirstLetter(data)} tag has been deleted.`,
+						message: `${data} tag has been deleted.`,
 						type: 'success',
 					});
 					setTags(prevTags =>
 						prevTags.map(prevTag => {
-							if (prevTag.category === tag.category) {
+							if (prevTag.category === tags.category) {
 								return {
 									...prevTag,
 									optionList: prevTag.optionList.filter(
-										option => option.filter !== data
+										option => option.text !== data
 									),
 								};
 							}
@@ -90,7 +40,8 @@ function TagsContainer({ tag, setTags }) {
 					);
 				}
 			},
-			handleTagDelete: (text, data) => {
+			// This function is used to show modal to confirm the tag deletion
+			handleTagDelete: text => {
 				setModal({
 					title: 'Delete Tag',
 					body: (
@@ -108,7 +59,7 @@ function TagsContainer({ tag, setTags }) {
 									footer: null,
 								})
 							}
-							handler={() => eventRefs.current.tagDeleteHandler(data)}
+							handler={() => eventRefs.current.tagDeleteHandler(text)}
 							text={
 								<>
 									All Games that has{' '}
@@ -123,34 +74,20 @@ function TagsContainer({ tag, setTags }) {
 		};
 	}
 	return (
-		<div className={styles.tag}>
-			<div className={styles.tagHeader}>
-				<h3>{tag.category}</h3>
-				<button
-					className={styles.crossBtn}
-					onClick={eventRefs.current.handleCategoryDelete}
-					type='button'
-				>
-					<strong className={styles.cross} />
-				</button>
-			</div>
-			<ul className={styles.tagList}>
-				{tag.optionList.map(option => (
-					<li className={styles.tagListItem} key={option.id}>
-						<p className={styles.tagItem}>{option.text}</p>
-						<button
-							className={styles.crossBtn}
-							onClick={() =>
-								eventRefs.current.handleTagDelete(option.text, option.filter)
-							}
-							type='button'
-						>
-							<strong className={styles.cross} />
-						</button>
-					</li>
-				))}
-			</ul>
-		</div>
+		<ul className={styles.tags}>
+			{tags.map(option => (
+				<li className={styles.tag} key={option.tag}>
+					<p className={styles.tagName}>{option.tag}</p>
+					<button
+						className={styles.crossBtn}
+						onClick={() => eventRefs.current.handleTagDelete(option.tag)}
+						type='button'
+					>
+						<strong className={styles.cross} />
+					</button>
+				</li>
+			))}
+		</ul>
 	);
 }
 export default TagsContainer;

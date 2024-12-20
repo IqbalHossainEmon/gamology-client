@@ -116,19 +116,21 @@ function Drawer() {
 				ref={drawerRef}
 			>
 				<div
-					className={`${styles.drawerOptions}${willScroll ? ` ${styles.willScroll}` : ''}`}
+					className={`${styles.drawerOptions}${screenWidth < 1100 && willScroll ? ` ${styles.willScroll}` : ''}`}
 				>
-					<ScrollBar showPath={false}>
-						<ul className={styles.optionContainer}>
-							{drawerIcon.map(drawer => (
-								<DrawerOptions
-									{...(screenWidth > 1099 && { parentState: collapse })}
-									key={drawer.id}
-									option={drawer}
-								/>
-							))}
-						</ul>
-					</ScrollBar>
+					<div className={styles.optionContainer}>
+						<ScrollBar showPath={false}>
+							<ul className={styles.options}>
+								{drawerIcon.map(drawer => (
+									<DrawerOptions
+										{...(screenWidth > 1099 && { parentState: collapse })}
+										key={drawer.id}
+										option={drawer}
+									/>
+								))}
+							</ul>
+						</ScrollBar>
+					</div>
 				</div>
 				<button
 					title='Collapse Drawer'
