@@ -5,35 +5,30 @@ import styles from './GameInfoFieldTags.module.css';
 
 const data = [
 	{
-		id: 0,
 		category: 'Genre',
-		optionList: [
-			{ id: 0, text: 'Action', filter: 'action' },
-			{ id: 1, text: 'Adventure', filter: 'adventure' },
-			{ id: 2, text: 'Racing', filter: 'racing' },
-			{ id: 3, text: 'Shooter', filter: 'shooter' },
-			{ id: 4, text: 'Role-playing', filter: 'rolePlaying' },
-			{ id: 5, text: 'Sports', filter: 'sports' },
-			{ id: 6, text: 'Strategy', filter: 'strategy' },
-			{ id: 7, text: 'Simulation', filter: 'simulation' },
+		tags: [
+			'Action',
+			'Adventure',
+			'Racing',
+			'Shooter',
+			'Role-playing',
+			'Sports',
+			'Strategy',
+			'Simulation',
 		],
 	},
 	{
-		id: 1,
 		category: 'Features',
-		optionList: [
-			{ id: 0, text: 'Single-player', filter: 'singlePlayer' },
-			{ id: 1, text: 'Multi-player', filter: 'multiPlayer' },
-			{ id: 2, text: 'Co-op', filter: 'coOp' },
-			{ id: 3, text: 'Achievements', filter: 'achievements' },
-			{ id: 4, text: 'Leader Boards', filter: 'leaderBoards' },
-			{
-				id: 5,
-				text: 'Controller support',
-				filter: 'controllerSupport',
-			},
-			{ id: 6, text: 'Cloud saves', filter: 'cloudSaves' },
-			{ id: 7, text: 'Overlay', filter: 'overlay' },
+		tags: [
+			'Single-player',
+			'Multi-player',
+			'Co-op',
+			'Achievements',
+			'Leader Boards',
+			'Controller support',
+			'controllerSupport',
+			'Cloud saves',
+			'Overlay',
 		],
 	},
 ];
@@ -47,19 +42,19 @@ export default function GameInfoFieldTags({
 	defaultReleaseDate,
 	defaultPrice,
 }) {
-	const [options, setOptions] = useState([]);
+	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
-		setOptions(data);
+		setCategories(data);
 	}, []);
 
-	const getInitialState = (list, category) => {
+	const getInitialState = (tags, category) => {
 		const initialState = {};
-		list.forEach(option => {
-			if (hasDefault && Object.hasOwn(defaultGameTags[category], option.filter)) {
-				initialState[option.filter] = true;
+		tags.forEach(tag => {
+			if (hasDefault && defaultGameTags[category][tag]) {
+				initialState[tag] = true;
 			} else {
-				initialState[option.filter] = false;
+				initialState[tag] = false;
 			}
 		});
 		return initialState;
@@ -68,15 +63,15 @@ export default function GameInfoFieldTags({
 		<section className={styles.addGameTags}>
 			<h3 className={styles.header}>{hasDefault ? 'Edit' : 'Add'} Game&apos;s tags</h3>
 			<div className={styles.optionsContainer}>
-				{options.map(option => (
-					<div className={styles.options} key={option.id}>
+				{categories.map(category => (
+					<div className={styles.options} key={category.category}>
 						<OptionsContainer
 							errorChange={errorChange}
-							errorMessage={errorMessages.current.gameTagsError[option.category]}
+							errorMessage={errorMessages.current.gameTagsError[category.category]}
 							gameTags={gameData}
-							initialState={getInitialState(option.optionList, option.category)}
-							options={option.optionList}
-							title={option.category}
+							initialState={getInitialState(category.tags, category.category)}
+							tags={category.tags}
+							title={category.category}
 						/>
 					</div>
 				))}

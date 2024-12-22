@@ -302,12 +302,12 @@ const data = {
 	},
 	gameTags: {
 		Genre: {
-			action: true,
-			adventure: true,
-			rolePlaying: true,
+			Action: true,
+			Adventure: true,
+			'Role-playing': true,
 		},
 		Features: {
-			singlePlayer: true,
+			'Single-player': true,
 		},
 	},
 };

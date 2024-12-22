@@ -7,7 +7,7 @@ function FilterOptionList({ options, state, setState, limits }) {
 		<div className={styles.filterOptionList}>
 			{options.map(option => (
 				<FilterOptions
-					key={option.id}
+					key={option.category}
 					limits={limits}
 					option={option}
 					setState={setState}

@@ -5,14 +5,14 @@ import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({ option, state, setState, limits = {} }) {
-	const { title, optionList } = option;
+	const { category, type, tags } = option;
 
-	const body = optionList.map((op, i) => {
-		switch (op.type) {
+	const body = tags.map((op, i) => {
+		switch (type) {
 			case 'switch':
 				return (
 					<FilterOption
-						border={i !== optionList.length - 1}
+						border={i !== tags.length - 1}
 						key={op.id}
 						name={op.filter}
 						setState={setState}
@@ -36,8 +36,8 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
 
 	return (
 		<div className={styles.filterOptions}>
-			{title ? (
-				<Menu Title={MenuTitle} defaultOpen titleParams={{ name: title, noHover: true }}>
+			{category ? (
+				<Menu Title={MenuTitle} defaultOpen titleParams={{ name: category, noHover: true }}>
 					{body}
 				</Menu>
 			) : (

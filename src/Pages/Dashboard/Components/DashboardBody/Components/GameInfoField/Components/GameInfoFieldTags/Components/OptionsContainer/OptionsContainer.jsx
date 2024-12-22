@@ -5,7 +5,7 @@ import styles from './OptionsContainer.module.css';
 
 export default function OptionsContainer({
 	title,
-	options,
+	tags,
 	gameTags,
 	initialState = {},
 	errorChange,
@@ -48,14 +48,14 @@ export default function OptionsContainer({
 		<div className={styles.optionsContainer}>
 			<h4>{title}</h4>
 			<ul>
-				{options.map((option, i) => (
+				{tags.map((tag, i) => (
 					<FilterOption
-						border={options.length - 1 !== i}
-						key={option.id}
-						name={option.filter}
+						border={tags.length - 1 !== i}
+						key={tag}
+						name={tag}
 						setState={eventRef.current.setState}
-						state={optionSates[option.filter]}
-						text={option.text}
+						state={optionSates[tag]}
+						text={tag}
 					/>
 				))}
 			</ul>
