@@ -3,9 +3,9 @@ import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../Utils/Hooks/useToast';
 import TagOrCategoryDeleteBody from '../Components/TagsContainer/TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import TagsContainer from '../Components/TagsContainer/TagsContainer/TagsContainer';
-import styles from './ShowCategoryTags.module.css';
+import styles from './ShowCategoriesTags.module.css';
 
-function ShowCategoryTags({ categories, setCategories }) {
+function ShowCategoriesTags({ categories, setCategories }) {
 	const eventRefs = useRef(null);
 
 	const setModal = useModal();
@@ -24,9 +24,7 @@ function ShowCategoryTags({ categories, setCategories }) {
 						message: `${category} category has been deleted.`,
 						type: 'success',
 					});
-					setCategories(prevTags =>
-						prevTags.filter(prevTag => prevTag.category !== category)
-					);
+					setCategories(prev => prev.filter(prevTag => prevTag.category !== category));
 				}
 			},
 			// This function is used to show modal to confirm the category deletion
@@ -42,7 +40,7 @@ function ShowCategoryTags({ categories, setCategories }) {
 					footer: (
 						<TagOrCategoryDeleteBody
 							handleHide={() =>
-								setCategories({
+								setModal({
 									title: null,
 									body: null,
 									footer: null,
@@ -87,4 +85,4 @@ function ShowCategoryTags({ categories, setCategories }) {
 		</div>
 	);
 }
-export default ShowCategoryTags;
+export default ShowCategoriesTags;

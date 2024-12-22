@@ -7,7 +7,7 @@ import styles from './AddTagsSubmissionButton.module.css';
 function AddTagsSubmissionButton({
 	addInfoRef,
 	handleValidation,
-	setTags,
+	setCategories,
 	tagOrCategory,
 	setErrorChange,
 	setNone,
@@ -22,14 +22,10 @@ function AddTagsSubmissionButton({
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			// LowerCase first letter of the string and remove (-) and space and make it camelCase and return it
-			camelCase: str => {
-				const newStr = str.toLowerCase();
-				return newStr.replace(/[- ]/g, '').replace(/^[a-z]/, newStr[0].toLowerCase());
-			},
 			handleButtonClick: () => {
 				if (handleValidation()) {
-					setTags(prev => {
+					// if tag or category is valid than add tag or category to the tags
+					setCategories(prev => {
 						const newPrev = cloneObject(prev);
 						if (tagOrCategory.current === 'Tags') {
 							const index = newPrev.findIndex(
@@ -40,11 +36,7 @@ function AddTagsSubmissionButton({
 								message: `${addInfoRef.current.tag.name} Added to ${addInfoRef.current.tag.category}`,
 								type: 'success',
 							});
-							newPrev[index].optionList.push({
-								text: addInfoRef.current.tag.name,
-								filter: eventRefs.current.camelCase(addInfoRef.current.tag.name),
-								id: newPrev[index].optionList.length,
-							});
+							newPrev[index].tags.push(addInfoRef.current.tag.name);
 						} else {
 							setToast({
 								title: 'Category Added',
@@ -52,13 +44,8 @@ function AddTagsSubmissionButton({
 								type: 'success',
 							});
 							newPrev.push({
-								id: newPrev.length,
 								category: addInfoRef.current.category.name,
-								optionList: addInfoRef.current.category.tags.map((tag, i) => ({
-									id: i,
-									text: tag,
-									filter: eventRefs.current.camelCase(tag),
-								})),
+								tags: [...addInfoRef.current.category.tags],
 							});
 						}
 						console.log(areObjectsEqual(newPrev, prev));

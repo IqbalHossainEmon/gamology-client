@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import SelectionFieldWithErrorMessage from '../SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
 
-function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, tags }) {
+function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, categories }) {
 	const [parentErrorShow, setParentErrorShow] = useState(true);
 	const parentErrorShowRef = useRef(errorChange);
 	parentErrorShowRef.current = parentErrorShow;
@@ -39,7 +39,7 @@ function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, tags }) {
 				errorMessage={errorRef.current.category}
 				handleCheck={handleCheck}
 				htmlFor='category'
-				list={tags.map(tag => tag.category)}
+				list={categories.map(category => category.category)}
 				name='category'
 				placeholder='Select Category'
 				setState={val => {

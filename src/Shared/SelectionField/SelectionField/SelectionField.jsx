@@ -52,16 +52,17 @@ export default function SelectionField({
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
+			// Check the position of the dropdown and set the height of the dropdown
 			handleClick: () => {
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
-
+				// Check if the dropdown should be at the bottom or top depending on the space available for 2 rows (each row is 40px)
 				if (bottomRemain >= 80 || y < 80) {
 					positionRef.current.bottom = true;
 				} else {
 					positionRef.current.bottom = false;
 				}
-
+				// get the height of the dropdown depending on the number of items in the dropdown
 				if (none ? list.length + 1 : list.length > 8) {
 					positionRef.current.height = Math.min(
 						parseInt((positionRef.current.bottom ? bottomRemain : y) / 40, 10) * 40,
@@ -79,6 +80,7 @@ export default function SelectionField({
 	const isAdded = useRef(false);
 
 	useEffect(() => {
+		// Check if the text is overflowing the container and add tooltip
 		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
 			setTooltip(elementRef.current, value);
 			isAdded.current = true;
@@ -92,6 +94,7 @@ export default function SelectionField({
 		const input = inputRef.current;
 
 		if (input) {
+			// Set the width of the input field depending on the text
 			setWidth(calculateTextWidth(defaultValue, '16px Inter'));
 		}
 	}, [calculateTextWidth, defaultValue, placeholder, setTooltip]);

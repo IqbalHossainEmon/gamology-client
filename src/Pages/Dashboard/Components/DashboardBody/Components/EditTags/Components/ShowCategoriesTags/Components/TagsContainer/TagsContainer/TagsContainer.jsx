@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
+import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
 import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import styles from './TagsContainer.module.css';
@@ -10,6 +11,8 @@ function TagsContainer({ tags, setTags }) {
 	const eventRefs = useRef(null);
 
 	const { setToast } = useToast();
+
+	const { cloneObject } = useObjectUtilities();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -25,17 +28,14 @@ function TagsContainer({ tags, setTags }) {
 						message: `${data} tag has been deleted.`,
 						type: 'success',
 					});
-					setTags(prevTags =>
-						prevTags.map(prevTag => {
-							if (prevTag.category === tags.category) {
-								return {
-									...prevTag,
-									optionList: prevTag.optionList.filter(
-										option => option.text !== data
-									),
-								};
+					setTags(prevCategories =>
+						prevCategories.map(prevCategory => {
+							if (prevCategory.tags.includes(data)) {
+								const newCategory = cloneObject(prevCategory);
+								newCategory.tags = newCategory.tags.filter(tag => tag !== data);
+								return newCategory;
 							}
-							return prevTag;
+							return prevCategory;
 						})
 					);
 				}
@@ -75,12 +75,12 @@ function TagsContainer({ tags, setTags }) {
 	}
 	return (
 		<ul className={styles.tags}>
-			{tags.map(option => (
-				<li className={styles.tag} key={option.tag}>
-					<p className={styles.tagName}>{option.tag}</p>
+			{tags.map(tag => (
+				<li className={styles.tag} key={tag}>
+					<p className={styles.tagName}>{tag}</p>
 					<button
 						className={styles.crossBtn}
-						onClick={() => eventRefs.current.handleTagDelete(option.tag)}
+						onClick={() => eventRefs.current.handleTagDelete(tag)}
 						type='button'
 					>
 						<strong className={styles.cross} />

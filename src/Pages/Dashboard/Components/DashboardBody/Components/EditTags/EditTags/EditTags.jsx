@@ -1,35 +1,33 @@
 import { useEffect, useState } from 'react';
 import AddTags from '../Components/AddTags/AddTags/AddTags';
-import ShowCategoryTags from '../Components/ShowTags/ShowCategoryTags/ShowCategoryTags';
+import ShowCategoriesTags from '../Components/ShowCategoriesTags/ShowCategoriesTags/ShowCategoriesTags';
 import styles from './EditTags.module.css';
 
 const data = [
 	{
 		category: 'Genre',
 		tags: [
-			{ tag: 'Action' },
-			{ tag: 'Adventure' },
-			{ tag: 'Racing' },
-			{ tag: 'Shooter' },
-			{ tag: 'Role-playing' },
-			{ tag: 'Sports' },
-			{ tag: 'Strategy' },
-			{ tag: 'Simulation' },
+			'Action',
+			'Adventure',
+			'Racing',
+			'Shooter',
+			'Role-playing',
+			'Sports',
+			'Strategy',
+			'Simulation',
 		],
 	},
 	{
 		category: 'Features',
 		tags: [
-			{ tag: 'Single-player' },
-			{ tag: 'Multi-player' },
-			{ tag: 'Co-op' },
-			{ tag: 'Achievements' },
-			{ tag: 'Leader Boards' },
-			{
-				tag: 'Controller support',
-			},
-			{ tag: 'Cloud saves' },
-			{ tag: 'Overlay' },
+			'Single-player',
+			'Multi-player',
+			'Co-op',
+			'Achievements',
+			'Leader Boards',
+			'Controller support',
+			'Cloud saves',
+			'Overlay',
 		],
 	},
 ];
@@ -44,7 +42,7 @@ function EditTags() {
 	return (
 		<div className={styles.addTags}>
 			<h2 className={styles.tagsHeader}>Tags</h2>
-			<ShowCategoryTags setCategories={setCategories} categories={categories} />
+			<ShowCategoriesTags setCategories={setCategories} categories={categories} />
 			<AddTags setCategories={setCategories} categories={categories} />
 		</div>
 	);

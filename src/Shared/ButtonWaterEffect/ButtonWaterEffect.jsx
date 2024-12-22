@@ -11,26 +11,35 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			removeWaterDrop: () => {
+				// Remove the first element after the animation is completed
 				setTimeout(
 					() => {
-						setEle(e => e.slice(1));
+						setEle(e => {
+							// If there is only one element in the array then set the key to 0
+							if (e.length === 1) key.current = 0;
+							return e.slice(1);
+						});
 					},
 					long ? 1550 : 750
 				);
 			},
-
+			// Handle the click event on the button
 			handleClick: e => {
+				// get the x and y coordinates of the click event
 				let x =
 					(e.touches ? e.touches[0].clientX : e.clientX) -
 					btnRef.current.getBoundingClientRect().left;
 				let y =
 					(e.touches ? e.touches[0].clientY : e.clientY) -
 					btnRef.current.getBoundingClientRect().top;
+
+				// get the width and height of the button
 				const width = btnRef.current.offsetWidth;
 				const height = btnRef.current.offsetHeight;
 				const halfWidth = width / 2;
 				const halfHeight = height / 2;
 
+				// if the click event is outside the button then set the x and y coordinates to the center of the button
 				if (x < -2 || y < -2) {
 					x = halfWidth;
 					y = halfHeight;
@@ -38,6 +47,7 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 
 				let length;
 
+				// calculate the distance of the click event from the center of the button
 				if (x <= halfWidth && y <= halfHeight) {
 					length = Math.sqrt((width - x) ** 2 + (height - y) ** 2);
 				} else if (x > halfWidth && y < halfHeight) {
