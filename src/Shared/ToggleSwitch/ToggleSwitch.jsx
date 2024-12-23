@@ -40,7 +40,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleMove: e => {
-				document.removeEventListener('mouseup', event);
+				if (event) event();
 
 				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
 				const newPosition = startPositionRef.current + move;
@@ -133,7 +133,7 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 						onMouseDown={eventRefs.current.handleBeginning}
 						onTouchStart={eventRefs.current.handleBeginning}
 						role='switch'
-						aria-checked={mainStateRef.current}
+						aria-checked={state}
 						tabIndex='0'
 					/>
 				</div>

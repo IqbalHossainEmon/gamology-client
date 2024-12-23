@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import useChangeBodyOverflow from '../../../../../../Utils/Hooks/useChangeBodyOverflow';
+import useDropDownHide from '../../../../../../Utils/Hooks/useDropDownHide';
+import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
 import {
 	FilterSortContext,
 	FilterSortRefContext,
 	SetFilterSortContext,
 } from '../Contexts/FilterSortContext';
-import useChangeBodyOverflow from '../Hooks/useChangeBodyOverflow';
-import useDropDownHide from '../Hooks/useDropDownHide';
-import useScreenWidth from '../Hooks/useScreenWidth';
 
 const withFilterSortProvider = Component =>
 	function InnerComponent() {
@@ -14,7 +14,7 @@ const withFilterSortProvider = Component =>
 			filter: true,
 			sort: true,
 		});
-		const filterSortElementRef = useRef();
+		const filterSortElementRef = useRef({});
 
 		const filterSortStateRef = useRef(filterSortState);
 		filterSortStateRef.current = filterSortState;
@@ -25,11 +25,14 @@ const withFilterSortProvider = Component =>
 		useEffect(() => {
 			if (
 				screenWidth < 769 &&
-				(!filterSortStateRef.current.sort || !filterSortStateRef.current.filter)
+				(!filterSortStateRef.current.sort || !filterSortStateRef.current.filter) &&
+				filterSortElementRef.current.hidden
 			) {
 				hideBodyOverflow();
+			} else if (!filterSortElementRef.current.hidden) {
+				showBodyOverflow();
 			}
-		}, [screenWidth, hideBodyOverflow]);
+		}, [screenWidth, hideBodyOverflow, showBodyOverflow]);
 
 		const eventRefs = useRef({});
 
@@ -47,10 +50,16 @@ const withFilterSortProvider = Component =>
 				switch (prop) {
 					case 'filter':
 						setFilterSortState(prev => {
-							if (prev.filter && screenWidth < 769) {
+							if (
+								prev.filter &&
+								screenWidth < 769 &&
+								!filterSortStateRef.current.hidden
+							) {
 								hideBodyOverflow();
-							} else {
+								filterSortStateRef.current.hidden = true;
+							} else if (filterSortStateRef.current.hidden) {
 								showBodyOverflow();
+								filterSortStateRef.current.hidden = false;
 							}
 							return {
 								filter: !prev.filter,
@@ -62,10 +71,16 @@ const withFilterSortProvider = Component =>
 						setElement(filterSortElementRef.sort);
 						showMenu();
 						setFilterSortState(prev => {
-							if (prev.sort && screenWidth < 769) {
+							if (
+								prev.sort &&
+								screenWidth < 769 &&
+								!filterSortElementRef.current.hidden
+							) {
 								hideBodyOverflow();
-							} else {
+								filterSortElementRef.current.hidden = true;
+							} else if (filterSortElementRef.current.hidden) {
 								showBodyOverflow();
+								filterSortElementRef.current.hidden = false;
 							}
 							return { sort: !prev.sort, filter: true };
 						});

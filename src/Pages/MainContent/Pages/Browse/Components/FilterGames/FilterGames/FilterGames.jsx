@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import CloseButton from '../../Shared/CloseButton/CloseButton';
-import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
-
+import ApplyButton from '../Components/ApplyButton/ApplyButton';
 import FilterMobileScroll from '../Components/FilterMobileScroll/FilterMobileScroll/FilterMobileScroll';
+import useFilterSortState from '../Components/useFilterSortState/useFilterSortState';
 import styles from './FilterGames.module.css';
 
 const options = [
@@ -22,6 +22,7 @@ const options = [
 				{ ifLess: 100, step: 10 },
 			],
 			float: 2,
+			switch: { tag: 'Show only free games' },
 		},
 	},
 	{
@@ -86,6 +87,12 @@ export default function FilterGames({ filterState, dispatch, limits }) {
 				screenWidth={screenWidth}
 				setFilterSort={setFilterSort}
 				setState={setState}
+				state={state}
+			/>
+			<ApplyButton
+				dispatch={dispatch}
+				filterState={filterState}
+				setShow={setFilterSort}
 				state={state}
 			/>
 			{screenWidth < 769 && (

@@ -1,11 +1,11 @@
 import { memo, useEffect, useReducer } from 'react';
-import withFilterSortProvider from '../../../../../Utils/HOC/withFilterSortProvider';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import BrowseGameCards from '../Components/BrowseGameCards/BrowseGameCards';
 import BrowseHeader from '../Components/BrowseHeader/BrowseHeader/BrowseHeader';
 import FilterGames from '../Components/FilterGames/FilterGames/FilterGames';
 import MobileSortAndFilterButton from '../Components/MobileSortAndFilterButton/MobileSortAndFilterButton';
-import useBrowseLogics from '../Components/useBrowseLogics/useBrowseLogics';
+import withFilterSortProvider from '../Utils/HOC/withFilterSortProvider';
+import useBrowseLogics from '../Utils/useBrowseLogics/useBrowseLogics';
 import styles from './Browse.module.css';
 
 const items = [

@@ -3,7 +3,7 @@ import {
 	FilterSortContext,
 	FilterSortRefContext,
 	SetFilterSortContext,
-} from '../../../../../../../../Utils/Contexts/FilterSortContext';
+} from '../../../../Utils/Contexts/FilterSortContext';
 
 const useFilterSortState = () => {
 	const filterSortState = useContext(FilterSortContext);

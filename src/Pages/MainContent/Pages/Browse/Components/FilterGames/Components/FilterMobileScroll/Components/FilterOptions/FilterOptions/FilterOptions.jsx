@@ -5,34 +5,42 @@ import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption
 import styles from './FilterOptions.module.css';
 
 export default function FilterOptions({ option, state, setState, limits = {} }) {
-	const { category, type, tags } = option;
+	const { category, type, tags, details } = option;
 
-	const body = tags.map((op, i) => {
-		switch (type) {
-			case 'switch':
-				return (
-					<FilterOption
-						border={i !== tags.length - 1}
-						key={op.id}
-						name={op.filter}
-						setState={setState}
-						state={state[op.filter]}
-						text={op.text}
-					/>
-				);
-			default:
-				return (
+	let body;
+	switch (type) {
+		case 'switch':
+			body = tags.map((op, i) => (
+				<FilterOption
+					key={op}
+					border={i !== tags.length - 1}
+					name={op}
+					setState={setState}
+					state={state[op]}
+					text={op}
+				/>
+			));
+			break;
+		default:
+			body = (
+				<>
 					<FilterRangeOption
-						key={op.id}
-						limit={limits[op.rangeName]}
-						option={op}
+						limit={limits[details.rangeName]}
+						option={details}
 						setState={setState}
-						{...(state.ShowOnlyFreeGames &&
-							op.rangeName === 'price' && { disabled: true })}
+						{...(state[details.switch?.tag] && { disabled: true })}
 					/>
-				);
-		}
-	});
+					{details.switch && (
+						<FilterOption
+							name={details.switch.tag}
+							setState={setState}
+							state={state[details.switch.tag]}
+							text={details.switch.tag}
+						/>
+					)}
+				</>
+			);
+	}
 
 	return (
 		<div className={styles.filterOptions}>
