@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import ScreenShadow from '../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
 import ScrollBar from '../../../../../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
 import useScreenWidth from '../../../../../../../../../Utils/Hooks/useScreenWidth';
-import useFilterSortState from '../../../../FilterGames/Components/useFilterSortState/useFilterSortState';
+import useFilterSortState from '../../../../../Utils/Hooks/useFilterSortState/useFilterSortState';
 import CloseButton from '../../../../Shared/CloseButton/CloseButton';
 import PcSortList from '../Components/PcSortList/PcSortList/PcSortList';
 import SortList from '../Components/SortList/SortList';

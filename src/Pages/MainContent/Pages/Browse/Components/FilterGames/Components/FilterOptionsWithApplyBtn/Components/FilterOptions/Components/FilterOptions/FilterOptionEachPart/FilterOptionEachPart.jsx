@@ -1,10 +1,10 @@
-import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
-import Menu from '../../../../../../../../../../../Shared/Menu/Menu';
-import MenuTitle from '../../../../../../../../../../../Shared/MenuTitle/MenuTitle';
+import FilterOption from '../../../../../../../../../../../../../Shared/FilterOption/FilterOption';
+import Menu from '../../../../../../../../../../../../../Shared/Menu/Menu';
+import MenuTitle from '../../../../../../../../../../../../../Shared/MenuTitle/MenuTitle';
 import FilterRangeOption from '../Components/FilterRangeOption/FilterRangeOption/FilterRangeOption';
-import styles from './FilterOptions.module.css';
+import styles from './FilterOptionEachPart.module.css';
 
-export default function FilterOptions({ option, state, setState, limits = {} }) {
+export default function FilterOptionEachPart({ option, state, setState, limits = {} }) {
 	const { category, type, tags, details } = option;
 
 	let body;
@@ -21,25 +21,27 @@ export default function FilterOptions({ option, state, setState, limits = {} }) 
 				/>
 			));
 			break;
-		default:
+		case 'range':
 			body = (
 				<>
 					<FilterRangeOption
-						limit={limits[details.rangeName]}
+						limit={limits[details?.rangeName]}
 						option={details}
 						setState={setState}
-						{...(state[details.switch?.tag] && { disabled: true })}
+						{...(state[details?.switch?.tag] && { disabled: true })}
 					/>
-					{details.switch && (
+					{details?.switch && (
 						<FilterOption
-							name={details.switch.tag}
+							name={details?.switch?.tag}
 							setState={setState}
-							state={state[details.switch.tag]}
-							text={details.switch.tag}
+							state={state[details?.switch?.tag]}
+							text={details?.switch?.tag}
 						/>
 					)}
 				</>
 			);
+			break;
+		default:
 	}
 
 	return (

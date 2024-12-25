@@ -1,4 +1,4 @@
-import useFilterSortState from '../FilterGames/Components/useFilterSortState/useFilterSortState';
+import useFilterSortState from '../../Utils/Hooks/useFilterSortState/useFilterSortState';
 import styles from './MobileSortAndFilterButton.module.css';
 
 export default function MobileSortAndFilterButton() {

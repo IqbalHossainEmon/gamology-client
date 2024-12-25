@@ -1,11 +1,11 @@
-import { memo, useEffect, useReducer } from 'react';
+import { memo, useEffect, useReducer, useState } from 'react';
 import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import BrowseGameCards from '../Components/BrowseGameCards/BrowseGameCards';
 import BrowseHeader from '../Components/BrowseHeader/BrowseHeader/BrowseHeader';
 import FilterGames from '../Components/FilterGames/FilterGames/FilterGames';
 import MobileSortAndFilterButton from '../Components/MobileSortAndFilterButton/MobileSortAndFilterButton';
 import withFilterSortProvider from '../Utils/HOC/withFilterSortProvider';
-import useBrowseLogics from '../Utils/useBrowseLogics/useBrowseLogics';
+import useBrowseLogics from '../Utils/Hooks/useBrowseLogics/useBrowseLogics';
 import styles from './Browse.module.css';
 
 const items = [
@@ -252,13 +252,55 @@ const items = [
 	},
 ];
 
+const cate = [
+	{
+		category: 'Genre',
+		tags: [
+			'Action',
+			'Adventure',
+			'Racing',
+			'Shooter',
+			'Role-playing',
+			'Sports',
+			'Strategy',
+			'Simulation',
+		],
+	},
+	{
+		category: 'Features',
+		tags: [
+			'Single-player',
+			'Multi-player',
+			'Co-op',
+			'Achievements',
+			'Leader Boards',
+			'Controller support',
+			'Cloud saves',
+			'Overlay',
+		],
+	},
+];
+
 function BrowseMain() {
 	const { initialState, reducer } = useBrowseLogics();
 	const screenWidth = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		dispatch({ type: 'fetch', data: items });
+		let games;
+
+		if (items) {
+			games = items;
+		}
+		dispatch({ type: 'gameFetch', data: games });
+		let categories;
+		if (cate) {
+			categories = cate;
+		}
+		dispatch({ type: 'filterOptions', filterOptions: categories });
+
+		setLoading(false);
 	}, []);
 
 	return (
@@ -266,8 +308,10 @@ function BrowseMain() {
 			<BrowseHeader handleChange={dispatch} state={state} />
 			<div className={styles.mainContent}>
 				<FilterGames
+					loading={loading}
 					dispatch={dispatch}
 					filterState={state.filterState}
+					options={state.filterOptions}
 					limits={state.rangeLimits}
 				/>
 				<BrowseGameCards dispatch={dispatch} state={state} />
