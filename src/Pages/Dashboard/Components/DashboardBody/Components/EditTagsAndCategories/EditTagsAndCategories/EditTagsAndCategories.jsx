@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import AddTags from '../Components/AddTags/AddTags/AddTags';
+import AddTagsOrCategoriesManager from '../Components/AddTagsOrCategories/AddTagsOrCategories/AddTagsOrCategoriesManager';
 import ShowCategoriesTags from '../Components/ShowCategoriesTags/ShowCategoriesTags/ShowCategoriesTags';
-import styles from './EditTags.module.css';
+import styles from './EditTagsAndCategories.module.css';
 
 const data = [
 	{
@@ -32,7 +32,7 @@ const data = [
 	},
 ];
 
-function EditTags() {
+function EditTagsAndCategories() {
 	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
@@ -43,8 +43,8 @@ function EditTags() {
 		<div className={styles.addTags}>
 			<h2 className={styles.tagsHeader}>Tags</h2>
 			<ShowCategoriesTags setCategories={setCategories} categories={categories} />
-			<AddTags setCategories={setCategories} categories={categories} />
+			<AddTagsOrCategoriesManager setCategories={setCategories} categories={categories} />
 		</div>
 	);
 }
-export default EditTags;
+export default EditTagsAndCategories;

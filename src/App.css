@@ -89,12 +89,11 @@ body {
 	}
 
 	.scroll-style::-webkit-scrollbar-thumb {
-		background-color: #5a5959;
-		opacity: 0;
+		background-color: #5a595900;
 	}
 
 	.scroll-style:hover::-webkit-scrollbar-thumb {
-		opacity: 1;
+		background-color: #5a5959;
 	}
 
 	.scroll-style::-webkit-scrollbar-thumb:active {

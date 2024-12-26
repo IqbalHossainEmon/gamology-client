@@ -12,7 +12,6 @@ import styles from './Drawer.module.css';
 function Drawer() {
 	const [collapse, setCollapse] = useState(false);
 	const [transition, setTransition] = useState(false);
-	const [willScroll, setWillScroll] = useState(false);
 
 	const collapseRef = useRef(collapse);
 	collapseRef.current = collapse;
@@ -71,30 +70,8 @@ function Drawer() {
 		}
 	}, [screenWidth]);
 
-	const prevWasScrollingRef = useRef(false);
-
 	useEffect(() => {
 		setElement(drawerRef.current);
-
-		let wasScrolling = false;
-		const parentResizeObserve = new ResizeObserver(([{ target }]) => {
-			if (target.scrollHeight + 72 > window.innerHeight) {
-				wasScrolling = true;
-			} else {
-				wasScrolling = false;
-			}
-
-			if (wasScrolling !== prevWasScrollingRef.current) {
-				setWillScroll(wasScrolling);
-				prevWasScrollingRef.current = wasScrolling;
-			}
-		});
-
-		parentResizeObserve.observe(document.getElementById('root'));
-
-		return () => {
-			parentResizeObserve.disconnect();
-		};
 	}, [setElement]);
 
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
@@ -112,12 +89,10 @@ function Drawer() {
 	return (
 		<>
 			<div
-				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}${willScroll ? ` ${styles.willScroll}` : ''}`}
+				className={`${collapse ? `${styles.containerCollapse} ` : ''}${transition ? `${styles.containerTransition} ` : ''}${styles.drawer}`}
 				ref={drawerRef}
 			>
-				<div
-					className={`${styles.drawerOptions}${screenWidth < 1100 && willScroll ? ` ${styles.willScroll}` : ''}`}
-				>
+				<div className={styles.drawerOptions}>
 					<div className={styles.optionContainer}>
 						<ScrollBar showPath={false}>
 							<ul className={styles.options}>

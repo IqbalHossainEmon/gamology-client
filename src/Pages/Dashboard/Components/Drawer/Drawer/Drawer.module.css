@@ -7,6 +7,8 @@
 	top: 0rem;
 	left: 0px;
 	height: calc(100vh - 4.5rem);
+	/* box shadow for coverup the height */
+	box-shadow: 0 4.5rem 0 #18181c;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -119,6 +121,8 @@
 		max-width: 100vw;
 		width: 15rem;
 		height: calc(100vh - 4.5rem);
+		/* box shadow for coverup the height */
+		box-shadow: 0 4.5rem 0 #18181c;
 		background-color: #18181c;
 		position: absolute;
 		translate: -100%;
@@ -148,7 +152,4 @@
 	.containerTransition .drawerOptions {
 		transition: translate 200ms;
 	}
-}
-.willScroll {
-	height: 100vh;
 }

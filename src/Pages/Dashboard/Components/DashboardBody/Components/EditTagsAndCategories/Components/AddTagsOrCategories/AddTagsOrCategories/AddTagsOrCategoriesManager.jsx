@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import AddTagsOrCategories from '../Components/AddTagsOrCategories/AddTagsOrCategories/AddTagsOrCategories';
-import styles from './AddTags.module.css';
+import styles from './AddTagsOrCategoriesManager.module.css';
 
-function AddTags({ categories, setCategories }) {
+function AddTagsOrCategoriesManager({ categories, setCategories }) {
 	const [tagOrCategory, setTagOrCategory] = useState('');
 	const [errorChange, setErrorChange] = useState(0);
 	const addInfoRef = useRef({});
@@ -84,4 +84,4 @@ function AddTags({ categories, setCategories }) {
 		</div>
 	);
 }
-export default AddTags;
+export default AddTagsOrCategoriesManager;
