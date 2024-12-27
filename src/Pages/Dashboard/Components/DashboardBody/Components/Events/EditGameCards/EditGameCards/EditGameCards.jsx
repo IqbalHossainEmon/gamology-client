@@ -4,7 +4,6 @@ function EditGameCards() {
 	return (
 		<div className={styles.editGameCards}>
 			<h2 className={styles.editBannerHeader}>Edit Game Cards</h2>
-			<div />
 		</div>
 	);
 }

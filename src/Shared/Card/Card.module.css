@@ -16,11 +16,18 @@
 
 .cardImg {
 	width: 100%;
-	aspect-ratio: 0.75;
+	padding-bottom: calc(4 / 3 * 100%);
+	border-radius: 4px;
+	position: relative;
 }
-.card img {
-	border-radius: 5px;
+.cardImg img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
 }
+
 .price {
 	width: 100%;
 }

@@ -1,16 +1,16 @@
 import { useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
+import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../../../../../Utils/Hooks/useDashboardModal';
 import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import UserMakeAdminModal from '../../../../../Users/Components/UserMakeAdminModal/UserMakeAdminModal';
 import UserDeleteConfirmModal from '../../../../UserDeleteConfirmModal/UserDeleteConfirmModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
 import styles from './EditUserBody.module.css';
 
-function EditUserBody({ user }) {
+function EditUserBody({ user, setUser }) {
 	const [errorChange, setErrorChange] = useState(0);
 
 	const errorMessages = useRef({
@@ -27,7 +27,7 @@ function EditUserBody({ user }) {
 
 	const userData = useRef(cloneObject(user));
 
-	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
+	const setModals = useModal();
 	const { setToast } = useToast();
 
 	const eventRefs = useRef(null);
@@ -75,6 +75,7 @@ function EditUserBody({ user }) {
 				console.log('Request Sent');
 				const check = true;
 				if (check) {
+					setUser(userData.current);
 					setToast({
 						title: 'User Updated',
 						message: `${userData.current.name.lastName} has been updated successfully`,
@@ -94,7 +95,7 @@ function EditUserBody({ user }) {
 				}
 				// Save Changes
 				if (userData.current.role === 'Admin') {
-					setDashboardModalContent({
+					setModals({
 						title: 'Make Admin',
 						body: (
 							<p>
@@ -115,13 +116,12 @@ function EditUserBody({ user }) {
 							/>
 						),
 					});
-					setDashboardModal(true);
 					return;
 				}
 				eventRefs.current.handleBackEndRequest();
 			},
 			handleDelete: () => {
-				setDashboardModalContent({
+				setModals({
 					title: 'Delete User',
 					body: (
 						<p>
@@ -143,11 +143,11 @@ function EditUserBody({ user }) {
 								console.log('Deleted');
 							}}
 							placeholder='Type DELETE to confirm'
-							errorMessage={"Please type 'DELETE' to confirm"}
+							errorMessage="Please type 'DELETE' to confirm"
 						/>
 					),
 				});
-				setDashboardModal(true);
+				setModals(true);
 			},
 		};
 	}

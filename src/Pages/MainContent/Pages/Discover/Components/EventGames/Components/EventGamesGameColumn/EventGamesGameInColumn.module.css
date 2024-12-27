@@ -1,7 +1,7 @@
 .gameColumn {
 	display: flex;
 	transition: background-color 300ms;
-	padding: 5px;
+	padding: 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	justify-content: stretch;
@@ -12,18 +12,20 @@
 	background-color: rgba(75, 75, 75, 0.473);
 }
 .gameImage {
-	width: 30%;
-	padding: 5px;
+	width: 25%;
+	padding-bottom: calc(4 / 3 * 25%);
+	position: relative;
 }
 
 .image {
+	position: absolute;
 	width: 100%;
 	height: 100%;
+	transition: border-radius 300ms;
 }
-.image img {
-	height: 100%;
-	aspect-ratio: 0.0708502024/1;
-	object-fit: cover;
+
+.gameColumn:hover .image {
+	border-radius: 0.5rem;
 }
 
 .gameDetails {
@@ -31,7 +33,8 @@
 	margin-left: 1rem;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
+	gap: 1rem;
 }
 
 .name {

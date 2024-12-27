@@ -12,11 +12,9 @@ export default function Card({ cardInfo, style, className, children }) {
 			ref={parentRef}
 			{...(style && { style })}
 		>
-			<img
-				alt={`${name}-cardThumb-${id + 1}`}
-				className={styles.cardImg}
-				src={carouselThumb}
-			/>
+			<div className={styles.cardImg}>
+				<img alt={`${name}-cardThumb-${id + 1}`} src={carouselThumb} />
+			</div>
 			<h4 className={styles.name}>{name}</h4>
 			<div className={styles.price}>
 				<DiscountPriceWithPercent price={price} />

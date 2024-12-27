@@ -22,21 +22,23 @@ export default function IndiGameBannerItem({ data, active, index }) {
 
 	return (
 		<li className={styles.individualGameBannerItem}>
-			{shouldShow ? (
-				data.type === 'photo' ? (
-					<img
-						alt={`Carousel number-${index}`}
-						className={styles.coverImg}
-						src={data.cover}
-					/>
-				) : (
-					<VideoPlayer
-						changePause={active}
-						src={data.cover}
-						{...(data.captions && { captions: data.captions })}
-					/>
-				)
-			) : null}
+			<div className={styles.cover}>
+				{shouldShow ? (
+					data.type === 'photo' ? (
+						<img
+							alt={`Carousel number-${index}`}
+							className={styles.coverImg}
+							src={data.cover}
+						/>
+					) : (
+						<VideoPlayer
+							changePause={active}
+							src={data.cover}
+							{...(data.captions && { captions: data.captions })}
+						/>
+					)
+				) : null}
+			</div>
 		</li>
 	);
 }

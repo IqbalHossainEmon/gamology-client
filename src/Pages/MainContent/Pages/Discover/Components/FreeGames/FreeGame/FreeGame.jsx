@@ -38,7 +38,6 @@ export default function FreeGame({ data, today, length }) {
 						src={data.carouselThumb}
 						style={{ aspectRatio: `1/1.${length}` }}
 					/>
-
 					{dateState !== -1 && (
 						<p
 							className={

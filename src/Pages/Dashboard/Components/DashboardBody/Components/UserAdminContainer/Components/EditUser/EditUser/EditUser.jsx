@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import EditUserBody from '../Components/EditUserBody/EditUserBody/EditUserBody';
 import EditUserHeader from '../Components/EditUserHeader/EditUserHeader';
+import EditUserLoading from '../Components/EditUserLoading/EditUserLoading';
 import styles from './EditUser.module.css';
 
-const user = {
+const usr = {
 	id: 1,
 	name: { firstName: 'Iqbal', middleName: 'Hossain', lastName: 'Emon' },
 	email: 'iqbalhossainemon2@gmail.com',
@@ -12,10 +14,22 @@ const user = {
 };
 
 function EditUser() {
+	const [user, setUser] = useState({});
+
+	useEffect(() => {
+		setUser(usr);
+	}, []);
+
 	return (
 		<div className={styles.editUser}>
-			<EditUserHeader name={user.name} />
-			<EditUserBody user={user} />
+			{user.name ? (
+				<>
+					<EditUserHeader name={user.name} />
+					<EditUserBody user={user} setUser={setUser} />
+				</>
+			) : (
+				<EditUserLoading />
+			)}
 		</div>
 	);
 }

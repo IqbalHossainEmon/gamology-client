@@ -79,6 +79,8 @@ export default function ExploreGames() {
 							: { backgroundImage: `url(${fetched.backgroundPhone})` }
 					}
 				/>
+			</div>
+			<div className={styles.exploreGamesContent}>
 				<div className={styles.exploreTexts}>
 					<h4>{data.heading}</h4>
 					<p>{data.details}</p>

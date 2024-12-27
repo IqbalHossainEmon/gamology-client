@@ -1,12 +1,12 @@
 .carouselItems {
 	width: 100%;
-	aspect-ratio: 1.77777778/1;
+	padding-bottom: calc((9 / 16) * 100%);
 	display: flex;
 	justify-content: center;
 }
 @media only screen and (max-width: 768px) {
 	.carouselItems {
-		aspect-ratio: auto;
+		padding-bottom: calc(1.34 / 1 * (100% - 20vw));
 		height: 100%;
 	}
 }

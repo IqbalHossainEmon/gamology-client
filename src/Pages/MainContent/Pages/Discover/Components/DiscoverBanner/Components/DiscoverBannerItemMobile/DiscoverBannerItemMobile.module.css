@@ -2,7 +2,7 @@
 	top: 0;
 	width: 80vw;
 	position: absolute;
-	aspect-ratio: 1/1.33273662;
+	height: 100%;
 	transition:
 		opacity 500ms,
 		translate 500ms,

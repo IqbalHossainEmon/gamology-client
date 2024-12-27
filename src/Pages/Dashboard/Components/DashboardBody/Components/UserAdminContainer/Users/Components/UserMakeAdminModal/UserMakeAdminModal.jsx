@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField/TextField';
-import useDashboardModal from '../../../../../../../Utils/Hooks/useDashboardModal';
+import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import styles from './UserMakeAdminModal.module.css';
 
 function UserMakeAdminModal({ handleMakeAdmin: handleEvent }) {
@@ -9,11 +9,15 @@ function UserMakeAdminModal({ handleMakeAdmin: handleEvent }) {
 		errorMessage: '',
 	});
 	const confirmText = useRef(null);
-	const { setDashboardModal } = useDashboardModal();
+	const setModals = useModal();
 
 	const handleMakeAdmin = () => {
 		if (confirmText.current.toUpperCase() === 'CONFIRM') {
-			setDashboardModal(false);
+			setModals({
+				title: null,
+				body: null,
+				footer: null,
+			});
 			handleEvent();
 		} else {
 			setError(prev => ({

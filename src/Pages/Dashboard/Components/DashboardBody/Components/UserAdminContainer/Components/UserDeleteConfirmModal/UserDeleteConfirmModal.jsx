@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import TextField from '../../../../../../../../Shared/TextField/TextField/TextField';
-import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
+import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import styles from './UserDeleteConfirmModal.module.css';
 
 function UserDeleteConfirmModal({
@@ -15,14 +15,18 @@ function UserDeleteConfirmModal({
 	});
 	const confirmText = useRef(null);
 
-	const { setDashboardModal } = useDashboardModal();
+	const setModals = useModal();
 
 	const handleDelete = () => {
 		if (handleRemove(confirmText.current)) {
 			setError(prev => ({ ...prev, errorChange: prev.errorChange + 1 }));
 			return;
 		}
-		setDashboardModal(false);
+		setModals({
+			title: null,
+			body: null,
+			footer: null,
+		});
 	};
 	return (
 		<div className={styles.deleteModal}>

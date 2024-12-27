@@ -9,11 +9,7 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 	const btnRef = useRef(null);
 
 	return (
-		<div
-			{...(idState
-				? { className: styles.carouselItem, id: idState }
-				: { className: styles.itemHide })}
-		>
+		<div className={`${styles.carouselItem} ${idState}`}>
 			<img
 				alt={`${name} carousel cover-${id + 1}`}
 				className={styles.carouselImg}
