@@ -9,7 +9,7 @@ export default function NavProfileInfo() {
 					data='https://lh3.googleusercontent.com/ogw/AF2bZygh4Gaz74LySHho2ZDoL7Kx36aYvvRDCwKNx_yYuMk0EA=s32-c-mo'
 					placeholder={<img src='/assets/images/user-1.svg' alt='User icon' />}
 					alt='arrow-down'
-					aspectRatio={1}
+					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</div>
 			<p>iqbal.hossain.emon</p>

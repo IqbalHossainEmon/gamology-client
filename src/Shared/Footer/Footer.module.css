@@ -70,6 +70,10 @@
 	font-size: 10px;
 }
 
+.aspectRatioClassName {
+	padding-bottom: 100%;
+}
+
 @media only screen and (max-width: 768px) {
 	.links {
 		list-style: none;

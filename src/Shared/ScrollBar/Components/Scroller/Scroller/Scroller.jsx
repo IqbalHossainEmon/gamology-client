@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollPath from '../ScrollPath/ScrollPath';
-import Thumb from '../Thumb/Thumb';
+import ScrollPath from '../Components/ScrollPath/ScrollPath';
+import Thumb from '../Components/Thumb/Thumb';
 function Scroller({ innerContainerRef, outerContainerRef, showPath }) {
 	const [show, setShow] = useState(false);
 	const [style, setStyle] = useState(
@@ -14,6 +14,7 @@ function Scroller({ innerContainerRef, outerContainerRef, showPath }) {
 	const thumbRef = useRef(null);
 	const showRef = useRef(show);
 	showRef.current = show;
+
 	useEffect(() => {
 		const outerContainer = outerContainerRef.current;
 		const innerContainer = innerContainerRef.current;

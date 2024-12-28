@@ -9,7 +9,7 @@ export default function Footer() {
 					<Image
 						data='/assets/images/game-controller.png'
 						alt='gamology'
-						aspectRatio={1}
+						aspectRatioClassName={styles.aspectRatioClassName}
 					/>
 					<h2>Gamology</h2>
 				</a>

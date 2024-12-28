@@ -41,6 +41,10 @@
 	font-weight: 400;
 }
 
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
 @media only screen and (max-width: 768px) {
 	.gameColumn {
 		padding: 0.1rem;

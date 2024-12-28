@@ -14,7 +14,11 @@ export default function Card({ cardInfo, style, className, children }) {
 			{...(style && { style })}
 		>
 			<div className={styles.cardImg}>
-				<Image data={img} alt={`${name}-cardThumb-${id + 1}`} aspectRatio={3 / 4} />
+				<Image
+					data={img}
+					alt={`${name}-cardThumb-${id + 1}`}
+					aspectRatioClassName={styles.aspectRatioClassName}
+				/>
 			</div>
 			<h4 className={styles.name}>{name}</h4>
 			<div className={styles.price}>

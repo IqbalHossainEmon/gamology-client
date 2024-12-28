@@ -34,7 +34,11 @@ export default function FreeGame({ data, today, length }) {
 		dateState !== -1 && (
 			<div className={`${styles.freeGame} hover-shadow`}>
 				<div className={styles.gameHeader}>
-					<Image data={data.carouselThumb} alt={data.name} aspectRatio={3 / length} />
+					<Image
+						data={data.carouselThumb}
+						alt={data.name}
+						aspectRatioClassName={styles[`aspectRatioClassName${length}`]}
+					/>
 					{dateState !== -1 && (
 						<p
 							className={

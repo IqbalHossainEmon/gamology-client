@@ -5,11 +5,11 @@ import styles from './EventGamesGameInColumn.module.css';
 export default function EventGamesGameColumn({ game }) {
 	return (
 		<li className={styles.gameColumn}>
-			<div className={styles.gameImage}>
+			<div className={styles.gameImageContainer}>
 				<Image
 					data={game.carouselThumb}
 					alt={game.name}
-					aspectRatio={3 / 4}
+					aspectRatioClassName={styles.aspectRatioClassName}
 					className={styles.image}
 				/>
 			</div>

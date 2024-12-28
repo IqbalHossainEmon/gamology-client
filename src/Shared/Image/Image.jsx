@@ -1,33 +1,16 @@
 import { useEffect, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
 import styles from './Image.module.css';
 
-function Image({ data, alt, aspectRatio, placeholder, className }) {
+function Image({ data, alt, aspectRatioClassName, placeholder, className }) {
 	const containerRef = useRef(null);
 	const rootRef = useRef(null);
+
 	useEffect(() => {
 		let imageSrc;
+		const scrollPosition = window.scrollY;
 
-		if (typeof data === 'string') {
-			imageSrc = data;
-		} else if (data instanceof Blob || data instanceof File) {
-			imageSrc = URL.createObjectURL(data);
-		} else {
-			return;
-		}
-
-		const image = new window.Image();
-		image.src = imageSrc;
-		image.alt = alt;
-		image.className = `${aspectRatio ? styles.image : styles.imageNoAspectRatio}${className ? ` ${className}` : ''}`;
-
-		image.onload = () => {
-			if (containerRef.current) {
-				containerRef.current.innerHTML = '';
-				containerRef.current.appendChild(image);
-			}
-		};
-		/* 
-		image.onerror = () => {
+		const showBrokenImage = () => {
 			if (containerRef.current) {
 				containerRef.current.innerHTML = '';
 				const svg = (
@@ -47,9 +30,35 @@ function Image({ data, alt, aspectRatio, placeholder, className }) {
 				if (!rootRef.current) {
 					rootRef.current = createRoot(containerRef.current);
 				}
+
 				rootRef.current.render(svg);
+				window.scrollTo(0, scrollPosition);
 			}
-		}; */
+		};
+
+		if (typeof data === 'string') {
+			imageSrc = data;
+		} else if (data instanceof Blob || data instanceof File) {
+			imageSrc = URL.createObjectURL(data);
+		} else {
+			showBrokenImage();
+			return;
+		}
+
+		const image = new window.Image();
+		image.src = imageSrc;
+		image.alt = alt;
+		image.className = `${className ? ` ${className}` : ''} ${aspectRatioClassName ? styles.image : styles.imageNoAspectRatio}`;
+
+		image.onload = () => {
+			if (containerRef.current) {
+				containerRef.current.innerHTML = '';
+				containerRef.current.appendChild(image);
+				window.scrollTo(0, scrollPosition);
+			}
+		};
+
+		image.onerror = showBrokenImage;
 
 		return () => {
 			if (imageSrc && (data instanceof Blob || data instanceof File)) {
@@ -63,12 +72,15 @@ function Image({ data, alt, aspectRatio, placeholder, className }) {
 				}, 0);
 			}
 		};
-	}, [alt, aspectRatio, className, data]);
+	}, [alt, aspectRatioClassName, className, data]);
 
 	return (
 		<div
-			className={aspectRatio ? styles.imageContainer : styles.imageContainerNoAspectRatio}
-			{...(aspectRatio && { style: { paddingTop: `${(1 / aspectRatio) * 100}%` } })}
+			className={
+				aspectRatioClassName
+					? `${styles.imageContainer} ${aspectRatioClassName}`
+					: styles.imageContainerNoAspectRatio
+			}
 			ref={containerRef}
 		>
 			{placeholder ? (

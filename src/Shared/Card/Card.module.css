@@ -31,6 +31,10 @@
 	width: 100%;
 }
 
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
 @media screen and (max-width: 1600px) {
 	.name {
 		font-size: 14px;

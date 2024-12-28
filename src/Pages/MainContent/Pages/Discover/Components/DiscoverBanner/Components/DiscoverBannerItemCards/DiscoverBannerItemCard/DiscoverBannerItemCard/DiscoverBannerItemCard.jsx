@@ -56,7 +56,11 @@ export default function DiscoverBannerItemCard({
 				type='button'
 				{...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}
 			>
-				<Image data={carouselThumb} alt={`${name} card-${id}`} aspectRatio={3 / 4} />
+				<Image
+					data={carouselThumb}
+					alt={`${name} card-${id}`}
+					aspectRatioClassName={styles.aspectRatioClassName}
+				/>
 			</button>
 			<CardNameContainer
 				cardShadowUtils={cardShadowUtils}

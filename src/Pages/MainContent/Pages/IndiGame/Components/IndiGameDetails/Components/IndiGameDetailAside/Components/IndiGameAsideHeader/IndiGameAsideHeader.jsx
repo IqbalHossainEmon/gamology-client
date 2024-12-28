@@ -9,7 +9,11 @@ export default function IndiGameAsideHeader({ src, name, price, phoneSrc }) {
 	return (
 		<div className={styles.individualGameAsideHeader}>
 			<div className={styles.imageContainer}>
-				<Image alt={name} data={screenWidth < 1024 ? phoneSrc : src} aspectRatio={16 / 9} />
+				<Image
+					alt={name}
+					data={screenWidth < 1024 ? phoneSrc : src}
+					aspectRatioClassName={styles.aspectRatioClassName}
+				/>
 			</div>
 			<div>
 				<h2 className={styles.name}>{name}</h2>

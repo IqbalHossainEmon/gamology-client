@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Scroller from '../Components/Scroller/Components/Scroller/Scroller';
+import Scroller from '../Components/Scroller/Scroller/Scroller';
 import styles from './ScrollBar.module.css';
 function ScrollBar({ children, showPath = true }) {
 	const outerContainerRef = useRef(null);

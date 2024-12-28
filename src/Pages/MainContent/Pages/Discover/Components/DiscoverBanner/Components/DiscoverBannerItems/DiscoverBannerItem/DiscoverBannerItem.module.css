@@ -96,6 +96,10 @@
 	}
 }
 
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 16 * 9);
+}
+
 @media only screen and (min-width: 2134px) {
 	.itemButton button {
 		font-size: 1rem;

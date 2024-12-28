@@ -89,6 +89,7 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 					if (timerId.current) {
 						clearTimeout(timerId.current);
 					}
+
 					setShow(true);
 					timerId.current = setTimeout(() => {
 						if (showRef.current) setShow(false);
@@ -116,7 +117,7 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 	useEffect(() => {
 		container.addEventListener('mouseleave', eventRefs.current.onLeave);
 		container.addEventListener('scroll', eventRefs.current.onscroll);
-		setShow(true);
+
 		return () => {
 			if (isAdded.current)
 				container.removeEventListener('mousemove', eventRefs.current.onEnter);

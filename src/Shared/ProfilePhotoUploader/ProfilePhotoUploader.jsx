@@ -63,7 +63,11 @@ function ProfilePhotoUploader({ data, setPhoto }) {
 			type='button'
 			className={styles.profilePhotoButton}
 		>
-			<Image data={photoDetail.url} alt={`${photoDetail.name}'s profile`} />
+			<Image
+				data={photoDetail.url}
+				alt={`${photoDetail.name}'s profile`}
+				aspectRatioClassName={styles.aspectRatioClassName}
+			/>
 			<input
 				ref={inputFieldRef}
 				type='file'

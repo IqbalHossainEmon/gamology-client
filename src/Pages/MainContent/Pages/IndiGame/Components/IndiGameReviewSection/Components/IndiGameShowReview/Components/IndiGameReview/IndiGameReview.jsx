@@ -31,7 +31,11 @@ export default function IndiGameReview({ review, index, length }) {
 			<div className={styles.individualGameReview}>
 				<div className={styles.userDetails}>
 					<div className={styles.imageContainer}>
-						<Image alt={user.name} data={user.image} />
+						<Image
+							alt={user.name}
+							data={user.image}
+							aspectRatioClassName={styles.aspectRatioClassName}
+						/>
 					</div>
 					<p className={styles.name}>{user.name}</p>
 					<p className={styles.details}>

@@ -1,3 +1,4 @@
+import Image from '../../../../../../../../../../Shared/Image/Image';
 import styles from './IndiGameBannerCard.module.css';
 
 export default function IndiGameBannerCard({ data, active, dispatch, index, timerFunction }) {
@@ -17,22 +18,17 @@ export default function IndiGameBannerCard({ data, active, dispatch, index, time
 			>
 				{data.type === 'video' && (
 					<div
-						className={
-							active === index
-								? [styles.videoLogo, styles.active].join(' ')
-								: styles.videoLogo
-						}
+						className={`${styles.videoLogo}${active === index ? ` ${styles.active}` : ''}`}
 					>
 						<svg viewBox='0 0 11 14' xmlns='http://www.w3.org/2000/svg'>
 							<path d='M0 0v14l11-7z' fill='white' fillRule='nonzero' />
 						</svg>
 					</div>
 				)}
-
-				<img
-					alt={`thumb number-${index + 1}`}
-					className={styles.thumbImage}
-					src={data.thumb}
+				<Image
+					data={data.thumb}
+					alt={`cover number-${index + 1}`}
+					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</button>
 		</li>

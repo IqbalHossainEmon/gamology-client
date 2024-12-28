@@ -10,6 +10,10 @@
 	height: 40px;
 }
 
+.aspectRatioClassName {
+	padding-bottom: 100%;
+}
+
 .name {
 	font-size: 16px;
 	margin-bottom: 10px;

@@ -1,6 +1,7 @@
 .imageContainer {
 	width: 100%;
 	position: relative;
+	padding-bottom: 100%;
 }
 .imageContainerNoAspectRatio {
 	width: fit-content;

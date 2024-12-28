@@ -63,6 +63,11 @@
 #first img {
 	border-radius: 4px 0 0 4px;
 }
+
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
 @media only screen and (min-width: 2134px) {
 	.cardName {
 		font-size: 1.5rem;
