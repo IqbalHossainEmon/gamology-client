@@ -1,7 +1,6 @@
 .videoContainer:not(:fullscreen) {
 	width: 100%;
 	position: relative;
-	padding-bottom: calc(9 / 16 * 100%);
 }
 .videoContainer:fullscreen .video {
 	position: absolute;

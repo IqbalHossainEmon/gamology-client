@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import Image from '../../../../../../../Shared/Image/Image';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
 
@@ -96,7 +97,9 @@ export default function FreeGames() {
 	return (
 		<section className={styles.freeGames}>
 			<div className={styles.header}>
-				<img alt='gift' src='/assets/images/gift.png' />
+				<div className={styles.headerIcon}>
+					<Image data='/assets/images/gift.png' alt='gift' aspectRatio={1} />
+				</div>
 				<h3 className={styles.headerName}>Free games</h3>
 				<button className={styles.viewMoreBtn} ref={btnRef} type='button'>
 					View More

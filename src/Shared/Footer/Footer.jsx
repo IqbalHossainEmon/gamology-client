@@ -1,3 +1,4 @@
+import Image from '../Image/Image';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -5,7 +6,11 @@ export default function Footer() {
 		<footer id={styles.footer}>
 			<div className={styles.header}>
 				<a href='/'>
-					<img alt='game-controller-logo' src='/assets/images/game-controller.png' />
+					<Image
+						data='/assets/images/game-controller.png'
+						alt='gamology'
+						aspectRatio={1}
+					/>
 					<h2>Gamology</h2>
 				</a>
 			</div>

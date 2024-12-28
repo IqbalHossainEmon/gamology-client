@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import HorizontalDivider from '../../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
+import Image from '../../../../../../../../../../Shared/Image/Image';
 import ReviewStar from '../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import styles from './IndiGameReview.module.css';
 
-const userIcon = 'assets/images/icons/user.png';
 const month = [
 	'January',
 	'February',
@@ -30,15 +30,14 @@ export default function IndiGameReview({ review, index, length }) {
 		<>
 			<div className={styles.individualGameReview}>
 				<div className={styles.userDetails}>
-					<img alt='' className={styles.userIcon} src={userIcon} />
-
+					<div className={styles.imageContainer}>
+						<Image alt={user.name} data={user.image} />
+					</div>
 					<p className={styles.name}>{user.name}</p>
-
 					<p className={styles.details}>
 						Games:
 						{user.games}
 					</p>
-
 					<p className={styles.details}>
 						Reviews:
 						{user.reviews}
@@ -58,9 +57,7 @@ export default function IndiGameReview({ review, index, length }) {
 							</p>
 						</div>
 					</div>
-
 					<p className={styles.reviewDescription}>{review.text}</p>
-
 					<div className={styles.feedbackContainer}>
 						<div
 							className={
@@ -92,13 +89,11 @@ export default function IndiGameReview({ review, index, length }) {
 							) : (
 								<p>Thanks for your vote!</p>
 							)}
-
 							<p className={styles.usersFeedback}>
 								({feedback.goodFeedback} of {feedback.totalFeedback} users found
 								this helpful)
 							</p>
 						</div>
-
 						{feedbackState.state > 0 && (
 							<button
 								className={styles.reportBtn}

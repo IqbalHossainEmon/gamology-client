@@ -1,5 +1,5 @@
 .discountPrice {
-	width: 100%;
+	width: fit-content;
 	height: 100%;
 	color: rgb(226, 226, 226);
 	text-align: right;

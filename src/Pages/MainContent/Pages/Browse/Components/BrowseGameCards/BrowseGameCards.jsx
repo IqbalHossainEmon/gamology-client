@@ -8,8 +8,12 @@ export default function BrowseGameCards({ state, dispatch }) {
 	return (
 		<section className={styles.gameCards}>
 			<ul className={styles.cardsContainer}>
-				{items.map(item => (
-					<Card cardInfo={item} className={styles.card} key={item.id} />
+				{items.map(({ id, name, cardImg, price }) => (
+					<Card
+						cardInfo={{ id, name, img: cardImg, price }}
+						className={styles.card}
+						key={id}
+					/>
 				))}
 			</ul>
 

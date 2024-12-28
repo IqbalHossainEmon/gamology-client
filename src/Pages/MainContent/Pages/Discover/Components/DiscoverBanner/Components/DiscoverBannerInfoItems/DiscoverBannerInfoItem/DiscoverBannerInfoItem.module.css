@@ -1,11 +1,17 @@
 .itemInfo {
 	visibility: hidden;
 	position: absolute;
-	width: fit-content;
-	height: fit-content;
+	height: 100%;
+	max-width: 15%;
+	max-height: 20%;
+	margin-left: 2%;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	justify-content: center;
+}
+
+.logoContainer {
+	max-height: 100%;
 }
 
 .itemInfoHide {
@@ -14,36 +20,20 @@
 	visibility: hidden;
 }
 
-.logoImg {
-	width: 10vw;
-	max-width: 13rem;
-}
-
-.priceContainer {
-	display: flex;
-	white-space: nowrap;
-	margin: 5px 0;
-	width: 100%;
-}
-
-.price {
-	margin-left: 5px;
-}
-
-#initialBanner {
+.initialBanner {
 	opacity: 1;
 	z-index: 1;
 	visibility: visible;
 }
 
-#bannerFadeIn {
+.bannerFadeIn {
 	opacity: 0;
 	z-index: 1;
 	visibility: visible;
 	animation: 200ms cubic-bezier(0.17, 0.17, 0.23, 1) 400ms 1 normal forwards running fadeIn;
 }
 
-#bannerFadeOut {
+.bannerFadeOut {
 	opacity: 0;
 	visibility: hidden;
 	animation: 100ms cubic-bezier(0.69, 0, 0.83, 0.83) 0s 1 normal forwards running fadeout;
@@ -82,9 +72,11 @@
 }
 
 @media only screen and (max-width: 768px) {
-	.logoImg {
-		width: 30vw;
-		height: auto;
+	.logoContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-end;
 	}
 
 	.itemInfo {
@@ -93,6 +85,10 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
+		max-width: 100%;
+		height: 10%;
+		margin-left: 0;
+		margin-bottom: 1rem;
 	}
 
 	.priceContainer {

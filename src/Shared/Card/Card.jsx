@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
+import Image from '../Image/Image';
 import styles from './Card.module.css';
 
 export default function Card({ cardInfo, style, className, children }) {
 	const parentRef = useRef(null);
-	const { id, name, carouselThumb, price } = cardInfo;
+	const { id, name, img, price } = cardInfo;
 
 	return (
 		<li
@@ -13,7 +14,7 @@ export default function Card({ cardInfo, style, className, children }) {
 			{...(style && { style })}
 		>
 			<div className={styles.cardImg}>
-				<img alt={`${name}-cardThumb-${id + 1}`} src={carouselThumb} />
+				<Image data={img} alt={`${name}-cardThumb-${id + 1}`} aspectRatio={3 / 4} />
 			</div>
 			<h4 className={styles.name}>{name}</h4>
 			<div className={styles.price}>

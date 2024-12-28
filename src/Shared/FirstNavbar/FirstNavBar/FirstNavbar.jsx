@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import useChangeBodyOverflow from '../../../Utils/Hooks/useChangeBodyOverflow';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
+import Image from '../../Image/Image';
 import FirstNavLinks from '../Components/FirstNavLinks/FirstNavLinks';
 import MobileBurgerMenu from '../Components/MobileBurgerMenu/MobileBurgerMenu';
 import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';
@@ -20,8 +21,12 @@ export default function FirstNavbar() {
 		<header className={styles.header}>
 			<nav className={styles.firstNavbar}>
 				<div className={styles.gamologyLogo}>
-					<a href='/'>
-						<img alt='game controller' src='/assets/images/game-controller.png' />
+					<a href='/' className={styles.gamologyLogoImg}>
+						<Image
+							data='/assets/images/game-controller.png'
+							alt='gamology'
+							aspectRatio={1}
+						/>
 					</a>
 				</div>
 

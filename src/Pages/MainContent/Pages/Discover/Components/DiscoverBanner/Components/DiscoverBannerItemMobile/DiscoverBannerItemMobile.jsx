@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Image from '../../../../../../../../Shared/Image/Image';
 import styles from './DiscoverBannerItemMobile.module.css';
 
 export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
@@ -30,10 +31,10 @@ export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
 
 	return (
 		<div className={`${styles.carouselItem}`} id={position}>
-			<img
+			<Image
+				data={coverMobile}
 				alt={`${name} carousel cover-${id + 1}`}
-				className={styles.carouselImg}
-				src={coverMobile}
+				aspectRatio={1 / 1.34}
 			/>
 		</div>
 	);

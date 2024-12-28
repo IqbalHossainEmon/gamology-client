@@ -13,7 +13,6 @@
 }
 .gameImage {
 	width: 25%;
-	padding-bottom: calc(4 / 3 * 25%);
 	position: relative;
 }
 

@@ -3,7 +3,13 @@ import Controllers from '../Components/Controllers/Controllers/Controllers';
 import Video from '../Components/Video/Video';
 import styles from './VideoPlayer.module.css';
 
-export default function VideoPlayer({ src, captions, sizeClassName, changePause }) {
+export default function VideoPlayer({
+	src,
+	captions,
+	sizeClassName,
+	changePause,
+	aspectRatio = 16 / 9,
+}) {
 	const videoRef = useRef(null);
 	const videoContainerRef = useRef(null);
 	const mouseMoveTimerId = useRef(null);
@@ -106,6 +112,7 @@ export default function VideoPlayer({ src, captions, sizeClassName, changePause 
 					? [styles.videoContainer, sizeClassName].join(' ')
 					: styles.videoContainer
 			}
+			style={{ paddingTop: `${(1 / aspectRatio) * 100}%` }}
 			ref={videoContainerRef}
 		>
 			<Video

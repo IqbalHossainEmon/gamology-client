@@ -1,21 +1,20 @@
-import DiscountPrice from '../../../../../../../../../Shared/DiscountPrice/DiscountPrice';
+import Image from '../../../../../../../../../Shared/Image/Image';
+import useScreenWidth from '../../../../../../../../../Utils/Hooks/useScreenWidth';
+import DiscoverBannerPrice from '../../DiscoverBannerPrice/DiscoverBannerPrice';
 import styles from './DiscoverBannerInfoItem.module.css';
 
 export default function DiscoverBannerInfoItem({ banner, bannerState, activeBanner }) {
 	const { logoImg, name, id, price } = banner;
 	const idState = activeBanner(id, bannerState, styles);
 
+	const screenWidth = useScreenWidth();
+
 	return (
-		<div className={styles.itemInfo} {...(idState && { id: idState })}>
-			<img alt={`${name} Logo-${id + 1}`} className={styles.logoImg} src={logoImg} />
-			{price === 0 ? (
-				<p className={styles.priceContainer}>Free</p>
-			) : (
-				<p className={styles.priceContainer}>
-					<span>Starts at </span>
-					<DiscountPrice className={styles.price} price={price} />
-				</p>
-			)}
+		<div className={`${styles.itemInfo}${idState ? ` ${idState}` : ''}`}>
+			<div className={styles.logoContainer}>
+				<Image data={logoImg} alt={`${name} Logo-${id + 1}`} />
+				{screenWidth < 769 && <DiscoverBannerPrice price={price} />}
+			</div>
 		</div>
 	);
 }

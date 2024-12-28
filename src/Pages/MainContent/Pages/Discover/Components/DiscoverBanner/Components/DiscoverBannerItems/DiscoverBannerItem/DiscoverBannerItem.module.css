@@ -15,7 +15,7 @@
 
 .itemButton {
 	position: absolute;
-	bottom: 30%;
+	bottom: calc(30% - 2rem);
 	left: 2%;
 }
 

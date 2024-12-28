@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Image from '../../../../../../../Shared/Image/Image';
 import styles from './FreeGame.module.css';
 
 // Get the month name depending on given time
@@ -33,11 +34,7 @@ export default function FreeGame({ data, today, length }) {
 		dateState !== -1 && (
 			<div className={`${styles.freeGame} hover-shadow`}>
 				<div className={styles.gameHeader}>
-					<img
-						alt={data.name}
-						src={data.carouselThumb}
-						style={{ aspectRatio: `1/1.${length}` }}
-					/>
+					<Image data={data.carouselThumb} alt={data.name} aspectRatio={3 / length} />
 					{dateState !== -1 && (
 						<p
 							className={

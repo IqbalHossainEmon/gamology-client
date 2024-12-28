@@ -30,7 +30,7 @@ const items = [
 		id: 1010,
 		name: 'Fall Guy',
 		coverImg: '/assets/images/CarouselCoverDesktop/fall-guy.png',
-		logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
+		logoImg: '/assets/images/CarouselInfo/fall-guy-logo.avif',
 		carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
 		coverMobile: '/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
 		price: 0,

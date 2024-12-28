@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Image from '../../../../../../../../../../Shared/Image/Image';
 import VideoPlayer from '../../../../../../../../../../Shared/VideoPlayer/VideoPlayer/VideoPlayer';
 import styles from './IndiGameBannerItem.module.css';
 
@@ -22,23 +23,21 @@ export default function IndiGameBannerItem({ data, active, index }) {
 
 	return (
 		<li className={styles.individualGameBannerItem}>
-			<div className={styles.cover}>
-				{shouldShow ? (
-					data.type === 'photo' ? (
-						<img
-							alt={`Carousel number-${index}`}
-							className={styles.coverImg}
-							src={data.cover}
-						/>
-					) : (
-						<VideoPlayer
-							changePause={active}
-							src={data.cover}
-							{...(data.captions && { captions: data.captions })}
-						/>
-					)
-				) : null}
-			</div>
+			{shouldShow ? (
+				data.type === 'photo' ? (
+					<Image
+						alt={`Carousel number-${index}`}
+						data={data.cover}
+						aspectRatio={16 / 9}
+					/>
+				) : (
+					<VideoPlayer
+						changePause={active}
+						src={data.cover}
+						{...(data.captions && { captions: data.captions })}
+					/>
+				)
+			) : null}
 		</li>
 	);
 }

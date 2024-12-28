@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useToast from '../../Utils/Hooks/useToast';
+import Image from '../Image/Image';
 import styles from './ProfilePhotoUploader.module.css';
 
 function ProfilePhotoUploader({ data, setPhoto }) {
@@ -49,9 +50,7 @@ function ProfilePhotoUploader({ data, setPhoto }) {
 						});
 						return;
 					}
-
 					setPhoto(e.target.files[0]);
-
 					setPhotoDetail({ url: URL.createObjectURL(e.target.files[0]), name: fileName });
 				}
 			},
@@ -64,9 +63,7 @@ function ProfilePhotoUploader({ data, setPhoto }) {
 			type='button'
 			className={styles.profilePhotoButton}
 		>
-			<div className={styles.profileImageContainer}>
-				<img src={photoDetail.url} alt={`${photoDetail.name}'s profile`} />
-			</div>
+			<Image data={photoDetail.url} alt={`${photoDetail.name}'s profile`} />
 			<input
 				ref={inputFieldRef}
 				type='file'

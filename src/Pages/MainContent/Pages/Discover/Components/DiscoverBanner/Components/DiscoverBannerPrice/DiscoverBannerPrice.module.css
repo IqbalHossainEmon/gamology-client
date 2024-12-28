@@ -1,0 +1,18 @@
+.priceContainer {
+	display: flex;
+	white-space: nowrap;
+	margin: 5px 0;
+	width: 100%;
+}
+
+.price {
+	margin-left: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+	.priceContainer {
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+	}
+}

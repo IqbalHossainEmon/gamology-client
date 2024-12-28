@@ -1,176 +1,176 @@
 .individualGameReview {
-  display: flex;
+	display: flex;
 }
 .userDetails {
-  width: 20%;
+	width: 20%;
 }
 
-.userIcon {
-  width: 40px;
-  height: 40px;
+.imageContainer {
+	width: 40px;
+	height: 40px;
 }
 
 .name {
-  font-size: 16px;
-  margin-bottom: 10px;
+	font-size: 16px;
+	margin-bottom: 10px;
 }
 
 .details {
-  color: #a0a0a0;
-  font-size: small;
+	color: #a0a0a0;
+	font-size: small;
 }
 
 .reviewContainer {
-  width: 80%;
+	width: 80%;
 }
 
 .titleStarDateContainer {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .titleStarContainer {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .title {
-  margin-left: 10px;
-  font-size: medium;
-  font-weight: 500;
+	margin-left: 10px;
+	font-size: medium;
+	font-weight: 500;
 }
 
 .reviewDescription {
-  white-space: pre-line;
-  word-break: break-word;
-  hyphens: auto;
-  font-size: 14px;
-  line-height: 21px;
+	white-space: pre-line;
+	word-break: break-word;
+	hyphens: auto;
+	font-size: 14px;
+	line-height: 21px;
 }
 
 .date {
-  color: #797878;
-  font-size: 16px;
-  margin-left: 3px;
+	color: #797878;
+	font-size: 16px;
+	margin-left: 3px;
 }
 
 .feedbackContainer {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  margin-top: 40px;
-  color: #8b8b8b;
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	margin-top: 40px;
+	color: #8b8b8b;
 }
 
 .usersFeedback {
-  margin-left: 5px;
+	margin-left: 5px;
 }
 
 .giveFeedback {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .feedbackBtn {
-  background-color: transparent;
-  color: #c9c9c9;
-  border: 1px solid #424242;
-  padding: 3px 5px;
-  margin-left: 5px;
-  transition: background-color 200ms;
-  cursor: pointer;
+	background-color: transparent;
+	color: #c9c9c9;
+	border: 1px solid #424242;
+	padding: 3px 5px;
+	margin-left: 5px;
+	transition: background-color 200ms;
+	cursor: pointer;
 }
 
 .interactionContainer {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .feedbackBtn:hover {
-  background-color: #424242;
+	background-color: #424242;
 }
 
 .reportBtn {
-  background-color: transparent;
-  color: #8b8b8b;
-  margin-left: auto;
-  border: none;
-  text-decoration: underline;
+	background-color: transparent;
+	color: #8b8b8b;
+	margin-left: auto;
+	border: none;
+	text-decoration: underline;
 }
 
 .reportBtn:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 512px) {
-  .individualGameReview {
-    flex-direction: column;
-  }
-  .userDetails {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-  .reviewContainer {
-    width: 100%;
-  }
+	.individualGameReview {
+		flex-direction: column;
+	}
+	.userDetails {
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	.reviewContainer {
+		width: 100%;
+	}
 }
 
 @media only screen and (max-width: 476px) {
-  .titleStarContainer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .title {
-    margin-left: 3px;
-  }
+	.titleStarContainer {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.title {
+		margin-left: 3px;
+	}
 }
 
 @media only screen and (max-width: 1370px) and (min-width: 1024px) {
-  .feedbackContainer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .giveFeedback {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .usersFeedback {
-    margin-left: 0;
-  }
-  .reportBtn {
-    margin-left: 0;
-  }
+	.feedbackContainer {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.giveFeedback {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.usersFeedback {
+		margin-left: 0;
+	}
+	.reportBtn {
+		margin-left: 0;
+	}
 }
 
 @media only screen and (max-width: 575px) {
-  .feedbackContainer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .giveFeedback {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .usersFeedback {
-    margin-left: 0;
-  }
-  .reportBtn {
-    margin-left: 0;
-  }
+	.feedbackContainer {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.giveFeedback {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.usersFeedback {
+		margin-left: 0;
+	}
+	.reportBtn {
+		margin-left: 0;
+	}
 }
 
 @media only screen and (max-width: 400px) and (min-width: 292px) {
-  .giveFeedback {
-    flex-direction: column;
-  }
-  .usersFeedback {
-    margin-left: 0;
-  }
+	.giveFeedback {
+		flex-direction: column;
+	}
+	.usersFeedback {
+		margin-left: 0;
+	}
 }
 @media only screen and (max-width: 292px) {
-  .interactionContainer {
-    display: block;
-  }
-  .feedbackBtn:first-of-type {
-    margin-left: 0px;
-  }
+	.interactionContainer {
+		display: block;
+	}
+	.feedbackBtn:first-of-type {
+		margin-left: 0px;
+	}
 }

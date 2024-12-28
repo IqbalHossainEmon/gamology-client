@@ -1,3 +1,4 @@
+import Image from '../../../../../../../../../../Shared/Image/Image';
 import CardNameContainer from '../Components/CardNameContainer/CardNameContainer';
 import styles from './DiscoverBannerItemCard.module.css';
 
@@ -55,7 +56,7 @@ export default function DiscoverBannerItemCard({
 				type='button'
 				{...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}
 			>
-				<img alt={`${name} card-${id}`} src={carouselThumb} />
+				<Image data={carouselThumb} alt={`${name} card-${id}`} aspectRatio={3 / 4} />
 			</button>
 			<CardNameContainer
 				cardShadowUtils={cardShadowUtils}
