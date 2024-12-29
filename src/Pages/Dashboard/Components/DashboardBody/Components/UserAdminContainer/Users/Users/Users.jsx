@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Pagination from '../../../../../../../../Shared/Pagination/Pagination/Pagination';
+import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../../Utils/Hooks/useDashboardModal';
 import CardDot from '../../../../Shared/CardDot/CardDot/CardDot';
 import UserCard from '../../Components/UserCard/UserCard';
 import UserDeleteConfirmModal from '../../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
@@ -24,7 +24,7 @@ function Users() {
 	const [users, setUsers] = useState([]);
 	const [page, setPage] = useState({ totalPage: 69, active: 1 });
 
-	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
+	const setModal = useModal();
 
 	const { setToast } = useToast();
 
@@ -51,8 +51,7 @@ function Users() {
 										id: 2,
 										name: 'Delete',
 										event: () => {
-											setDashboardModal(true);
-											setDashboardModalContent({
+											setModal({
 												title: 'Delete User',
 												body: (
 													<div>
@@ -86,10 +85,8 @@ function Users() {
 															});
 														}}
 														btnText='Delete User'
-														placeHolder={'Type "DELETE" to confirm'}
-														errorMessage={
-															"Please type 'DELETE' to confirm"
-														}
+														placeHolder='Type "DELETE" to confirm'
+														errorMessage="Please type 'DELETE' to confirm"
 													/>
 												),
 											});
@@ -99,8 +96,7 @@ function Users() {
 										id: 3,
 										name: 'Make Admin',
 										event: () => {
-											setDashboardModal(true);
-											setDashboardModalContent({
+											setModal({
 												title: 'Make Admin',
 												body: (
 													<div>

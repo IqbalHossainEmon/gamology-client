@@ -13,9 +13,13 @@ function AllGamesContent({ items }) {
 				{items.map(item => (
 					<Card
 						alt={item.title}
-						cardInfo={item}
+						cardInfo={{
+							id: item.id,
+							name: item.name,
+							img: item.carouselThumb,
+							price: item.price,
+						}}
 						className={styles.list}
-						image={item.image}
 						key={item.id}
 					>
 						{prop => (

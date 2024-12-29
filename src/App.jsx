@@ -1,5 +1,5 @@
 import './App.css';
-import MainContent from './Pages/MainContent/MainContent/MainContent';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import FirstNavbar from './Shared/FirstNavbar/FirstNavBar/FirstNavbar';
 import withAppsHOCs from './Utils/HOC/withAppsHOCs';
 
@@ -7,7 +7,7 @@ function AppMain() {
 	return (
 		<>
 			<FirstNavbar />
-			<MainContent />
+			<Dashboard />
 		</>
 	);
 }

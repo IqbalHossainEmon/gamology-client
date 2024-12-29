@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import ScreenShadow from '../../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
-import SearchField from '../../../../../../../../../../Shared/SearchField/Components/SearchFieldBox/SearchFieldBox';
-import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
+import ScreenShadow from '../../../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
+import SearchField from '../../../../../../../../../../../Shared/SearchField/SearchFIeld/SearchFIeld';
+import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
+import AllGamesHeaderSearchFieldShowAll from '../Component/AllGamesHeaderSearchFieldShowAll/AllGamesHeaderSearchFieldShowAll';
 import styles from './AllGamesHeader.module.css';
 
 function AllGamesHeader({ setSearchText }) {
@@ -36,6 +37,17 @@ function AllGamesHeader({ setSearchText }) {
 			},
 		};
 	}
+	const renderExtraSection = useRef(null);
+	if (!renderExtraSection.current)
+		renderExtraSection.current = length => {
+			if (length > 1)
+				return {
+					numberOfButton: 1,
+					Content: AllGamesHeaderSearchFieldShowAll,
+				};
+			return { numberOfButton: 0, Content: null };
+		};
+
 	return (
 		<div className={styles.allGamesHeader}>
 			<h2 className={styles.headerText}>All Games</h2>
@@ -44,6 +56,8 @@ function AllGamesHeader({ setSearchText }) {
 					<SearchField
 						setChangedValue={setSearch}
 						setNavShow={eventRef.current.handleChange}
+						shouldClearTheSearch
+						extraSection={renderExtraSection.current}
 					/>
 				</div>
 			</div>

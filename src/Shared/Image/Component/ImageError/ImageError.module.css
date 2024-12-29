@@ -5,4 +5,8 @@
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
+	transition: opacity 200ms;
+}
+.hide {
+	opacity: 0;
 }

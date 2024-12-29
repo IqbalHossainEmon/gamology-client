@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
+import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
 import useObjectUtilities from '../../../Utils/Hooks/useObjectUtilities';
 import SuggestionListBody from '../SuggestionListBody/SuggestionListBody';
 
@@ -427,7 +428,6 @@ const data = [
 function SuggestionList({
 	state,
 	setShow,
-	setValue,
 	setState,
 	name,
 	value,
@@ -436,7 +436,8 @@ function SuggestionList({
 	noPositionChange,
 	extraSection,
 	maxLimit,
-	suggestionRef,
+	searchInputRef,
+	extraSectionParams,
 	link,
 }) {
 	const [show, fadeIn] = useAppearDisappear(state);
@@ -459,11 +460,27 @@ function SuggestionList({
 	loadingRef.current = loading;
 
 	const listLengthRef = useRef(0);
+	const suggestionRef = useRef(null);
+
+	const { setElement, onHide, showMenu } = useDropDownHide(setShow);
+
+	useEffect(
+		() => () => {
+			onHide();
+		},
+		[onHide]
+	);
 
 	const { cloneObject } = useObjectUtilities();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
+			onfocus: e => {
+				if (e.target.value.length > 0) {
+					setShow(true);
+					showMenu();
+				}
+			},
 			handleCalcPosition: length => {
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
@@ -481,22 +498,32 @@ function SuggestionList({
 					!noPositionChange &&
 					(previousBottomRemain.current !== bottomRemain || prevLength.current !== length)
 				) {
-					if (length < 2 && bottomRemain >= 60) {
+					if (length < 2 && bottomRemain >= 56) {
 						positionRef.current = false;
 						prevLength.current = length;
 					} else positionRef.current = true;
 				}
 
-				if (length > 4 && !maxLimit) {
-					setHeight(
-						Math.min(
-							parseInt((positionRef.current ? y : bottomRemain) / 60, 10) * 60,
-							240
-						)
-					);
-				} else {
-					setHeight((length || 1) * 60);
+				switch (!!maxLimit) {
+					case true:
+						setHeight(length * 56);
+						break;
+
+					default:
+						if (length > 4 && !maxLimit) {
+							setHeight(
+								Math.min(
+									parseInt((positionRef.current ? y : bottomRemain) / 56, 10) *
+										56,
+									224
+								)
+							);
+						} else {
+							setHeight((length || 1) * 56);
+						}
+						break;
 				}
+
 				return bottomRemain;
 			},
 			handleAddStrongMatch: givenList => {
@@ -526,7 +553,6 @@ function SuggestionList({
 			},
 			fetchData: () => {
 				// fetch data
-
 				if (!loadingRef.current) setLoading(true);
 				const filteredList = data.filter(
 					item =>
@@ -535,11 +561,9 @@ function SuggestionList({
 						valueRef.current !== ''
 				);
 
+				listLengthRef.current = filteredList.length;
 				const newFilteredList = cloneObject(filteredList);
-
 				eventRefs.current.handleAddStrongMatch(newFilteredList);
-
-				// clone the filtered list
 			},
 			fetchDataWithLimit: () => {
 				// fetch data
@@ -551,6 +575,7 @@ function SuggestionList({
 						valueRef.current !== ' ' &&
 						valueRef.current !== ''
 				);
+
 				listLengthRef.current = filteredList.length;
 				eventRefs.current.handleAddStrongMatch(
 					cloneObject(filteredList).slice(0, maxLimit)
@@ -559,12 +584,14 @@ function SuggestionList({
 		};
 	}
 
-	const prevValueRef = useRef(value);
-
 	const typeTimerId = useRef(null);
 
 	useEffect(() => {
-		if (value !== '' && value !== ' ' && value !== prevValueRef.current) {
+		searchInputRef.current.addEventListener('focus', eventRefs.current.onfocus);
+	}, [searchInputRef]);
+
+	useEffect(() => {
+		if (value !== '' && value !== ' ') {
 			if (!loadingRef.current) setLoading(true);
 
 			if (typeTimerId.current) {
@@ -576,10 +603,6 @@ function SuggestionList({
 				typeTimerId.current = null;
 			}, 200);
 		}
-		if (valueRef.current === '' || valueRef.current === ' ') {
-			setList([]);
-			setLoading(false);
-		}
 	}, [maxLimit, value]);
 
 	return (
@@ -587,7 +610,6 @@ function SuggestionList({
 			<SuggestionListBody
 				fadeIn={fadeIn}
 				list={list}
-				setValue={setValue}
 				setState={setState}
 				name={name}
 				value={value}
@@ -597,9 +619,12 @@ function SuggestionList({
 				className={className}
 				height={height}
 				loading={loading}
+				showMenu={showMenu}
 				extraSection={extraSection}
 				suggestionRef={suggestionRef}
+				setElement={setElement}
 				length={listLengthRef.current}
+				extraSectionParams={extraSectionParams}
 			/>
 		)
 	);

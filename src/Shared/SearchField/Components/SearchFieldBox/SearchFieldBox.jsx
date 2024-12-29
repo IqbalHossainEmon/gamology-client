@@ -2,10 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import styles from './SearchFieldBox.module.css';
 
-export default function SearchFieldBox({ setNavShow, setValue, value, searchRef }) {
+export default function SearchFieldBox({ setNavShow, setValue, value, searchRef, searchInputRef }) {
 	const [searchFocus, setSearchFocus] = useState(false);
 
-	const searchInputRef = useRef(null);
 	const eventRefs = useRef(null);
 
 	const searchFocusRef = useRef(searchFocus);
@@ -58,10 +57,10 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef 
 					window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
 				}
 			},
-			onFocus: () => {
+			onFocus: e => {
 				setSearchFocus(true);
 				setNavShow(true);
-				searchRef.current.addEventListener('keydown', eventRefs.current.handleBlurEsc);
+				e.target.addEventListener('keydown', eventRefs.current.handleBlurEsc);
 			},
 			onBlur: e => {
 				if (e.relatedTarget && e.relatedTarget === searchRef.current) {
@@ -71,7 +70,7 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef 
 
 				setSearchFocus(false);
 				setNavShow(false);
-				searchRef.current.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+				e.target.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
 			},
 		};
 	}
@@ -90,7 +89,7 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef 
 				search.removeEventListener('blur', eventRefs.current.onBlur);
 			}
 		};
-	}, [searchRef]);
+	}, [searchInputRef, searchRef]);
 
 	return (
 		<button

@@ -129,6 +129,7 @@ export default function TypeableSelectionField({
 					setValue(val);
 				}}
 				state={show}
+				searchInputRef={fieldRef}
 				value={typeof value === 'string' ? value : value.name}
 				elementRef={elementRef}
 				link='http://localhost:5173/api/autocomplete'

@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import Image from '../../../../../../../../Shared/Image/Image/Image';
 import styles from './UserCard.module.css';
 
 function UserCard({ data, children, admin }) {
@@ -11,9 +12,10 @@ function UserCard({ data, children, admin }) {
 			ref={containerRef}
 		>
 			<div className={styles.cardContainerImg}>
-				<img
-					src={profileImage}
+				<Image
+					data={profileImage}
 					alt={`${firstName}${middleName ? ` ${middleName}` : ''} ${lastName}`}
+					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</div>
 			<div className={styles.cardContainerInfo}>

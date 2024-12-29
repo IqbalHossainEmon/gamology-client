@@ -18,9 +18,8 @@
 	padding: 1rem;
 }
 
-.cardContainerImg img {
-	width: 100%;
-	border-radius: 50%;
+.aspectRatioClassName {
+	padding-bottom: 100%;
 }
 
 .cardContainerInfo {

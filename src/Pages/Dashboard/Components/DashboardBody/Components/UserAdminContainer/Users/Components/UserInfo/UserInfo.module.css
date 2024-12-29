@@ -7,10 +7,6 @@
 	justify-content: center;
 }
 
-.imgContainer img {
-	width: 100%;
-	max-width: 200px;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 50%;
+.aspectRatioClassName {
+	padding-bottom: 100%;
 }
