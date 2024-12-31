@@ -1,4 +1,4 @@
-import Image from '../../../../../../../../../../Shared/Image/Image';
+import Image from '../../../../../../../../../../Shared/Image/Image/Image';
 import styles from './IndiGameBannerCard.module.css';
 
 export default function IndiGameBannerCard({ data, active, dispatch, index, timerFunction }) {

@@ -10,12 +10,6 @@
 	margin-bottom: 40px;
 }
 
-.userIcon {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-}
-
 .userDetails {
 	width: 20%;
 }
@@ -46,6 +40,10 @@
 .writingField {
 	width: 80%;
 	position: relative;
+}
+
+.aspectRatioClassName {
+	padding-bottom: 100%;
 }
 
 @media only screen and (max-width: 265px) {

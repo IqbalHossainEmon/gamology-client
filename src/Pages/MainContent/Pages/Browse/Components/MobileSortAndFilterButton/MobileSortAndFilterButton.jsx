@@ -1,3 +1,4 @@
+import Image from '../../../../../../Shared/Image/Image/Image';
 import useFilterSortState from '../../Utils/Hooks/useFilterSortState/useFilterSortState';
 import styles from './MobileSortAndFilterButton.module.css';
 
@@ -12,7 +13,13 @@ export default function MobileSortAndFilterButton() {
 					onClick={() => setFilterSort('sort')}
 					type='button'
 				>
-					<img alt='sort button' src='/assets/images/sortButton.png' />
+					<div className={styles.imageContainer}>
+						<Image
+							data='/assets/images/sortButton.png'
+							alt='sort button'
+							aspectRatioClassName={styles.aspectRatioClassName}
+						/>
+					</div>
 					<span>Sort</span>
 				</button>
 				<div className={styles.verticalLine} />
@@ -21,7 +28,13 @@ export default function MobileSortAndFilterButton() {
 					onClick={() => setFilterSort('filter')}
 					type='button'
 				>
-					<img alt='filter button' src='/assets/images/filterButton.png' />
+					<div className={styles.imageContainer}>
+						<Image
+							data='/assets/images/filterButton.png'
+							alt='filter button'
+							aspectRatioClassName={styles.aspectRatioClassName}
+						/>
+					</div>
 					<span>Filter</span>
 				</button>
 			</div>

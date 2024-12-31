@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Image from '../../../../../../../Shared/Image/Image';
+import Image from '../../../../../../../Shared/Image/Image/Image';
 import styles from './FreeGame.module.css';
 
 // Get the month name depending on given time

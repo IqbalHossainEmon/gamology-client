@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import Image from '../../../../../../../../../Shared/Image/Image';
+import Image from '../../../../../../../../../Shared/Image/Image/Image';
 import DiscoverBannerPrice from '../../DiscoverBannerPrice/DiscoverBannerPrice';
 import styles from './DiscoverBannerItem.module.css';
 

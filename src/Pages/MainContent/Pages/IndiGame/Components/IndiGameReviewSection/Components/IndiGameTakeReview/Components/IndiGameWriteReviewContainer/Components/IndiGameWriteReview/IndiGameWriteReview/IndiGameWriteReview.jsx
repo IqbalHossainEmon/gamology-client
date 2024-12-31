@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import HorizontalDivider from '../../../../../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
+import Image from '../../../../../../../../../../../../../Shared/Image/Image/Image';
 import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import useScreenWidth from '../../../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn';
@@ -37,15 +38,16 @@ export default function IndiGameWriteReview({
 		>
 			<div className={styles.individualGameWriteReview} ref={elementRef}>
 				<div className={styles.userDetails}>
-					<img alt='' className={styles.userIcon} src={userIcon} />
-
+					<Image
+						alt={user.name}
+						data={user.userIcon}
+						aspectRatioClassName={styles.aspectRatioClassName}
+					/>
 					<p className={styles.name}>{user.name}</p>
-
 					<p className={styles.details}>
 						Games:
 						{user.reviews}
 					</p>
-
 					<p className={styles.details}>
 						Reviews:
 						{user.reviews}

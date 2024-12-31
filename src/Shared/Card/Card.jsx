@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
-import Image from '../Image/Image';
+import Image from '../Image/Image/Image';
 import styles from './Card.module.css';
 
 export default function Card({ cardInfo, style, className, children }) {

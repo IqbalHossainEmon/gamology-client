@@ -11,8 +11,6 @@ export default function VideoPlayer({ src, captions, aspectRatioClassName, chang
 	const eventRefs = useRef();
 	const [isControllerShowing, setIsControllerShowing] = useState(false);
 
-	console.log(aspectRatioClassName);
-
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			// Show hide controllers by checking the time.

@@ -19,17 +19,22 @@ const withFilterSortProvider = Component =>
 		const filterSortStateRef = useRef(filterSortState);
 		filterSortStateRef.current = filterSortState;
 
+		const hiddenRef = useRef(false);
+
 		const screenWidth = useScreenWidth();
+		const screenWidthRef = useRef(screenWidth);
+		screenWidthRef.current = screenWidth;
+
 		const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
 		useEffect(() => {
 			if (
 				screenWidth < 769 &&
 				(!filterSortStateRef.current.sort || !filterSortStateRef.current.filter) &&
-				filterSortElementRef.current.hidden
+				hiddenRef.current
 			) {
 				hideBodyOverflow();
-			} else if (!filterSortElementRef.current.hidden) {
+			} else if (hiddenRef.current) {
 				showBodyOverflow();
 			}
 		}, [screenWidth, hideBodyOverflow, showBodyOverflow]);
@@ -39,6 +44,7 @@ const withFilterSortProvider = Component =>
 		if (!eventRefs.current.handleDropDown) {
 			eventRefs.current.handleDropDown = () => {
 				setFilterSortState({ sort: true, filter: true });
+				hiddenRef.current = false;
 				showBodyOverflow();
 			};
 		}
@@ -49,45 +55,27 @@ const withFilterSortProvider = Component =>
 			eventRefs.current.setFilterSort = prop => {
 				switch (prop) {
 					case 'filter':
-						setFilterSortState(prev => {
-							if (
-								prev.filter &&
-								screenWidth < 769 &&
-								!filterSortStateRef.current.hidden
-							) {
-								hideBodyOverflow();
-								filterSortStateRef.current.hidden = true;
-							} else if (filterSortStateRef.current.hidden) {
-								showBodyOverflow();
-								filterSortStateRef.current.hidden = false;
-							}
-							return {
-								filter: !prev.filter,
-								sort: true,
-							};
-						});
+						setFilterSortState(prev => ({
+							filter: !prev.filter,
+							sort: true,
+						}));
 						break;
 					case 'sort':
 						setElement(filterSortElementRef.sort);
 						showMenu();
-						setFilterSortState(prev => {
-							if (
-								prev.sort &&
-								screenWidth < 769 &&
-								!filterSortElementRef.current.hidden
-							) {
-								hideBodyOverflow();
-								filterSortElementRef.current.hidden = true;
-							} else if (filterSortElementRef.current.hidden) {
-								showBodyOverflow();
-								filterSortElementRef.current.hidden = false;
-							}
-							return { sort: !prev.sort, filter: true };
-						});
+						setFilterSortState(prev => ({ sort: !prev.sort, filter: true }));
 						break;
 					default:
 						setFilterSortState({ sort: true, filter: true });
 				}
+				if (screenWidthRef.current < 769)
+					if (!hiddenRef.current) {
+						hideBodyOverflow();
+						hiddenRef.current = true;
+					} else {
+						showBodyOverflow();
+						hiddenRef.current = false;
+					}
 			};
 		}
 		return (

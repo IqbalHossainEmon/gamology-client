@@ -1,5 +1,5 @@
 import DiscountPriceWithPercent from '../../../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
-import Image from '../../../../../../../../Shared/Image/Image';
+import Image from '../../../../../../../../Shared/Image/Image/Image';
 import styles from './EventGamesGameInColumn.module.css';
 
 export default function EventGamesGameColumn({ game }) {

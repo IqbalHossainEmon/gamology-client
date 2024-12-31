@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Image from '../../../../../../../../../../Shared/Image/Image';
+import Image from '../../../../../../../../../../Shared/Image/Image/Image';
 import VideoPlayer from '../../../../../../../../../../Shared/VideoPlayer/VideoPlayer/VideoPlayer';
 import styles from './IndiGameBannerItem.module.css';
 
@@ -9,21 +9,14 @@ export default function IndiGameBannerItem({ data, active, index }) {
 
 	useEffect(() => {
 		if (active === index && !shouldShowRef.current) {
-			if (data.type === 'photo') {
-				setShouldShow(true);
-				shouldShowRef.current = true;
-			} else {
-				setTimeout(() => {
-					setShouldShow(true);
-					shouldShowRef.current = true;
-				}, 250);
-			}
+			setShouldShow(true);
+			shouldShowRef.current = true;
 		}
 	}, [active, data, index]);
 
 	return (
 		<li className={styles.individualGameBannerItem}>
-			{shouldShow ? (
+			{shouldShow || index === 0 ? (
 				data.type === 'photo' ? (
 					<Image
 						alt={`Carousel number-${index}`}

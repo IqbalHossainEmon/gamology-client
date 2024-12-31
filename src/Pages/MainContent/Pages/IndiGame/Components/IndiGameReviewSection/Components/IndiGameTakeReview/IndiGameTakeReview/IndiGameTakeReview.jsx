@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import HorizontalDivider from '../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
+import Image from '../../../../../../../../../Shared/Image/Image/Image';
 import ReviewStar from '../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndiGameOwnReview from '../Components/IndiGameOwnReview/IndiGameOwnReview';
 import IndiGameWriteReviewContainer from '../Components/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer';
@@ -33,11 +34,14 @@ export default function IndiGameTakeReview() {
 			<div className={styles.individualGameTakeReview}>
 				<div>
 					<div className={styles.userStarContainer}>
-						<img
-							alt='user_icon'
-							className={styles.userIcon}
-							src={user.current.src ? user.current.src : userIcon}
-						/>
+						<div className={styles.userIcon}>
+							<Image
+								alt={user.current.name}
+								data={user.current.src ? user.current.src : userIcon}
+								aspectRatioClassName={styles.aspectRatioClassName}
+							/>
+						</div>
+
 						<ReviewStar
 							name='active'
 							{...((writeReviewShow || userReviewDone) && { disabled: true })}

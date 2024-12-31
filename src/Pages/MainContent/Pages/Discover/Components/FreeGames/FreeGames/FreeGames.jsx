@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import Image from '../../../../../../../Shared/Image/Image';
+import Image from '../../../../../../../Shared/Image/Image/Image';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
 

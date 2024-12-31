@@ -33,7 +33,6 @@ export default function IndiGameDetailAside() {
 					rating={gameInfo.star}
 					src={gameInfo.logo}
 				/>
-
 				{gameInfo.info ? <IndiGameAsideBody info={gameInfo.info} /> : null}
 			</div>
 		</aside>

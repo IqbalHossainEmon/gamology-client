@@ -1,4 +1,4 @@
-import Image from '../../Image/Image';
+import Image from '../../Image/Image/Image';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './SuggestionListBody.module.css';
 

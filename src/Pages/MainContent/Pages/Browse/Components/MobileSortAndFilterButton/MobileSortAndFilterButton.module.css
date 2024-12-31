@@ -44,10 +44,12 @@
 	margin: 0 10px;
 }
 
-.sortButton img,
-.filterButton img {
+.imageContainer {
 	width: 20px;
-	height: 20px;
+}
+
+.aspectRatioClassName {
+	padding-bottom: 100%;
 }
 
 @media screen and (max-width: 210px) {
