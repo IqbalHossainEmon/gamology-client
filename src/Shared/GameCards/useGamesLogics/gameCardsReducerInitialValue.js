@@ -60,6 +60,11 @@ const reducer = (state, action) => {
 				...state,
 				transition: false,
 			};
+		case 'scrollToLast':
+			return {
+				...state,
+				cardActive: dataLength - cardOnDeck,
+			};
 		default:
 			return state;
 	}

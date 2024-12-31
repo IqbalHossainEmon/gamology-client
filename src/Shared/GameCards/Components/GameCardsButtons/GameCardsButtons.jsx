@@ -3,7 +3,7 @@ import styles from './GameCardsButtons.module.css';
 
 export default function GameCardsButtons({ handleClick, cardActive, length }) {
 	return (
-		<div className={styles.Buttons}>
+		<div className={styles.buttons}>
 			<ArrowButton
 				className={`${styles.btn} ${styles.nextBtn}`}
 				enable={cardActive === 0}
@@ -12,7 +12,7 @@ export default function GameCardsButtons({ handleClick, cardActive, length }) {
 			/>
 			<ArrowButton
 				className={`${styles.btn} ${styles.prevBtn}`}
-				enable={length === cardActive}
+				enable={length <= cardActive}
 				handleClick={() => handleClick('next')}
 				name='Next Button'
 			/>

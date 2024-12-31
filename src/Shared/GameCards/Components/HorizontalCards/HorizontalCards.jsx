@@ -22,7 +22,7 @@ function HorizontalCards(
 						{cardHovers || null}
 					</Card>
 				))}
-				{extraCard || null}
+				{extraCard ? extraCard(cardsWidth, margin) : null}
 			</ul>
 		</div>
 	);

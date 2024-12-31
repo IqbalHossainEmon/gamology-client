@@ -6,7 +6,14 @@ import gameCardsReducerInitialValue from '../useGamesLogics/gameCardsReducerInit
 import useGameCardsLogics from '../useGamesLogics/useGameCardsLogics';
 import styles from './GameCards.module.css';
 
-export default function GameCards({ headerTitle, items, extraCard, cardHovers }) {
+export default function GameCards({
+	headerTitle,
+	items,
+	extraCard,
+	cardHovers,
+	customHeader,
+	scrollToLast,
+}) {
 	const cardsContainer = useRef();
 	const { reducer, initialState } = gameCardsReducerInitialValue();
 	const [{ data, cardActive, cardsWidth, cardOnDeck, margin, transition }, dispatch] = useReducer(
@@ -20,7 +27,10 @@ export default function GameCards({ headerTitle, items, extraCard, cardHovers })
 
 		dispatch({ type: 'fetch', data: items, dataLength: items.length + (extraCard ? 1 : 0) });
 		setReference(dispatch);
-	}, [extraCard, items, setReference]);
+		if (scrollToLast) {
+			dispatch({ type: 'scrollToLast' });
+		}
+	}, [extraCard, items, scrollToLast, setReference]);
 
 	useEffect(() => {
 		const observerFunction = () => {
@@ -39,7 +49,7 @@ export default function GameCards({ headerTitle, items, extraCard, cardHovers })
 	return (
 		<div className={styles.games}>
 			<div className={styles.headerButtonContainer}>
-				<CardsHeader headerTitle={headerTitle} />
+				{customHeader || <CardsHeader headerTitle={headerTitle} />}
 				<GamesButton
 					cardActive={cardActive}
 					handleClick={event => handleClick(event)}
