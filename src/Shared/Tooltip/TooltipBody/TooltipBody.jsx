@@ -21,6 +21,7 @@ function TooltipBody({
 
 			tooltip.addEventListener('mouseover', onMouseOver);
 			tooltip.addEventListener('mouseleave', onMouseLeave);
+			tooltip.toolTipElement = true;
 
 			let scrollY = 0;
 

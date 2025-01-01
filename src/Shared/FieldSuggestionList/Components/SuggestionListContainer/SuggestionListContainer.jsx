@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
-import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
-import useObjectUtilities from '../../../Utils/Hooks/useObjectUtilities';
-import SuggestionListBody from '../SuggestionListBody/SuggestionListBody';
+import useAppearDisappear from '../../../../Utils/Hooks/useAppearDisappear';
+import useDropDownHide from '../../../../Utils/Hooks/useDropDownHide';
+import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
+import SuggestionListContent from '../SuggestionListContent/SuggestionListContent';
 
 const data = [
 	{
@@ -425,7 +425,7 @@ const data = [
 	},
 ];
 
-function SuggestionList({
+function SuggestionListContainer({
 	state,
 	setShow,
 	setState,
@@ -462,14 +462,12 @@ function SuggestionList({
 	const listLengthRef = useRef(0);
 	const suggestionRef = useRef(null);
 
-	const { setElement, onHide, showMenu } = useDropDownHide(setShow);
+	const showRef = useRef(show);
+	showRef.current = show;
 
-	useEffect(
-		() => () => {
-			onHide();
-		},
-		[onHide]
-	);
+	const { setElement, onHide, showMenu } = useDropDownHide(val => {
+		setShow(val);
+	});
 
 	const { cloneObject } = useObjectUtilities();
 
@@ -478,7 +476,6 @@ function SuggestionList({
 			onfocus: e => {
 				if (e.target.value.length > 0) {
 					setShow(true);
-					showMenu();
 				}
 			},
 			handleCalcPosition: length => {
@@ -607,13 +604,14 @@ function SuggestionList({
 
 	return (
 		show && (
-			<SuggestionListBody
+			<SuggestionListContent
 				fadeIn={fadeIn}
 				list={list}
 				setState={setState}
 				name={name}
 				value={value}
 				setShow={setShow}
+				onHide={onHide}
 				show={show}
 				positionRef={positionRef}
 				className={className}
@@ -629,4 +627,4 @@ function SuggestionList({
 		)
 	);
 }
-export default SuggestionList;
+export default SuggestionListContainer;

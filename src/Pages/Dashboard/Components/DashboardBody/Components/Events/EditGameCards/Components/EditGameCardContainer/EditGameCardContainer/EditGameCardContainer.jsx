@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import GameCards from '../../../../../../../../../../Shared/GameCards/GameCards/GameCards';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import EditGameCardAddCard from '../Components/EditGameCardAddCard/EditGameCardAddCard';
@@ -238,7 +239,14 @@ const handleExtraCard = (width, margin, handleCLick) => (
 );
 
 function EditGameCardContainer({ header }) {
+	const [cards, setCards] = useState({ header: '', cards: [] });
+
+	useEffect(() => {
+		setCards({ header: 'Best sell', cards: items });
+	}, []);
+
 	const handleCLick = () => {};
+
 	return (
 		<section className={styles.games}>
 			<GameCards
@@ -248,10 +256,12 @@ function EditGameCardContainer({ header }) {
 							field='input'
 							placeholder='Write the header title'
 							htmlFor='header-of'
+							defaultValue={cards.header}
+							setState={value => setCards(prev => ({ ...prev, header: value }))}
 						/>
 					</div>
 				}
-				items={items}
+				items={cards.cards}
 				extraCard={(width, margin) => handleExtraCard(width, margin, handleCLick)}
 				scrollToLast
 			/>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Pagination from '../../../../../../../Shared/Pagination/Pagination/Pagination';
+import useModal from '../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../Utils/Hooks/useToast';
-import useDashboardModal from '../../../../../Utils/Hooks/useDashboardModal';
 import CardDot from '../../../Shared/CardDot/CardDot/CardDot';
 import UserCard from '../Components/UserCard/UserCard';
 import UserDeleteConfirmModal from '../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
@@ -47,7 +47,7 @@ function ReportAdminWithIcon() {
 
 function Admins() {
 	const [admins, setAdmins] = useState([]);
-	const { setDashboardModalContent, setDashboardModal } = useDashboardModal();
+	const setModal = useModal();
 
 	const [page, setPage] = useState({ totalPage: 69, active: 1 });
 
@@ -71,8 +71,7 @@ function Admins() {
 										id: 0,
 										name: 'Remove Admin',
 										event: () => {
-											setDashboardModal(true);
-											setDashboardModalContent({
+											setModal({
 												title: 'Remove Admin',
 												body: (
 													<div>
@@ -91,9 +90,7 @@ function Admins() {
 														btnText='Remove Admin'
 														textConfirm='REMOVE'
 														placeHolder='Type "REMOVE" to confirm'
-														errorMessage={
-															"Please type 'REMOVE' to confirm"
-														}
+														errorMessage="Please type 'REMOVE' to confirm"
 														handleRemove={confirmText => {
 															if (
 																confirmText.toUpperCase() !==
@@ -120,8 +117,7 @@ function Admins() {
 										id: 1,
 										name: <ReportAdminWithIcon />,
 										event: () => {
-											setDashboardModal(true);
-											setDashboardModalContent({
+											setModal({
 												title: 'Report Admin',
 												body: (
 													<div>

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
+import SuggestionList from '../../FieldSuggestionList/SuggestionList/SuggestionList';
 import SearchFieldBox from '../Components/SearchFieldBox/SearchFieldBox';
-import SearchFieldSuggestionList from '../Components/SearchFieldSuggestionList/SearchFieldSuggestionList';
 
 function SearchField({
 	setNavShow,
@@ -24,7 +24,7 @@ function SearchField({
 				searchRef={searchRef}
 				searchInputRef={searchInputRef}
 			/>
-			<SearchFieldSuggestionList
+			<SuggestionList
 				value={value}
 				extraSection={extraSection}
 				searchRef={searchRef}

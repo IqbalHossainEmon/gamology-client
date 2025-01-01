@@ -8,22 +8,12 @@
 		opacity 200ms,
 		translate 200ms;
 	z-index: 1;
+	background-color: #222222c0;
 	border-radius: 4px;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	width: auto;
 	height: auto;
-}
-.toolTips::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #22222250;
-	border-radius: 4px;
-	backdrop-filter: blur(50px);
-	-webkit-backdrop-filter: blur(50px);
-	z-index: -1;
 }
 
 .toolTips p {

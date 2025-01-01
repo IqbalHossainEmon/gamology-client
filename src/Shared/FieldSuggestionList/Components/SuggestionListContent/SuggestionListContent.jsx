@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import Image from '../../Image/Image/Image';
-import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
-import styles from './SuggestionListBody.module.css';
+import Image from '../../../Image/Image/Image';
+import ScrollBar from '../../../ScrollBar/ScrollBar/ScrollBar';
+import styles from './SuggestionListContent.module.css';
 
-function SuggestionListBody({
+function SuggestionListContent({
 	fadeIn,
 	list,
 	setState,
@@ -21,11 +21,13 @@ function SuggestionListBody({
 	showMenu,
 	suggestionRef,
 	extraSectionParams,
+	onHide,
 }) {
 	useEffect(() => {
 		setElement(suggestionRef.current);
 		showMenu();
-	}, [setElement, showMenu, suggestionRef]);
+		return onHide;
+	}, [onHide, setElement, showMenu, suggestionRef]);
 
 	const { numberOfButton, Content } = extraSection ? extraSection(length) : false;
 
@@ -111,4 +113,4 @@ function SuggestionListBody({
 		</div>
 	);
 }
-export default SuggestionListBody;
+export default SuggestionListContent;

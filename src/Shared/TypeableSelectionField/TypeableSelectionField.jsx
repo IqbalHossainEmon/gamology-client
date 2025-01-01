@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
 import ErrorMessage from '../ErrorMessage/ErrorMessage/ErrorMessage';
-import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
+import SuggestionList from '../FieldSuggestionList/SuggestionList/SuggestionList';
 import styles from './TypeableSelectionField.module.css';
 
 export default function TypeableSelectionField({
@@ -128,10 +128,9 @@ export default function TypeableSelectionField({
 				setValue={val => {
 					setValue(val);
 				}}
-				state={show}
 				searchInputRef={fieldRef}
 				value={typeof value === 'string' ? value : value.name}
-				elementRef={elementRef}
+				searchRef={elementRef}
 				link='http://localhost:5173/api/autocomplete'
 			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />

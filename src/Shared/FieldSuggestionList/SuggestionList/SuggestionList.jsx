@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import SuggestionList from '../../../SuggestionList/SuggestionList/SuggestionList';
-import styles from './SearchFieldSuggestionList.module.css';
+import SuggestionListContainer from '../Components/SuggestionListContainer/SuggestionListContainer';
+import styles from './SuggestionList.module.css';
 
-function SearchFieldSuggestionList({
+function SuggestionList({
 	value,
 	searchRef,
 	searchInputRef,
@@ -12,35 +12,40 @@ function SearchFieldSuggestionList({
 	shouldClearTheSearch,
 	name,
 	extraSectionParams,
+	link,
 }) {
 	const [navShow, setNavShow] = useState(false);
 
-	const checkIfOnceShown = useRef(false);
+	const checkerRef = useRef({ onceShown: false, prevValue: value });
 
 	const shouldShow = useRef(true);
 
 	useEffect(() => {
-		if (value !== ' ' && value.length > 0 && shouldShow.current) {
+		if (
+			value !== ' ' &&
+			value.length > 0 &&
+			shouldShow.current &&
+			checkerRef.current.prevValue !== value
+		) {
 			setNavShow(true);
-			checkIfOnceShown.current = true;
-		} else if (checkIfOnceShown.current) {
+			checkerRef.current.onceShown = true;
+		} else if (checkerRef.current.onceShown) {
 			setNavShow(false);
-			checkIfOnceShown.current = false;
+
+			checkerRef.current.onceShown = false;
 		}
 		shouldShow.current = true;
 	}, [value]);
 
-	// console.log(value !== ' ', value.length > 0, shouldShow.current);
-
 	return (
-		<SuggestionList
+		<SuggestionListContainer
 			state={navShow}
 			setShow={val => {
 				setNavShow(val);
 				if (!shouldClearTheSearch) shouldShow.current = false;
 			}}
 			setState={setState}
-			className={styles.searchFieldSuggestionList}
+			className={styles.searchSuggestionList}
 			name={name}
 			value={value}
 			elementRef={searchRef}
@@ -49,7 +54,8 @@ function SearchFieldSuggestionList({
 			maxLimit={maxLimit}
 			searchInputRef={searchInputRef}
 			extraSectionParams={extraSectionParams}
+			link={link}
 		/>
 	);
 }
-export default SearchFieldSuggestionList;
+export default SuggestionList;
