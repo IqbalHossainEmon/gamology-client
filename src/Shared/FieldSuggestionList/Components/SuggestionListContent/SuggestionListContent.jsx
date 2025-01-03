@@ -28,7 +28,6 @@ function SuggestionListContent({
 	useEffect(() => {
 		setElement([suggestionRef.current, elementRef.current]);
 		showMenu();
-		return onHide;
 	}, [elementRef, onHide, setElement, showMenu, suggestionRef]);
 
 	const { numberOfButton, Content } = extraSection ? extraSection(length) : false;
@@ -80,6 +79,7 @@ function SuggestionListContent({
 												{...(value === item && { disabled: true })}
 												onClick={() => {
 													setShow(false);
+													onHide();
 													if (setState) setState(item, name);
 												}}
 												type='button'

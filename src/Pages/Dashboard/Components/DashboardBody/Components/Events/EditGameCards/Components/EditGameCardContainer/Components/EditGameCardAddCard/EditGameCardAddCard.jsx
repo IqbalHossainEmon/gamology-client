@@ -1,13 +1,11 @@
 import { useEffect, useRef } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useTooltip from '../../../../../../../../../../../Utils/Hooks/useTooltip';
-import EditGameCardAddCardBody from '../EditGameCardAddCardFooter/EditGameCardAddCardFooter';
+import EditGameCardAddCardBody from '../EditGameCardAddCardBody/EditGameCardAddCardBody';
 import styles from './EditGameCardAddCard.module.css';
 
 function EditGameCardAddCard({ width, margin, onClick }) {
 	const btnRef = useRef(null);
-	const waterEffectBtnRef = useRef(null);
 
 	const setTooltip = useTooltip();
 	const setModal = useModal();
@@ -28,28 +26,13 @@ function EditGameCardAddCard({ width, margin, onClick }) {
 					onClick={() => {
 						setModal({
 							title: 'Add Game to the list',
-							body: <EditGameCardAddCardBody />,
+							body: (
+								<h3 className={styles.title}>
+									Search for the game you want to add to the list:{' '}
+								</h3>
+							),
 							footer: (
-								<button
-									className={styles.confirmBtn}
-									onClick={() => {
-										// onClick();
-										setModal({
-											title: null,
-											body: null,
-											footer: null,
-										});
-									}}
-									ref={waterEffectBtnRef}
-									type='button'
-								>
-									Submit
-									<ButtonWaterEffect
-										backGround='#3e9c35'
-										btnRef={waterEffectBtnRef}
-										long
-									/>
-								</button>
+								<EditGameCardAddCardBody setModal={setModal} onClick={onClick} />
 							),
 						});
 					}}

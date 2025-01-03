@@ -245,7 +245,9 @@ function EditGameCardContainer({ header }) {
 		setCards({ header: 'Best sell', cards: items });
 	}, []);
 
-	const handleCLick = () => {};
+	const handleCLick = card => {
+		setCards(prev => ({ ...prev, cards: [...prev.cards, card] }));
+	};
 
 	return (
 		<section className={styles.games}>

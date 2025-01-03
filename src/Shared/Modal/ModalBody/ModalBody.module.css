@@ -11,22 +11,12 @@
 	border-radius: 0.5rem;
 	opacity: 0;
 	scale: 0.7;
-	transition:
-		opacity 200ms,
-		scale 200ms;
-}
-.modal::before {
-	content: '';
-	position: fixed;
-	border-radius: 0.5rem;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
 	background-color: #18181ccd;
 	backdrop-filter: blur(50px);
 	-webkit-backdrop-filter: blur(50px);
-	z-index: -1;
+	transition:
+		opacity 200ms,
+		scale 200ms;
 }
 
 .modalContentContainer {

@@ -70,10 +70,12 @@
 	cursor: default;
 	pointer-events: none;
 }
+
 .selected:hover button {
 	color: rgb(140, 140, 140);
 	text-decoration: none;
 }
+
 .noDataItem {
 	width: 100%;
 	display: flex;
@@ -122,7 +124,6 @@
 	width: 30px;
 	height: 30px;
 	background: linear-gradient(90deg, rgb(66, 66, 66) 0%, rgba(88, 88, 88, 0.7) 50%, rgb(66, 66, 66) 100%);
-	margin-right: 1rem;
 }
 
 .textPlaceHolder {

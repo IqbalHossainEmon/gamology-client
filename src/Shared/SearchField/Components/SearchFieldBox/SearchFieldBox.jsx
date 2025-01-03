@@ -110,7 +110,7 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef,
 				placeholder='Search Here'
 				ref={searchInputRef}
 				type='text'
-				value={value}
+				value={value.name || value}
 			/>
 		</button>
 	);

@@ -477,6 +477,7 @@ function SuggestionListContainer({
 			onfocus: e => {
 				if (e.target.value.length > 0) {
 					setShow(true);
+					if (showRef.current) showMenu();
 				}
 			},
 			handleCalcPosition: length => {

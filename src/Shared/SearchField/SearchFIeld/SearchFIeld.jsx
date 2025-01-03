@@ -31,6 +31,7 @@ function SearchField({
 				searchInputRef={searchInputRef}
 				setState={(val, name) => {
 					if (updateSearchValue) updateSearchValue(val);
+
 					if (shouldClearTheSearch) {
 						setValue('');
 					} else if (typeof val === 'object') setValue(val[name]);

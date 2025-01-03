@@ -118,15 +118,15 @@ export default function TypeableSelectionField({
 					onFocus={eventRefs.current.handleFocus}
 					onBlur={eventRefs.current.handleBlur}
 					ref={fieldRef}
-					value={typeof value === 'string' ? value : value.name}
+					value={value.name || value}
 					{...rest}
 				/>
 			</div>
 			<SuggestionList
 				name={name}
 				setShow={setShow}
-				setState={val => {
-					setValue(val);
+				setState={(val, giveName) => {
+					setValue(giveName ? val[giveName] : val);
 					setState(val);
 				}}
 				searchInputRef={fieldRef}
