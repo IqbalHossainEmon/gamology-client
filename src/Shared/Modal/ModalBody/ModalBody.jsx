@@ -7,7 +7,7 @@ function ModalBody({ content, fadeIn, hideModal }) {
 			<ScrollBar>
 				<div className={styles.modalContentContainer}>
 					<h2 className={styles.header}>{content.title}</h2>
-					<div className={styles.headerQuestion}>{content.body}</div>
+					<div className={styles.body}>{content.body}</div>
 					<div>{content.footer}</div>
 					<button className={styles.crossBtn} onClick={hideModal} type='button'>
 						<span className={styles.cross} />

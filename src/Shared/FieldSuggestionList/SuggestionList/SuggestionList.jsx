@@ -13,6 +13,7 @@ function SuggestionList({
 	name,
 	extraSectionParams,
 	link,
+	setHeight,
 }) {
 	const [navShow, setNavShow] = useState(false);
 
@@ -55,6 +56,7 @@ function SuggestionList({
 			searchInputRef={searchInputRef}
 			extraSectionParams={extraSectionParams}
 			link={link}
+			setContainerHeight={setHeight}
 		/>
 	);
 }

@@ -43,6 +43,17 @@
 	height: 0.2rem;
 	background-color: white;
 }
-.footer {
-	height: 60px;
+
+.confirmBtn {
+	width: 100%;
+	background-image: linear-gradient(to right, #8200ff, #df00ff);
+	color: white;
+	border: none;
+	padding: 1rem 2rem;
+	border-radius: 0.2rem;
+	cursor: pointer;
+	display: block;
+	margin-left: auto;
+	margin-top: 1rem;
+	position: relative;
 }

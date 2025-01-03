@@ -16,6 +16,7 @@ export default function TypeableSelectionField({
 	handleChange = () => {},
 	errorMessage,
 	errorChange = () => {},
+	setHeight,
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
@@ -124,13 +125,14 @@ export default function TypeableSelectionField({
 			<SuggestionList
 				name={name}
 				setShow={setShow}
-				setState={setState}
-				setValue={val => {
+				setState={val => {
 					setValue(val);
+					setState(val);
 				}}
 				searchInputRef={fieldRef}
 				value={typeof value === 'string' ? value : value.name}
 				searchRef={elementRef}
+				setHeight={setHeight}
 				link='http://localhost:5173/api/autocomplete'
 			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />

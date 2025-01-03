@@ -22,14 +22,24 @@ function SuggestionListContent({
 	suggestionRef,
 	extraSectionParams,
 	onHide,
+	elementRef,
+	setContainerHeight,
 }) {
 	useEffect(() => {
-		setElement(suggestionRef.current);
+		setElement([suggestionRef.current, elementRef.current]);
 		showMenu();
 		return onHide;
-	}, [onHide, setElement, showMenu, suggestionRef]);
+	}, [elementRef, onHide, setElement, showMenu, suggestionRef]);
 
 	const { numberOfButton, Content } = extraSection ? extraSection(length) : false;
+
+	useEffect(() => {
+		if (setContainerHeight)
+			setContainerHeight(loading ? 240 : height + 20 + (numberOfButton || 0) * 34);
+		return () => {
+			if (setContainerHeight) setContainerHeight(0);
+		};
+	}, [height, loading, numberOfButton, setContainerHeight]);
 
 	return (
 		<div
@@ -62,7 +72,7 @@ function SuggestionListContent({
 									))
 								: list.map(item => (
 										<li
-											className={`${styles.item}${value.name === item.name ? ` ${styles.selected}` : ''}`}
+											className={`${styles.item}${typeof value === 'object' ? value.name === item.name : value === item.name ? ` ${styles.selected}` : ''}`}
 											key={item.name}
 										>
 											<button

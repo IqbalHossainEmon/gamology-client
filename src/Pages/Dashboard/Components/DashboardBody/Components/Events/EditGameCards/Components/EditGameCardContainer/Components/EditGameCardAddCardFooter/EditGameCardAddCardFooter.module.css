@@ -1,0 +1,9 @@
+.footer {
+	margin-top: 1rem;
+	transition: height 200ms;
+}
+
+.title {
+	font-size: 1.1rem;
+	font-weight: 400;
+}

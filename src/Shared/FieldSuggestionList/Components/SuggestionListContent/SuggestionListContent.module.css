@@ -44,6 +44,10 @@
 	height: 56px;
 }
 
+.item p {
+	text-align: left;
+}
+
 .item button {
 	width: 100%;
 	cursor: pointer;
@@ -68,6 +72,7 @@
 }
 .selected:hover button {
 	color: rgb(140, 140, 140);
+	text-decoration: none;
 }
 .noDataItem {
 	width: 100%;
@@ -94,6 +99,7 @@
 
 .imageContainer {
 	width: 30px;
+	flex-shrink: 0;
 	overflow: hidden;
 }
 

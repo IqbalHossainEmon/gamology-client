@@ -439,6 +439,7 @@ function SuggestionListContainer({
 	searchInputRef,
 	extraSectionParams,
 	link,
+	setContainerHeight,
 }) {
 	const [show, fadeIn] = useAppearDisappear(state);
 	const [list, setList] = useState([]);
@@ -623,6 +624,8 @@ function SuggestionListContainer({
 				setElement={setElement}
 				length={listLengthRef.current}
 				extraSectionParams={extraSectionParams}
+				elementRef={elementRef}
+				setContainerHeight={setContainerHeight}
 			/>
 		)
 	);
