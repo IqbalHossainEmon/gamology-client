@@ -12,11 +12,22 @@ const reducer = (state, action) => {
 	const { dataLength, cardActive, cardOnDeck } = state;
 
 	switch (action.type) {
-		case 'fetch':
-			return { ...state, data: action.data, dataLength: action.dataLength };
+		case 'dataChange':
+			return {
+				...state,
+				data: action.data,
+				dataLength: action.dataLength,
+				cardActive:
+					action.dataLength - 1 - cardOnDeck === cardActive
+						? cardActive % cardOnDeck
+							? cardActive + 1
+							: action.dataLength - 1
+						: cardActive,
+			};
 		case 'screenWidthChange':
-			const newCardActive =
-				cardOnDeck !== action.cardOnDeck && cardActive
+			const newCardActive = action.scrollToLast
+				? dataLength - action.cardOnDeck
+				: cardOnDeck !== action.cardOnDeck
 					? cardActive + cardOnDeck === dataLength
 						? dataLength - action.cardOnDeck
 						: cardActive % action.cardOnDeck
@@ -60,11 +71,7 @@ const reducer = (state, action) => {
 				...state,
 				transition: false,
 			};
-		case 'scrollToLast':
-			return {
-				...state,
-				cardActive: dataLength - cardOnDeck,
-			};
+
 		default:
 			return state;
 	}

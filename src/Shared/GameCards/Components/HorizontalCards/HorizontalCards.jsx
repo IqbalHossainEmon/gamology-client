@@ -8,22 +8,24 @@ function HorizontalCards(
 ) {
 	return (
 		<div className={styles.cards} ref={ref}>
-			<ul
-				className={`${transition ? `${styles.transition} ` : ''} ${styles.cardSlider}`}
-				style={{ translate: `${-(cardsWidth * cardActive + margin * cardActive)}px` }}
-			>
-				{data.map(({ id, name, carouselThumb, price, category }) => (
-					<Card
-						cardInfo={{ id, name, img: carouselThumb, price, category }}
-						className={styles.card}
-						key={id}
-						style={{ width: `${cardsWidth}px`, marginRight: `${margin}px` }}
-					>
-						{cardHovers || null}
-					</Card>
-				))}
-				{extraCard ? extraCard(cardsWidth, margin) : null}
-			</ul>
+			{!!cardsWidth && (
+				<ul
+					className={`${transition ? `${styles.transition} ` : ''} ${styles.cardSlider}`}
+					style={{ translate: `${-(cardsWidth * cardActive + margin * cardActive)}px` }}
+				>
+					{data.map(({ id, name, carouselThumb, price, category }) => (
+						<Card
+							cardInfo={{ id, name, img: carouselThumb, price, category }}
+							className={styles.card}
+							key={id}
+							style={{ width: `${cardsWidth}px`, marginRight: `${margin}px` }}
+						>
+							{cardHovers || null}
+						</Card>
+					))}
+					{extraCard ? extraCard(cardsWidth, margin) : null}
+				</ul>
+			)}
 		</div>
 	);
 }

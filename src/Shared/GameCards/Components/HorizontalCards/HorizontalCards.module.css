@@ -12,7 +12,7 @@
 	display: flex;
 }
 .transition {
-	transition: translate 300ms;
+	transition: translate 200ms;
 }
 
 .card {

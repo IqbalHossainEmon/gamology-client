@@ -1,10 +1,10 @@
 import styles from './ArrowButton.module.css';
 
-export default function ArrowButton({ name, handleClick, className, enable }) {
+export default function ArrowButton({ name, handleClick, className, disabled }) {
 	return (
 		<button
 			className={[className, styles.btn].join(' ')}
-			disabled={enable}
+			disabled={disabled}
 			name={name}
 			onClick={handleClick}
 			type='button'

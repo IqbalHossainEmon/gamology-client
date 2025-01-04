@@ -14,27 +14,30 @@ export default function GameCards({
 	customHeader,
 	scrollToLast,
 }) {
-	const cardsContainer = useRef();
+	const cardsContainer = useRef(null);
 	const { reducer, initialState } = gameCardsReducerInitialValue();
-	const [{ data, cardActive, cardsWidth, cardOnDeck, margin, transition }, dispatch] = useReducer(
-		reducer,
-		initialState
-	);
+	const [{ data, dataLength, cardActive, cardsWidth, cardOnDeck, margin, transition }, dispatch] =
+		useReducer(reducer, initialState);
 	const { handleClick, setReference, setCardsOnScreenWidthChange } = useGameCardsLogics();
 
 	useEffect(() => {
-		// call using link to fetch data
-
-		dispatch({ type: 'fetch', data: items, dataLength: items.length + (extraCard ? 1 : 0) });
+		dispatch({
+			type: 'dataChange',
+			data: items,
+			dataLength: items.length + (extraCard ? 1 : 0),
+		});
 		setReference(dispatch);
-		if (scrollToLast) {
-			dispatch({ type: 'scrollToLast' });
-		}
 	}, [extraCard, items, scrollToLast, setReference]);
+
+	const isFirstTimeRef = useRef(true);
 
 	useEffect(() => {
 		const observerFunction = () => {
-			setCardsOnScreenWidthChange(cardsContainer.current);
+			setCardsOnScreenWidthChange(
+				cardsContainer.current,
+				isFirstTimeRef.current && scrollToLast
+			);
+			isFirstTimeRef.current = false;
 		};
 
 		const observer = new ResizeObserver(observerFunction);
@@ -44,16 +47,16 @@ export default function GameCards({
 		return () => {
 			observer.disconnect();
 		};
-	}, [setCardsOnScreenWidthChange]);
+	}, [scrollToLast, setCardsOnScreenWidthChange]);
 
 	return (
 		<div className={styles.games}>
 			<div className={styles.headerButtonContainer}>
 				{customHeader || <CardsHeader headerTitle={headerTitle} />}
 				<GamesButton
-					cardActive={cardActive}
+					cardActive={cardsWidth ? cardActive : 0}
 					handleClick={event => handleClick(event)}
-					length={data.length - cardOnDeck}
+					length={dataLength - cardOnDeck}
 				/>
 			</div>
 			<HorizontalCards

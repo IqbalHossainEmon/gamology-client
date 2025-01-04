@@ -59,17 +59,17 @@ const withTooltip = Component =>
 				},
 				contextEvents: (element, msg) => {
 					if (element && msg) {
-						element.addEventListener('mousemove', eventRefs.current.onMouseOver);
+						element.addEventListener('mouseover', eventRefs.current.onMouseOver);
 						element.toolTipMsg = msg;
-						element.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
+						element.addEventListener('mouseout', eventRefs.current.onMouseLeave);
 					} else if (element && !msg) {
 						if (showRef.current) {
 							setShow(false);
 						}
 						setMessage('');
-						element.removeEventListener('mousemove', eventRefs.current.onMouseOver);
+						element.removeEventListener('mouseover', eventRefs.current.onMouseOver);
 						delete element.toolTipMsg;
-						element.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
+						element.removeEventListener('mouseout', eventRefs.current.onMouseLeave);
 					}
 				},
 			};
@@ -79,11 +79,11 @@ const withTooltip = Component =>
 			() => () => {
 				if (containerRef.current) {
 					containerRef.current.removeEventListener(
-						'mousemove',
+						'mouseover',
 						eventRefs.current.onMouseOver
 					);
 					containerRef.current.removeEventListener(
-						'mouseleave',
+						'mouseout',
 						eventRefs.current.onMouseLeave
 					);
 				}
