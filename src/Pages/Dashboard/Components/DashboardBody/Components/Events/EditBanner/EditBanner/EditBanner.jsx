@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import InfoFieldActionButton from '../../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
+import StyledButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import OuterErrorMessage from '../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import EditBannerSingleSection from '../EditBannerSingleSection/EditBannerSingleSection';
 import styles from './EditBanner.module.css';
@@ -115,7 +115,7 @@ function EditBanner() {
 				/>
 			</div>
 			<div className={styles.btnContainer}>
-				<InfoFieldActionButton text='Save' onClick={handleSubmit} />
+				<StyledButtonWithEffects text='Save' onClick={handleSubmit} />
 			</div>
 		</form>
 	);

@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import styles from './InfoFieldActionButton.module.css';
+import styles from './NormalButtonWithEffects.module.css';
 
-export default function InfoFieldActionButton({ onClick, text, disabled = false, tabIndexOff }) {
+export default function NormalButtonWithEffects({ onClick, text, disabled = false, tabIndexOff }) {
 	const btnRef = useRef(null);
 
 	return (
-		<div className={`${disabled ? `${styles.disabled} ` : ''}${styles.addMoreButton}`}>
+		<div className={`${disabled ? `${styles.disabled} ` : ''}${styles.btnContainer}`}>
 			<button
 				className={styles.btn}
 				onClick={onClick}

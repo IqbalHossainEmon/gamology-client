@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField/TextField';
-import InfoFieldActionButton from '../../../../../Shared/InfoFieldActionButton/InfoFieldActionButton';
+import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 
@@ -65,7 +65,7 @@ function GameInfoFieldDescriptions({
 			</div>
 			<div className={styles.buttonContainer}>
 				<div className={styles.btn}>
-					<InfoFieldActionButton
+					<NormalButtonWithEffects
 						onClick={() => {
 							setArray(prev => [
 								...prev,
@@ -80,7 +80,7 @@ function GameInfoFieldDescriptions({
 					/>
 				</div>
 				<div className={styles.btn}>
-					<InfoFieldActionButton
+					<NormalButtonWithEffects
 						{...(array.length === 1 && { disabled: true })}
 						onClick={() => {
 							setArray(prev => {
@@ -93,7 +93,7 @@ function GameInfoFieldDescriptions({
 					/>
 				</div>
 				<div className={styles.mainBtn}>
-					<InfoFieldActionButton
+					<NormalButtonWithEffects
 						{...(array[array.length - 1]?.main === true && {
 							disabled: true,
 						})}
@@ -111,7 +111,7 @@ function GameInfoFieldDescriptions({
 					/>
 				</div>
 				<div className={styles.mainBtn}>
-					<InfoFieldActionButton
+					<NormalButtonWithEffects
 						{...((array.length === 1 || !array[array.length - 1]?.main) && {
 							disabled: true,
 						})}
@@ -129,7 +129,7 @@ function GameInfoFieldDescriptions({
 					/>
 				</div>
 				<div className={styles.mainBtn}>
-					<InfoFieldActionButton
+					<NormalButtonWithEffects
 						onClick={() => {
 							setArray(prev => [...prev, { id: prev.length, subHeader: true }]);
 							gameDescriptions.current.gameDescriptions.descriptions.push({

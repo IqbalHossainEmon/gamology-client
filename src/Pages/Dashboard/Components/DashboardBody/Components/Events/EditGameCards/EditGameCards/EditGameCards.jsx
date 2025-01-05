@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import EditGameCardContainer from '../Components/EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
+import { useEffect, useState } from 'react';
+import EditGameCardFirstPart from '../Components/EditGameCardFirstPart/EditGameCardFirstPart';
 import styles from './EditGameCards.module.css';
 
 const items = [
@@ -234,15 +234,21 @@ const items = [
 ];
 
 function EditGameCards() {
+	const [gameCards, setGameCards] = useState([[]]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setTimeout(() => {
+			setGameCards(prev => [
+				[
+					{ id: 0, header: 'Best sell', cards: items },
+					// { id: 1, header: 'WOW sell', cards: items },
+				],
+				...prev,
+			]);
 			setIsLoading(false);
 		}, 200);
 	}, []);
-
-	const gameCards = useRef([]);
 
 	return (
 		<div className={styles.editGameCards}>
@@ -251,12 +257,7 @@ function EditGameCards() {
 			) : (
 				<>
 					<h2 className={styles.editBannerHeader}>Edit Game Cards</h2>
-					<h3 className={styles.firstRow}>First after main banner</h3>
-					<EditGameCardContainer
-						defaultData={{
-							cards: items,
-						}}
-					/>
+					<EditGameCardFirstPart gameCards={gameCards[0]} setGameCards={setGameCards} />
 				</>
 			)}
 		</div>

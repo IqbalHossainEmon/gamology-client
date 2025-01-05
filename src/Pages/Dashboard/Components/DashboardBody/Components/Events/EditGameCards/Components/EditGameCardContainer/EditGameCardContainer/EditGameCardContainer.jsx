@@ -8,7 +8,7 @@ const handleExtraCard = (width, margin, handleCLick) => (
 	<EditGameCardAddCard width={width} margin={margin} onClick={handleCLick} />
 );
 
-function EditGameCardContainer({ defaultData }) {
+function EditGameCardContainer({ defaultData, id }) {
 	const [cards, setCards] = useState(defaultData || { header: '', cards: [] });
 
 	const handleCLick = card => {
@@ -23,7 +23,7 @@ function EditGameCardContainer({ defaultData }) {
 						<TextField
 							field='input'
 							placeholder='Write the title'
-							htmlFor='header-of'
+							htmlFor={`header-of-${id}`}
 							defaultValue={cards.header}
 							setState={value => setCards(prev => ({ ...prev, header: value }))}
 						/>

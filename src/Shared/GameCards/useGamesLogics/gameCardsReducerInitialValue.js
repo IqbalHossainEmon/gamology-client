@@ -26,7 +26,9 @@ const reducer = (state, action) => {
 			};
 		case 'screenWidthChange':
 			const newCardActive = action.scrollToLast
-				? dataLength - action.cardOnDeck
+				? dataLength - action.cardOnDeck < 0
+					? 0
+					: dataLength - action.cardOnDeck
 				: cardOnDeck !== action.cardOnDeck
 					? cardActive + cardOnDeck === dataLength
 						? dataLength - action.cardOnDeck
