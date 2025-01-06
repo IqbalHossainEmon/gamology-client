@@ -49,7 +49,7 @@ function EditGameCardAddCardBody({ setModal, onClick }) {
 
 					// for dev purposes
 					onClick({
-						id: 9999,
+						id: new Date().getTime(),
 						category: {
 							card: 'Base game',
 						},

@@ -1,13 +1,10 @@
-import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardFirstPart.module.css';
 
-function EditGameCardFirstPart({ gameCards, setGameCards }) {
+function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef }) {
 	const { cloneObject } = useObjectUtilities();
-
-	const setModal = useModal();
 
 	return (
 		<div className={styles.editGameCardFirstPart}>
@@ -17,10 +14,14 @@ function EditGameCardFirstPart({ gameCards, setGameCards }) {
 					key={gameCard.id}
 					defaultData={gameCard}
 					id={gameCard.id}
+					setGameCard={card => {
+						cardsRef.current[0][index].cards.push(card);
+					}}
 					onClear={() =>
 						setGameCards(prev => {
 							const newPrev = cloneObject(prev);
 							newPrev[0][index].cards = [];
+							cardsRef.current[0][index].cards = [];
 							return newPrev;
 						})
 					}
@@ -28,54 +29,28 @@ function EditGameCardFirstPart({ gameCards, setGameCards }) {
 						setGameCards(prev => {
 							const newPrev = cloneObject(prev);
 							newPrev[0][index] = data;
+							cardsRef.current[0][index] = data;
 							return newPrev;
 						});
 					}}
 					onDelete={() => {
-						setModal({
-							title: 'Confirm Deletion',
-							body: <p>Are you sure you want to delete?</p>,
-							footer: (
-								<div className={styles.deleteModalFooter}>
-									<NormalButtonWithEffects
-										className={`${styles.btn} ${styles.yesBtn}`}
-										onClick={() => {
-											setGameCards(prev => {
-												const newPrev = cloneObject(prev);
-												newPrev[0].splice(index, 1);
-												return newPrev;
-											});
-											setModal({
-												title: null,
-												body: null,
-												footer: null,
-											});
-										}}
-										text='Yes'
-									/>
-									<NormalButtonWithEffects
-										className={`${styles.btn} ${styles.noBtn}`}
-										onClick={() => {
-											setModal({
-												title: null,
-												body: null,
-												footer: null,
-											});
-										}}
-										text='No'
-									/>
-								</div>
-							),
+						setGameCards(prev => {
+							const newPrev = cloneObject(prev);
+							newPrev[0].splice(index, 1);
+							cardsRef.current[0].splice(index, 1);
+							return newPrev;
 						});
 					}}
 				/>
 			))}
+			<NormalButtonWithEffects text='Check' onClick={() => console.log(cardsRef.current)} />
 			{!!gameCards[1] || (
 				<NormalButtonWithEffects
 					onClick={() =>
 						setGameCards(prev => {
 							const newPrev = cloneObject(prev);
 							newPrev[0].push({ id: Date.now(), header: '', cards: [] });
+							cardsRef.current[0].push({ id: Date.now(), header: '', cards: [] });
 							return newPrev;
 						})
 					}

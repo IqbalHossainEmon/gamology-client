@@ -7,18 +7,18 @@
 	padding: 1rem;
 	left: 0;
 	bottom: 0;
-	z-index: 3;
 	pointer-events: none;
 	background-color: #18181c;
-	z-index: -1;
 }
 
 .footerContainer {
+	pointer-events: auto;
 	transform-origin: left;
 	position: absolute;
 	width: 13rem;
 	height: fit-content;
 	bottom: 1rem;
+	z-index: 1;
 }
 
 .footerLinks {

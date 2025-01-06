@@ -16,3 +16,17 @@
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
 }
+.deleteModalFooter {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
+.yesBtn {
+	background-color: rgb(153, 0, 0);
+	color: white;
+}
+.noBtn {
+	background-color: rgba(0, 255, 0, 0.5);
+	color: white;
+}

@@ -19,9 +19,7 @@ const reducer = (state, action) => {
 				dataLength: action.dataLength,
 				cardActive:
 					action.dataLength - 1 - cardOnDeck === cardActive
-						? cardActive % cardOnDeck
-							? cardActive + 1
-							: action.dataLength - 1
+						? cardActive + 1
 						: cardActive > action.dataLength
 							? action.dataLength - 1
 							: cardActive,
