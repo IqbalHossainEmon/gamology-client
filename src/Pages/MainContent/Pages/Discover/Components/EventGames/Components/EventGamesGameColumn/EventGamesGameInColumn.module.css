@@ -2,7 +2,7 @@
 	display: flex;
 	transition: background-color 300ms;
 	padding: 1rem;
-	border-radius: 0.5rem;
+	border-radius: 4px;
 	cursor: pointer;
 	justify-content: stretch;
 	align-items: stretch;
@@ -11,20 +11,17 @@
 .gameColumn:hover {
 	background-color: rgba(75, 75, 75, 0.473);
 }
-.gameImage {
+.gameImageContainer {
 	width: 25%;
 	position: relative;
 }
 
 .image {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	transition: border-radius 300ms;
+	transition: border-radius 200ms;
 }
 
 .gameColumn:hover .image {
-	border-radius: 0.5rem;
+	border-radius: 4px;
 }
 
 .gameDetails {

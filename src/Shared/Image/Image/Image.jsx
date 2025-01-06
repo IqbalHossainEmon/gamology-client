@@ -53,7 +53,7 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
 					ref={imgRef}
 					src={imgSrc.current.src}
 					alt={alt}
-					className={`${className ? ` ${className}` : ''}${aspectRatioClassName ? styles.imageWithAspectRatio : styles.imageNoAspectRatio}${currentState === 0 ? ` ${styles.loading}` : ''} ${styles.image}`}
+					className={`${className ? ` ${className}` : ''} ${aspectRatioClassName ? styles.imageWithAspectRatio : styles.imageNoAspectRatio}${currentState === 0 ? ` ${styles.loading}` : ''} ${styles.image}`}
 				/>
 			) : (
 				<ImageError alt={alt} />

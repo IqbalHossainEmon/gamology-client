@@ -1,4 +1,5 @@
 .games {
 	width: 100%;
 	max-width: calc(100vw - 1rem);
+	padding-bottom: 3rem;
 }

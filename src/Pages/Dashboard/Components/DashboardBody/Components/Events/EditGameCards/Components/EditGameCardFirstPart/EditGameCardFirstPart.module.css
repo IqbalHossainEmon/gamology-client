@@ -1,4 +1,21 @@
-.firstRow {
+.firstRowHeader {
 	margin-top: 1rem;
 	font-weight: 400;
+	margin-bottom: 2rem;
+}
+.deleteModalFooter {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+.btn {
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	color: white;
+}
+.yesBtn {
+	background-color: rgba(255, 0, 0, 0.5);
+}
+.noBtn {
+	background-color: rgba(0, 255, 0, 0.5);
 }

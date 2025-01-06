@@ -1,5 +1,18 @@
+.gameCard {
+	margin-bottom: 3rem;
+}
+
 .header {
 	max-width: 30rem;
 	width: 100%;
-	margin-top: 1rem;
+}
+.headerBtnContainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: flex-end;
+}
+.btn {
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
 }

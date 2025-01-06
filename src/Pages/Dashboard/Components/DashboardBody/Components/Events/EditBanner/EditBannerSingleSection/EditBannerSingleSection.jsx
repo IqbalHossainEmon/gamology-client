@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import TypeableSelectionField from '../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
+import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import styles from './EditBannerSingleSection.module.css';
 
 function EditBannerSingleSection({ index, item, bannerData, errorMessages, errorChange }) {
@@ -12,20 +12,16 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 
 	const initialData = useRef(cloneObject(item));
 
-	const resetBtnRef = useRef(null);
-	const clearBtnRef = useRef(null);
-
 	return (
 		<div>
 			<div className={styles.headerContainer}>
 				<h3 className={`${styles.marginTop} ${styles.subHeader}`}>
 					Upload Image #{index + 1}
 				</h3>
-				<div className={styles.headerBtn}>
-					<button
-						ref={resetBtnRef}
-						className={styles.resetBtn}
-						type='button'
+				<div className={styles.headerBtnContainer}>
+					<NormalButtonWithEffects
+						className={styles.btn}
+						text='Reset'
 						onClick={() => {
 							setDefaultData({
 								coverImg: '',
@@ -39,14 +35,11 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 							}, 0);
 							bannerData.current[index] = item;
 						}}
-					>
-						Reset
-						<ButtonWaterEffect btnRef={resetBtnRef} />
-					</button>
-					<button
-						ref={clearBtnRef}
-						className={styles.clearBtn}
-						type='button'
+					/>
+
+					<NormalButtonWithEffects
+						className={styles.btn}
+						text='Clear'
 						onClick={() => {
 							setDefaultData({
 								coverImg: '',
@@ -63,10 +56,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 								name: '',
 							};
 						}}
-					>
-						Clear
-						<ButtonWaterEffect btnRef={clearBtnRef} />
-					</button>
+					/>
 				</div>
 			</div>
 			<FileUploadButton

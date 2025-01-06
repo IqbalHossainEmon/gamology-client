@@ -1,5 +1,4 @@
 .games {
-	margin-bottom: 3rem;
 	width: 100%;
 	position: relative;
 }
@@ -7,7 +6,7 @@
 .headerButtonContainer {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: flex-end;
 	gap: 1rem;
 	justify-content: space-between;
 }

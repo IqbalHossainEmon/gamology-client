@@ -20,16 +20,17 @@ export default function GameCards({
 		useReducer(reducer, initialState);
 	const { handleClick, setReference, setCardsOnScreenWidthChange } = useGameCardsLogics();
 
+	const isFirstTimeRef = useRef(true);
+
 	useEffect(() => {
 		dispatch({
 			type: 'dataChange',
 			data: items,
 			dataLength: items.length + (extraCard ? 1 : 0),
+			scrollToLast,
 		});
 		setReference(dispatch);
 	}, [extraCard, items, scrollToLast, setReference]);
-
-	const isFirstTimeRef = useRef(true);
 
 	useEffect(() => {
 		const observerFunction = () => {

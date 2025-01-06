@@ -22,7 +22,9 @@ const reducer = (state, action) => {
 						? cardActive % cardOnDeck
 							? cardActive + 1
 							: action.dataLength - 1
-						: cardActive,
+						: cardActive > action.dataLength
+							? action.dataLength - 1
+							: cardActive,
 			};
 		case 'screenWidthChange':
 			const newCardActive = action.scrollToLast
