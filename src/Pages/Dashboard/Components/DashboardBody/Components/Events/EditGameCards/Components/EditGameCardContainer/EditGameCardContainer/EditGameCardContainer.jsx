@@ -97,23 +97,90 @@ function EditGameCardContainer({
 				extraCard={(width, margin) => handleExtraCard(width, margin, handleCardSelection)}
 				scrollToLast
 			>
-				{(parentRef, cardInfo) => (
-					<CardDot
-						parentRef={parentRef}
-						lists={[
+				{(parentRef, cardInfo) => {
+					const list = [
+						{
+							name: 'Delete',
+							event: () => {
+								const newCards = cards.cards.filter(
+									card => card.id !== cardInfo.id
+								);
+								setCards(prev => ({ ...prev, cards: newCards }));
+								// onDelete(cardInfo.index);
+							},
+						},
+					];
+					if (cards.cards.length === 0) {
+						return;
+					}
+					if (
+						cardInfo.id !== cards.cards[cards.cards.length - 1].id &&
+						cardInfo.id !== cards.cards[0].id
+					) {
+						list.push(
 							{
-								name: 'Delete',
+								name: 'Move Left',
 								event: () => {
-									const newCards = cards.cards.filter(
-										card => card.id !== cardInfo.id
+									const newCards = [...cards.cards];
+									const index = newCards.findIndex(
+										card => card.id === cardInfo.id
 									);
-									setCards(prev => ({ ...prev, cards: newCards }));
-									// onDelete(cardInfo.index);
+									if (index > 0) {
+										const temp = newCards[index];
+										newCards[index] = newCards[index - 1];
+										newCards[index - 1] = temp;
+										setCards(prev => ({ ...prev, cards: newCards }));
+									}
 								},
 							},
-						]}
-					/>
-				)}
+							{
+								name: 'Move Right',
+								event: () => {
+									const newCards = [...cards.cards];
+									const index = newCards.findIndex(
+										card => card.id === cardInfo.id
+									);
+									if (index < newCards.length - 1) {
+										const temp = newCards[index];
+										newCards[index] = newCards[index + 1];
+										newCards[index + 1] = temp;
+										setCards(prev => ({ ...prev, cards: newCards }));
+									}
+								},
+							}
+						);
+					} else if (cardInfo.id === cards.cards[0].id) {
+						list.push({
+							name: 'Move Right',
+							event: () => {
+								const newCards = [...cards.cards];
+								const index = newCards.findIndex(card => card.id === cardInfo.id);
+								if (index < newCards.length - 1) {
+									const temp = newCards[index];
+									newCards[index] = newCards[index + 1];
+									newCards[index + 1] = temp;
+									setCards(prev => ({ ...prev, cards: newCards }));
+								}
+							},
+						});
+					} else if (cardInfo.id === cards.cards[cards.cards.length - 1].id) {
+						list.push({
+							name: 'Move Left',
+							event: () => {
+								const newCards = [...cards.cards];
+								const index = newCards.findIndex(card => card.id === cardInfo.id);
+								if (index > 0) {
+									const temp = newCards[index];
+									newCards[index] = newCards[index - 1];
+									newCards[index - 1] = temp;
+									setCards(prev => ({ ...prev, cards: newCards }));
+								}
+							},
+						});
+					}
+
+					return <CardDot parentRef={parentRef} lists={list} />;
+				}}
 			</GameCards>
 			<div className={styles.headerBtnContainer}>
 				<NormalButtonWithEffects

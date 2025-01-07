@@ -24,12 +24,13 @@
 	opacity: 0;
 	scale: 0.7;
 	transition:
+		background-color 200ms,
 		opacity 200ms,
 		scale 200ms;
 }
 
 .btnDot:hover {
-	background-color: rgb(29, 29, 29);
+	background-color: rgb(29, 29, 29, 0.5);
 }
 
 .btnDot:active {
