@@ -1,184 +1,184 @@
 .btn {
-  text-transform: uppercase;
-  border-radius: 4px;
-  border: none;
+	text-transform: uppercase;
+	border-radius: 4px;
+	border: none;
 }
 .buyNow {
-  background-color: rgb(0, 116, 228);
-  padding: 20px 0;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 200ms;
-  position: relative;
+	background-color: rgb(0, 116, 228);
+	padding: 20px 0;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 200ms;
+	position: relative;
 }
 
 .buyNow:hover {
-  background-color: rgb(27, 135, 236);
+	background-color: rgb(27, 135, 236);
 }
 
 .cartBtn {
-  margin-top: 1rem;
-  background-color: transparent;
-  border: 1px solid rgb(245, 245, 245);
-  padding: 10px 0;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 200ms;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+	margin-top: 1rem;
+	background-color: transparent;
+	border: 1px solid rgb(245, 245, 245);
+	padding: 10px 0;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 200ms;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 }
 
 .cartBtn svg {
-  width: 20px;
-  margin-right: 5px;
+	width: 20px;
+	margin-right: 5px;
 }
 
 .cartBtn:disabled {
-  color: rgba(255, 255, 255, 0.6);
-  cursor: default;
+	color: rgba(255, 255, 255, 0.6);
+	cursor: default;
 }
 
 .wishlistBtn {
-  padding: 10px 0;
-  font-size: 12px;
-  margin: 1rem 0;
-  background-color: transparent;
-  border: 1px solid rgb(245, 245, 245);
-  display: flex;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 200ms;
-  position: relative;
+	padding: 10px 0;
+	font-size: 12px;
+	margin: 1rem 0;
+	background-color: transparent;
+	border: 1px solid rgb(245, 245, 245);
+	display: flex;
+	color: white;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: background-color 200ms;
+	position: relative;
 }
 
 .wishlistBtn:hover {
-  background-color: rgb(18, 18, 18);
+	background-color: rgb(18, 18, 18);
 }
 
 .outerCircle {
-  background: rgb(0, 0, 0);
-  border-radius: 50%;
-  border: 2px solid rgb(245, 245, 245);
-  display: flex;
-  flex: 0 0 auto;
-  height: 20px;
-  justify-content: center;
-  position: relative;
-  width: 20px;
-  margin-right: 6px;
-  cursor: pointer;
-  transition: background-color 200ms;
+	background: rgb(0, 0, 0);
+	border-radius: 50%;
+	outline: 2px solid rgb(245, 245, 245);
+	display: flex;
+	flex: 0 0 auto;
+	height: 20px;
+	justify-content: center;
+	position: relative;
+	width: 20px;
+	margin-right: 6px;
+	cursor: pointer;
+	transition: background-color 200ms;
 }
 
 .outerCircle svg {
-  width: 10px;
+	width: 10px;
 }
 .rotate {
-  animation: 1500ms cubic-bezier(0.4, 0, 0.1, 1) 0s infinite normal none running rotate;
+	animation: 1500ms cubic-bezier(0.4, 0, 0.1, 1) 0s infinite normal none running rotate;
 }
 
 .plus {
-  line-height: 15px;
-  color: rgb(245, 245, 245);
-  font-size: 14px;
-  height: 12px;
-  width: 12px;
+	line-height: 15px;
+	color: rgb(245, 245, 245);
+	font-size: 14px;
+	height: 12px;
+	width: 12px;
 }
 .plus:before,
 .plus:after {
-  height: 8px;
-  width: 2px;
+	height: 8px;
+	width: 2px;
 }
 
 .plus:before,
 .plus:after {
-  background: rgb(245, 245, 245);
-  bottom: 0;
-  content: '';
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
+	background: rgb(245, 245, 245);
+	bottom: 0;
+	content: '';
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 .plus:before {
-  rotate: 90deg;
+	rotate: 90deg;
 }
 @keyframes rotate {
-  0% {
-    rotate: 0deg;
-  }
-  100% {
-    rotate: 360deg;
-  }
+	0% {
+		rotate: 0deg;
+	}
+	100% {
+		rotate: 360deg;
+	}
 }
 
 @media screen and (max-width: 1200px) and (min-width: 900px) {
-  .cartBtn {
-    padding: 15px;
-    font-size: 0.9rem;
-  }
-  .wishlistBtn {
-    font-size: 10px;
-    padding: 8px 0;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-  .outerCircle {
-    height: 18px;
-    width: 18px;
-    margin-right: 5px;
-  }
-  .outerCircle svg {
-    width: 9px;
-  }
-  .plus {
-    line-height: 13px;
-    font-size: 12px;
-    height: 10px;
-    width: 10px;
-  }
-  .plus:before,
-  .plus:after {
-    height: 6px;
-    width: 2px;
-  }
+	.cartBtn {
+		padding: 15px;
+		font-size: 0.9rem;
+	}
+	.wishlistBtn {
+		font-size: 10px;
+		padding: 8px 0;
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+	.outerCircle {
+		height: 18px;
+		width: 18px;
+		margin-right: 5px;
+	}
+	.outerCircle svg {
+		width: 9px;
+	}
+	.plus {
+		line-height: 13px;
+		font-size: 12px;
+		height: 10px;
+		width: 10px;
+	}
+	.plus:before,
+	.plus:after {
+		height: 6px;
+		width: 2px;
+	}
 }
 
 @media screen and (max-width: 900px) {
-  .cartBtn {
-    padding: 10px;
-    font-size: 0.8rem;
-  }
-  .wishlistBtn {
-    padding: 6px 0;
-    margin-top: 6px;
-    margin-bottom: 6px;
-  }
-  .outerCircle {
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-  }
-  .outerCircle svg {
-    width: 8px;
-  }
-  .plus {
-    line-height: 11px;
-    font-size: 10px;
-    height: 8px;
-    width: 8px;
-  }
-  .plus:before,
-  .plus:after {
-    height: 5px;
-    width: 2px;
-  }
+	.cartBtn {
+		padding: 10px;
+		font-size: 0.8rem;
+	}
+	.wishlistBtn {
+		padding: 6px 0;
+		margin-top: 6px;
+		margin-bottom: 6px;
+	}
+	.outerCircle {
+		height: 16px;
+		width: 16px;
+		margin-right: 4px;
+	}
+	.outerCircle svg {
+		width: 8px;
+	}
+	.plus {
+		line-height: 11px;
+		font-size: 10px;
+		height: 8px;
+		width: 8px;
+	}
+	.plus:before,
+	.plus:after {
+		height: 5px;
+		width: 2px;
+	}
 }

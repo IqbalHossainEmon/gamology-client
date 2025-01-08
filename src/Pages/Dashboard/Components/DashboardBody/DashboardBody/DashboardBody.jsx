@@ -1,10 +1,10 @@
-import EditGameCards from '../Components/Events/EditGameCards/EditGameCards/EditGameCards';
+import EditBanner from '../Components/Events/EditBanner/EditBanner/EditBanner';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody() {
 	return (
 		<div className={styles.dashboardBody}>
-			<EditGameCards />
+			<EditBanner />
 		</div>
 	);
 }

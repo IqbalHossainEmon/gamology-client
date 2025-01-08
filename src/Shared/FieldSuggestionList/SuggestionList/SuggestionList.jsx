@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import SuggestionListContainer from '../Components/SuggestionListContainer/SuggestionListContainer';
-import styles from './SuggestionList.module.css';
 
 function SuggestionList({
 	value,
@@ -14,6 +13,7 @@ function SuggestionList({
 	extraSectionParams,
 	link,
 	setHeight,
+	className,
 }) {
 	const [navShow, setNavShow] = useState(false);
 
@@ -46,7 +46,7 @@ function SuggestionList({
 				if (!shouldClearTheSearch) shouldShow.current = false;
 			}}
 			setState={setState}
-			className={styles.searchSuggestionList}
+			className={className}
 			name={name}
 			value={value}
 			elementRef={searchRef}
