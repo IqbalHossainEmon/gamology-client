@@ -1,10 +1,17 @@
 import useObjectUtilities from '../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
-import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
+import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardFirstPart.module.css';
 
 function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef }) {
 	const { cloneObject } = useObjectUtilities();
+
+	const handleMoveLeftRIght = (id, index, isLeft) => {
+		const cardIndex = cardsRef.current[0][index].cards.findIndex(card => card.id === id);
+
+		const temp = cardsRef.current[0][index].cards.splice(cardIndex, 1)[0];
+		cardsRef.current[0][index].cards.splice(isLeft ? cardIndex - 1 : cardIndex + 1, 0, temp);
+	};
 
 	return (
 		<div className={styles.editGameCardFirstPart}>
@@ -14,6 +21,13 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef }) {
 					key={gameCard.id}
 					defaultData={gameCard}
 					id={gameCard.id}
+					onIndividualDelete={id => {
+						cardsRef.current[0][index].cards = cardsRef.current[0][index].cards.filter(
+							card => card.id !== id
+						);
+					}}
+					onMoveLeft={id => handleMoveLeftRIght(id, index, true)}
+					onMoveRight={id => handleMoveLeftRIght(id, index)}
 					setHeader={header => {
 						cardsRef.current[0][index].header = header;
 					}}
