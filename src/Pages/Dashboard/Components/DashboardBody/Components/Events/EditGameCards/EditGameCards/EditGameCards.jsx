@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardFirstPart from '../Components/EditGameCardFirstPart/EditGameCardFirstPart';
+import EditGameCardOtherPart from '../Components/EditGameCardOtherPart/EditGameCardOtherPart';
 import styles from './EditGameCards.module.css';
 
 const items = [
@@ -235,25 +237,44 @@ const items = [
 ];
 
 function EditGameCards() {
-	const [gameCards, setGameCards] = useState([[]]);
+	const [gamesCards, setGameCards] = useState([[]]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	const cardsRef = useRef(null);
 
+	const { cloneObject } = useObjectUtilities();
+
 	useEffect(() => {
 		setTimeout(() => {
 			const gameCardData = [
-				[
-					{ id: 0, header: 'Best sell', cards: items },
-					// { id: 1, header: 'WOW sell', cards: items },
-				],
+				{
+					id: 0,
+					games: [
+						{ id: 0, header: 'Best sell', cards: items },
+						{ id: 1, header: 'WOW sell', cards: items },
+					],
+				},
+				{
+					id: 1,
+					games: [
+						{ id: 0, header: 'Best sell', cards: items },
+						{ id: 1, header: 'WOW sell', cards: items },
+					],
+				},
+				{
+					id: 2,
+					games: [
+						{ id: 0, header: 'Best sell', cards: items },
+						{ id: 1, header: 'WOW sell', cards: items },
+					],
+				},
 			];
 
-			cardsRef.current = gameCardData;
+			cardsRef.current = cloneObject(gameCardData);
 			setGameCards(gameCardData);
 			setIsLoading(false);
 		}, 200);
-	}, []);
+	}, [cloneObject]);
 
 	return (
 		<div className={styles.editGameCards}>
@@ -263,13 +284,35 @@ function EditGameCards() {
 				<>
 					<h2 className={styles.editBannerHeader}>Edit Game Cards</h2>
 					<EditGameCardFirstPart
-						gameCards={gameCards[0]}
+						gameCards={gamesCards[0]}
+						cardsRef={cardsRef}
+						setGameCards={setGameCards}
+					/>
+					<EditGameCardOtherPart
+						gamesCards={gamesCards.slice(1)}
 						cardsRef={cardsRef}
 						setGameCards={setGameCards}
 					/>
 				</>
 			)}
-			<NormalButtonWithEffects text='Check' onClick={() => console.log(cardsRef.current)} />
+			<div className={styles.addSectionBtn}>
+				<NormalButtonWithEffects
+					text='Add one more section +'
+					onClick={() => {
+						setGameCards(prev => [
+							...prev,
+							{
+								id: new Date().getTime(),
+								games: [{ id: 0, header: '', cards: [] }],
+							},
+						]);
+						cardsRef.current.push({
+							id: new Date().getTime(),
+							games: [{ id: 0, header: '', cards: [] }],
+						});
+					}}
+				/>
+			</div>
 		</div>
 	);
 }

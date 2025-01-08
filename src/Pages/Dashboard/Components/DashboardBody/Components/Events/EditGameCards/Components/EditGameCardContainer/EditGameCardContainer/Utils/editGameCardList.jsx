@@ -25,20 +25,16 @@ const editGameCardList = (
 	}
 
 	const handleMove = direction => {
-		const newCards = [...cards.cards];
-		const index = newCards.findIndex(card => card.id === cardInfo.id);
+		setCards(prev => {
+			const newCards = [...prev.cards];
+			const index = newCards.findIndex(card => card.id === cardInfo.id);
 
-		if (direction === 'left' && index > 0) {
-			onMoveLeft(cardInfo.id);
+			if (direction === 'left') onMoveLeft(cardInfo.id);
+			else onMoveRight(cardInfo.id);
 			const temp = newCards.splice(index, 1)[0];
-			newCards.splice(index - 1, 0, temp);
-		} else if (direction === 'right' && index < newCards.length - 1) {
-			onMoveRight(cardInfo.id);
-			const temp = newCards.splice(index, 1)[0];
-			newCards.splice(index + 1, 0, temp);
-		}
-
-		setCards(prev => ({ ...prev, cards: newCards }));
+			newCards.splice(direction === 'left' ? index - 1 : index + 1, 0, temp);
+			return { ...prev, cards: newCards };
+		});
 	};
 
 	switch (cardInfo.id) {

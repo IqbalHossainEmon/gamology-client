@@ -3,3 +3,11 @@
 	font-weight: 400;
 	margin-bottom: 2rem;
 }
+
+.okBtn {
+	width: 100%;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	background-color: #388e3c;
+	color: white;
+}

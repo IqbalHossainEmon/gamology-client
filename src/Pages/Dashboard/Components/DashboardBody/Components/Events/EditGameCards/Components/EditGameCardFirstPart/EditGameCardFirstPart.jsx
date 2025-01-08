@@ -1,73 +1,102 @@
-import useObjectUtilities from '../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardFirstPart.module.css';
 
 function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef }) {
-	const { cloneObject } = useObjectUtilities();
+	const handleMoveLeftRight = (id, index, isLeft) => {
+		const cardIndex = cardsRef.current[0].games[index].cards.findIndex(card => card.id === id);
 
-	const handleMoveLeftRIght = (id, index, isLeft) => {
-		const cardIndex = cardsRef.current[0][index].cards.findIndex(card => card.id === id);
-
-		const temp = cardsRef.current[0][index].cards.splice(cardIndex, 1)[0];
-		cardsRef.current[0][index].cards.splice(isLeft ? cardIndex - 1 : cardIndex + 1, 0, temp);
+		const temp = cardsRef.current[0].games[index].cards.splice(cardIndex, 1)[0];
+		cardsRef.current[0].games[index].cards.splice(
+			isLeft ? cardIndex - 1 : cardIndex + 1,
+			0,
+			temp
+		);
 	};
+
+	const setModal = useModal();
 
 	return (
 		<div className={styles.editGameCardFirstPart}>
-			<h3 className={styles.firstRowHeader}>First after main banner</h3>
-			{gameCards.map((gameCard, index) => (
+			<h3 className={styles.firstRowHeader}>Edit games after main banner</h3>
+			{gameCards.games.map((gameCard, index) => (
 				<EditGameCardContainer
 					key={gameCard.id}
 					defaultData={gameCard}
-					id={gameCard.id}
+					id={`first-games-${gameCard.id}`}
 					onIndividualDelete={id => {
-						cardsRef.current[0][index].cards = cardsRef.current[0][index].cards.filter(
-							card => card.id !== id
-						);
+						cardsRef.current[0].games[index].cards = cardsRef.current[0].games[
+							index
+						].cards.filter(card => card.id !== id);
 					}}
-					onMoveLeft={id => handleMoveLeftRIght(id, index, true)}
-					onMoveRight={id => handleMoveLeftRIght(id, index)}
+					onMoveLeft={id => handleMoveLeftRight(id, index, true)}
+					onMoveRight={id => handleMoveLeftRight(id, index)}
 					setHeader={header => {
-						cardsRef.current[0][index].header = header;
+						cardsRef.current[0].games[index].header = header;
 					}}
 					setGameCard={card => {
-						cardsRef.current[0][index].cards.push(card);
+						cardsRef.current[0].games[index].cards.push(card);
 					}}
 					onClear={() =>
 						setGameCards(prev => {
-							const newPrev = cloneObject(prev);
-							newPrev[0][index].cards = [];
-							cardsRef.current[0][index].cards = [];
+							const newPrev = [...prev];
+							newPrev[0].games[index].cards = [];
+							cardsRef.current[0].games[index].cards = [];
 							return newPrev;
 						})
 					}
 					onReset={data => {
 						setGameCards(prev => {
-							const newPrev = cloneObject(prev);
-							newPrev[0][index] = data;
-							cardsRef.current[0][index] = data;
+							const newPrev = [...prev];
+							newPrev[0].games[index] = data;
+							cardsRef.current[0].games[index] = data;
 							return newPrev;
 						});
 					}}
 					onDelete={() => {
-						setGameCards(prev => {
-							const newPrev = cloneObject(prev);
-							newPrev[0].splice(index, 1);
-							cardsRef.current[0].splice(index, 1);
-							return newPrev;
-						});
+						if (gameCards.games.length === 1) {
+							setModal({
+								title: 'Cannot delete',
+								body: (
+									<p>
+										You can not Delete the last game cards after the main banner
+									</p>
+								),
+								footer: (
+									<NormalButtonWithEffects
+										text='Ok'
+										onClick={() =>
+											setModal({ title: null, body: null, footer: null })
+										}
+										className={styles.okBtn}
+									/>
+								),
+							});
+							return;
+						}
+						return () =>
+							setGameCards(prev => {
+								const newPrev = [...prev];
+								newPrev[0].games.splice(index, 1);
+								cardsRef.current[0].games.splice(index, 1);
+								return newPrev;
+							});
 					}}
 				/>
 			))}
 
-			{!!gameCards[1] || (
+			{!!gameCards.games[1] || (
 				<NormalButtonWithEffects
 					onClick={() =>
 						setGameCards(prev => {
-							const newPrev = cloneObject(prev);
-							newPrev[0].push({ id: Date.now(), header: '', cards: [] });
-							cardsRef.current[0].push({ id: Date.now(), header: '', cards: [] });
+							const newPrev = [...prev];
+							newPrev[0].games.push({ id: Date.now(), header: '', cards: [] });
+							cardsRef.current[0].games.push({
+								id: Date.now(),
+								header: '',
+								cards: [],
+							});
 							return newPrev;
 						})
 					}

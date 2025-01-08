@@ -41,37 +41,55 @@ function EditGameCardContainer({
 
 	if (!evenRef.current) {
 		evenRef.current = (callback, isDelete) => {
-			setModal({
-				title: `Confirm ${isDelete ? 'Deletion' : 'Clearing'}`,
-				body: <p>Are you sure you want to {isDelete ? 'delete' : 'clear'}?</p>,
-				footer: (
-					<div className={styles.deleteModalFooter}>
-						<NormalButtonWithEffects
-							className={`${styles.btn} ${styles.yesBtn}`}
-							onClick={() => {
-								callback();
-								setModal({
-									title: null,
-									body: null,
-									footer: null,
-								});
-							}}
-							text='Yes'
-						/>
-						<NormalButtonWithEffects
-							className={`${styles.btn} ${styles.noBtn}`}
-							onClick={() => {
-								setModal({
-									title: null,
-									body: null,
-									footer: null,
-								});
-							}}
-							text='No'
-						/>
-					</div>
-				),
-			});
+			let mainCallback = callback;
+			let flag = true;
+			if (isDelete) {
+				mainCallback = callback();
+				if (!mainCallback) flag = false;
+			}
+			if (flag)
+				setModal({
+					title: `Confirm ${isDelete ? 'Deletion' : 'Clearing'}`,
+					body: (
+						<>
+							<p>
+								Are you sure you want to {isDelete ? 'delete?' : 'clear the cards?'}
+							</p>
+							{!isDelete && (
+								<p>
+									<small>Note: This action cannot be undone.</small>
+								</p>
+							)}
+						</>
+					),
+					footer: (
+						<div className={styles.deleteModalFooter}>
+							<NormalButtonWithEffects
+								className={`${styles.btn} ${styles.yesBtn}`}
+								onClick={() => {
+									mainCallback();
+									setModal({
+										title: null,
+										body: null,
+										footer: null,
+									});
+								}}
+								text='Yes'
+							/>
+							<NormalButtonWithEffects
+								className={`${styles.btn} ${styles.noBtn}`}
+								onClick={() => {
+									setModal({
+										title: null,
+										body: null,
+										footer: null,
+									});
+								}}
+								text='No'
+							/>
+						</div>
+					),
+				});
 		};
 	}
 

@@ -12,19 +12,19 @@
 	gap: 1rem;
 	justify-content: flex-end;
 }
-.btn {
-	padding: 0.5rem 1rem;
-	border-radius: 4px;
-}
 .deleteModalFooter {
 	display: flex;
 	justify-content: flex-end;
 	gap: 1rem;
 }
+.btn {
+	padding: 0.5rem 1rem;
+	color: white;
+	border-radius: 4px;
+}
 
 .yesBtn {
 	background-color: #d32f2f;
-	color: white;
 }
 .noBtn {
 	background-color: #388e3c;
