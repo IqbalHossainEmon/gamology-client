@@ -2,8 +2,8 @@ import { useEffect, useReducer, useRef } from 'react';
 import GamesButton from '../Components/GameCardsButtons/GameCardsButtons';
 import CardsHeader from '../Components/GameCardsHeader/GameCardsHeader';
 import HorizontalCards from '../Components/HorizontalCards/HorizontalCards';
-import gameCardsReducerInitialValue from '../useGamesLogics/gameCardsReducerInitialValue';
-import useGameCardsLogics from '../useGamesLogics/useGameCardsLogics';
+import gameCardsReducerInitialValue from '../utils/gameCardsReducerInitialValue';
+import useGameCardsLogics from '../utils/useGameCardsLogics';
 import styles from './GameCards.module.css';
 
 export default function GameCards({

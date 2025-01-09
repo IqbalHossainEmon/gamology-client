@@ -1,3 +1,7 @@
+.editGameCardFirstPartContainer .editGameCardContainer:not(:last-child) {
+	margin-bottom: 3rem;
+}
+
 .firstRowHeader {
 	margin-top: 1rem;
 	font-weight: 400;

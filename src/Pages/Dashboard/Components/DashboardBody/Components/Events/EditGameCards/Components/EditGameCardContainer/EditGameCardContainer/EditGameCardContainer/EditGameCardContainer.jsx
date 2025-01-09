@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ErrorMessage from '../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import GameCards from '../../../../../../../../../../../Shared/GameCards/GameCards/GameCards';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
@@ -23,8 +24,20 @@ function EditGameCardContainer({
 	onIndividualDelete,
 	onMoveLeft,
 	onMoveRight,
+	errorMessage,
+	errorChange,
 }) {
 	const [cards, setCards] = useState(defaultData || { header: '', cards: [] });
+
+	const [errorShow, setErrorShow] = useState(false);
+
+	useEffect(() => {
+		if (errorMessage) {
+			setErrorShow(true);
+		} else {
+			setErrorShow(false);
+		}
+	}, [errorChange, errorMessage]);
 
 	const handleCardSelection = card => {
 		setCards(prev => ({ ...prev, cards: [...prev.cards, card] }));
@@ -98,7 +111,7 @@ function EditGameCardContainer({
 	}, [defaultData]);
 
 	return (
-		<section className={styles.gameCard}>
+		<section>
 			<GameCards
 				customHeader={
 					<div className={styles.header}>
@@ -131,6 +144,7 @@ function EditGameCardContainer({
 					)
 				}
 			</GameCards>
+			<ErrorMessage errorMessage={errorMessage} enable={errorShow} />
 			<div className={styles.headerBtnContainer}>
 				<NormalButtonWithEffects
 					className={styles.btn}

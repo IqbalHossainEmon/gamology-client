@@ -237,10 +237,13 @@ const items = [
 ];
 
 function EditGameCards() {
-	const [gamesCards, setGameCards] = useState([[]]);
+	const [gamesCards, setGameCards] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [errorChange, setErrorChange] = useState(0);
 
 	const cardsRef = useRef(null);
+
+	const errorMessages = useRef([[], []]);
 
 	const { cloneObject } = useObjectUtilities();
 
@@ -276,6 +279,38 @@ function EditGameCards() {
 		}, 200);
 	}, [cloneObject]);
 
+	const handleValidation = () => {
+		let flag = false;
+
+		gamesCards[0].games.forEach((game, index) => {
+			if (game.cards.length < 6) {
+				flag = true;
+				errorMessages.current[0][index] = 'You must have at least 6 cards';
+			} else if (errorMessages.current[0][index] !== '') {
+				errorMessages.current[0][index] = '';
+				flag = true;
+			}
+		});
+
+		gamesCards.slice(1).forEach((gameCards, index) => {
+			gameCards.games.forEach((game, innerIndex) => {
+				if (game.cards.length < 6) {
+					flag = true;
+					errorMessages.current[index + 1][innerIndex] = 'You must have at least 6 cards';
+				} else if (errorMessages.current[index + 1][innerIndex] !== '') {
+					errorMessages.current[index + 1][innerIndex] = '';
+					flag = true;
+				}
+			});
+		});
+
+		if (flag) {
+			setErrorChange(prev => prev + 1);
+		} else {
+			console.log(gamesCards);
+		}
+	};
+
 	return (
 		<div className={styles.editGameCards}>
 			{isLoading ? (
@@ -287,11 +322,15 @@ function EditGameCards() {
 						gameCards={gamesCards[0]}
 						cardsRef={cardsRef}
 						setGameCards={setGameCards}
+						errorMessages={errorMessages.current[0]}
+						errorChange={errorChange}
 					/>
 					<EditGameCardOtherPart
 						gamesCards={gamesCards.slice(1)}
 						cardsRef={cardsRef}
 						setGameCards={setGameCards}
+						errorMessages={errorMessages.current.slice(1)}
+						errorChange={errorChange}
 					/>
 				</>
 			)}
@@ -312,6 +351,9 @@ function EditGameCards() {
 						});
 					}}
 				/>
+			</div>
+			<div className={styles.saveBtn}>
+				<NormalButtonWithEffects text='Save' onClick={handleValidation} />
 			</div>
 		</div>
 	);

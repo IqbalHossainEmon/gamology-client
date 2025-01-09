@@ -3,7 +3,7 @@ import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffec
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardOtherPart.module.css';
 
-function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards }) {
+function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessages, errorChange }) {
 	const handleMoveLeftRight = (id, outerIndex, index, isLeft) => {
 		const cardIndex = cardsRef.current[outerIndex].games[index].cards.findIndex(
 			card => card.id === id
@@ -27,102 +27,121 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards }) {
 				return (
 					<div key={gameCards.id}>
 						<h3>Other Part {outerIndex}</h3>
-						{gameCards.games.map((gameCard, index) => (
-							<EditGameCardContainer
-								key={gameCard.id}
-								id={`other-parts-${gameCard.id}-${gameCards.id}`}
-								defaultData={gameCard}
-								onIndividualDelete={id => {
-									cardsRef.current[outerIndex].games[index].cards =
-										cardsRef.current[outerIndex].games[index].cards.filter(
-											card => card.id !== id
-										);
-								}}
-								onMoveLeft={id => handleMoveLeftRight(id, outerIndex, index, true)}
-								onMoveRight={id => handleMoveLeftRight(id, outerIndex, index)}
-								setHeader={header => {
-									cardsRef.current[outerIndex].games[index].header = header;
-								}}
-								setGameCard={card => {
-									cardsRef.current[outerIndex].games[index].cards.push(card);
-								}}
-								onClear={() =>
-									setGameCards(prev => {
-										const newPrev = [...prev];
-										newPrev[outerIndex].games[index].cards = [];
-										cardsRef.current[outerIndex].games[index].cards = [];
-										return newPrev;
-									})
-								}
-								onReset={data => {
-									setGameCards(prev => {
-										const newPrev = [...prev];
-										newPrev[outerIndex].games[index] = data;
-										cardsRef.current[outerIndex].games[index] = data;
-										return newPrev;
-									});
-								}}
-								onDelete={() => {
-									if (gameCards.games.length === 1) {
-										setModal({
-											title: 'Confirm Deletion',
-											body: (
-												<>
-													<p>
-														Deleting the last game cards will remove the
-														whole section.
-													</p>
-													<p>Are you sure you want to delete?</p>
-												</>
-											),
-											footer: (
-												<div className={styles.btnContainer}>
-													<NormalButtonWithEffects
-														text='Yes'
-														onClick={() => {
-															setGameCards(prev => {
-																const newPrev = [...prev];
-																newPrev.splice(outerIndex, 1);
-																cardsRef.current.splice(
-																	outerIndex,
-																	1
-																);
-																return newPrev;
-															});
-															setModal({
-																title: null,
-																body: null,
-																footer: null,
-															});
-														}}
-														className={`${styles.btn} ${styles.yesBtn}`}
-													/>
-													<NormalButtonWithEffects
-														text='No'
-														onClick={() => {
-															setModal({
-																title: null,
-																body: null,
-																footer: null,
-															});
-														}}
-														className={`${styles.btn} ${styles.noBtn}`}
-													/>
-												</div>
-											),
-										});
-										return;
-									}
-									return () =>
-										setGameCards(prev => {
-											const newPrev = [...prev];
-											newPrev[outerIndex].games.splice(index, 1);
-											cardsRef.current[outerIndex].games.splice(index, 1);
-											return newPrev;
-										});
-								}}
-							/>
-						))}
+						<div key={gameCards.id} className={styles.editGameCardOtherPartContainer}>
+							{gameCards.games.map((gameCard, index) => (
+								<div key={gameCard.id} className={styles.editGameCardContainer}>
+									<EditGameCardContainer
+										id={`other-parts-${gameCard.id}-${gameCards.id}`}
+										defaultData={gameCard}
+										onIndividualDelete={id => {
+											cardsRef.current[outerIndex].games[index].cards =
+												cardsRef.current[outerIndex].games[
+													index
+												].cards.filter(card => card.id !== id);
+										}}
+										errorMessage={errorMessages[outerIn]?.[index]}
+										errorChange={errorChange}
+										onMoveLeft={id =>
+											handleMoveLeftRight(id, outerIndex, index, true)
+										}
+										onMoveRight={id =>
+											handleMoveLeftRight(id, outerIndex, index)
+										}
+										setHeader={header => {
+											cardsRef.current[outerIndex].games[index].header =
+												header;
+										}}
+										setGameCard={card => {
+											cardsRef.current[outerIndex].games[index].cards.push(
+												card
+											);
+										}}
+										onClear={() =>
+											setGameCards(prev => {
+												const newPrev = [...prev];
+												newPrev[outerIndex].games[index].cards = [];
+												cardsRef.current[outerIndex].games[index].cards =
+													[];
+												return newPrev;
+											})
+										}
+										onReset={data => {
+											setGameCards(prev => {
+												const newPrev = [...prev];
+												newPrev[outerIndex].games[index] = data;
+												cardsRef.current[outerIndex].games[index] = data;
+												return newPrev;
+											});
+										}}
+										onDelete={() => {
+											if (gameCards.games.length === 1) {
+												setModal({
+													title: 'Confirm Deletion',
+													body: (
+														<>
+															<p>
+																Deleting the last game cards will
+																remove the whole section.
+															</p>
+															<p>Are you sure you want to delete?</p>
+														</>
+													),
+													footer: (
+														<div className={styles.btnContainer}>
+															<NormalButtonWithEffects
+																text='Yes'
+																onClick={() => {
+																	setGameCards(prev => {
+																		const newPrev = [...prev];
+																		newPrev.splice(
+																			outerIndex,
+																			1
+																		);
+																		cardsRef.current.splice(
+																			outerIndex,
+																			1
+																		);
+																		return newPrev;
+																	});
+																	setModal({
+																		title: null,
+																		body: null,
+																		footer: null,
+																	});
+																}}
+																className={`${styles.btn} ${styles.yesBtn}`}
+															/>
+															<NormalButtonWithEffects
+																text='No'
+																onClick={() => {
+																	setModal({
+																		title: null,
+																		body: null,
+																		footer: null,
+																	});
+																}}
+																className={`${styles.btn} ${styles.noBtn}`}
+															/>
+														</div>
+													),
+												});
+												return;
+											}
+											return () =>
+												setGameCards(prev => {
+													const newPrev = [...prev];
+													newPrev[outerIndex].games.splice(index, 1);
+													cardsRef.current[outerIndex].games.splice(
+														index,
+														1
+													);
+													return newPrev;
+												});
+										}}
+									/>
+								</div>
+							))}
+						</div>
 						{!!gameCards.games[2] || (
 							<NormalButtonWithEffects
 								onClick={() =>
