@@ -39,7 +39,7 @@ function CardDotList({ lists, handleBlur, item, parentRef, fadeIn, setHide }) {
 	return (
 		<ul
 			ref={listContainerRef}
-			className={`${styles.listContainer} ${position > 0 ? styles.left : position < 0 ? styles.top : styles.bottom}${fadeIn ? ` ${styles.zoomIn}` : ''} transparent-blur-bg`}
+			className={`${styles.listContainer} ${position > 0 ? styles.left : position < 0 ? styles.top : styles.bottom}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
 		>
 			{lists.map(
 				list =>
@@ -48,7 +48,7 @@ function CardDotList({ lists, handleBlur, item, parentRef, fadeIn, setHide }) {
 							<button
 								onClick={() => {
 									list.event(item);
-									setHide();
+									if (setHide) setHide();
 								}}
 								type='button'
 							>

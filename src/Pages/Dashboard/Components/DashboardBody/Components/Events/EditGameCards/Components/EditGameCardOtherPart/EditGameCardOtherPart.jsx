@@ -5,12 +5,12 @@ import styles from './EditGameCardOtherPart.module.css';
 
 function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessages, errorChange }) {
 	const handleMoveLeftRight = (id, outerIndex, index, isLeft) => {
-		const cardIndex = cardsRef.current[outerIndex].games[index].cards.findIndex(
+		const cardIndex = cardsRef.current[outerIndex].cards[index].cards.findIndex(
 			card => card.id === id
 		);
 
-		const temp = cardsRef.current[outerIndex].games[index].cards.splice(cardIndex, 1)[0];
-		cardsRef.current[outerIndex].games[index].cards.splice(
+		const temp = cardsRef.current[outerIndex].cards[index].cards.splice(cardIndex, 1)[0];
+		cardsRef.current[outerIndex].cards[index].cards.splice(
 			isLeft ? cardIndex - 1 : cardIndex + 1,
 			0,
 			temp
@@ -28,14 +28,14 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 					<div key={gameCards.id}>
 						<h3>Other Part {outerIndex}</h3>
 						<div key={gameCards.id} className={styles.editGameCardOtherPartContainer}>
-							{gameCards.games.map((gameCard, index) => (
+							{gameCards.cards.map((gameCard, index) => (
 								<div key={gameCard.id} className={styles.editGameCardContainer}>
 									<EditGameCardContainer
 										id={`other-parts-${gameCard.id}-${gameCards.id}`}
 										defaultData={gameCard}
 										onIndividualDelete={id => {
-											cardsRef.current[outerIndex].games[index].cards =
-												cardsRef.current[outerIndex].games[
+											cardsRef.current[outerIndex].cards[index].cards =
+												cardsRef.current[outerIndex].cards[
 													index
 												].cards.filter(card => card.id !== id);
 										}}
@@ -48,19 +48,19 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 											handleMoveLeftRight(id, outerIndex, index)
 										}
 										setHeader={header => {
-											cardsRef.current[outerIndex].games[index].header =
+											cardsRef.current[outerIndex].cards[index].header =
 												header;
 										}}
 										setGameCard={card => {
-											cardsRef.current[outerIndex].games[index].cards.push(
+											cardsRef.current[outerIndex].cards[index].cards.push(
 												card
 											);
 										}}
 										onClear={() =>
 											setGameCards(prev => {
 												const newPrev = [...prev];
-												newPrev[outerIndex].games[index].cards = [];
-												cardsRef.current[outerIndex].games[index].cards =
+												newPrev[outerIndex].cards[index].cards = [];
+												cardsRef.current[outerIndex].cards[index].cards =
 													[];
 												return newPrev;
 											})
@@ -68,13 +68,13 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 										onReset={data => {
 											setGameCards(prev => {
 												const newPrev = [...prev];
-												newPrev[outerIndex].games[index] = data;
-												cardsRef.current[outerIndex].games[index] = data;
+												newPrev[outerIndex].cards[index] = data;
+												cardsRef.current[outerIndex].cards[index] = data;
 												return newPrev;
 											});
 										}}
 										onDelete={() => {
-											if (gameCards.games.length === 1) {
+											if (gameCards.cards.length === 1) {
 												setModal({
 													title: 'Confirm Deletion',
 													body: (
@@ -130,8 +130,8 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 											return () =>
 												setGameCards(prev => {
 													const newPrev = [...prev];
-													newPrev[outerIndex].games.splice(index, 1);
-													cardsRef.current[outerIndex].games.splice(
+													newPrev[outerIndex].cards.splice(index, 1);
+													cardsRef.current[outerIndex].cards.splice(
 														index,
 														1
 													);
@@ -142,17 +142,17 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 								</div>
 							))}
 						</div>
-						{!!gameCards.games[2] || (
+						{!!gameCards.cards[2] || (
 							<NormalButtonWithEffects
 								onClick={() =>
 									setGameCards(prev => {
 										const newPrev = [...prev];
-										newPrev[outerIndex].games.push({
+										newPrev[outerIndex].cards.push({
 											id: Date.now(),
 											header: '',
 											cards: [],
 										});
-										cardsRef.current[outerIndex].games.push({
+										cardsRef.current[outerIndex].cards.push({
 											id: Date.now(),
 											header: '',
 											cards: [],

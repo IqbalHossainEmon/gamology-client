@@ -102,10 +102,6 @@ function CardDotBody({ item, lists, fadeIn }) {
 					item={item}
 					lists={lists}
 					parentRef={elementRef}
-					setHide={() => {
-						setListShow(false);
-						onHide();
-					}}
 				/>
 			) : null}
 		</div>

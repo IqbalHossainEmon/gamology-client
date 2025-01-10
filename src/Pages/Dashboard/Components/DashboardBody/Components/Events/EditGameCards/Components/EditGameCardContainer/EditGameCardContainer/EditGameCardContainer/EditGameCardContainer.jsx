@@ -31,6 +31,9 @@ function EditGameCardContainer({
 
 	const [errorShow, setErrorShow] = useState(false);
 
+	const cardsRef = useRef(cards);
+	cardsRef.current = cards;
+
 	useEffect(() => {
 		if (errorMessage) {
 			setErrorShow(true);
@@ -53,14 +56,8 @@ function EditGameCardContainer({
 	const evenRef = useRef(null);
 
 	if (!evenRef.current) {
-		evenRef.current = (callback, isDelete) => {
-			let mainCallback = callback;
-			let flag = true;
-			if (isDelete) {
-				mainCallback = callback();
-				if (!mainCallback) flag = false;
-			}
-			if (flag)
+		evenRef.current = {
+			handleModal: (callback, isDelete) => {
 				setModal({
 					title: `Confirm ${isDelete ? 'Deletion' : 'Clearing'}`,
 					body: (
@@ -80,7 +77,7 @@ function EditGameCardContainer({
 							<NormalButtonWithEffects
 								className={`${styles.btn} ${styles.yesBtn}`}
 								onClick={() => {
-									mainCallback();
+									callback();
 									setModal({
 										title: null,
 										body: null,
@@ -103,12 +100,27 @@ function EditGameCardContainer({
 						</div>
 					),
 				});
+			},
+			onDelete: () => {
+				const callback = onDelete();
+
+				if (callback) {
+					evenRef.current.handleModal(callback, true);
+				}
+			},
+			onClear: () => {
+				if (cardsRef.current.length > 6) {
+					evenRef.current.handleModal(() => {
+						setCards(prev => ({ ...prev, cards: [] }));
+						onClear();
+					});
+				} else {
+					setCards(prev => ({ ...prev, cards: [] }));
+					onClear();
+				}
+			},
 		};
 	}
-
-	useEffect(() => {
-		setCards(defaultData);
-	}, [defaultData]);
 
 	return (
 		<section>
@@ -148,20 +160,12 @@ function EditGameCardContainer({
 			<div className={styles.headerBtnContainer}>
 				<NormalButtonWithEffects
 					className={styles.btn}
-					onClick={() => {
-						if (cards.cards.length > 6) {
-							evenRef.current(onClear);
-						} else {
-							onClear();
-						}
-					}}
+					onClick={evenRef.current.onClear}
 					text='Clear'
 				/>
 				<NormalButtonWithEffects
 					className={styles.btn}
-					onClick={() => {
-						evenRef.current(onDelete, true);
-					}}
+					onClick={evenRef.current.onDelete}
 					text='Delete'
 				/>
 				<NormalButtonWithEffects
