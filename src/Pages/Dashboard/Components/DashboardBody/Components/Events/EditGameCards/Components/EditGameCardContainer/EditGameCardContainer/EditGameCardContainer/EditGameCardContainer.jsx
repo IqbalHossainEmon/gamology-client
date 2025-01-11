@@ -6,7 +6,7 @@ import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardAddCard from '../../Components/EditGameCardAddCard/EditGameCardAddCard';
-import editGameCardList from '../Utils/editGameCardList';
+import EditGameCardList from '../Utils/editGameCardList';
 import styles from './EditGameCardContainer.module.css';
 
 const handleExtraCard = (width, margin, handleCLick) => (
@@ -31,6 +31,9 @@ function EditGameCardContainer({
 
 	const [errorShow, setErrorShow] = useState(false);
 
+	const errorShowRef = useRef(errorShow);
+	errorShowRef.current = errorShow;
+
 	const cardsRef = useRef(cards);
 	cardsRef.current = cards;
 
@@ -45,6 +48,9 @@ function EditGameCardContainer({
 	const handleCardSelection = card => {
 		setCards(prev => ({ ...prev, cards: [...prev.cards, card] }));
 		setGameCard(card);
+		if (errorShowRef.current) {
+			setErrorShow(false);
+		}
 	};
 
 	const { cloneObject } = useObjectUtilities();
@@ -103,12 +109,17 @@ function EditGameCardContainer({
 			},
 			onDelete: () => {
 				const callback = onDelete();
-
+				if (errorShowRef.current) {
+					setErrorShow(false);
+				}
 				if (callback) {
 					evenRef.current.handleModal(callback, true);
 				}
 			},
 			onClear: () => {
+				if (errorShowRef.current) {
+					setErrorShow(false);
+				}
 				if (cardsRef.current.length > 6) {
 					evenRef.current.handleModal(() => {
 						setCards(prev => ({ ...prev, cards: [] }));
@@ -143,18 +154,19 @@ function EditGameCardContainer({
 				extraCard={(width, margin) => handleExtraCard(width, margin, handleCardSelection)}
 				scrollToLast
 			>
-				{(parentRef, cardInfo) =>
-					editGameCardList(
-						parentRef,
-						cardInfo,
-						cards,
-						setCards,
-						onIndividualDelete,
-						cloneObject,
-						onMoveLeft,
-						onMoveRight
-					)
-				}
+				{/* This function is for dot menu in card */}
+				{(parentRef, cardInfo) => (
+					<EditGameCardList
+						cards={cards}
+						setCards={setCards}
+						onIndividualDelete={onIndividualDelete}
+						cloneObject={cloneObject}
+						onMoveLeft={onMoveLeft}
+						onMoveRight={onMoveRight}
+						parentRef={parentRef}
+						cardInfo={cardInfo}
+					/>
+				)}
 			</GameCards>
 			<ErrorMessage errorMessage={errorMessage} enable={errorShow} />
 			<div className={styles.headerBtnContainer}>

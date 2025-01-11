@@ -306,6 +306,7 @@ function EditGameCards() {
 				},
 			];
 
+			errorMessages.current = gameCardData.map(gameCard => gameCard.cards.map(() => ''));
 			cardsRef.current = cloneObject(gameCardData);
 			setGameCards(gameCardData);
 			setIsLoading(false);
@@ -323,12 +324,7 @@ function EditGameCards() {
 			if (game.cards.length < 18) {
 				if (firstSectionFlag && game.cards.length === 0) {
 					modalFlag = true;
-					setGameCards(prev => {
-						const newPrev = [...prev];
-						newPrev[0].cards.splice(index, 1);
-						cardsRef.current[0].cards.splice(index, 1);
-						return newPrev;
-					});
+					cardsRef.current[0].cards.splice(index, 1);
 				} else {
 					flag = true;
 					errorMessages.current[0][index] =
@@ -342,23 +338,40 @@ function EditGameCards() {
 		});
 
 		cardsRef.current.slice(1).forEach((gameCards, index) => {
+			const removeIndex = [];
+
 			gameCards.cards.forEach((game, innerIndex) => {
-				console.log(game.cards.length);
-				if (game.cards.length < 6 && game.cards.length > 0) {
-					flag = true;
-					errorMessages.current[index + 1][innerIndex] =
-						'You must have at least 12 cards';
+				if (game.cards.length < 6) {
+					if (game.cards.length === 0) {
+						modalFlag = true;
+
+						removeIndex.push(innerIndex);
+					} else {
+						flag = true;
+						errorMessages.current[index + 1][innerIndex] =
+							'You must have at least 12 cards';
+					}
 				} else if (errorMessages.current[index + 1]?.[innerIndex]) {
 					errorMessages.current[index + 1][innerIndex] = '';
 					flag = true;
 				}
 			});
+
+			if (removeIndex.length === gameCards.cards.length) {
+				modalFlag = true;
+				cardsRef.current.splice(index + 1, 1);
+			} else {
+				removeIndex.forEach(innerIndex => {
+					cardsRef.current[index + 1].cards.splice(innerIndex, 1);
+				});
+			}
 		});
+		setGameCards(cloneObject(cardsRef.current));
 
 		if (modalFlag) {
 			setModal({
 				title: 'Clear Section',
-				body: <p>Sections with no cards will be removed. </p>,
+				body: <p>Sections with no cards are removed. </p>,
 				footer: (
 					<NormalButtonWithEffects
 						text='Ok'

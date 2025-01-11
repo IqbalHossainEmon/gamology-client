@@ -13,21 +13,8 @@
 	transition:
 		opacity 200ms,
 		scale 200ms;
-}
-
-.bottom {
 	top: calc(100% + 2px);
 	right: -0.5rem;
-}
-
-.left {
-	top: 0;
-	right: calc(100% + 2px);
-}
-.top {
-	bottom: calc(100% + 2px);
-	left: 50%;
-	translate: -50%;
 }
 
 .zoomIn {

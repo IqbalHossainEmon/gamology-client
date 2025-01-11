@@ -7,8 +7,6 @@ import styles from './CardDotBody.module.css';
 function CardDotBody({ item, lists, fadeIn }) {
 	const [listShow, setListShow] = useState(false);
 
-	const elementRef = useRef(null);
-
 	const listShowRef = useRef(listShow);
 	listShowRef.current = listShow;
 
@@ -30,7 +28,7 @@ function CardDotBody({ item, lists, fadeIn }) {
 					return !prev;
 				});
 			},
-			handleBlur: element => {
+			onAppear: element => {
 				setElement(element);
 				showMenu();
 			},
@@ -40,7 +38,6 @@ function CardDotBody({ item, lists, fadeIn }) {
 	return (
 		<div className={styles.cardDots}>
 			<button
-				ref={elementRef}
 				className={`${styles.btnDot}${fadeIn || listShow ? ` ${styles.zoomIn}` : ''}`}
 				onClick={eventRefs.current.onClick}
 				type='button'
@@ -95,15 +92,14 @@ function CardDotBody({ item, lists, fadeIn }) {
 					</g>
 				</svg>
 			</button>
-			{show ? (
+			{show && (
 				<CardDotList
 					fadeIn={childFadeIn}
-					handleBlur={eventRefs.current.handleBlur}
+					onAppear={eventRefs.current.onAppear}
 					item={item}
 					lists={lists}
-					parentRef={elementRef}
 				/>
-			) : null}
+			)}
 		</div>
 	);
 }

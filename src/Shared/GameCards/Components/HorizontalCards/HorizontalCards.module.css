@@ -3,7 +3,7 @@
 	width: calc(100% + 1rem);
 	max-width: 100vw;
 	translate: -0.5rem;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 .cardSlider {

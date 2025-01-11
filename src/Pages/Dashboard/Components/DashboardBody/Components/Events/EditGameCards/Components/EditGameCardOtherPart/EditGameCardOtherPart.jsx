@@ -26,7 +26,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 				const outerIndex = outerIn + 1;
 				return (
 					<div key={gameCards.id}>
-						<h3>Other Part {outerIndex}</h3>
+						<h3>Part {outerIndex}</h3>
 						<div key={gameCards.id} className={styles.editGameCardOtherPartContainer}>
 							{gameCards.cards.map((gameCard, index) => (
 								<div key={gameCard.id} className={styles.editGameCardContainer}>
@@ -56,22 +56,11 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 												card
 											);
 										}}
-										onClear={() =>
-											setGameCards(prev => {
-												const newPrev = [...prev];
-												newPrev[outerIndex].cards[index].cards = [];
-												cardsRef.current[outerIndex].cards[index].cards =
-													[];
-												return newPrev;
-											})
-										}
+										onClear={() => {
+											cardsRef.current[outerIndex].cards[index].cards = [];
+										}}
 										onReset={data => {
-											setGameCards(prev => {
-												const newPrev = [...prev];
-												newPrev[outerIndex].cards[index] = data;
-												cardsRef.current[outerIndex].cards[index] = data;
-												return newPrev;
-											});
+											cardsRef.current[outerIndex].cards[index] = data;
 										}}
 										onDelete={() => {
 											if (gameCards.cards.length === 1) {
