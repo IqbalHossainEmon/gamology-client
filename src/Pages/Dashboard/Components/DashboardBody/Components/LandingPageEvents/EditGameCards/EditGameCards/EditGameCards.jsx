@@ -341,7 +341,7 @@ function EditGameCards() {
 			const removeIndex = [];
 
 			gameCards.cards.forEach((game, innerIndex) => {
-				if (game.cards.length < 6) {
+				if (game.cards.length < 10) {
 					if (game.cards.length === 0) {
 						modalFlag = true;
 
@@ -349,7 +349,7 @@ function EditGameCards() {
 					} else {
 						flag = true;
 						errorMessages.current[index + 1][innerIndex] =
-							'You must have at least 12 cards';
+							'You must have at least 10 cards';
 					}
 				} else if (errorMessages.current[index + 1]?.[innerIndex]) {
 					errorMessages.current[index + 1][innerIndex] = '';

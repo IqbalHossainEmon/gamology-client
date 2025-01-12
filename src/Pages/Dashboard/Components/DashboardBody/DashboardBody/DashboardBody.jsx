@@ -1,4 +1,4 @@
-import EditGameCards from '../Components/Events/EditGameCards/EditGameCards/EditGameCards';
+import EditGameCards from '../Components/LandingPageEvents/EditGameCards/EditGameCards/EditGameCards';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody() {

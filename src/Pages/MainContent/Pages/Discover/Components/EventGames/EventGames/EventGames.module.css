@@ -4,10 +4,13 @@
 	max-width: 1600px;
 }
 
+.eventGamesContainer {
+	margin: 0 -1rem;
+}
+
 .eventGames {
 	width: 100%;
 	display: flex;
-	column-gap: 1rem;
 	list-style: none;
 }
 .arrowBtn {
@@ -23,10 +26,13 @@
 	rotate: 90deg;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1023px) {
 	.container {
-		width: calc(100% - 1rem);
+		padding: 0 1rem;
 	}
+}
+
+@media only screen and (max-width: 768px) {
 	.eventGamesContainer {
 		overflow: hidden;
 	}

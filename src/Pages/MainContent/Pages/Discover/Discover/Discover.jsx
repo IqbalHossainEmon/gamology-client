@@ -12,6 +12,10 @@ export default function Discover() {
 			<DiscoverGames header='Game on sale' />
 			<DiscoverGames header='Summer Spotlight' />
 			<FreeGames />
+			<DiscoverGames header='Summer Spotlight' />
+			<DiscoverGames header='Summer Spotlight' />
+			<EventGames />
+			<DiscoverGames header='Summer Spotlight' />
 			<EventGames />
 			<ExploreGames />
 		</div>

@@ -1,0 +1,32 @@
+.gameColumn {
+	width: calc(100% / 3);
+	transition: opacity 200ms;
+	position: relative;
+	padding: 0 1rem;
+}
+
+.column {
+	list-style: none;
+	position: relative;
+	margin-top: 1rem;
+}
+
+.gameColumn:not(:last-child) {
+	border-right: 1px solid #333;
+}
+
+@media only screen and (max-width: 768px) {
+	.gameColumn {
+		width: 100%;
+	}
+	.opacity0 {
+		opacity: 0;
+	}
+	.gameColumn {
+		flex-shrink: 0;
+	}
+
+	.bar:after {
+		display: none;
+	}
+}

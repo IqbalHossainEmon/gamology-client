@@ -1,0 +1,20 @@
+.eventGamesGameColumnHeader {
+	background-color: transparent;
+	display: inline;
+	color: rgb(222, 222, 222);
+	cursor: pointer;
+	flex-grow: 1;
+	font-size: 18px;
+	font-weight: 400;
+	max-width: fit-content;
+}
+
+.arrow svg {
+	width: 10px;
+	height: 10px;
+	transition: translate 100ms;
+}
+
+.eventGamesGameColumnHeader:hover .arrow svg {
+	translate: 100%;
+}

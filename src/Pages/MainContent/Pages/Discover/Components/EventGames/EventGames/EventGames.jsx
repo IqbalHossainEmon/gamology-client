@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import ChangeEventButtons from '../Components/ChangeEventButtons/ChangeEventButtons';
-import GamesColumn from '../Components/EventGamesGamesColumn/EventGamesGamesColumn';
+import GamesColumn from '../Components/EventGamesGamesColumn/EventGamesGamesColumn/EventGamesGamesColumn';
 import StickyChangeButtons from '../Components/StickyChangeButtons/StickyChangeButtons';
 import styles from './EventGames.module.css';
 
@@ -55,7 +55,6 @@ export default function EventGames() {
 				>
 					{header.map((item, index) => (
 						<GamesColumn
-							bar={index !== header.length - 1}
 							cardPosition={cardPosition}
 							colNum={index}
 							games={newGames}
