@@ -84,10 +84,10 @@ export default function ExploreGames() {
 				<div className={styles.exploreTexts}>
 					<h4>{data.heading}</h4>
 					<p>{data.details}</p>
-					<a href='#d' ref={buttonRef} type='button'>
+					<button href='#d' ref={buttonRef} type='button'>
 						Learn More
 						<ButtonWaterEffect backGround='white' btnRef={buttonRef} long />
-					</a>
+					</button>
 				</div>
 			</div>
 		</section>

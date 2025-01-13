@@ -70,18 +70,7 @@ const data = [
 		],
 	},
 ];
-const getClassName = length => {
-	switch (length) {
-		case 4:
-			return styles.games4;
-		case 3:
-			return styles.games3;
-		case 2:
-			return styles.games2;
-		default:
-			return styles.games1;
-	}
-};
+
 const date = new Date();
 const today = [date.getDate(), date.getMonth() + 1, date.getFullYear()];
 
@@ -110,7 +99,7 @@ export default function FreeGames() {
 					<ButtonWaterEffect btnRef={btnRef} />
 				</button>
 			</div>
-			<div className={`${getClassName(items.length)} ${styles.games}`}>
+			<div className={styles.games}>
 				{items.map(item => (
 					<FreeGame data={item} key={item.id} length={items.length} today={today} />
 				))}

@@ -4,7 +4,7 @@
 	background-color: #3d3d3d;
 	padding: 2rem;
 	border-radius: 5px;
-	margin-bottom: 3rem;
+	margin: 2rem 0;
 }
 
 .header {
@@ -32,21 +32,8 @@
 .games {
 	padding-top: 20px;
 	width: 100%;
-	display: grid;
-	gap: 2rem;
-}
-
-.games4 {
-	grid-template-columns: repeat(4, 1fr);
-}
-.games3 {
-	grid-template-columns: repeat(3, 1fr);
-}
-.games2 {
-	grid-template-columns: repeat(2, 1fr);
-}
-.games1 {
-	grid-template-columns: repeat(1, 1fr);
+	display: flex;
+	gap: 1rem;
 }
 
 .headerIcon {
@@ -58,18 +45,9 @@
 	padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 1023px) {
-	.freeGames {
-		border-radius: 0;
-	}
-}
-
-@media only screen and (max-width: 768px) {
-	.freeGames {
-		width: calc(100% - 1rem);
-	}
-	.games4 {
-		grid-template-columns: repeat(2, 1fr);
+@media only screen and (max-width: 568px) {
+	.games {
+		flex-direction: column;
 	}
 }
 
@@ -79,18 +57,5 @@
 	}
 	.games {
 		gap: 1rem;
-	}
-}
-
-@media only screen and (max-width: 399px) {
-	.games3 {
-		grid-template-columns: repeat(1, 1fr);
-	}
-}
-
-@media only screen and (max-width: 325px) {
-	.games4,
-	.games2 {
-		grid-template-columns: repeat(1, 1fr);
 	}
 }

@@ -8,10 +8,10 @@
 	justify-content: space-between;
 }
 .prevBtn {
-	width: 1rem;
+	width: 1.5rem;
 	rotate: -90deg;
 }
 .nextBtn {
-	width: 1rem;
+	width: 1.5rem;
 	rotate: 90deg;
 }

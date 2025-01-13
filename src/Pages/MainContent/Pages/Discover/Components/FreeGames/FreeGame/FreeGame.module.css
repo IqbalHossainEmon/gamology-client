@@ -48,16 +48,10 @@
 	font-size: 14px;
 }
 
-.aspectRatioClassName1 {
-	padding-bottom: calc(100% / 3 * 1);
-}
-
-.aspectRatioClassName2 {
-	padding-bottom: calc(100% / 3 * 2);
-}
-
+.aspectRatioClassName1,
+.aspectRatioClassName2,
 .aspectRatioClassName3 {
-	padding-bottom: calc(100% / 3 * 3);
+	padding-bottom: calc(100% / 16 * 9);
 }
 
 .aspectRatioClassName4 {
