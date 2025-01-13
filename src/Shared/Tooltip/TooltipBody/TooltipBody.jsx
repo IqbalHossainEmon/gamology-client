@@ -1,6 +1,49 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './TooltipBody.module.css';
 
+const getTooltipPosition = (targetElementBounds, tooltipDimensions, scrollY, preferPosition) => {
+	const { top, left, width, height } = targetElementBounds;
+	const { height: tooltipHeight, width: tooltipWidth } = tooltipDimensions;
+
+	const positions = {
+		left: {
+			top: top + Math.abs(scrollY) + height / 2 - tooltipHeight / 2,
+			left: left - tooltipWidth - 10,
+			arrowOn: 'right',
+			isValid: () => left - (tooltipWidth + 20) > 0,
+		},
+		right: {
+			top: top + Math.abs(scrollY) + height / 2 - tooltipHeight / 2,
+			left: left + width + 10,
+			arrowOn: 'left',
+			isValid: () => window.innerWidth - left - width - 20 > tooltipWidth + 20,
+		},
+		top: {
+			top: top + Math.abs(scrollY) - tooltipHeight - 10,
+			left: left + width / 2 - tooltipWidth / 2,
+			arrowOn: 'bottom',
+			isValid: () => top - (tooltipHeight + 20) > 0,
+		},
+		bottom: {
+			top: top + Math.abs(scrollY) + height + 10,
+			left: left + width / 2 - tooltipWidth / 2,
+			arrowOn: 'top',
+			isValid: () => window.innerHeight - top - height - 20 > tooltipHeight,
+		},
+	};
+
+	const fallbackOrder = {
+		left: ['left', 'right', 'top', 'bottom'],
+		right: ['right', 'left', 'top', 'bottom'],
+		top: ['top', 'bottom', 'left', 'right'],
+		bottom: ['bottom', 'top', 'left', 'right'],
+	};
+
+	const preferOrder = fallbackOrder[preferPosition] || ['left', 'right', 'top', 'bottom'];
+
+	return positions[preferOrder.find(pos => positions[pos].isValid())];
+};
+
 function TooltipBody({
 	message,
 	containerRef,
@@ -8,6 +51,7 @@ function TooltipBody({
 	scrollElementId,
 	onMouseOver,
 	onMouseLeave,
+	preferPosition,
 }) {
 	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
 
@@ -28,10 +72,8 @@ function TooltipBody({
 
 	useEffect(() => {
 		const tooltip = tooltipRef.current;
-		if (containerRef.current) {
-			const { top, left, width, height } = containerRef.current.getBoundingClientRect();
-			const { height: tooltipHeight, width: tooltipWidth } = tooltip.getBoundingClientRect();
 
+		if (containerRef.current && tooltip) {
 			tooltip.addEventListener('mouseover', eventRefs.current.onMouseOver);
 			tooltip.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			tooltip.toolTipElement = true;
@@ -42,31 +84,14 @@ function TooltipBody({
 				scrollY = document.getElementById(scrollElementId).scrollTop;
 			}
 
-			if (left - (tooltipHeight + 20) > 0) {
-				setPosition({
-					top: top + Math.abs(scrollY) + height / 2 - tooltipHeight / 2,
-					left: left - tooltipWidth - 10,
-					arrowOn: 'right',
-				});
-			} else if (window.innerWidth - left - width - 20 > tooltipWidth + 20) {
-				setPosition({
-					top: top + Math.abs(scrollY) + height / 2 - tooltipHeight / 2,
-					left: left + width + 10,
-					arrowOn: 'left',
-				});
-			} else if (top - (tooltipHeight + 20) > 0) {
-				setPosition({
-					top: top - tooltipHeight - 10,
-					left: left + width / 2 - tooltipWidth / 2,
-					arrowOn: 'bottom',
-				});
-			} else {
-				setPosition({
-					top: top + height + 10,
-					left: left + width / 2 - tooltipWidth / 2,
-					arrowOn: 'top',
-				});
-			}
+			setPosition(
+				getTooltipPosition(
+					containerRef.current.getBoundingClientRect(),
+					tooltip.getBoundingClientRect(),
+					scrollY,
+					preferPosition
+				)
+			);
 		}
 		return () => {
 			if (tooltip) {
@@ -74,14 +99,15 @@ function TooltipBody({
 				tooltip.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			}
 		};
-	}, [containerRef, onMouseLeave, onMouseOver, scrollElementId]);
+	}, [containerRef, onMouseLeave, onMouseOver, preferPosition, scrollElementId]);
 
 	return (
 		<div
 			className={`${styles.toolTips}${fadeIn ? ` ${styles.fadeIn}` : ''} ${styles[position.arrowOn]}`}
 			style={{ left: `${position.left}px`, top: `${position.top}px` }}
+			ref={tooltipRef}
 		>
-			<p ref={tooltipRef}>{message}</p>
+			{message}
 		</div>
 	);
 }

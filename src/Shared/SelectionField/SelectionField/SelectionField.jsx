@@ -82,7 +82,7 @@ export default function SelectionField({
 	useEffect(() => {
 		// Check if the text is overflowing the container and add tooltip
 		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
-			setTooltip(elementRef.current, value);
+			setTooltip(elementRef.current, <p className={styles.toolTipsMessage}>{value}</p>);
 			isAdded.current = true;
 		} else if (isAdded.current) {
 			isAdded.current = false;

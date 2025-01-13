@@ -1,5 +1,5 @@
 import GameCards from '../../../../../../Shared/GameCards/GameCards/GameCards';
-import styles from './DiscoverGames.module.css';
+import styles from './DiscoverGameCards.module.css';
 const items = [
 	{
 		id: 10000,
@@ -231,11 +231,11 @@ const items = [
 	},
 ];
 
-function DiscoverGames({ header }) {
+function DiscoverGameCards({ header }) {
 	return (
 		<section className={styles.games}>
 			<GameCards headerTitle={header} items={items} />
 		</section>
 	);
 }
-export default DiscoverGames;
+export default DiscoverGameCards;

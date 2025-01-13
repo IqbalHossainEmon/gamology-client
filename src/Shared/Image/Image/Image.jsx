@@ -42,7 +42,7 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
 		<div
 			className={
 				aspectRatioClassName
-					? `${styles.imageContainer}  ${aspectRatioClassName}`
+					? `${styles.imageContainer} ${aspectRatioClassName}`
 					: styles.imageContainerNoAspectRatio
 			}
 		>

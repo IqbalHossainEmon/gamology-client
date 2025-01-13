@@ -65,31 +65,64 @@ const withTooltip = Component =>
 						setShow(false);
 						eventRefs.current.handleShow(true);
 						containerRef.current = e.currentTarget;
-						setMessage(e.currentTarget.toolTipMsg);
+						setMessage(e.currentTarget.tooltipMsg);
 						return;
 					}
 
 					containerRef.current = e.currentTarget;
-					setMessage(e.currentTarget.toolTipMsg);
+					setMessage(e.currentTarget.tooltipMsg);
 					eventRefs.current.handleShow();
 				},
 				onMouseLeave: () => {
 					eventRefs.current.removeShowTimer();
 					eventRefs.current.handleHide();
 				},
-				contextEvents: (element, msg) => {
-					if (element && msg) {
-						element.addEventListener('mouseover', eventRefs.current.onMouseOver);
-						element.toolTipMsg = msg;
-						element.addEventListener('mouseout', eventRefs.current.onMouseLeave);
-					} else if (element && !msg) {
-						if (showRef.current) {
-							setShow(false);
-						}
-						setMessage('');
-						element.removeEventListener('mouseover', eventRefs.current.onMouseOver);
-						delete element.toolTipMsg;
-						element.removeEventListener('mouseout', eventRefs.current.onMouseLeave);
+				contextEvents: (element, msg, position, shouldShowInstantly, showTooltip) => {
+					switch (shouldShowInstantly) {
+						case true:
+							if (showTooltip) {
+								setShow(true);
+								setMessage(msg);
+								containerRef.current = element;
+								element.tooltipMsg = msg;
+								element.tooltipPreferPosition = position;
+							} else {
+								setShow(false);
+								containerRef.current = null;
+								delete element?.tooltipMsg;
+								delete element?.tooltipPreferPosition;
+							}
+							break;
+
+						default:
+							if (element && msg) {
+								element.addEventListener(
+									'mouseover',
+									eventRefs.current.onMouseOver
+								);
+								element.tooltipMsg = msg;
+								element.tooltipPreferPosition = position;
+								element.addEventListener(
+									'mouseout',
+									eventRefs.current.onMouseLeave
+								);
+							} else if (element && !msg) {
+								if (showRef.current) {
+									setShow(false);
+								}
+								setMessage('');
+								element.removeEventListener(
+									'mouseover',
+									eventRefs.current.onMouseOver
+								);
+								delete element.tooltipMsg;
+								delete element.tooltipPreferPosition;
+								element.removeEventListener(
+									'mouseout',
+									eventRefs.current.onMouseLeave
+								);
+							}
+							break;
 					}
 				},
 			};
@@ -121,6 +154,9 @@ const withTooltip = Component =>
 					containerRef={containerRef}
 					state={show}
 					scrollElementId='root'
+					preferPosition={
+						containerRef.current ? containerRef.current.tooltipPreferPosition : ''
+					}
 				/>
 			</SetTooltipContext.Provider>
 		);

@@ -1,4 +1,4 @@
-.eventGamesGameColumnHeader {
+.discoverHeader {
 	background-color: transparent;
 	display: inline;
 	color: rgb(222, 222, 222);
@@ -7,14 +7,21 @@
 	font-size: 18px;
 	font-weight: 400;
 	max-width: fit-content;
+	display: flex;
+	align-items: center;
+}
+
+.arrow {
+	display: flex;
+	align-items: center;
 }
 
 .arrow svg {
-	width: 10px;
-	height: 10px;
+	width: 1.3rem;
+	height: 1.3rem;
 	transition: translate 100ms;
 }
 
-.eventGamesGameColumnHeader:hover .arrow svg {
-	translate: 100%;
+.discoverHeader:hover .arrow svg {
+	translate: 0.5rem;
 }

@@ -2,7 +2,7 @@ import styles from './EventGamesGameColumnHeader.module.css';
 
 export default function EventGamesGameColumnHeader({ headerTitle }) {
 	return (
-		<h4 className={styles.eventGamesGameColumnHeader}>
+		<h4 className={styles.discoverHeader}>
 			{headerTitle}
 			<span className={styles.arrow}>
 				<svg className='svg css-uwwqev' viewBox='0 0 5 9'>
