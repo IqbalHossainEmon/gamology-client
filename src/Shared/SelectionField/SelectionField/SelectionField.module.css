@@ -94,16 +94,6 @@
 	translate: 0 -50%;
 }
 
-.toolTipsMessage {
-	position: relative;
-	color: white;
-	font-size: 12px;
-	padding: 1rem;
-	opacity: 0.8;
-	max-width: 250px;
-	width: max-content;
-}
-
 @media screen and (max-width: 768px) {
 	.label,
 	.field {

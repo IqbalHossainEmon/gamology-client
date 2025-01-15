@@ -11,7 +11,7 @@ function EditGameCardAddCard({ width, margin, onClick }) {
 	const setModal = useModal();
 
 	useEffect(() => {
-		setTooltip(btnRef.current, <p className={styles.toolTipsMessage}>Add Game to the list</p>);
+		setTooltip(btnRef.current, 'Add Game to the list');
 	}, [setTooltip, width]);
 
 	return (

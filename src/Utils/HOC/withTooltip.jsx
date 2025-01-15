@@ -77,52 +77,21 @@ const withTooltip = Component =>
 					eventRefs.current.removeShowTimer();
 					eventRefs.current.handleHide();
 				},
-				contextEvents: (element, msg, position, shouldShowInstantly, showTooltip) => {
-					switch (shouldShowInstantly) {
-						case true:
-							if (showTooltip) {
-								setShow(true);
-								setMessage(msg);
-								containerRef.current = element;
-								element.tooltipMsg = msg;
-								element.tooltipPreferPosition = position;
-							} else {
-								setShow(false);
-								containerRef.current = null;
-								delete element?.tooltipMsg;
-								delete element?.tooltipPreferPosition;
-							}
-							break;
-
-						default:
-							if (element && msg) {
-								element.addEventListener(
-									'mouseover',
-									eventRefs.current.onMouseOver
-								);
-								element.tooltipMsg = msg;
-								element.tooltipPreferPosition = position;
-								element.addEventListener(
-									'mouseout',
-									eventRefs.current.onMouseLeave
-								);
-							} else if (element && !msg) {
-								if (showRef.current) {
-									setShow(false);
-								}
-								setMessage('');
-								element.removeEventListener(
-									'mouseover',
-									eventRefs.current.onMouseOver
-								);
-								delete element.tooltipMsg;
-								delete element.tooltipPreferPosition;
-								element.removeEventListener(
-									'mouseout',
-									eventRefs.current.onMouseLeave
-								);
-							}
-							break;
+				contextEvents: (element, msg, position) => {
+					if (element && msg) {
+						element.addEventListener('mouseover', eventRefs.current.onMouseOver);
+						element.tooltipMsg = msg;
+						element.tooltipPreferPosition = position;
+						element.addEventListener('mouseout', eventRefs.current.onMouseLeave);
+					} else if (element && !msg) {
+						if (showRef.current) {
+							setShow(false);
+						}
+						setMessage('');
+						element.removeEventListener('mouseover', eventRefs.current.onMouseOver);
+						delete element.tooltipMsg;
+						delete element.tooltipPreferPosition;
+						element.removeEventListener('mouseout', eventRefs.current.onMouseLeave);
 					}
 				},
 			};

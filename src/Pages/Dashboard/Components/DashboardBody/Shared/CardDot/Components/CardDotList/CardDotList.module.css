@@ -1,8 +1,25 @@
 .listContainer {
+	position: absolute;
 	list-style: none;
 	padding: 5px 10px;
 	border-radius: 0.5rem;
 	overflow: hidden;
+	z-index: 1;
+	opacity: 0;
+	scale: 0.7;
+	background-color: #18181ce0;
+	backdrop-filter: blur(5px);
+	-web-kit-backdrop-filter: blur(5px);
+	transition:
+		opacity 200ms,
+		scale 200ms;
+	top: calc(100% + 2px);
+	right: -0.5rem;
+}
+
+.zoomIn {
+	opacity: 1;
+	scale: 1;
 }
 
 .listContainer li button {

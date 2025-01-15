@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import useAppearDisappear from '../../../../../../../../Utils/Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide';
-import useTooltip from '../../../../../../../../Utils/Hooks/useTooltip';
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
@@ -16,10 +16,17 @@ function CardDotBody({ item, lists, fadeIn }) {
 	const eventRefs = useRef(null);
 	const { setElement, showMenu, onHide } = useDropDownHide(setListShow);
 
+	const [show, childFadeIn] = useAppearDisappear(listShow);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onClick: () => {
-				setListShow(prev => !prev);
+				setListShow(prev => {
+					if (prev) {
+						onHide();
+					}
+					return !prev;
+				});
 			},
 			onAppear: element => {
 				setElement(element);
@@ -28,37 +35,8 @@ function CardDotBody({ item, lists, fadeIn }) {
 		};
 	}
 
-	const btnRef = useRef(null);
-
-	const setTooltip = useTooltip();
-
-	const showRef = useRef(false);
-
-	useEffect(() => {
-		if (listShow) {
-			setTooltip(
-				btnRef.current,
-				<CardDotList item={item} lists={lists} />,
-				'bottom',
-				true,
-				true
-			);
-			showRef.current = true;
-		} else if (showRef.current) {
-			setTooltip(null, null, 'bottom', true);
-			showRef.current = false;
-		}
-
-		return () => {
-			if (showRef.current) {
-				setTooltip(null, null, 'bottom', true);
-				showRef.current = false;
-			}
-		};
-	}, [listShow, item, lists, setTooltip]);
-
 	return (
-		<div className={styles.cardDots} ref={btnRef}>
+		<div className={styles.cardDots}>
 			<button
 				className={`${styles.btnDot}${fadeIn || listShow ? ` ${styles.zoomIn}` : ''}`}
 				onClick={eventRefs.current.onClick}
@@ -114,6 +92,14 @@ function CardDotBody({ item, lists, fadeIn }) {
 					</g>
 				</svg>
 			</button>
+			{show && (
+				<CardDotList
+					fadeIn={childFadeIn}
+					onAppear={eventRefs.current.onAppear}
+					item={item}
+					lists={lists}
+				/>
+			)}
 		</div>
 	);
 }

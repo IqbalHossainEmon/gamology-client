@@ -1,8 +1,18 @@
+import { useEffect, useRef } from 'react';
 import styles from './CardDotList.module.css';
 
-function CardDotList({ lists, item, setHide }) {
+function CardDotList({ lists, onAppear, item, fadeIn, setHide }) {
+	const listContainerRef = useRef(null);
+
+	useEffect(() => {
+		onAppear(listContainerRef.current);
+	}, [onAppear]);
+
 	return (
-		<ul className={`${styles.listContainer}`}>
+		<ul
+			ref={listContainerRef}
+			className={`${styles.listContainer}${fadeIn ? ` ${styles.zoomIn}` : ''}`}
+		>
 			{lists.map(
 				list =>
 					list.name && (
