@@ -37,7 +37,7 @@
 	padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.header {
 		position: relative;
 		z-index: 5;

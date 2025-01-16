@@ -1,7 +1,7 @@
 .container {
 	margin-bottom: 4rem;
 	width: 100%;
-	max-width: 1600px;
+	max-width: 160rem;
 }
 
 .eventGamesContainer {
@@ -27,7 +27,7 @@
 	rotate: 90deg;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.eventGames {
 		transition: translate 400ms;
 		position: relative;

@@ -20,7 +20,7 @@
 	color: rgba(255, 255, 255);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.links {
 		z-index: 1;
 		right: 0px;

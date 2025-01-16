@@ -3,7 +3,7 @@
 	align-items: center;
 	flex-grow: 1;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.middleLinks {
 		position: absolute;
 		height: 100%;

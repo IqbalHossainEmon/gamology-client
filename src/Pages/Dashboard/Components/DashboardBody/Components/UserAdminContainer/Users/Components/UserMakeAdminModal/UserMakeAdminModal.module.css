@@ -8,8 +8,8 @@
 
 .btn {
 	border: none;
-	padding: 10px 20px;
-	font-size: 16px;
+	padding: 0.625em 1.25em;
+	font-size: 1rem;
 	cursor: pointer;
 	border-radius: 5px;
 	width: 100%;

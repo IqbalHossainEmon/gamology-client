@@ -60,7 +60,6 @@ function GameInfoFieldSpecificationContainer({
 					/>
 				</div>
 			))}
-
 			<ErrorMessage enable={errorShow} errorMessage={errorMessages[3]} />
 		</div>
 	);

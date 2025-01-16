@@ -1,7 +1,7 @@
 .listContainer {
 	position: absolute;
 	list-style: none;
-	padding: 5px 10px;
+	padding: 0.3125em 0.625em;
 	border-radius: 0.5rem;
 	overflow: hidden;
 	z-index: 1;
@@ -27,7 +27,7 @@
 	background-color: transparent;
 	border: none;
 	color: #ffffff95;
-	font-size: 14px;
+	font-size: 0.875rem;
 	text-align: center;
 	text-wrap: nowrap;
 	margin: 5px 0;

@@ -8,22 +8,22 @@
 }
 
 .marginRight {
-	margin-left: 10px;
+	margin-left: 0.625em;
 }
 
 .header {
 	font-size: 1.3rem;
 	font-weight: 400;
-	margin-bottom: 40px;
+	margin-bottom: 2.5em;
 }
 
-@media only screen and (max-width: 1023px) and (min-width: 769px) {
+@media only screen and (max-width: 1023px) and (min-width: 48.0625rem) {
 	.header {
 		font-size: 1.2rem;
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.header {
 		font-size: 1rem;
 	}
@@ -35,6 +35,6 @@
 	}
 	.marginRight {
 		margin-left: 0px;
-		margin-top: 10px;
+		margin-top: 0.625em;
 	}
 }

@@ -4,7 +4,7 @@
 	position: fixed;
 	scale: 1 1;
 	overflow: hidden;
-	padding: 1rem;
+	padding: 1em;
 	left: 0;
 	bottom: 0;
 	pointer-events: none;
@@ -23,7 +23,7 @@
 
 .footerLinks {
 	list-style: none;
-	font-size: 12px;
+	font-size: 0.75rem;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -56,7 +56,7 @@
 .footerCopyWrite {
 	margin-top: 5px;
 	color: rgba(255, 255, 255, 0.4);
-	font-size: 12px;
+	font-size: 0.75rem;
 }
 
 .gamologyText {
@@ -67,7 +67,7 @@
 	font-weight: 600;
 }
 
-@media only screen and (max-width: 1099px) {
+@media only screen and (max-width: 68.6875rem) {
 	.footer {
 		z-index: 2;
 		translate: 0;

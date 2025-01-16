@@ -3,7 +3,7 @@
 	display: inline;
 	color: rgb(222, 222, 222);
 	cursor: pointer;
-	font-size: 18px;
+	font-size: 1.125rem;
 	font-weight: 400;
 	max-width: fit-content;
 	display: flex;

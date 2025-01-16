@@ -14,15 +14,15 @@
 	opacity: 1;
 	scale: 1;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.sortLists {
 		width: 100%;
 		position: relative;
-		padding: 5px 10px;
+		padding: 0.3125em 0.625em;
 		opacity: 1;
 		scale: 1;
 	}
 	.sortLists h3 {
-		padding: 5px;
+		padding: 0.3125em;
 	}
 }

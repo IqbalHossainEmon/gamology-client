@@ -4,13 +4,13 @@
 .filterText {
 	font-weight: 400;
 }
-@media only screen and (max-width: 864px) and (min-width: 769px) {
+@media only screen and (max-width: 864px) and (min-width: 48.0625rem) {
 	.FilterGames {
 		width: 30%;
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.FilterGames {
 		position: fixed;
 		bottom: 0%;

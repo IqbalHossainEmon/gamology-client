@@ -4,7 +4,7 @@ const useCalculateTextSize = () => {
 	const eventRef = useRef(null);
 
 	if (!eventRef.current) {
-		eventRef.current = (val, font = '16px Inter') => {
+		eventRef.current = (val, font = '1rem Inter') => {
 			const canvas = document.createElement('canvas');
 			const context = canvas.getContext('2d');
 			context.font = font;

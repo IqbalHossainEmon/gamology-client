@@ -3,7 +3,7 @@
 	position: sticky;
 	background-color: transparent;
 	flex-shrink: 0;
-	padding-top: 2rem;
+	padding-top: 2em;
 	top: 0rem;
 	left: 0px;
 	display: flex;
@@ -68,9 +68,9 @@
 .arrowBtn::before {
 	content: '';
 	position: absolute;
-	top: 12px;
+	top: 0.75em;
 	transform-origin: center;
-	translate: 0 -2px;
+	translate: 0 0.125em;
 	width: 50%;
 	height: 2px;
 	background-image: linear-gradient(to left, #8200ff, #df00ff);
@@ -86,10 +86,10 @@
 	content: '';
 	position: absolute;
 	transform-origin: center;
-	top: 22px;
+	top: 1.375em;
 	width: 50%;
 	height: 2px;
-	translate: 0 -2px;
+	translate: 0 0.125em;
 	background-image: linear-gradient(to left, #8200ff, #df00ff);
 	rotate: 45deg;
 	border-radius: 0.5rem;
@@ -108,11 +108,11 @@
 	background-image: linear-gradient(to right, #8200ff, #df00ff);
 }
 
-@media only screen and (max-width: 1099px) {
+@media only screen and (max-width: 68.6875rem) {
 	.drawer {
 		max-width: 0px;
 		z-index: 3;
-		padding-top: 0rem;
+		padding-top: 0;
 	}
 
 	.drawerOptions {
@@ -120,7 +120,7 @@
 		width: 15rem;
 		position: absolute;
 		translate: -100%;
-		padding-top: 2rem;
+		padding-top: 2em;
 		transition: transform 200ms;
 	}
 

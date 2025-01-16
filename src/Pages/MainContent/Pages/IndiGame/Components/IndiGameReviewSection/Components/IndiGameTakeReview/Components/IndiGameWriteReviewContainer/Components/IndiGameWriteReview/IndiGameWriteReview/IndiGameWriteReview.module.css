@@ -4,7 +4,7 @@
 }
 
 .individualGameWriteReview {
-	padding: 24px;
+	padding: 1.5em;
 	background: #303030;
 	display: flex;
 	margin-bottom: 40px;
@@ -15,7 +15,7 @@
 }
 
 .name {
-	font-size: 16px;
+	font-size: 1rem;
 	margin-bottom: 10px;
 }
 

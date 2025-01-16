@@ -14,7 +14,7 @@
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: center;
-	padding: 5px 10px;
+	padding: 0.3125em 0.625em;
 	border-radius: 5px;
 	pointer-events: visible;
 }
@@ -24,9 +24,9 @@
 	/* width: 50%; */
 	background-color: transparent;
 	color: rgb(190, 190, 190);
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 500;
-	padding: 5px;
+	padding: 0.3125em;
 	border: none;
 	display: flex;
 	flex-direction: row;
@@ -41,7 +41,7 @@
 
 .verticalLine {
 	border-left: 2px solid #222222;
-	margin: 0 10px;
+	margin: 0 0.625em;
 }
 
 .imageContainer {
@@ -58,6 +58,6 @@
 	}
 	.sortButton,
 	.filterButton {
-		font-size: 10px;
+		font-size: 0.625rem;
 	}
 }

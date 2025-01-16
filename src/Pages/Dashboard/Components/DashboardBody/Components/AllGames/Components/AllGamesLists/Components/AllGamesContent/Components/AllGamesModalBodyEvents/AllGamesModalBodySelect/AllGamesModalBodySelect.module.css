@@ -2,7 +2,7 @@
 	margin: 1rem 0;
 	display: flex;
 	background-color: #333338;
-	padding: 5px;
+	padding: 0.3125em;
 }
 
 .cardHeader {
@@ -33,9 +33,9 @@
 		font-size: 1.2rem;
 	}
 	.name {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 	.price {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 }

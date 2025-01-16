@@ -26,9 +26,9 @@
 }
 
 .common {
-	font-size: 12px;
+	font-size: 0.75rem;
 	text-align: center;
-	padding: 10px 0;
+	padding: 0.625em 0;
 	border-radius: 0 0 5px 5px;
 }
 .gameDetail {
@@ -45,7 +45,7 @@
 	flex-grow: 1;
 }
 .gameDetail p {
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 .aspectRatioClassName1,
@@ -58,14 +58,14 @@
 	padding-bottom: calc(100% / 3 * 4);
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 160rem) {
 	.gameDetail p {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 }
 
 @media only screen and (max-width: 352px) {
 	.gameDetail p {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 }

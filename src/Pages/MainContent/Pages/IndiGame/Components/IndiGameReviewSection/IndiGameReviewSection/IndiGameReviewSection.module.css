@@ -1,18 +1,18 @@
 .individualGameReview {
-  margin-top: 50px;
+	margin-top: 50px;
 }
 .reviewContainer {
-  background: #252525;
-  padding: 35px 60px;
-  overflow: auto;
+	background: #252525;
+	padding: 2.1875em 3.75em;
+	overflow: auto;
 }
 .reviewMainHeader {
-  margin-bottom: 10px;
-  font-weight: 500;
+	margin-bottom: 10px;
+	font-weight: 500;
 }
 
-@media only screen and (max-width: 768px) {
-  .reviewContainer {
-    padding: 1rem;
-  }
+@media only screen and (max-width: 48rem) {
+	.reviewContainer {
+		padding: 1em;
+	}
 }

@@ -1,52 +1,49 @@
 .priceReleaseDateContainer,
 .priceContainer {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 .priceContainer {
-  align-items: center;
-  height: 100%;
+	align-items: center;
+	height: 100%;
 }
 
 .priceContainer label {
-  margin-right: 10px;
+	margin-right: 0.625em;
 }
 .priceContainer input {
-  border: none;
-  outline: none;
-  font-size: medium;
-  color: rgb(173, 173, 173);
+	border: none;
+	outline: none;
+	font-size: medium;
+	color: rgb(173, 173, 173);
 }
 
 .inputContainer input {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 20px 10px;
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 1.25em 0.625em;
 }
 .priceContainer input {
-  width: 100px;
+	width: 100px;
 }
 
 .priceContainer input::-webkit-outer-spin-button,
 .priceContainer input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 @media screen and (max-width: 645px) {
-  .priceReleaseDateContainer {
-    display: block;
-  }
+	.priceReleaseDateContainer {
+		display: block;
+	}
 }
 
 @media screen and (max-width: 396px) {
-  .priceReleaseDateContainer {
-    display: block;
-  }
+	.priceReleaseDateContainer {
+		display: block;
+	}
 
-  .priceContainer input {
-    font-size: 12px;
-  }
-  .priceContainer label {
-    margin-right: 10px;
-  }
+	.priceContainer input {
+		font-size: 0.75rem;
+	}
 }

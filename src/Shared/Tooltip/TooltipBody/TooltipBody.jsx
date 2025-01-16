@@ -107,7 +107,7 @@ function TooltipBody({
 			style={{ left: `${position.left}px`, top: `${position.top}px` }}
 			ref={tooltipRef}
 		>
-			{message}
+			<p>{message}</p>
 		</div>
 	);
 }

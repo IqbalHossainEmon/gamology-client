@@ -5,7 +5,7 @@
 }
 .buyNow {
 	background-color: rgb(0, 116, 228);
-	padding: 20px 0;
+	padding: 1.25em 0;
 	color: white;
 	font-size: 1rem;
 	cursor: pointer;
@@ -21,7 +21,7 @@
 	margin-top: 1rem;
 	background-color: transparent;
 	border: 1px solid rgb(245, 245, 245);
-	padding: 10px 0;
+	padding: 0.625em 0;
 	color: white;
 	font-size: 1rem;
 	cursor: pointer;
@@ -44,8 +44,8 @@
 }
 
 .wishlistBtn {
-	padding: 10px 0;
-	font-size: 12px;
+	padding: 0.625em 0;
+	font-size: 0.75rem;
 	margin: 1rem 0;
 	background-color: transparent;
 	border: 1px solid rgb(245, 245, 245);
@@ -87,7 +87,7 @@
 .plus {
 	line-height: 15px;
 	color: rgb(245, 245, 245);
-	font-size: 14px;
+	font-size: 0.875rem;
 	height: 12px;
 	width: 12px;
 }
@@ -122,12 +122,12 @@
 
 @media screen and (max-width: 1200px) and (min-width: 900px) {
 	.cartBtn {
-		padding: 15px;
+		padding: 0.9375em;
 		font-size: 0.9rem;
 	}
 	.wishlistBtn {
-		font-size: 10px;
-		padding: 8px 0;
+		font-size: 0.625rem;
+		padding: 0.5em 0;
 		margin-top: 8px;
 		margin-bottom: 8px;
 	}
@@ -141,7 +141,7 @@
 	}
 	.plus {
 		line-height: 13px;
-		font-size: 12px;
+		font-size: 0.75rem;
 		height: 10px;
 		width: 10px;
 	}
@@ -154,11 +154,11 @@
 
 @media screen and (max-width: 900px) {
 	.cartBtn {
-		padding: 10px;
+		padding: 0.625em;
 		font-size: 0.8rem;
 	}
 	.wishlistBtn {
-		padding: 6px 0;
+		padding: 0.375em 0;
 		margin-top: 6px;
 		margin-bottom: 6px;
 	}
@@ -172,7 +172,7 @@
 	}
 	.plus {
 		line-height: 11px;
-		font-size: 10px;
+		font-size: 0.625rem;
 		height: 8px;
 		width: 8px;
 	}

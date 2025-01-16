@@ -15,7 +15,7 @@
 .cardContainerImg {
 	width: 100%;
 	border-radius: 4px 4px 0 0;
-	padding: 1rem;
+	padding: 1em;
 }
 
 .aspectRatioClassName {
@@ -23,10 +23,10 @@
 }
 
 .cardContainerInfo {
-	margin-top: 1rem;
+	margin-top: 1em;
 	color: #fff;
 	text-align: center;
-	padding: 1rem;
+	padding: 1em;
 }
 
 .cardContainerInfo h3 {

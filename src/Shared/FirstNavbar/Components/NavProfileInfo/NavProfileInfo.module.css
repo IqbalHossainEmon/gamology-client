@@ -1,7 +1,7 @@
 .profile {
 	display: flex;
 	align-items: center;
-	padding-right: 1rem;
+	padding-right: 1em;
 }
 .profileImg {
 	width: 30px;
@@ -15,7 +15,7 @@
 	padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.profile {
 		display: flex;
 		flex-direction: column;

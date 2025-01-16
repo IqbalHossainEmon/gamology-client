@@ -1,9 +1,9 @@
 .mainHeader,
 .onlySubHeader {
-  margin-top: 40px;
+	margin-top: 2.5em;
 }
 
 .mainHeader,
 .subHeader {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }

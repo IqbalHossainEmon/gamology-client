@@ -9,7 +9,7 @@
 	margin-left: 5px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.priceContainer {
 		justify-content: center;
 		text-align: center;

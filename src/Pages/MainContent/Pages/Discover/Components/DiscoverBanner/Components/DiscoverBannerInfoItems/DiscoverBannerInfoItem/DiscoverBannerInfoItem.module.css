@@ -67,11 +67,11 @@
 
 @media only screen and (max-width: 1023px) {
 	.priceContainer {
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.logoContainer {
 		display: flex;
 		flex-direction: column;
@@ -92,7 +92,7 @@
 	}
 
 	.priceContainer {
-		font-size: 12px;
+		font-size: 0.75rem;
 		width: fit-content;
 		display: flex;
 		justify-content: center;

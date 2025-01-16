@@ -20,7 +20,7 @@
 }
 
 .modalContentContainer {
-	padding: 2rem;
+	padding: 2em;
 }
 .zoomIn {
 	opacity: 1;
@@ -89,7 +89,7 @@
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.modal {
 		width: max-content;
 	}
@@ -108,6 +108,6 @@
 	}
 
 	.modalContentContainer {
-		padding: 1rem;
+		padding: 1em;
 	}
 }

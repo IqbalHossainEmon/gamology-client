@@ -6,7 +6,7 @@
 	position: relative;
 	color: rgb(173, 173, 173);
 	height: 100%;
-	padding: 20px;
+	padding: 1.25em;
 	font-size: medium;
 	border: none;
 	cursor: pointer;
@@ -20,9 +20,9 @@
 	cursor: default;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
 	.btn {
-		font-size: 12px;
+		font-size: 0.75rem;
 		white-space: wrap;
 	}
 }

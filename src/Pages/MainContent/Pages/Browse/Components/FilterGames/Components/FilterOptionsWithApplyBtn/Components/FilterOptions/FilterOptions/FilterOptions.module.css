@@ -1,15 +1,15 @@
 .parentContainer {
 	position: relative;
-	padding: 1rem;
+	padding: 1em;
 }
 
 .childContainer {
 	height: 100%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.filterOptionList {
-		padding-bottom: 2rem;
+		padding-bottom: 2em;
 	}
 	.filterContainer {
 		position: relative;

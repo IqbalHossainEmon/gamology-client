@@ -66,17 +66,17 @@
 	left: 20%;
 }
 .exploreTexts h4 {
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 400;
 }
 .exploreTexts p {
 	margin: 1rem 0;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 .exploreTexts button {
 	position: relative;
-	padding: 1rem 2rem;
+	padding: 1em 2em;
 	border-radius: 5px;
 	margin-top: 1rem;
 	display: inline-block;
@@ -86,7 +86,7 @@
 	transition: all 300ms;
 	background-color: white;
 	border: 1px solid white;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 .exploreTexts button:hover {
 	background-color: rgba(0, 0, 0, 0.4);
@@ -94,18 +94,18 @@
 	border: 1px solid white;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.exploreTexts {
 		width: 30%;
 		left: 10%;
 	}
 
 	.exploreTexts h4 {
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 	.exploreTexts p,
 	.exploreTexts button {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 	.exploreGames {
 		width: 100%;
@@ -130,10 +130,10 @@
 }
 @media only screen and (min-width: 2134px) {
 	.exploreTexts h4 {
-		font-size: 18px;
+		font-size: 1.125rem;
 	}
 	.exploreTexts p,
 	.exploreTexts button {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 }

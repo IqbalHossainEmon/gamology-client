@@ -5,7 +5,7 @@
 	align-items: center;
 	cursor: pointer;
 	position: relative;
-	margin: 20px 0;
+	margin: 1.25em 0;
 	transition: filter 200ms;
 	background-color: transparent;
 	text-align: left;
@@ -19,8 +19,14 @@
 	overflow-wrap: anywhere;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	font-size: 14px;
+	color: rgb(173, 173, 173);
+	font-size: 0.875rem;
 	line-height: 18px;
+	transition: color 200ms;
+}
+
+.filterOption:hover .text {
+	color: rgb(222, 222, 222);
 }
 
 .toggleButtonContainer {
@@ -34,10 +40,10 @@
 	content: '';
 	position: absolute;
 	pointer-events: none;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.2);
 	width: 100%;
 	height: 1px;
-	bottom: -10px;
+	bottom: -0.625em;
 }
 .shadow > p {
 	transition: filter 200ms;

@@ -8,7 +8,7 @@
 .submitBtn {
 	background-color: rgb(14, 101, 182);
 	color: #ebebeb;
-	padding: 8px;
+	padding: 0.5em;
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
@@ -24,7 +24,7 @@
 .closeBtn {
 	background-color: rgb(187, 187, 187);
 	color: #000000;
-	padding: 8px;
+	padding: 0.5em;
 	border: none;
 	border-radius: 3px;
 	transition:

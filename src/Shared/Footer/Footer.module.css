@@ -1,5 +1,5 @@
 #footer {
-	padding: 10rem 0;
+	padding: 10em 0;
 }
 .header {
 	display: flex;
@@ -67,14 +67,14 @@
 }
 .description small {
 	color: rgba(255, 255, 255, 0.329);
-	font-size: 10px;
+	font-size: 0.625rem;
 }
 
 .aspectRatioClassName {
 	padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.links {
 		list-style: none;
 		display: flex;
@@ -86,9 +86,9 @@
 	.links li {
 		text-align: center;
 		margin-top: 5px;
-		font-size: 14px;
+		font-size: 0.875rem;
 	}
 	.description {
-		padding: 1rem;
+		padding: 1em;
 	}
 }

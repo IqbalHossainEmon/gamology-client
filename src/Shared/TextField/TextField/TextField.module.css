@@ -30,7 +30,7 @@
 	pointer-events: none;
 	color: rgb(173, 173, 173);
 	user-select: none;
-	left: 10px;
+	left: 0.625em;
 	top: 50%;
 	translate: 0 -50%;
 	transform-origin: 0 0;
@@ -41,27 +41,27 @@
 }
 
 .textareaLabel {
-	top: 30px;
+	top: 1.875em;
 }
 
 .field {
 	outline: none;
 	font-size: 1rem;
 	background: transparent;
-	padding: 25px 10px 15px 10px;
+	padding: 1.5625em 0.625em 0.9375em 0.625em;
 	color: rgb(173, 173, 173);
 	border: none;
 	user-select: none;
 }
 
 .textFilled {
-	translate: 0 -25px;
+	translate: 0 -1.5625em;
 	scale: 0.8;
 	color: rgb(173, 173, 173);
 }
 
 .focused {
-	translate: 0 -25px;
+	translate: 0 -1.5625em;
 	scale: 0.8;
 	color: rgb(2, 99, 224);
 }
@@ -84,11 +84,11 @@
 	appearance: textfield;
 	-moz-appearance: textfield;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
 	.label {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 	.field {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 }

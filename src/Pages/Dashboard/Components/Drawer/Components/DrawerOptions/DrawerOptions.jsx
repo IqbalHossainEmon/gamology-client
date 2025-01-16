@@ -14,7 +14,7 @@ function DrawerOptions({ option, parentState }) {
 								>
 									{subOption.icon}
 								</span>
-								<span>{subOption.name}</span>
+								<span className={styles.text}>{subOption.name}</span>
 							</p>
 						</li>
 					))}

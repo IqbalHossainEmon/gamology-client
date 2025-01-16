@@ -18,7 +18,7 @@
 	width: 100%;
 	overflow: visible;
 	position: relative;
-	padding: 10px 20px;
+	padding: 0.625em 1.25em;
 	background-color: rgba(37, 37, 37, 0.7);
 	backdrop-filter: blur(10px);
 	opacity: 0;
@@ -41,7 +41,7 @@
 
 .item {
 	position: relative;
-	height: 56px;
+	height: 3.5rem;
 }
 
 .item p {
@@ -83,7 +83,7 @@
 	align-items: center;
 	color: rgb(140, 140, 140);
 	font-size: 1rem;
-	padding: 10px 0;
+	padding: 0.625em 0;
 }
 
 .showAbove .listContainer.fadeIn,
@@ -100,7 +100,7 @@
 }
 
 .imageContainer {
-	width: 30px;
+	width: 1.875rem;
 	flex-shrink: 0;
 	overflow: hidden;
 }
@@ -110,7 +110,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 56px;
+	height: 3.5rem;
 }
 
 .itemContainerPlaceHolder {
@@ -121,8 +121,8 @@
 }
 
 .imagePlaceHolder {
-	width: 30px;
-	height: 30px;
+	width: 1.875rem;
+	height: 1.875rem;
 	background: linear-gradient(90deg, rgb(66, 66, 66) 0%, rgba(88, 88, 88, 0.7) 50%, rgb(66, 66, 66) 100%);
 }
 
@@ -156,8 +156,8 @@
 	}
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
 	.item button {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 }

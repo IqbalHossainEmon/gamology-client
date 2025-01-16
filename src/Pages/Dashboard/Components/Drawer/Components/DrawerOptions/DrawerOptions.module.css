@@ -19,7 +19,7 @@
 }
 
 .outerOptionCollapse {
-	padding-bottom: 1rem;
+	padding-bottom: 1em;
 }
 
 .iconContainer {
@@ -37,9 +37,12 @@
 
 .iconContainer svg {
 	width: 100%;
-	min-width: 19px;
 	height: 100%;
 	fill: rgb(196, 196, 196);
+}
+
+.text {
+	margin-left: 8px;
 }
 
 .innerOptionsContainer {
@@ -55,7 +58,7 @@
 	}
 }
 
-@media only screen and (max-width: 1099px) {
+@media only screen and (max-width: 68.6875rem) {
 	.outerOptionCollapse {
 		padding: 0.6rem 0 0.6rem 0;
 	}

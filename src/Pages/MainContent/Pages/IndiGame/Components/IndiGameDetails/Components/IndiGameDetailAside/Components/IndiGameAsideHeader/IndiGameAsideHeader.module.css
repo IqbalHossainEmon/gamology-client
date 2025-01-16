@@ -14,7 +14,7 @@
 	padding-bottom: calc(100% / 16 * 9);
 }
 
-@media screen and (max-width: 1600px) and (min-width: 900px) {
+@media screen and (max-width: 160rem) and (min-width: 900px) {
 	.imageContainer {
 		margin-bottom: 1rem;
 	}

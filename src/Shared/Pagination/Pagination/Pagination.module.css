@@ -1,70 +1,70 @@
 .pagination {
-  display: flex;
-  list-style: none;
+	display: flex;
+	list-style: none;
 }
 
 .arrowIcon {
-  width: 23px;
-  scale: 0.7;
+	width: 23px;
+	scale: 0.7;
 }
 
 .number {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .paginationButton {
-  user-select: none;
-  background-color: transparent;
-  border: none;
-  margin: 0 10px;
-  cursor: pointer;
+	user-select: none;
+	background-color: transparent;
+	border: none;
+	margin: 0 0.625em;
+	cursor: pointer;
 }
 
 .prevButton {
-  rotate: 90deg;
+	rotate: 90deg;
 }
 .nextButton {
-  rotate: -90deg;
+	rotate: -90deg;
 }
 .prevButton:disabled,
 .nextButton:disabled {
-  cursor: default;
+	cursor: default;
 }
 .numberButton {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.6);
+	font-size: 1.25;
+	color: rgba(255, 255, 255, 0.6);
 }
 .ellipsis {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.6);
-  border: none;
-  user-select: none;
-  margin: 0 10px;
-  display: flex;
-  align-items: flex-end;
-  cursor: default;
+	font-size: 1.25;
+	color: rgba(255, 255, 255, 0.6);
+	border: none;
+	user-select: none;
+	margin: 0 0.625em;
+	display: flex;
+	align-items: flex-end;
+	cursor: default;
 }
 
 #active {
-  color: white;
+	color: white;
 }
 
 @media only screen and (max-width: 376px) {
-  .numberButton {
-    font-size: 14px;
-  }
-  .paginationButton {
-    margin: 0 5px;
-  }
+	.numberButton {
+		font-size: 0.875rem;
+	}
+	.paginationButton {
+		margin: 0 5px;
+	}
 
-  .ellipsis {
-    margin: 0 5px;
-    font-size: 14px;
-  }
-  .arrowIcon {
-    width: 14px;
-    scale: 0.7;
-  }
+	.ellipsis {
+		margin: 0 5px;
+		font-size: 0.875rem;
+	}
+	.arrowIcon {
+		width: 14px;
+		scale: 0.7;
+	}
 }

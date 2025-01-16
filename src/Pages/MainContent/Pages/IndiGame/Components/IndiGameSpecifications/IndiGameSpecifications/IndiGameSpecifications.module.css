@@ -1,106 +1,106 @@
 .individualGameSpecifications {
-    margin-top: 90px;
+	margin-top: 90px;
 }
 .specificationText {
-    margin-bottom: 10px;
-    font-weight: 500;
+	margin-bottom: 10px;
+	font-weight: 500;
 }
 .specificationContainer {
-    background: #252525;
-    padding: 35px 60px;
-    border-radius: 4px;
+	background: #252525;
+	padding: 2.1875em 3.75em;
+	border-radius: 4px;
 }
 
 .mainHeadersContainer {
-    display: flex;
-    margin-bottom: 50px;
-    position: relative;
-    align-items: stretch;
+	display: flex;
+	margin-bottom: 50px;
+	position: relative;
+	align-items: stretch;
 }
 
 .mainHeadersContainer::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.1);
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 .mainHeader:not(:first-child) {
-    margin-left: 40px;
+	margin-left: 40px;
 }
 
 .mainHeaderBtn {
-    position: relative;
-    font-size: 18px;
-    height: 100%;
-    font-weight: normal;
-    text-transform: uppercase;
-    padding: 20px;
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    word-break: break-all;
+	position: relative;
+	font-size: 1.125rem;
+	height: 100%;
+	font-weight: normal;
+	text-transform: uppercase;
+	padding: 1.25em;
+	background-color: transparent;
+	color: #fff;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	word-break: break-all;
 }
 
 .mainHeaderBtn::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    bottom: 0;
-    left: 0;
-    background-color: rgb(255, 255, 255);
-    transition: background-color 300ms;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 5px;
+	bottom: 0;
+	left: 0;
+	background-color: rgb(255, 255, 255);
+	transition: background-color 300ms;
 }
 
 .mainHeaderBtn:hover::after {
-    background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .active::after {
-    background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .copyWrite {
-    color: #aaa;
-    font-size: 16px;
-    text-align: center;
+	color: #aaa;
+	font-size: 1rem;
+	text-align: center;
 }
 .policyContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 .policy {
-    margin-top: 20px;
-    color: #ffffff;
-    text-decoration: none;
+	margin-top: 20px;
+	color: #ffffff;
+	text-decoration: none;
 }
 
-@media only screen and (max-width: 768px) {
-    .specificationContainer {
-        padding: 1rem;
-    }
+@media only screen and (max-width: 48rem) {
+	.specificationContainer {
+		padding: 1em;
+	}
 }
 
 @media only screen and (max-width: 730px) and (min-width: 370px) {
-    .mainHeaderBtn {
-        padding: 15px;
-    }
+	.mainHeaderBtn {
+		padding: 0.9375em;
+	}
 }
 
 @media only screen and (max-width: 369px) {
-    .mainHeaderBtn {
-        padding: 5px 0;
-    }
-    .mainHeader:not(:first-child) {
-        margin-left: 10px;
-    }
+	.mainHeaderBtn {
+		padding: 0.3125em 0;
+	}
+	.mainHeader:not(:first-child) {
+		margin-left: 10px;
+	}
 }

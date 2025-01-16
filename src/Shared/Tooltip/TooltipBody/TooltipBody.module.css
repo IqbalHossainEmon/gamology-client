@@ -19,8 +19,8 @@
 .toolTips p {
 	position: relative;
 	color: white;
-	font-size: 12px;
-	padding: 1rem;
+	font-size: 0.75rem;
+	padding: 1em;
 	opacity: 0.8;
 	max-width: 250px;
 	width: max-content;

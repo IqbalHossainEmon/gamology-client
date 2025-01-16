@@ -1,23 +1,23 @@
 .individualGameViewMoreButton {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
 }
 
 .individualGameViewMoreButton button {
-  background-color: rgb(119, 119, 119);
-  border: none;
-  position: relative;
-  padding: 20px 30px;
-  border-radius: 4px;
-  transition:
-    background-color 200ms,
-    color 200ms;
-  cursor: pointer;
+	background-color: rgb(119, 119, 119);
+	border: none;
+	position: relative;
+	padding: 1.25em 1.875em;
+	border-radius: 4px;
+	transition:
+		background-color 200ms,
+		color 200ms;
+	cursor: pointer;
 }
 
 .individualGameViewMoreButton button:hover {
-  background-color: rgb(18, 18, 18);
-  color: rgb(179, 179, 179);
+	background-color: rgb(18, 18, 18);
+	color: rgb(179, 179, 179);
 }

@@ -21,7 +21,7 @@
 	transition: height 200ms;
 }
 
-@media only screen and (max-width: 1099px) {
+@media only screen and (max-width: 68.6875rem) {
 	.arrowBottom {
 		right: 1rem;
 		top: 50%;

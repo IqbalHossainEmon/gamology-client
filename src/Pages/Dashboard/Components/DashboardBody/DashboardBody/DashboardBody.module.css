@@ -1,12 +1,12 @@
 .dashboardBody {
 	width: 75vw;
-	max-width: 1600px;
+	max-width: 160rem;
 	margin: 0 auto;
-	padding: 3rem 0;
+	padding: 3em 0;
 	position: relative;
 }
 
-@media only screen and (max-width: 1099px) {
+@media only screen and (max-width: 68.6875rem) {
 	.dashboardBodyContainer {
 		width: 100%;
 	}

@@ -1,9 +1,9 @@
 .individualGameDetailAside {
-  width: 100%;
+	width: 100%;
 }
-@media only screen and (min-width: 768px) {
-  .asideContainer {
-    position: sticky;
-    top: 7rem;
-  }
+@media only screen and (min-width: 48rem) {
+	.asideContainer {
+		position: sticky;
+		top: 7rem;
+	}
 }

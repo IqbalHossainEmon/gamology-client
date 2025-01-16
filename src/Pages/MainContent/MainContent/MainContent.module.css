@@ -4,7 +4,7 @@
 }
 .main {
 	width: 75%;
-	max-width: 1600px;
+	max-width: 160rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

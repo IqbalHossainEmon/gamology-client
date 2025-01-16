@@ -1,52 +1,52 @@
 .btn {
-  width: 2rem;
-  height: 2rem;
-  z-index: 1;
-  left: 30%;
-  position: absolute;
+	width: 2rem;
+	height: 2rem;
+	z-index: 1;
+	left: 30%;
+	position: absolute;
 }
 
 .btn:active svg {
-  fill: rgb(128, 128, 128);
+	fill: rgb(128, 128, 128);
 }
 
 .nextBtn {
-  rotate: -45deg;
-  top: 0;
+	rotate: -45deg;
+	top: 0;
 }
 
 .prevBtn {
-  bottom: 0;
-  rotate: -135deg;
+	bottom: 0;
+	rotate: -135deg;
 }
 
-@media only screen and (max-width: 768px) {
-  .btn {
-    top: 50%;
-    translate: 0 -50%;
-  }
+@media only screen and (max-width: 48rem) {
+	.btn {
+		top: 50%;
+		translate: 0 -50%;
+	}
 
-  .nextBtn {
-    left: auto;
-    right: 5px;
-    rotate: 90deg;
-  }
+	.nextBtn {
+		left: auto;
+		right: 5px;
+		rotate: 90deg;
+	}
 
-  .prevBtn {
-    left: 5px;
-    rotate: -90deg;
-  }
+	.prevBtn {
+		left: 5px;
+		rotate: -90deg;
+	}
 }
 
 @media only screen and (max-width: 528px) {
-  .btn {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
+	.btn {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
 }
 @media only screen and (max-width: 364px) {
-  .btn {
-    width: 1rem;
-    height: 1rem;
-  }
+	.btn {
+		width: 1rem;
+		height: 1rem;
+	}
 }

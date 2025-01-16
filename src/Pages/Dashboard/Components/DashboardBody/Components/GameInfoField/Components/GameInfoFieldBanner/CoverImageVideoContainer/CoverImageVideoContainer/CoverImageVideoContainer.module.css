@@ -38,7 +38,7 @@
 	opacity: 0.5;
 }
 .outerContainer {
-	margin-bottom: 10px;
+	margin-bottom: 0.625em;
 	position: relative;
 }
 
@@ -51,7 +51,7 @@
 	pointer-events: none;
 	color: rgb(173, 173, 173);
 	user-select: none;
-	left: 10px;
+	left: 0.625em;
 	top: 50%;
 	translate: 0 -50%;
 	transform-origin: 0 0;
@@ -78,13 +78,13 @@
 }
 
 .padding {
-	padding: 20px 10px;
+	padding: 1.25em 0.625em;
 }
 
 .defaultText {
 	cursor: default;
 	user-select: none;
-	line-height: 20px;
+	line-height: 1.25em;
 }
 .fileUploadField {
 	display: none;
@@ -109,7 +109,7 @@
 	position: relative;
 	color: rgb(173, 173, 173);
 	height: 100%;
-	padding: 20px;
+	padding: 1.25em;
 	font-size: medium;
 	border: none;
 	cursor: pointer;
@@ -122,12 +122,12 @@
 	gap: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
 	.label {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 	.field {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 
 	.containerWithPreview {
@@ -135,6 +135,6 @@
 		align-items: start;
 	}
 	.defaultText {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 }

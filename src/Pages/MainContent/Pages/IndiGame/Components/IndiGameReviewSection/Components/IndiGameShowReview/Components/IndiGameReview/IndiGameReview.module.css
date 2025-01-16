@@ -15,7 +15,7 @@
 }
 
 .name {
-	font-size: 16px;
+	font-size: 1rem;
 	margin-bottom: 10px;
 }
 
@@ -47,21 +47,21 @@
 	white-space: pre-line;
 	word-break: break-word;
 	hyphens: auto;
-	font-size: 14px;
+	font-size: 0.875rem;
 	line-height: 21px;
 }
 
 .date {
 	color: #797878;
-	font-size: 16px;
+	font-size: 1rem;
 	margin-left: 3px;
 }
 
 .feedbackContainer {
 	display: flex;
 	align-items: center;
-	font-size: 12px;
-	margin-top: 40px;
+	font-size: 0.75rem;
+	margin-top: 2.5em;
 	color: #8b8b8b;
 }
 
@@ -78,7 +78,7 @@
 	background-color: transparent;
 	color: #c9c9c9;
 	border: 1px solid #424242;
-	padding: 3px 5px;
+	padding: 0.1875em 0.3125em;
 	margin-left: 5px;
 	transition: background-color 200ms;
 	cursor: pointer;

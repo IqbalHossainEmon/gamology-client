@@ -50,13 +50,17 @@ export default function DiscoverBannerItemCard({
 	};
 
 	return (
-		<li className={`${styles.cards} hover-shadow`} id={handleCardPosition(cardsPosition[id])}>
+		<li
+			className={`${styles.cardContainer}${cardsPosition[id] !== 0 ? ' hover-shadow ' : ''}`}
+			id={handleCardPosition(cardsPosition[id])}
+		>
 			<button
 				className={styles.cardBtn}
 				type='button'
 				{...(cardsPosition[id] !== 0 && { onClick: handleCardClick })}
 			>
 				<Image
+					className={styles.cardImage}
 					data={carouselThumb}
 					alt={`${name} card-${id}`}
 					aspectRatioClassName={styles.aspectRatioClassName}

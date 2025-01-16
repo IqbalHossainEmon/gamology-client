@@ -24,7 +24,7 @@
 	color: #fff;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.navLinksContainer {
 		position: absolute;
 		width: 100%;
@@ -35,7 +35,7 @@
 	.secondNavLinks {
 		display: flex;
 		position: relative;
-		padding: 1rem;
+		padding: 1em;
 		margin-left: 0px;
 		flex-direction: column;
 		background-color: rgba(0, 0, 0, 0.6);

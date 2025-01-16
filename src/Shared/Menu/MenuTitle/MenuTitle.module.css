@@ -27,13 +27,12 @@
 
 .iconContainer svg {
 	width: 100%;
-	min-width: 19px;
 	height: 100%;
 	fill: rgb(196, 196, 196);
 }
 
 .paddingBot {
-	padding-bottom: 1rem;
+	padding-bottom: 1em;
 }
 
 .arrow {

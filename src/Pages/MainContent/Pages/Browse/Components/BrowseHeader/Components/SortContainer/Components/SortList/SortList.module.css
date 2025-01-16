@@ -1,6 +1,6 @@
 .listContainer {
 	background-color: rgba(55, 55, 55);
-	padding: 0 5px;
+	padding: 0 0.3125em;
 	list-style: none;
 	display: flex;
 	flex-direction: column;
@@ -28,7 +28,7 @@
 	width: 100%;
 	background-color: transparent;
 	color: rgba(255, 255, 255, 0.6);
-	padding: 5px;
+	padding: 0.3125em;
 	font-size: 0.9rem;
 	text-align: left;
 	border: none;
@@ -40,13 +40,13 @@
 	text-decoration: underline;
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 48.0625rem) {
 	.listContainer {
 		box-shadow: 0 0 10px 0 rgb(24, 24, 24);
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 48rem) {
 	.sortLists ol {
 		width: 100%;
 		margin: 0;
