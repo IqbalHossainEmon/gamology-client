@@ -62,7 +62,7 @@ export default function DiscoverBanner() {
 		reducer,
 		initialState
 	);
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	const eventRefs = useRef(null);
 
@@ -93,7 +93,7 @@ export default function DiscoverBanner() {
 			clearTimer();
 		}
 
-		if (screenWidth < 768) {
+		if (widthInRem < 48) {
 			if (!isPause) {
 				timerIdRef.current = setTimeout(() => {
 					dispatch({ type: 'next' });
@@ -101,7 +101,7 @@ export default function DiscoverBanner() {
 			}
 		}
 		return clearTimer;
-	}, [isPause, screenWidth, fadeIn]);
+	}, [isPause, widthInRem, fadeIn]);
 
 	return (
 		<section className={styles.banner}>
@@ -111,7 +111,7 @@ export default function DiscoverBanner() {
 					bannerState={{ active, fadeOut, fadeIn }}
 					cardsPosition={cardsPosition}
 					data={data}
-					screenWidth={screenWidth}
+					screenWidth={widthInRem}
 				/>
 				<DiscoverBannerInfoItems
 					activeBanner={activeBanner}
@@ -120,7 +120,7 @@ export default function DiscoverBanner() {
 				/>
 			</div>
 			<BannerButtons handleClick={eventRefs.current.handleClick} />
-			{screenWidth > 768 && (
+			{widthInRem > 48 && (
 				<DiscoverBannerItemCards
 					cardsPosition={cardsPosition}
 					cardShadowUtils={{ dispatch: eventRefs.current.handleShadowDispatch, isPause }}

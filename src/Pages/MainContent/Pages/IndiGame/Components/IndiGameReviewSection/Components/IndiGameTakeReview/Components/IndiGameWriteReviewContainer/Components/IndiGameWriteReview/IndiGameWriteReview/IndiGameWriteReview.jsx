@@ -16,11 +16,11 @@ export default function IndiGameWriteReview({
 }) {
 	const [data, setData] = useState({ active: 0, title: '', text: '' });
 	const elementRef = useRef(null);
-	const screenWidth = useScreenWidth();
+	const { widthInRem, remsInPixel } = useScreenWidth();
 
 	useEffect(() => {
 		elementRef.height = elementRef.current.clientHeight;
-	}, [elementRef, screenWidth]);
+	}, [elementRef, widthInRem]);
 
 	const handleSubmit = () => {
 		console.log({
@@ -34,13 +34,17 @@ export default function IndiGameWriteReview({
 	return (
 		<div
 			className={styles.individualGameWriteReviewContainer}
-			style={fadeHeight ? { height: elementRef.height + 60 } : { height: 0 }}
+			style={
+				fadeHeight
+					? { height: `${(elementRef.height + 60) / remsInPixel}rem` }
+					: { height: 0 }
+			}
 		>
 			<div className={styles.individualGameWriteReview} ref={elementRef}>
 				<div className={styles.userDetails}>
 					<Image
 						alt={user.name}
-						data={user.userIcon}
+						data={userIcon}
 						aspectRatioClassName={styles.aspectRatioClassName}
 					/>
 					<p className={styles.name}>{user.name}</p>

@@ -7,13 +7,13 @@ export default function DiscoverBannerInfoItem({ banner, bannerState, activeBann
 	const { logoImg, name, id, price } = banner;
 	const idState = activeBanner(id, bannerState, styles);
 
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	return (
 		<div className={`${styles.itemInfo}${idState ? ` ${idState}` : ''}`}>
 			<div className={styles.logoContainer}>
 				<Image data={logoImg} alt={`${name} Logo-${id + 1}`} />
-				{screenWidth < 769 && <DiscoverBannerPrice price={price} />}
+				{widthInRem < 48.0625 && <DiscoverBannerPrice price={price} />}
 			</div>
 		</div>
 	);

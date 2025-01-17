@@ -8,14 +8,16 @@ import NavProfileInfo from '../Components/NavProfileInfo/NavProfileInfo';
 import styles from './FirstNavbar.module.css';
 
 export default function FirstNavbar() {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
+	console.log(widthInRem);
+
 	useEffect(() => {
-		if (screenWidth > 768) {
+		if (widthInRem > 48) {
 			showBodyOverflow();
 		}
-	}, [showBodyOverflow, screenWidth]);
+	}, [showBodyOverflow, widthInRem]);
 
 	return (
 		<header className={styles.header}>
@@ -29,7 +31,7 @@ export default function FirstNavbar() {
 						/>
 					</a>
 				</div>
-				{screenWidth > 768 ? (
+				{widthInRem > 48 ? (
 					<div className={styles.navOptions}>
 						<FirstNavLinks />
 						<NavProfileInfo />

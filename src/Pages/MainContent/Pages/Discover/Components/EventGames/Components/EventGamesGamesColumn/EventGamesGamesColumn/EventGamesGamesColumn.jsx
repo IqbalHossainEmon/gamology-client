@@ -4,11 +4,11 @@ import EventGamesGameColumnHeader from '../Components/EventGamesGameColumnHeader
 import styles from './EventGamesGamesColumn.module.css';
 
 export default function EventGamesGamesColumn({ header, games, colNum, cardPosition }) {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	return (
 		<li
-			className={`${styles.gameColumn}${colNum !== cardPosition && screenWidth < 769 ? ` ${styles.opacity0}` : ''}`}
+			className={`${styles.gameColumn}${colNum !== cardPosition && widthInRem < 48.0625 ? ` ${styles.opacity0}` : ''}`}
 		>
 			<EventGamesGameColumnHeader headerTitle={header} />
 			<ul className={styles.column}>

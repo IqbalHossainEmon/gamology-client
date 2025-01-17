@@ -7,7 +7,7 @@ import SecondNavSearchField from '../Components/SecondNavSearchField/SecondNavSe
 import styles from './SecondNavbar.module.css';
 
 export default function SecondNavbar() {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const [navShow, setNavShow] = useState(false);
 
 	return (
@@ -15,12 +15,12 @@ export default function SecondNavbar() {
 			<div className={styles.secondNavbar}>
 				<SecondNavSearchField setNavShow={setNavShow} />
 				<SecondNavLeftLinks
-					{...(screenWidth <= 768 && { setNavShow })}
-					screenWidth={screenWidth}
+					{...(widthInRem <= 48 && { setNavShow })}
+					screenWidth={widthInRem}
 				/>
-				<SecondNavRightLinks screenWidth={screenWidth} />
+				<SecondNavRightLinks screenWidth={widthInRem} />
 			</div>
-			<ScreenShadow show={navShow && screenWidth <= 768} />
+			<ScreenShadow show={navShow && widthInRem <= 48} />
 		</section>
 	);
 }

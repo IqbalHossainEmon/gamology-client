@@ -4,14 +4,14 @@ import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenW
 import styles from './IndiGameAsideHeader.module.css';
 
 export default function IndiGameAsideHeader({ src, name, price, phoneSrc }) {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	return (
 		<div className={styles.individualGameAsideHeader}>
 			<div className={styles.imageContainer}>
 				<Image
 					alt={name}
-					data={screenWidth < 1024 ? phoneSrc : src}
+					data={widthInRem < 64 ? phoneSrc : src}
 					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</div>

@@ -8,11 +8,11 @@ import styles from './FilterGames.module.css';
 export default function FilterGames({ filterState, dispatch, limits, options, loading }) {
 	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
 	const { filter } = filterSortState;
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	return (
 		<aside
-			className={`${styles.FilterGames} ${filter && screenWidth < 769 ? styles.hidden : styles.show}`}
+			className={`${styles.FilterGames} ${filter && widthInRem < 48.0625 ? styles.hidden : styles.show}`}
 			ref={filterSortRef}
 		>
 			{loading ? (
@@ -23,11 +23,11 @@ export default function FilterGames({ filterState, dispatch, limits, options, lo
 					filterState={filterState}
 					limits={limits}
 					options={options}
-					screenWidth={screenWidth}
+					screenWidth={widthInRem}
 					setFilterSort={setFilterSort}
 				/>
 			)}
-			{screenWidth < 769 && (
+			{widthInRem < 48.0625 && (
 				<div className={styles.closeButton}>
 					<CloseButton setState={setFilterSort} state='filter' />
 				</div>

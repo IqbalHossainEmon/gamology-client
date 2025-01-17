@@ -16,10 +16,10 @@ function Drawer() {
 	const collapseRef = useRef(collapse);
 	collapseRef.current = collapse;
 
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
-	const screenWidthRef = useRef(screenWidth);
-	screenWidthRef.current = screenWidth;
+	const widthInRemRef = useRef(widthInRem);
+	widthInRemRef.current = widthInRem;
 
 	const transitionId = useRef(null);
 	const eventRefs = useRef(null);
@@ -51,7 +51,7 @@ function Drawer() {
 	if (!eventRefs.current.handleButtonClick) {
 		eventRefs.current.handleButtonClick = () => {
 			setCollapse(prev => {
-				if (!prev && screenWidthRef.current < 1100) {
+				if (!prev && widthInRemRef.current < 68.75) {
 					showMenu();
 				}
 				return !prev;
@@ -61,14 +61,14 @@ function Drawer() {
 	}
 
 	useEffect(() => {
-		if (screenWidth < 1100 && collapseRef.current) {
+		if (widthInRem < 68.75 && collapseRef.current) {
 			setCollapse(false);
 			wasDrawerOpen.current = true;
-		} else if (wasDrawerOpen.current && screenWidth >= 1100) {
+		} else if (wasDrawerOpen.current && widthInRem >= 68.75) {
 			setCollapse(true);
 			wasDrawerOpen.current = false;
 		}
-	}, [screenWidth]);
+	}, [widthInRem]);
 
 	useEffect(() => {
 		setElement(drawerRef.current);
@@ -77,14 +77,14 @@ function Drawer() {
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
 	useEffect(() => {
-		if (screenWidth < 1100) {
+		if (widthInRem < 68.75) {
 			if (collapse) {
 				hideBodyOverflow();
 			} else {
 				showBodyOverflow();
 			}
 		}
-	}, [collapse, hideBodyOverflow, screenWidth, showBodyOverflow]);
+	}, [collapse, hideBodyOverflow, widthInRem, showBodyOverflow]);
 
 	return (
 		<>
@@ -98,7 +98,7 @@ function Drawer() {
 							<ul className={styles.options}>
 								{drawerIcon.map(drawer => (
 									<DrawerOptions
-										{...(screenWidth > 1099 && { parentState: collapse })}
+										{...(widthInRem > 68.6875 && { parentState: collapse })}
 										key={drawer.id}
 										option={drawer}
 									/>
@@ -109,7 +109,7 @@ function Drawer() {
 				</div>
 				<button
 					title='Collapse Drawer'
-					className={`${(screenWidth > 1099 ? collapse : !collapse) ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
+					className={`${(widthInRem > 68.6875 ? collapse : !collapse) ? styles.collapsePosition : styles.expandedPosition} ${styles.collapseButton}`}
 					onClick={eventRefs.current.handleButtonClick}
 					type='button'
 				>
@@ -117,10 +117,10 @@ function Drawer() {
 				</button>
 			</div>
 			<DrawerFooter
-				collapse={screenWidth > 1099 ? collapse : !collapse}
+				collapse={widthInRem > 68.6875 ? collapse : !collapse}
 				transition={transition}
 			/>
-			{screenWidth < 1100 && <ScreenShadow show={collapse} zIndex={1} />}
+			{widthInRem < 68.75 && <ScreenShadow show={collapse} zIndex={1} />}
 		</>
 	);
 }

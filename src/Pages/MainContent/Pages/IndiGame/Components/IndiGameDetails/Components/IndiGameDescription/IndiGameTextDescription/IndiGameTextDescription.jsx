@@ -6,17 +6,21 @@ import styles from './IndiGameTextDescription.module.css';
 export default function IndiGameTextDescription({ descriptions }) {
 	const elementRef = useRef(null);
 	const [show, setShow] = useState({ show: false, height: NaN, transition: false });
-	const screenWidth = useScreenWidth();
+	const { widthInRem, remsInPixel } = useScreenWidth();
 
 	useEffect(() => {
 		setShow(prev => ({ ...prev, height: elementRef.current.offsetHeight }));
-	}, [elementRef, screenWidth]);
+	}, [elementRef, widthInRem]);
 
 	return (
 		<div>
 			<div
 				className={`${show.transition ? `${styles.showTransition} ` : ''}${styles.individualGameDetailDescriptionContainer}`}
-				style={show.show && show.height ? { height: show.height + 40 } : { height: 500 }}
+				style={
+					show.show && show.height
+						? { height: `${(show.height + 40) / remsInPixel}rem` }
+						: { height: `${500 / remsInPixel}` }
+				}
 			>
 				<div className={styles.individualGameDetailDescription} ref={elementRef}>
 					{descriptions.map(description => (

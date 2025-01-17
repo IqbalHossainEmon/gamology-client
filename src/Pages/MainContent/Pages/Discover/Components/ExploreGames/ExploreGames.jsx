@@ -13,7 +13,7 @@ const fetched = {
 export default function ExploreGames() {
 	const buttonRef = useRef(null);
 	const containerRef = useRef(null);
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const [data, setData] = useState({});
 
 	useEffect(() => {
@@ -74,7 +74,7 @@ export default function ExploreGames() {
 				<div
 					className={styles.imageBackground}
 					style={
-						screenWidth >= 769
+						widthInRem >= 48.0625
 							? { backgroundImage: `url(${fetched.backgroundDesktop})` }
 							: { backgroundImage: `url(${fetched.backgroundPhone})` }
 					}

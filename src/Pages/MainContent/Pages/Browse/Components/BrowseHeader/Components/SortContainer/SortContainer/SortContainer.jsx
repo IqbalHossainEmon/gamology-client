@@ -11,7 +11,7 @@ import styles from './SortContainer.module.css';
 export default function SortContainer({ state, handleChange }) {
 	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
 	const { sort } = filterSortState;
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const dropDownRef = useRef();
 
 	useEffect(() => {
@@ -21,10 +21,10 @@ export default function SortContainer({ state, handleChange }) {
 	return (
 		<>
 			<div
-				className={`${styles.sortContainer}${sort && screenWidth < 769 ? ` ${styles.hidden}` : ''}`}
+				className={`${styles.sortContainer}${sort && widthInRem < 48.0625 ? ` ${styles.hidden}` : ''}`}
 				ref={dropDownRef}
 			>
-				{screenWidth > 768 && (
+				{widthInRem > 48 && (
 					<PcSortList
 						dropDownRef={dropDownRef}
 						handleChange={handleChange}
@@ -33,7 +33,7 @@ export default function SortContainer({ state, handleChange }) {
 						state={state}
 					/>
 				)}
-				{screenWidth < 769 && (
+				{widthInRem < 48.0625 && (
 					<div className={styles.sortDropDown}>
 						<ScrollBar>
 							<div className={styles.sortLists}>
@@ -47,13 +47,13 @@ export default function SortContainer({ state, handleChange }) {
 						</ScrollBar>
 					</div>
 				)}
-				{screenWidth < 769 && (
+				{widthInRem < 48.0625 && (
 					<div className={styles.closeButton}>
 						<CloseButton setState={setFilterSort} state='sort' />
 					</div>
 				)}
 			</div>
-			{screenWidth < 769 && <ScreenShadow show={!sort} zIndex={3} />}
+			{widthInRem < 48.0625 && <ScreenShadow show={!sort} zIndex={3} />}
 		</>
 	);
 }

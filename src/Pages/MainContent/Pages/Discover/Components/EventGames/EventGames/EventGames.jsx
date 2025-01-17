@@ -40,16 +40,16 @@ const newGames = [
 const header = ['New Releases', 'Top Rated', 'Coming Soon'];
 
 export default function EventGames() {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const [cardPosition, setCardPosition] = useState(0);
 
 	return (
 		<section className={styles.container}>
-			{screenWidth <= 768 && <StickyChangeButtons setCardPosition={setCardPosition} />}
+			{widthInRem <= 48 && <StickyChangeButtons setCardPosition={setCardPosition} />}
 			<div className={styles.eventGamesContainer}>
 				<ul
 					className={styles.eventGames}
-					{...(screenWidth < 768 && {
+					{...(widthInRem < 48 && {
 						style: { translate: `-${100 * cardPosition}%` },
 					})}
 				>
@@ -64,7 +64,7 @@ export default function EventGames() {
 					))}
 				</ul>
 			</div>
-			{screenWidth <= 768 && (
+			{widthInRem <= 48 && (
 				<ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
 			)}
 		</section>

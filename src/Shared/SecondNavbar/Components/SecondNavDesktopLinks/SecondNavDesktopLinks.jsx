@@ -13,15 +13,15 @@ const links = [
 ];
 
 export default function SecondNavDesktopLinks({ navMidShow, setNavTextState, firstElement }) {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	const [show, fadeIn] = useAppearDisappear(navMidShow);
 
 	return (
-		(show || screenWidth > 768) && (
+		(show || widthInRem > 48) && (
 			<div className={styles.navLinksContainer} ref={firstElement}>
 				<ul
-					className={`${styles.secondNavLinks}${fadeIn && screenWidth < 769 ? ` ${styles.navShow}` : ''}`}
+					className={`${styles.secondNavLinks}${fadeIn && widthInRem < 48.0625 ? ` ${styles.navShow}` : ''}`}
 				>
 					<LinksList active={3} links={links} onclick={setNavTextState} styles={styles} />
 				</ul>

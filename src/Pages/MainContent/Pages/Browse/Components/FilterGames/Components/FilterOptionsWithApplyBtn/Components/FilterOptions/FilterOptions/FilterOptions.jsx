@@ -9,7 +9,7 @@ function FilterOptions({ screenWidth, options, state, setState, limits }) {
 		<div className={styles.filterContainer} ref={parentRef}>
 			<ScrollBar>
 				<div className={styles.parentContainer}>
-					{screenWidth < 769 && <h2 className={styles.filterText}>Filters</h2>}
+					{screenWidth < 48.0625 && <h2 className={styles.filterText}>Filters</h2>}
 					<div className={styles.filterOptionList}>
 						{options.map(option => (
 							<FilterOptionEachPart

@@ -10,7 +10,7 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef,
 	const searchFocusRef = useRef(searchFocus);
 	searchFocusRef.current = searchFocus;
 
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -96,7 +96,7 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef,
 			ref={searchRef}
 			type='button'
 			onClick={eventRefs.current.handleSearchClick}
-			className={`${styles.searchField}${searchFocus ? ` ${styles.show}` : screenWidth <= 768 ? ` ${styles.hide}` : ''}`}
+			className={`${styles.searchField}${searchFocus ? ` ${styles.show}` : widthInRem <= 48 ? ` ${styles.hide}` : ''}`}
 		>
 			<div className={styles.searchIcon}>
 				<svg viewBox='0 0 100 100' width={25}>

@@ -13,41 +13,41 @@ export default function IndiGameBannerCards({
 	cardActive,
 	thumbTransition,
 }) {
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const cardsOnDeckRef = useRef(cardsOnDeck);
 	cardsOnDeckRef.current = cardsOnDeck;
 
 	useEffect(() => {
 		let cards = 8;
 
-		if (screenWidth <= 2134 && screenWidth >= 1700) {
+		if (widthInRem <= 133.375 && widthInRem >= 106.25) {
 			cards = 7;
-		} else if (screenWidth <= 1699 && screenWidth >= 1464) {
+		} else if (widthInRem <= 106.1875 && widthInRem >= 91.5) {
 			cards = 6;
 		} else if (
-			(screenWidth <= 1463 && screenWidth >= 1260) ||
-			(screenWidth <= 1023 && screenWidth >= 860) ||
-			(screenWidth <= 768 && screenWidth >= 612)
+			(widthInRem <= 91.4375 && widthInRem >= 78.75) ||
+			(widthInRem <= 63.9375 && widthInRem >= 53.75) ||
+			(widthInRem <= 48 && widthInRem >= 38.25)
 		) {
 			cards = 5;
 		} else if (
-			(screenWidth <= 1259 && screenWidth >= 1024) ||
-			(screenWidth <= 859 && screenWidth >= 769) ||
-			(screenWidth <= 611 && screenWidth >= 530)
+			(widthInRem <= 78.6875 && widthInRem >= 64) ||
+			(widthInRem <= 53.6875 && widthInRem >= 48.0625) ||
+			(widthInRem <= 38.1875 && widthInRem >= 33.125)
 		) {
 			cards = 4;
-		} else if (screenWidth <= 529 && screenWidth >= 404) {
+		} else if (widthInRem <= 33.0625 && widthInRem >= 25.25) {
 			cards = 3;
-		} else if (screenWidth <= 403 && screenWidth >= 312) {
+		} else if (widthInRem <= 25.1875 && widthInRem >= 19.5) {
 			cards = 2;
-		} else if (screenWidth <= 311 && screenWidth >= 0) {
+		} else if (widthInRem <= 19.4375 && widthInRem >= 0) {
 			cards = 1;
 		}
 
 		if (cardsOnDeckRef.current !== cards) {
 			dispatch({ type: 'screenSizeChange', cardsOnDeck: cards });
 		}
-	}, [dispatch, screenWidth]);
+	}, [dispatch, widthInRem]);
 
 	return (
 		<div className={styles.cardsContainer}>

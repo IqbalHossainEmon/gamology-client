@@ -39,7 +39,7 @@ export default function SelectionField({
 		}
 	}, [defaultValue]);
 
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 	const calculateTextWidth = useCalculateTextSize();

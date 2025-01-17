@@ -10,14 +10,20 @@ export default function Discover() {
 	return (
 		<div className={styles.discover}>
 			<DiscoverBanner />
-			<DiscoverGameCards header='Game on sale' />
-			<FreeGames />
-			<DiscoverGameCards header='Summer Spotlight' />
-			<MixEventGameCards />
-			<DiscoverGameCards header='Summer Spotlight' />
-			<EventGames />
-			<DiscoverGameCards header='Summer Spotlight' />
-			<EventGames />
+			<div className={styles.content}>
+				<DiscoverGameCards header='Game on sale' />
+				<DiscoverGameCards header='Game on sale' />
+				<FreeGames />
+				<DiscoverGameCards header='Summer Spotlight' />
+				<DiscoverGameCards header='Summer Spotlight' />
+				<MixEventGameCards />
+				<DiscoverGameCards header='Summer Spotlight' />
+				<DiscoverGameCards header='Summer Spotlight' />
+				<EventGames />
+				<DiscoverGameCards header='Most Popular' />
+				<DiscoverGameCards header='Most Popular' />
+				<EventGames />
+			</div>
 			<ExploreGames />
 		</div>
 	);

@@ -8,7 +8,7 @@ import styles from './AllGamesHeader.module.css';
 function AllGamesHeader({ setSearchText }) {
 	const [search, setSearch] = useState('');
 	const [navShow, setNavShow] = useState(false);
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const timerId = useRef(null);
 	const searchRef = useRef(search);
 	searchRef.current = search;
@@ -61,7 +61,7 @@ function AllGamesHeader({ setSearchText }) {
 					/>
 				</div>
 			</div>
-			{screenWidth < 769 && <ScreenShadow show={navShow} zIndex={3} />}
+			{widthInRem < 48.0625 && <ScreenShadow show={navShow} zIndex={3} />}
 		</div>
 	);
 }

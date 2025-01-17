@@ -10,7 +10,7 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 
 	const changingValue = useRef(0);
 
-	const screenWidth = useScreenWidth();
+	const { widthInRem, remsInPixel } = useScreenWidth();
 
 	useEffect(() => {
 		pathRef.current?.addEventListener(
@@ -26,7 +26,7 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 	useEffect(() => {
 		changingValue.current =
 			(innerContainer.current.scrollHeight / container.current.clientHeight) * 2.5;
-	}, [container, innerContainer, screenWidth]);
+	}, [container, innerContainer, widthInRem]);
 
 	if (isTouchEnabled) return null;
 
@@ -114,7 +114,7 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 	return (
 		<div
 			ref={pathRef}
-			style={{ height: `${height}px` }}
+			style={{ height: `${height / remsInPixel}rem` }}
 			onMouseDown={eventRefs.current.onMouseDown}
 			className={styles.scrollPath}
 			role='scrollbar'

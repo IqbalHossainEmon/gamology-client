@@ -6,7 +6,7 @@ export default function SecondNavRightLinks({ screenWidth }) {
 	const [links, setLinks] = useState([]);
 
 	useEffect(() => {
-		if (screenWidth > 768) {
+		if (screenWidth > 48) {
 			setLinks([
 				{
 					no: 0,

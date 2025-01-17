@@ -283,7 +283,7 @@ const cate = [
 
 function BrowseMain() {
 	const { initialState, reducer } = useBrowseLogics();
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const [loading, setLoading] = useState(true);
 
@@ -316,7 +316,7 @@ function BrowseMain() {
 				/>
 				<BrowseGameCards dispatch={dispatch} state={state} />
 			</div>
-			{screenWidth < 769 && <MobileSortAndFilterButton />}
+			{widthInRem < 48.0625 && <MobileSortAndFilterButton />}
 		</section>
 	);
 }

@@ -28,7 +28,7 @@ function CardDot({ parentRef, ...rest }) {
 	}
 
 	const isTouchAble = useIsTouchAble();
-	const screenWidth = useScreenWidth();
+	const { widthInRem } = useScreenWidth();
 
 	useEffect(() => {
 		const parent = parentRef.current;
@@ -57,7 +57,7 @@ function CardDot({ parentRef, ...rest }) {
 				isEventAdded.current = false;
 			}
 		};
-	}, [isTouchAble, parentRef, screenWidth]);
+	}, [isTouchAble, parentRef, widthInRem]);
 
 	return <CardDotBody {...rest} fadeIn={dotShow} setParentShow={setDotShow} />;
 }

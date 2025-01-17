@@ -5,8 +5,8 @@ import styles from './SecondNavLeftLinks.module.css';
 export default function SecondNavLeftLinks({ screenWidth, setNavShow }) {
 	return (
 		<div className={styles.middleLinks}>
-			{screenWidth <= 768 ? (
-				<SecondNavMobileLinks {...(screenWidth <= 768 && { setNavShow })} />
+			{screenWidth <= 48 ? (
+				<SecondNavMobileLinks {...(screenWidth <= 48 && { setNavShow })} />
 			) : (
 				<SecondNavLinkLists />
 			)}

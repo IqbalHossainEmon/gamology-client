@@ -21,15 +21,15 @@ const withFilterSortProvider = Component =>
 
 		const hiddenRef = useRef(false);
 
-		const screenWidth = useScreenWidth();
-		const screenWidthRef = useRef(screenWidth);
-		screenWidthRef.current = screenWidth;
+		const { widthInRem } = useScreenWidth();
+		const widthInRemRef = useRef(widthInRem);
+		widthInRemRef.current = widthInRem;
 
 		const { showBodyOverflow, hideBodyOverflow } = useChangeBodyOverflow();
 
 		useEffect(() => {
 			if (
-				screenWidth < 769 &&
+				widthInRem < 48.0625 &&
 				(!filterSortStateRef.current.sort || !filterSortStateRef.current.filter) &&
 				hiddenRef.current
 			) {
@@ -37,7 +37,7 @@ const withFilterSortProvider = Component =>
 			} else if (hiddenRef.current) {
 				showBodyOverflow();
 			}
-		}, [screenWidth, hideBodyOverflow, showBodyOverflow]);
+		}, [widthInRem, hideBodyOverflow, showBodyOverflow]);
 
 		const eventRefs = useRef({});
 
@@ -68,7 +68,7 @@ const withFilterSortProvider = Component =>
 					default:
 						setFilterSortState({ sort: true, filter: true });
 				}
-				if (screenWidthRef.current < 769)
+				if (widthInRemRef.current < 48.0625)
 					if (!hiddenRef.current) {
 						hideBodyOverflow();
 						hiddenRef.current = true;

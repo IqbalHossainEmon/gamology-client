@@ -12,7 +12,7 @@ export default function DiscoverBannerItems({
 	return (
 		<div className={styles.carouselItems}>
 			{data.map(({ coverMobile, coverImg, id, name, price }, index) =>
-				screenWidth > 768 ? (
+				screenWidth > 48 ? (
 					<DiscoverBannerItem
 						activeBanner={activeBanner}
 						banner={{ coverImg, id: index, name, price }}

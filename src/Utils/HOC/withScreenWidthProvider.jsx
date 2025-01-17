@@ -3,16 +3,26 @@ import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
 const withScreenWidthProvider = Component =>
 	function InnerComponent({ ...props }) {
-		const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+		const [screenWidth, setScreenWidth] = useState({
+			widthInPixels: window.innerWidth,
+			widthInRem:
+				window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize),
+			remsInPixel: parseFloat(getComputedStyle(document.documentElement).fontSize),
+		});
 
 		const handleChange = useRef(null);
 
 		if (!handleChange.current) {
 			handleChange.current = () => {
-				setScreenWidth(window.innerWidth);
+				setScreenWidth({
+					widthInPixels: window.innerWidth,
+					widthInRem:
+						window.innerWidth /
+						parseFloat(getComputedStyle(document.documentElement).fontSize),
+					remsInPixel: parseFloat(getComputedStyle(document.documentElement).fontSize),
+				});
 			};
 		}
-
 		useEffect(() => {
 			window.addEventListener('resize', handleChange.current);
 			return () => window.removeEventListener('resize', handleChange.current);
