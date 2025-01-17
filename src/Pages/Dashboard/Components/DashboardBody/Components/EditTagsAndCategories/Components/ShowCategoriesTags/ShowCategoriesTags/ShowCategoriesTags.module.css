@@ -59,13 +59,13 @@
 .cross::before {
 	rotate: -45deg;
 }
-@media only screen and (max-width: 543px) {
+@media only screen and (max-width: 33.9375rem) {
 	.category {
 		padding-right: 1em;
 	}
 }
 
-@media only screen and (max-width: 264px) {
+@media only screen and (max-width: 16.5rem) {
 	.category {
 		min-width: 100%;
 	}

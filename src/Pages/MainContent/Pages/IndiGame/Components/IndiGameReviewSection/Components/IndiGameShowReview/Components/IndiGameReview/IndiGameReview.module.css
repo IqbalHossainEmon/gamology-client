@@ -16,7 +16,7 @@
 
 .name {
 	font-size: 1rem;
-	margin-bottom: 10px;
+	margin-bottom: 0.625rem;
 }
 
 .details {
@@ -29,7 +29,7 @@
 }
 
 .titleStarDateContainer {
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .titleStarContainer {
@@ -38,7 +38,7 @@
 }
 
 .title {
-	margin-left: 10px;
+	margin-left: 0.625rem;
 	font-size: medium;
 	font-weight: 500;
 }
@@ -54,7 +54,7 @@
 .date {
 	color: #797878;
 	font-size: 1rem;
-	margin-left: 3px;
+	margin-left: 0.1875rem;
 }
 
 .feedbackContainer {
@@ -66,7 +66,7 @@
 }
 
 .usersFeedback {
-	margin-left: 5px;
+	margin-left: 0.3125rem;
 }
 
 .giveFeedback {
@@ -79,7 +79,7 @@
 	color: #c9c9c9;
 	border: 1px solid #424242;
 	padding: 0.1875em 0.3125em;
-	margin-left: 5px;
+	margin-left: 0.3125rem;
 	transition: background-color 200ms;
 	cursor: pointer;
 }
@@ -105,30 +105,30 @@
 	text-decoration: none;
 }
 
-@media only screen and (max-width: 512px) {
+@media only screen and (max-width: 32rem) {
 	.individualGameReview {
 		flex-direction: column;
 	}
 	.userDetails {
 		width: 100%;
-		margin-bottom: 30px;
+		margin-bottom: 1.875rem;
 	}
 	.reviewContainer {
 		width: 100%;
 	}
 }
 
-@media only screen and (max-width: 476px) {
+@media only screen and (max-width: 29.75rem) {
 	.titleStarContainer {
 		flex-direction: column;
 		align-items: flex-start;
 	}
 	.title {
-		margin-left: 3px;
+		margin-left: 0.1875rem;
 	}
 }
 
-@media only screen and (max-width: 1370px) and (min-width: 1024px) {
+@media only screen and (max-width: 85.625rem) and (min-width: 64rem) {
 	.feedbackContainer {
 		flex-direction: column;
 		align-items: flex-start;
@@ -145,7 +145,7 @@
 	}
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 35.9375rem) {
 	.feedbackContainer {
 		flex-direction: column;
 		align-items: flex-start;
@@ -162,7 +162,7 @@
 	}
 }
 
-@media only screen and (max-width: 400px) and (min-width: 292px) {
+@media only screen and (max-width: 25rem) and (min-width: 18.25rem) {
 	.giveFeedback {
 		flex-direction: column;
 	}
@@ -170,11 +170,11 @@
 		margin-left: 0;
 	}
 }
-@media only screen and (max-width: 292px) {
+@media only screen and (max-width: 18.25rem) {
 	.interactionContainer {
 		display: block;
 	}
 	.feedbackBtn:first-of-type {
-		margin-left: 0px;
+		margin-left: 0;
 	}
 }

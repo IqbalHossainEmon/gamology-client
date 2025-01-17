@@ -20,13 +20,13 @@
 .releaseComponent {
 	margin-left: 0.625em;
 }
-@media screen and (max-width: 645px) {
+@media screen and (max-width: 40.3125rem) {
 	.releaseDate {
 		margin: 0;
 		margin-top: 0.625em;
 	}
 }
-@media screen and (max-width: 454px) {
+@media screen and (max-width: 28.375rem) {
 	.releaseDate,
 	.dateContainer {
 		display: flex;
@@ -39,6 +39,6 @@
 	}
 	.releaseComponent {
 		margin-bottom: 0.625em;
-		margin-left: 0px;
+		margin-left: 0;
 	}
 }

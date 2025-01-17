@@ -15,7 +15,7 @@
 .keyName {
 	color: rgb(177, 177, 177);
 	font-weight: 300;
-	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
 }
 
 .individualGameTagGroup {
@@ -38,9 +38,9 @@
 }
 
 .individualGameTag:not(:last-child) {
-	margin-right: 10px;
+	margin-right: 0.625rem;
 }
 .individualGameTag:not(:last-child)::after {
 	content: ',';
-	margin-left: 3px;
+	margin-left: 0.1875rem;
 }

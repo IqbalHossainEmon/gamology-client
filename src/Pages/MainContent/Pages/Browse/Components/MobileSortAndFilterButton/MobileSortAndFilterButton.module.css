@@ -8,7 +8,7 @@
 	pointer-events: none;
 }
 .buttonContainer {
-	max-width: 200px;
+	max-width: 12.5rem;
 	background-color: rgb(0, 0, 0);
 	display: flex;
 	flex-direction: row;
@@ -36,7 +36,7 @@
 
 .sortButton span,
 .filterButton span {
-	margin-left: 10px;
+	margin-left: 0.625rem;
 }
 
 .verticalLine {
@@ -52,7 +52,7 @@
 	padding-bottom: 100%;
 }
 
-@media screen and (max-width: 210px) {
+@media screen and (max-width: 13.125rem) {
 	.buttonContainer {
 		max-width: 150px;
 	}

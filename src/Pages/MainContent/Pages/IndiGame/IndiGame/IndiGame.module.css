@@ -6,22 +6,18 @@
 	width: calc(100% - 320px - 4rem);
 }
 
-@media only screen and (max-width: 1279px) {
+@media only screen and (max-width: 79.9375rem) {
 	.individualGame {
 		padding: 0.625em;
 	}
+
 	.reviewContainer {
-		width: calc(100% - 260px - 1.5rem);
+		/* width: calc(100% - 260px - 1.5rem); */
+		width: 100%;
 	}
 }
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 63.9375rem) {
 	.reviewContainer {
 		width: calc(100% - 256px - 2rem);
-	}
-}
-
-@media (max-width: 1279px) {
-	.reviewContainer {
-		width: 100%;
 	}
 }

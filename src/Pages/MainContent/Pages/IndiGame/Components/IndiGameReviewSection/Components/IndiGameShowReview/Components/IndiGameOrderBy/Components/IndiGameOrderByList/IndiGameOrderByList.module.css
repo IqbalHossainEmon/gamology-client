@@ -2,7 +2,7 @@
 	width: 100%;
 }
 .orderOption:not(:last-child) {
-	margin-bottom: 2px;
+	margin-bottom: 0.125rem;
 }
 
 .optionBtn {

@@ -6,7 +6,7 @@
 }
 
 .individualGameBannerCard:not(:first-child) {
-	margin-left: 15px;
+	margin-left: 0.9375rem;
 }
 
 .button {
@@ -32,8 +32,8 @@
 .videoLogo {
 	position: absolute;
 	z-index: 1;
-	width: 15px;
-	height: 15px;
+	width: 0.9375rem;
+	height: 0.9375rem;
 	left: 50%;
 	top: 50%;
 	translate: -50% -50%;
@@ -62,14 +62,14 @@
 	padding-bottom: calc(100% / 16 * 9);
 }
 
-@media only screen and (max-width: 1439px) {
+@media only screen and (max-width: 89.9375rem) {
 	.individualGameBannerCard {
 		max-width: 90px;
 		min-width: 90px;
 	}
 }
 
-@media only screen and (max-width: 270px) {
+@media only screen and (max-width: 16.875rem) {
 	.individualGameBannerCard:not(:first-child) {
 		margin-left: 0;
 	}

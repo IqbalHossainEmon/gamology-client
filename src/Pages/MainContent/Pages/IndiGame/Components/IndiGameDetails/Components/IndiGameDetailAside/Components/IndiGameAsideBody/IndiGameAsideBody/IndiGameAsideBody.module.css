@@ -1,7 +1,7 @@
 .individualGameAsideBody {
 	display: flex;
 	flex-direction: column;
-	margin-top: 20px;
+	margin-top: 1.25rem;
 }
 
 .wishlistBtn:hover .outerCircle {
@@ -47,10 +47,10 @@
 
 .logos svg {
 	width: 20px;
-	margin: 0 5px;
+	margin: 0 0.3125rem;
 }
 
-@media only screen and (max-width: 275px) {
+@media only screen and (max-width: 17.1875rem) {
 	.value,
 	.key {
 		font-size: 0.8rem;

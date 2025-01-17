@@ -21,22 +21,22 @@
 	}
 }
 
-@media only screen and (max-width: 160rem) and (min-width: 48.0625rem) {
+@media only screen and (max-width: 100rem) and (min-width: 48.0625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
-@media only screen and (max-width: 48rem) and (min-width: 553px) {
+@media only screen and (max-width: 48rem) and (min-width: 34.5625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
-@media only screen and (max-width: 552px) and (min-width: 250px) {
+@media only screen and (max-width: 34.5rem) and (min-width: 15.625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 15.5625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(1, 1fr);
 	}

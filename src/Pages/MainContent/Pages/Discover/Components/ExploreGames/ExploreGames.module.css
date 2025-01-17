@@ -116,19 +116,19 @@
 		height: 100%;
 	}
 }
-@media only screen and (max-width: 356px) {
+@media only screen and (max-width: 22.25rem) {
 	.exploreTexts {
 		width: 80%;
 		translate: 0 -40%;
 		left: 10px;
 	}
 }
-@media only screen and (max-width: 267px) {
+@media only screen and (max-width: 16.6875rem) {
 	.exploreTexts button {
 		padding: 0.5rem 1rem;
 	}
 }
-@media only screen and (min-width: 2134px) {
+@media only screen and (min-width: 133.375rem) {
 	.exploreTexts h4 {
 		font-size: 1.125rem;
 	}

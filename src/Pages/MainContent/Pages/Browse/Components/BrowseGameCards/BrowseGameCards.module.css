@@ -18,12 +18,12 @@
 	align-items: center;
 }
 
-@media only screen and (max-width: 160rem) and (min-width: 865px) {
+@media only screen and (max-width: 160rem) and (min-width: 54.0625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
-@media only screen and (max-width: 864px) and (min-width: 48.0625rem) {
+@media only screen and (max-width: 54rem) and (min-width: 48.0625rem) {
 	.gameCards {
 		width: 70%;
 	}
@@ -31,21 +31,23 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@media only screen and (max-width: 48rem) and (min-width: 553px) {
+
+@media only screen and (max-width: 48rem) and (min-width: 34.5625rem) {
 	.cardsContainer {
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
-@media only screen and (max-width: 552px) and (min-width: 250px) {
+@media only screen and (max-width: 34.5rem) and (min-width: 15.625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@media only screen and (max-width: 250px) {
+@media only screen and (max-width: 15.5625rem) {
 	.cardsContainer {
 		grid-template-columns: repeat(1, 1fr);
 	}
 }
+
 @media only screen and (max-width: 48rem) {
 	.gameCards {
 		width: 100%;

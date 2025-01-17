@@ -14,18 +14,18 @@
 	padding-bottom: calc(100% / 16 * 9);
 }
 
-@media screen and (max-width: 160rem) and (min-width: 900px) {
+@media screen and (max-width: 160rem) and (min-width: 56.25rem) {
 	.imageContainer {
 		margin-bottom: 1rem;
 	}
 }
-@media screen and (max-width: 1200px) and (min-width: 900px) {
+@media screen and (max-width: 75rem) and (min-width: 56.25rem) {
 	.name {
 		font-size: 1.2rem;
 	}
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 56.25rem) {
 	.imageContainer {
 		margin-bottom: 1rem;
 	}

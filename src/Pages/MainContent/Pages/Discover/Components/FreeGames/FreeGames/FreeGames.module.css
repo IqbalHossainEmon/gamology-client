@@ -45,13 +45,13 @@
 	padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 37.25rem) {
 	.games {
 		flex-direction: column;
 	}
 }
 
-@media only screen and (max-width: 596px) {
+@media only screen and (max-width: 37.25rem) {
 	.freeGames {
 		padding: 1em;
 	}

@@ -1,8 +1,8 @@
 .individualGameSpecifications {
-	margin-top: 90px;
+	margin-top: 5.625rem;
 }
 .specificationText {
-	margin-bottom: 10px;
+	margin-bottom: 0.625rem;
 	font-weight: 500;
 }
 .specificationContainer {
@@ -13,7 +13,7 @@
 
 .mainHeadersContainer {
 	display: flex;
-	margin-bottom: 50px;
+	margin-bottom: 3.125rem;
 	position: relative;
 	align-items: stretch;
 }
@@ -29,7 +29,7 @@
 }
 
 .mainHeader:not(:first-child) {
-	margin-left: 40px;
+	margin-left: 2.5rem;
 }
 
 .mainHeaderBtn {
@@ -79,7 +79,7 @@
 	justify-content: center;
 }
 .policy {
-	margin-top: 20px;
+	margin-top: 1.25rem;
 	color: #ffffff;
 	text-decoration: none;
 }
@@ -90,17 +90,17 @@
 	}
 }
 
-@media only screen and (max-width: 730px) and (min-width: 370px) {
+@media only screen and (max-width: 45.625rem) and (min-width: 23.125rem) {
 	.mainHeaderBtn {
 		padding: 0.9375em;
 	}
 }
 
-@media only screen and (max-width: 369px) {
+@media only screen and (max-width: 23.0625rem) {
 	.mainHeaderBtn {
 		padding: 0.3125em 0;
 	}
 	.mainHeader:not(:first-child) {
-		margin-left: 10px;
+		margin-left: 0.625rem;
 	}
 }

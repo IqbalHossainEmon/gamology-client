@@ -7,7 +7,7 @@
 	align-items: center;
 }
 .userIcon {
-	margin-right: 10px;
+	margin-right: 0.625rem;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -17,7 +17,7 @@
 	background: none;
 	color: #696969;
 	border: none;
-	margin-top: 10px;
+	margin-top: 0.625rem;
 	font-size: 1rem;
 	cursor: pointer;
 	transition: color 300ms;
@@ -47,13 +47,13 @@
 .fullStar {
 	width: 30px;
 	height: 30px;
-	margin-right: 10px;
+	margin-right: 0.625rem;
 }
 
 .aspectRatioClassName {
 	padding-bottom: 100%;
 }
-@media only screen and (max-width: 376px) {
+@media only screen and (max-width: 23.5rem) {
 	.individualGameTakeReview {
 		flex-direction: column;
 		align-items: center;

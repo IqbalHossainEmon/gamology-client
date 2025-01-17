@@ -3,7 +3,7 @@
 }
 .flexContainer {
 	display: flex;
-	margin: 10px 0;
+	margin: 0.625rem 0;
 	width: 100%;
 }
 
@@ -17,7 +17,7 @@
 	margin-bottom: 2.5em;
 }
 
-@media only screen and (max-width: 1023px) and (min-width: 48.0625rem) {
+@media only screen and (max-width: 63.9375rem) and (min-width: 48.0625rem) {
 	.header {
 		font-size: 1.2rem;
 	}
@@ -29,12 +29,12 @@
 	}
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 63.9375rem) {
 	.flexContainer {
 		display: block;
 	}
 	.marginRight {
-		margin-left: 0px;
+		margin-left: 0;
 		margin-top: 0.625em;
 	}
 }

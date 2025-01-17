@@ -11,7 +11,7 @@
 	margin: 0 auto;
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 63.9375rem) {
 	.main {
 		width: 100%;
 	}

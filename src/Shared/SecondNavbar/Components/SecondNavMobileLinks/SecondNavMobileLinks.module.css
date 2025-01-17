@@ -54,7 +54,7 @@
 	color: rgba(255, 255, 255, 0.6);
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 23.4375rem) {
 	.navLinkToggleButton {
 		height: 14px;
 		padding: 0 0.125em;
@@ -63,7 +63,7 @@
 	.navLinkToggleButton p {
 		font-size: 0.625rem;
 		height: 10px;
-		margin-bottom: 2px;
+		margin-bottom: 0.125rem;
 	}
 	.navArrow {
 		width: 0.5rem;

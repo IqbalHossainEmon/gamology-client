@@ -22,13 +22,13 @@
 	position: relative;
 }
 
-@media only screen and (max-width: 496px) {
+@media only screen and (max-width: 31rem) {
 	.arrowIcon {
 		margin: 0 0.5rem;
 		width: 3rem;
 	}
 }
-@media only screen and (max-width: 248px) {
+@media only screen and (max-width: 15.5rem) {
 	.inputContainer {
 		flex-direction: column;
 		align-items: center;

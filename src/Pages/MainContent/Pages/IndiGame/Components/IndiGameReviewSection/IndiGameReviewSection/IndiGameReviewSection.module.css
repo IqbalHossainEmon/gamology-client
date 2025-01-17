@@ -1,5 +1,5 @@
 .individualGameReview {
-	margin-top: 50px;
+	margin-top: 3.125rem;
 }
 .reviewContainer {
 	background: #252525;
@@ -7,7 +7,7 @@
 	overflow: auto;
 }
 .reviewMainHeader {
-	margin-bottom: 10px;
+	margin-bottom: 0.625rem;
 	font-weight: 500;
 }
 

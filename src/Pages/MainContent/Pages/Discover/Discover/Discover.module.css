@@ -10,7 +10,7 @@
 	width: 100%;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 63.9375rem) {
 	.content {
 		width: calc(100% - 1rem);
 	}

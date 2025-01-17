@@ -1,5 +1,5 @@
 .topHeader {
-	margin-bottom: 15px;
+	margin-bottom: 0.9375rem;
 }
 
 .header {
@@ -9,7 +9,7 @@
 .row {
 	width: 100%;
 	display: flex;
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .row .column {

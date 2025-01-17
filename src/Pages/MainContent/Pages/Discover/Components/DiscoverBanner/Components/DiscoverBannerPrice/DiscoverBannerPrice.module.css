@@ -1,12 +1,12 @@
 .priceContainer {
 	display: flex;
 	white-space: nowrap;
-	margin: 5px 0;
+	margin: 0.3125rem 0;
 	width: 100%;
 }
 
 .price {
-	margin-left: 5px;
+	margin-left: 0.3125rem;
 }
 
 @media only screen and (max-width: 48rem) {

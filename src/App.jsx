@@ -6,6 +6,7 @@ import useReloadScroll from './Utils/Hooks/useReloadScroll';
 
 function AppMain() {
 	useReloadScroll();
+
 	return (
 		<>
 			<FirstNavbar />

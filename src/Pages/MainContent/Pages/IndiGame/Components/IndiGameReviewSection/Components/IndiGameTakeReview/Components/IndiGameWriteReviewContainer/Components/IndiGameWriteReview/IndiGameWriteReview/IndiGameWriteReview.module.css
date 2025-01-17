@@ -7,7 +7,7 @@
 	padding: 1.5em;
 	background: #303030;
 	display: flex;
-	margin-bottom: 40px;
+	margin-bottom: 2.5rem;
 }
 
 .userDetails {
@@ -16,7 +16,7 @@
 
 .name {
 	font-size: 1rem;
-	margin-bottom: 10px;
+	margin-bottom: 0.625rem;
 }
 
 .details {
@@ -28,14 +28,14 @@
 	border-radius: 4px;
 }
 .reviewStarsContainer {
-	margin-right: 10px;
+	margin-right: 0.625rem;
 	display: flex;
 	align-items: center;
 }
 
 .reviewTitleContainer {
 	display: flex;
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 .writingField {
 	width: 80%;
@@ -46,25 +46,25 @@
 	padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 265px) {
+@media only screen and (max-width: 16.5625rem) {
 	.individualGameWriteReview {
 		padding: 0.5rem;
 	}
 }
 
-@media only screen and (max-width: 512px) {
+@media only screen and (max-width: 32rem) {
 	.individualGameWriteReview {
 		flex-direction: column;
 	}
 	.userDetails {
 		width: 100%;
-		margin-bottom: 30px;
+		margin-bottom: 1.875rem;
 	}
 	.writingField {
 		width: 100%;
 	}
 }
-@media only screen and (max-width: 376px) {
+@media only screen and (max-width: 23.5rem) {
 	.reviewTitleContainer {
 		flex-direction: column;
 	}

@@ -51,16 +51,16 @@
 	color: white;
 }
 
-@media only screen and (max-width: 376px) {
+@media only screen and (max-width: 23.5rem) {
 	.numberButton {
 		font-size: 0.875rem;
 	}
 	.paginationButton {
-		margin: 0 5px;
+		margin: 0 0.3125rem;
 	}
 
 	.ellipsis {
-		margin: 0 5px;
+		margin: 0 0.3125rem;
 		font-size: 0.875rem;
 	}
 	.arrowIcon {

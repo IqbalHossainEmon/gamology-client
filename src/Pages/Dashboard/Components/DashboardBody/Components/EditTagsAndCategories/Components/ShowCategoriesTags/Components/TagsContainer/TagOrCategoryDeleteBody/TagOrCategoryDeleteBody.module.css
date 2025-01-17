@@ -29,18 +29,18 @@
 	display: inline-block;
 }
 
-@media screen and (min-width: 1701px) {
+@media screen and (min-width: 106.3125rem) {
 	.modalBody p {
 		max-width: 30vw;
 	}
 }
 
-@media screen and (max-width: 1700px) and (min-width: 1225px) {
+@media screen and (max-width: 106.25rem) and (min-width: 76.5625rem) {
 	.modalBody p {
 		max-width: 40vw;
 	}
 }
-@media screen and (max-width: 1224px) and (min-width: 1000px) {
+@media screen and (max-width: 76.5rem) and (min-width: 62.5rem) {
 	.modalBody p {
 		max-width: 65vw;
 	}

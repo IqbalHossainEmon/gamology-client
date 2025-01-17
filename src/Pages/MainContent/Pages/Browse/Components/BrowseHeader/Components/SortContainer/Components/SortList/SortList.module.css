@@ -9,10 +9,10 @@
 }
 
 .listContainer li {
-	margin-top: 5px;
+	margin-top: 0.3125rem;
 }
 .listContainer:last-child li {
-	margin-bottom: 5px;
+	margin-bottom: 0.3125rem;
 }
 
 .active {

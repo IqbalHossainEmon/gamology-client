@@ -11,7 +11,7 @@
 	display: flex;
 }
 
-@media only screen and (max-width: 1279px) {
+@media only screen and (max-width: 79.9375rem) {
 	.mainContentContainer {
 		column-gap: 1.5rem;
 	}
@@ -22,7 +22,7 @@
 		width: 260px;
 	}
 }
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 63.9375rem) {
 	.mainContentContainer {
 		column-gap: 2rem;
 	}

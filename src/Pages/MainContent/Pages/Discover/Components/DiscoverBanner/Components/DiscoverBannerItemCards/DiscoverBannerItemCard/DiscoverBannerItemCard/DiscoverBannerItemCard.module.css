@@ -59,7 +59,7 @@
 	padding-bottom: calc(100% / 3 * 4);
 }
 
-@media only screen and (min-width: 2134px) {
+@media only screen and (min-width: 133.375rem) {
 	.cardName {
 		font-size: 1.5rem;
 	}

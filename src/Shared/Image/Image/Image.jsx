@@ -21,22 +21,24 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
 
 	useEffect(() => {
 		const img = imgRef.current;
-		if (img.complete) setCurrentState(1);
-		else
-			img.onload = () => {
-				setCurrentState(1);
+		if (img) {
+			if (img.complete) setCurrentState(1);
+			else
+				img.onload = () => {
+					setCurrentState(1);
+				};
+			img.onerror = () => {
+				setCurrentState(-1);
 			};
-		img.onerror = () => {
-			setCurrentState(-1);
-		};
 
-		const { src, needRevoke } = imgSrc.current;
+			const { src, needRevoke } = imgSrc.current;
 
-		return () => {
-			if (needRevoke) {
-				URL.revokeObjectURL(src);
-			}
-		};
+			return () => {
+				if (needRevoke) {
+					URL.revokeObjectURL(src);
+				}
+			};
+		}
 	}, []);
 	return (
 		<div

@@ -35,17 +35,17 @@
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
-@media only screen and (max-width: 48rem) and (min-width: 553px) {
+@media only screen and (max-width: 48rem) and (min-width: 34.5625rem) {
 	.adminContainer {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
-@media only screen and (max-width: 552px) and (min-width: 250px) {
+@media only screen and (max-width: 34.5rem) and (min-width: 15.625rem) {
 	.adminContainer {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 15.5625rem) {
 	.adminContainer {
 		grid-template-columns: repeat(1, 1fr);
 	}

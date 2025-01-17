@@ -99,7 +99,7 @@
 		margin-right: auto;
 	}
 }
-@media only screen and (max-width: 364px) {
+@media only screen and (max-width: 22.75rem) {
 	.modal {
 		width: 100%;
 	}

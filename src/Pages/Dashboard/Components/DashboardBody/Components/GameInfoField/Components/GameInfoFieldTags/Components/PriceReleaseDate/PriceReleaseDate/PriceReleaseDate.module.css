@@ -32,13 +32,13 @@
 	margin: 0;
 }
 
-@media screen and (max-width: 645px) {
+@media screen and (max-width: 40.3125rem) {
 	.priceReleaseDateContainer {
 		display: block;
 	}
 }
 
-@media screen and (max-width: 396px) {
+@media screen and (max-width: 24.75rem) {
 	.priceReleaseDateContainer {
 		display: block;
 	}

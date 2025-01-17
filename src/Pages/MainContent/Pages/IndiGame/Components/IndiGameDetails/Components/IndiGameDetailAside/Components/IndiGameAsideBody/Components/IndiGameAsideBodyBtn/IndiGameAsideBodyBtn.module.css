@@ -35,7 +35,7 @@
 
 .cartBtn svg {
 	width: 20px;
-	margin-right: 5px;
+	margin-right: 0.3125rem;
 }
 
 .cartBtn:disabled {
@@ -72,7 +72,7 @@
 	justify-content: center;
 	position: relative;
 	width: 20px;
-	margin-right: 6px;
+	margin-right: 0.375rem;
 	cursor: pointer;
 	transition: background-color 200ms;
 }
@@ -93,7 +93,7 @@
 }
 .plus:before,
 .plus:after {
-	height: 8px;
+	height: 0.1875rem;
 	width: 2px;
 }
 
@@ -120,7 +120,7 @@
 	}
 }
 
-@media screen and (max-width: 1200px) and (min-width: 900px) {
+@media screen and (max-width: 75rem) and (min-width: 56.25rem) {
 	.cartBtn {
 		padding: 0.9375em;
 		font-size: 0.9rem;
@@ -128,13 +128,13 @@
 	.wishlistBtn {
 		font-size: 0.625rem;
 		padding: 0.5em 0;
-		margin-top: 8px;
-		margin-bottom: 8px;
+		margin-top: 0.1875rem;
+		margin-bottom: 0.1875rem;
 	}
 	.outerCircle {
 		height: 18px;
 		width: 18px;
-		margin-right: 5px;
+		margin-right: 0.3125rem;
 	}
 	.outerCircle svg {
 		width: 9px;
@@ -152,20 +152,20 @@
 	}
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 56.25) {
 	.cartBtn {
 		padding: 0.625em;
 		font-size: 0.8rem;
 	}
 	.wishlistBtn {
 		padding: 0.375em 0;
-		margin-top: 6px;
-		margin-bottom: 6px;
+		margin-top: 0.375rem;
+		margin-bottom: 0.375rem;
 	}
 	.outerCircle {
 		height: 16px;
 		width: 16px;
-		margin-right: 4px;
+		margin-right: 0.25rem;
 	}
 	.outerCircle svg {
 		width: 8px;

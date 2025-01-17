@@ -42,7 +42,7 @@
 }
 
 .text {
-	margin-left: 8px;
+	margin-left: 0.5rem;
 }
 
 .innerOptionsContainer {
@@ -52,7 +52,7 @@
 	transition: height 200ms;
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 68.75rem) {
 	.innerOption .iconContainer.noTranslate {
 		translate: 0rem;
 	}

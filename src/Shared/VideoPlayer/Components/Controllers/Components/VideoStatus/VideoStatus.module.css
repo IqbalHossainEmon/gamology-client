@@ -23,7 +23,7 @@
 	height: 20px;
 }
 .marginLeft {
-	margin-left: 2px;
+	margin-left: 0.125rem;
 }
 .fadeOut {
 	animation: fadeOut 515ms linear 0s infinite normal forwards;
