@@ -11,17 +11,19 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 	const showRef = useRef(show);
 	showRef.current = show;
 	const isAdded = useRef(false);
+
+	const startingPositionRef = useRef(null);
+
 	if (!eventRefs.current) {
-		let startingPosition = null;
 		let prevDiff = 0;
 		let diff;
 		let lastDiff = 0;
 		let isLeft = false;
 		eventRefs.current = {
 			onMove: e => {
-				if (startingPosition === null) return;
+				if (startingPositionRef.current === null) return;
 				const { clientY } = e;
-				diff = clientY - startingPosition + prevDiff;
+				diff = clientY - startingPositionRef.current + prevDiff;
 
 				const containerHeight = container.clientHeight;
 				const scrollerContainer = container.scrollHeight;
@@ -44,17 +46,12 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 				}
 			},
 			onMouseUp: () => {
-				startingPosition = null;
+				startingPositionRef.current = null;
 				container.style.userSelect = '';
 				prevDiff = lastDiff;
 				window.removeEventListener('blur', eventRefs.current.onMouseUp);
 
 				if (isLeft) setShow(false);
-			},
-			onMouseDown: e => {
-				startingPosition = e.clientY;
-				window.addEventListener('blur', eventRefs.current.onMouseUp);
-				container.style.userSelect = 'none';
 			},
 			onEnter: () => {
 				if (!showRef.current) {
@@ -65,17 +62,17 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 				isLeft = false;
 			},
 			onLeave: () => {
-				if (showRef.current && !startingPosition) {
+				if (showRef.current && !startingPositionRef.current) {
 					setShow(false);
 					return;
 				}
 
-				if (startingPosition) {
+				if (startingPositionRef.current) {
 					isLeft = true;
 				}
 			},
 			onscroll: () => {
-				if (startingPosition) return;
+				if (startingPositionRef.current) return;
 
 				const containerHeight = container.clientHeight;
 				const scrollerContainer = container.scrollHeight;
@@ -125,15 +122,21 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 			container.removeEventListener('scroll', eventRefs.current.onscroll);
 		};
 	}, [container]);
-	const onStart = useDragStartStop(
-		eventRefs.current.onMove,
-		eventRefs.current.onMouseUp,
-		eventRefs.current.onMouseDown
-	);
+	const onStart = useDragStartStop(eventRefs.current.onMove, eventRefs.current.onMouseUp);
+
+	if (!eventRefs.current.onMouseDown) {
+		eventRefs.current.onMouseDown = e => {
+			onStart(e);
+			startingPositionRef.current = e.clientY;
+			window.addEventListener('blur', eventRefs.current.onMouseUp);
+			container.style.userSelect = 'none';
+		};
+	}
+
 	return (
 		<div
 			className={`${styles.thumb} ${show ? styles.show : styles.hide}`}
-			onMouseDown={onStart}
+			onMouseDown={eventRefs.current.onMouseDown}
 			style={{
 				height,
 				transform: isIOS

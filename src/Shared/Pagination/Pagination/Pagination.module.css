@@ -33,11 +33,11 @@
 	cursor: default;
 }
 .numberButton {
-	font-size: 1.25;
+	font-size: 1.25rem;
 	color: rgba(255, 255, 255, 0.6);
 }
 .ellipsis {
-	font-size: 1.25;
+	font-size: 1.25rem;
 	color: rgba(255, 255, 255, 0.6);
 	border: none;
 	user-select: none;

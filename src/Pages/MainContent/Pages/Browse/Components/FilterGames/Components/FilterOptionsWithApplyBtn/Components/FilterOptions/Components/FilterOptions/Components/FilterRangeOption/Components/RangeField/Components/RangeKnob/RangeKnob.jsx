@@ -2,40 +2,39 @@ import { useRef } from 'react';
 import useDragStartStop from '../../../../../../../../../../../../../../../../../../Utils/Hooks/useDragStartStop';
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({
-	state,
-	setState,
-	transition,
-	name,
-	getLeftRightStep,
-	disabled,
-	handleSetValue,
-}) {
+function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, handleSetValue }) {
 	const stateRef = useRef(state);
 	stateRef.current = state;
 
 	// Calculate move value
-	const handleMove = useRef(e => {
-		const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
+	const eventRef = useRef(null);
 
-		let value = stateRef.current;
+	if (!eventRef.current) {
+		eventRef.current = {
+			handleMove: e => {
+				const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
 
-		// If cursors position is inside the slider range;
+				let value = stateRef.current;
 
-		// Check and set value depend on step
-		if (leftDiff < rightDiff) {
-			value = pointerLeftStep;
-		} else if (leftDiff > rightDiff) {
-			value = pointerRightStep;
-		} else if (pointerLeftStep === pointerRightStep) {
-			value = pointerLeftStep;
-		}
+				// If cursors position is inside the slider range;
 
-		if (value !== stateRef.current) {
-			setState(prev => ({ ...prev, [name]: value }));
-		}
-	});
-	const onStart = useDragStartStop(handleMove.current, handleSetValue, undefined, true);
+				// Check and set value depend on step
+				if (leftDiff < rightDiff) {
+					value = pointerLeftStep;
+				} else if (leftDiff > rightDiff) {
+					value = pointerRightStep;
+				} else if (pointerLeftStep === pointerRightStep) {
+					value = pointerLeftStep;
+				}
+
+				if (value !== stateRef.current) {
+					setState(prev => ({ ...prev, [name]: value }));
+				}
+			},
+		};
+	}
+
+	const onStart = useDragStartStop(eventRef.current.handleMove, handleSetValue, true);
 
 	return (
 		<div

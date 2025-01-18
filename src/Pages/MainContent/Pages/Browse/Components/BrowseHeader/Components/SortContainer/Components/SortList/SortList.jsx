@@ -48,7 +48,7 @@ export default function SortList({ state, setShow, handleChange }) {
 							? { disabled: true }
 							: {
 									onClick: () => {
-										setShow('sort');
+										setShow(false);
 										handleChange({
 											type: 'sortChange',
 											value: link.name,

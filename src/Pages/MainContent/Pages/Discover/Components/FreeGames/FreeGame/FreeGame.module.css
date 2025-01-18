@@ -1,5 +1,5 @@
 .freeGame {
-	width: 100%;
+	flex-basis: 100%;
 	cursor: pointer;
 	transition: filter 300ms;
 	display: flex;
@@ -58,7 +58,7 @@
 	padding-bottom: calc(100% / 3 * 4);
 }
 
-@media only screen and (min-width: 160rem) {
+@media only screen and (min-width: 1600px) {
 	.gameDetail p {
 		font-size: 1rem;
 	}

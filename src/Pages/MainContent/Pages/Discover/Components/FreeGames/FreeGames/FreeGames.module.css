@@ -1,7 +1,7 @@
 .freeGames {
 	width: 100%;
 	position: relative;
-	background-color: #3d3d3d;
+	background-color: #202024;
 	padding: 2em;
 	border-radius: 5px;
 	margin-bottom: 4rem;
@@ -32,8 +32,22 @@
 .games {
 	padding-top: 1.25em;
 	width: 100%;
-	display: flex;
+	display: grid;
 	gap: 1rem;
+	list-style-type: none;
+}
+
+.games4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+.games3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+.games2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+.games1 {
+	grid-template-columns: repeat(1, 1fr);
 }
 
 .headerIcon {
@@ -46,8 +60,8 @@
 }
 
 @media only screen and (max-width: 37.25rem) {
-	.games {
-		flex-direction: column;
+	.games4 {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
@@ -55,7 +69,17 @@
 	.freeGames {
 		padding: 1em;
 	}
-	.games {
-		gap: 1rem;
+}
+
+@media only screen and (max-width: 24.9375rem) {
+	.games3 {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+@media only screen and (max-width: 20.3125rem) {
+	.games4,
+	.games2 {
+		grid-template-columns: repeat(1, 1fr);
 	}
 }

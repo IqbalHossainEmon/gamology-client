@@ -11,7 +11,7 @@ export default function ApplyButton({ filterState, state, dispatch, setShow }) {
 					areObjectsEqual(filterState, state) ? styles.disableButton : styles.activeButton
 				}`}
 				onClick={() => {
-					setShow('filter');
+					setShow(false);
 					dispatch({ type: 'filterChange', filter: state });
 				}}
 				type='button'

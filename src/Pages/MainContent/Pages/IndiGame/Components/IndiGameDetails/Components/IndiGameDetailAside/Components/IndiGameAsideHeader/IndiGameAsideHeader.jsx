@@ -15,9 +15,6 @@ export default function IndiGameAsideHeader({ src, name, price, phoneSrc }) {
 					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</div>
-			<div>
-				<h2 className={styles.name}>{name}</h2>
-			</div>
 			<div className={styles.price}>
 				<DiscountPriceWithPercent price={price} />
 			</div>

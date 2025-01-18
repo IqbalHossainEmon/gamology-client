@@ -2,6 +2,15 @@
 	display: flex;
 	column-gap: 4rem;
 }
+
+.bannerHeader {
+	margin-bottom: 1rem;
+}
+.name {
+	font-size: 3rem;
+	font-weight: 400;
+}
+
 .indiGameMainDetail {
 	width: calc(100% - 320px - 4rem);
 	flex-grow: 1;

@@ -41,7 +41,6 @@ export default function IndiGameTakeReview() {
 								aspectRatioClassName={styles.aspectRatioClassName}
 							/>
 						</div>
-
 						<ReviewStar
 							name='active'
 							{...((writeReviewShow || userReviewDone) && { disabled: true })}
@@ -49,7 +48,6 @@ export default function IndiGameTakeReview() {
 							{...(userReviewDone && { newValue: review.star - 1 })}
 						/>
 					</div>
-
 					{userReviewDone || (
 						<button
 							{...(writeReviewShow
@@ -72,14 +70,12 @@ export default function IndiGameTakeReview() {
 							<span>5</span>
 						</p>
 					</div>
-
 					<div>
 						<p className={styles.overallRatingText}>Overall rating</p>
 					</div>
 				</div>
 			</div>
 			<HorizontalDivider />
-
 			{userReviewDone ? (
 				<IndiGameOwnReview review={review} />
 			) : (

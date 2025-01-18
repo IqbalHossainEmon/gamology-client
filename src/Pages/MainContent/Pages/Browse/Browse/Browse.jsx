@@ -281,7 +281,12 @@ const cate = [
 	},
 ];
 
-function BrowseMain() {
+const priceAndRelease = {
+	price: { lower: 0, higher: 148.18 },
+	releaseDate: { lower: 1970, higher: new Date().getFullYear() },
+};
+
+function Browse() {
 	const { initialState, reducer } = useBrowseLogics();
 	const { widthInRem } = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -294,12 +299,11 @@ function BrowseMain() {
 			games = items;
 		}
 		dispatch({ type: 'gameFetch', data: games });
-		let categories;
+		let filters;
 		if (cate) {
-			categories = cate;
+			filters = { categories: cate, priceAndRelease };
 		}
-		dispatch({ type: 'filterOptions', filterOptions: categories });
-
+		dispatch({ type: 'filterOptions', filterOptions: filters });
 		setLoading(false);
 	}, []);
 
@@ -321,6 +325,6 @@ function BrowseMain() {
 	);
 }
 
-const Browse = withFilterSortProvider(memo(BrowseMain));
+const FilteredSortedBrowse = withFilterSortProvider(memo(Browse));
 
-export default Browse;
+export default FilteredSortedBrowse;

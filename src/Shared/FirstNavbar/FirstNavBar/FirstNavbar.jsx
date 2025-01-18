@@ -11,8 +11,6 @@ export default function FirstNavbar() {
 	const { widthInRem } = useScreenWidth();
 	const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
-	console.log(widthInRem);
-
 	useEffect(() => {
 		if (widthInRem > 48) {
 			showBodyOverflow();

@@ -1,11 +1,11 @@
 .cardsContainer {
-	margin-top: 1.25;
+	margin-top: 1.25rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 .cardsWrapper {
-	max-width: 58.0625rem;
+	max-width: 929px;
 	overflow: hidden;
 	-webkit-flex: 1;
 	-ms-flex: 1;
@@ -18,11 +18,14 @@
 }
 
 .btn {
-	width: 2rem;
-	height: 2rem;
+	width: 32px;
+	height: 32px;
 	border: 1px solid rgb(92, 92, 92);
-	padding: 0.5rem;
+	padding: 8px;
 	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
 	transition: background-color 200ms;
 }
@@ -38,67 +41,67 @@
 	rotate: 90deg;
 }
 
-@media (max-width: 133.375rem) and (min-width: 106.25rem) {
+@media (max-width: 2134px) and (min-width: 1700px) {
 	.cardsWrapper {
-		max-width: 50.6875rem;
+		max-width: 811px;
 	}
 }
-@media (max-width: 106.1875rem) and (min-width: 91.5rem) {
+@media (max-width: 1699px) and (min-width: 1464px) {
 	.cardsWrapper {
-		max-width: 43.3125rem;
+		max-width: 693px;
 	}
 }
-@media (max-width: 91.4375rem) and (min-width: 90rem) {
+@media (max-width: 1463px) and (min-width: 1440px) {
 	.cardsWrapper {
-		max-width: 35.9375rem;
+		max-width: 575px;
 	}
 }
-@media (max-width: 89.9375rem) and (min-width: 78.75rem) {
+@media (max-width: 1439px) and (min-width: 1260px) {
 	.cardsWrapper {
-		max-width: 31.875rem;
+		max-width: 510px;
 	}
 }
-@media (max-width: 78.6875rem) and (min-width: 64rem) {
+@media (max-width: 1259px) and (min-width: 1024px) {
 	.cardsWrapper {
-		max-width: 25.3125rem;
-	}
-}
-
-@media (max-width: 63.9375rem) and (min-width: 53.75rem) {
-	.cardsWrapper {
-		max-width: 31.875rem;
+		max-width: 405px;
 	}
 }
 
-@media (max-width: 53.6875rem) and (min-width: 48.0625rem) {
+@media (max-width: 1023px) and (min-width: 860px) {
 	.cardsWrapper {
-		max-width: 25.3125rem;
-	}
-}
-@media (max-width: 48rem) and (min-width: 38.25rem) {
-	.cardsWrapper {
-		max-width: 31.875rem;
-	}
-}
-@media (max-width: 38.1875rem) and (min-width: 33.125rem) {
-	.cardsWrapper {
-		max-width: 25.3125rem;
+		max-width: 510px;
 	}
 }
 
-@media (max-width: 33.0625rem) and (min-width: 25.25rem) {
+@media (max-width: 859px) and (min-width: 48.0625rem) {
 	.cardsWrapper {
-		max-width: 18.75rem;
+		max-width: 405px;
+	}
+}
+@media (max-width: 48rem) and (min-width: 612px) {
+	.cardsWrapper {
+		max-width: 510px;
+	}
+}
+@media (max-width: 611px) and (min-width: 530px) {
+	.cardsWrapper {
+		max-width: 405px;
 	}
 }
 
-@media (max-width: 25.1875rem) and (min-width: 19.5rem) {
+@media (max-width: 529px) and (min-width: 404px) {
 	.cardsWrapper {
-		max-width: 12.1875rem;
+		max-width: 300px;
 	}
 }
-@media only screen and (max-width: 19.4375rem) {
+
+@media (max-width: 403px) and (min-width: 312px) {
 	.cardsWrapper {
-		max-width: 5.625rem;
+		max-width: 195px;
+	}
+}
+@media only screen and (max-width: 311px) {
+	.cardsWrapper {
+		max-width: 90px;
 	}
 }

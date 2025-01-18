@@ -97,15 +97,13 @@ function PlayPauseButton({
 			onClick={eventRefs.current.handleCanToggle}
 			type='button'
 		>
-			<span>
-				<svg viewBox={isPlaying ? '0 0 10 14' : '0 0 11 14'}>
-					<path
-						d={isPlaying ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'}
-						fill='white '
-						fillRule='nonzero'
-					/>
-				</svg>
-			</span>
+			<svg viewBox={isPlaying ? '0 0 10 14' : '0 0 11 14'}>
+				<path
+					d={isPlaying ? 'M0 14h3V0H0v14zM7 0v14h3V0H7z' : 'M0 0v14l11-7z'}
+					fill='white '
+					fillRule='nonzero'
+				/>
+			</svg>
 		</button>
 	);
 }

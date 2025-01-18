@@ -1,6 +1,6 @@
-import IndiGameSortDescription from '../IndiGameSortDescription/IndiGameSortDescription';
-import IndiGameTags from '../IndiGameTags/IndiGameTags';
-import IndiGameTextDescription from '../IndiGameTextDescription/IndiGameTextDescription';
+import IndiGameSortDescription from '../Components/IndiGameSortDescription/IndiGameSortDescription';
+import IndiGameTags from '../Components/IndiGameTags/IndiGameTags';
+import IndiGameTextDescription from '../Components/IndiGameTextDescription/IndiGameTextDescription';
 import styles from './IndiGameDescription.module.css';
 
 const sortDesc =

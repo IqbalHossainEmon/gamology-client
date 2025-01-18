@@ -12,12 +12,6 @@
 	}
 
 	.reviewContainer {
-		/* width: calc(100% - 260px - 1.5rem); */
 		width: 100%;
-	}
-}
-@media only screen and (max-width: 63.9375rem) {
-	.reviewContainer {
-		width: calc(100% - 256px - 2rem);
 	}
 }

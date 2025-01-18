@@ -12,8 +12,8 @@
 	cursor: pointer;
 }
 .volumeBtn > span {
-	width: 12px;
-	height: 12px;
+	width: 0.75rem;
+	height: 0.75rem;
 	display: block;
 }
 .volumeBtn > span > svg {
@@ -22,24 +22,27 @@
 }
 
 .volumeSliderContainer {
+	height: 100%;
+	display: flex;
+	align-items: center;
 	transition: max-width 200ms;
-	width: 64px;
+	width: 4rem;
 	max-width: 0px;
 	overflow: hidden;
 	position: relative;
-	margin-bottom: -0.1875rem;
 	padding: 0.625em 0;
 }
 
 .volume:hover .volumeSliderContainer,
 .volume:active .volumeSliderContainer {
-	max-width: 64px;
+	max-width: 4rem;
 }
 
 .volumeSlider {
-	width: 64px;
+	width: 4rem;
 	padding: 0 0.625em;
 	position: absolute;
-	top: 0;
+	top: 50%;
+	transform: translateY(-50%);
 	left: 0;
 }

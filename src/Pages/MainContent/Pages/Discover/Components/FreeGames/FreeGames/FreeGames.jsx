@@ -99,11 +99,11 @@ export default function FreeGames() {
 					<ButtonWaterEffect btnRef={btnRef} />
 				</button>
 			</div>
-			<div className={styles.games}>
+			<ul className={`${styles.games} ${styles[`games${items.length}`]}`}>
 				{items.map(item => (
 					<FreeGame data={item} key={item.id} length={items.length} today={today} />
 				))}
-			</div>
+			</ul>
 		</section>
 	);
 }

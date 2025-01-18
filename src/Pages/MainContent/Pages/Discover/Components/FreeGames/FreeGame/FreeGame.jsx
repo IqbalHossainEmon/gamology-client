@@ -32,7 +32,7 @@ export default function FreeGame({ data, today, length }) {
 
 	return (
 		dateState !== -1 && (
-			<div className={`${styles.freeGame} hover-shadow`}>
+			<li className={`${styles.freeGame} hover-shadow`}>
 				<div className={styles.gameHeader}>
 					<Image
 						data={data.carouselThumb}
@@ -60,7 +60,7 @@ export default function FreeGame({ data, today, length }) {
 						} - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}
 					</p>
 				</div>
-			</div>
+			</li>
 		)
 	);
 }

@@ -16,7 +16,6 @@ export default function BrowseGameCards({ state, dispatch }) {
 					/>
 				))}
 			</ul>
-
 			{pageCount > 2 && (
 				<div className={styles.pagination}>
 					<Pagination

@@ -28,12 +28,13 @@ export default function VideoSlider({
 
 			// Get cursor position while dragging
 			handleMove: e => {
-				let cursorInPercent =
+				const cursorInPercent =
 					((e?.touches
 						? e.touches[0].clientX - pathRef.offsetLeft
 						: e.clientX - pathRef.offsetLeft) /
 						pathRef.width) *
 					100;
+
 				if (cursorInPercent < 100 && cursorInPercent > 0) {
 					if (
 						parseFloat(cursorInPercent.toFixed(3)) !==
@@ -42,15 +43,10 @@ export default function VideoSlider({
 						setPosition(cursorInPercent);
 					}
 				} else if (cursorInPercent < 0 && stateRef.current !== 0) {
-					cursorInPercent = 0;
+					setPosition(0);
 				} else if (cursorInPercent > 100 && stateRef.current !== 100) {
-					cursorInPercent = 100;
+					setPosition(100);
 				}
-			},
-
-			handleMouseDownClick: e => {
-				eventRefs.current.handleMove(e);
-				if (typeof handleMouseDown === 'function') handleMouseDown();
 			},
 		};
 	}
@@ -93,21 +89,25 @@ export default function VideoSlider({
 		};
 	}, [videoContainer]);
 
-	const onStart = useDragStartStop(
-		eventRefs.current.handleMove,
-		handleMouseUp,
-		eventRefs.current.handleMouseDownClick
-	);
+	const onStart = useDragStartStop(eventRefs.current.handleMove, handleMouseUp);
+
+	if (!eventRefs.current.handleMouseDownClick) {
+		eventRefs.current.handleMouseDownClick = e => {
+			eventRefs.current.handleMove(e);
+			if (typeof handleMouseDown === 'function') handleMouseDown();
+			onStart(e);
+		};
+	}
 
 	return (
 		<div
 			className={styles.videoSliderPath}
-			onMouseDown={onStart}
-			onTouchStart={onStart}
+			onMouseDown={eventRefs.current.handleMouseDownClick}
+			onTouchStart={eventRefs.current.handleMouseDownClick}
 			ref={pathRef}
 			role='slider'
 			aria-label='video slider'
-			aria-valuenow={position}
+			aria-valuenow={position.toFixed(2)}
 			tabIndex='0'
 		>
 			<div className={styles.path} />

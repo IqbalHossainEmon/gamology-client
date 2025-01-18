@@ -1,18 +1,16 @@
 import Image from '../../../../../../Shared/Image/Image/Image';
-import useFilterSortState from '../../Utils/Hooks/useFilterSortState/useFilterSortState';
+import useBrowseFilter from '../../Utils/Hooks/useBrowseFilter/useBrowseFilter';
+import useBrowseSort from '../../Utils/Hooks/useBrowseSort/useBrowseSort';
 import styles from './MobileSortAndFilterButton.module.css';
 
 export default function MobileSortAndFilterButton() {
-	const { setFilterSort } = useFilterSortState();
+	const { setFilter } = useBrowseFilter();
+	const { setSort } = useBrowseSort();
 
 	return (
 		<div className={styles.buttonPosition}>
 			<div className={styles.buttonContainer}>
-				<button
-					className={styles.sortButton}
-					onClick={() => setFilterSort('sort')}
-					type='button'
-				>
+				<button className={styles.sortButton} onClick={() => setSort(true)} type='button'>
 					<div className={styles.imageContainer}>
 						<Image
 							data='/assets/images/sortButton.png'
@@ -25,7 +23,7 @@ export default function MobileSortAndFilterButton() {
 				<div className={styles.verticalLine} />
 				<button
 					className={styles.filterButton}
-					onClick={() => setFilterSort('filter')}
+					onClick={() => setFilter(true)}
 					type='button'
 				>
 					<div className={styles.imageContainer}>

@@ -23,9 +23,16 @@ const withScreenWidthProvider = Component =>
 				});
 			};
 		}
+
 		useEffect(() => {
 			window.addEventListener('resize', handleChange.current);
-			return () => window.removeEventListener('resize', handleChange.current);
+			const observer = new ResizeObserver(handleChange.current);
+			observer.observe(document.documentElement);
+
+			return () => {
+				window.removeEventListener('resize', handleChange.current);
+				observer.disconnect();
+			};
 		}, []);
 
 		return (

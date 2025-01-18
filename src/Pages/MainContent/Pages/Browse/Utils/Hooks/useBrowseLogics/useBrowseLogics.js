@@ -13,7 +13,7 @@ const initialState = {
 	pageCount: 69,
 	rangeLimits: {
 		price: { lower: 0, higher: 148.18 },
-		releaseDate: { lower: 1980, higher: new Date().getFullYear() },
+		releaseDate: { lower: 1948, higher: new Date().getFullYear() },
 	},
 	filterOptions: [
 		{
@@ -56,7 +56,7 @@ const reducer = (state, action) => {
 		case 'filterOptions':
 			const newFilterOptions = [
 				...state.filterOptions.slice(0, 2),
-				...action.filterOptions.map(option => {
+				...action.filterOptions.categories.map(option => {
 					option.type = 'switch';
 					return option;
 				}),
@@ -65,13 +65,21 @@ const reducer = (state, action) => {
 
 			const newFilterStates = { ...state.filterState };
 
-			action.filterOptions.forEach(category => {
+			action.filterOptions.categories.forEach(category => {
 				category.tags.forEach(tag => {
 					newFilterStates[tag] = false;
 				});
 			});
 
-			return { ...state, filterOptions: newFilterOptions, filterState: newFilterStates };
+			newFilterStates.price = action.filterOptions.priceAndRelease.price;
+			newFilterStates.releaseDate = action.filterOptions.priceAndRelease.releaseDate;
+
+			return {
+				...state,
+				filterOptions: newFilterOptions,
+				filterState: newFilterStates,
+				rangeLimits: action.filterOptions.priceAndRelease,
+			};
 		case 'pageChange':
 			return { ...state, activePage: action.activePage };
 		default:

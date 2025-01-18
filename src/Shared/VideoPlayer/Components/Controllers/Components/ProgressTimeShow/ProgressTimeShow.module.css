@@ -1,4 +1,13 @@
 .progressTimeShow {
-	font-size: 0.875rem;
-	padding: 0.625em;
+	margin-left: 10px;
+	height: 100%;
+}
+.progressTimeShow p {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	font-size: 0.8rem;
+}
+.progressTime {
+	width: 1.8rem;
 }

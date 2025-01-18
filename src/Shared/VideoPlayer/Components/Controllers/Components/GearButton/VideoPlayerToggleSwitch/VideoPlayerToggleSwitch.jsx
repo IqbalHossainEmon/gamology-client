@@ -3,25 +3,18 @@ import useAppearDisappear from '../../../../../../../Utils/Hooks/useAppearDisapp
 import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
 import styles from './VideoPlayerToggleSwitch.module.css';
 
-function VideoPlayerToggleSwitch({
-	show: state,
-	event,
-	autoplay,
-	setAutoplay,
-	timerId,
-	mouseUpEvent,
-}) {
+function VideoPlayerToggleSwitch({ show: state, onClick, autoplay, setAutoplay }) {
 	const [show, fadeIn] = useAppearDisappear(state);
 
 	const eventRef = useRef(null);
 
 	if (!eventRef.current) {
 		eventRef.current = {
-			handleMouseDownTimer: () => {
-				if (timerId.current) {
-					clearTimeout(timerId.current);
-					timerId.current = null;
-				}
+			onMouseDown: () => {
+				document.addEventListener('mouseup', onClick);
+			},
+			handleOnMove: () => {
+				document.removeEventListener('mouseup', onClick);
 			},
 		};
 	}
@@ -30,7 +23,7 @@ function VideoPlayerToggleSwitch({
 			<div className={`${styles.menuContainer}${fadeIn ? ` ${styles.zoomIn}` : ''}`}>
 				<button
 					className={styles.menu}
-					onMouseDown={() => document.addEventListener('mouseup', event, { once: true })}
+					onMouseDown={eventRef.current.onMouseDown}
 					type='button'
 				>
 					<div className={styles.textContainer}>
@@ -40,9 +33,8 @@ function VideoPlayerToggleSwitch({
 
 					<div className={styles.toggleSwitchContainer}>
 						<ToggleSwitch
-							event={event}
+							onSwitchMove={eventRef.current.handleOnMove}
 							mouseDownEvent={eventRef.current.handleMouseDownTimer}
-							mouseUpEvent={mouseUpEvent}
 							name='autoplay'
 							setState={setAutoplay}
 							state={autoplay}

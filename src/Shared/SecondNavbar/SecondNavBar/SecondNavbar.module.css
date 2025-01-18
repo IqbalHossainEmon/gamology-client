@@ -18,7 +18,7 @@
 .secondNavbar {
 	width: 75vw;
 	position: relative;
-	max-width: 160rem;
+	max-width: 1600px;
 	display: flex;
 	align-items: center;
 }

@@ -14,6 +14,10 @@
 	width: 20%;
 }
 
+.userIcon {
+	width: 50px;
+}
+
 .name {
 	font-size: 1rem;
 	margin-bottom: 0.625rem;

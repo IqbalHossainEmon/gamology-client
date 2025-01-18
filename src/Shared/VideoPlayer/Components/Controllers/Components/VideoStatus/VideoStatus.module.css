@@ -34,25 +34,26 @@
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
-	border-radius: 35px;
+	border-radius: 2.1875rem;
 }
 
 .initialPlaceholderButton {
 	border: none;
 	background-color: white;
-	width: 80px;
-	height: 35px;
+	width: 5rem;
+	height: 2.1875rem;
 	padding: 0.625em;
 	font-weight: 500;
 	font-size: 0.875rem;
 	display: flex;
 	justify-content: space-evenly;
-	border-radius: 35px;
+	align-items: center;
+	border-radius: 2.1875rem;
 	cursor: pointer;
 }
 .svgContainer {
-	width: 12px;
-	height: 12px;
+	width: 0.75rem;
+	height: 0.75rem;
 	display: block;
 }
 .initialPlaceholderButton > span > svg,

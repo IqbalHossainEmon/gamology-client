@@ -34,8 +34,9 @@
 }
 
 .cartBtn svg {
-	width: 20px;
+	width: 0.75rem;
 	margin-right: 0.3125rem;
+	scale: 1.222;
 }
 
 .cartBtn:disabled {
@@ -44,9 +45,10 @@
 }
 
 .wishlistBtn {
-	padding: 0.625em 0;
+	padding: 0.625em 0.6em;
 	font-size: 0.75rem;
 	margin: 1rem 0;
+	gap: 0.3rem;
 	background-color: transparent;
 	border: 1px solid rgb(245, 245, 245);
 	display: flex;
@@ -66,34 +68,28 @@
 	background: rgb(0, 0, 0);
 	border-radius: 50%;
 	outline: 2px solid rgb(245, 245, 245);
-	display: flex;
-	flex: 0 0 auto;
-	height: 20px;
-	justify-content: center;
+	max-width: 0.75rem;
+	max-height: 0.75rem;
+	min-width: 0.75rem;
+	min-height: 0.75rem;
+	height: 0.75rem;
 	position: relative;
-	width: 20px;
-	margin-right: 0.375rem;
+	width: 0.75rem;
+	margin-right: 0.375em;
 	cursor: pointer;
 	transition: background-color 200ms;
 }
 
 .outerCircle svg {
-	width: 10px;
+	width: 0.625rem;
 }
 .rotate {
 	animation: 1500ms cubic-bezier(0.4, 0, 0.1, 1) 0s infinite normal none running rotate;
 }
 
-.plus {
-	line-height: 15px;
-	color: rgb(245, 245, 245);
-	font-size: 0.875rem;
-	height: 12px;
-	width: 12px;
-}
 .plus:before,
 .plus:after {
-	height: 0.1875rem;
+	height: 50%;
 	width: 2px;
 }
 

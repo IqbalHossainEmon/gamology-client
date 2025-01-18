@@ -42,11 +42,13 @@ export default function IndiGameWriteReview({
 		>
 			<div className={styles.individualGameWriteReview} ref={elementRef}>
 				<div className={styles.userDetails}>
-					<Image
-						alt={user.name}
-						data={userIcon}
-						aspectRatioClassName={styles.aspectRatioClassName}
-					/>
+					<div className={styles.userIcon}>
+						<Image
+							alt={user.name}
+							data={userIcon}
+							aspectRatioClassName={styles.aspectRatioClassName}
+						/>
+					</div>
 					<p className={styles.name}>{user.name}</p>
 					<p className={styles.details}>
 						Games:
@@ -64,9 +66,7 @@ export default function IndiGameWriteReview({
 						</div>
 						<IndiGameReviewInput setData={setData} />
 					</div>
-
 					<IndiGameReviewInput isTextArea setData={setData} />
-
 					<IndiGameReviewBtn
 						canSubmit={data.title ? data.text : null}
 						handleSubmit={handleSubmit}

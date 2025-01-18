@@ -1,0 +1,46 @@
+.individualGameTags {
+	margin-top: 3rem;
+	display: flex;
+	align-items: stretch;
+}
+
+.individualGameTagGroupContainer {
+	width: 50%;
+	padding-left: 1.25em;
+	padding-top: 1.25em;
+	padding-bottom: 1.25em;
+	border-left: 1px solid rgb(43, 43, 43);
+}
+
+.keyName {
+	color: rgb(177, 177, 177);
+	font-weight: 300;
+	margin-bottom: 0.3125rem;
+}
+
+.individualGameTagGroup {
+	list-style: none;
+	display: flex;
+	flex-flow: wrap;
+}
+
+.individualGameTag {
+	font-size: 0.875rem;
+	text-decoration: underline;
+}
+
+.individualGameTag:hover {
+	text-decoration: none;
+}
+
+.empty {
+	text-decoration: none;
+}
+
+.individualGameTag:not(:last-child) {
+	margin-right: 0.625rem;
+}
+.individualGameTag:not(:last-child)::after {
+	content: ',';
+	margin-left: 0.1875rem;
+}

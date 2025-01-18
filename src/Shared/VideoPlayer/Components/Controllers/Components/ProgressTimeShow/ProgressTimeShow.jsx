@@ -31,8 +31,12 @@ export default function ProgressTimeShow({ video, progress }) {
 	return (
 		<div className={styles.progressTimeShow}>
 			<p>
-				{progress && durationTime ? formatTime((progress / 100) * durationTime) : '0:00'}/
-				{durationTime ? formatTime(durationTime) : '0:00'}
+				<span className={styles.progressTime}>
+					{progress && durationTime
+						? formatTime((progress / 100) * durationTime)
+						: '0:00'}
+				</span>
+				/ {durationTime ? formatTime(durationTime) : '0:00'}
 			</p>
 		</div>
 	);

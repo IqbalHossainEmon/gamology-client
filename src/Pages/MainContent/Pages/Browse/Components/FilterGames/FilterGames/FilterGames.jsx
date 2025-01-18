@@ -1,19 +1,18 @@
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
-import useFilterSortState from '../../../Utils/Hooks/useFilterSortState/useFilterSortState';
-import CloseButton from '../../Shared/CloseButton/CloseButton';
+import useBrowseFilter from '../../../Utils/Hooks/useBrowseFilter/useBrowseFilter';
+import BrowseCloseButton from '../../Shared/BrowseCloseButton/CloseButton';
 import FilterOptionsLoading from '../Components/FilterOptionsLoading/FilterOptionsLoading';
 import FilterOptionsWithApplyBtn from '../Components/FilterOptionsWithApplyBtn/FilterOptionsWithApplyBtn/FilterOptionsWithApplyBtn';
 import styles from './FilterGames.module.css';
 
 export default function FilterGames({ filterState, dispatch, limits, options, loading }) {
-	const { filterSortState, setFilterSort, filterSortRef } = useFilterSortState();
-	const { filter } = filterSortState;
+	const { filter, setFilter } = useBrowseFilter();
+
 	const { widthInRem } = useScreenWidth();
 
 	return (
 		<aside
-			className={`${styles.FilterGames} ${filter && widthInRem < 48.0625 ? styles.hidden : styles.show}`}
-			ref={filterSortRef}
+			className={`${styles.FilterGames}${widthInRem < 48.0625 && filter ? ` ${styles.show}` : ` ${styles.hidden}`}`}
 		>
 			{loading ? (
 				<FilterOptionsLoading />
@@ -24,12 +23,12 @@ export default function FilterGames({ filterState, dispatch, limits, options, lo
 					limits={limits}
 					options={options}
 					screenWidth={widthInRem}
-					setFilterSort={setFilterSort}
+					setFilter={setFilter}
 				/>
 			)}
 			{widthInRem < 48.0625 && (
 				<div className={styles.closeButton}>
-					<CloseButton setState={setFilterSort} state='filter' />
+					<BrowseCloseButton setState={setFilter} state='filter' />
 				</div>
 			)}
 		</aside>

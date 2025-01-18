@@ -6,7 +6,7 @@ const useReloadScroll = () => {
 
 		const handleLoad = () => {
 			setTimeout(() => {
-				const scrollPos = sessionStorage.getItem('scrollPos');
+				const scrollPos = localStorage.getItem('scrollPos');
 				if (scrollPos) {
 					root.scrollTo(0, parseInt(scrollPos, 10));
 				}
@@ -14,7 +14,7 @@ const useReloadScroll = () => {
 		};
 
 		const handleBeforeUnload = () => {
-			sessionStorage.setItem('scrollPos', root.scrollTop);
+			localStorage.setItem('scrollPos', root.scrollTop);
 		};
 
 		window.addEventListener('load', handleLoad);

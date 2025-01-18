@@ -97,7 +97,6 @@ export default function IndiGameBanner() {
 				timerFunction={timerFunction}
 				transition={coverTransition}
 			/>
-
 			{data.length > 1 && (
 				<IndiGameBannerCards
 					active={active}

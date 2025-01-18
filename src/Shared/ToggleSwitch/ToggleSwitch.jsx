@@ -5,7 +5,15 @@ import styles from './ToggleSwitch.module.css';
 
 const rangePathWidth = 13;
 
-function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEvent, isLoading }) {
+function ToggleSwitch({
+	state,
+	setState,
+	name,
+	onSwitchMove,
+	mouseDownEvent,
+	mouseUpEvent,
+	isLoading,
+}) {
 	const [circlePosition, setCirclePosition] = useState({
 		translate: state ? rangePathWidth : 0,
 		transition: false,
@@ -14,9 +22,6 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 	const stateRef = useRef(circlePosition);
 	stateRef.current = circlePosition.translate;
 
-	const mainStateRef = useRef(state);
-	mainStateRef.current = state;
-
 	const roundRef = useRef(null);
 	const positionsRef = useRef(0);
 	const startPositionRef = useRef(0);
@@ -24,24 +29,24 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 
 	useEffect(() => {
 		if (prevState.current !== state) {
-			if (state) {
-				setCirclePosition({ translate: rangePathWidth, transition: true });
-				handleTimerTransition();
-			} else {
-				setCirclePosition({ translate: 0, transition: true });
-				handleTimerTransition();
-			}
+			setCirclePosition({ translate: state ? rangePathWidth : 0, transition: true });
+			handleTimerTransition();
+
 			prevState.current = state;
 		}
 	}, [handleTimerTransition, state]);
 
 	const eventRefs = useRef(null);
 
+	const isMouseDown = useRef(false);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleMove: e => {
-				if (event) event();
-
+				if (onSwitchMove && isMouseDown.current) {
+					isMouseDown.current = false;
+					onSwitchMove();
+				}
 				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
 				const newPosition = startPositionRef.current + move;
 
@@ -66,37 +71,36 @@ function ToggleSwitch({ state, setState, name, event, mouseDownEvent, mouseUpEve
 				if (mouseUpEvent) {
 					mouseUpEvent();
 				}
+				if (isMouseDown.current) isMouseDown.current = false;
+				let isToggled = false;
 				if (stateRef.current < rangePathWidth / 2) {
-					if (stateRef.current !== 0) {
-						setCirclePosition({ translate: 0, transition: true });
-						handleTimerTransition();
-					}
-					if (mainStateRef.current) {
-						setState(prev => ({ ...prev, [name]: false }), name);
-					}
+					isToggled = false;
 				} else if (stateRef.current >= rangePathWidth / 2) {
-					if (stateRef.current !== rangePathWidth) {
-						setCirclePosition({ translate: rangePathWidth, transition: true });
-						handleTimerTransition();
-					}
-					if (!mainStateRef.current) {
-						setState(prev => ({ ...prev, [name]: true }), name);
-					}
+					isToggled = true;
 				}
+
+				setCirclePosition({
+					translate: isToggled ? rangePathWidth : 0,
+					transition: true,
+				});
+
+				handleTimerTransition();
+				setState(prev => ({ ...prev, [name]: isToggled }), name);
 			},
 		};
 	}
 
 	const onStart = useDragStartStop(
 		eventRefs.current.handleMove,
-		eventRefs.current.handleSetValue,
-		mouseDownEvent && mouseDownEvent
+		eventRefs.current.handleSetValue
 	);
 
 	if (!eventRefs.current.handleBeginning) {
 		eventRefs.current.handleBeginning = e => {
 			onStart(e);
+			isMouseDown.current = true;
 			eventRefs.current.handleStart(e);
+			if (mouseDownEvent) mouseDownEvent();
 		};
 	}
 

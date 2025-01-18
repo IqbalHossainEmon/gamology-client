@@ -8,24 +8,22 @@ function FilterOptionsWithApplyBtn({
 	limits,
 	options,
 	screenWidth,
-	setFilterSort,
+	setFilter,
 }) {
 	const [state, setState] = useState(filterState);
 	return (
 		<>
 			<FilterOptions
-				dispatch={dispatch}
 				limits={limits}
 				options={options}
 				screenWidth={screenWidth}
-				setFilterSort={setFilterSort}
 				setState={setState}
 				state={state}
 			/>
 			<ApplyButton
 				dispatch={dispatch}
 				filterState={filterState}
-				setShow={setFilterSort}
+				setShow={setFilter}
 				state={state}
 			/>
 		</>

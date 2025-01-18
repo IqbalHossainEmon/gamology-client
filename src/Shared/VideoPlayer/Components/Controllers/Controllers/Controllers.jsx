@@ -9,7 +9,14 @@ import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
 import styles from './Controllers.module.css';
 
-function Controllers({ video, videoContainer, src, isControllerShowing, changePause }) {
+function Controllers({
+	video,
+	videoContainer,
+	src,
+	isControllerShowing,
+	changePause,
+	hideControllerRefs,
+}) {
 	const handleFullScreen = useFullScreenLogic();
 	const [progress, setProgress] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -134,7 +141,11 @@ function Controllers({ video, videoContainer, src, isControllerShowing, changePa
 					<ProgressTimeShow video={video} progress={progress} />
 				</li>
 				<li className={styles.gearButton} ref={gearRef}>
-					<GearButton gearRef={gearRef} videoContainer={videoContainer} />
+					<GearButton
+						gearRef={gearRef}
+						videoContainer={videoContainer}
+						hideControllerRefs={hideControllerRefs}
+					/>
 				</li>
 				<li>
 					<FullScreenButton videoContainer={videoContainer} />
