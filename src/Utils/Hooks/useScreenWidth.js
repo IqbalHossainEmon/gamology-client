@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
 function useScreenWidth() {
-	const screenWidth = useContext(ScreenWidthContext);
+	const { remsInPixel, widthInRem, widthInPixels } = useContext(ScreenWidthContext);
 
-	return screenWidth;
+	return { remsInPixel, widthInRem, widthInPixels };
 }
 
 export default useScreenWidth;

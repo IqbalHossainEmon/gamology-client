@@ -31,7 +31,6 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
 					setState(prev => ({ ...prev, [name]: value }));
 				}
 			},
-			
 		};
 	}
 

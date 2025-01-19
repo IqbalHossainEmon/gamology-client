@@ -14,13 +14,18 @@
 	font-size: 1rem;
 }
 .label {
+	width: calc(100% - 0.625rem);
 	position: absolute;
 	user-select: none;
 	left: 0.625em;
 	top: 50%;
+	text-align: left;
 	scale: 1;
 	translate: 0 -50%;
 	transform-origin: 0 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	pointer-events: none;
 	color: rgb(173, 173, 173);
 	transition:

@@ -23,7 +23,7 @@ function SelectionFieldList({
 				<div
 					className={styles.listScrollContainer}
 					{...(positionRef.current.height && {
-						style: { maxHeight: `${positionRef.current.height}px` },
+						style: { height: `${positionRef.current.height}px` },
 					})}
 				>
 					<ScrollBar>

@@ -39,7 +39,10 @@ export default function SelectionField({
 		}
 	}, [defaultValue]);
 
-	const { widthInRem } = useScreenWidth();
+	const { widthInRem, remsInPixel } = useScreenWidth();
+
+	const remWidthRefs = useRef({ widthInRem, remsInPixel });
+	remWidthRefs.current = { widthInRem, remsInPixel };
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 	const calculateTextWidth = useCalculateTextSize();
@@ -56,20 +59,24 @@ export default function SelectionField({
 			handleClick: () => {
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
-				// Check if the dropdown should be at the bottom or top depending on the space available for 2 rows (each row is 40px)
-				if (bottomRemain >= 80 || y < 80) {
+				// Check if the dropdown should be at the bottom or top depending on the space available for 2 rows
+				const oneRow = 2.5 * remWidthRefs.current.remsInPixel;
+
+				if (bottomRemain >= oneRow * 2 || y < oneRow * 2) {
 					positionRef.current.bottom = true;
 				} else {
 					positionRef.current.bottom = false;
 				}
 				// get the height of the dropdown depending on the number of items in the dropdown
-				if (none ? list.length + 1 : list.length > 8) {
+				if ((none ? list.length + 1 : list.length) > 8) {
 					positionRef.current.height = Math.min(
-						parseInt((positionRef.current.bottom ? bottomRemain : y) / 40, 10) * 40,
-						320
+						parseInt((positionRef.current.bottom ? bottomRemain : y) / oneRow, 10) *
+							oneRow,
+						oneRow * 8
 					);
 				} else {
-					positionRef.current.height = (none ? list.length + 1 : list.length || 1) * 40;
+					positionRef.current.height =
+						(none ? list.length + 1 : list.length || 1) * oneRow;
 				}
 			},
 		};
@@ -88,7 +95,7 @@ export default function SelectionField({
 			isAdded.current = false;
 			setTooltip(elementRef.current, null);
 		}
-	}, [setTooltip, value, width, screenWidth]);
+	}, [setTooltip, value, width, widthInRem]);
 
 	useEffect(() => {
 		const input = inputRef.current;
@@ -109,9 +116,9 @@ export default function SelectionField({
 				{...(enabled || { tabIndex: '-1' })}
 				className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${styles.button}`}
 				onClick={() => {
-					eventRefs.current.handleClick();
 					setShow(prev => {
 						if (!prev) {
+							eventRefs.current.handleClick();
 							showMenu();
 						} else {
 							onHide();
@@ -153,7 +160,7 @@ export default function SelectionField({
 				setState={setState}
 				setValue={val => {
 					setValue(val);
-					setWidth(calculateTextWidth(val, '16px Inter'));
+					setWidth(calculateTextWidth(val, '1rem Inter'));
 				}}
 				state={show}
 				value={value}

@@ -22,7 +22,7 @@
 	color: #cc2a24;
 }
 .label {
-	width: calc(100% - 10px);
+	width: calc(100% - 0.625rem);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -72,7 +72,7 @@
 
 .textarea {
 	resize: none;
-	min-height: 150px;
+	min-height: 9.375rem;
 	overflow: hidden;
 }
 .fieldNumber::-webkit-outer-spin-button,

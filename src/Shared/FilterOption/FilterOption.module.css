@@ -14,14 +14,14 @@
 }
 .text {
 	user-select: none;
-	width: calc(100% - 70px);
+	width: calc(100% - 4.375rem);
 	-webkit-user-select: none;
 	overflow-wrap: anywhere;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	color: rgb(173, 173, 173);
 	font-size: 0.875rem;
-	line-height: 18px;
+	line-height: 1.125rem;
 	transition: color 200ms;
 }
 

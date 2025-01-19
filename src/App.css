@@ -123,7 +123,7 @@ body {
 }
 
 .scrollbar-replace-padding {
-	padding-right: 0.5em;
+	padding-right: 8px;
 }
 
 .overflow-y-hidden {

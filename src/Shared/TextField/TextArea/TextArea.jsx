@@ -1,4 +1,5 @@
 import { forwardRef, useCallback, useEffect, useRef } from 'react';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 
 function TextArea({ onChange, ...rest }, ref) {
 	const textFieldRef = useRef(null);
@@ -11,12 +12,14 @@ function TextArea({ onChange, ...rest }, ref) {
 		};
 	};
 
+	const { remsInPixel } = useScreenWidth();
+
 	const adjustHeight = useCallback(() => {
 		if (textFieldRef.current) {
 			textFieldRef.current.style.height = 'auto';
-			textFieldRef.current.style.height = `${textFieldRef.current.scrollHeight}px`;
+			textFieldRef.current.style.height = `${textFieldRef.current.scrollHeight / remsInPixel}rem`;
 		}
-	}, []);
+	}, [remsInPixel]);
 
 	const debouncedAdjustHeight = useCallback(() => debounce(adjustHeight, 100)(), [adjustHeight]);
 

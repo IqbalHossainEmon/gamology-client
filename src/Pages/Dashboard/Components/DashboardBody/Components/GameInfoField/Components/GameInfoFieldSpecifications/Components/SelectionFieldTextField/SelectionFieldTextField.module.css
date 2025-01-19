@@ -7,8 +7,8 @@
 }
 
 .selectionField {
-	flex: 0 1 150px;
-	min-width: 150px;
+	flex: 0 1 9.375rem;
+	min-width: 9.375rem;
 }
 
 .textField {

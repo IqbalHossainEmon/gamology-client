@@ -30,11 +30,11 @@
 	display: block;
 	background-color: transparent;
 	z-index: 4;
-	top: 14px;
-	right: 10px;
+	top: 0.875rem;
+	right: 0.625rem;
 	position: absolute;
-	width: 30px;
-	height: 22px;
+	width: 1.875rem;
+	height: 1.375rem;
 	cursor: pointer;
 	border: none;
 }
@@ -44,10 +44,10 @@
 }
 .hamburger {
 	display: block;
-	top: 10px;
+	top: 0.625rem;
 	left: 0px;
 	height: 2px;
-	width: 30px;
+	width: 1.875rem;
 	background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
 	transition: 500ms;
 	border: none;
@@ -59,17 +59,17 @@
 	display: block;
 	position: absolute;
 	height: 2px;
-	right: 30px;
-	width: 30px;
+	right: 1.875rem;
+	width: 1.875rem;
 	left: 0;
 	background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
 	transition: 300ms;
 }
 .hamburger::after {
-	top: -10px;
+	top: -0.625rem;
 }
 .hamburger::before {
-	top: 10px;
+	top: 0.625rem;
 }
 
 .cross {

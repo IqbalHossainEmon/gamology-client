@@ -9,13 +9,13 @@
 	align-items: center;
 }
 .releaseDay {
-	width: 100px;
+	width: 6.25rem;
 }
 .releaseMonth {
-	width: 150px;
+	width: 9.375rem;
 }
 .releaseYear {
-	width: 100px;
+	width: 6.25rem;
 }
 .releaseComponent {
 	margin-left: 0.625em;

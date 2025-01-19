@@ -19,13 +19,20 @@ function FilterOption({ text, setState, border, state, name }) {
 			},
 			handleTouchStart: () => {
 				isForTouch = true;
-				document.addEventListener('touchend', eventRef.current.handleClick, { once: true });
+				document.addEventListener('touchend', eventRef.current.handleClick);
 			},
 			removeEvent: () => {
-				if (isForTouch) {
-					document.removeEventListener('touchend', eventRef.current.handleClick);
-					isForTouch = false;
-				} else document.removeEventListener('mouseup', eventRef.current.handleClick);
+				switch (isForTouch) {
+					case true:
+						document.removeEventListener('touchend', eventRef.current.handleClick);
+						isForTouch = false;
+						break;
+					case false:
+						document.removeEventListener('mouseup', eventRef.current.handleClick);
+						break;
+					default:
+						break;
+				}
 			},
 		};
 	}
@@ -37,18 +44,16 @@ function FilterOption({ text, setState, border, state, name }) {
 			} ${styles.shadow}`}
 			onMouseDown={e => {
 				e.preventDefault();
-				document.addEventListener('mouseup', eventRef.current.handleClick, { once: true });
+				document.addEventListener('mouseup', eventRef.current.handleClick);
 			}}
+			onTouchStart={eventRef.current.handleTouchStart}
 			ref={btnRef}
 			type='button'
 		>
 			<p className={styles.text}>{text}</p>
-			<div
-				className={styles.toggleButtonContainer}
-				onTouchStart={eventRef.current.handleTouchStart}
-			>
+			<div className={styles.toggleButtonContainer}>
 				<ToggleSwitch
-					event={eventRef.current.removeEvent}
+					onSwitchMove={eventRef.current.removeEvent}
 					name={name}
 					setState={setState}
 					state={state}
