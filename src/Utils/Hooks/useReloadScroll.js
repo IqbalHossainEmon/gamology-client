@@ -9,6 +9,7 @@ const useReloadScroll = () => {
 				const scrollPos = localStorage.getItem('scrollPos');
 				if (scrollPos) {
 					root.scrollTo(0, parseInt(scrollPos, 10));
+					localStorage.removeItem('scrollPos');
 				}
 			}, 500);
 		};
