@@ -7,7 +7,7 @@ function HorizontalCards(
 	ref
 ) {
 	return (
-		<div className={styles.cards} ref={ref}>
+		<div className={styles.cardsContainer} ref={ref}>
 			{!!cardsWidth && (
 				<ul
 					className={`${transition ? `${styles.transition} ` : ''} ${styles.cardSlider}`}

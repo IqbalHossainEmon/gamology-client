@@ -33,6 +33,7 @@
 	padding-top: 1.25em;
 	width: 100%;
 	display: grid;
+	align-items: start;
 	gap: 1.5rem;
 	list-style-type: none;
 }

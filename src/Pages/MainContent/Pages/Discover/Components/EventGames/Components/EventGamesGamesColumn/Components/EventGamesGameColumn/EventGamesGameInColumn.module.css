@@ -38,8 +38,7 @@
 
 .name {
 	font-size: 0.875rem;
-	font-weight: 400;
-	/* after two line if breaks more than elleps */
+	font-weight: 500;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;

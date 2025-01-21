@@ -26,6 +26,7 @@
 
 .image {
 	display: block;
+	pointer-events: none;
 	transition: opacity 200ms;
 }
 .loading {
