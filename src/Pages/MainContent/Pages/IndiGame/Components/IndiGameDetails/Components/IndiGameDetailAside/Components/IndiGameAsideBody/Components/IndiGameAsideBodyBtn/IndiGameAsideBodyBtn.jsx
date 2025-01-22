@@ -1,11 +1,8 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import styles from './IndiGameAsideBodyBtn.module.css';
 
 function IndiGameAsideBodyBtn() {
-	const buyButtonRef = useRef(null);
-	const cartButtonRef = useRef(null);
-	const wishlistBtnRef = useRef(null);
 	const [isBought, setIsBought] = useState(false);
 	const [addedToCart, setAddedToCart] = useState(false);
 	const [wishListState, setWishListState] = useState(0);
@@ -23,20 +20,15 @@ function IndiGameAsideBodyBtn() {
 	return (
 		<>
 			{isBought || (
-				<button
-					className={`${styles.buyNow} ${styles.btn}`}
-					ref={buyButtonRef}
-					type='button'
-				>
+				<button className={`${styles.buyNow} ${styles.btn}`} type='button'>
 					Buy Now
-					<ButtonWaterEffect backGround='rgb(11 52 90)' btnRef={buyButtonRef} long />
+					<ButtonWaterEffect backGround='rgb(11 52 90)' long />
 				</button>
 			)}
 
 			<button
 				className={`${styles.btn} ${styles.cartBtn}`}
 				onClick={handleAddingCart}
-				ref={cartButtonRef}
 				{...((addedToCart || isBought) && { disabled: true })}
 				type='button'
 			>
@@ -66,14 +58,13 @@ function IndiGameAsideBodyBtn() {
 					'Add to Cart'
 				)}
 
-				<ButtonWaterEffect backGround='rgb(5 132 255)' btnRef={cartButtonRef} long />
+				<ButtonWaterEffect backGround='rgb(5 132 255)' long />
 			</button>
 
 			{isBought || (
 				<button
 					className={[styles.btn, styles.wishlistBtn].join(' ')}
 					onClick={handleAddingWishList}
-					ref={wishlistBtnRef}
 					type='button'
 				>
 					<div
@@ -93,7 +84,7 @@ function IndiGameAsideBodyBtn() {
 						)}
 					</div>
 					Add to Wishlist
-					<ButtonWaterEffect backGround='grey' btnRef={wishlistBtnRef} long />
+					<ButtonWaterEffect backGround='grey' long />
 				</button>
 			)}
 		</>

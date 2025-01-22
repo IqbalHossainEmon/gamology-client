@@ -10,8 +10,6 @@ function EditGameCardAddCardBody({ setModal, onClick }) {
 	const gameSelectedRef = useRef({});
 	const errorMessage = useRef('');
 
-	const waterEffectBtnRef = useRef(null);
-
 	return (
 		<>
 			<div
@@ -68,11 +66,10 @@ function EditGameCardAddCardBody({ setModal, onClick }) {
 						footer: null,
 					});
 				}}
-				ref={waterEffectBtnRef}
 				type='button'
 			>
 				Submit
-				<ButtonWaterEffect backGround='#3e9c35' btnRef={waterEffectBtnRef} long />
+				<ButtonWaterEffect backGround='#3e9c35' long />
 			</button>
 		</>
 	);

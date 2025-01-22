@@ -12,8 +12,6 @@ function AllGamesSalesModal({ price: prevPrice }) {
 		errorMessage: '',
 	});
 
-	const btnRef = useRef(null);
-
 	const setModal = useModal();
 
 	const { setToast } = useToast();
@@ -63,9 +61,9 @@ function AllGamesSalesModal({ price: prevPrice }) {
 				}}
 				type='text'
 			/>
-			<button ref={btnRef} className={styles.btn} onClick={handleSubmit} type='button'>
+			<button className={styles.btn} onClick={handleSubmit} type='button'>
 				Submit Price
-				<ButtonWaterEffect btnRef={btnRef} long />
+				<ButtonWaterEffect long />
 			</button>
 		</div>
 	);

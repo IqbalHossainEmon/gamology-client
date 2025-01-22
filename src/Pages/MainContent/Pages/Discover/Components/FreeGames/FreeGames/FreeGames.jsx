@@ -94,9 +94,9 @@ export default function FreeGames() {
 					/>
 				</div>
 				<h3 className={styles.headerName}>Free games</h3>
-				<button className={styles.viewMoreBtn} ref={btnRef} type='button'>
+				<button className={styles.viewMoreBtn} type='button'>
 					View More
-					<ButtonWaterEffect btnRef={btnRef} />
+					<ButtonWaterEffect />
 				</button>
 			</div>
 			<ul className={`${styles.games} ${styles[`games${items.length}`]}`}>

@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './ButtonWaterEffect.module.css';
 
-function ButtonWaterEffect({ btnRef, backGround, long }) {
+function ButtonWaterEffect({ backGround, long }) {
 	const [ele, setEle] = useState([]);
 	const eleRef = useRef(ele);
 	eleRef.current = ele;
 	const key = useRef(0);
 	const eventRefs = useRef(null);
+
+	const waterDropContainer = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -26,16 +28,19 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 			// Handle the click event on the button
 			handleClick: e => {
 				// get the x and y coordinates of the click event
+
+				const btn = e.target;
+
 				let x =
 					(e.touches ? e.touches[0].clientX : e.clientX) -
-					btnRef.current.getBoundingClientRect().left;
+					btn.getBoundingClientRect().left;
 				let y =
 					(e.touches ? e.touches[0].clientY : e.clientY) -
-					btnRef.current.getBoundingClientRect().top;
+					btn.getBoundingClientRect().top;
 
 				// get the width and height of the button
-				const width = btnRef.current.offsetWidth;
-				const height = btnRef.current.offsetHeight;
+				const width = btn.offsetWidth;
+				const height = btn.offsetHeight;
 				const halfWidth = width / 2;
 				const halfHeight = height / 2;
 
@@ -81,7 +86,7 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 		};
 	}
 	useEffect(() => {
-		const btn = btnRef.current;
+		const btn = waterDropContainer.current.parentElement;
 		const { handleClick } = eventRefs.current;
 
 		btn.addEventListener('click', handleClick);
@@ -90,8 +95,12 @@ function ButtonWaterEffect({ btnRef, backGround, long }) {
 				btn.removeEventListener('click', handleClick);
 			}
 		};
-	}, [backGround, btnRef, long]);
+	}, [backGround, long]);
 
-	return <span className={styles.btnWaterEffect}>{ele}</span>;
+	return (
+		<span ref={waterDropContainer} className={styles.btnWaterEffect}>
+			{ele}
+		</span>
+	);
 }
 export default ButtonWaterEffect;

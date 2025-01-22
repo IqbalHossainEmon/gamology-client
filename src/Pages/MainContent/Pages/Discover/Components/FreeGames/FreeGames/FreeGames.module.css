@@ -2,7 +2,7 @@
 	width: 100%;
 	position: relative;
 	background-color: #202024;
-	padding: 2em;
+	padding: 2em 3em;
 	border-radius: 5px;
 	margin-bottom: 4rem;
 }
@@ -39,16 +39,16 @@
 }
 
 .games4 {
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .games3 {
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .games2 {
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .games1 {
-	grid-template-columns: repeat(1, 1fr);
+	grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .headerIcon {
@@ -60,9 +60,15 @@
 	padding-bottom: 100%;
 }
 
+@media screen and (max-width: 48rem) {
+	.freeGames {
+		padding: 1em 1.5em;
+	}
+}
+
 @media only screen and (max-width: 37.25rem) {
 	.games4 {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 
@@ -74,13 +80,13 @@
 
 @media only screen and (max-width: 24.9375rem) {
 	.games3 {
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-columns: repeat(1, minmax(0, 1fr));
 	}
 }
 
 @media only screen and (max-width: 20.3125rem) {
 	.games4,
 	.games2 {
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-columns: repeat(1, minmax(0, 1fr));
 	}
 }

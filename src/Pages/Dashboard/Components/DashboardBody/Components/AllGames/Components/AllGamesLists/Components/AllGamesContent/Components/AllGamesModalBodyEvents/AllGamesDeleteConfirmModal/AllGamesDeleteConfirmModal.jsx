@@ -12,8 +12,6 @@ function AllGamesDeleteConfirmModal() {
 		errorMessage: '',
 	});
 
-	const btnRef = useRef(null);
-
 	const setModal = useModal();
 
 	const { setToast } = useToast();
@@ -53,9 +51,9 @@ function AllGamesDeleteConfirmModal() {
 				}}
 				type='text'
 			/>
-			<button ref={btnRef} className={styles.deleteBtn} onClick={handleDelete} type='button'>
+			<button className={styles.deleteBtn} onClick={handleDelete} type='button'>
 				Delete
-				<ButtonWaterEffect btnRef={btnRef} long />
+				<ButtonWaterEffect long />
 			</button>
 		</div>
 	);

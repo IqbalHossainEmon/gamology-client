@@ -6,7 +6,6 @@ import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToas
 import styles from './AllGamesPriceEditModal.module.css';
 
 function AllGamesPriceEditModal({ price }) {
-	const btnRef = useRef(null);
 	const newPrice = useRef(null);
 
 	const [{ errorChange, errorMessage }, setError] = useState({
@@ -129,9 +128,9 @@ function AllGamesPriceEditModal({ price }) {
 					errorMessage={errorMessage}
 				/>
 			</div>
-			<button className={styles.submitBtn} onClick={handleSubmit} ref={btnRef} type='button'>
+			<button className={styles.submitBtn} onClick={handleSubmit} type='button'>
 				Submit
-				<ButtonWaterEffect backGround='#3e9c35' btnRef={btnRef} long />
+				<ButtonWaterEffect backGround='#3e9c35' long />
 			</button>
 		</div>
 	);

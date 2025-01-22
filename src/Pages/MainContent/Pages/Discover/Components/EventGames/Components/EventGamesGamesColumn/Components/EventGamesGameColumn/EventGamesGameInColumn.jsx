@@ -1,12 +1,13 @@
 import DiscountPriceWithPercent from '../../../../../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
-import Image from '../../../../../../../../../../Shared/Image/Image/Image';
+import ImageWithHover from '../../../../../../../../../../Shared/ImageWithHover/ImageWithHover';
 import styles from './EventGamesGameInColumn.module.css';
 
 export default function EventGamesGameColumn({ game }) {
 	return (
 		<li className={styles.gameColumn}>
 			<div className={styles.gameImageContainer}>
-				<Image
+				<ImageWithHover
+					cardHover={null}
 					data={game.carouselThumb}
 					alt={game.name}
 					aspectRatioClassName={styles.aspectRatioClassName}

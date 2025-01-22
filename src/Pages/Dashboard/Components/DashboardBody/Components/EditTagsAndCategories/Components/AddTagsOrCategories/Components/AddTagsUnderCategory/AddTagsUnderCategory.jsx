@@ -1,12 +1,10 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import styles from './AddTagsUnderCategory.module.css';
 
 function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 	const [numberOfTags, setNumberOfTags] = useState(1);
-	const addBtnREf = useRef(null);
-	const removeBtnREf = useRef(null);
 
 	return (
 		<div className={styles.tagsUnderCategory}>
@@ -35,11 +33,10 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 							setNumberOfTags(prev => prev + 1);
 							infoRef.push('');
 						}}
-						ref={addBtnREf}
 						type='button'
 					>
 						Add More +
-						<ButtonWaterEffect btnRef={addBtnREf} />
+						<ButtonWaterEffect />
 					</button>
 				</div>
 				<div
@@ -56,11 +53,10 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 								return prev;
 							});
 						}}
-						ref={removeBtnREf}
 						type='button'
 					>
 						Remove One -
-						<ButtonWaterEffect btnRef={removeBtnREf} />
+						<ButtonWaterEffect />
 					</button>
 				</div>
 			</div>

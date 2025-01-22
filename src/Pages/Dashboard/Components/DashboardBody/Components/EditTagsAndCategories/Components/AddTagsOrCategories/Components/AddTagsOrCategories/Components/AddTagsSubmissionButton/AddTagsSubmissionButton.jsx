@@ -12,8 +12,6 @@ function AddTagsSubmissionButton({
 	setErrorChange,
 	setNone,
 }) {
-	const addBtnRef = useRef(null);
-
 	const eventRefs = useRef(null);
 
 	const { setToast } = useToast();
@@ -62,9 +60,9 @@ function AddTagsSubmissionButton({
 
 	return (
 		<div className={styles.submitBtn}>
-			<button onClick={eventRefs.current.handleButtonClick} ref={addBtnRef} type='button'>
+			<button onClick={eventRefs.current.handleButtonClick} type='button'>
 				Submit
-				<ButtonWaterEffect btnRef={addBtnRef} />
+				<ButtonWaterEffect />
 			</button>
 		</div>
 	);

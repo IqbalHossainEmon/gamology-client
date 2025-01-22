@@ -14,7 +14,3 @@
 .transition {
 	transition: translate 200ms;
 }
-
-.card {
-	cursor: pointer;
-}

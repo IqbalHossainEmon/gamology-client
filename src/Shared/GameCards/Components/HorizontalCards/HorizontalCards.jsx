@@ -16,7 +16,6 @@ function HorizontalCards(
 					{data.map(({ id, name, carouselThumb, price, category }) => (
 						<Card
 							cardInfo={{ id, name, img: carouselThumb, price, category }}
-							className={styles.card}
 							key={id}
 							style={{ width: `${cardsWidth}px`, marginRight: `${margin}px` }}
 						>

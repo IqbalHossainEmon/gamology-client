@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
-import Image from '../Image/Image/Image';
+import ImageWithHover from '../ImageWithHover/ImageWithHover';
 import styles from './Card.module.css';
 
 export default function Card({ cardInfo, style, className, children }) {
@@ -14,7 +14,8 @@ export default function Card({ cardInfo, style, className, children }) {
 			{...(style && { style })}
 		>
 			<div className={styles.cardImg}>
-				<Image
+				<ImageWithHover
+					cardHover={children ? children(parentRef, cardInfo) : null}
 					data={img}
 					alt={`${name}-cardThumb-${id + 1}`}
 					aspectRatioClassName={styles.aspectRatioClassName}
@@ -24,7 +25,7 @@ export default function Card({ cardInfo, style, className, children }) {
 			<div className={styles.price}>
 				<DiscountPriceWithPercent price={price} />
 			</div>
-			{children ? children(parentRef, cardInfo) : null}
+			{}
 		</li>
 	);
 }

@@ -1,8 +1,6 @@
 .freeGame {
-	cursor: pointer;
-	transition: filter 300ms;
+	width: 100%;
 }
-
 .gameHeader {
 	width: 100%;
 	display: flex;
@@ -36,7 +34,7 @@
 .name {
 	margin: 0.5rem 0;
 	font-weight: 500;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 }
 .gameDetail p {
 	font-size: 0.875rem;

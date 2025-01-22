@@ -63,7 +63,7 @@ function CoverImageContainer({
 		return () => {
 			input.removeEventListener('cancel', handleCancel);
 		};
-	}, [btnRef, inputRef]);
+	}, [inputRef]);
 
 	return (
 		<>
@@ -130,7 +130,7 @@ function CoverImageContainer({
 						</defs>
 					</svg>
 				</div>
-				<ButtonWaterEffect btnRef={btnRef} long />
+				<ButtonWaterEffect long />
 			</button>
 		</>
 	);

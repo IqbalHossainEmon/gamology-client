@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Image from '../../../../../../../../Shared/Image/Image/Image';
+import ImageWithHover from '../../../../../../../../Shared/ImageWithHover/ImageWithHover';
 import styles from './UserCard.module.css';
 
 function UserCard({ data, children, admin }) {
@@ -12,7 +12,8 @@ function UserCard({ data, children, admin }) {
 			ref={containerRef}
 		>
 			<div className={styles.cardContainerImg}>
-				<Image
+				<ImageWithHover
+					cardHover={children(containerRef)}
 					data={profileImage}
 					alt={`${firstName}${middleName ? ` ${middleName}` : ''} ${lastName}`}
 					aspectRatioClassName={styles.aspectRatioClassName}
@@ -24,7 +25,6 @@ function UserCard({ data, children, admin }) {
 				</h3>
 				<p>{email}</p>
 			</div>
-			{children(containerRef)}
 		</div>
 	);
 }

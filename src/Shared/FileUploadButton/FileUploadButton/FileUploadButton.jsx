@@ -208,14 +208,14 @@ function FileUploadButton({
 								</svg>
 							</div>
 						)}
-						<ButtonWaterEffect btnRef={btnRef} long />
+						<ButtonWaterEffect long />
 					</button>
 					<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 				</div>
 				{selected.file && touchAble ? (
 					<button className={styles.previewBtn} ref={previewBtnRef} type='button'>
 						Preview
-						<ButtonWaterEffect btnRef={previewBtnRef} long />
+						<ButtonWaterEffect long />
 					</button>
 				) : null}
 			</div>

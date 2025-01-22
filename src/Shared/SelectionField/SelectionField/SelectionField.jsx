@@ -149,7 +149,7 @@ export default function SelectionField({
 				<div className={styles.rotateArrow}>
 					<RotateArrow state={show} />
 				</div>
-				<ButtonWaterEffect btnRef={elementRef} />
+				<ButtonWaterEffect />
 			</button>
 			<SelectionFieldList
 				list={list}

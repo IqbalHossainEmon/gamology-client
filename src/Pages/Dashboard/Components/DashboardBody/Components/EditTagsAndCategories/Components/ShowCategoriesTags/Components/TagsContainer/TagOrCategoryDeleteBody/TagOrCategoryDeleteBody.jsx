@@ -7,8 +7,6 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 	const [errorChange, setErrorChange] = useState(0);
 	const checkText = useRef('');
 
-	const btnRef = useRef(null);
-
 	return (
 		<div className={styles.modalBody}>
 			<p className={styles.modelBody}>{text}</p>
@@ -26,7 +24,6 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 			</div>
 			<div className={styles.btnContainer}>
 				<button
-					ref={btnRef}
 					className={styles.deleteBtn}
 					onClick={() => {
 						if (checkText.current.toLowerCase() !== 'delete') {
@@ -40,7 +37,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					type='button'
 				>
 					Delete
-					<ButtonWaterEffect btnRef={btnRef} long />
+					<ButtonWaterEffect long />
 				</button>
 			</div>
 		</div>

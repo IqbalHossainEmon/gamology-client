@@ -152,9 +152,6 @@ function EditUserBody({ user, setUser }) {
 		};
 	}
 
-	const saveBtnRef = useRef(null);
-	const deleteBtnRef = useRef(null);
-
 	return (
 		<div className={styles.editUserBody}>
 			<ProfilePhotoUploader data={user.profileImage} setPhoto={eventRefs.current.setPhoto} />
@@ -167,13 +164,12 @@ function EditUserBody({ user, setUser }) {
 				errorChange={errorChange}
 			/>
 			<button
-				ref={saveBtnRef}
 				type='button'
 				onClick={eventRefs.current.handleSaveChanges}
 				className={`${styles.btn} ${styles.saveButton}`}
 			>
 				Save Changes
-				<ButtonWaterEffect btnRef={saveBtnRef} />
+				<ButtonWaterEffect />
 			</button>
 			<OuterErrorMessage
 				errorChange={errorChange}
@@ -182,12 +178,11 @@ function EditUserBody({ user, setUser }) {
 			<h3 className={styles.subHeader}>Delete User</h3>
 			<button
 				onClick={eventRefs.current.handleDelete}
-				ref={deleteBtnRef}
 				type='button'
 				className={`${styles.btn} ${styles.deleteButton}`}
 			>
 				Delete User Account
-				<ButtonWaterEffect btnRef={deleteBtnRef} />
+				<ButtonWaterEffect />
 			</button>
 		</div>
 	);
