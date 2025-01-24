@@ -85,11 +85,22 @@ function ButtonWaterEffect({ backGround, long }) {
 			},
 		};
 	}
+
+	const isAdded = useRef(false);
+
 	useEffect(() => {
 		const btn = waterDropContainer.current.parentElement;
 		const { handleClick } = eventRefs.current;
 
-		btn.addEventListener('click', handleClick);
+		if (btn) {
+			if (!isAdded.current) {
+				btn.classList.add(styles.btn);
+				isAdded.current = true;
+			}
+
+			btn.addEventListener('click', handleClick);
+		}
+
 		return () => {
 			if (btn) {
 				btn.removeEventListener('click', handleClick);

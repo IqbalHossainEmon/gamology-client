@@ -78,6 +78,26 @@ body {
 	overflow-y: scroll;
 }
 
+a {
+	-webkit-text-decoration: none;
+	text-decoration: none;
+	-moz-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: default;
+}
+
+a:visited {
+	color: inherit;
+}
+
+a:link {
+	color: inherit;
+}
+
+a:hover {
+	color: inherit;
+}
+
 @media (hover: hover) and (pointer: fine) {
 	.hover-shadow {
 		transition: filter 200ms;

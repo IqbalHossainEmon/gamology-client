@@ -234,7 +234,7 @@ const items = [
 function DiscoverGameCards({ header }) {
 	return (
 		<section className={styles.games}>
-			<GameCards headerTitle={header} items={items} />
+			<GameCards headerTitle={header} items={items} link='#!' />
 		</section>
 	);
 }

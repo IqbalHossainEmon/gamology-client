@@ -8,31 +8,43 @@ function MixEventGameCard({ data, isOnlyOne }) {
 	const { title, image, footer, description } = data;
 
 	return (
-		<li className={`${styles.mixEventGameCard}${isOnlyOne ? ` ${styles.onlyOne}` : ''}`}>
+		<li
+			className={`${styles.mixEventGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiPle}`}
+		>
 			<div className={`${styles.imageContainer} hover-shadow`}>
-				{Array.isArray(footer) ? (
-					<Image data={image} aspectRatioClassName={styles.imageAspectRatio} />
-				) : (
-					<ImageWithHover
-						cardHover={null}
-						data={image}
-						alt={title}
-						aspectRatioClassName={styles.imageAspectRatio}
-					/>
-				)}
+				<a href='#!'>
+					{Array.isArray(footer) ? (
+						<Image data={image} aspectRatioClassName={styles.imageAspectRatio} />
+					) : (
+						<ImageWithHover
+							cardHover={null}
+							data={image}
+							alt={title}
+							aspectRatioClassName={styles.imageAspectRatio}
+						/>
+					)}
+				</a>
 			</div>
 			<div>
-				{!!title && <h3 className={styles.title}>{title}</h3>}
+				{!!title && (
+					<h3 className={styles.title}>
+						<a href='#!'>{title} </a>
+					</h3>
+				)}
 				{!!description && <p className={styles.cardDescription}>{description}</p>}
 				{!!footer && (
 					<div className={styles.cardFooter}>
 						{Array.isArray(footer) ? (
 							<div className={styles.btnContainer}>
-								{footer.map(text => (
-									<button key={text} type='button' className={styles.btn}>
+								{footer.map((text, index) => (
+									<a key={text} className={styles.btn} href='#!'>
 										{text}
-										<ButtonWaterEffect />
-									</button>
+										<ButtonWaterEffect
+											backGround={
+												index % 2 ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)'
+											}
+										/>
+									</a>
 								))}
 							</div>
 						) : (

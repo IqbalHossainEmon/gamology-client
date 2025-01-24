@@ -3,16 +3,12 @@ import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceW
 import ImageWithHover from '../ImageWithHover/ImageWithHover';
 import styles from './Card.module.css';
 
-export default function Card({ cardInfo, style, className, children }) {
+export default function Card({ cardInfo, style, className, children, link }) {
 	const parentRef = useRef(null);
 	const { id, name, img, price } = cardInfo;
 
-	return (
-		<li
-			className={`${className ? `${className} ` : ''}${styles.card} hover-shadow`}
-			ref={parentRef}
-			{...(style && { style })}
-		>
+	const mainBody = (
+		<>
 			<div className={styles.cardImg}>
 				<ImageWithHover
 					cardHover={children ? children(parentRef, cardInfo) : null}
@@ -25,7 +21,16 @@ export default function Card({ cardInfo, style, className, children }) {
 			<div className={styles.price}>
 				<DiscountPriceWithPercent price={price} />
 			</div>
-			{}
+		</>
+	);
+
+	return (
+		<li
+			className={`${className ? `${className} ` : ''}${styles.card} hover-shadow`}
+			ref={parentRef}
+			{...(style && { style })}
+		>
+			{link ? <a href={`${link}/${id}`}>{mainBody}</a> : mainBody}
 		</li>
 	);
 }

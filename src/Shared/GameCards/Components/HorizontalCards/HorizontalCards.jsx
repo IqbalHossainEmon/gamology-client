@@ -3,7 +3,7 @@ import Card from '../../../Card/Card';
 import styles from './HorizontalCards.module.css';
 
 function HorizontalCards(
-	{ data, cardsWidth, extraCard, cardHovers, cardActive, margin, transition },
+	{ data, cardsWidth, extraCard, cardHovers, cardActive, margin, transition, link },
 	ref
 ) {
 	return (
@@ -15,6 +15,7 @@ function HorizontalCards(
 				>
 					{data.map(({ id, name, carouselThumb, price, category }) => (
 						<Card
+							link={link}
 							cardInfo={{ id, name, img: carouselThumb, price, category }}
 							key={id}
 							style={{ width: `${cardsWidth}px`, marginRight: `${margin}px` }}

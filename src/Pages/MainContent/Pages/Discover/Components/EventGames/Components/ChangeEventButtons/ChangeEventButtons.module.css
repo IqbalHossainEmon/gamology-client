@@ -1,14 +1,8 @@
-.ChangeEventButtons {
+.changeEventButtons {
 	margin: 2rem 1rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-.ChangeEventButtons > div {
-	width: 60px;
-	overflow: visible;
-	display: flex;
-	justify-content: space-between;
 }
 
 .button {
@@ -25,7 +19,7 @@
 .button:hover {
 	background-color: rgb(160, 160, 160);
 }
-#active {
+.active {
 	background-color: #121212;
 	border: 1px solid rgb(85, 85, 85);
 }

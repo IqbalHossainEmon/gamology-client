@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
+import MixEventChangeButton from '../Components/MixEventChangeButton/MixEventChangeButton';
 import MixEventGameCard from '../Components/MixEventGameCard/MixEventGameCard';
 import styles from './MixEventGameCards.module.css';
 
@@ -29,18 +31,39 @@ const data = [
 
 function MixEventGameCards() {
 	const [items, setItems] = useState([]);
+	const [cardPosition, setCardPosition] = useState(0);
 
 	useEffect(() => {
 		setItems(data);
 	}, []);
 
+	const { widthInRem } = useScreenWidth();
+
 	return (
 		<section className={styles.mixEventGameCards}>
-			<ul className={styles.mixEventGameCardsList}>
-				{items.map(item => (
-					<MixEventGameCard key={item.id} data={item} isOnlyOne={items.length === 1} />
-				))}
-			</ul>
+			<div className={styles.mixEventGameListContainer}>
+				<ul
+					className={styles.mixEventGameCardsList}
+					{...(widthInRem < 48 && {
+						style: { translate: `-${100 * cardPosition}%` },
+					})}
+				>
+					{items.map(item => (
+						<MixEventGameCard
+							key={item.id}
+							data={item}
+							isOnlyOne={items.length === 1}
+						/>
+					))}
+				</ul>
+			</div>
+			{widthInRem < 48.0625 && items.length > 1 && (
+				<MixEventChangeButton
+					length={items.length}
+					setCardPosition={setCardPosition}
+					cardPosition={cardPosition}
+				/>
+			)}
 		</section>
 	);
 }

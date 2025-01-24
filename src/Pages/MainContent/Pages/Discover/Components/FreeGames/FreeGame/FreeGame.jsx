@@ -33,33 +33,35 @@ export default function FreeGame({ data, today, length }) {
 	return (
 		dateState !== -1 && (
 			<li className={`${styles.freeGame} hover-shadow`}>
-				<div className={styles.gameHeader}>
-					<ImageWithHover
-						cardHover={null}
-						data={data.carouselThumb}
-						alt={data.name}
-						aspectRatioClassName={styles[`aspectRatioClassName${length}`]}
-					/>
-					{dateState !== -1 && (
-						<p
-							className={
-								dateState === 1
-									? [styles.common, styles.freeNow].join(' ')
-									: [styles.common, styles.coming].join(' ')
-							}
-						>
-							{dateState === 1 ? 'FREE GAME' : 'COMING SOON'}
+				<a href='#!'>
+					<div className={styles.gameHeader}>
+						<ImageWithHover
+							cardHover={null}
+							data={data.carouselThumb}
+							alt={data.name}
+							aspectRatioClassName={styles[`aspectRatioClassName${length}`]}
+						/>
+						{dateState !== -1 && (
+							<p
+								className={
+									dateState === 1
+										? [styles.common, styles.freeNow].join(' ')
+										: [styles.common, styles.coming].join(' ')
+								}
+							>
+								{dateState === 1 ? 'FREE GAME' : 'COMING SOON'}
+							</p>
+						)}
+					</div>
+					<div>
+						<h4 className={styles.name}>{data.name}</h4>
+						<p className={styles.date}>
+							{`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
+								data.saleTill[0][0]
+							} - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}
 						</p>
-					)}
-				</div>
-				<div>
-					<h4 className={styles.name}>{data.name}</h4>
-					<p className={styles.date}>
-						{`${getMonthName(data.saleTill[0][1]).slice(0, 3)} ${
-							data.saleTill[0][0]
-						} - ${getMonthName(data.saleTill[1][1]).slice(0, 3)} ${data.saleTill[1][0]}`}
-					</p>
-				</div>
+					</div>
+				</a>
 			</li>
 		)
 	);

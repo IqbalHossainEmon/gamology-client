@@ -25,6 +25,7 @@
 }
 
 .title {
+	font-size: 1.2rem;
 	font-weight: 500;
 	margin: 1rem 0;
 }
@@ -47,6 +48,7 @@
 .btn {
 	border: none;
 	padding: 0.8em;
+	font-size: 1rem;
 	font-weight: 500;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -64,4 +66,11 @@
 .btn:nth-child(even) {
 	background-color: #ffffff;
 	color: black;
+}
+
+@media only screen and (max-width: 48rem) {
+	.multiPle {
+		width: 100%;
+		flex-shrink: 0;
+	}
 }

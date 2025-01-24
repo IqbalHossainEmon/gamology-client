@@ -74,7 +74,7 @@
 	font-size: 0.875rem;
 }
 
-.exploreTexts button {
+.exploreTexts a {
 	position: relative;
 	padding: 1em 2em;
 	border-radius: 5px;
@@ -88,7 +88,7 @@
 	border: 1px solid white;
 	font-size: 0.875rem;
 }
-.exploreTexts button:hover {
+.exploreTexts a:hover {
 	background-color: rgba(0, 0, 0, 0.4);
 	color: white;
 	border: 1px solid white;
@@ -104,7 +104,7 @@
 		font-size: 0.875rem;
 	}
 	.exploreTexts p,
-	.exploreTexts button {
+	.exploreTexts a {
 		font-size: 0.75rem;
 	}
 	.exploreGames {
@@ -124,7 +124,7 @@
 	}
 }
 @media only screen and (max-width: 16.6875rem) {
-	.exploreTexts button {
+	.exploreTexts a {
 		padding: 0.5rem 1rem;
 	}
 }
@@ -133,7 +133,7 @@
 		font-size: 1.125rem;
 	}
 	.exploreTexts p,
-	.exploreTexts button {
+	.exploreTexts a {
 		font-size: 1rem;
 	}
 }

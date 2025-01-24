@@ -1,16 +1,15 @@
 import styles from './ChangeEventButtons.module.css';
 
-const Buttons = [0, 1, 2];
+const buttons = [0, 1, 2];
 
 export default function ChangeEventButtons({ setCardPosition, cardPosition }) {
 	return (
-		<div className={styles.ChangeEventButtons}>
-			{Buttons.map(Button => (
+		<div className={styles.changeEventButtons}>
+			{buttons.map(button => (
 				<button
-					key={Button}
-					{...(cardPosition === Button && { id: styles.active })}
-					className={styles.button}
-					onClick={() => setCardPosition(Button)}
+					key={button}
+					className={`${styles.button}${cardPosition === button ? ` ${styles.active}` : ''}`}
+					onClick={() => setCardPosition(button)}
 					type='button'
 				/>
 			))}

@@ -2,9 +2,21 @@
 	width: 100%;
 	margin-bottom: 4rem;
 }
+
+.mixEventGameListContainer {
+	overflow: hidden;
+}
+
 .mixEventGameCardsList {
 	width: 100%;
 	list-style-type: none;
 	display: flex;
 	gap: 1.5rem;
+	transition: translate 300ms;
+}
+
+@media only screen and (max-width: 48rem) {
+	.mixEventGameCardsList {
+		gap: 0;
+	}
 }

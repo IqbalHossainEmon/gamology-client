@@ -13,6 +13,7 @@ export default function GameCards({
 	children,
 	customHeader,
 	scrollToLast,
+	link,
 }) {
 	const cardsContainer = useRef(null);
 	const { reducer, initialState } = gameCardsReducerInitialValue();
@@ -69,6 +70,7 @@ export default function GameCards({
 				transition={transition}
 				cardHovers={children}
 				extraCard={extraCard}
+				link={link}
 			/>
 		</div>
 	);
