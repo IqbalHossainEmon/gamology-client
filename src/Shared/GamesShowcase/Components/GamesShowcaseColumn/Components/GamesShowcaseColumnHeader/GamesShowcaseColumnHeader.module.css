@@ -1,0 +1,27 @@
+.gamesShowcaseColumnHeader {
+	background-color: transparent;
+	display: inline;
+	color: rgb(222, 222, 222);
+	cursor: pointer;
+	flex-grow: 1;
+	font-size: 1.125rem;
+	font-weight: 400;
+	max-width: fit-content;
+	display: flex;
+	align-items: center;
+}
+
+.arrow {
+	display: flex;
+	align-items: center;
+}
+
+.arrow svg {
+	width: 1.3rem;
+	height: 1.3rem;
+	transition: translate 100ms;
+}
+
+.gamesShowcaseColumnHeader:hover .arrow svg {
+	translate: 0.5rem;
+}

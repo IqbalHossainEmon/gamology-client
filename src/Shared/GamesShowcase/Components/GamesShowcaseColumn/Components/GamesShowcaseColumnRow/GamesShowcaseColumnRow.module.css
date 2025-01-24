@@ -1,0 +1,57 @@
+.gameColumn {
+	display: flex;
+	transition: background-color 300ms;
+	padding: 1em;
+	border-radius: 4px;
+	justify-content: stretch;
+	align-items: stretch;
+}
+
+.gameColumn:hover {
+	background-color: rgba(75, 75, 75, 0.473);
+}
+.gameImageContainer {
+	width: 25%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.image {
+	transition: border-radius 200ms;
+}
+
+.gameColumn:hover .image {
+	border-radius: 4px;
+}
+
+.gameDetails {
+	width: 70%;
+	margin-left: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.name {
+	font-size: 0.875rem;
+	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
+@media only screen and (min-width: 1600px) {
+	.name {
+		font-size: 1rem;
+	}
+}

@@ -271,7 +271,7 @@ const items = [
 
 function EditGameCards() {
 	const [gamesCards, setGameCards] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const [loading, setLoading] = useState(true);
 	const [errorChange, setErrorChange] = useState(0);
 
 	const cardsRef = useRef([]);
@@ -309,7 +309,7 @@ function EditGameCards() {
 			errorMessages.current = gameCardData.map(gameCard => gameCard.cards.map(() => ''));
 			cardsRef.current = cloneObject(gameCardData);
 			setGameCards(gameCardData);
-			setIsLoading(false);
+			setLoading(false);
 		}, 200);
 	}, [cloneObject]);
 
@@ -397,11 +397,11 @@ function EditGameCards() {
 
 	return (
 		<div className={styles.editGameCards}>
-			{isLoading ? (
+			{loading ? (
 				<p>Loading...</p>
 			) : (
 				<>
-					<h2 className={styles.editBannerHeader}>Edit Game Cards</h2>
+					<h2 className={styles.editGameCardHeader}>Edit Game Cards</h2>
 					<EditGameCardFirstPart
 						gameCards={gamesCards[0]}
 						cardsRef={cardsRef}
@@ -416,29 +416,29 @@ function EditGameCards() {
 						errorMessages={errorMessages.current.slice(1)}
 						errorChange={errorChange}
 					/>
+					<div className={styles.addSectionBtn}>
+						<NormalButtonWithEffects
+							text='Add one more section +'
+							onClick={() => {
+								setGameCards(prev => [
+									...prev,
+									{
+										id: new Date().getTime(),
+										cards: [{ id: 0, header: '', cards: [] }],
+									},
+								]);
+								cardsRef.current.push({
+									id: new Date().getTime(),
+									cards: [{ id: 0, header: '', cards: [] }],
+								});
+							}}
+						/>
+					</div>
+					<div className={styles.saveBtn}>
+						<NormalButtonWithEffects text='Save' onClick={handleValidation} />
+					</div>
 				</>
 			)}
-			<div className={styles.addSectionBtn}>
-				<NormalButtonWithEffects
-					text='Add one more section +'
-					onClick={() => {
-						setGameCards(prev => [
-							...prev,
-							{
-								id: new Date().getTime(),
-								cards: [{ id: 0, header: '', cards: [] }],
-							},
-						]);
-						cardsRef.current.push({
-							id: new Date().getTime(),
-							cards: [{ id: 0, header: '', cards: [] }],
-						});
-					}}
-				/>
-			</div>
-			<div className={styles.saveBtn}>
-				<NormalButtonWithEffects text='Save' onClick={handleValidation} />
-			</div>
 		</div>
 	);
 }

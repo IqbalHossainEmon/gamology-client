@@ -6,16 +6,21 @@ const useReloadScroll = () => {
 
 		const handleLoad = () => {
 			setTimeout(() => {
-				const scrollPos = localStorage.getItem('scrollPos');
-				if (scrollPos) {
-					root.scrollTo(0, parseInt(scrollPos, 10));
-					localStorage.removeItem('scrollPos');
+				const loadScroll = localStorage.getItem('loadScroll');
+				if (loadScroll) {
+					if (window.location.pathname === loadScroll.path) {
+						root.scrollTo(0, loadScroll.scroll);
+					}
+					localStorage.removeItem('loadScroll');
 				}
 			}, 500);
 		};
 
 		const handleBeforeUnload = () => {
-			localStorage.setItem('scrollPos', root.scrollTop);
+			localStorage.setItem('loadScroll', {
+				scroll: root.scrollY,
+				path: window.location.pathname,
+			});
 		};
 
 		window.addEventListener('load', handleLoad);

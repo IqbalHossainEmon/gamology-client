@@ -1,0 +1,19 @@
+.dynamicGameCards {
+	width: 100%;
+	margin-bottom: 4rem;
+}
+
+.dynamicGameCardsContainer {
+	overflow: hidden;
+}
+
+.dynamicGameCardsList {
+	width: 100%;
+	list-style-type: none;
+	display: flex;
+	gap: 1.5rem;
+}
+
+.transition {
+	transition: translate 300ms;
+}

@@ -1,0 +1,37 @@
+.container {
+	margin-bottom: 4rem;
+	width: 100%;
+	max-width: 1600px;
+}
+
+.gamesShowcaseContainer {
+	overflow: hidden;
+	width: 100%;
+}
+
+.gamesShowcase {
+	display: flex;
+	list-style: none;
+	margin: 0 -1rem;
+}
+.arrowBtn {
+	position: sticky;
+	top: 550px;
+}
+.prevBtn {
+	width: 1rem;
+	rotate: -90deg;
+}
+.nextBtn {
+	width: 1rem;
+	rotate: 90deg;
+}
+
+@media only screen and (max-width: 48rem) {
+	.gamesShowcase {
+		position: relative;
+	}
+	.transition {
+		transition: translate 300ms;
+	}
+}

@@ -1,9 +1,9 @@
 import DiscoverBanner from '../Components/DiscoverBanner/DiscoverBanner/DiscoverBanner';
+import DiscoverDynamicGameCards from '../Components/DiscoverDynamicGameCards/DiscoverDynamicGameCards';
 import DiscoverGameCards from '../Components/DiscoverGameCards/DiscoverGameCards';
-import EventGames from '../Components/EventGames/EventGames/EventGames';
+import DiscoverGameShowCase from '../Components/DiscoverGameShowCase/DiscoverGameShowCase';
 import ExploreGames from '../Components/ExploreGames/ExploreGames';
 import FreeGames from '../Components/FreeGames/FreeGames/FreeGames';
-import MixEventGameCards from '../Components/MixEventGameCards/MixEventGameCards/MixEventGameCards';
 import styles from './Discover.module.css';
 
 export default function Discover() {
@@ -14,11 +14,13 @@ export default function Discover() {
 				<DiscoverGameCards header='Game on sale' />
 				<FreeGames />
 				<DiscoverGameCards header='Summer Spotlight' />
-				<MixEventGameCards />
+				<DiscoverDynamicGameCards />
 				<DiscoverGameCards header='Summer Spotlight' />
-				<EventGames />
+				<DiscoverGameShowCase />
 				<DiscoverGameCards header='Most Popular' />
-				<EventGames />
+				<DiscoverGameShowCase />
+				<DiscoverDynamicGameCards />
+				<DiscoverGameShowCase />
 			</div>
 			<ExploreGames />
 		</div>

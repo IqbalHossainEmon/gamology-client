@@ -101,7 +101,6 @@ a:hover {
 @media (hover: hover) and (pointer: fine) {
 	.hover-shadow {
 		transition: filter 200ms;
-		cursor: pointer;
 	}
 
 	.hover-shadow:hover {
