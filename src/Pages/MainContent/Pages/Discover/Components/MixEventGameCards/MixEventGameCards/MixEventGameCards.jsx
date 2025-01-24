@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import useHandleTimerTransition from '../../../../../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
-import MixEventChangeButton from '../Components/MixEventChangeButton/MixEventChangeButton';
+import MixEventChangeButton from '../Components/MixEvent/MixEventChangeButton';
 import MixEventGameCard from '../Components/MixEventGameCard/MixEventGameCard';
 import styles from './MixEventGameCards.module.css';
 
@@ -32,6 +33,7 @@ const data = [
 function MixEventGameCards() {
 	const [items, setItems] = useState([]);
 	const [cardPosition, setCardPosition] = useState(0);
+	const [transition, setTransition] = useState({ transition: false });
 
 	useEffect(() => {
 		setItems(data);
@@ -39,13 +41,17 @@ function MixEventGameCards() {
 
 	const { widthInRem } = useScreenWidth();
 
+	const handleTransition = useHandleTimerTransition(setTransition, 300);
+
 	return (
 		<section className={styles.mixEventGameCards}>
 			<div className={styles.mixEventGameListContainer}>
 				<ul
-					className={styles.mixEventGameCardsList}
+					className={`${styles.mixEventGameCardsList}${transition.transition ? ` ${styles.transition}` : ''}`}
 					{...(widthInRem < 48 && {
-						style: { translate: `-${100 * cardPosition}%` },
+						style: {
+							translate: `calc(-${100 * cardPosition}% - ${cardPosition * 1.5} * 1rem)`,
+						},
 					})}
 				>
 					{items.map(item => (
@@ -60,7 +66,11 @@ function MixEventGameCards() {
 			{widthInRem < 48.0625 && items.length > 1 && (
 				<MixEventChangeButton
 					length={items.length}
-					setCardPosition={setCardPosition}
+					setCardPosition={prop => {
+						setCardPosition(prop);
+						if (!transition.transition) setTransition({ transition: true });
+						handleTransition();
+					}}
 					cardPosition={cardPosition}
 				/>
 			)}

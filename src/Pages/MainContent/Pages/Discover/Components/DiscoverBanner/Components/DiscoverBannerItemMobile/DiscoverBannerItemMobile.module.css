@@ -11,33 +11,33 @@
 		opacity 300ms;
 }
 
-#five {
+.five {
 	translate: -95% 0;
 	scale: 0.9;
 	opacity: 0.3;
 	z-index: 0;
 }
 
-#first {
+.first {
 	opacity: 1;
 	z-index: 1;
 	translate: 0 0;
 }
 
-#two {
+.two {
 	opacity: 0.3;
 	scale: 0.9;
 	z-index: 0;
 	translate: 95% 0;
 }
 
-#three {
+.three {
 	scale: 0;
 	z-index: -1;
 	translate: 95% 0;
 }
 
-#four {
+.four {
 	scale: 0;
 	z-index: -1;
 	translate: -95% 0;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useHandleTimerTransition from '../../../../../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import ChangeEventButtons from '../Components/ChangeEventButtons/ChangeEventButtons';
 import GamesColumn from '../Components/EventGamesGamesColumn/EventGamesGamesColumn/EventGamesGamesColumn';
@@ -40,32 +41,45 @@ const newGames = [
 const header = ['New Releases', 'Top Rated', 'Coming Soon'];
 
 export default function EventGames() {
-	const { widthInRem } = useScreenWidth();
 	const [cardPosition, setCardPosition] = useState(0);
+	const [transition, setTransition] = useState({ transition: false });
+
+	const { widthInRem } = useScreenWidth();
+
+	const handleTransitionTimer = useHandleTimerTransition(setTransition);
 
 	return (
 		<section className={styles.container}>
-			{widthInRem <= 48 && <StickyChangeButtons setCardPosition={setCardPosition} />}
+			{widthInRem <= 48 && (
+				<StickyChangeButtons
+					setCardPosition={prop => {
+						setCardPosition(prop);
+						if (!transition.transition) setTransition({ transition: true });
+						handleTransitionTimer();
+					}}
+				/>
+			)}
 			<div className={styles.eventGamesContainer}>
 				<ul
-					className={styles.eventGames}
+					className={`${styles.eventGames}${transition.transition ? ` ${styles.transition}` : ''}`}
 					{...(widthInRem < 48 && {
 						style: { translate: `-${100 * cardPosition}%` },
 					})}
 				>
-					{header.map((item, index) => (
-						<GamesColumn
-							cardPosition={cardPosition}
-							colNum={index}
-							games={newGames}
-							header={item}
-							key={item}
-						/>
+					{header.map(item => (
+						<GamesColumn games={newGames} header={item} key={item} />
 					))}
 				</ul>
 			</div>
 			{widthInRem <= 48 && (
-				<ChangeEventButtons cardPosition={cardPosition} setCardPosition={setCardPosition} />
+				<ChangeEventButtons
+					cardPosition={cardPosition}
+					setCardPosition={prop => {
+						setCardPosition(prop);
+						if (!transition.transition) setTransition({ transition: true });
+						handleTransitionTimer();
+					}}
+				/>
 			)}
 		</section>
 	);

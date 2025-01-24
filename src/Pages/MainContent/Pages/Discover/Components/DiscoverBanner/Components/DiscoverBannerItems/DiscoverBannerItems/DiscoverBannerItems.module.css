@@ -3,6 +3,7 @@
 	padding-bottom: calc((9 / 16) * 100%);
 	display: flex;
 	justify-content: center;
+	list-style-type: none;
 }
 @media only screen and (max-width: 48rem) {
 	.carouselItems {

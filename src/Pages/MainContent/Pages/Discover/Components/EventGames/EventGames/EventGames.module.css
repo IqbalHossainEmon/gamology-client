@@ -29,7 +29,9 @@
 
 @media only screen and (max-width: 48rem) {
 	.eventGames {
-		transition: translate 400ms;
 		position: relative;
+	}
+	.transition {
+		transition: translate 300ms;
 	}
 }

@@ -12,11 +12,8 @@
 	list-style-type: none;
 	display: flex;
 	gap: 1.5rem;
-	transition: translate 300ms;
 }
 
-@media only screen and (max-width: 48rem) {
-	.mixEventGameCardsList {
-		gap: 0;
-	}
+.transition {
+	transition: translate 300ms;
 }

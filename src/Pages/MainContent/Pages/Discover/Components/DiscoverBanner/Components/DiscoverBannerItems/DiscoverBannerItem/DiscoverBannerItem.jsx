@@ -8,7 +8,7 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 	const idState = activeBanner(id, bannerState, styles);
 
 	return (
-		<div className={`${styles.carouselItem} ${idState}`}>
+		<li className={`${styles.carouselItem} ${idState}`}>
 			<Image
 				data={coverImg}
 				alt={`${name} carousel cover-${id + 1}`}
@@ -21,6 +21,6 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 					<ButtonWaterEffect backGround='rgb(255, 255, 255)' long />
 				</button>
 			</div>
-		</div>
+		</li>
 	);
 }

@@ -30,12 +30,12 @@ export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
 	}, [cardsPosition, id]);
 
 	return (
-		<div className={`${styles.carouselItem}`} id={position}>
+		<li className={`${styles.carouselItem} ${position}`}>
 			<Image
 				data={coverMobile}
 				alt={`${name} carousel cover-${id + 1}`}
 				aspectRatioClassName={styles.aspectRatioClassName}
 			/>
-		</div>
+		</li>
 	);
 }

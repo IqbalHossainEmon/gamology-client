@@ -4,7 +4,7 @@ import styles from './DiscoverBannerInfoItems.module.css';
 export default function DiscoverBannerInfoItems({ data, bannerState, activeBanner }) {
 	return (
 		<div className={styles.infoItems}>
-			<div className={styles.itemsContainer}>
+			<ul className={styles.itemsContainer}>
 				{data.map(({ id, logoImg, name, price }, index) => (
 					<DiscoverBannerInfoItem
 						activeBanner={activeBanner}
@@ -13,7 +13,7 @@ export default function DiscoverBannerInfoItems({ data, bannerState, activeBanne
 						key={id}
 					/>
 				))}
-			</div>
+			</ul>
 		</div>
 	);
 }
