@@ -1,7 +1,8 @@
+import TextField from '../../../../../TextField/TextField/TextField';
 import styles from './GamesShowcaseColumnHeader.module.css';
 
 export default function GamesShowcaseColumnHeader({ headerTitle }) {
-	return (
+	return headerTitle ? (
 		<h4 className={styles.gamesShowcaseColumnHeader}>
 			{headerTitle}
 			<span className={styles.arrow}>
@@ -10,5 +11,7 @@ export default function GamesShowcaseColumnHeader({ headerTitle }) {
 				</svg>
 			</span>
 		</h4>
+	) : (
+		<TextField field='input' placeholder='Enter the Header Title' />
 	);
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import styles from './EditOtherEventGames.module.css';
 
 function EditOtherEventGames() {
@@ -15,6 +16,7 @@ function EditOtherEventGames() {
 			) : (
 				<div>
 					<h2 className={styles.editOtherEventGames}>Edit Other Events</h2>
+					<EditGameShowCase />
 				</div>
 			)}
 		</div>

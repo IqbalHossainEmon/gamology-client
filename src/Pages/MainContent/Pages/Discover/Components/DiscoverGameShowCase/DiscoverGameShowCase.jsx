@@ -4,6 +4,7 @@ import styles from './DiscoverGameShowCase.module.css';
 
 const newGames = [
 	{
+		id: 0,
 		header: 'New Releases',
 		games: [
 			{
@@ -40,6 +41,7 @@ const newGames = [
 		],
 	},
 	{
+		id: 1,
 		header: 'Top Rated',
 		games: [
 			{
@@ -76,6 +78,7 @@ const newGames = [
 		],
 	},
 	{
+		id: 2,
 		header: 'Coming Soon',
 		games: [
 			{

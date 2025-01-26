@@ -2,7 +2,7 @@ import GamesShowcaseHeader from '../Components/GamesShowcaseColumnHeader/GamesSh
 import GamesShowcaseColumnRow from '../Components/GamesShowcaseColumnRow/GamesShowcaseColumnRow';
 import styles from './GamesShowcaseColumn.module.css';
 
-export default function GamesShowcaseColumn({ header, games, link }) {
+export default function GamesShowcaseColumn({ header, games, link, extraCard, index }) {
 	return (
 		<li className={styles.gameColumn}>
 			<GamesShowcaseHeader headerTitle={header} />
@@ -15,6 +15,7 @@ export default function GamesShowcaseColumn({ header, games, link }) {
 						link={link}
 					/>
 				))}
+				{extraCard && extraCard(index)}
 			</ul>
 		</li>
 	);
