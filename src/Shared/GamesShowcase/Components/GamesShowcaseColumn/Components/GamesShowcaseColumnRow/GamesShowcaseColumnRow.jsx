@@ -2,7 +2,7 @@ import DiscountPriceWithPercent from '../../../../../DiscountPriceWithPercent/Di
 import ImageWithHover from '../../../../../ImageWithHover/ImageWithHover';
 import styles from './GamesShowcaseColumnRow.module.css';
 
-export default function GamesShowcaseColumnRow({ game, link }) {
+export default function GamesShowcaseColumnRow({ game, link, dataRef }) {
 	const mainContent = (
 		<div className={styles.gameColumn}>
 			<div className={styles.gameImageContainer}>

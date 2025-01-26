@@ -1,7 +1,7 @@
 import TextField from '../../../../../TextField/TextField/TextField';
 import styles from './GamesShowcaseColumnHeader.module.css';
 
-export default function GamesShowcaseColumnHeader({ headerTitle }) {
+export default function GamesShowcaseColumnHeader({ headerTitle, index, dataRef }) {
 	return headerTitle ? (
 		<h4 className={styles.gamesShowcaseColumnHeader}>
 			{headerTitle}
@@ -12,6 +12,15 @@ export default function GamesShowcaseColumnHeader({ headerTitle }) {
 			</span>
 		</h4>
 	) : (
-		<TextField field='input' placeholder='Enter the Header Title' />
+		<div className={styles.textFieldContainer}>
+			<TextField
+				field='input'
+				setState={val => {
+					dataRef.current[index].headerTitle = val;
+				}}
+				placeholder='Enter the Header Title'
+				htmlFor={`gameShowCaseHeader${index}`}
+			/>
+		</div>
 	);
 }

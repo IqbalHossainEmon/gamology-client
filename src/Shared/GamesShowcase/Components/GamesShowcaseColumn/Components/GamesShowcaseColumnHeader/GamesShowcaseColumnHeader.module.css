@@ -11,6 +11,10 @@
 	align-items: center;
 }
 
+.textFieldContainer {
+	padding: 0 2px;
+}
+
 .arrow {
 	display: flex;
 	align-items: center;

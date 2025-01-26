@@ -48,7 +48,7 @@ function DynamicGameCard({ data, isOnlyOne, link }) {
 									>
 										{footerItem.text}
 										<ButtonWaterEffect
-											backGround={
+											background={
 												index % 2 ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)'
 											}
 										/>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './ButtonWaterEffect.module.css';
 
-function ButtonWaterEffect({ backGround, long }) {
+function ButtonWaterEffect({ background, long }) {
 	const [ele, setEle] = useState([]);
 	const eleRef = useRef(ele);
 	eleRef.current = ele;
@@ -77,7 +77,7 @@ function ButtonWaterEffect({ backGround, long }) {
 							height: `${length * 2}px`,
 							top: `${y - length}px`,
 							left: `${x - length}px`,
-							background: backGround || 'white',
+							background: background || 'white',
 						}}
 					/>,
 				]);
@@ -106,7 +106,7 @@ function ButtonWaterEffect({ backGround, long }) {
 				btn.removeEventListener('click', handleClick);
 			}
 		};
-	}, [backGround, long]);
+	}, [background, long]);
 
 	return (
 		<span ref={waterDropContainer} className={styles.btnWaterEffect}>

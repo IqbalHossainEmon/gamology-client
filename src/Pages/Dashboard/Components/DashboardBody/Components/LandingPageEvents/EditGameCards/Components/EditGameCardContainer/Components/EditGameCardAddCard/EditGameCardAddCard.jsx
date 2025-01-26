@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
+import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useTooltip from '../../../../../../../../../../../Utils/Hooks/useTooltip';
-import EditGameCardAddCardBody from '../EditGameCardAddCardBody/EditGameCardAddCardBody';
+import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBody/AddGameCardModalBody';
 import styles from './EditGameCardAddCard.module.css';
 
 function EditGameCardAddCard({ width, margin, onClick }) {
@@ -31,14 +32,13 @@ function EditGameCardAddCard({ width, margin, onClick }) {
 									Search for the game you want to add to the list:{' '}
 								</h3>
 							),
-							footer: (
-								<EditGameCardAddCardBody setModal={setModal} onClick={onClick} />
-							),
+							footer: <AddGameCardModalBody setModal={setModal} onClick={onClick} />,
 						});
 					}}
 					className={styles.btn}
 				>
 					<div className={styles.plus} />
+					<ButtonWaterEffect long background='rgba(255,255,255,0.3)' />
 				</button>
 			</div>
 		</li>

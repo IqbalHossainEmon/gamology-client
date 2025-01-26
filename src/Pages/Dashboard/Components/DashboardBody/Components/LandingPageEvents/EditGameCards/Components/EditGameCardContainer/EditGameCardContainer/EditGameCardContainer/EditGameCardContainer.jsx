@@ -6,7 +6,7 @@ import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
 import EditGameCardAddCard from '../../Components/EditGameCardAddCard/EditGameCardAddCard';
-import EditGameCardList from '../Utils/editGameCardList';
+import EditGameCardList from '../Utils/EditGameCardList';
 import styles from './EditGameCardContainer.module.css';
 
 const handleExtraCard = (width, margin, handleCLick) => (

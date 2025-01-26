@@ -85,7 +85,7 @@ export default function ExploreGames() {
 					<p>{data.details}</p>
 					<a href='#d' type='button'>
 						Learn More
-						<ButtonWaterEffect backGround='white' long />
+						<ButtonWaterEffect background='white' long />
 					</a>
 				</div>
 			</div>

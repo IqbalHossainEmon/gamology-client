@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import styles from './EditOtherEventGames.module.css';
 
 function EditOtherEventGames() {
 	const [loading, setLoading] = useState(true);
+
+	const sectionsRefs = useRef([]);
 
 	useEffect(() => {
 		setLoading(false);

@@ -116,7 +116,7 @@ const newGames = [
 	},
 ];
 
-function DiscoverGameShowCase() {
+function DiscoverGameShowcase() {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -129,4 +129,4 @@ function DiscoverGameShowCase() {
 		</div>
 	);
 }
-export default DiscoverGameShowCase;
+export default DiscoverGameShowcase;

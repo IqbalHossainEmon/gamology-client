@@ -18,7 +18,7 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 				<DiscoverBannerPrice price={price} />
 				<button type='button'>
 					buy now
-					<ButtonWaterEffect backGround='rgb(255, 255, 255)' long />
+					<ButtonWaterEffect background='rgb(255, 255, 255)' long />
 				</button>
 			</div>
 		</li>

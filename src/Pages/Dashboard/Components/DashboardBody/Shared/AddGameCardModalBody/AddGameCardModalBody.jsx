@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import TypeableSelectionField from '../../../../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
-import styles from './EditGameCardAddCardBody.module.css';
+import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
+import styles from './AddGameCardModalBody.module.css';
 
-function EditGameCardAddCardBody({ setModal, onClick }) {
+function AddGameCardModalBody({ setModal, onClick }) {
 	const [height, setHeight] = useState(0);
 	const [errorChange, setErrorChange] = useState(0);
 
@@ -69,9 +69,9 @@ function EditGameCardAddCardBody({ setModal, onClick }) {
 				type='button'
 			>
 				Submit
-				<ButtonWaterEffect backGround='#3e9c35' long />
+				<ButtonWaterEffect background='#3e9c35' long />
 			</button>
 		</>
 	);
 }
-export default EditGameCardAddCardBody;
+export default AddGameCardModalBody;

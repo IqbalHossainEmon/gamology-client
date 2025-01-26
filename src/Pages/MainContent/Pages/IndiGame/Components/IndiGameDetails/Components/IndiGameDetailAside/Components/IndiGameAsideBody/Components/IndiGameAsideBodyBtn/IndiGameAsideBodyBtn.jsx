@@ -22,7 +22,7 @@ function IndiGameAsideBodyBtn() {
 			{isBought || (
 				<button className={`${styles.buyNow} ${styles.btn}`} type='button'>
 					Buy Now
-					<ButtonWaterEffect backGround='rgb(11 52 90)' long />
+					<ButtonWaterEffect background='rgb(11 52 90)' long />
 				</button>
 			)}
 
@@ -58,7 +58,7 @@ function IndiGameAsideBodyBtn() {
 					'Add to Cart'
 				)}
 
-				<ButtonWaterEffect backGround='rgb(5 132 255)' long />
+				<ButtonWaterEffect background='rgb(5 132 255)' long />
 			</button>
 
 			{isBought || (
@@ -84,7 +84,7 @@ function IndiGameAsideBodyBtn() {
 						)}
 					</div>
 					Add to Wishlist
-					<ButtonWaterEffect backGround='grey' long />
+					<ButtonWaterEffect background='grey' long />
 				</button>
 			)}
 		</>
