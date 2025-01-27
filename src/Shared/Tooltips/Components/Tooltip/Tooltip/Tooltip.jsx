@@ -1,4 +1,4 @@
-import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
+import useAppearDisappear from '../../../../../Utils/Hooks/useAppearDisappear';
 import TooltipBody from '../TooltipBody/TooltipBody';
 
 function Tooltip({ state, ...props }) {

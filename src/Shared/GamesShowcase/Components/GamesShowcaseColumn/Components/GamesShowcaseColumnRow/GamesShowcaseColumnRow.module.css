@@ -1,7 +1,7 @@
 .gameColumn {
 	display: flex;
 	transition: background-color 300ms;
-	padding: 1em;
+	padding: 0.6em;
 	border-radius: 4px;
 	justify-content: stretch;
 	align-items: stretch;

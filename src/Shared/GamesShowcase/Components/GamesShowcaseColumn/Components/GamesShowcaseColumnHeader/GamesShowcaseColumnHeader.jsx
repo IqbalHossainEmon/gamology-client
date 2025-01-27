@@ -1,8 +1,20 @@
 import TextField from '../../../../../TextField/TextField/TextField';
 import styles from './GamesShowcaseColumnHeader.module.css';
 
-export default function GamesShowcaseColumnHeader({ headerTitle, index, dataRef }) {
-	return headerTitle ? (
+export default function GamesShowcaseColumnHeader({ headerTitle, index, setHeader, isEditing }) {
+	console.log(isEditing);
+
+	return isEditing ? (
+		<div className={styles.textFieldContainer}>
+			<TextField
+				field='input'
+				setState={setHeader}
+				defaultValue={headerTitle}
+				placeholder='Enter the Header Title'
+				htmlFor={`gameShowCaseHeader${index}`}
+			/>
+		</div>
+	) : (
 		<h4 className={styles.gamesShowcaseColumnHeader}>
 			{headerTitle}
 			<span className={styles.arrow}>
@@ -11,16 +23,5 @@ export default function GamesShowcaseColumnHeader({ headerTitle, index, dataRef 
 				</svg>
 			</span>
 		</h4>
-	) : (
-		<div className={styles.textFieldContainer}>
-			<TextField
-				field='input'
-				setState={val => {
-					dataRef.current[index].headerTitle = val;
-				}}
-				placeholder='Enter the Header Title'
-				htmlFor={`gameShowCaseHeader${index}`}
-			/>
-		</div>
 	);
 }

@@ -5,7 +5,7 @@ import useTooltip from '../../../../../../../../../../../Utils/Hooks/useTooltip'
 import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBody/AddGameCardModalBody';
 import styles from './EditGameCardAddCard.module.css';
 
-function EditGameCardAddCard({ width, margin, onClick }) {
+function EditGameCardAddCard({ width, onClick }) {
 	const btnRef = useRef(null);
 
 	const setTooltip = useTooltip();
@@ -18,7 +18,7 @@ function EditGameCardAddCard({ width, margin, onClick }) {
 	return (
 		<li
 			className={`${styles.addGameCardContainer} hover-shadow`}
-			style={{ width: `${width}px`, marginRight: `${margin}px` }}
+			style={{ width: `${width}px` }}
 		>
 			<div className={styles.addGameCard}>
 				<button

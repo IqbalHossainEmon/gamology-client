@@ -4,7 +4,6 @@ const initialState = {
 	cardsWidth: 0,
 	cardActive: 0,
 	cardOnDeck: 0,
-	margin: 0,
 	transition: false,
 };
 
@@ -47,7 +46,6 @@ const reducer = (state, action) => {
 				cardsWidth: action.width,
 				cardOnDeck: action.cardOnDeck,
 				cardActive: newCardActive,
-				margin: action.margin,
 			};
 		case 'next':
 			const nextProbableActive = cardActive + cardOnDeck;

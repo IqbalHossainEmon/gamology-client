@@ -17,7 +17,7 @@ export default function GameCards({
 }) {
 	const cardsContainer = useRef(null);
 	const { reducer, initialState } = gameCardsReducerInitialValue();
-	const [{ data, dataLength, cardActive, cardsWidth, cardOnDeck, margin, transition }, dispatch] =
+	const [{ data, dataLength, cardActive, cardsWidth, cardOnDeck, transition }, dispatch] =
 		useReducer(reducer, initialState);
 	const { handleClick, setReference, setCardsOnScreenWidthChange } = useGameCardsLogics();
 
@@ -66,7 +66,6 @@ export default function GameCards({
 				data={data}
 				ref={cardsContainer}
 				cardActive={cardActive}
-				margin={margin}
 				transition={transition}
 				cardHovers={children}
 				extraCard={extraCard}

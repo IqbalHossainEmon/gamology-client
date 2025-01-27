@@ -44,32 +44,22 @@ export default function useGameCardsLogics() {
 
 			// This function checks screen widths and set cards on deck and send it through dispatch.
 			setCardsOnScreenWidthChange: (cardsContainer, scrollToLast) => {
-				let cardOnOneDeck, margin;
+				let cardOnOneDeck;
 
 				const screenWidth = window.innerWidth;
 
 				if (screenWidth >= 1600) {
 					cardOnOneDeck = 6;
-					margin = 32;
 				} else if (screenWidth >= 1024 && screenWidth <= 1599) {
 					cardOnOneDeck = 5;
-					if (screenWidth >= 1440 && screenWidth <= 1599) {
-						margin = 20;
-					} else {
-						margin = 16;
-					}
 				} else if (screenWidth >= 769 && screenWidth <= 1023) {
 					cardOnOneDeck = 4;
-					margin = 15;
 				} else if (screenWidth >= 592 && screenWidth <= 768) {
 					cardOnOneDeck = 3;
-					margin = 10;
 				} else if (screenWidth >= 326 && screenWidth <= 591) {
 					cardOnOneDeck = 2;
-					margin = 10;
 				} else if (screenWidth <= 325) {
 					cardOnOneDeck = 1;
-					margin = 10;
 				}
 
 				referenceRef.dispatch({
@@ -77,8 +67,7 @@ export default function useGameCardsLogics() {
 					width:
 						(cardsContainer.offsetWidth ? cardsContainer.offsetWidth - 16 : 0) /
 							cardOnOneDeck -
-						(margin * (cardOnOneDeck - 1)) / cardOnOneDeck,
-					margin,
+						(20 * (cardOnOneDeck - 1)) / cardOnOneDeck,
 					cardOnDeck: cardOnOneDeck,
 					scrollToLast,
 				});

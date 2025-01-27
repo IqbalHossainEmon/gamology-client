@@ -2,22 +2,26 @@ import GamesShowcaseHeader from '../Components/GamesShowcaseColumnHeader/GamesSh
 import GamesShowcaseColumnRow from '../Components/GamesShowcaseColumnRow/GamesShowcaseColumnRow';
 import styles from './GamesShowcaseColumn.module.css';
 
-export default function GamesShowcaseColumn({ header, games, link, extraCard, index, dataRef }) {
+export default function GamesShowcaseColumn({ header, games, link, extraCard, index, setHeader }) {
 	return (
 		<li className={styles.gameColumn}>
-			<GamesShowcaseHeader headerTitle={header} index={index} dataRef={dataRef} />
+			<GamesShowcaseHeader
+				isEditing={!!extraCard}
+				headerTitle={header}
+				index={index}
+				setHeader={setHeader}
+			/>
 			<ul className={styles.column}>
 				{games.map(game => (
 					<GamesShowcaseColumnRow
 						parentIndex={index}
-						dataRef={dataRef}
 						game={game}
 						key={game.id}
 						length={games.length}
 						link={link}
 					/>
 				))}
-				{extraCard && extraCard(index)}
+				{!!extraCard && extraCard(index)}
 			</ul>
 		</li>
 	);

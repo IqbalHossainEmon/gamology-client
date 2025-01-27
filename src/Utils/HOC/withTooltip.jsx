@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import Tooltip from '../../Shared/Tooltip/Tooltip/Tooltip';
+import Tooltips from '../../Shared/Tooltips/Tooltips/Tooltips';
 import SetTooltipContext from '../Contexts/TooltipContext';
 
 const withTooltip = Component =>
 	function InnerComponent(props) {
 		const [show, setShow] = useState(false);
-		const [message, setMessage] = useState('');
+		const [tooltips, setTooltips] = useState([]);
 
 		const showRef = useRef(show);
 		showRef.current = show;
@@ -116,10 +116,10 @@ const withTooltip = Component =>
 		return (
 			<SetTooltipContext.Provider value={eventRefs.current.contextEvents}>
 				<Component {...props} />
-				<Tooltip
+				<Tooltips
 					onMouseOver={eventRefs.current.onMouseOver}
 					onMouseLeave={eventRefs.current.onMouseLeave}
-					message={message}
+					tooltips={tooltips}
 					containerRef={containerRef}
 					state={show}
 					scrollElementId='root'

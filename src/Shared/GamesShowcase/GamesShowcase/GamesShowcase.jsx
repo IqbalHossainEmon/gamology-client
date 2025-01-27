@@ -41,6 +41,9 @@ export default function GamesShowcase({ items, link, extraCard, dataRef }) {
 							link={link}
 							index={index}
 							extraCard={extraCard}
+							setHeader={val => {
+								console.log(val);
+							}}
 						/>
 					))}
 				</ul>
