@@ -35,39 +35,13 @@ function PlayPauseButton({
 					togglePausePlay();
 				}
 			},
-			handleTogglePlay: () => {
-				if (document.hidden && !video.current.paused) {
-					video.current.pause();
-					eventRefs.current.visibilityPaused = true;
-				} else if (
-					!document.hidden &&
-					video.current.paused &&
-					eventRefs.current.visibilityPaused
-				) {
-					video.current.play();
-					eventRefs.current.visibilityPaused = false;
-				}
-			},
-			onWindowVisibilityChange: () => {
-				window.addEventListener('visibilitychange', eventRefs.current.handleTogglePlay);
-				eventRefs.current.visibilityChangeAdded = true;
-			},
-			handleEnd: () => {
-				window.removeEventListener('visibilitychange', eventRefs.current.handleTogglePlay);
-			},
 		};
 	}
 	useEffect(() => {
 		let videoRef;
 
-		const {
-			onVideoPlay,
-			onPauseVideo,
-			onWindowVisibilityChange,
-			handleEnd,
-			visibilityChangeAdded,
-			handleTogglePlay,
-		} = eventRefs.current;
+		const { onVideoPlay, onPauseVideo, onWindowVisibilityChange, handleEnd } =
+			eventRefs.current;
 
 		if (video.current) {
 			videoRef = video.current;
@@ -83,10 +57,6 @@ function PlayPauseButton({
 				videoRef.removeEventListener('pause', onPauseVideo);
 				videoRef.removeEventListener('ended', handleEnd);
 				videoRef.removeEventListener('playing', onWindowVisibilityChange);
-
-				if (visibilityChangeAdded) {
-					window.removeEventListener('visibilitychange', handleTogglePlay);
-				}
 			}
 		};
 	}, [video]);

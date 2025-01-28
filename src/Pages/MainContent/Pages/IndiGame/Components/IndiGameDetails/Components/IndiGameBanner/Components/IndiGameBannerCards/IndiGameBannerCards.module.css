@@ -6,6 +6,8 @@
 }
 .cardsWrapper {
 	max-width: 929px;
+	padding: 1px;
+	margin: 0 -6px;
 	overflow: hidden;
 	-webkit-flex: 1;
 	-ms-flex: 1;
@@ -43,65 +45,65 @@
 
 @media (max-width: 2134px) and (min-width: 1700px) {
 	.cardsWrapper {
-		max-width: 811px;
+		max-width: 813px;
 	}
 }
 @media (max-width: 1699px) and (min-width: 1464px) {
 	.cardsWrapper {
-		max-width: 693px;
+		max-width: 695px;
 	}
 }
 @media (max-width: 1463px) and (min-width: 1440px) {
 	.cardsWrapper {
-		max-width: 575px;
+		max-width: 577px;
 	}
 }
 @media (max-width: 1439px) and (min-width: 1260px) {
 	.cardsWrapper {
-		max-width: 510px;
+		max-width: 512px;
 	}
 }
 @media (max-width: 1259px) and (min-width: 1024px) {
 	.cardsWrapper {
-		max-width: 405px;
+		max-width: 407px;
 	}
 }
 
 @media (max-width: 1023px) and (min-width: 860px) {
 	.cardsWrapper {
-		max-width: 510px;
+		max-width: 512px;
 	}
 }
 
 @media (max-width: 859px) and (min-width: 48.0625rem) {
 	.cardsWrapper {
-		max-width: 405px;
+		max-width: 407px;
 	}
 }
 @media (max-width: 48rem) and (min-width: 612px) {
 	.cardsWrapper {
-		max-width: 510px;
+		max-width: 512px;
 	}
 }
 @media (max-width: 611px) and (min-width: 530px) {
 	.cardsWrapper {
-		max-width: 405px;
+		max-width: 407px;
 	}
 }
 
 @media (max-width: 529px) and (min-width: 404px) {
 	.cardsWrapper {
-		max-width: 300px;
+		max-width: 302px;
 	}
 }
 
 @media (max-width: 403px) and (min-width: 312px) {
 	.cardsWrapper {
-		max-width: 195px;
+		max-width: 197px;
 	}
 }
 @media only screen and (max-width: 311px) {
 	.cardsWrapper {
-		max-width: 90px;
+		max-width: 92px;
 	}
 }

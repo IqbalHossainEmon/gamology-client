@@ -20,6 +20,7 @@ export default function VideoPlayer({ src, captions, aspectRatioClassName, chang
 
 	if (!eventRefs.current) {
 		hideControllerRefs.current.hideEvent = () => setIsControllerShowing(false);
+
 		eventRefs.current = {
 			// Show hide controllers by checking the time.
 			handleShowHide: time => {

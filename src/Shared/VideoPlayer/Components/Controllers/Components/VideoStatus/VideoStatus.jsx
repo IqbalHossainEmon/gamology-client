@@ -16,7 +16,12 @@ function VideoStatus({ video, isPlaying }) {
 
 	const isInitial = useRef(true);
 
+	const isObserverAdded = useRef(false);
+
+	const statusContainerRef = useRef(null);
+
 	if (!eventRefs.current) {
+		let didIntersectionPause = false;
 		eventRefs.current = {
 			handleTransition: () => {
 				if (!timerId.current) {
@@ -54,8 +59,49 @@ function VideoStatus({ video, isPlaying }) {
 					eventRefs.current.handleInitialPlaying
 				);
 			},
+			intersectionObserver: new IntersectionObserver(([entry]) => {
+				if (!entry.isIntersecting) {
+					didIntersectionPause = true;
+					videoRef.current.pause();
+				} else {
+					videoRef.current.play();
+					didIntersectionPause = false;
+				}
+			}),
+			onBlurPause: () => {
+				if (document.visibilityState === 'hidden') {
+					videoRef.current.pause();
+				}
+			},
+			onVideoPlay: () => {
+				if (!isObserverAdded.current) {
+					eventRefs.current.intersectionObserver.observe(statusContainerRef.current);
+					isObserverAdded.current = true;
+				}
+				window.addEventListener('visibilitychange', eventRefs.current.onBlurPause);
+			},
+			onPauseVideo: () => {
+				if (isObserverAdded.current && !didIntersectionPause) {
+					eventRefs.current.intersectionObserver.disconnect();
+					isObserverAdded.current = false;
+				}
+				window.removeEventListener('visibilitychange', eventRefs.current.onBlurPause);
+			},
 		};
 	}
+
+	useEffect(() => {
+		if (videoRef.current) {
+			videoRef.current.addEventListener('playing', eventRefs.current.onVideoPlay);
+			videoRef.current.addEventListener('pause', eventRefs.current.onPauseVideo);
+		}
+		return () => {
+			if (isObserverAdded.current) {
+				eventRefs.current.intersectionObserver.disconnect();
+				isObserverAdded.current = false;
+			}
+		};
+	}, []);
 
 	useEffect(() => {
 		if (!isInitial.current) {
@@ -112,7 +158,7 @@ function VideoStatus({ video, isPlaying }) {
 	}, [video]);
 
 	return (
-		<>
+		<div ref={statusContainerRef} className={styles.statusContainer}>
 			{!status.initialShow && !status.animation && status.loading ? (
 				<div>
 					<CircularSpinner />
@@ -148,7 +194,7 @@ function VideoStatus({ video, isPlaying }) {
 					</button>
 				</div>
 			) : null}
-		</>
+		</div>
 	);
 }
 

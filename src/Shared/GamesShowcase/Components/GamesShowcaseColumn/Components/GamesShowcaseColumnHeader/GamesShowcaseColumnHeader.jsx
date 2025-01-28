@@ -2,8 +2,6 @@ import TextField from '../../../../../TextField/TextField/TextField';
 import styles from './GamesShowcaseColumnHeader.module.css';
 
 export default function GamesShowcaseColumnHeader({ headerTitle, index, setHeader, isEditing }) {
-	console.log(isEditing);
-
 	return isEditing ? (
 		<div className={styles.textFieldContainer}>
 			<TextField

@@ -1,8 +1,11 @@
-.videoStatus {
+.statusContainer {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
+}
+
+.videoStatus {
 	width: 52px;
 	height: 52px;
 	display: flex;
@@ -30,10 +33,6 @@
 }
 
 .initialPlaceholder {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	translate: -50% -50%;
 	border-radius: 2.1875rem;
 }
 
