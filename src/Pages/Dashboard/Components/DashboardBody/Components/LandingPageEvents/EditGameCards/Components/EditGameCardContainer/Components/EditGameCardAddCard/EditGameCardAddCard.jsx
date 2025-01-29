@@ -1,19 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import useHoverTooltips from '../../../../../../../../../../../Utils/Hooks/useHoverTooltips';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
-import useTooltip from '../../../../../../../../../../../Utils/Hooks/useTooltip';
 import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBody/AddGameCardModalBody';
 import styles from './EditGameCardAddCard.module.css';
 
 function EditGameCardAddCard({ width, onClick }) {
 	const btnRef = useRef(null);
 
-	const setTooltip = useTooltip();
+	useHoverTooltips(btnRef, 'Add Game to the list');
 	const setModal = useModal();
-
-	useEffect(() => {
-		setTooltip(btnRef.current, 'Add Game to the list');
-	}, [setTooltip, width]);
 
 	return (
 		<li

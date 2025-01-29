@@ -19,6 +19,7 @@
 	height: fit-content;
 	bottom: 1rem;
 	z-index: 1;
+	color: rgba(255, 255, 255, 0.4);
 }
 
 .footerLinks {
@@ -44,12 +45,13 @@
 .footerContainerHide {
 	scale: 0 1;
 }
+
 .footerLink {
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.4);
 }
 
 .footerLink:hover {
+	color: rgba(255, 255, 255, 0.5);
 	text-decoration: underline;
 }
 

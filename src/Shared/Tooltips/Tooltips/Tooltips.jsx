@@ -2,5 +2,5 @@ import Tooltip from '../Components/Tooltip/Tooltip/Tooltip';
 
 const Tooltips = ({ tooltips }) =>
 	tooltips.length > 0 &&
-	tooltips.map(tooltip => <Tooltip key={tooltip.id} data={tooltip} show={tooltip.show} />);
+	tooltips.map(tooltip => <Tooltip key={tooltip.id} data={tooltip} state={tooltip.show} />);
 export default Tooltips;

@@ -66,6 +66,8 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 				break;
 			default:
 				if (prevStateRef.current !== state && condition) {
+					console.log('prevStateRef.current', prevStateRef.current, state);
+
 					switch (state) {
 						case true:
 							eventRefs.current.handleShow();

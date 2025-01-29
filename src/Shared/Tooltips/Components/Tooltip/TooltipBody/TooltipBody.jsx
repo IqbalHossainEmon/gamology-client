@@ -44,16 +44,12 @@ const getTooltipPosition = (targetElementBounds, tooltipDimensions, scrollY, pre
 	return positions[preferOrder.find(pos => positions[pos].isValid())];
 };
 
-function TooltipBody({
-	message,
-	containerRef,
-	fadeIn,
-	scrollElementId,
-	onMouseOver,
-	onMouseLeave,
-	preferPosition,
-}) {
+function TooltipBody({ fadeIn, scrollElementId, data }) {
+	const { container, message, preferPosition } = data;
+
 	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
+
+	console.log('container', container);
 
 	const tooltipRef = useRef(null);
 
@@ -62,10 +58,10 @@ function TooltipBody({
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onMouseOver: e => {
-				onMouseOver(e, true);
+				// onMouseOver(e, true);
 			},
 			onMouseLeave: e => {
-				onMouseLeave(e, true);
+				// onMouseLeave(e, true);
 			},
 		};
 	}
@@ -73,7 +69,7 @@ function TooltipBody({
 	useEffect(() => {
 		const tooltip = tooltipRef.current;
 
-		if (containerRef.current && tooltip) {
+		if (container && tooltip) {
 			tooltip.addEventListener('mouseover', eventRefs.current.onMouseOver);
 			tooltip.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			tooltip.toolTipElement = true;
@@ -86,7 +82,7 @@ function TooltipBody({
 
 			setPosition(
 				getTooltipPosition(
-					containerRef.current.getBoundingClientRect(),
+					container.getBoundingClientRect(),
 					tooltip.getBoundingClientRect(),
 					scrollY,
 					preferPosition
@@ -99,7 +95,7 @@ function TooltipBody({
 				tooltip.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			}
 		};
-	}, [containerRef, onMouseLeave, onMouseOver, preferPosition, scrollElementId]);
+	}, [container, preferPosition, scrollElementId]);
 
 	return (
 		<div

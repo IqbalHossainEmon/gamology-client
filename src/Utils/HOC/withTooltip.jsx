@@ -28,8 +28,10 @@ const withTooltip = Component =>
 						return [...prev];
 					});
 				},
-				tooltipInteractionHandlers: (container, msg, position) => {
+				tooltipInteractionHandlers: (container, message, preferPosition) => {
 					let currentTooltipIndex;
+					/* console.log('container', container); */
+
 					setTooltips(prev => {
 						const index = prev.findIndex(t => t.container === container);
 						if (index > -1) {
@@ -44,8 +46,8 @@ const withTooltip = Component =>
 							prev[index] = {
 								...prev[index],
 								container,
-								msg,
-								position,
+								message,
+								preferPosition,
 							};
 						} else {
 							currentTooltipIndex = prev.length;
@@ -53,8 +55,8 @@ const withTooltip = Component =>
 								id: prev.length,
 								container,
 								show: true,
-								msg,
-								position,
+								message,
+								preferPosition,
 							});
 						}
 						return [...prev];
