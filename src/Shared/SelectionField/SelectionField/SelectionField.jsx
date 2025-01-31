@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import useCalculateTextSize from '../../../Utils/Hooks/useCalculateTextSize';
 import useDropDownHide from '../../../Utils/Hooks/useDropDownHide';
+import useHoverTooltips from '../../../Utils/Hooks/useHoverTooltips';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import useTooltip from '../../../Utils/Hooks/useTooltip';
 import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import RotateArrow from '../../RotateArrow/RotateArrow';
 import SelectionFieldList from '../SelectionFieldList/SelectionFieldList';
@@ -34,7 +34,7 @@ export default function SelectionField({
 	const positionRef = useRef({ height: 0, bottom: true });
 
 	useEffect(() => {
-		if (valueRef.current !== defaultValue) {
+		if (defaultValue && valueRef.current !== defaultValue) {
 			setValue(defaultValue);
 		}
 	}, [defaultValue]);
@@ -82,20 +82,17 @@ export default function SelectionField({
 		};
 	}
 
-	const setTooltip = useTooltip();
+	useHoverTooltips(
+		elementRef,
+		value,
+		() => containerRef.current && width + 45 > containerRef.current.clientWidth,
+		'left'
+	);
 
-	const isAdded = useRef(false);
-
-	useEffect(() => {
-		// Check if the text is overflowing the container and add tooltip
-		if (containerRef.current && width + 45 > containerRef.current.clientWidth) {
-			setTooltip(elementRef.current, value);
-			isAdded.current = true;
-		} else if (isAdded.current) {
-			isAdded.current = false;
-			setTooltip(elementRef.current, null);
-		}
-	}, [setTooltip, value, width, widthInRem]);
+	console.log(
+		containerRef.current && width + 45 > containerRef.current.clientWidth,
+		elementRef.current
+	);
 
 	useEffect(() => {
 		const input = inputRef.current;
@@ -104,7 +101,7 @@ export default function SelectionField({
 			// Set the width of the input field depending on the text
 			setWidth(calculateTextWidth(defaultValue, '16px Inter'));
 		}
-	}, [calculateTextWidth, defaultValue, placeholder, setTooltip]);
+	}, [calculateTextWidth, defaultValue, placeholder]);
 
 	return (
 		<div

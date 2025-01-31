@@ -44,12 +44,10 @@ const getTooltipPosition = (targetElementBounds, tooltipDimensions, scrollY, pre
 	return positions[preferOrder.find(pos => positions[pos].isValid())];
 };
 
-function TooltipBody({ fadeIn, scrollElementId, data }) {
+function TooltipBody({ fadeIn, data }) {
 	const { container, message, preferPosition } = data;
 
 	const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: '' });
-
-	console.log('container', container);
 
 	const tooltipRef = useRef(null);
 
@@ -76,9 +74,7 @@ function TooltipBody({ fadeIn, scrollElementId, data }) {
 
 			let scrollY = 0;
 
-			if (scrollElementId) {
-				scrollY = document.getElementById(scrollElementId).scrollTop;
-			}
+			scrollY = document.getElementById('root').scrollTop;
 
 			setPosition(
 				getTooltipPosition(
@@ -95,7 +91,7 @@ function TooltipBody({ fadeIn, scrollElementId, data }) {
 				tooltip.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 			}
 		};
-	}, [container, preferPosition, scrollElementId]);
+	}, [container, preferPosition]);
 
 	return (
 		<div

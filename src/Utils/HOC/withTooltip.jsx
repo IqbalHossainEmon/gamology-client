@@ -29,14 +29,9 @@ const withTooltip = Component =>
 					});
 				},
 				tooltipInteractionHandlers: (container, message, preferPosition) => {
-					let currentTooltipIndex;
-					/* console.log('container', container); */
-
 					setTooltips(prev => {
 						const index = prev.findIndex(t => t.container === container);
 						if (index > -1) {
-							currentTooltipIndex = index;
-
 							if (prev[index].timerId) {
 								clearTimeout(prev[index].timerId);
 							}
@@ -46,11 +41,11 @@ const withTooltip = Component =>
 							prev[index] = {
 								...prev[index],
 								container,
+								show: true,
 								message,
 								preferPosition,
 							};
 						} else {
-							currentTooltipIndex = prev.length;
 							prev.push({
 								id: prev.length,
 								container,
@@ -62,7 +57,7 @@ const withTooltip = Component =>
 						return [...prev];
 					});
 
-					return currentTooltipIndex;
+					return eventRefs.current.hideTooltip;
 				},
 			};
 		}
@@ -70,7 +65,7 @@ const withTooltip = Component =>
 		return (
 			<SetTooltipContext.Provider value={eventRefs.current.tooltipInteractionHandlers}>
 				<Component {...props} />
-				<Tooltips tooltips={tooltips} scrollElementId='root' />
+				<Tooltips tooltips={tooltips} />
 			</SetTooltipContext.Provider>
 		);
 	};
