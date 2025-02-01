@@ -48,6 +48,10 @@
 	width: 20px;
 }
 
+.aspectRatioClassName {
+	padding-bottom: 100%;
+}
+
 @media screen and (max-width: 13.125rem) {
 	.buttonContainer {
 		max-width: 150px;

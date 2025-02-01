@@ -89,7 +89,9 @@ function SuggestionListContent({
 														<Image
 															data={item.carouselThumb}
 															alt={item.alt}
-															aspectRatio={3 / 4}
+															aspectRatioClassName={
+																styles.aspectRatioClassName
+															}
 														/>
 													</div>
 													<p>{item.editedName || item.name}</p>

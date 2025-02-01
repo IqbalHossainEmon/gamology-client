@@ -18,6 +18,10 @@
 	padding: 1em;
 }
 
+.aspectRatioClassName {
+	padding-bottom: 100%;
+}
+
 .cardContainerInfo {
 	margin-top: 1em;
 	color: #fff;

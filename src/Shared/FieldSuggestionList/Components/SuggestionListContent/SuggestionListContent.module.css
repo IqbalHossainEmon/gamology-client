@@ -143,6 +143,10 @@
 	left: 0;
 }
 
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
 @keyframes loadingAnimation {
 	0% {
 		background-position: 400% 50%;

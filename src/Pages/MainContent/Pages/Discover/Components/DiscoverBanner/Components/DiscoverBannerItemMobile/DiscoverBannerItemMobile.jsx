@@ -34,7 +34,7 @@ export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {
 			<Image
 				data={coverMobile}
 				alt={`${name} carousel cover-${id + 1}`}
-				aspectRatio={1 / 1.34}
+				aspectRatioClassName={styles.aspectRatioClassName}
 			/>
 		</li>
 	);

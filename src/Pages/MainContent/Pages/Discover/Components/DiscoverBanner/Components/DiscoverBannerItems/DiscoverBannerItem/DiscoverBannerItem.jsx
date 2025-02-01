@@ -9,7 +9,11 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 
 	return (
 		<li className={`${styles.carouselItem} ${idState}`}>
-			<Image data={coverImg} alt={`${name} carousel cover-${id + 1}`} aspectRatio={16 / 9} />
+			<Image
+				data={coverImg}
+				alt={`${name} carousel cover-${id + 1}`}
+				aspectRatioClassName={styles.aspectRatioClassName}
+			/>
 			<div className={styles.itemButton}>
 				<DiscoverBannerPrice price={price} />
 				<button type='button'>

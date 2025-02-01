@@ -56,6 +56,10 @@
 	margin-right: 1rem;
 }
 
+.aspectRatioClassName {
+	padding-bottom: 100%;
+}
+
 @media screen and (max-width: 48rem) {
 	.freeGames {
 		padding: 1em 1.5em;

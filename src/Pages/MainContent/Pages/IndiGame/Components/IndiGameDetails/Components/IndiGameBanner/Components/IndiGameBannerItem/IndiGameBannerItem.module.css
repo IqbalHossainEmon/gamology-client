@@ -14,3 +14,6 @@
 	top: 50%;
 	translate: -50% -50%;
 }
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 16 * 9);
+}

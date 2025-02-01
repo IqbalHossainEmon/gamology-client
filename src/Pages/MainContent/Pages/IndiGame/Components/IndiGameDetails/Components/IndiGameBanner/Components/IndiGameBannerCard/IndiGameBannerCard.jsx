@@ -21,7 +21,11 @@ export default function IndiGameBannerCard({ data, active, dispatch, index, time
 						</svg>
 					</div>
 				)}
-				<Image data={data.thumb} alt={`cover number-${index + 1}`} aspectRatio={16 / 9} />
+				<Image
+					data={data.thumb}
+					alt={`cover number-${index + 1}`}
+					aspectRatioClassName={styles.aspectRatioClassName}
+				/>
 			</button>
 		</li>
 	);

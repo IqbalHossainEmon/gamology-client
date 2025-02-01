@@ -10,7 +10,7 @@ export default function GamesShowcaseColumnRow({ game, link }) {
 					cardHover={null}
 					data={game.carouselThumb}
 					alt={game.name}
-					aspectRatio={3 / 4}
+					aspectRatioClassName={styles.aspectRatioClassName}
 					className={styles.image}
 				/>
 			</div>

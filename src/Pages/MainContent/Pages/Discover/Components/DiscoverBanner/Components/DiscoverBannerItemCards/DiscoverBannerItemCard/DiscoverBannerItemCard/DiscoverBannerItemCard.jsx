@@ -63,7 +63,7 @@ export default function DiscoverBannerItemCard({
 					className={styles.cardImage}
 					data={carouselThumb}
 					alt={`${name} card-${id}`}
-					aspectRatio={3 / 4}
+					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</button>
 			<CardNameContainer

@@ -46,6 +46,10 @@
 	-webkit-box-orient: vertical;
 }
 
+.aspectRatioClassName {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
 @media only screen and (min-width: 1600px) {
 	.name {
 		font-size: 1rem;

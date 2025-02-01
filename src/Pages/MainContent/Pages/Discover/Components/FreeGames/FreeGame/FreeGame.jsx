@@ -39,7 +39,7 @@ export default function FreeGame({ data, today, length }) {
 							cardHover={null}
 							data={data.carouselThumb}
 							alt={data.name}
-							aspectRatio={length < 4 ? 16 / 9 : 3 / 4}
+							aspectRatioClassName={styles[`aspectRatioClassName${length}`]}
 						/>
 						{dateState !== -1 && (
 							<p

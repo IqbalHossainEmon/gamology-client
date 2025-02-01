@@ -14,7 +14,7 @@ export default function Card({ cardInfo, style, className, children, link }) {
 					cardHover={children ? children(parentRef, cardInfo) : null}
 					data={img}
 					alt={`${name}-cardThumb-${id + 1}`}
-					aspectRatio={3 / 4}
+					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</div>
 			<h4 className={styles.name}>{name}</h4>

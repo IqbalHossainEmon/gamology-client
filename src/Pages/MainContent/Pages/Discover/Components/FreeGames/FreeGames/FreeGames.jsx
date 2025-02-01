@@ -85,7 +85,11 @@ export default function FreeGames() {
 		<section className={styles.freeGames}>
 			<div className={styles.header}>
 				<div className={styles.headerIcon}>
-					<Image data='/assets/images/gift.png' alt='gift' aspectRatio={1} />
+					<Image
+						data='/assets/images/gift.png'
+						alt='gift'
+						aspectRatioClassName={styles.aspectRatioClassName}
+					/>
 				</div>
 				<h3 className={styles.headerName}>Free games</h3>
 				<button className={styles.viewMoreBtn} type='button'>

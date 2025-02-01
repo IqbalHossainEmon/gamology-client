@@ -3,7 +3,7 @@ import ImageError from '../Component/ImageError/ImageError';
 import ImagePlaceholder from '../Component/ImagePlaceholder/ImagePlaceholder';
 import styles from './Image.module.css';
 
-function Image({ data, alt, aspectRatio, placeholder, className }) {
+function Image({ data, alt, aspectRatioClassName, placeholder, className, ...rest }) {
 	const [currentState, setCurrentState] = useState(0);
 	const imgRef = useRef(null);
 	const imgSrc = useRef({ src: '', needRevoke: false });
@@ -42,16 +42,20 @@ function Image({ data, alt, aspectRatio, placeholder, className }) {
 	}, []);
 	return (
 		<div
-			className={aspectRatio ? styles.imageContainer : styles.imageContainerNoAspectRatio}
-			{...(aspectRatio && { style: { paddingBottom: `${100 / aspectRatio}%` } })}
+			className={
+				aspectRatioClassName
+					? `${styles.imageContainer} ${aspectRatioClassName}`
+					: styles.imageContainerNoAspectRatio
+			}
 		>
 			<ImagePlaceholder currentState={currentState} placeholder={placeholder} />
 			{currentState >= 0 ? (
 				<img
+					{...rest}
 					ref={imgRef}
 					src={imgSrc.current.src}
 					alt={alt}
-					className={`${className ? `${className} ` : ''}${aspectRatio ? styles.imageWithAspectRatio : styles.imageNoAspectRatio}${currentState === 0 ? ` ${styles.loading}` : ''} ${styles.image}`}
+					className={`${className ? `${className} ` : ''}${aspectRatioClassName ? styles.imageWithAspectRatio : styles.imageNoAspectRatio}${currentState === 0 ? ` ${styles.loading}` : ''} ${styles.image}`}
 				/>
 			) : (
 				<ImageError alt={alt} />

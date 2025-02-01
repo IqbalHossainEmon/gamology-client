@@ -33,6 +33,10 @@
 	width: 60px;
 }
 
+.aspectRatioClassName {
+	padding-bottom: 100%;
+}
+
 @media only screen and (max-width: 48rem) {
 	.header {
 		position: relative;

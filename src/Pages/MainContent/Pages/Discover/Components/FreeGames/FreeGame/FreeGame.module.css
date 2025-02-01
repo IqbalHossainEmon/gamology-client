@@ -40,6 +40,16 @@
 	font-size: 0.875rem;
 }
 
+.aspectRatioClassName1,
+.aspectRatioClassName2,
+.aspectRatioClassName3 {
+	padding-bottom: calc(100% / 16 * 9);
+}
+
+.aspectRatioClassName4 {
+	padding-bottom: calc(100% / 3 * 4);
+}
+
 @media only screen and (min-width: 1600px) {
 	.gameDetail p {
 		font-size: 1rem;
