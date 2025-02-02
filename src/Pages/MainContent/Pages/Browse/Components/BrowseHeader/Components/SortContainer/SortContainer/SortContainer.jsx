@@ -21,13 +21,19 @@ export default function SortContainer({ state, handleChange }) {
 		setElement(dropDownRef.current);
 	}, [setElement]);
 
-	const atLeastOnceToggled = useRef(false);
+	const timerId = useRef(null);
 
 	useEffect(() => {
 		if (sort) {
-			showMenu();
-			atLeastOnceToggled.current = true;
-		} else if (atLeastOnceToggled.current) {
+			timerId.current = setTimeout(() => {
+				showMenu();
+				timerId.current = null;
+			}, 300);
+		} else {
+			if (timerId.current) {
+				clearTimeout(timerId.current);
+				timerId.current = null;
+			}
 			onHide();
 		}
 	}, [sort, onHide, showMenu]);

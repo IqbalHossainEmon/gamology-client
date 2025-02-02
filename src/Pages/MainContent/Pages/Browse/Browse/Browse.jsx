@@ -286,7 +286,7 @@ const priceAndRelease = {
 	releaseDate: { lower: 1970, higher: new Date().getFullYear() },
 };
 
-function Browse() {
+function BrowseContent() {
 	const { initialState, reducer } = useBrowseLogics();
 	const { widthInRem } = useScreenWidth();
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -325,6 +325,6 @@ function Browse() {
 	);
 }
 
-const FilteredSortedBrowse = withFilterSortProvider(memo(Browse));
+const Browse = withFilterSortProvider(memo(BrowseContent));
 
-export default FilteredSortedBrowse;
+export default Browse;

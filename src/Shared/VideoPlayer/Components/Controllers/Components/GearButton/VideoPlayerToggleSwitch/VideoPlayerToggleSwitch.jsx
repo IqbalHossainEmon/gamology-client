@@ -1,20 +1,41 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAppearDisappear from '../../../../../../../Utils/Hooks/useAppearDisappear';
 import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
 import styles from './VideoPlayerToggleSwitch.module.css';
 
-function VideoPlayerToggleSwitch({ show: state, onClick, autoplay, setAutoplay }) {
+function VideoPlayerToggleSwitch({ show: state, setElement, gearRef }) {
+	const [autoplay, setAutoplay] = useState({ autoplay: false });
+
 	const [show, fadeIn] = useAppearDisappear(state);
 
-	const eventRef = useRef(null);
+	useEffect(() => {
+		setElement(gearRef.current);
+		if (localStorage.getItem('autoplay')) {
+			setAutoplay({ autoplay: true });
+		}
+	}, [gearRef, setElement]);
 
+	useEffect(() => {
+		//   Change in local storage
+		if (autoplay.autoplay) {
+			localStorage.setItem('autoplay', 'true');
+		} else {
+			localStorage.removeItem('autoplay');
+		}
+	}, [autoplay]);
+
+	const eventRef = useRef(null);
 	if (!eventRef.current) {
 		eventRef.current = {
+			handleToggle: () => {
+				setAutoplay(prev => ({ autoplay: !prev.autoplay }));
+				document.removeEventListener('mouseup', eventRef.current.handleToggle);
+			},
 			onMouseDown: () => {
-				document.addEventListener('mouseup', onClick);
+				document.addEventListener('mouseup', eventRef.current.handleToggle);
 			},
 			handleOnMove: () => {
-				document.removeEventListener('mouseup', onClick);
+				document.removeEventListener('mouseup', eventRef.current.handleToggle);
 			},
 		};
 	}
@@ -37,7 +58,7 @@ function VideoPlayerToggleSwitch({ show: state, onClick, autoplay, setAutoplay }
 							mouseDownEvent={eventRef.current.handleMouseDownTimer}
 							name='autoplay'
 							setState={setAutoplay}
-							state={autoplay}
+							state={autoplay.autoplay}
 						/>
 					</div>
 				</button>

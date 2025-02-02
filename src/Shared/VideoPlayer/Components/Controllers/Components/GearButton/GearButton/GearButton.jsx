@@ -4,24 +4,11 @@ import VideoPlayerToggleSwitch from '../VideoPlayerToggleSwitch/VideoPlayerToggl
 import styles from './GearButton.module.css';
 
 function GearButton({ gearRef, hideControllerRefs }) {
-	const [autoplay, setAutoplay] = useState({ autoplay: false });
 	const [show, setShow] = useState(false);
 	const showRef = useRef(show);
 	showRef.current = show;
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
-
-	const eventRef = useRef(null);
-
-	if (!eventRef.current) {
-		eventRef.current = {
-			handleClick: () => {
-				setAutoplay(prev => ({
-					autoplay: !prev.autoplay,
-				}));
-			},
-		};
-	}
 
 	useEffect(() => {
 		if (show && !hideControllerRefs.current.isAutoplayMenuShowing) {
@@ -33,22 +20,6 @@ function GearButton({ gearRef, hideControllerRefs }) {
 			}
 		}
 	}, [hideControllerRefs, show]);
-
-	useEffect(() => {
-		setElement(gearRef.current);
-		if (localStorage.getItem('autoplay')) {
-			setAutoplay({ autoplay: true });
-		}
-	}, [gearRef, setElement]);
-
-	useEffect(() => {
-		//   Change in local storage
-		if (autoplay.autoplay) {
-			localStorage.setItem('autoplay', 'true');
-		} else {
-			localStorage.removeItem('autoplay');
-		}
-	}, [autoplay]);
 
 	return (
 		<>
@@ -77,12 +48,7 @@ function GearButton({ gearRef, hideControllerRefs }) {
 					</svg>
 				</span>
 			</button>
-			<VideoPlayerToggleSwitch
-				autoplay={autoplay.autoplay}
-				onClick={eventRef.current.handleClick}
-				setAutoplay={setAutoplay}
-				show={show}
-			/>
+			<VideoPlayerToggleSwitch show={show} setElement={setElement} gearRef={gearRef} />
 		</>
 	);
 }

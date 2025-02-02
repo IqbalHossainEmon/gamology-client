@@ -10,12 +10,14 @@ function FilterOption({ text, setState, border, state, name }) {
 	if (!eventRef.current) {
 		let isForTouch = false;
 		eventRef.current = {
-			handleClick: e => {
-				// Check if the event is on the btnRef
-				if (btnRef.current?.contains(e.target)) {
-					setState(prev => ({ ...prev, [name]: !prev[name] }), name);
-				}
+			handleClick: () => {
+				setState(prev => ({ ...prev, [name]: !prev[name] }), name);
+				document.removeEventListener('mouseup', eventRef.current.handleClick);
 				if (isForTouch) isForTouch = false;
+			},
+			handleToggle: e => {
+				if (!e.touches) return;
+				setState(prev => ({ ...prev, [name]: !prev[name] }), name);
 			},
 			handleTouchStart: () => {
 				isForTouch = true;
@@ -46,13 +48,13 @@ function FilterOption({ text, setState, border, state, name }) {
 				e.preventDefault();
 				document.addEventListener('mouseup', eventRef.current.handleClick);
 			}}
-			onTouchStart={eventRef.current.handleTouchStart}
 			ref={btnRef}
 			type='button'
 		>
 			<p className={styles.text}>{text}</p>
 			<div className={styles.toggleButtonContainer}>
 				<ToggleSwitch
+					mouseUpEvent={eventRef.current.handleToggle}
 					onSwitchMove={eventRef.current.removeEvent}
 					name={name}
 					setState={setState}

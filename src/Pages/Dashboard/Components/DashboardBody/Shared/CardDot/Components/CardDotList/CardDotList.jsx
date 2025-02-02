@@ -4,8 +4,13 @@ import styles from './CardDotList.module.css';
 function CardDotList({ lists, onAppear, item, fadeIn, setHide }) {
 	const listContainerRef = useRef(null);
 
+	const isSet = useRef(false);
+
 	useEffect(() => {
-		onAppear(listContainerRef.current);
+		if (!isSet.current) {
+			onAppear(listContainerRef.current);
+			isSet.current = true;
+		}
 	}, [onAppear]);
 
 	return (

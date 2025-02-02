@@ -31,10 +31,10 @@ export default function FilterOptionEachPart({ option, state, setState, limits =
 					/>
 					{details?.switch && (
 						<FilterOption
-							name={details?.switch?.tag}
+							name={details.switch.tag}
 							setState={setState}
-							state={state[details?.switch?.tag]}
-							text={details?.switch?.tag}
+							state={state[details.switch.tag]}
+							text={details.switch.tag}
 						/>
 					)}
 				</>

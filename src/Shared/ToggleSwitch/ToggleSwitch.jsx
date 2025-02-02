@@ -25,6 +25,9 @@ function ToggleSwitch({
 	const roundRef = useRef(null);
 	const positionsRef = useRef(0);
 	const startPositionRef = useRef(0);
+	const parentStateRef = useRef(state);
+	parentStateRef.current = state;
+
 	const handleTimerTransition = useHandleTimerTransition(setCirclePosition, 1000);
 
 	useEffect(() => {
@@ -47,6 +50,7 @@ function ToggleSwitch({
 					isMouseDown.current = false;
 					onSwitchMove();
 				}
+
 				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
 				const newPosition = startPositionRef.current + move;
 
@@ -66,11 +70,12 @@ function ToggleSwitch({
 				positionsRef.current = e.touches ? e.touches[0].clientX : e.clientX;
 				startPositionRef.current = stateRef.current;
 			},
-			handleSetValue: () => {
+			handleSetValue: e => {
 				// If switch is below 50
 				if (mouseUpEvent) {
-					mouseUpEvent();
+					mouseUpEvent(e);
 				}
+
 				if (isMouseDown.current) isMouseDown.current = false;
 				let isToggled = false;
 				if (stateRef.current < rangePathWidth / 2) {
@@ -83,9 +88,10 @@ function ToggleSwitch({
 					translate: isToggled ? rangePathWidth : 0,
 					transition: true,
 				});
-
-				handleTimerTransition();
-				setState(prev => ({ ...prev, [name]: isToggled }), name);
+				if (isToggled !== parentStateRef.current) {
+					handleTimerTransition();
+					setState(prev => ({ ...prev, [name]: isToggled }), name);
+				}
 			},
 		};
 	}
