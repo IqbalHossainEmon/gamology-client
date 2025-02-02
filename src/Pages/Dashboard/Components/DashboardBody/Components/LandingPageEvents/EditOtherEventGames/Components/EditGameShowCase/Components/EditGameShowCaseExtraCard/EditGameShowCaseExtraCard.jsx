@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import useHoverTooltips from '../../../../../../../../../../../Utils/Hooks/useHoverTooltips';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBody/AddGameCardModalBody';
 
@@ -7,10 +9,15 @@ import styles from './EditGameShowCaseExtraCard.module.css';
 function EditGameShowCaseExtraCard({ onclick }) {
 	const setModal = useModal();
 
+	const btnRef = useRef(null);
+
+	useHoverTooltips(btnRef, 'Add Game to the list');
+
 	return (
 		<li>
 			<button
 				type='button'
+				ref={btnRef}
 				className={styles.extraCard}
 				onClick={() => {
 					setModal({
