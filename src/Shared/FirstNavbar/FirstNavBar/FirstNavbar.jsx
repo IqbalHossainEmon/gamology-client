@@ -25,7 +25,7 @@ export default function FirstNavbar() {
 						<Image
 							data='/assets/images/game-controller.png'
 							alt='gamology'
-							aspectRatioClassName={styles.aspectRatioClassName}
+							aspectRatio={1}
 						/>
 					</a>
 				</div>

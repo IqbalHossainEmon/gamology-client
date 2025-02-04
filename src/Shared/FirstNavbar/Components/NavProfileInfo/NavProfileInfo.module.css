@@ -11,10 +11,6 @@
 	overflow: hidden;
 }
 
-.aspectRatioClassName {
-	padding-bottom: 100%;
-}
-
 @media only screen and (max-width: 48rem) {
 	.profile {
 		display: flex;

@@ -15,7 +15,7 @@ export default function MobileSortAndFilterButton() {
 						<Image
 							data='/assets/images/sortButton.png'
 							alt='sort button'
-							aspectRatioClassName={styles.aspectRatioClassName}
+							aspectRatio={1}
 						/>
 					</div>
 					<span>Sort</span>
@@ -30,7 +30,7 @@ export default function MobileSortAndFilterButton() {
 						<Image
 							data='/assets/images/filterButton.png'
 							alt='filter button'
-							aspectRatioClassName={styles.aspectRatioClassName}
+							aspectRatio={1}
 						/>
 					</div>
 					<span>Filter</span>

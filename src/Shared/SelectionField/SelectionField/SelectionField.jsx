@@ -89,11 +89,6 @@ export default function SelectionField({
 		'left'
 	);
 
-	console.log(
-		containerRef.current && width + 45 > containerRef.current.clientWidth,
-		elementRef.current
-	);
-
 	useEffect(() => {
 		const input = inputRef.current;
 

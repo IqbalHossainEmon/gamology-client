@@ -6,6 +6,11 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 
 	const setTooltip = useTooltip();
 
+	const tooltipsInfos = useRef({ container: null, message: '', position: '' });
+	tooltipsInfos.current.container = element.current;
+	tooltipsInfos.current.message = message;
+	tooltipsInfos.current.position = position;
+
 	if (!eventRefs.current) {
 		let prevElements = {
 			container: null,
@@ -14,24 +19,22 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 		};
 		eventRefs.current = {
 			onMouseEnter: () => {
-				console.log('enter');
-
 				if (
-					prevElements.container !== element.current ||
-					prevElements.message !== message ||
-					prevElements.position !== position
+					prevElements.container !== tooltipsInfos.current.container ||
+					prevElements.message !== tooltipsInfos.current.message ||
+					prevElements.position !== tooltipsInfos.current.position
 				) {
-					eventRefs.current.handleHide = setTooltip(element.current, message, position);
+					eventRefs.current.handleHide = setTooltip(tooltipsInfos);
 					prevElements = {
-						container: element.current,
-						message,
-						position,
+						container: tooltipsInfos.current.container,
+						message: tooltipsInfos.current.message,
+						position: tooltipsInfos.current.position,
 					};
 				}
 			},
 			onMouseLeave: () => {
 				if (eventRefs.current.handleHide) {
-					eventRefs.current.handleHide(element.current);
+					eventRefs.current.handleHide(tooltipsInfos.current.container);
 					eventRefs.current.handleHide = undefined;
 					prevElements = {
 						container: null,
@@ -44,12 +47,11 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 	}
 
 	useEffect(() => {
-		console.log(element.current, !element.current || !conditionCheckFunction());
+		if (!element.current) return;
 
-		if (!element.current || !!conditionCheckFunction ? !conditionCheckFunction() : true) return;
+		if (conditionCheckFunction && !conditionCheckFunction()) return;
 
 		const ele = element.current;
-		console.log('wkwk');
 
 		ele.addEventListener('mouseenter', eventRefs.current.onMouseEnter);
 		ele.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
@@ -58,7 +60,7 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 			ele?.removeEventListener('mouseenter', eventRefs.current.onMouseEnter);
 			ele?.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 		};
-	}, [conditionCheckFunction, element]);
+	}, [conditionCheckFunction, element, message]);
 };
 
 export default useHoverTooltips;

@@ -9,7 +9,7 @@ export default function NavProfileInfo() {
 					data='/assets/images/user-1.svg'
 					placeholder={<img src='/assets/images/user-1.svg' alt='User icon' />}
 					alt='arrow-down'
-					aspectRatioClassName={styles.aspectRatioClassName}
+					aspectRatio={1}
 				/>
 			</div>
 			<p>iqbal.hossain.emon</p>

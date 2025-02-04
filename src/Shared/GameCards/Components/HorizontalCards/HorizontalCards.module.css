@@ -10,7 +10,6 @@
 	position: relative;
 	display: flex;
 	gap: 20px;
-	align-items: start;
 }
 .transition {
 	transition: translate 200ms;

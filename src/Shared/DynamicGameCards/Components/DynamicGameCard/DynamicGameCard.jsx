@@ -10,14 +10,9 @@ function DynamicGameCard({ data, isOnlyOne, link }) {
 	const isGame = Array.isArray(footer);
 
 	const imageContainer = isGame ? (
-		<Image data={image} aspectRatioClassName={styles.imageAspectRatio} />
+		<Image data={image} aspectRatio={16 / 9} />
 	) : (
-		<ImageWithHover
-			cardHover={null}
-			data={image}
-			alt={title}
-			aspectRatioClassName={styles.imageAspectRatio}
-		/>
+		<ImageWithHover cardHover={null} data={image} alt={title} aspectRatio={16 / 9} />
 	);
 
 	return (

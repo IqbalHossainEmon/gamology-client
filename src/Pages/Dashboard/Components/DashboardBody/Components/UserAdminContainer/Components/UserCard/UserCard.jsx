@@ -16,7 +16,7 @@ function UserCard({ data, children, admin }) {
 					cardHover={children(containerRef)}
 					data={profileImage}
 					alt={`${firstName}${middleName ? ` ${middleName}` : ''} ${lastName}`}
-					aspectRatioClassName={styles.aspectRatioClassName}
+					aspectRatio={1}
 				/>
 			</div>
 			<div className={styles.cardContainerInfo}>

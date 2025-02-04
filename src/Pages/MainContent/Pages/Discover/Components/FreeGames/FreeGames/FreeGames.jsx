@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ButtonWaterEffect from '../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import Image from '../../../../../../../Shared/Image/Image/Image';
 import FreeGame from '../FreeGame/FreeGame';
@@ -81,17 +81,11 @@ export default function FreeGames() {
 		setItems(data);
 	}, []);
 
-	const btnRef = useRef(null);
-
 	return (
 		<section className={styles.freeGames}>
 			<div className={styles.header}>
 				<div className={styles.headerIcon}>
-					<Image
-						data='/assets/images/gift.png'
-						alt='gift'
-						aspectRatioClassName={styles.aspectRatioClassName}
-					/>
+					<Image data='/assets/images/gift.png' alt='gift' aspectRatio={1} />
 				</div>
 				<h3 className={styles.headerName}>Free games</h3>
 				<button className={styles.viewMoreBtn} type='button'>

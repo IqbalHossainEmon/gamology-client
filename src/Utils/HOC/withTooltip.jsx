@@ -28,7 +28,9 @@ const withTooltip = Component =>
 						return [...prev];
 					});
 				},
-				tooltipInteractionHandlers: (container, message, preferPosition) => {
+				tooltipInteractionHandlers: ({ current }) => {
+					const { container, message, position: preferPosition } = current;
+
 					setTooltips(prev => {
 						const index = prev.findIndex(t => t.container === container);
 						if (index > -1) {

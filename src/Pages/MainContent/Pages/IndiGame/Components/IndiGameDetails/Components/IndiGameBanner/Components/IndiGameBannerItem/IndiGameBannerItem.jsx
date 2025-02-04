@@ -21,14 +21,14 @@ export default function IndiGameBannerItem({ data, active, index }) {
 					<Image
 						alt={`Carousel number-${index}`}
 						data={data.cover}
-						aspectRatioClassName={styles.aspectRatioClassName}
+						aspectRatio={16 / 9}
 					/>
 				) : (
 					<VideoPlayer
 						changePause={active}
 						src={data.cover}
 						{...(data.captions && { captions: data.captions })}
-						aspectRatioClassName={styles.aspectRatioClassName}
+						aspectRatio={16 / 9}
 					/>
 				)
 			) : null}

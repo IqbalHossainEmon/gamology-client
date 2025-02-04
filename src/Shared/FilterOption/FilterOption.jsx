@@ -12,7 +12,7 @@ function FilterOption({ text, setState, border, state, name }) {
 		eventRef.current = {
 			handleClick: e => {
 				// Check if the event is on the btnRef
-				if (btnRef.current.contains(e.target)) {
+				if (btnRef.current?.contains(e.target)) {
 					setState(prev => ({ ...prev, [name]: !prev[name] }), name);
 				}
 				if (isForTouch) isForTouch = false;
