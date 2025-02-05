@@ -82,7 +82,7 @@ export default function Menu({
 				ref={containerRef}
 				style={{ height: isAuto && height ? 'auto' : height }}
 			>
-				{children}
+				{children(!!height)}
 			</div>
 		</div>
 	);

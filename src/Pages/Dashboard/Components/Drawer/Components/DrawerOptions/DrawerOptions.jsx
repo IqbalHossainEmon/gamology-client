@@ -5,20 +5,22 @@ function DrawerOptions({ option, parentState }) {
 	return option.subDrawer ? (
 		<li className={styles.outerOptionContainer}>
 			<Menu name={option.name} icon={option.icon} parentState={parentState} paddingRight>
-				<ul className={styles.innerOptionsContainer}>
-					{option.subDrawer.map(subOption => (
-						<li className={styles.innerOptionContainer} key={subOption.id}>
-							<p className={styles.innerOption}>
-								<span
-									className={`${styles.iconContainer}${parentState ? ` ${styles.noTranslate}` : ''}`}
-								>
-									{subOption.icon}
-								</span>
-								<span className={styles.text}>{subOption.name}</span>
-							</p>
-						</li>
-					))}
-				</ul>
+				{() => (
+					<ul className={styles.innerOptionsContainer}>
+						{option.subDrawer.map(subOption => (
+							<li className={styles.innerOptionContainer} key={subOption.id}>
+								<p className={styles.innerOption}>
+									<span
+										className={`${styles.iconContainer}${parentState ? ` ${styles.noTranslate}` : ''}`}
+									>
+										{subOption.icon}
+									</span>
+									<span className={styles.text}>{subOption.name}</span>
+								</p>
+							</li>
+						))}
+					</ul>
+				)}
 			</Menu>
 		</li>
 	) : (

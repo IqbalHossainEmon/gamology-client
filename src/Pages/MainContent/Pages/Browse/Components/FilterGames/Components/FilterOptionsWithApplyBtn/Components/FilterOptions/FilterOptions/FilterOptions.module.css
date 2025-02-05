@@ -1,6 +1,5 @@
 .parentContainer {
 	position: relative;
-	padding: 1em;
 }
 
 .childContainer {
@@ -19,6 +18,7 @@
 	.parentContainer {
 		overflow: hidden;
 		height: 100%;
+		padding: 1em;
 	}
 
 	.parentContainer {

@@ -144,7 +144,7 @@ function ToggleSwitch({
 						onTouchStart={eventRefs.current.handleBeginning}
 						role='switch'
 						aria-checked={state}
-						tabIndex='0'
+						tabIndex='-1'
 					/>
 				</div>
 			</div>

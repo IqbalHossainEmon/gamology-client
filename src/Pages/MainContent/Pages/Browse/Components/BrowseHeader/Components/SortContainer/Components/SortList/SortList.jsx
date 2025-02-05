@@ -39,6 +39,8 @@ const links = [
 ];
 
 export default function SortList({ state, setShow, handleChange }) {
+	console.log(state.sortBy);
+
 	return (
 		<ol className={styles.listContainer}>
 			{links.map(link => (

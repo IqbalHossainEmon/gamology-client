@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import styles from './FilterOption.module.css';
 
-function FilterOption({ text, setState, border, state, name }) {
+function FilterOption({ text, setState, border, state, name, disabled }) {
 	const eventRef = useRef(null);
 
 	const btnRef = useRef(null);
@@ -44,6 +44,7 @@ function FilterOption({ text, setState, border, state, name }) {
 			className={`${border && styles.borderBot ? `${styles.borderBot} ` : ''}${
 				styles.filterOption
 			} ${styles.shadow}`}
+			disabled={disabled}
 			onMouseDown={e => {
 				e.preventDefault();
 				document.addEventListener('mouseup', eventRef.current.handleClick);
@@ -54,6 +55,7 @@ function FilterOption({ text, setState, border, state, name }) {
 			<p className={styles.text}>{text}</p>
 			<div className={styles.toggleButtonContainer}>
 				<ToggleSwitch
+					disabled={disabled}
 					mouseUpEvent={eventRef.current.handleToggle}
 					onSwitchMove={eventRef.current.removeEvent}
 					name={name}
