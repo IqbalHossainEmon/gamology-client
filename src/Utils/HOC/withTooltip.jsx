@@ -9,7 +9,16 @@ const withTooltip = Component =>
 		const eventRefs = useRef(null);
 
 		if (!eventRefs.current) {
+			let timerId;
 			eventRefs.current = {
+				handleCheckAndDelete: () => {
+					if (timerId) clearTimeout(timerId);
+
+					timerId = setTimeout(() => {
+						setTooltips(prev => prev.filter(element => element.show));
+						timerId = undefined;
+					}, 300);
+				},
 				hideTooltip: container => {
 					setTooltips(prev => {
 						const index = prev.findIndex(t => t.container === container);
@@ -17,12 +26,6 @@ const withTooltip = Component =>
 							prev[index] = {
 								...prev[index],
 								show: false,
-								timerId: setTimeout(() => {
-									setTooltips(innerPrev => {
-										innerPrev.splice(index, 1);
-										return [...innerPrev];
-									});
-								}, 300),
 							};
 						}
 						return [...prev];
@@ -33,13 +36,8 @@ const withTooltip = Component =>
 
 					setTooltips(prev => {
 						const index = prev.findIndex(t => t.container === container);
+
 						if (index > -1) {
-							if (prev[index].timerId) {
-								clearTimeout(prev[index].timerId);
-							}
-
-							delete prev[index].timerId;
-
 							prev[index] = {
 								...prev[index],
 								container,

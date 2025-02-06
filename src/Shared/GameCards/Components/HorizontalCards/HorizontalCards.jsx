@@ -10,7 +10,7 @@ function HorizontalCards(
 		<div className={styles.cardsContainer} ref={ref}>
 			{!!cardsWidth && (
 				<ul
-					className={`${transition ? `${styles.transition} ` : ''} ${styles.cardSlider}`}
+					className={`${transition ? `${styles.transition} ` : ''}${styles.cardSlider}`}
 					style={{ translate: `${-(cardsWidth * cardActive + 20 * cardActive)}px` }}
 				>
 					{data.map(({ id, name, carouselThumb, price, category }) => (

@@ -8,32 +8,25 @@ function FilterOption({ text, setState, border, state, name, disabled }) {
 	const btnRef = useRef(null);
 
 	if (!eventRef.current) {
-		let isForTouch = false;
+		let isForTouch = true;
 		eventRef.current = {
 			handleClick: () => {
 				setState(prev => ({ ...prev, [name]: !prev[name] }), name);
 				document.removeEventListener('mouseup', eventRef.current.handleClick);
-				if (isForTouch) isForTouch = false;
 			},
 			handleToggle: e => {
 				if (!e.touches) return;
-				setState(prev => ({ ...prev, [name]: !prev[name] }), name);
-			},
-			handleTouchStart: () => {
+
+				if (isForTouch) {
+					setState(prev => ({ ...prev, [name]: !prev[name] }), name);
+				}
 				isForTouch = true;
-				document.addEventListener('touchend', eventRef.current.handleClick);
 			},
-			removeEvent: () => {
-				switch (isForTouch) {
-					case true:
-						document.removeEventListener('touchend', eventRef.current.handleClick);
-						isForTouch = false;
-						break;
-					case false:
-						document.removeEventListener('mouseup', eventRef.current.handleClick);
-						break;
-					default:
-						break;
+			removeEvent: e => {
+				if (e.touches) {
+					isForTouch = false;
+				} else {
+					document.removeEventListener('mouseup', eventRef.current.handleClick);
 				}
 			},
 		};

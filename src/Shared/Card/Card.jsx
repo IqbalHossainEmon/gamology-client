@@ -13,7 +13,7 @@ export default function Card({ cardInfo, style, className, children, link }) {
 				<ImageWithHover
 					cardHover={children ? children(parentRef, cardInfo) : null}
 					data={img}
-					alt={`${name}-cardThumb-${id + 1}`}
+					alt={`${name}-cardThumb`}
 					aspectRatioClassName={styles.aspectRatioClassName}
 				/>
 			</div>

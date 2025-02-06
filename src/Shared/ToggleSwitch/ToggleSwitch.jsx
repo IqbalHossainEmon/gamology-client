@@ -48,7 +48,7 @@ function ToggleSwitch({
 			handleMove: e => {
 				if (onSwitchMove && isMouseDown.current) {
 					isMouseDown.current = false;
-					onSwitchMove();
+					onSwitchMove(e);
 				}
 
 				const move = (e.touches ? e.touches[0].clientX : e.clientX) - positionsRef.current;
@@ -89,6 +89,7 @@ function ToggleSwitch({
 					transition: true,
 				});
 				if (isToggled !== parentStateRef.current) {
+					console.log('click set');
 					handleTimerTransition();
 					setState(prev => ({ ...prev, [name]: isToggled }), name);
 				}
