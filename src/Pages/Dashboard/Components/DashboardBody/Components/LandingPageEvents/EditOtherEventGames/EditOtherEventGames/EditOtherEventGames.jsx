@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
-import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCaseBody';
+import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import styles from './EditOtherEventGames.module.css';
 
 const data = [
@@ -118,27 +118,23 @@ const data = [
 	},
 ];
 
+const emptyShowcaseItems = [
+	{ id: 0, games: [] },
+	{ id: 1, games: [] },
+	{ id: 2, games: [] },
+];
+
 function EditOtherEventGames() {
 	const [loading, setLoading] = useState(true);
 	const [allItems, setAllItems] = useState([
 		{
 			id: 0,
 			type: 'showcase',
-			items: [
-				{ id: 0, games: [] },
-				{ id: 1, games: [] },
-				{ id: 2, games: [] },
-			],
+			items: emptyShowcaseItems,
 		},
 	]);
 
-	const sectionsRefs = useRef([
-		[
-			{ id: 0, games: [] },
-			{ id: 1, games: [] },
-			{ id: 2, games: [] },
-		],
-	]);
+	const sectionsRefs = useRef([emptyShowcaseItems]);
 
 	const { cloneObject } = useObjectUtilities();
 

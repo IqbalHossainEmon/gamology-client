@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import GamesShowcase from '../../../../../../../../../../Shared/GamesShowcase/GamesShowcase/GamesShowcase';
+import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import EditGameShowCaseConfirmModal from '../Components/EditGameShowCaseConfirmModal/EditGameShowCaseConfirmModal';
 import EditGameShowCaseExtraCard from '../Components/EditGameShowCaseExtraCard/EditGameShowCaseExtraCard';
 import styles from './EditGameShowCase.module.css';
 
@@ -23,6 +25,8 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 		});
 	};
 
+	const setModal = useModal();
+
 	return (
 		<div className={styles.editGameShowCase}>
 			<GamesShowcase
@@ -38,7 +42,28 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 						dataRef.current = cloneObject(defaultItems);
 					}}
 				/>
-				<NormalButtonWithEffects text='Delete' onClick={onDelete} />
+				<NormalButtonWithEffects
+					text='Delete'
+					onClick={() =>
+						setModal({
+							title: 'Delete Game Showcase',
+							body: <p>Are you sure you want to delete this game showcase?</p>,
+							footer: (
+								<EditGameShowCaseConfirmModal
+									onConfirm={() => {
+										setModal({
+											title: null,
+											body: null,
+											footer: null,
+										});
+
+										onDelete();
+									}}
+								/>
+							),
+						})
+					}
+				/>
 			</div>
 		</div>
 	);

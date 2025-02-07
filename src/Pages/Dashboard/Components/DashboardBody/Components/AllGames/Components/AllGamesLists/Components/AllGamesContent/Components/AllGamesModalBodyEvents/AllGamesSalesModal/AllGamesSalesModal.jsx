@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useModal from '../../../../../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToast';
@@ -63,7 +62,6 @@ function AllGamesSalesModal({ price: prevPrice }) {
 			/>
 			<button className={styles.btn} onClick={handleSubmit} type='button'>
 				Submit Price
-				<ButtonWaterEffect long />
 			</button>
 		</div>
 	);

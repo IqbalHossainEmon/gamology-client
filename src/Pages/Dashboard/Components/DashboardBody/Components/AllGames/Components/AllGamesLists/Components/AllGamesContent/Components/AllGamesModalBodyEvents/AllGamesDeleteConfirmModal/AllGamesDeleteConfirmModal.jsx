@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useModal from '../../../../../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToast';
@@ -53,7 +52,6 @@ function AllGamesDeleteConfirmModal() {
 			/>
 			<button className={styles.deleteBtn} onClick={handleDelete} type='button'>
 				Delete
-				<ButtonWaterEffect long />
 			</button>
 		</div>
 	);
