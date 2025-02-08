@@ -1,13 +1,13 @@
-.dynamicGameCards {
+.adaptiveGameCards {
 	width: 100%;
 	margin-bottom: 4rem;
 }
 
-.dynamicGameCardsContainer {
+.adaptiveGameCardsContainer {
 	overflow: hidden;
 }
 
-.dynamicGameCardsList {
+.adaptiveGameCardsList {
 	width: 100%;
 	list-style-type: none;
 	display: flex;

@@ -1,4 +1,4 @@
-.dynamicGameCard {
+.adaptiveGameCard {
 	flex-basis: 100%;
 }
 
@@ -7,6 +7,12 @@
 	gap: 1rem 3rem;
 	align-items: center;
 	flex-wrap: wrap;
+}
+
+.multiple {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .imageContainer {
@@ -27,7 +33,7 @@
 .title {
 	font-size: 1.2rem;
 	font-weight: 500;
-	margin: 1rem 0;
+	margin-bottom: 1rem;
 }
 
 .cardDescription {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import DynamicGameCards from '../../../../../../Shared/DynamicGameCards/DynamicGameCards/DynamicGameCards';
-import styles from './DiscoverDynamicGameCards.module.css';
+import AdaptiveGameCards from '../../../../../../Shared/AdaptiveGameCards/AdaptiveGameCards/AdaptiveGameCards';
+import styles from './DiscoverAdaptiveGameCards.module.css';
 
 const data = [
 	{
@@ -38,7 +38,7 @@ const data = [
 	},
 ];
 
-function DiscoverDynamicGameCards() {
+function DiscoverAdaptiveGameCards() {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -47,8 +47,8 @@ function DiscoverDynamicGameCards() {
 
 	return (
 		<div className={styles.discoverDynamicGameCards}>
-			<DynamicGameCards items={items} link='/' />
+			<AdaptiveGameCards items={items} link='/' />
 		</div>
 	);
 }
-export default DiscoverDynamicGameCards;
+export default DiscoverAdaptiveGameCards;

@@ -1,5 +1,5 @@
+import DiscoverAdaptiveGameCards from '../Components/DiscoverAdaptiveGameCards/DiscoverAdaptiveGameCards';
 import DiscoverBanner from '../Components/DiscoverBanner/DiscoverBanner/DiscoverBanner';
-import DiscoverDynamicGameCards from '../Components/DiscoverDynamicGameCards/DiscoverDynamicGameCards';
 import DiscoverGameCards from '../Components/DiscoverGameCards/DiscoverGameCards';
 import DiscoverGameShowcase from '../Components/DiscoverGameShowcase/DiscoverGameShowcase';
 import ExploreGames from '../Components/ExploreGames/ExploreGames';
@@ -14,12 +14,12 @@ export default function Discover() {
 				<DiscoverGameCards header='Game on sale' />
 				<FreeGames />
 				<DiscoverGameCards header='Summer Spotlight' />
-				<DiscoverDynamicGameCards />
+				<DiscoverAdaptiveGameCards />
 				<DiscoverGameCards header='Summer Spotlight' />
 				<DiscoverGameShowcase />
 				<DiscoverGameCards header='Most Popular' />
 				<DiscoverGameShowcase />
-				<DiscoverDynamicGameCards />
+				<DiscoverAdaptiveGameCards />
 				<DiscoverGameShowcase />
 			</div>
 			<ExploreGames />

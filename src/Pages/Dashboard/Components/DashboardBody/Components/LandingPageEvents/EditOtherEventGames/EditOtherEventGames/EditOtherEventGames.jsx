@@ -190,13 +190,11 @@ function EditOtherEventGames() {
 							onClick={() => {
 								setAllItems(prev => {
 									const temp = [...prev];
-
 									const emptyData = [
 										{ id: 0, games: [] },
 										{ id: 1, games: [] },
 										{ id: 2, games: [] },
 									];
-
 									temp.push({
 										id: temp.length,
 										items: cloneObject(emptyData),

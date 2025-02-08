@@ -3,9 +3,9 @@ import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransit
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import DynamicCardNavigator from '../Components/DynamicCardNavigator/DynamicCardNavigator';
 import DynamicGameCard from '../Components/DynamicGameCard/DynamicGameCard';
-import styles from './DynamicGameCards.module.css';
+import styles from './AdaptiveGameCards.module.css';
 
-function DynamicGameCards({ items, link }) {
+function AdaptiveGameCards({ items, link }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
 
@@ -14,10 +14,10 @@ function DynamicGameCards({ items, link }) {
 	const handleTransition = useHandleTimerTransition(setTransition, 300);
 
 	return (
-		<section className={styles.dynamicGameCards}>
-			<div className={styles.dynamicGameCardsContainer}>
+		<section className={styles.adaptiveGameCards}>
+			<div className={styles.adaptiveGameCardsContainer}>
 				<ul
-					className={`${styles.dynamicGameCardsList}${transition.transition ? ` ${styles.transition}` : ''}`}
+					className={`${styles.adaptiveGameCardsList}${transition.transition ? ` ${styles.transition}` : ''}`}
 					{...(widthInRem < 48 && {
 						style: {
 							translate: `calc(-${100 * cardPosition}% - ${cardPosition * 1.5} * 1rem)`,
@@ -48,4 +48,4 @@ function DynamicGameCards({ items, link }) {
 		</section>
 	);
 }
-export default DynamicGameCards;
+export default AdaptiveGameCards;

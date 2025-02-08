@@ -56,7 +56,6 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 											body: null,
 											footer: null,
 										});
-
 										onDelete();
 									}}
 								/>
