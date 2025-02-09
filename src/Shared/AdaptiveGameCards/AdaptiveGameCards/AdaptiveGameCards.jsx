@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import DynamicCardNavigator from '../Components/DynamicCardNavigator/DynamicCardNavigator';
-import DynamicGameCard from '../Components/DynamicGameCard/DynamicGameCard';
+import AdaptiveGameCardNavigator from '../Components/AdaptiveGameCard/AdaptiveGameCard';
 import styles from './AdaptiveGameCards.module.css';
 
 function AdaptiveGameCards({ items, link }) {
@@ -25,7 +24,7 @@ function AdaptiveGameCards({ items, link }) {
 					})}
 				>
 					{items.map(item => (
-						<DynamicGameCard
+						<AdaptiveGameCardNavigator
 							key={item.id}
 							data={item}
 							isOnlyOne={items.length === 1}
@@ -35,7 +34,7 @@ function AdaptiveGameCards({ items, link }) {
 				</ul>
 			</div>
 			{widthInRem < 48.0625 && items.length > 1 && (
-				<DynamicCardNavigator
+				<AdaptiveGameCardNavigator
 					length={items.length}
 					setCardPosition={prop => {
 						setCardPosition(prop);

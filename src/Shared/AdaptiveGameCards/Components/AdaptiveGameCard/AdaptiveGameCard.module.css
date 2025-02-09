@@ -1,0 +1,82 @@
+.adaptiveGameCard {
+	flex-basis: 100%;
+}
+
+.onlyOne {
+	display: flex;
+	gap: 1rem 3rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.multiple {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.imageContainer {
+	width: 100%;
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.onlyOne .imageContainer {
+	flex: 1 1 60%;
+}
+
+.imageAspectRatio {
+	width: 100%;
+	padding-bottom: calc(100% * 9 / 16);
+}
+
+.title {
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+
+.cardDescription {
+	margin: 0.5rem 0 1rem;
+	color: #ffffff90;
+}
+
+.cardFooter {
+	width: 100%;
+}
+
+.btnContainer {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.btn {
+	border: none;
+	padding: 0.6em;
+	font-size: 1rem;
+	font-weight: 500;
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+.btn:nth-child(odd) {
+	background-color: #ffffff20;
+	color: white;
+}
+
+.btn:nth-child(odd):hover {
+	background-color: #ffffff40;
+}
+
+.btn:nth-child(even) {
+	background-color: #ffffff;
+	color: black;
+}
+
+@media only screen and (max-width: 48rem) {
+	.multiPle {
+		width: 100%;
+		flex-shrink: 0;
+	}
+}
