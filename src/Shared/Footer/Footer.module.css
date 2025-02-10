@@ -18,8 +18,8 @@
 	position: relative;
 	margin-top: -1rem;
 	background: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
-	background-clip: text;
 	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .header h2::after {

@@ -1,4 +1,5 @@
 .buttonPosition {
+	position: -o-sticky;
 	position: sticky;
 	bottom: 10px;
 	display: flex;

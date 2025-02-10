@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AddToWishlistButton from '../../../../../../../../../../Shared/AddToWishlistButton/AddToWishlistButton';
 import GamesShowcase from '../../../../../../../../../../Shared/GamesShowcase/GamesShowcase/GamesShowcase';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
@@ -11,6 +12,15 @@ function extraCard(index, onclick) {
 	return <EditGameShowCaseExtraCard index={index} onclick={game => onclick(index, game)} />;
 }
 
+function getHoverCard(game, setHoverShow, shouldHideRef) {
+	return (
+		<AddToWishlistButton
+			game={game}
+			setHoverShow={setHoverShow}
+			shouldHideRef={shouldHideRef}
+		/>
+	);
+}
 function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 	const { cloneObject } = useObjectUtilities();
 
@@ -30,6 +40,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 	return (
 		<div className={styles.editGameShowCase}>
 			<GamesShowcase
+				getHoverCard={getHoverCard}
 				items={items}
 				extraCard={index => extraCard(index, onclick)}
 				dataRef={dataRef}

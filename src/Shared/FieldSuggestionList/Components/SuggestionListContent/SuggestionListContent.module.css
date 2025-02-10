@@ -20,6 +20,7 @@
 	position: relative;
 	padding: 0.625em 1.25em;
 	background-color: rgba(37, 37, 37, 0.7);
+	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 	opacity: 0;
 	display: flex;
@@ -135,6 +136,7 @@
 .loading {
 	background-size: 400% 100%;
 	animation-name: loadingAnimation;
+	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 	animation-duration: 6s;
 	animation-timing-function: ease;

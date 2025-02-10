@@ -1,13 +1,18 @@
+import { useRef } from 'react';
 import DiscountPriceWithPercent from '../../../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import ImageWithHover from '../../../../../ImageWithHover/ImageWithHover';
 import styles from './GamesShowcaseColumnRow.module.css';
 
-export default function GamesShowcaseColumnRow({ game, link }) {
+export default function GamesShowcaseColumnRow({ game, link, getHoverCard }) {
+	const containerRef = useRef(null);
+
 	const mainContent = (
-		<div className={styles.gameColumn}>
+		<div className={styles.gameColumn} ref={containerRef}>
 			<div className={styles.gameImageContainer}>
 				<ImageWithHover
-					cardHover={null}
+					cardHover={getHoverCard}
+					game={game}
+					container={containerRef}
 					data={game.carouselThumb}
 					alt={game.name}
 					aspectRatioClassName={styles.aspectRatioClassName}

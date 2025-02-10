@@ -39,6 +39,7 @@
 		margin-left: 0;
 		flex-direction: column;
 		background-color: rgba(0, 0, 0, 0.5);
+		-webkit-backdrop-filter: blur(4px);
 		backdrop-filter: blur(4px);
 		width: 100%;
 		translate: 0 -100%;

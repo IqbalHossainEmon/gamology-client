@@ -1,11 +1,12 @@
 .secondNavContainer {
 	width: 100%;
 	height: 72px;
-	position: sticky;
 	position: -webkit-sticky;
 	position: -moz-sticky;
 	position: -ms-sticky;
 	position: -o-sticky;
+	position: -o-sticky;
+	position: sticky;
 	left: 0;
 	top: 0;
 	padding: 1em 0;

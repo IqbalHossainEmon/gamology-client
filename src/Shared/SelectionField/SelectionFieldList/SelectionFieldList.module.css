@@ -9,8 +9,8 @@
 	width: 100%;
 	border-radius: 4px;
 	background-color: rgba(37, 37, 37, 0.719);
+	-webkit-backdrop-filter: blur(50px);
 	backdrop-filter: blur(50px);
-	-web-kit-backdrop-filter: blur(50px);
 	cursor: default;
 	z-index: 1;
 	opacity: 0;

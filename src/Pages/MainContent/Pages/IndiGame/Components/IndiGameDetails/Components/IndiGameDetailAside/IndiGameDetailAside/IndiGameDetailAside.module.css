@@ -3,6 +3,7 @@
 }
 @media only screen and (min-width: 48rem) {
 	.asideContainer {
+		position: -o-sticky;
 		position: sticky;
 		top: 7rem;
 	}

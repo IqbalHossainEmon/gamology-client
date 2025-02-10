@@ -12,8 +12,8 @@
 	opacity: 0;
 	scale: 0.7;
 	background-color: #18181ccd;
-	backdrop-filter: blur(50px);
 	-webkit-backdrop-filter: blur(50px);
+	backdrop-filter: blur(50px);
 	transition:
 		opacity 200ms,
 		scale 200ms;

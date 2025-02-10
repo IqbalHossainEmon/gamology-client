@@ -1,13 +1,12 @@
 .toast {
-	display: inline-flex;
 	width: max-content;
 	max-width: 100%;
 	align-items: center;
 	color: #fff;
 	padding: 1em 2em 1em 1em;
 	background-color: #2f2f2fcd;
-	backdrop-filter: blur(50px);
 	-webkit-backdrop-filter: blur(50px);
+	backdrop-filter: blur(50px);
 	border-radius: 4px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	margin-bottom: 1rem;

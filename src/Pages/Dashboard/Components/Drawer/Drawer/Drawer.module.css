@@ -1,5 +1,6 @@
 .drawer {
 	width: 15rem;
+	position: -o-sticky;
 	position: sticky;
 	background-color: transparent;
 	flex-shrink: 0;

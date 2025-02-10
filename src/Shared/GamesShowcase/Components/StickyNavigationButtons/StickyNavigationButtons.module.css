@@ -1,5 +1,6 @@
 .arrowBtn {
 	width: 100%;
+	position: -o-sticky;
 	position: sticky;
 	top: 50%;
 	translate: 0 -50%;

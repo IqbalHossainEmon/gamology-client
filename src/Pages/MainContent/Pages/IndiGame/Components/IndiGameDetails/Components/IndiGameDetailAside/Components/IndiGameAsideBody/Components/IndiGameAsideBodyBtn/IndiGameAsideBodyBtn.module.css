@@ -33,12 +33,6 @@
 	position: relative;
 }
 
-.cartBtn svg {
-	width: 0.75rem;
-	margin-right: 0.3125rem;
-	scale: 1.222;
-}
-
 .cartBtn:disabled {
 	color: rgba(255, 255, 255, 0.6);
 	cursor: default;
@@ -80,9 +74,6 @@
 	transition: background-color 200ms;
 }
 
-.outerCircle svg {
-	width: 0.625rem;
-}
 .rotate {
 	animation: 1500ms cubic-bezier(0.4, 0, 0.1, 1) 0s infinite normal none running rotate;
 }
@@ -132,9 +123,7 @@
 		width: 18px;
 		margin-right: 0.3125rem;
 	}
-	.outerCircle svg {
-		width: 9px;
-	}
+
 	.plus {
 		line-height: 13px;
 		font-size: 0.75rem;
@@ -163,9 +152,7 @@
 		width: 16px;
 		margin-right: 0.25rem;
 	}
-	.outerCircle svg {
-		width: 8px;
-	}
+
 	.plus {
 		line-height: 11px;
 		font-size: 0.625rem;
