@@ -10,6 +10,7 @@ const withTooltip = Component =>
 
 		if (!eventRefs.current) {
 			let timerId;
+			let id = 0;
 			eventRefs.current = {
 				handleCheckAndDelete: () => {
 					if (timerId) clearTimeout(timerId);
@@ -30,34 +31,37 @@ const withTooltip = Component =>
 						}
 						return [...prev];
 					});
+					eventRefs.current.handleCheckAndDelete();
 				},
 				tooltipInteractionHandlers: ({ current }) => {
 					const { container, message, position: preferPosition } = current;
 
-					setTooltips(prev => {
-						const index = prev.findIndex(t => t.container === container);
+					if (!!container && !!message) {
+						setTooltips(prev => {
+							const index = prev.findIndex(t => t.container === container);
 
-						if (index > -1) {
-							prev[index] = {
-								...prev[index],
-								container,
-								show: true,
-								message,
-								preferPosition,
-							};
-						} else {
-							prev.push({
-								id: prev.length,
-								container,
-								show: true,
-								message,
-								preferPosition,
-							});
-						}
-						return [...prev];
-					});
+							if (index > -1) {
+								prev[index] = {
+									...prev[index],
+									container,
+									show: true,
+									message,
+									preferPosition,
+								};
+							} else {
+								prev.push({
+									id: id++,
+									container,
+									show: true,
+									message,
+									preferPosition,
+								});
+							}
 
-					return eventRefs.current.hideTooltip;
+							return [...prev];
+						});
+						return eventRefs.current.hideTooltip;
+					}
 				},
 			};
 		}

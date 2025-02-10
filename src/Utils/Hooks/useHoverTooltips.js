@@ -7,9 +7,6 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 	const setTooltip = useTooltip();
 
 	const tooltipsInfos = useRef({ container: null, message: '', position: '' });
-	tooltipsInfos.current.container = element.current;
-	tooltipsInfos.current.message = message;
-	tooltipsInfos.current.position = position;
 
 	if (!eventRefs.current) {
 		let prevElements = {
@@ -53,6 +50,10 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 
 		const ele = element.current;
 
+		tooltipsInfos.current.container = element.current;
+		tooltipsInfos.current.message = message;
+		tooltipsInfos.current.position = position;
+
 		ele.addEventListener('mouseenter', eventRefs.current.onMouseEnter);
 		ele.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 
@@ -60,7 +61,7 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 			ele?.removeEventListener('mouseenter', eventRefs.current.onMouseEnter);
 			ele?.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
 		};
-	}, [conditionCheckFunction, element, message]);
+	}, [conditionCheckFunction, element, message, position]);
 };
 
 export default useHoverTooltips;

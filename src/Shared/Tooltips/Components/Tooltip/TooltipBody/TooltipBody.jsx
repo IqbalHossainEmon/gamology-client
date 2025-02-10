@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useTooltip from '../../../../../Utils/Hooks/useTooltip';
 import styles from './TooltipBody.module.css';
 
 const getTooltipPosition = (targetElementBounds, tooltipDimensions, scrollY, preferPosition) => {
@@ -51,15 +52,20 @@ function TooltipBody({ fadeIn, data }) {
 
 	const tooltipRef = useRef(null);
 
+	const setTooltip = useTooltip();
+
 	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			onMouseOver: e => {
-				// onMouseOver(e, true);
+			onMouseOver: () => {
+				eventRefs.current.hide = setTooltip({ current: data });
 			},
-			onMouseLeave: e => {
-				// onMouseLeave(e, true);
+			onMouseLeave: () => {
+				if (eventRefs.current.hide) {
+					eventRefs.current.hide(container);
+					delete eventRefs.current.hide;
+				}
 			},
 		};
 	}
