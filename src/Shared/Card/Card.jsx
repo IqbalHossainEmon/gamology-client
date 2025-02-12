@@ -26,11 +26,13 @@ export default function Card({ cardInfo, style, className, children, link }) {
 
 	return (
 		<li
-			className={`${className ? `${className} ` : ''}${styles.card} hover-shadow`}
+			className={`${className ? `${className} ` : ''}${styles.card}`}
 			ref={parentRef}
 			{...(style && { style })}
 		>
-			{link ? <a href={`${link}/${id}`}>{mainBody}</a> : mainBody}
+			<div className='hover-shadow'>
+				{link ? <a href={`${link}/${id}`}>{mainBody}</a> : mainBody}
+			</div>
 		</li>
 	);
 }

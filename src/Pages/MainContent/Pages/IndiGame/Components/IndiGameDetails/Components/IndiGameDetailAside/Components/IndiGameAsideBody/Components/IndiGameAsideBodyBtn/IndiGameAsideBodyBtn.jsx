@@ -12,10 +12,15 @@ function IndiGameAsideBodyBtn() {
 	const [isWishlistLoading, setIsWishlistLoading] = useState(false);
 
 	const handleAddingCart = () => {
+		if (addedToCart) {
+			// go to cart page
+			return;
+		}
+
 		setIsCartLoading(true);
 
 		setTimeout(() => {
-			setAddedToCart(true);
+			setAddedToCart(prev => !prev);
 			setIsCartLoading(false);
 		}, 4000);
 	};
@@ -31,7 +36,11 @@ function IndiGameAsideBodyBtn() {
 	return (
 		<>
 			{isBought || (
-				<button className={`${styles.buyNow} ${styles.btn}`} type='button'>
+				<button
+					className={`${styles.buyNow} ${styles.btn}`}
+					type='button'
+					onClick={() => setIsBought(true)}
+				>
 					Buy Now
 					<ButtonWaterEffect background='rgb(11 52 90)' long />
 				</button>
@@ -40,10 +49,15 @@ function IndiGameAsideBodyBtn() {
 				className={`${styles.btn} ${styles.cartBtn}`}
 				onClick={handleAddingCart}
 				type='button'
+				{...(isCartLoading || (isBought && { disabled: true }))}
 			>
 				{isBought ? (
 					<>
-						<svg viewBox='0 0 22 22' xmlns='http://www.w3.org/2000/svg'>
+						<svg
+							className={styles.inLibrarySvg}
+							viewBox='0 0 22 22'
+							xmlns='http://www.w3.org/2000/svg'
+						>
 							<g fill='none' fillRule='evenodd'>
 								<circle
 									cx='11'
@@ -62,7 +76,7 @@ function IndiGameAsideBodyBtn() {
 						</svg>
 						In Library
 					</>
-				) : isCartLoading && !addedToCart ? (
+				) : isCartLoading ? (
 					<LoaderSpinner color='rgb(0, 116, 228)' size={20} />
 				) : addedToCart ? (
 					'View In Cart'
@@ -72,12 +86,12 @@ function IndiGameAsideBodyBtn() {
 
 				<ButtonWaterEffect background='rgb(5 132 255)' long />
 			</button>
-
 			{!isBought && (
 				<button
 					className={`${styles.btn} ${styles.wishlistBtn}`}
 					onClick={handleAddingWishList}
 					type='button'
+					{...(isWishlistLoading && { disabled: true })}
 				>
 					<div
 						className={`${isWishlistLoading ? `${styles.rotate} ` : ''}${styles.outerCircle}`}
@@ -95,7 +109,7 @@ function IndiGameAsideBodyBtn() {
 							<div className={styles.plus} />
 						)}
 					</div>
-					Add to Wishlist
+					{wishlist ? 'In Wishlist' : 'Add to Wishlist'}
 					<ButtonWaterEffect background='grey' long />
 				</button>
 			)}

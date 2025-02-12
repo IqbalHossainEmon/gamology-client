@@ -1,6 +1,5 @@
 .card {
-	width: 100%;
-	flex: 0 0 auto;
+	flex-shrink: 0;
 	position: relative;
 }
 

@@ -20,7 +20,7 @@ function ImageWithHover({ container, game, cardHover, ...props }) {
 	}
 
 	useEffect(() => {
-		const containerElement = container.current;
+		const containerElement = container?.current;
 
 		if (containerElement) {
 			containerElement.addEventListener('mouseenter', eventRefs.current.mouseEnter);
