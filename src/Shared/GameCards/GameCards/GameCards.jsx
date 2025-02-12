@@ -10,7 +10,7 @@ export default function GameCards({
 	headerTitle,
 	items,
 	extraCard,
-	children,
+	dotMenu,
 	customHeader,
 	scrollToLast,
 	link,
@@ -67,7 +67,7 @@ export default function GameCards({
 				ref={cardsContainer}
 				cardActive={cardActive}
 				transition={transition}
-				cardHovers={children}
+				dotMenu={dotMenu}
 				extraCard={extraCard}
 				link={link}
 			/>

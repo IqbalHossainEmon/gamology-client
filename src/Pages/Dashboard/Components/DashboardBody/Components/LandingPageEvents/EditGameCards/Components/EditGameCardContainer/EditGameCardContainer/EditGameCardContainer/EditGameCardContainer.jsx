@@ -13,6 +13,29 @@ const handleExtraCard = (width, margin, handleCLick) => (
 	<EditGameCardAddCard width={width} margin={margin} onClick={handleCLick} />
 );
 
+const handleCardList = (
+	cards,
+	setCards,
+	onIndividualDelete,
+	cloneObject,
+	onMoveLeft,
+	onMoveRight
+) =>
+	function inner(parentRef, cardInfo) {
+		return (
+			<EditGameCardList
+				cards={cards}
+				setCards={setCards}
+				onIndividualDelete={onIndividualDelete}
+				cloneObject={cloneObject}
+				onMoveLeft={onMoveLeft}
+				onMoveRight={onMoveRight}
+				parentRef={parentRef}
+				cardInfo={cardInfo}
+			/>
+		);
+	};
+
 function EditGameCardContainer({
 	defaultData,
 	id,
@@ -153,21 +176,16 @@ function EditGameCardContainer({
 				items={cards.cards}
 				extraCard={(width, margin) => handleExtraCard(width, margin, handleCardSelection)}
 				scrollToLast
-			>
-				{/* This function is for dot menu in card */}
-				{(parentRef, cardInfo) => (
-					<EditGameCardList
-						cards={cards}
-						setCards={setCards}
-						onIndividualDelete={onIndividualDelete}
-						cloneObject={cloneObject}
-						onMoveLeft={onMoveLeft}
-						onMoveRight={onMoveRight}
-						parentRef={parentRef}
-						cardInfo={cardInfo}
-					/>
+				/* This function is for dot menu in card */
+				dotMenu={handleCardList(
+					cards,
+					setCards,
+					onIndividualDelete,
+					cloneObject,
+					onMoveLeft,
+					onMoveRight
 				)}
-			</GameCards>
+			/>
 			<ErrorMessage errorMessage={errorMessage} enable={errorShow} />
 			<div className={styles.headerBtnContainer}>
 				<NormalButtonWithEffects

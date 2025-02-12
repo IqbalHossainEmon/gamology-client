@@ -10,7 +10,7 @@ export default function GamesShowcaseColumn({
 	index,
 	setHeader,
 	getHoverCard,
-	dotsMenu,
+	dotMenu,
 }) {
 	return (
 		<li className={styles.gameColumn}>
@@ -29,7 +29,7 @@ export default function GamesShowcaseColumn({
 						key={game.id}
 						length={games.length}
 						link={link}
-						dotsMenu={dotsMenu}
+						dotMenu={dotMenu}
 					/>
 				))}
 				{!!extraCard && extraCard(index)}
