@@ -5,6 +5,7 @@
 	border-radius: 4px;
 	justify-content: stretch;
 	align-items: stretch;
+	position: relative;
 }
 
 .gameColumn:hover {

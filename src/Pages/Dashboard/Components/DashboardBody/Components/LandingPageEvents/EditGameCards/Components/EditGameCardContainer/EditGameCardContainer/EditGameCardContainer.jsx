@@ -1,39 +1,84 @@
 import { useEffect, useRef, useState } from 'react';
-import ErrorMessage from '../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
-import GameCards from '../../../../../../../../../../../Shared/GameCards/GameCards/GameCards';
-import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
-import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
-import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
-import EditGameCardAddCard from '../../Components/EditGameCardAddCard/EditGameCardAddCard';
-import EditGameCardList from '../Utils/EditGameCardList';
+import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
+import GameCards from '../../../../../../../../../../Shared/GameCards/GameCards/GameCards';
+import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
+import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
+import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import NormalButtonWithEffects from '../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import GameCardManagementMenu from '../../../../../Utils/GameCardManagementMenu';
+import EditGameCardAddCard from '../Components/EditGameCardAddCard/EditGameCardAddCard';
 import styles from './EditGameCardContainer.module.css';
 
 const handleExtraCard = (width, margin, handleCLick) => (
 	<EditGameCardAddCard width={width} margin={margin} onClick={handleCLick} />
 );
 
-const handleCardList = (
-	cards,
-	setCards,
-	onIndividualDelete,
-	cloneObject,
-	onMoveLeft,
-	onMoveRight
-) =>
-	function inner(parentRef, cardInfo) {
-		return (
-			<EditGameCardList
-				cards={cards}
-				setCards={setCards}
-				onIndividualDelete={onIndividualDelete}
-				cloneObject={cloneObject}
-				onMoveLeft={onMoveLeft}
-				onMoveRight={onMoveRight}
-				parentRef={parentRef}
-				cardInfo={cardInfo}
-			/>
-		);
+const handleCardDotList = (cards, setCards, onIndividualDelete, onMoveLeft, onMoveRight) =>
+	function Inner(parentRef, cardInfo) {
+		const getListHandler = () => {
+			if (cards.cards.length === 0) {
+				return [];
+			}
+
+			const { id } = cardInfo;
+
+			const handleMove = direction => {
+				setCards(prev => {
+					const newCards = [...prev.cards];
+					const index = newCards.findIndex(card => card.id === id);
+
+					if (direction === 'left') onMoveLeft(id);
+					else onMoveRight(id);
+					const temp = newCards.splice(index, 1)[0];
+					newCards.splice(direction === 'left' ? index - 1 : index + 1, 0, temp);
+					return { ...prev, cards: newCards };
+				});
+			};
+
+			const newList = [
+				{
+					name: 'Delete',
+					event: () => {
+						const newCards = cards.cards.filter(card => card.id !== id);
+						setCards(prev => ({ ...prev, cards: newCards }));
+						onIndividualDelete(id);
+					},
+				},
+			];
+
+			switch (id) {
+				case cards.cards[0].id:
+					if (cards.cards.length !== 1) {
+						newList.push({
+							name: 'Move Right',
+							event: () => handleMove('right'),
+						});
+					}
+					break;
+				case cards.cards[cards.cards.length - 1].id:
+					newList.push({
+						name: 'Move Left',
+						event: () => handleMove('left'),
+					});
+
+					break;
+				default:
+					newList.push(
+						{
+							name: 'Move Left',
+							event: () => handleMove('left'),
+						},
+						{
+							name: 'Move Right',
+							event: () => handleMove('right'),
+						}
+					);
+					break;
+			}
+			return newList;
+		};
+
+		return <GameCardManagementMenu lists={getListHandler()} parentRef={parentRef} />;
 	};
 
 function EditGameCardContainer({
@@ -177,11 +222,10 @@ function EditGameCardContainer({
 				extraCard={(width, margin) => handleExtraCard(width, margin, handleCardSelection)}
 				scrollToLast
 				/* This function is for dot menu in card */
-				dotMenu={handleCardList(
+				dotMenu={handleCardDotList(
 					cards,
 					setCards,
 					onIndividualDelete,
-					cloneObject,
 					onMoveLeft,
 					onMoveRight
 				)}

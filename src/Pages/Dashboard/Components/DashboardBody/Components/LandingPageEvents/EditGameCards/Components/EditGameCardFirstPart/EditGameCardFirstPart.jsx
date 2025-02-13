@@ -1,6 +1,6 @@
 import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
-import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
+import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardFirstPart.module.css';
 
 function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessages, errorChange }) {

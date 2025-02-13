@@ -23,7 +23,7 @@ export default function GamesShowcaseColumnRow({ game, link, getHoverCard, dotMe
 				<h4 className={styles.name}>{game.name}</h4>
 				<DiscountPriceWithPercent price={game.price} />
 			</div>
-			{dotMenu}
+			{dotMenu(containerRef, game)}
 		</div>
 	);
 
