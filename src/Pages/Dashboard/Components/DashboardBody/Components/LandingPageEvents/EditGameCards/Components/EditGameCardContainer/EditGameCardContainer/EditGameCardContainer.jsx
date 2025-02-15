@@ -60,7 +60,6 @@ const handleCardDotList = (cards, setCards, onIndividualDelete, onMoveLeft, onMo
 						name: 'Move Left',
 						event: () => handleMove('left'),
 					});
-
 					break;
 				default:
 					newList.push(
@@ -73,7 +72,6 @@ const handleCardDotList = (cards, setCards, onIndividualDelete, onMoveLeft, onMo
 							event: () => handleMove('right'),
 						}
 					);
-					break;
 			}
 			return newList;
 		};

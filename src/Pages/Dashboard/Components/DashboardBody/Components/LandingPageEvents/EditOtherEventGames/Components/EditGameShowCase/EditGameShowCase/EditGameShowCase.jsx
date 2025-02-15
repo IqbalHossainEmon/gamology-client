@@ -12,25 +12,34 @@ function extraCard(index, onclick) {
 	return <EditGameShowCaseExtraCard index={index} onclick={game => onclick(index, game)} />;
 }
 
-const handleCardDotList = (cards, setCards, onIndividualDelete, onMoveLeft, onMoveRight) =>
-	function Inner(parentRef, cardInfo) {
-		const getListHandler = () =>
-			/* 	if (cards.cards.length === 0) {
+const handleCardDotList = (items, setItems) =>
+	function Inner(parentRef, item, parentIndex) {
+		const getListHandler = () => {
+			if (items[parentIndex].games.length === 0) {
 				return [];
 			}
 
-			const { id } = cardInfo;
+			const { id } = item;
 
 			const handleMove = direction => {
-				setCards(prev => {
-					const newCards = [...prev.cards];
-					const index = newCards.findIndex(card => card.id === id);
+				setItems(prev => {
+					const newItems = [...prev];
+					const index = newItems[parentIndex].games.findIndex(card => card.id === id);
 
-					if (direction === 'left') onMoveLeft(id);
-					else onMoveRight(id);
-					const temp = newCards.splice(index, 1)[0];
-					newCards.splice(direction === 'left' ? index - 1 : index + 1, 0, temp);
-					return { ...prev, cards: newCards };
+					console.log(index);
+
+					const temp = newItems[parentIndex].games.splice(index, 1)[0];
+					console.log(temp, newItems[parentIndex].games);
+
+					newItems[parentIndex].games.splice(
+						direction === 'top' ? index - 1 : index + 1,
+						0,
+						temp
+					);
+
+					console.log(newItems[parentIndex].games);
+
+					return newItems;
 				});
 			};
 
@@ -38,47 +47,43 @@ const handleCardDotList = (cards, setCards, onIndividualDelete, onMoveLeft, onMo
 				{
 					name: 'Delete',
 					event: () => {
-						const newCards = cards.cards.filter(card => card.id !== id);
-						setCards(prev => ({ ...prev, cards: newCards }));
-						onIndividualDelete(id);
+						const newCards = items[parentIndex].games.filter(card => card.id !== id);
+						setItems(prev => ({ ...prev, cards: newCards }));
 					},
 				},
 			];
 
 			switch (id) {
-				case cards.cards[0].id:
-					if (cards.cards.length !== 1) {
+				case items[parentIndex].games[0].id:
+					if (items[parentIndex].games.length !== 1) {
 						newList.push({
-							name: 'Move Right',
-							event: () => handleMove('right'),
+							name: 'Move Down',
+							event: () => handleMove('down'),
 						});
 					}
 					break;
-				case cards.cards[cards.cards.length - 1].id:
+				case items[parentIndex].games[items[parentIndex].games.length - 1].id:
 					newList.push({
-						name: 'Move Left',
-						event: () => handleMove('left'),
+						name: 'Move Top',
+						event: () => handleMove('top'),
 					});
 
 					break;
 				default:
 					newList.push(
 						{
-							name: 'Move Left',
-							event: () => handleMove('left'),
+							name: 'Move Top',
+							event: () => handleMove('top'),
 						},
 						{
-							name: 'Move Right',
-							event: () => handleMove('right'),
+							name: 'Move Down',
+							event: () => handleMove('down'),
 						}
 					);
 					break;
-			} */
-			[
-				{ name: 'Delete', event: () => console.log('Delete') },
-				{ name: 'Move Left', event: () => console.log('Move Left') },
-				{ name: 'Move Right', event: () => console.log('Move Right') },
-			];
+			}
+			return newList;
+		};
 		return <GameCardManagementMenu parentRef={parentRef} lists={getListHandler()} />;
 	};
 
@@ -101,7 +106,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 	return (
 		<div className={styles.editGameShowCase}>
 			<GamesShowcase
-				dotMenu={handleCardDotList(items, setItems, null, null, null)}
+				dotMenu={handleCardDotList(items, setItems)}
 				items={items}
 				extraCard={index => extraCard(index, onclick)}
 				dataRef={dataRef}
