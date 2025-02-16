@@ -4,7 +4,15 @@ import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
-function CardDotBody({ item, lists, fadeIn, setParentShow }) {
+const isMouseOverElement = element => {
+	const mouseX = window.event?.x || 0;
+	const mouseY = window.event?.y || 0;
+
+	const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
+	return element.contains(elementUnderMouse);
+};
+
+function CardDotBody({ item, lists, fadeIn, setParentShow, parentRef }) {
 	const [listShow, setListShow] = useState(false);
 
 	const fadeInRef = useRef(fadeIn);
@@ -14,11 +22,10 @@ function CardDotBody({ item, lists, fadeIn, setParentShow }) {
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			handleHide: (state, e) => {
+			handleHide: state => {
 				setListShow(state);
-				console.log(e);
 
-				if (e) {
+				if (!isMouseOverElement(parentRef.current)) {
 					setParentShow(state);
 				}
 			},

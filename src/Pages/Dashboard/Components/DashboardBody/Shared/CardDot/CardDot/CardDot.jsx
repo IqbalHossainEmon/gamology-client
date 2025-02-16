@@ -10,18 +10,15 @@ function CardDot({ parentRef, ...rest }) {
 
 	const isEventAdded = useRef(false);
 	const eventRef = useRef(null);
-	const isMouseOutRef = useRef(false);
 
 	if (!eventRef.current) {
 		eventRef.current = {
 			handleShowBtn: () => {
-				isMouseOutRef.current = false;
 				if (!dotShowRef.current) {
 					setDotShow(true);
 				}
 			},
 			handleHideBtn: () => {
-				isMouseOutRef.current = true;
 				if (dotShowRef.current) {
 					setDotShow(false);
 				}
@@ -61,6 +58,8 @@ function CardDot({ parentRef, ...rest }) {
 		};
 	}, [isTouchAble, parentRef, widthInRem]);
 
-	return <CardDotBody {...rest} fadeIn={dotShow} setParentShow={setDotShow} />;
+	return (
+		<CardDotBody {...rest} fadeIn={dotShow} setParentShow={setDotShow} parentRef={parentRef} />
+	);
 }
 export default CardDot;
