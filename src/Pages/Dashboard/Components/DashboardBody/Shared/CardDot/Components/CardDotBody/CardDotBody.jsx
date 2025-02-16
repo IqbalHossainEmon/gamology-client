@@ -5,6 +5,7 @@ import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
 const isMouseOverElement = element => {
+	if (!element) return;
 	const mouseX = window.event?.x || 0;
 	const mouseY = window.event?.y || 0;
 
