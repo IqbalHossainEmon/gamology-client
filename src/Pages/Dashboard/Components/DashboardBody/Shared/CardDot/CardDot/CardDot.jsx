@@ -10,16 +10,18 @@ function CardDot({ parentRef, ...rest }) {
 
 	const isEventAdded = useRef(false);
 	const eventRef = useRef(null);
+	const isMouseOutRef = useRef(false);
 
 	if (!eventRef.current) {
 		eventRef.current = {
-			setParentShow: setDotShow,
 			handleShowBtn: () => {
+				isMouseOutRef.current = false;
 				if (!dotShowRef.current) {
 					setDotShow(true);
 				}
 			},
 			handleHideBtn: () => {
+				isMouseOutRef.current = true;
 				if (dotShowRef.current) {
 					setDotShow(false);
 				}

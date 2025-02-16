@@ -10,6 +10,8 @@ const useDropDownHide = setState => {
 				element.current = ele;
 			},
 			closeMenu: e => {
+				console.log(e, element.current);
+
 				switch (Array.isArray(element.current)) {
 					case true:
 						if (!element.current.some(ele => ele?.contains(e.target)) && e) {
@@ -31,8 +33,8 @@ const useDropDownHide = setState => {
 				document.removeEventListener('click', eventRefs.current.closeMenu);
 				window.removeEventListener('blur', eventRefs.current.stopMenu);
 			},
-			stopMenu: () => {
-				setState(false);
+			stopMenu: e => {
+				setState(false, e);
 				eventRefs.current.removeEvents();
 			},
 		};

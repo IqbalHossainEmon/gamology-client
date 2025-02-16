@@ -4,22 +4,34 @@ import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
-function CardDotBody({ item, lists, fadeIn }) {
+function CardDotBody({ item, lists, fadeIn, setParentShow }) {
 	const [listShow, setListShow] = useState(false);
-
-	const listShowRef = useRef(listShow);
-	listShowRef.current = listShow;
 
 	const fadeInRef = useRef(fadeIn);
 	fadeInRef.current = fadeIn;
 
 	const eventRefs = useRef(null);
-	const { setElement, showMenu, onHide } = useDropDownHide(setListShow);
-
-	const [show, childFadeIn] = useAppearDisappear(listShow);
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
+			handleHide: (state, e) => {
+				setListShow(state);
+				console.log(e);
+
+				if (e) {
+					setParentShow(state);
+				}
+			},
+		};
+	}
+
+	const { setElement, showMenu, onHide } = useDropDownHide(eventRefs.current.handleHide);
+
+	const [show, childFadeIn] = useAppearDisappear(listShow);
+
+	if (!eventRefs.current.onClick) {
+		eventRefs.current = {
+			...eventRefs.current,
 			onClick: () => {
 				setListShow(prev => {
 					if (prev) {

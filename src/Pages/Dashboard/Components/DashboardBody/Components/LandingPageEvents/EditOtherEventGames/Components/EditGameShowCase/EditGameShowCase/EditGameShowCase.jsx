@@ -18,7 +18,6 @@ const handleCardDotList = (items, setItems) =>
 			if (items[parentIndex].games.length === 0) {
 				return [];
 			}
-
 			const { id } = item;
 
 			const handleMove = direction => {
@@ -26,18 +25,13 @@ const handleCardDotList = (items, setItems) =>
 					const newItems = [...prev];
 					const index = newItems[parentIndex].games.findIndex(card => card.id === id);
 
-					console.log(index);
-
 					const temp = newItems[parentIndex].games.splice(index, 1)[0];
-					console.log(temp, newItems[parentIndex].games);
 
 					newItems[parentIndex].games.splice(
 						direction === 'top' ? index - 1 : index + 1,
 						0,
 						temp
 					);
-
-					console.log(newItems[parentIndex].games);
 
 					return newItems;
 				});
@@ -84,7 +78,12 @@ const handleCardDotList = (items, setItems) =>
 			}
 			return newList;
 		};
-		return <GameCardManagementMenu parentRef={parentRef} lists={getListHandler()} />;
+
+		item.parentIndex = parentIndex;
+
+		return (
+			<GameCardManagementMenu parentRef={parentRef} item={item} lists={getListHandler()} />
+		);
 	};
 
 function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
