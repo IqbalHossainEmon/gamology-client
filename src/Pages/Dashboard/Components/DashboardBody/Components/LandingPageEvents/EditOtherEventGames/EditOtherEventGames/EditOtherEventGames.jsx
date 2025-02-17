@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards';
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import styles from './EditOtherEventGames.module.css';
 
@@ -250,7 +251,7 @@ function EditOtherEventGames() {
 		{
 			id: 0,
 			type: 'showcase',
-			items: emptyShowcaseItems,
+			games: emptyShowcaseItems,
 		},
 		{
 			id: 1,
@@ -259,19 +260,38 @@ function EditOtherEventGames() {
 		},
 	]);
 
-	const sectionsRefs = useRef([emptyShowcaseItems]);
+	const sectionsRefs = useRef([
+		{
+			id: 0,
+			type: 'showcase',
+			games: emptyShowcaseItems,
+		},
+		{
+			id: 1,
+			type: 'adaptiveCard',
+			cards: [],
+		},
+	]);
 
 	const { cloneObject } = useObjectUtilities();
 
 	useEffect(() => {
 		const outerData = [];
 
-		for (let i = 0; i < 5; i++) {
-			outerData.push({
-				id: i,
-				type: 'showcase',
-				items: cloneObject(data),
-			});
+		for (let i = 0; i < 6; i++) {
+			if (i % 2 === 0) {
+				outerData.push({
+					id: i,
+					type: 'showcase',
+					games: cloneObject(data),
+				});
+			} else {
+				outerData.push({
+					id: i,
+					type: 'adaptiveCard',
+					cards: cloneObject(adaptiveGameData),
+				});
+			}
 		}
 
 		setAllItems(cloneObject(outerData));
@@ -293,17 +313,21 @@ function EditOtherEventGames() {
 									<EditGameShowCase
 										key={items.id}
 										parentIndex={index}
-										defaultItems={items.items}
+										defaultItems={items.games}
 										dataRef={sectionsRefs}
-										onDelete={() => {
+										onDelete={parentIndex => {
 											setAllItems(prev => {
 												const temp = [...prev];
-												temp.splice(items.id, 1);
+												temp.splice(parentIndex, 1);
 												sectionsRefs.current.splice(items.id, 1);
 												return temp;
 											});
 										}}
 									/>
+								);
+							case 'adaptiveCard':
+								return (
+									<EditAdaptiveGameCards key={items.id} dataRef={sectionsRefs} />
 								);
 							default:
 								break;
@@ -323,12 +347,16 @@ function EditOtherEventGames() {
 									];
 									temp.push({
 										id: temp.length,
-										items: cloneObject(emptyData),
+										type: 'showcase',
+										games: cloneObject(emptyData),
 									});
 									sectionsRefs.current.push({
 										id: temp.length,
-										items: cloneObject(emptyData),
+										type: 'showcase',
+										games: cloneObject(emptyData),
 									});
+									console.log(temp);
+
 									return temp;
 								});
 							}}

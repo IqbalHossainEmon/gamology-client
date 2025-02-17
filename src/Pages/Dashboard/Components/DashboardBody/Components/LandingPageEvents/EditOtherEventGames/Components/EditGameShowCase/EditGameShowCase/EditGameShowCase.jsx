@@ -97,10 +97,10 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 
 	const onclick = (index, game) => {
 		setItems(prev => {
-			const temp = [...prev];
-			temp[index].games.push(game);
+			const newPrev = [...prev];
+			newPrev[index].games.push(game);
 			dataRef.current[index].games.push(game);
-			return temp;
+			return newPrev;
 		});
 	};
 
@@ -137,7 +137,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 											body: null,
 											footer: null,
 										});
-										onDelete();
+										onDelete(parentIndex);
 									}}
 								/>
 							),
