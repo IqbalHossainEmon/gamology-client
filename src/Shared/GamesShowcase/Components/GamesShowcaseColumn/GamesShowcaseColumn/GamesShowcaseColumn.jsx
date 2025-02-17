@@ -11,6 +11,7 @@ export default function GamesShowcaseColumn({
 	setHeader,
 	getHoverCard,
 	dotMenu,
+	parentIndex,
 }) {
 	return (
 		<li className={styles.gameColumn}>
@@ -19,6 +20,7 @@ export default function GamesShowcaseColumn({
 				headerTitle={header}
 				index={index}
 				setHeader={setHeader}
+				parentIndex={parentIndex}
 			/>
 			<ul className={styles.column}>
 				{games.map(game => (

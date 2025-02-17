@@ -1,7 +1,13 @@
 import TextField from '../../../../../TextField/TextField/TextField';
 import styles from './GamesShowcaseColumnHeader.module.css';
 
-export default function GamesShowcaseColumnHeader({ headerTitle, index, setHeader, isEditing }) {
+export default function GamesShowcaseColumnHeader({
+	headerTitle,
+	index,
+	setHeader,
+	isEditing,
+	parentIndex,
+}) {
 	return isEditing ? (
 		<div className={styles.textFieldContainer}>
 			<TextField
@@ -9,7 +15,7 @@ export default function GamesShowcaseColumnHeader({ headerTitle, index, setHeade
 				setState={setHeader}
 				defaultValue={headerTitle}
 				placeholder='Enter the Header Title'
-				htmlFor={`gameShowCaseHeader${index}`}
+				htmlFor={`gameShowCaseHeader${index}${parentIndex}`}
 			/>
 		</div>
 	) : (

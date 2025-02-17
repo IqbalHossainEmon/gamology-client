@@ -286,12 +286,13 @@ function EditOtherEventGames() {
 			) : (
 				<div>
 					<h2 className={styles.editOtherEventGames}>Edit Other Events</h2>
-					{allItems.map(items => {
+					{allItems.map((items, index) => {
 						switch (items.type) {
 							case 'showcase':
 								return (
 									<EditGameShowCase
 										key={items.id}
+										parentIndex={index}
 										defaultItems={items.items}
 										dataRef={sectionsRefs}
 										onDelete={() => {

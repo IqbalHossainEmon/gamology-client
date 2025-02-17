@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import useAppearDisappear from '../../../../../../../../Utils/Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide';
+import useIsTouchAble from '../../../../../../../../Utils/Hooks/useIsTouchable';
 import CardDotList from '../CardDotList/CardDotList';
 import styles from './CardDotBody.module.css';
 
@@ -21,12 +22,14 @@ function CardDotBody({ item, lists, fadeIn, setParentShow, parentRef }) {
 
 	const eventRefs = useRef(null);
 
+	const isTouchAble = useIsTouchAble();
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleHide: state => {
 				setListShow(state);
 
-				if (!isMouseOverElement(parentRef.current)) {
+				if (!isMouseOverElement(parentRef.current) && !isTouchAble()) {
 					setParentShow(state);
 				}
 			},

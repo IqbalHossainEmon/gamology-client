@@ -6,7 +6,15 @@ import GamesShowcaseColumn from '../Components/GamesShowcaseColumn/GamesShowcase
 import CardPositionControls from '../Components/StickyNavigationButtons/StickyNavigationButtons';
 import styles from './GamesShowcase.module.css';
 
-export default function GamesShowcase({ items, link, extraCard, dataRef, getHoverCard, dotMenu }) {
+export default function GamesShowcase({
+	items,
+	link,
+	extraCard,
+	dataRef,
+	getHoverCard,
+	dotMenu,
+	parentIndex,
+}) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
 
@@ -34,6 +42,7 @@ export default function GamesShowcase({ items, link, extraCard, dataRef, getHove
 				>
 					{items.map((item, index) => (
 						<GamesShowcaseColumn
+							parentIndex={parentIndex}
 							getHoverCard={getHoverCard}
 							dotMenu={dotMenu}
 							dataRef={dataRef}

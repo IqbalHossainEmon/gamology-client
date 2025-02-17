@@ -42,7 +42,11 @@ const handleCardDotList = (items, setItems) =>
 					name: 'Delete',
 					event: () => {
 						const newCards = items[parentIndex].games.filter(card => card.id !== id);
-						setItems(prev => ({ ...prev, cards: newCards }));
+						setItems(prev => {
+							const newItems = [...prev];
+							newItems[parentIndex].games = newCards;
+							return newItems;
+						});
 					},
 				},
 			];
@@ -86,7 +90,7 @@ const handleCardDotList = (items, setItems) =>
 		);
 	};
 
-function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
+function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 	const { cloneObject } = useObjectUtilities();
 
 	const [items, setItems] = useState(cloneObject(defaultItems));
@@ -105,6 +109,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 	return (
 		<div className={styles.editGameShowCase}>
 			<GamesShowcase
+				parentIndex={parentIndex}
 				dotMenu={handleCardDotList(items, setItems)}
 				items={items}
 				extraCard={index => extraCard(index, onclick)}
@@ -143,4 +148,5 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete }) {
 		</div>
 	);
 }
+
 export default EditGameShowCase;
