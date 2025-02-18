@@ -307,31 +307,31 @@ function EditOtherEventGames() {
 				<div>
 					<h2 className={styles.editOtherEventGames}>Edit Other Events</h2>
 					{allItems.map((items, index) => {
-						switch (items.type) {
-							case 'showcase':
-								return (
-									<EditGameShowCase
-										key={items.id}
-										parentIndex={index}
-										defaultItems={items.games}
-										dataRef={sectionsRefs}
-										onDelete={parentIndex => {
-											setAllItems(prev => {
-												const temp = [...prev];
-												temp.splice(parentIndex, 1);
-												sectionsRefs.current.splice(items.id, 1);
-												return temp;
-											});
-										}}
-									/>
-								);
-							case 'adaptiveCard':
-								return (
-									<EditAdaptiveGameCards key={items.id} dataRef={sectionsRefs} />
-								);
-							default:
-								break;
-						}
+						if (!!items.games || !!items.cards)
+							return (
+								<div key={items.id} className={styles.editOtherEventSection}>
+									{items.games ? (
+										<EditGameShowCase
+											parentIndex={index}
+											defaultItems={items.games}
+											dataRef={sectionsRefs}
+											onDelete={parentIndex => {
+												setAllItems(prev => {
+													const temp = [...prev];
+													temp.splice(parentIndex, 1);
+													sectionsRefs.current.splice(items.id, 1);
+													return temp;
+												});
+											}}
+										/>
+									) : items.cards ? (
+										<EditAdaptiveGameCards
+											dataRef={sectionsRefs}
+											defaultItems={items.cards}
+										/>
+									) : null}
+								</div>
+							);
 						return null;
 					})}
 					<div>

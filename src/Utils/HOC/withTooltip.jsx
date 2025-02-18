@@ -8,6 +8,8 @@ const withTooltip = Component =>
 
 		const eventRefs = useRef(null);
 
+		const elementOnHideListRef = useRef([]);
+
 		if (!eventRefs.current) {
 			let timerId;
 			let id = 0;
@@ -21,25 +23,42 @@ const withTooltip = Component =>
 					}, 300);
 				},
 				hideTooltip: container => {
-					setTooltips(prev => {
-						const index = prev.findIndex(t => t.container === container);
-						if (index > -1) {
-							prev[index] = {
-								...prev[index],
-								show: false,
-							};
-						}
-						return [...prev];
-					});
+					const bundle = {
+						container,
+						timerId: setTimeout(() => {
+							elementOnHideListRef.current.filter(t => t.container !== container);
+
+							setTooltips(prev => {
+								const index = prev.findIndex(t => t.container === container);
+								if (index > -1) {
+									prev[index] = {
+										...prev[index],
+										show: false,
+									};
+								}
+								return [...prev];
+							});
+						}, 200),
+					};
+					elementOnHideListRef.current.push(bundle);
+
 					eventRefs.current.handleCheckAndDelete();
 				},
 				tooltipInteractionHandlers: ({ current }) => {
 					const { container, message, position: preferPosition } = current;
+					const doesNeedToHide = elementOnHideListRef.current.find(
+						t => t.container === container
+					);
+					if (doesNeedToHide) {
+						clearTimeout(doesNeedToHide.timerId);
+						elementOnHideListRef.current = elementOnHideListRef.current.filter(
+							t => t.container !== container
+						);
+					}
 
 					if (!!container && !!message) {
 						setTooltips(prev => {
 							const index = prev.findIndex(t => t.container === container);
-
 							if (index > -1) {
 								prev[index] = {
 									...prev[index],
@@ -57,7 +76,6 @@ const withTooltip = Component =>
 									preferPosition,
 								});
 							}
-
 							return [...prev];
 						});
 						return eventRefs.current.hideTooltip;

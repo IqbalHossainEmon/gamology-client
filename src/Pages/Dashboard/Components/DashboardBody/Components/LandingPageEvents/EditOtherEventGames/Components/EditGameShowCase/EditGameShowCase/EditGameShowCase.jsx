@@ -107,7 +107,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 	const setModal = useModal();
 
 	return (
-		<div className={styles.editGameShowCase}>
+		<>
 			<GamesShowcase
 				parentIndex={parentIndex}
 				dotMenu={handleCardDotList(items, setItems)}
@@ -145,7 +145,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 					}
 				/>
 			</div>
-		</div>
+		</>
 	);
 }
 

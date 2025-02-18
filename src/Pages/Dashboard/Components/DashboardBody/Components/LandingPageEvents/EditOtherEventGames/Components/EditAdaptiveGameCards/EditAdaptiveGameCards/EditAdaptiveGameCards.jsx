@@ -1,9 +1,12 @@
+import AdaptiveGameCards from '../../../../../../../../../../Shared/AdaptiveGameCards/AdaptiveGameCards/AdaptiveGameCards';
 import styles from './EditAdaptiveGameCards.module.css';
 
-function EditAdaptiveGameCards() {
+function EditAdaptiveGameCards({ dataRef, defaultItems }) {
 	return (
 		<div className={styles.editAdaptiveGameCards}>
-			<p>Edit adaptiveCard</p>
+			<div className={styles.editAdaptiveGameCardsSection}>
+				<AdaptiveGameCards items={defaultItems} dataRef={dataRef} />
+			</div>
 		</div>
 	);
 }
