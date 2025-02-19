@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import AdaptiveGameCardNavigator from '../Components/AdaptiveGameCard/AdaptiveGameCard';
+import AdaptiveGameCard from '../Components/AdaptiveGameCard/AdaptiveGameCard';
+import AdaptiveGameCardNavigator from '../Components/AdaptiveGameCardNavigator/AdaptiveGameCardNavigator';
 import styles from './AdaptiveGameCards.module.css';
 
 function AdaptiveGameCards({ items, link }) {
@@ -24,7 +25,7 @@ function AdaptiveGameCards({ items, link }) {
 					})}
 				>
 					{items.map(item => (
-						<AdaptiveGameCardNavigator
+						<AdaptiveGameCard
 							key={item.id}
 							data={item}
 							isOnlyOne={items.length === 1}

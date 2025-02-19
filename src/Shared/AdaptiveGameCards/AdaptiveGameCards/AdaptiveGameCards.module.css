@@ -12,7 +12,6 @@
 .adaptiveGameCardsList {
 	width: 100%;
 	list-style-type: none;
-	left: 0;
 	display: flex;
 	gap: 20px;
 }

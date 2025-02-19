@@ -2,11 +2,11 @@ import AdaptiveGameCards from '../../../../../../../../../../Shared/AdaptiveGame
 import styles from './EditAdaptiveGameCards.module.css';
 
 function EditAdaptiveGameCards({ dataRef, defaultItems }) {
+	console.log(defaultItems);
+
 	return (
 		<div className={styles.editAdaptiveGameCards}>
-			<div className={styles.editAdaptiveGameCardsSection}>
-				<AdaptiveGameCards items={defaultItems} dataRef={dataRef} />
-			</div>
+			<AdaptiveGameCards items={defaultItems} />
 		</div>
 	);
 }
