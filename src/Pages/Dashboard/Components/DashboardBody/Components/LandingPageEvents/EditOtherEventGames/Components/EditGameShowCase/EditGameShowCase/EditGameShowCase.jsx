@@ -14,6 +14,8 @@ function extraCard(index, onclick) {
 
 const handleCardDotList = (items, setItems) =>
 	function Inner(parentRef, item, parentIndex) {
+		const { cloneObject } = useObjectUtilities();
+
 		const getListHandler = () => {
 			if (items[parentIndex].games.length === 0) {
 				return [];
@@ -22,7 +24,7 @@ const handleCardDotList = (items, setItems) =>
 
 			const handleMove = direction => {
 				setItems(prev => {
-					const newItems = [...prev];
+					const newItems = cloneObject(prev);
 					const index = newItems[parentIndex].games.findIndex(card => card.id === id);
 
 					const temp = newItems[parentIndex].games.splice(index, 1)[0];
@@ -43,7 +45,7 @@ const handleCardDotList = (items, setItems) =>
 					event: () => {
 						const newCards = items[parentIndex].games.filter(card => card.id !== id);
 						setItems(prev => {
-							const newItems = [...prev];
+							const newItems = cloneObject(prev);
 							newItems[parentIndex].games = newCards;
 							return newItems;
 						});
@@ -97,7 +99,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 
 	const onclick = (index, game) => {
 		setItems(prev => {
-			const newPrev = [...prev];
+			const newPrev = cloneObject(prev);
 			newPrev[index].games.push(game);
 			dataRef.current[index].games.push(game);
 			return newPrev;

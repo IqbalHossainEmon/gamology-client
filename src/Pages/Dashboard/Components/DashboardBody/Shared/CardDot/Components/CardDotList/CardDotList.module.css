@@ -1,7 +1,7 @@
 .listContainer {
 	position: absolute;
 	list-style: none;
-	padding: 0 0.3125em 0.3125em 0.3125em;
+	padding: 0 0.5em 0.5em 0.5em;
 	border-radius: 0.5rem;
 	overflow: hidden;
 	z-index: 1;
