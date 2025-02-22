@@ -36,7 +36,7 @@
 .bannerFadeOut {
 	opacity: 0;
 	visibility: hidden;
-	animation: 100ms cubic-bezier(0.69, 0, 0.83, 0.83) 0s 1 normal forwards running fadeout;
+	animation: 300ms cubic-bezier(0.69, 0, 0.83, 0.83) 0s 1 normal forwards running fadeout;
 }
 
 @keyframes fadeout {
@@ -45,9 +45,8 @@
 		opacity: 1;
 		visibility: visible;
 	}
-
 	100% {
-		transform: translateX(-150px);
+		transform: translateX(-100px);
 		opacity: 0;
 		visibility: hidden;
 	}
@@ -56,12 +55,11 @@
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
-		transform: translateX(150px);
+		transform: translateX(100px);
 	}
-
 	100% {
-		transform: translateX(0);
 		opacity: 1;
+		transform: translateX(0);
 	}
 }
 
