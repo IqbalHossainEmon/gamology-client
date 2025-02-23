@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import BannerInputFieldContainer from '../BannerInputFieldContainer/BannerInputFieldContainer';
 import styles from './GameInfoFieldBanner.module.css';
 
@@ -32,24 +32,26 @@ export default function GameInfoFieldBanner({
 			</div>
 			<div className={styles.btnContainer}>
 				<div className={styles.btn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						{...(fieldCount === 15 && { disabled: true })}
 						onClick={() => {
 							setFieldCount(prev => prev + 1);
 							gameBanner.current.gameBanner.push({ cover: '', thumb: '', type: '' });
 						}}
-						text='Add More +'
-					/>
+					>
+						Add More +
+					</ButtonWithRipple>
 				</div>
 				<div className={styles.btn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						{...(fieldCount === 1 && { disabled: true })}
 						onClick={() => {
 							setFieldCount(prev => --prev);
 							gameBanner.current.gameBanner.pop();
 						}}
-						text='Remove One -'
-					/>
+					>
+						Remove One -
+					</ButtonWithRipple>
 				</div>
 			</div>
 		</section>

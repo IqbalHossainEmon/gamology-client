@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards';
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import styles from './EditOtherEventGames.module.css';
@@ -251,8 +251,7 @@ function EditOtherEventGames() {
 						return null;
 					})}
 					<div>
-						<NormalButtonWithEffects
-							text='Add more +'
+						<ButtonWithRipple
 							onClick={() => {
 								setAllItems(prev => {
 									const temp = [...prev];
@@ -276,7 +275,9 @@ function EditOtherEventGames() {
 									return temp;
 								});
 							}}
-						/>
+						>
+							Add more +
+						</ButtonWithRipple>
 					</div>
 				</>
 			)}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer';
+import RippleEffect from '../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useIsTouchAble from '../../../../../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
@@ -136,7 +136,7 @@ function CoverImageVideoContainer({
 				{mainValueRef.current?.image.file && touchAble ? (
 					<button className={styles.previewBtn} ref={previewBtnRef} type='button'>
 						Preview
-						<ButtonWaterEffect long />
+						<RippleEffect long />
 					</button>
 				) : null}
 			</div>

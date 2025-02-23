@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import LoaderSpinner from '../../../../../../../../../../../../Shared/LoaderSpinner/LoaderSpinner';
+import RippleEffect from '../../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import styles from './IndiGameAsideBodyBtn.module.css';
 
 function IndiGameAsideBodyBtn() {
@@ -42,7 +42,7 @@ function IndiGameAsideBodyBtn() {
 					onClick={() => setIsBought(true)}
 				>
 					Buy Now
-					<ButtonWaterEffect background='rgb(11 52 90)' long />
+					<RippleEffect background='rgb(11 52 90)' long />
 				</button>
 			)}
 			<button
@@ -84,7 +84,7 @@ function IndiGameAsideBodyBtn() {
 					'Add to Cart'
 				)}
 
-				<ButtonWaterEffect background='rgb(5 132 255)' long />
+				<RippleEffect background='rgb(5 132 255)' long />
 			</button>
 			{!isBought && (
 				<button
@@ -110,7 +110,7 @@ function IndiGameAsideBodyBtn() {
 						)}
 					</div>
 					{wishlist ? 'In Wishlist' : 'Add to Wishlist'}
-					<ButtonWaterEffect background='grey' long />
+					<RippleEffect background='grey' long />
 				</button>
 			)}
 		</>

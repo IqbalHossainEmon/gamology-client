@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useHoverTooltips from '../../../../../../../../../../../Utils/Hooks/useHoverTooltips';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBody/AddGameCardModalBody';
@@ -34,7 +34,7 @@ function EditGameCardAddCard({ width, onClick }) {
 					className={styles.btn}
 				>
 					<div className={styles.plus} />
-					<ButtonWaterEffect long background='rgba(255,255,255,0.3)' />
+					<RippleEffect long background='rgba(255,255,255,0.3)' />
 				</button>
 			</div>
 		</li>

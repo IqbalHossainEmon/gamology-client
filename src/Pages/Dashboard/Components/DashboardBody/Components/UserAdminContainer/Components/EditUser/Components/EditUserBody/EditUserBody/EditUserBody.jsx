@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
+import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../../../Utils/Hooks/useToast';
@@ -169,7 +169,7 @@ function EditUserBody({ user, setUser }) {
 				className={`${styles.btn} ${styles.saveButton}`}
 			>
 				Save Changes
-				<ButtonWaterEffect />
+				<RippleEffect />
 			</button>
 			<OuterErrorMessage
 				errorChange={errorChange}
@@ -182,7 +182,7 @@ function EditUserBody({ user, setUser }) {
 				className={`${styles.btn} ${styles.deleteButton}`}
 			>
 				Delete User Account
-				<ButtonWaterEffect />
+				<RippleEffect />
 			</button>
 		</div>
 	);

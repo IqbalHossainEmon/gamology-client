@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditGameCardFirstPart from '../Components/EditGameCardFirstPart/EditGameCardFirstPart';
 import EditGameCardOtherPart from '../Components/EditGameCardOtherPart/EditGameCardOtherPart';
 import styles from './EditGameCards.module.css';
@@ -373,8 +373,7 @@ function EditGameCards() {
 				title: 'Clear Section',
 				body: <p>Sections with no cards are removed. </p>,
 				footer: (
-					<NormalButtonWithEffects
-						text='Ok'
+					<ButtonWithRipple
 						onClick={() =>
 							setModal({
 								title: null,
@@ -383,7 +382,9 @@ function EditGameCards() {
 							})
 						}
 						className={styles.okBtn}
-					/>
+					>
+						Ok
+					</ButtonWithRipple>
 				),
 			});
 		}
@@ -417,8 +418,7 @@ function EditGameCards() {
 						errorChange={errorChange}
 					/>
 					<div className={styles.addSectionBtn}>
-						<NormalButtonWithEffects
-							text='Add one more section +'
+						<ButtonWithRipple
 							onClick={() => {
 								setGameCards(prev => [
 									...prev,
@@ -432,10 +432,12 @@ function EditGameCards() {
 									cards: [{ id: 0, header: '', cards: [] }],
 								});
 							}}
-						/>
+						>
+							Add one more section +
+						</ButtonWithRipple>
 					</div>
 					<div className={styles.saveBtn}>
-						<NormalButtonWithEffects text='Save' onClick={handleValidation} />
+						<ButtonWithRipple onClick={handleValidation}>Save</ButtonWithRipple>
 					</div>
 				</>
 			)}

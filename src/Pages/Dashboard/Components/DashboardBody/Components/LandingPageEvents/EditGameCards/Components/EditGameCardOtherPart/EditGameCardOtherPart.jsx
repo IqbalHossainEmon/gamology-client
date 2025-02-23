@@ -1,5 +1,5 @@
 import useModal from '../../../../../../../../../Utils/Hooks/useModal';
-import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardOtherPart.module.css';
 
@@ -77,8 +77,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 													),
 													footer: (
 														<div className={styles.btnContainer}>
-															<NormalButtonWithEffects
-																text='Yes'
+															<ButtonWithRipple
 																onClick={() => {
 																	setGameCards(prev => {
 																		const newPrev = [...prev];
@@ -99,9 +98,10 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 																	});
 																}}
 																className={`${styles.btn} ${styles.yesBtn}`}
-															/>
-															<NormalButtonWithEffects
-																text='No'
+															>
+																Yes
+															</ButtonWithRipple>
+															<ButtonWithRipple
 																onClick={() => {
 																	setModal({
 																		title: null,
@@ -110,7 +110,9 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 																	});
 																}}
 																className={`${styles.btn} ${styles.noBtn}`}
-															/>
+															>
+																No
+															</ButtonWithRipple>
 														</div>
 													),
 												});
@@ -132,7 +134,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 							))}
 						</div>
 						{!!gameCards.cards[2] || (
-							<NormalButtonWithEffects
+							<ButtonWithRipple
 								onClick={() =>
 									setGameCards(prev => {
 										const newPrev = [...prev];
@@ -149,8 +151,9 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 										return newPrev;
 									})
 								}
-								text='Add one more +'
-							/>
+							>
+								Add one more +
+							</ButtonWithRipple>
 						)}
 					</div>
 				);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import styles from './AddTagsUnderCategory.module.css';
 
@@ -36,7 +36,7 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 						type='button'
 					>
 						Add More +
-						<ButtonWaterEffect />
+						<RippleEffect />
 					</button>
 				</div>
 				<div
@@ -56,7 +56,7 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 						type='button'
 					>
 						Remove One -
-						<ButtonWaterEffect />
+						<RippleEffect />
 					</button>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../Shared/RippleEffect/RippleEffect';
 import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import styles from './AddGameCardModalBody.module.css';
 
@@ -69,7 +69,7 @@ function AddGameCardModalBody({ setModal, onClick }) {
 				type='button'
 			>
 				Submit
-				<ButtonWaterEffect background='#3e9c35' long />
+				<RippleEffect background='#3e9c35' long />
 			</button>
 		</>
 	);

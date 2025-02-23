@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import Image from '../../../../../../../Shared/Image/Image/Image';
+import RippleEffect from '../../../../../../../Shared/RippleEffect/RippleEffect';
 import FreeGame from '../FreeGame/FreeGame';
 import styles from './FreeGames.module.css';
 
@@ -94,7 +94,7 @@ export default function FreeGames() {
 				<h3 className={styles.headerName}>Free games</h3>
 				<button className={styles.viewMoreBtn} type='button'>
 					View More
-					<ButtonWaterEffect />
+					<RippleEffect />
 				</button>
 			</div>
 			<ul className={`${styles.games} ${styles[`games${items.length}`]}`}>

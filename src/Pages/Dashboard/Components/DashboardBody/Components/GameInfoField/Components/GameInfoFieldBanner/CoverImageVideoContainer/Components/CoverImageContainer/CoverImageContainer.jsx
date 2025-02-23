@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import styles from './CoverImageContainer.module.css';
 
 function CoverImageContainer({
@@ -130,7 +130,7 @@ function CoverImageContainer({
 						</defs>
 					</svg>
 				</div>
-				<ButtonWaterEffect long />
+				<RippleEffect long />
 			</button>
 		</>
 	);

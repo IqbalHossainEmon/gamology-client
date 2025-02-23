@@ -1,5 +1,5 @@
 import useModal from '../../../../../../../../../Utils/Hooks/useModal';
-import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardFirstPart.module.css';
 
@@ -58,8 +58,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 											</p>
 										),
 										footer: (
-											<NormalButtonWithEffects
-												text='Ok'
+											<ButtonWithRipple
 												onClick={() =>
 													setModal({
 														title: null,
@@ -68,7 +67,9 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 													})
 												}
 												className={styles.okBtn}
-											/>
+											>
+												Ok
+											</ButtonWithRipple>
 										),
 									});
 									return;
@@ -88,7 +89,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 				))}
 			</div>
 			{!!gameCards.cards[1] || (
-				<NormalButtonWithEffects
+				<ButtonWithRipple
 					onClick={() =>
 						setGameCards(prev => {
 							const newPrev = [...prev];
@@ -101,8 +102,9 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 							return newPrev;
 						})
 					}
-					text='Add one more +'
-				/>
+				>
+					Add one more +
+				</ButtonWithRipple>
 			)}
 		</div>
 	);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import TextField from '../../../../../../../../../Shared/TextField/TextField/TextField';
-import NormalButtonWithEffects from '../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 
@@ -65,7 +65,7 @@ function GameInfoFieldDescriptions({
 			</div>
 			<div className={styles.buttonContainer}>
 				<div className={styles.btn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						onClick={() => {
 							setArray(prev => [
 								...prev,
@@ -76,11 +76,12 @@ function GameInfoFieldDescriptions({
 								description: '',
 							});
 						}}
-						text='Add more +'
-					/>
+					>
+						Add more +
+					</ButtonWithRipple>
 				</div>
 				<div className={styles.btn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						{...(array.length === 1 && { disabled: true })}
 						onClick={() => {
 							setArray(prev => {
@@ -89,11 +90,12 @@ function GameInfoFieldDescriptions({
 								return prevState;
 							});
 						}}
-						text='Remove last one -'
-					/>
+					>
+						Remove last one -
+					</ButtonWithRipple>
 				</div>
 				<div className={styles.mainBtn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						{...(array[array.length - 1]?.main === true && {
 							disabled: true,
 						})}
@@ -107,11 +109,12 @@ function GameInfoFieldDescriptions({
 								gameDescriptions.current.gameDescriptions.descriptions.length - 1
 							].mainHeader = '';
 						}}
-						text='Add Main Header +'
-					/>
+					>
+						Add Main Header +
+					</ButtonWithRipple>
 				</div>
 				<div className={styles.mainBtn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						{...((array.length === 1 || !array[array.length - 1]?.main) && {
 							disabled: true,
 						})}
@@ -125,19 +128,21 @@ function GameInfoFieldDescriptions({
 								gameDescriptions.current.gameDescriptions.descriptions.length - 1
 							].mainHeader;
 						}}
-						text='Remove Main Header -'
-					/>
+					>
+						Remove Main Header -
+					</ButtonWithRipple>
 				</div>
 				<div className={styles.mainBtn}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						onClick={() => {
 							setArray(prev => [...prev, { id: prev.length, subHeader: true }]);
 							gameDescriptions.current.gameDescriptions.descriptions.push({
 								subHeader: '',
 							});
 						}}
-						text='Add Only Sub Header +'
-					/>
+					>
+						Add Only Sub Header +
+					</ButtonWithRipple>
 				</div>
 			</div>
 		</section>

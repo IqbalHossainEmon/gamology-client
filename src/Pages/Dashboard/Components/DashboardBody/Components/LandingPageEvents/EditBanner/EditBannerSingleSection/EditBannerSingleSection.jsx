@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import FileUploadButton from '../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import TypeableSelectionField from '../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import styles from './EditBannerSingleSection.module.css';
 
 function EditBannerSingleSection({ index, item, bannerData, errorMessages, errorChange }) {
@@ -19,9 +19,8 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 					Upload Image #{index + 1}
 				</h3>
 				<div className={styles.headerBtnContainer}>
-					<NormalButtonWithEffects
+					<ButtonWithRipple
 						className={styles.btn}
-						text='Reset'
 						onClick={() => {
 							setDefaultData({
 								coverImg: '',
@@ -35,11 +34,11 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 							}, 0);
 							bannerData.current[index] = item;
 						}}
-					/>
-
-					<NormalButtonWithEffects
+					>
+						Reset
+					</ButtonWithRipple>
+					<ButtonWithRipple
 						className={styles.btn}
-						text='Clear'
 						onClick={() => {
 							setDefaultData({
 								coverImg: '',
@@ -56,7 +55,9 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 								name: '',
 							};
 						}}
-					/>
+					>
+						Clear
+					</ButtonWithRipple>
 				</div>
 			</div>
 			<FileUploadButton

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import useIsTouchAble from '../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import ButtonWaterEffect from '../../ButtonWaterEffect/ButtonWaterEffect';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage/ErrorMessage';
+import RippleEffect from '../../RippleEffect/RippleEffect';
 import ImagePreviewContainer from '../ImagePreviewContainer/ImagePreviewContainer';
 import styles from './FileUploadButton.module.css';
 
@@ -208,14 +208,14 @@ function FileUploadButton({
 								</svg>
 							</div>
 						)}
-						<ButtonWaterEffect long />
+						<RippleEffect long />
 					</button>
 					<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 				</div>
 				{selected.file && touchAble ? (
 					<button className={styles.previewBtn} ref={previewBtnRef} type='button'>
 						Preview
-						<ButtonWaterEffect long />
+						<RippleEffect long />
 					</button>
 				) : null}
 			</div>

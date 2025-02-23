@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../../../../../Shared/FilterOption/FilterOption';
-import NormalButtonWithEffects from '../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import SectionFieldTextFieldContainer from '../SectionFieldTextFieldContainer/SectionFieldTextFieldContainer';
 import styles from './GameInfoFieldSpecification.module.css';
 
@@ -138,8 +138,7 @@ export default function GameInfoFieldSpecification({
 				</div>
 				<div className={styles.buttonsContainer}>
 					<div className={styles.btnContainer}>
-						<NormalButtonWithEffects
-							text='Add More +'
+						<ButtonWithRipple
 							{...(requiredLength === 10 && { disabled: true })}
 							{...(enabled.enabled || { tabIndexOff: true })}
 							onClick={() => {
@@ -152,12 +151,13 @@ export default function GameInfoFieldSpecification({
 									{ key: '', value: '' },
 								]);
 							}}
-						/>
+						>
+							Add More +
+						</ButtonWithRipple>
 					</div>
 
 					<div className={styles.btnContainer}>
-						<NormalButtonWithEffects
-							text='Remove one -'
+						<ButtonWithRipple
 							{...(requiredLength === 1 && { disabled: true })}
 							onClick={() => {
 								setRequiredLength(prev => prev - 1);
@@ -196,7 +196,9 @@ export default function GameInfoFieldSpecification({
 									});
 								}
 							}}
-						/>
+						>
+							Remove one -
+						</ButtonWithRipple>
 					</div>
 				</div>
 			</div>

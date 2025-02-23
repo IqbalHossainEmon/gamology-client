@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import OuterErrorMessage from '../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';
 import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/GameInfoFieldDescriptions/GameInfoFieldDescriptions';
@@ -229,7 +229,7 @@ export default function GameInfoField({ handleGameInfo, hasDefault, defaultData 
 						errorChange={errorChange}
 						errorMessage={errorMessages.current.outerErrorMessage}
 					/>
-					<NormalButtonWithEffects onClick={handleSubmit} text='Submit' />
+					<ButtonWithRipple onClick={handleSubmit}>Submit</ButtonWithRipple>
 				</form>
 			)}
 		</div>

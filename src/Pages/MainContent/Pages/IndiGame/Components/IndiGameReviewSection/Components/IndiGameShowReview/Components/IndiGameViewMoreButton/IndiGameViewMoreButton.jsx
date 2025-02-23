@@ -1,4 +1,4 @@
-import ButtonWaterEffect from '../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import styles from './IndiGameViewMoreButton.module.css';
 
 export default function IndiGameViewMoreButton({ handleChange }) {
@@ -6,7 +6,7 @@ export default function IndiGameViewMoreButton({ handleChange }) {
 		<div className={styles.individualGameViewMoreButton}>
 			<button onClick={() => handleChange({ type: 'viewMore' })} type='button'>
 				View More &rarr;
-				<ButtonWaterEffect />
+				<RippleEffect />
 			</button>
 		</div>
 	);

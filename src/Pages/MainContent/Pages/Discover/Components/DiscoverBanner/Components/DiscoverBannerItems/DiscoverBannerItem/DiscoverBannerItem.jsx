@@ -1,5 +1,5 @@
-import ButtonWaterEffect from '../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
 import Image from '../../../../../../../../../Shared/Image/Image/Image';
+import RippleEffect from '../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import DiscoverBannerPrice from '../../DiscoverBannerPrice/DiscoverBannerPrice';
 import styles from './DiscoverBannerItem.module.css';
 
@@ -18,7 +18,7 @@ export default function DiscoverBannerItem({ banner, bannerState, activeBanner }
 				<DiscoverBannerPrice price={price} />
 				<button type='button'>
 					buy now
-					<ButtonWaterEffect background='rgb(255, 255, 255)' long />
+					<RippleEffect background='rgb(255, 255, 255)' long />
 				</button>
 			</div>
 		</li>

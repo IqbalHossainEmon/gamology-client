@@ -2,7 +2,7 @@ import { useState } from 'react';
 import GamesShowcase from '../../../../../../../../../../Shared/GamesShowcase/GamesShowcase/GamesShowcase';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import GameCardManagementMenu from '../../../../../Utils/GameCardManagementMenu';
 import EditGameShowCaseConfirmModal from '../Components/EditGameShowCaseConfirmModal/EditGameShowCaseConfirmModal';
 import EditGameShowCaseExtraCard from '../Components/EditGameShowCaseExtraCard/EditGameShowCaseExtraCard';
@@ -118,15 +118,15 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 				dataRef={dataRef}
 			/>
 			<div className={styles.btnContainer}>
-				<NormalButtonWithEffects
-					text='Reset'
+				<ButtonWithRipple
 					onClick={() => {
 						setItems(cloneObject(defaultItems));
 						dataRef.current = cloneObject(defaultItems);
 					}}
-				/>
-				<NormalButtonWithEffects
-					text='Delete'
+				>
+					Reset
+				</ButtonWithRipple>
+				<ButtonWithRipple
 					onClick={() =>
 						setModal({
 							title: 'Delete Game Showcase',
@@ -145,7 +145,9 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 							),
 						})
 					}
-				/>
+				>
+					Delete
+				</ButtonWithRipple>
 			</div>
 		</>
 	);

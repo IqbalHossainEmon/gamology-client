@@ -1,7 +1,7 @@
-import ButtonWaterEffect from '../../../ButtonWaterEffect/ButtonWaterEffect';
 import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import Image from '../../../Image/Image/Image';
 import ImageWithHover from '../../../ImageWithHover/ImageWithHover';
+import RippleEffect from '../../../RippleEffect/RippleEffect';
 import styles from './DynamicGameCard.module.css';
 
 function DynamicGameCard({ data, isOnlyOne, link }) {
@@ -50,7 +50,7 @@ function DynamicGameCard({ data, isOnlyOne, link }) {
 									href={footerItem.link}
 								>
 									{footerItem.text}
-									<ButtonWaterEffect
+									<RippleEffect
 										background={
 											index % 2 ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)'
 										}

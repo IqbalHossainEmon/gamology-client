@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../Shared/RippleEffect/RippleEffect';
 import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './ExploreGames.module.css';
 
@@ -85,7 +85,7 @@ export default function ExploreGames() {
 					<p>{data.details}</p>
 					<a href='#d' type='button'>
 						Learn More
-						<ButtonWaterEffect background='white' long />
+						<RippleEffect background='white' long />
 					</a>
 				</div>
 			</div>

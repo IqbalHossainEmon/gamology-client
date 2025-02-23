@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import ButtonWaterEffect from '../../../../../../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
+import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import styles from './TagOrCategoryDeleteBody.module.css';
 
@@ -37,7 +37,7 @@ function TagOrCategoryDeleteBody({ handleHide, text, handler }) {
 					type='button'
 				>
 					Delete
-					<ButtonWaterEffect long />
+					<RippleEffect long />
 				</button>
 			</div>
 		</div>

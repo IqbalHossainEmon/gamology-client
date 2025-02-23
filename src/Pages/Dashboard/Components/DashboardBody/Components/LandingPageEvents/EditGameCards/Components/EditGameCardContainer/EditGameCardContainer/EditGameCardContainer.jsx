@@ -4,7 +4,7 @@ import GameCards from '../../../../../../../../../../Shared/GameCards/GameCards/
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
-import NormalButtonWithEffects from '../../../../../../Shared/NormalButtonWithEffects/NormalButtonWithEffects';
+import ButtonWithRipple from '../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import GameCardManagementMenu from '../../../../../Utils/GameCardManagementMenu';
 import EditGameCardAddCard from '../Components/EditGameCardAddCard/EditGameCardAddCard';
 import styles from './EditGameCardContainer.module.css';
@@ -146,7 +146,7 @@ function EditGameCardContainer({
 					),
 					footer: (
 						<div className={styles.deleteModalFooter}>
-							<NormalButtonWithEffects
+							<ButtonWithRipple
 								className={`${styles.btn} ${styles.yesBtn}`}
 								onClick={() => {
 									callback();
@@ -156,9 +156,10 @@ function EditGameCardContainer({
 										footer: null,
 									});
 								}}
-								text='Yes'
-							/>
-							<NormalButtonWithEffects
+							>
+								Yes
+							</ButtonWithRipple>
+							<ButtonWithRipple
 								className={`${styles.btn} ${styles.noBtn}`}
 								onClick={() => {
 									setModal({
@@ -167,8 +168,9 @@ function EditGameCardContainer({
 										footer: null,
 									});
 								}}
-								text='No'
-							/>
+							>
+								No
+							</ButtonWithRipple>
 						</div>
 					),
 				});
@@ -230,24 +232,21 @@ function EditGameCardContainer({
 			/>
 			<ErrorMessage errorMessage={errorMessage} enable={errorShow} />
 			<div className={styles.headerBtnContainer}>
-				<NormalButtonWithEffects
-					className={styles.btn}
-					onClick={evenRef.current.onClear}
-					text='Clear'
-				/>
-				<NormalButtonWithEffects
-					className={styles.btn}
-					onClick={evenRef.current.onDelete}
-					text='Delete'
-				/>
-				<NormalButtonWithEffects
+				<ButtonWithRipple className={styles.btn} onClick={evenRef.current.onClear}>
+					Clear
+				</ButtonWithRipple>
+				<ButtonWithRipple className={styles.btn} onClick={evenRef.current.onDelete}>
+					Delete
+				</ButtonWithRipple>
+				<ButtonWithRipple
 					className={styles.btn}
 					onClick={() => {
 						setCards(firstDefaultData.current);
 						onReset(cloneObject(firstDefaultData.current));
 					}}
-					text='Reset'
-				/>
+				>
+					Reset
+				</ButtonWithRipple>
 			</div>
 		</section>
 	);

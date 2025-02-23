@@ -1,9 +1,9 @@
-import ButtonWaterEffect from '../../../../../../Shared/ButtonWaterEffect/ButtonWaterEffect';
-import styles from './NormalButtonWithEffects.module.css';
+import RippleEffect from '../../../../../../Shared/RippleEffect/RippleEffect';
+import styles from './ButtonWithRipple.module.css';
 
-export default function NormalButtonWithEffects({
+export default function ButtonWithRipple({
 	onClick,
-	text,
+	children,
 	disabled = false,
 	tabIndexOff,
 	className,
@@ -17,9 +17,9 @@ export default function NormalButtonWithEffects({
 				{...(disabled && { disabled })}
 				{...(tabIndexOff && { tabIndex: '-1' })}
 			>
-				{text}
+				{children}
 
-				<ButtonWaterEffect />
+				<RippleEffect />
 			</button>
 		</div>
 	);
