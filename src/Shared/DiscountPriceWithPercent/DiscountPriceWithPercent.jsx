@@ -9,7 +9,6 @@ export default function DiscountPriceWithPercent({ price }) {
 					-{(((price.regular - price.discount) / price.regular) * 100).toFixed(0)}%
 				</div>
 			)}
-
 			<div className={styles.discountPrice}>
 				<DiscountPrice price={price} />
 			</div>

@@ -7,7 +7,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems }) {
 
 	return (
 		<div className={styles.editAdaptiveGameCards}>
-			<AdaptiveGameCards items={defaultItems} />
+			<AdaptiveGameCards items={defaultItems} isEditing />
 			<EditAdaptiveGameCardsButtons />
 		</div>
 	);

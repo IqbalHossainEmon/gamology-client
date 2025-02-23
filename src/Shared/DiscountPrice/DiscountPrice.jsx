@@ -4,7 +4,9 @@ export default function DiscountPrice({ price, className }) {
 	if (typeof price === 'object') {
 		return (
 			<span className={`${styles.discountPrice}${className ? ` ${className}` : ''}`}>
-				<span className={styles.regular}>${price.regular}</span>
+				<span className={styles.regularContainer}>
+					<span className={styles.regular}>${price.regular}</span>*
+				</span>
 				<ins className={styles.discount}>${price.discount}</ins>
 			</span>
 		);

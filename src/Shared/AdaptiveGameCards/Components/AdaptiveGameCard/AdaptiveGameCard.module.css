@@ -21,6 +21,10 @@
 	overflow: hidden;
 }
 
+.fullWidth {
+	width: 100%;
+}
+
 .onlyOne .imageContainer {
 	flex: 1 1 60%;
 }
@@ -28,6 +32,42 @@
 .imageAspectRatio {
 	width: 100%;
 	padding-bottom: calc(100% * 9 / 16);
+}
+
+.addImageBtnContainer {
+	position: relative;
+}
+
+.addImageBtn {
+	width: 100%;
+	position: absolute;
+}
+
+.plus {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.plus::after {
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	background-color: #ffffff;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+}
+
+.plus::before {
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background-color: #ffffff;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
 }
 
 .title {

@@ -5,7 +5,7 @@ import AdaptiveGameCard from '../Components/AdaptiveGameCard/AdaptiveGameCard';
 import AdaptiveGameCardNavigator from '../Components/AdaptiveGameCardNavigator/AdaptiveGameCardNavigator';
 import styles from './AdaptiveGameCards.module.css';
 
-function AdaptiveGameCards({ items, link }) {
+function AdaptiveGameCards({ items, link, isEditing }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
 
@@ -26,6 +26,7 @@ function AdaptiveGameCards({ items, link }) {
 				>
 					{items.map(item => (
 						<AdaptiveGameCard
+							isEditing={isEditing}
 							key={item.id}
 							data={item}
 							isOnlyOne={items.length === 1}

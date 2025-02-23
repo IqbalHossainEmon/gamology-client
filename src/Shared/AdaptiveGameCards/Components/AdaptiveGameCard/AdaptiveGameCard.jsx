@@ -1,10 +1,11 @@
+import ButtonWithRipple from '../../../../Pages/Dashboard/Components/DashboardBody/Shared/ButtonWithRipple/ButtonWithRipple';
 import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import Image from '../../../Image/Image/Image';
 import ImageWithHover from '../../../ImageWithHover/ImageWithHover';
 import RippleEffect from '../../../RippleEffect/RippleEffect';
 import styles from './AdaptiveGameCard.module.css';
 
-function AdaptiveGameCard({ data, isOnlyOne, link }) {
+function AdaptiveGameCard({ data, isOnlyOne, link, isEditing }) {
 	const { title, image, footer, description, id } = data;
 
 	const isGame = Array.isArray(footer);
@@ -25,10 +26,19 @@ function AdaptiveGameCard({ data, isOnlyOne, link }) {
 			className={`${styles.adaptiveGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiple}`}
 		>
 			<div className={`${styles.imageContainer} hover-shadow`}>
-				{link ? (
-					<a href={isGame ? id : `${link}/${id}`}>{imageContainer}</a>
+				{isEditing && isGame ? (
+					link ? (
+						<a href={isGame ? id : `${link}/${id}`}>{imageContainer}</a>
+					) : (
+						imageContainer
+					)
 				) : (
-					imageContainer
+					<ButtonWithRipple
+						containerClassName={`${styles.fullWidth} ${styles.imageAspectRatio} ${styles.addImageBtnContainer}`}
+						className={`${styles.fullWidth}} ${styles.addImageBtn}`}
+					>
+						<span className={styles.plus} />
+					</ButtonWithRipple>
 				)}
 			</div>
 			<div>

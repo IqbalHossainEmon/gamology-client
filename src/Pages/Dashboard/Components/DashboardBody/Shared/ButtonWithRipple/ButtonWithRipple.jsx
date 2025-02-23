@@ -7,9 +7,12 @@ export default function ButtonWithRipple({
 	disabled = false,
 	tabIndexOff,
 	className,
+	containerClassName,
 }) {
 	return (
-		<div className={`${disabled ? `${styles.disabled} ` : ''}${styles.btnContainer}`}>
+		<div
+			className={`${disabled ? `${styles.disabled} ` : ''}${styles.btnContainer}${containerClassName ? ` ${containerClassName}` : ''}`}
+		>
 			<button
 				className={`${styles.btn}${className ? ` ${className}` : ''}`}
 				onClick={onClick}
