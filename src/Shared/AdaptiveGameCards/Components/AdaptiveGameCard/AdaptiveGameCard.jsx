@@ -3,9 +3,10 @@ import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/Discount
 import Image from '../../../Image/Image/Image';
 import ImageWithHover from '../../../ImageWithHover/ImageWithHover';
 import RippleEffect from '../../../RippleEffect/RippleEffect';
+import TextField from '../../../TextField/TextField/TextField';
 import styles from './AdaptiveGameCard.module.css';
 
-function AdaptiveGameCard({ data, isOnlyOne, link, isEditing }) {
+function AdaptiveGameCard({ data, isOnlyOne, link, isEditing, htmlFor }) {
 	const { title, image, footer, description, id } = data;
 
 	const isGame = Array.isArray(footer);
@@ -42,12 +43,36 @@ function AdaptiveGameCard({ data, isOnlyOne, link, isEditing }) {
 				)}
 			</div>
 			<div>
-				{!!title && (
-					<h3 className={styles.title}>
-						{link ? <a href={isGame ? id : `${link}/${id}`}>{title} </a> : title}
-					</h3>
+				{isEditing ? (
+					<div className={styles.titleContainer}>
+						<TextField
+							field='input'
+							placeholder='Title'
+							setState={value => console.log(value)}
+							htmlFor={`title${htmlFor}`}
+							defaultValue={title}
+						/>
+					</div>
+				) : (
+					!!title && (
+						<h3 className={styles.title}>
+							{link ? <a href={isGame ? id : `${link}/${id}`}>{title}</a> : title}
+						</h3>
+					)
 				)}
-				{!!description && <p className={styles.cardDescription}>{description}</p>}
+				{isEditing ? (
+					<div className={styles.descriptionContainer}>
+						<TextField
+							setState={value => console.log(value)}
+							field='textarea'
+							htmlFor={`description${htmlFor}`}
+							placeholder='Description'
+							defaultValue={description}
+						/>
+					</div>
+				) : (
+					!!description && <p className={styles.cardDescription}>{description}</p>
+				)}
 				{!!footer && (
 					<div className={styles.cardFooter}>
 						{isGame ? (
@@ -63,6 +88,7 @@ function AdaptiveGameCard({ data, isOnlyOne, link, isEditing }) {
 											background={
 												index % 2 ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)'
 											}
+											long
 										/>
 									</a>
 								))}

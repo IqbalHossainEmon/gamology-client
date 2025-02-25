@@ -16,56 +16,29 @@ function RippleEffect({ background, long }) {
 				// Remove the first element after the animation is completed
 				setTimeout(
 					() => {
-						setEle(e => {
+						setEle(prev => {
 							// If there is only one element in the array then set the key to 0
-							if (e.length === 1) key.current = 0;
-							return e.slice(1);
+							if (prev.length === 1) key.current = 0;
+							return prev.slice(1);
 						});
 					},
-					long ? 1550 : 750
+					long ? 2550 : 1050
 				);
 			},
 			// Handle the click event on the button
 			handleClick: e => {
-				// get the x and y coordinates of the click event
+				const btn = e.currentTarget; // Change to currentTarget instead of target
+				const rect = btn.getBoundingClientRect();
 
-				const btn = e.target;
-
-				let x =
-					(e.touches ? e.touches[0].clientX : e.clientX) -
-					btn.getBoundingClientRect().left;
-				let y =
-					(e.touches ? e.touches[0].clientY : e.clientY) -
-					btn.getBoundingClientRect().top;
+				const x = (e.touches ? e.touches[0].pageX : e.pageX) - rect.left;
+				const y = (e.touches ? e.touches[0].pageY : e.pageY) - rect.top;
 
 				// get the width and height of the button
 				const width = btn.offsetWidth;
 				const height = btn.offsetHeight;
-				const halfWidth = width / 2;
-				const halfHeight = height / 2;
 
-				// if the click event is outside the button then set the x and y coordinates to the center of the button
-				if (x < -2 || y < -2) {
-					x = halfWidth;
-					y = halfHeight;
-				}
-
-				let length;
-
-				// calculate the distance of the click event from the center of the button
-				if (x <= halfWidth && y <= halfHeight) {
-					length = Math.sqrt((width - x) ** 2 + (height - y) ** 2);
-				} else if (x > halfWidth && y < halfHeight) {
-					length = Math.sqrt(x ** 2 + (height - y) ** 2);
-				} else if (x < halfWidth && y > halfHeight) {
-					length = Math.sqrt((width - x) ** 2 + y ** 2);
-				} else {
-					length = Math.sqrt(x ** 2 + y ** 2);
-				}
-
-				if (eleRef.current.length === 0) {
-					key.current = 0;
-				}
+				// Calculate the maximum radius needed to cover the entire button
+				const radius = Math.sqrt(width * width + height * height);
 
 				setEle(el => [
 					...el,
@@ -73,10 +46,10 @@ function RippleEffect({ background, long }) {
 						className={`${long ? styles.long : styles.short} ${styles.waterDrop}`}
 						key={key.current++}
 						style={{
-							width: `${length * 2}px`,
-							height: `${length * 2}px`,
-							top: `${y - length}px`,
-							left: `${x - length}px`,
+							width: `${radius * 2}px`,
+							height: `${radius * 2}px`,
+							top: `${y - radius}px`,
+							left: `${x - radius}px`,
 							background: background || 'white',
 						}}
 					/>,

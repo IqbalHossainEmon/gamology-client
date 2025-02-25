@@ -242,6 +242,7 @@ function EditOtherEventGames() {
 										/>
 									) : items.cards ? (
 										<EditAdaptiveGameCards
+											index={index}
 											dataRef={sectionsRefs}
 											defaultItems={items.cards}
 										/>
