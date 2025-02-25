@@ -6,7 +6,7 @@ const useReloadScroll = () => {
 
 		const handleLoad = () => {
 			setTimeout(() => {
-				const loadScroll = localStorage.getItem('loadScroll');
+				const loadScroll = JSON.parse(localStorage.getItem('loadScroll'));
 				if (loadScroll) {
 					if (window.location.pathname === loadScroll.path) {
 						root.scrollTo(0, loadScroll.scroll);
@@ -17,10 +17,13 @@ const useReloadScroll = () => {
 		};
 
 		const handleBeforeUnload = () => {
-			localStorage.setItem('loadScroll', {
-				scroll: root.scrollY,
-				path: window.location.pathname,
-			});
+			localStorage.setItem(
+				'loadScroll',
+				JSON.stringify({
+					scroll: root.scrollTop,
+					path: window.location.pathname,
+				})
+			);
 		};
 
 		window.addEventListener('load', handleLoad);
