@@ -99,6 +99,10 @@
 	flex-wrap: wrap;
 }
 
+.containerNoPadding {
+	padding: 0;
+}
+
 .btn {
 	border: none;
 	padding: 0.6em;

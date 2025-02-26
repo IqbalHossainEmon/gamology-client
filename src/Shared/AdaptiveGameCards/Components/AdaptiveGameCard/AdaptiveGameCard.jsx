@@ -22,24 +22,26 @@ function AdaptiveGameCard({ data, isOnlyOne, link, isEditing, htmlFor }) {
 		/>
 	);
 
+	const imageElement = link ? (
+		<a href={isGame ? id : `${link}/${id}`}>{imageContainer}</a>
+	) : (
+		imageContainer
+	);
+
 	return (
 		<li
 			className={`${styles.adaptiveGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiple}`}
 		>
 			<div className={`${styles.imageContainer} hover-shadow`}>
-				{isEditing && isGame ? (
-					link ? (
-						<a href={isGame ? id : `${link}/${id}`}>{imageContainer}</a>
-					) : (
-						imageContainer
-					)
-				) : (
+				{isEditing ? (
 					<ButtonWithRipple
 						containerClassName={`${styles.fullWidth} ${styles.imageAspectRatio} ${styles.addImageBtnContainer}`}
-						className={`${styles.fullWidth}} ${styles.addImageBtn}`}
+						className={`${styles.fullWidth} ${styles.addImageBtn}${image ? ` ${styles.containerNoPadding}` : ''}`}
 					>
-						<span className={styles.plus} />
+						{image ? imageElement : <span className={styles.plus} />}
 					</ButtonWithRipple>
+				) : (
+					imageElement
 				)}
 			</div>
 			<div>
