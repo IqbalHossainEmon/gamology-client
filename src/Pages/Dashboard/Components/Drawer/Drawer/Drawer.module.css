@@ -28,6 +28,7 @@
 	list-style-type: none;
 	max-width: 100vw;
 	width: 15rem;
+	padding: 2px;
 }
 
 .expandedPosition {
@@ -69,7 +70,7 @@
 .arrowBtn::before {
 	content: '';
 	position: absolute;
-	top: 0.75em;
+	top: 0.6em;
 	transform-origin: center;
 	translate: 0 0.125em;
 	width: 50%;
@@ -87,7 +88,7 @@
 	content: '';
 	position: absolute;
 	transform-origin: center;
-	top: 1.375em;
+	top: 1.39em;
 	width: 50%;
 	height: 2px;
 	translate: 0 0.125em;

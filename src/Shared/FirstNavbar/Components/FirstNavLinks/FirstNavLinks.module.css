@@ -3,6 +3,8 @@
 	justify-content: space-between;
 	align-items: center;
 	list-style: none;
+	overflow: hidden;
+	padding: 2px;
 }
 .firstNavLinks a {
 	display: flex;
@@ -16,16 +18,21 @@
 }
 
 .option {
-	cursor: pointer;
 	height: 100%;
 	flex-shrink: 0;
-	padding: 0 1.5rem;
+	user-select: none;
+	-webkit-user-select: none;
 	white-space: nowrap;
 	position: relative;
-	overflow: hidden;
 }
+
 .option a {
+	padding: 0 1.5rem;
 	transition: color 200ms;
+}
+
+.option a:focus {
+	outline: 1px solid rgba(255, 255, 255);
 }
 
 .option::after {
@@ -34,7 +41,7 @@
 	width: 100%;
 	height: 5px;
 	left: 0;
-	bottom: -5px;
+	bottom: -7px;
 	transition: bottom 200ms;
 	position: absolute;
 }
@@ -42,20 +49,16 @@
 	color: rgba(255, 255, 255, 0.8);
 }
 .option:hover::after {
-	bottom: 0px;
-	background-color: rgb(255, 255, 255);
-}
-.active {
-	cursor: default;
-	pointer-events: none;
+	bottom: -2px;
 }
 .active a {
 	color: #fff;
+	cursor: default;
+	pointer-events: none;
 }
 
 .active::after {
-	bottom: 0px;
-	background-color: rgba(255, 255, 255);
+	bottom: -2px;
 }
 @media only screen and (max-width: 48rem) {
 	.firstNavLinks {

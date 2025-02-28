@@ -22,7 +22,7 @@ function RippleEffect({ background, long }) {
 							return prev.slice(1);
 						});
 					},
-					long ? 2550 : 1050
+					long ? 2550 : 750
 				);
 			},
 			// Handle the click event on the button
