@@ -1,4 +1,4 @@
-import ArrowIcon from '../../ArrowIcon/ArrowIcon';
+import ArrowIcon from '../../Icons/ArrowIcon/ArrowIcon';
 import usePaginationLogic, { DOTS } from '../PaginationLogic/usePaginationLogic';
 import styles from './Pagination.module.css';
 

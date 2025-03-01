@@ -1,0 +1,14 @@
+.uploadIcon {
+	position: absolute;
+	width: 2rem;
+	left: 0px;
+	bottom: 0px;
+	background-color: #a5a5a593;
+	padding: 0.125em;
+	border-radius: 0 4px 0 0;
+}
+
+.right {
+	right: 0px;
+	left: auto;
+}
