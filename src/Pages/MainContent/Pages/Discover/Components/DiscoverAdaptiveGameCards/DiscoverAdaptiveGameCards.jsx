@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import AdaptiveGameCards from '../../../../../../Shared/AdaptiveGameCards/AdaptiveGameCards/AdaptiveGameCards';
+import AdaptiveCards from '../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
 import styles from './DiscoverAdaptiveGameCards.module.css';
 
 const data = [
@@ -47,7 +47,7 @@ function DiscoverAdaptiveGameCards() {
 
 	return (
 		<div className={styles.discoverDynamicGameCards}>
-			<AdaptiveGameCards items={items} link='/' />
+			<AdaptiveCards items={items} link='/' />
 		</div>
 	);
 }

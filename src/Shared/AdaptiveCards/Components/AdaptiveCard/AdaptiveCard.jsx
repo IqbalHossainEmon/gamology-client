@@ -5,9 +5,9 @@ import Image from '../../../Image/Image/Image';
 import ImageWithHover from '../../../ImageWithHover/ImageWithHover';
 import RippleEffect from '../../../RippleEffect/RippleEffect';
 import TextField from '../../../TextField/TextField/TextField';
-import styles from './AdaptiveGameCard.module.css';
+import styles from './AdaptiveCard.module.css';
 
-function AdaptiveGameCard({ data, isOnlyOne, isEditing, htmlFor }) {
+function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader }) {
 	const { title, image, footer, description, link, isGame } = data;
 
 	const imageContainer = isGame ? (
@@ -27,17 +27,7 @@ function AdaptiveGameCard({ data, isOnlyOne, isEditing, htmlFor }) {
 		<li
 			className={`${styles.adaptiveGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiple}`}
 		>
-			{isEditing && (
-				<div>
-					<TextField
-						field='input'
-						placeholder='Link for the Card'
-						setState={value => console.log(value)}
-						htmlFor={`id${htmlFor}`}
-						defaultValue={link}
-					/>
-				</div>
-			)}
+			{editingHeader && editingHeader(htmlFor, link)}
 			<div className={`${styles.imageContainer} hover-shadow`}>
 				{isEditing ? (
 					<ButtonWithRipple
@@ -111,4 +101,4 @@ function AdaptiveGameCard({ data, isOnlyOne, isEditing, htmlFor }) {
 		</li>
 	);
 }
-export default AdaptiveGameCard;
+export default AdaptiveCard;

@@ -1,15 +1,25 @@
 import { useState } from 'react';
-import AdaptiveGameCards from '../../../../../../../../../../Shared/AdaptiveGameCards/AdaptiveGameCards/AdaptiveGameCards';
+import AdaptiveCards from '../../../../../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
+import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField/EditAdaptiveCardsLinkField';
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import styles from './EditAdaptiveGameCards.module.css';
 
+function EditHeaderComponent(index, link) {
+	return <EditAdaptiveCardsLinkField index={index} link={link} />;
+}
+
 function EditAdaptiveGameCards({ dataRef, defaultItems, index }) {
 	// 0 means price footer, 1 means 1 button footer, -1 means 2 button footer
-	const [adaptiveFooter, setadaptiveFooter] = useState([0, 1, -1]);
+	const [adaptiveFooter, setAdaptiveFooter] = useState([0, 1, -1]);
 
 	return (
 		<div className={styles.editAdaptiveGameCards}>
-			<AdaptiveGameCards items={defaultItems} isEditing index={index} />
+			<AdaptiveCards
+				items={defaultItems}
+				isEditing
+				index={index}
+				editingHeader={EditHeaderComponent}
+			/>
 			<EditAdaptiveGameCardsButtons />
 		</div>
 	);

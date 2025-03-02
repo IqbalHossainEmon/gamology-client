@@ -1,7 +1,7 @@
 import ArrowButton from '../../../ArrowButton/ArrowButton';
-import styles from './AdaptiveGameCardNavigator.module.css';
+import styles from './AdaptiveCardNavigator.module.css';
 
-function AdaptiveGameCardNavigator({ setCardPosition, cardPosition, length }) {
+function AdaptiveCardNavigator({ setCardPosition, cardPosition, length }) {
 	return (
 		<div className={styles.mixEventChangeMainButtonContainer}>
 			<ArrowButton
@@ -27,4 +27,4 @@ function AdaptiveGameCardNavigator({ setCardPosition, cardPosition, length }) {
 		</div>
 	);
 }
-export default AdaptiveGameCardNavigator;
+export default AdaptiveCardNavigator;

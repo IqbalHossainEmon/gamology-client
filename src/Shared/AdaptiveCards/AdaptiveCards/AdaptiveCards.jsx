@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import AdaptiveGameCard from '../Components/AdaptiveGameCard/AdaptiveGameCard';
-import AdaptiveGameCardNavigator from '../Components/AdaptiveGameCardNavigator/AdaptiveGameCardNavigator';
-import styles from './AdaptiveGameCards.module.css';
+import AdaptiveCard from '../Components/AdaptiveCard/AdaptiveCard';
+import AdaptiveCardNavigator from '../Components/AdaptiveCardNavigator/AdaptiveCardNavigator';
+import styles from './AdaptiveCards.module.css';
 
-function AdaptiveGameCards({ items, isEditing, index = 0 }) {
+function AdaptiveCards({ items, isEditing, editingHeader, index = 0 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
 
@@ -25,18 +25,19 @@ function AdaptiveGameCards({ items, isEditing, index = 0 }) {
 					})}
 				>
 					{items.map((item, i) => (
-						<AdaptiveGameCard
+						<AdaptiveCard
 							htmlFor={`${index}${i}`}
 							isEditing={isEditing}
-							key={item.id}
+							key={item.link}
 							data={item}
 							isOnlyOne={items.length === 1}
+							editingHeader={editingHeader}
 						/>
 					))}
 				</ul>
 			</div>
 			{widthInRem < 48.0625 && items.length > 1 && (
-				<AdaptiveGameCardNavigator
+				<AdaptiveCardNavigator
 					length={items.length}
 					setCardPosition={prop => {
 						setCardPosition(prop);
@@ -49,4 +50,4 @@ function AdaptiveGameCards({ items, isEditing, index = 0 }) {
 		</section>
 	);
 }
-export default AdaptiveGameCards;
+export default AdaptiveCards;
