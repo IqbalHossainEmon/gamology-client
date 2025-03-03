@@ -114,9 +114,9 @@ function SuggestionListContent({
 						</div>
 					) : (
 						!list.length && (
-							<li className={`${styles.item} ${styles.noDataItem}`}>
+							<div className={`${styles.item} ${styles.noDataItem}`}>
 								No Match Found
-							</li>
+							</div>
 						)
 					))}
 			</div>

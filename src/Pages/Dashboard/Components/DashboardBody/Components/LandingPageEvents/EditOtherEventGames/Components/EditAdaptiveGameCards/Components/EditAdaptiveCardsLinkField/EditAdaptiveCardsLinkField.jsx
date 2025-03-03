@@ -1,15 +1,18 @@
-import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
+import TypeableSelectionField from '../../../../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import styles from './EditAdaptiveCardsLinkField.module.css';
 
 function EditAdaptiveCardsLinkField({ index, link }) {
 	return (
 		<div className={styles.header}>
-			<TextField
-				field='input'
-				placeholder='Link for the Card'
-				setState={value => console.log(value)}
-				htmlFor={`header${index}`}
-				defaultValue={link}
+			<TypeableSelectionField
+				htmlFor='addGameCard'
+				placeholder='Search for a game'
+				name='name'
+				setState={val => {
+					console.log(val);
+				}}
+				// errorMessage={errorMessage.current}
+				// errorChange={errorChange}
 			/>
 		</div>
 	);
