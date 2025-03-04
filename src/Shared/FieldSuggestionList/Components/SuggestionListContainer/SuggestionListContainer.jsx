@@ -125,7 +125,6 @@ const data = [
 		name: 'The Elder Scrolls V: Skyrim Anniversary Edition',
 		carouselThumb: '/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
 	},
-	// Add similar entries for the remaining IDs
 	{
 		name: 'Borderlands 3',
 		carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
@@ -429,7 +428,6 @@ function SuggestionListContainer({
 	state,
 	setShow,
 	setState,
-	name,
 	value,
 	elementRef,
 	className,
@@ -555,7 +553,7 @@ function SuggestionListContainer({
 				if (!loadingRef.current) setLoading(true);
 				const filteredList = data.filter(
 					item =>
-						item.name.toLowerCase().includes(valueRef.current.toLowerCase()) &&
+						item.name.toLowerCase().includes(valueRef.current?.toLowerCase()) &&
 						valueRef.current !== ' ' &&
 						valueRef.current !== ''
 				);
@@ -610,7 +608,6 @@ function SuggestionListContainer({
 				fadeIn={fadeIn}
 				list={list}
 				setState={setState}
-				name={name}
 				value={value}
 				setShow={setShow}
 				onHide={onHide}

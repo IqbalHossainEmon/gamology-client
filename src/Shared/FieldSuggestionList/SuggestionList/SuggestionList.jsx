@@ -9,7 +9,6 @@ function SuggestionList({
 	maxLimit,
 	setState,
 	shouldClearTheSearch,
-	name,
 	extraSectionParams,
 	link,
 	setHeight,
@@ -24,7 +23,7 @@ function SuggestionList({
 	useEffect(() => {
 		if (
 			value !== ' ' &&
-			value.length > 0 &&
+			value?.length > 0 &&
 			shouldShow.current &&
 			checkerRef.current.prevValue !== value
 		) {
@@ -47,7 +46,6 @@ function SuggestionList({
 			}}
 			setState={setState}
 			className={className}
-			name={name}
 			value={value}
 			elementRef={searchRef}
 			noPositionChange

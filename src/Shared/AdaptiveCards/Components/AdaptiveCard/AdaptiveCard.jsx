@@ -33,9 +33,10 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader }) {
 					<ButtonWithRipple
 						containerClassName={`${styles.fullWidth} ${styles.imageAspectRatio} ${styles.addImageBtnContainer}`}
 						className={`${styles.fullWidth} ${styles.addImageBtn}${image ? ` ${styles.containerNoPadding}` : ''}`}
+						long
 					>
 						{image ? imageContainer : <span className={styles.plus} />}
-						<UploadIcon right />
+						<UploadIcon />
 					</ButtonWithRipple>
 				) : (
 					imageElement

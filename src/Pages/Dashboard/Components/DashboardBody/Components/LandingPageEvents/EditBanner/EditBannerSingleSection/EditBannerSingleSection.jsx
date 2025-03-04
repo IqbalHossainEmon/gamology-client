@@ -114,7 +114,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 			/>
 			<TypeableSelectionField
 				className={styles.marginTop}
-				name='name'
+				propertyName='name'
 				placeholder='Enter the game name'
 				htmlFor={`gameName#${index}`}
 				defaultValue={defaultData.name}

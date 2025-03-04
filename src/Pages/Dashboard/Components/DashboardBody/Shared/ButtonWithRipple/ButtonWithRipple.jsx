@@ -8,6 +8,7 @@ export default function ButtonWithRipple({
 	tabIndexOff,
 	className,
 	containerClassName,
+	long,
 }) {
 	return (
 		<div
@@ -22,7 +23,7 @@ export default function ButtonWithRipple({
 			>
 				{children}
 
-				<RippleEffect />
+				<RippleEffect long={long} />
 			</button>
 		</div>
 	);

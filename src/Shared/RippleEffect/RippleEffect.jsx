@@ -22,12 +22,14 @@ function RippleEffect({ background, long }) {
 							return prev.slice(1);
 						});
 					},
-					long ? 2550 : 750
+					long ? 2550 : 7500
 				);
 			},
 			// Handle the click event on the button
 			handleClick: e => {
 				const btn = e.currentTarget; // Change to currentTarget instead of target
+				console.log(btn);
+
 				const rect = btn.getBoundingClientRect();
 
 				const x = (e.touches ? e.touches[0].pageX : e.pageX) - rect.left;

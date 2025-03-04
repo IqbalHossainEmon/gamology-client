@@ -4,7 +4,7 @@ import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import styles from './EditAdaptiveGameCards.module.css';
 
-function EditHeaderComponent(index, link) {
+function editHeaderComponent(index, link) {
 	return <EditAdaptiveCardsLinkField index={index} link={link} />;
 }
 
@@ -18,7 +18,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, index }) {
 				items={defaultItems}
 				isEditing
 				index={index}
-				editingHeader={EditHeaderComponent}
+				editingHeader={editHeaderComponent}
 			/>
 			<EditAdaptiveGameCardsButtons />
 		</div>

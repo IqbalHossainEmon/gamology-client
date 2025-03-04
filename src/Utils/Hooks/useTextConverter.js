@@ -28,7 +28,12 @@ const useTextConverter = () => {
 		};
 	}
 
-	return eventRefs.current;
+	return {
+		convertNameToId: eventRefs.current.convertNameToId,
+		convertIdToName: eventRefs.current.convertIdToName,
+		convertNameToLink: eventRefs.current.convertNameToLink,
+		convertToPascalCase: eventRefs.current.convertToPascalCase,
+	};
 };
 
 export default useTextConverter;

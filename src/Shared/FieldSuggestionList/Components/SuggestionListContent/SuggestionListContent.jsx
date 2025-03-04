@@ -7,7 +7,6 @@ function SuggestionListContent({
 	fadeIn,
 	list,
 	setState,
-	name,
 	value,
 	setShow,
 	show,
@@ -54,8 +53,8 @@ function SuggestionListContent({
 				className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>
 				{(loading || !!list.length) && (
-					<ul className={styles.list}>
-						<ScrollBar>
+					<ScrollBar>
+						<ul className={styles.list}>
 							{loading
 								? [...Array(4).keys()].map(item => (
 										<li className={`${styles.placeHolder}`} key={item}>
@@ -80,7 +79,7 @@ function SuggestionListContent({
 												onClick={() => {
 													setShow(false);
 													onHide();
-													if (setState) setState(item, name);
+													if (setState) setState(item);
 												}}
 												type='button'
 											>
@@ -99,8 +98,8 @@ function SuggestionListContent({
 											</button>
 										</li>
 									))}
-						</ScrollBar>
-					</ul>
+						</ul>
+					</ScrollBar>
 				)}
 				{!loading &&
 					(numberOfButton ? (
@@ -109,7 +108,7 @@ function SuggestionListContent({
 								value={value}
 								setShow={setShow}
 								{...extraSectionParams}
-								setValue={val => setState(val, name)}
+								setValue={val => setState(val)}
 							/>
 						</div>
 					) : (

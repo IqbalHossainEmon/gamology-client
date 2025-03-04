@@ -22,7 +22,7 @@ function AddGameCardModalBody({ setModal, onClick }) {
 					setHeight={setHeight}
 					htmlFor='addGameCard'
 					placeholder='Search for a game'
-					name='name'
+					propertyName='name'
 					setState={val => {
 						gameSelectedRef.current = val;
 					}}

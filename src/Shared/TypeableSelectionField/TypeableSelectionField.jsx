@@ -9,7 +9,7 @@ export default function TypeableSelectionField({
 	className,
 	htmlFor,
 	defaultValue = '',
-	name = '',
+	propertyName = '',
 	onFocusClick,
 	enabled = true,
 	setState = () => {},
@@ -17,6 +17,9 @@ export default function TypeableSelectionField({
 	errorMessage,
 	errorChange = () => {},
 	setHeight,
+	handleListHide = () => false,
+	specialValueHandler,
+	specialSetValueHandler,
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
@@ -119,22 +122,36 @@ export default function TypeableSelectionField({
 					onBlur={eventRefs.current.handleBlur}
 					ref={fieldRef}
 					value={value.name || value}
-					{...rest}
 				/>
 			</div>
-			<SuggestionList
-				name={name}
-				setShow={setShow}
-				setState={(val, giveName) => {
-					setValue(giveName ? val[giveName] : val);
-					setState(val);
-				}}
-				searchInputRef={fieldRef}
-				value={typeof value === 'string' ? value : value.name}
-				searchRef={elementRef}
-				setHeight={setHeight}
-				link='http://localhost:5173/api/autocomplete'
-			/>
+			{!handleListHide(typeof value === 'string' ? value : value.name) && (
+				<SuggestionList
+					setShow={setShow}
+					setState={val => {
+						setValue(
+							specialSetValueHandler
+								? specialSetValueHandler(propertyName ? val[propertyName] : val)
+								: propertyName
+									? val[propertyName]
+									: val
+						);
+						setState(val);
+					}}
+					searchInputRef={fieldRef}
+					value={
+						typeof value === 'string'
+							? specialValueHandler
+								? specialValueHandler(value)
+								: value
+							: specialValueHandler
+								? specialValueHandler(value.name)
+								: value.name
+					}
+					searchRef={elementRef}
+					setHeight={setHeight}
+					link='http://localhost:5173/api/autocomplete'
+				/>
+			)}
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);
