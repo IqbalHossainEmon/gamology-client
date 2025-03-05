@@ -27,8 +27,7 @@ function RippleEffect({ background, long }) {
 			},
 			// Handle the click event on the button
 			handleClick: e => {
-				const btn = e.currentTarget; // Change to currentTarget instead of target
-				console.log(btn);
+				const btn = e.currentTarget;
 
 				const rect = btn.getBoundingClientRect();
 
@@ -39,8 +38,16 @@ function RippleEffect({ background, long }) {
 				const width = btn.offsetWidth;
 				const height = btn.offsetHeight;
 
-				// Calculate the maximum radius needed to cover the entire button
-				const radius = Math.sqrt(width * width + height * height);
+				// Calculate distances from the click point to each corner
+				const distances = [
+					Math.hypot(x, y), // top-left
+					Math.hypot(width - x, y), // top-right
+					Math.hypot(x, height - y), // bottom-left
+					Math.hypot(width - x, height - y), // bottom-right
+				];
+
+				// Get the farthest distance (for full coverage)
+				const radius = Math.max(...distances);
 
 				setEle(el => [
 					...el,
