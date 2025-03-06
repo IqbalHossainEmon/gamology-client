@@ -3,6 +3,7 @@ import useAppearDisappear from '../../../../Utils/Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../Utils/Hooks/useDropDownHide';
 import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
 import SuggestionListContent from '../SuggestionListContent/SuggestionListContent';
+import styles from './SuggestionListContainer.module.css';
 
 const data = [
 	{
@@ -536,7 +537,7 @@ function SuggestionListContainer({
 					item.editedName = (
 						<>
 							{prefixText}
-							<strong>{matchedSubstring}</strong>
+							<strong className={styles.matchText}>{matchedSubstring}</strong>
 							{trailingText}
 						</>
 					);

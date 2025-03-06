@@ -21,7 +21,7 @@
 	animation: waterEffect cubic-bezier(0.02, 0.13, 0.2, 1) 1 forwards;
 }
 .short {
-	animation-duration: 7000ms;
+	animation-duration: 700ms;
 }
 .long {
 	animation-duration: 2500ms;

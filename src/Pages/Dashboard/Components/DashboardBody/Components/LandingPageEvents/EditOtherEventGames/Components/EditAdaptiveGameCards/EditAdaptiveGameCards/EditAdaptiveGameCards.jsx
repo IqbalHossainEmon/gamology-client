@@ -12,6 +12,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, index }) {
 	// 0 means price footer, 1 means 1 button footer, -1 means 2 button footer
 	const [adaptiveFooter, setAdaptiveFooter] = useState([0, 1, -1]);
 
+
 	return (
 		<div className={styles.editAdaptiveGameCards}>
 			<AdaptiveCards
