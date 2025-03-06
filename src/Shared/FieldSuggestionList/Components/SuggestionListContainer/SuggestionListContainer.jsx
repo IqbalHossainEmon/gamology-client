@@ -440,7 +440,7 @@ function SuggestionListContainer({
 	link,
 	setContainerHeight,
 }) {
-	const [show, fadeIn] = useAppearDisappear(state);
+	const [show, fadeIn] = useAppearDisappear(state, false, true, 350);
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -450,6 +450,9 @@ function SuggestionListContainer({
 
 	const previousBottomRemain = useRef(0);
 	const eventRefs = useRef(null);
+
+	const heightRef = useRef(height);
+	heightRef.current = height;
 
 	const prevLength = useRef(list.length);
 
@@ -600,6 +603,16 @@ function SuggestionListContainer({
 				else eventRefs.current.fetchData();
 				typeTimerId.current = null;
 			}, 200);
+		} else {
+			if (typeTimerId.current) {
+				clearTimeout(typeTimerId.current);
+				typeTimerId.current = null;
+			}
+			if (loadingRef.current) setLoading(false);
+			setList([]);
+			if (heightRef.current > 56) {
+				setHeight(56);
+			}
 		}
 	}, [maxLimit, value]);
 

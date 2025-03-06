@@ -10,10 +10,10 @@ function EditAdaptiveCardsLinkField({ index, link }) {
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			valueSlicer: val => {
+			handleListHide: val => {
 				const newValue = val;
 
-				if (newValue?.toLowerCase().startsWith('/games/')) {
+				if (newValue?.toLowerCase().startsWith('/games/') && newValue.length > 7) {
 					return false;
 				}
 				return true;
@@ -35,11 +35,12 @@ function EditAdaptiveCardsLinkField({ index, link }) {
 				placeholder="Enter main link (/games/'game_name' for games)"
 				defaultValue={link}
 				propertyName='name'
+				name={`editAdaptiveCardLink${index}`}
 				htmlFor={`editAdaptiveCardLink${index}`}
 				setState={val => {
 					console.log(val);
 				}}
-				handleListHide={eventRefs.current.valueSlicer}
+				handleListHide={eventRefs.current.handleListHide}
 				specialSetValueHandler={eventRefs.current.valueSetter}
 				specialValueHandler={eventRefs.current.valueChecker}
 				// errorMessage={errorMessage.current}

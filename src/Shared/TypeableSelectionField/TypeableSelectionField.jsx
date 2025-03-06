@@ -8,6 +8,7 @@ export default function TypeableSelectionField({
 	placeholder = 'Type',
 	className,
 	htmlFor,
+	name,
 	defaultValue = '',
 	propertyName = '',
 	onFocusClick,
@@ -117,6 +118,7 @@ export default function TypeableSelectionField({
 					className={styles.field}
 					id={htmlFor}
 					type='input'
+					name={name}
 					onChange={eventRefs.current.handleChange}
 					onFocus={eventRefs.current.handleFocus}
 					onBlur={eventRefs.current.handleBlur}
@@ -124,34 +126,33 @@ export default function TypeableSelectionField({
 					value={value.name || value}
 				/>
 			</div>
-			{!handleListHide(typeof value === 'string' ? value : value.name) && (
-				<SuggestionList
-					setShow={setShow}
-					setState={val => {
-						setValue(
-							specialSetValueHandler
-								? specialSetValueHandler(propertyName ? val[propertyName] : val)
-								: propertyName
-									? val[propertyName]
-									: val
-						);
-						setState(val);
-					}}
-					searchInputRef={fieldRef}
-					value={
-						typeof value === 'string'
-							? specialValueHandler
-								? specialValueHandler(value)
-								: value
-							: specialValueHandler
-								? specialValueHandler(value.name)
-								: value.name
-					}
-					searchRef={elementRef}
-					setHeight={setHeight}
-					link='http://localhost:5173/api/autocomplete'
-				/>
-			)}
+			<SuggestionList
+				setShow={setShow}
+				setState={val => {
+					setValue(
+						specialSetValueHandler
+							? specialSetValueHandler(propertyName ? val[propertyName] : val)
+							: propertyName
+								? val[propertyName]
+								: val
+					);
+					setState(val);
+				}}
+				searchInputRef={fieldRef}
+				value={
+					typeof value === 'string'
+						? specialValueHandler
+							? specialValueHandler(value)
+							: value
+						: specialValueHandler
+							? specialValueHandler(value.name)
+							: value.name
+				}
+				searchRef={elementRef}
+				setHeight={setHeight}
+				link='http://localhost:5173/api/autocomplete'
+				parentShow={!handleListHide(typeof value === 'string' ? value : value.name)}
+			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);

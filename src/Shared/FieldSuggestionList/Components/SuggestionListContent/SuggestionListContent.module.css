@@ -26,7 +26,7 @@
 	flex-direction: column;
 	transition:
 		height 200ms,
-		opacity 200ms;
+		opacity 300ms;
 }
 
 .list {

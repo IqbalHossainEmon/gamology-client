@@ -13,6 +13,7 @@ function SuggestionList({
 	link,
 	setHeight,
 	className,
+	parentShow = true,
 }) {
 	const [navShow, setNavShow] = useState(false);
 
@@ -39,7 +40,7 @@ function SuggestionList({
 
 	return (
 		<SuggestionListContainer
-			state={navShow}
+			state={navShow && parentShow}
 			setShow={val => {
 				setNavShow(val);
 				if (!shouldClearTheSearch) shouldShow.current = false;
