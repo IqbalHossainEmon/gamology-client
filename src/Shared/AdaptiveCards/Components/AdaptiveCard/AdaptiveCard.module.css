@@ -34,6 +34,10 @@
 	padding-bottom: calc(100% * 9 / 16);
 }
 
+.hiddenInput {
+	display: none;
+}
+
 .addImageBtnContainer {
 	position: relative;
 }

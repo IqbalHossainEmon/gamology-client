@@ -74,6 +74,7 @@ function SuggestionListContent({
 											key={item.name}
 										>
 											<button
+												className={styles.itemButton}
 												tabIndex={show ? 0 : -1}
 												{...(value === item && { disabled: true })}
 												onClick={() => {

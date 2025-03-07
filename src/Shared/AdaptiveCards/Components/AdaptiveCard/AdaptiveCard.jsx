@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import ButtonWithRipple from '../../../../Pages/Dashboard/Components/DashboardBody/Shared/ButtonWithRipple/ButtonWithRipple';
+import useToast from '../../../../Utils/Hooks/useToast';
 import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import UploadIcon from '../../../Icons/UploadIcon/UploadIcon';
 import Image from '../../../Image/Image/Image';
@@ -7,7 +9,7 @@ import RippleEffect from '../../../RippleEffect/RippleEffect';
 import TextField from '../../../TextField/TextField/TextField';
 import styles from './AdaptiveCard.module.css';
 
-function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader }) {
+function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader, onImageUpload }) {
 	const { title, image, footer, description, link, isGame } = data;
 
 	const imageContainer = isGame ? (
@@ -23,6 +25,37 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader }) {
 
 	const imageElement = <a href={link}>{imageContainer}</a>;
 
+	const inputRef = useRef(null);
+	const eventRefs = useRef(null);
+
+	const setToast = useToast();
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			onImageClick: () => {
+				inputRef.current.click();
+			},
+			handleImageUpload: e => {
+				if (e.target.files[0]) {
+					const { name: fileName } = e.target.files[0] || {};
+
+					console.log('from handleImageUpload', e.target.files[0]);
+					// reject if file is not an image
+					if (!fileName.match(/\.(jpg|jpeg|png|gif)$/)) {
+						setToast({
+							title: 'Invalid File',
+							message: 'Please select an image file',
+							type: 'error',
+						});
+						return;
+					}
+
+					onImageUpload(e.target.files[0]);
+				}
+			},
+		};
+	}
+
 	return (
 		<li
 			className={`${styles.adaptiveGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiple}`}
@@ -30,14 +63,24 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader }) {
 			{editingHeader && editingHeader(htmlFor, link)}
 			<div className={`${styles.imageContainer} hover-shadow`}>
 				{isEditing ? (
-					<ButtonWithRipple
-						containerClassName={`${styles.fullWidth} ${styles.imageAspectRatio} ${styles.addImageBtnContainer}`}
-						className={`${styles.fullWidth} ${styles.addImageBtn}${image ? ` ${styles.containerNoPadding}` : ''}`}
-						long
-					>
-						{image ? imageContainer : <span className={styles.plus} />}
-						<UploadIcon />
-					</ButtonWithRipple>
+					<>
+						<ButtonWithRipple
+							containerClassName={`${styles.fullWidth} ${styles.imageAspectRatio} ${styles.addImageBtnContainer}`}
+							className={`${styles.fullWidth} ${styles.addImageBtn}${image ? ` ${styles.containerNoPadding}` : ''}`}
+							onClick={eventRefs.current.onImageClick}
+							long
+						>
+							{image ? imageContainer : <span className={styles.plus} />}
+							<UploadIcon />
+						</ButtonWithRipple>
+						<input
+							ref={inputRef}
+							type='file'
+							accept='image/*'
+							onChange={eventRefs.current.handleImageUpload}
+							className={styles.hiddenInput}
+						/>
+					</>
 				) : (
 					imageElement
 				)}

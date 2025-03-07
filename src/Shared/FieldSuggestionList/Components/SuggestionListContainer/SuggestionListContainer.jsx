@@ -440,7 +440,7 @@ function SuggestionListContainer({
 	link,
 	setContainerHeight,
 }) {
-	const [show, fadeIn] = useAppearDisappear(state, false, true, 350);
+	const [show, fadeIn] = useAppearDisappear(true, false, true, 350);
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 

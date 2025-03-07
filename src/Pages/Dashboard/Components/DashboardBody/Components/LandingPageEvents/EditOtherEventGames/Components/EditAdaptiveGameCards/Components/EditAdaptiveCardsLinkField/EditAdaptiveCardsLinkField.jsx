@@ -31,6 +31,7 @@ function EditAdaptiveCardsLinkField({ index, link }) {
 
 	return (
 		<div className={styles.header}>
+			{/* when search it will show the games from backend but when an option clicked it will of course show the link */}
 			<TypeableSelectionField
 				placeholder="Enter main link (/games/'game_name' for games)"
 				defaultValue={link}

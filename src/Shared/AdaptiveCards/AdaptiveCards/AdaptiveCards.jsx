@@ -5,7 +5,7 @@ import AdaptiveCard from '../Components/AdaptiveCard/AdaptiveCard';
 import AdaptiveCardNavigator from '../Components/AdaptiveCardNavigator/AdaptiveCardNavigator';
 import styles from './AdaptiveCards.module.css';
 
-function AdaptiveCards({ items, isEditing, editingHeader, index = 0 }) {
+function AdaptiveCards({ items, isEditing, editingHeader, onImageUpload, index = 0 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
 
@@ -32,6 +32,7 @@ function AdaptiveCards({ items, isEditing, editingHeader, index = 0 }) {
 							data={item}
 							isOnlyOne={items.length === 1}
 							editingHeader={editingHeader}
+							onImageUpload={data => onImageUpload(data, i)}
 						/>
 					))}
 				</ul>
