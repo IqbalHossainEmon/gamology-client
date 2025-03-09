@@ -9,7 +9,7 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
 	const imgSrc = useRef({ src: '', needRevoke: false });
 
 	if (data) {
-		if (!imgSrc.current.src) {
+		if (!imgSrc.current.src || imgSrc.current.src !== data) {
 			if (typeof data === 'string') {
 				imgSrc.current.src = data;
 			} else if (data instanceof File || data instanceof Blob) {

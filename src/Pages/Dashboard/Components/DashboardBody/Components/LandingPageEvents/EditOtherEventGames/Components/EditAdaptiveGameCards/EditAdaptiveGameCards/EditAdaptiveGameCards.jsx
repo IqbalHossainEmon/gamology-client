@@ -22,12 +22,12 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onImageUpload: (file, index) => {
-				const newAdaptiveGameCard = cloneObject(adaptiveGameCard);
-				newAdaptiveGameCard[index].image = URL.createObjectURL(file);
-				console.log('from onImageUpload', newAdaptiveGameCard);
-
-				setAdaptiveGameCard(newAdaptiveGameCard);
-				// dataRef.current[index] = adaptiveCard;
+				setAdaptiveGameCard(pre => {
+					const newAdaptiveGameCard = cloneObject(pre);
+					newAdaptiveGameCard[index].image = URL.createObjectURL(file);
+					// dataRef.current[index] = adaptiveCard;
+					return newAdaptiveGameCard;
+				});
 			},
 		};
 	}

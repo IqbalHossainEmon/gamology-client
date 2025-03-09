@@ -39,7 +39,6 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader, onIm
 				if (e.target.files[0]) {
 					const { name: fileName } = e.target.files[0] || {};
 
-					console.log('from handleImageUpload', e.target.files[0]);
 					// reject if file is not an image
 					if (!fileName.match(/\.(jpg|jpeg|png|gif)$/)) {
 						setToast({
