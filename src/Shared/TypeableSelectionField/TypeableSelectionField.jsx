@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
 import ErrorMessage from '../ErrorMessage/ErrorMessage/ErrorMessage';
-import SuggestionList from '../FieldSuggestionList/SuggestionList/SuggestionList';
+import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './TypeableSelectionField.module.css';
 
 export default function TypeableSelectionField({
@@ -87,7 +87,7 @@ export default function TypeableSelectionField({
 			handleBlur: e => {
 				setFocused(false);
 				if (blurSet && checkLinkStarValue(valueRef.current)) {
-					setState(e.target.value);
+					setState(e.target.value, true);
 				}
 			},
 			getSuggestionValue: val => {

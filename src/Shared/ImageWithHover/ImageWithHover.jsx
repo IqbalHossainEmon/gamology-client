@@ -8,7 +8,7 @@ function ImageWithHover({ container, game, cardHover, ...props }) {
 	const eventRefs = useRef(null);
 	const shouldHideRef = useRef(true);
 
-	if (!eventRefs.current) {
+	if (!eventRefs.current && typeof cardHover === 'function') {
 		eventRefs.current = {
 			mouseEnter: () => setHoverShow(true),
 			mouseLeave: () => {
@@ -20,6 +20,7 @@ function ImageWithHover({ container, game, cardHover, ...props }) {
 	}
 
 	useEffect(() => {
+		if (typeof cardHover !== 'function') return;
 		const containerElement = container?.current;
 
 		if (containerElement) {
@@ -33,7 +34,7 @@ function ImageWithHover({ container, game, cardHover, ...props }) {
 				containerElement.removeEventListener('mouseleave', eventRefs.current.mouseLeave);
 			}
 		};
-	}, [container]);
+	}, [cardHover, container]);
 
 	return (
 		<div className={styles.imageWithHover}>

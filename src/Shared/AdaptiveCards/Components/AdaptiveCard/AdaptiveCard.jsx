@@ -17,12 +17,13 @@ function AdaptiveCard({
 	editingHeader,
 	onImageUpload,
 	onFieldChange,
+	cardHover,
 }) {
 	const { title, image, footer, description, link, isGame } = data;
 
 	const imageContainer = isGame ? (
 		<ImageWithHover
-			cardHover={null}
+			cardHover={cardHover}
 			data={image}
 			alt={title}
 			aspectRatioClassName={styles.imageAspectRatio}

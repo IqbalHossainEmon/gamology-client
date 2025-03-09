@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import SuggestionList from '../../FieldSuggestionList/SuggestionList/SuggestionList';
+import SuggestionList from '../../SuggestionList/SuggestionList/SuggestionList';
 import SearchFieldBox from '../Components/SearchFieldBox/SearchFieldBox';
 import styles from './SearchFIeld.module.css';
 

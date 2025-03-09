@@ -31,6 +31,7 @@ function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet }) {
 
 	return (
 		<div className={styles.header}>
+			{/* only for frontend dev */}
 			{/* when search it will show the games from backend but when an option clicked it will of course show the link */}
 			<TypeableSelectionField
 				placeholder="Enter main link (/games/'game_name' for games)"
@@ -39,8 +40,14 @@ function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet }) {
 				propertyName='name'
 				name={`editAdaptiveCardLink${index}`}
 				htmlFor={`editAdaptiveCardLink${index}`}
-				// link conversion only for now
-				setState={val => setLink('link', `/games/${convertNameToLink(val.name)}`)}
+				/* only for frontend dev */
+				// link conversion only for now, the link will be set from the backend with the game name
+				setState={(val, isWithoutSelected) =>
+					setLink(
+						'link',
+						isWithoutSelected ? val : `/games/${convertNameToLink(val.name)}`
+					)
+				}
 				checkLinkStarValue={eventRefs.current.checkLinkStarValue}
 				specialSetValueHandler={eventRefs.current.valueSetter}
 				handleValueCheck={eventRefs.current.valueChecker}

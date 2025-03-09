@@ -41,6 +41,7 @@ function AdaptiveCards({
 							editingHeader={editingHeader}
 							onFieldChange={(field, value) => onFieldChange(field, value, i)}
 							onImageUpload={data => onImageUpload(data, i)}
+							cardHover={null}
 						/>
 					))}
 				</ul>

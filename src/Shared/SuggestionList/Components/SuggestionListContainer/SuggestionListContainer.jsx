@@ -437,7 +437,6 @@ function SuggestionListContainer({
 	maxLimit,
 	searchInputRef,
 	extraSectionParams,
-	prototypeName,
 	link,
 	setContainerHeight,
 }) {
