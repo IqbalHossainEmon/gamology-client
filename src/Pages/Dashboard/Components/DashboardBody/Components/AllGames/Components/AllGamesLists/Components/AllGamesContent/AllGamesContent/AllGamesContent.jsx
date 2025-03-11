@@ -4,73 +4,65 @@ import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesContent.module.css';
 
-const handleEdit = (item, setModal) =>
-	function inner(prop) {
-		return (
-			<CardDot
-				hoverClassName={styles.dots}
-				item={item}
-				lists={[
-					{
-						name: 'Edit',
-						event: () => console.log('Edit'),
-					},
-					{
-						name: 'Price',
-						event: detail => {
-							setModal({
-								title: 'Edit Price',
-								body: (
-									<h3 className={styles.priceChangeHeader}>
-										What price you want to set for
-										<span className={styles.nameContainer}>{item.name}</span>?
-									</h3>
-								),
-								footer: <AllGamesModalBodySelect detail={detail} type='price' />,
-							});
-						},
-					},
-					typeof item.price !== 'object' &&
-						item.price !== 0 && {
-							name: 'Sales',
-							event: detail => {
-								setModal({
-									title: 'Edit Sales',
-									body: (
-										<h3 className={styles.priceChangeHeader}>
-											What price you want to set for{' '}
-											<span className={styles.nameContainer}>
-												{item.name}
-											</span>
-											?
-										</h3>
-									),
-									footer: (
-										<AllGamesModalBodySelect detail={detail} type='sales' />
-									),
-								});
-							},
-						},
-					{
-						name: 'Delete',
-						event: detail => {
-							setModal({
-								title: 'Delete Game',
-								body: (
-									<h3 className={styles.priceChangeHeader}>
-										Are you sure you want to delete
-										<span className={styles.nameContainer}>{item.name}</span>?
-									</h3>
-								),
-								footer: <AllGamesModalBodySelect detail={detail} type='delete' />,
-							});
-						},
-					},
-				]}
-				parentRef={prop}
-			/>
-		);
+const handleEdit = (item, setModal) => {
+	const lists = [
+		{
+			name: 'Edit',
+			event: () => console.log('Edit'),
+		},
+		{
+			name: 'Price',
+			event: detail => {
+				setModal({
+					title: 'Edit Price',
+					body: (
+						<h3 className={styles.priceChangeHeader}>
+							What price you want to set for
+							<span className={styles.nameContainer}>{item.name}</span>?
+						</h3>
+					),
+					footer: <AllGamesModalBodySelect detail={detail} type='price' />,
+				});
+			},
+		},
+		{
+			name: 'Delete',
+			event: detail => {
+				setModal({
+					title: 'Delete Game',
+					body: (
+						<h3 className={styles.priceChangeHeader}>
+							Are you sure you want to delete
+							<span className={styles.nameContainer}>{item.name}</span>?
+						</h3>
+					),
+					footer: <AllGamesModalBodySelect detail={detail} type='delete' />,
+				});
+			},
+		},
+	];
+
+	if (typeof item.price !== 'object' && item.price !== 0) {
+		lists.splice(1, 0, {
+			name: 'Sales',
+			event: detail => {
+				setModal({
+					title: 'Edit Sales',
+					body: (
+						<h3 className={styles.priceChangeHeader}>
+							What price you want to set for{' '}
+							<span className={styles.nameContainer}>{item.name}</span>?
+						</h3>
+					),
+					footer: <AllGamesModalBodySelect detail={detail} type='sales' />,
+				});
+			},
+		});
+	}
+	return function inner(prop) {
+		return <CardDot item={item} lists={lists} parentRef={prop} />;
 	};
+};
 
 function AllGamesContent({ items }) {
 	const setModal = useModal();

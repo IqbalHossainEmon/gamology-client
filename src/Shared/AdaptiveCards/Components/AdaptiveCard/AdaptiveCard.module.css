@@ -1,5 +1,6 @@
 .adaptiveGameCard {
 	flex-basis: 100%;
+	position: relative;
 }
 
 .onlyOne {

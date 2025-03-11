@@ -3,7 +3,7 @@ import useIsTouchAble from '../../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import CardDotBody from '../Components/CardDotBody/CardDotBody';
 
-function CardDot({ parentRef, ...rest }) {
+function CardDot({ parentRef, item, lists }) {
 	const [dotShow, setDotShow] = useState(false);
 	const dotShowRef = useRef(false);
 	dotShowRef.current = dotShow;
@@ -59,7 +59,13 @@ function CardDot({ parentRef, ...rest }) {
 	}, [isTouchAble, parentRef, widthInRem]);
 
 	return (
-		<CardDotBody {...rest} fadeIn={dotShow} setParentShow={setDotShow} parentRef={parentRef} />
+		<CardDotBody
+			item={item}
+			lists={lists}
+			fadeIn={dotShow}
+			setParentShow={setDotShow}
+			parentRef={parentRef}
+		/>
 	);
 }
 export default CardDot;

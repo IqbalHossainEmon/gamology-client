@@ -1,12 +1,56 @@
 import { useRef, useState } from 'react';
 import AdaptiveCards from '../../../../../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import EditAdaptiveCardDotMenu from '../Components/EditAdaptiveCardDotMenu/EditAdaptiveCardDotMenu';
 import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField/EditAdaptiveCardsLinkField';
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import styles from './EditAdaptiveGameCards.module.css';
 
-function editHeaderComponent(index, link, setLink) {
-	return <EditAdaptiveCardsLinkField index={index} link={link} setLink={setLink} blurSet />;
+function editHeaderComponent(index, link, setLink, cardRef, item, innerIndex, length) {
+	const lists = [
+		{
+			name: 'Delete',
+			shouldHide: true,
+			event: () => console.log('Delete Card', index),
+		},
+	];
+
+	if (innerIndex === 0) {
+		lists.push({
+			name: 'Move Right',
+			event: detail => {
+				console.log('Move Right', detail);
+			},
+		});
+	} else if (innerIndex === length - 1) {
+		lists.push({
+			name: 'Move Left',
+			event: detail => {
+				console.log('Move Left', detail);
+			},
+		});
+	} else {
+		lists.push(
+			{
+				name: 'Move Left',
+				event: detail => {
+					console.log('Move Left', detail);
+				},
+			},
+			{
+				name: 'Move Right',
+				event: detail => {
+					console.log('Move Right', detail);
+				},
+			}
+		);
+	}
+	return (
+		<>
+			<EditAdaptiveCardsLinkField index={index} link={link} setLink={setLink} blurSet />
+			<EditAdaptiveCardDotMenu cardRef={cardRef} item={item} lists={lists} />
+		</>
+	);
 }
 
 function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {

@@ -14,7 +14,7 @@ const isMouseOverElement = element => {
 	return element.contains(elementUnderMouse);
 };
 
-function CardDotBody({ item, lists, fadeIn, setParentShow, parentRef }) {
+function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 	const [listShow, setListShow] = useState(false);
 
 	const fadeInRef = useRef(fadeIn);
@@ -79,39 +79,6 @@ function CardDotBody({ item, lists, fadeIn, setParentShow, parentRef }) {
 						<circle cx='16' cy='16' fill='#F08A5D' r='2' />
 						<circle cx='16' cy='26' fill='#B83B5E' r='2' />
 						<circle cx='16' cy='6' fill='#B83B5E' r='2' />
-						<circle
-							cx='16'
-							cy='16'
-							fill='none'
-							r='2'
-							stroke='#200F60'
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							strokeMiterlimit='10'
-							strokeWidth='0.00032'
-						/>
-						<circle
-							cx='16'
-							cy='26'
-							fill='#F9ED69'
-							r='2'
-							stroke='#200F60'
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							strokeMiterlimit='10'
-							strokeWidth='0.00032'
-						/>
-						<circle
-							cx='16'
-							cy='6'
-							fill='none'
-							r='2'
-							stroke='#200F60'
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							strokeMiterlimit='10'
-							strokeWidth='0.00032'
-						/>
 					</g>
 				</svg>
 			</button>
@@ -121,6 +88,7 @@ function CardDotBody({ item, lists, fadeIn, setParentShow, parentRef }) {
 					onAppear={eventRefs.current.onAppear}
 					item={item}
 					lists={lists}
+					setHide={eventRefs.current.handleHide}
 				/>
 			)}
 		</div>

@@ -12,6 +12,7 @@ function AdaptiveCards({
 	onImageUpload,
 	onFieldChange,
 	index = 0,
+	cardHover = null,
 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
@@ -37,11 +38,12 @@ function AdaptiveCards({
 							isEditing={isEditing}
 							key={item.link}
 							data={item}
-							isOnlyOne={items.length === 1}
+							innerIndex={i}
+							length={items.length}
 							editingHeader={editingHeader}
 							onFieldChange={(field, value) => onFieldChange(field, value, i)}
 							onImageUpload={data => onImageUpload(data, i)}
-							cardHover={null}
+							cardHover={cardHover}
 						/>
 					))}
 				</ul>

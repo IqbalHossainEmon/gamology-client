@@ -11,21 +11,25 @@ import styles from './AdaptiveCard.module.css';
 
 function AdaptiveCard({
 	data,
-	isOnlyOne,
+	length,
 	isEditing,
 	htmlFor,
 	editingHeader,
 	onImageUpload,
 	onFieldChange,
 	cardHover,
+	innerIndex,
 }) {
 	const { title, image, footer, description, link, isGame } = data;
+
+	const cardRef = useRef(null);
 
 	const imageContainer = isGame ? (
 		<ImageWithHover
 			cardHover={cardHover}
 			data={image}
 			alt={title}
+			container={cardRef}
 			aspectRatioClassName={styles.imageAspectRatio}
 		/>
 	) : (
@@ -66,9 +70,11 @@ function AdaptiveCard({
 
 	return (
 		<li
-			className={`${styles.adaptiveGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiple}`}
+			className={`${styles.adaptiveGameCard} ${length === 1 ? styles.onlyOne : styles.multiple}`}
+			ref={cardRef}
 		>
-			{editingHeader && editingHeader(htmlFor, link, onFieldChange)}
+			{editingHeader &&
+				editingHeader(htmlFor, link, onFieldChange, cardRef, data, innerIndex, length)}
 			<div className={`${styles.imageContainer} hover-shadow`}>
 				{isEditing ? (
 					<>

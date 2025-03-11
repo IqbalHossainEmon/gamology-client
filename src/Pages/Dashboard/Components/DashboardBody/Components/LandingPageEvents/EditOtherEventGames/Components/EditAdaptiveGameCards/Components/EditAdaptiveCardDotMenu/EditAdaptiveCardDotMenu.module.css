@@ -1,0 +1,6 @@
+.editAdaptiveCardDotMenu {
+	position: absolute;
+	right: 0.2rem;
+	top: 5rem;
+	z-index: 1;
+}

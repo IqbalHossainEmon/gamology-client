@@ -25,7 +25,7 @@ function CardDotList({ lists, onAppear, item, fadeIn, setHide }) {
 							<button
 								onClick={() => {
 									list.event(item);
-									if (setHide) setHide();
+									if ((setHide, list.shouldHide)) setHide();
 								}}
 								type='button'
 							>
