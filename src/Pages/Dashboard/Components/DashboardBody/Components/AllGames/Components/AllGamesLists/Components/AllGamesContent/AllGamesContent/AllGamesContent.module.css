@@ -8,9 +8,7 @@
 .list {
 	position: relative;
 }
-.priceChangeHeader {
-	font-weight: 500;
-}
+
 .list:hover .dots {
 	opacity: 1;
 }

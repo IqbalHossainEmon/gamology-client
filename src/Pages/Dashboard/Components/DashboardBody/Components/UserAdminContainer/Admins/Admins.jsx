@@ -47,7 +47,7 @@ function ReportAdminWithIcon() {
 
 function Admins() {
 	const [admins, setAdmins] = useState([]);
-	const setModal = useModal();
+	const { setContent } = useModal();
 
 	const [page, setPage] = useState({ totalPage: 69, active: 1 });
 
@@ -70,7 +70,7 @@ function Admins() {
 									{
 										name: 'Remove Admin',
 										event: () => {
-											setModal({
+											setContent({
 												title: 'Remove Admin',
 												body: (
 													<div>
@@ -115,7 +115,7 @@ function Admins() {
 									{
 										name: <ReportAdminWithIcon />,
 										event: () => {
-											setModal({
+											setContent({
 												title: 'Report Admin',
 												body: (
 													<div>

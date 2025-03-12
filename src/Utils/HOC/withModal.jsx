@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import Modal from '../../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../../Shared/ScreenShadow/ScreenShadow';
-import ModalContext from '../Contexts/ModalContext';
+import { hideModalContext, setModalContext } from '../Contexts/ModalContext';
 import useChangeBodyOverflow from '../Hooks/useChangeBodyOverflow';
 
 const emptyModal = {
@@ -20,12 +20,19 @@ const withModal = Component =>
 		const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
 		if (!eventRefs.current) {
+			let timerID = null;
 			eventRefs.current = {
 				hideModal: () => {
+					if (timerID) {
+						clearTimeout(timerID);
+						timerID = null;
+					}
+
 					setShow(false);
-					setTimeout(() => {
+					timerID = setTimeout(() => {
 						showBodyOverflow();
 						setContent(emptyModal);
+						timerID = null;
 					}, 200);
 				},
 				setContent: (...args) => {
@@ -33,20 +40,18 @@ const withModal = Component =>
 						setShow(true);
 						hideBodyOverflow();
 						setContent(...args);
-					} else {
-						setShow(false);
-						showBodyOverflow();
-						eventRefs.current.hideModal();
 					}
 				},
 			};
 		}
 		return (
-			<ModalContext.Provider value={eventRefs.current.setContent}>
-				<Component {...props} />
-				<Modal content={content} show={show} hideModal={eventRefs.current.hideModal} />
-				<ScreenShadow show={show} zIndex={3} />
-			</ModalContext.Provider>
+			<setModalContext.Provider value={eventRefs.current.setContent}>
+				<hideModalContext.Provider value={eventRefs.current.hideModal}>
+					<Component {...props} />
+					<Modal content={content} show={show} hideModal={eventRefs.current.hideModal} />
+					<ScreenShadow show={show} zIndex={3} />
+				</hideModalContext.Provider>
+			</setModalContext.Provider>
 		);
 	};
 

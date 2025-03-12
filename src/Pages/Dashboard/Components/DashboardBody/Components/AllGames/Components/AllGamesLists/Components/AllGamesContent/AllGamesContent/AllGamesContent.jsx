@@ -4,7 +4,7 @@ import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
 import styles from './AllGamesContent.module.css';
 
-const handleEdit = (item, setModal) => {
+const handleEdit = (item, setContent) => {
 	const lists = [
 		{
 			name: 'Edit',
@@ -13,13 +13,13 @@ const handleEdit = (item, setModal) => {
 		{
 			name: 'Price',
 			event: detail => {
-				setModal({
+				setContent({
 					title: 'Edit Price',
 					body: (
-						<h3 className={styles.priceChangeHeader}>
+						<p>
 							What price you want to set for
 							<span className={styles.nameContainer}>{item.name}</span>?
-						</h3>
+						</p>
 					),
 					footer: <AllGamesModalBodySelect detail={detail} type='price' />,
 				});
@@ -28,13 +28,13 @@ const handleEdit = (item, setModal) => {
 		{
 			name: 'Delete',
 			event: detail => {
-				setModal({
+				setContent({
 					title: 'Delete Game',
 					body: (
-						<h3 className={styles.priceChangeHeader}>
+						<p>
 							Are you sure you want to delete
 							<span className={styles.nameContainer}>{item.name}</span>?
-						</h3>
+						</p>
 					),
 					footer: <AllGamesModalBodySelect detail={detail} type='delete' />,
 				});
@@ -46,13 +46,13 @@ const handleEdit = (item, setModal) => {
 		lists.splice(1, 0, {
 			name: 'Sales',
 			event: detail => {
-				setModal({
+				setContent({
 					title: 'Edit Sales',
 					body: (
-						<h3 className={styles.priceChangeHeader}>
+						<p>
 							What price you want to set for{' '}
 							<span className={styles.nameContainer}>{item.name}</span>?
-						</h3>
+						</p>
 					),
 					footer: <AllGamesModalBodySelect detail={detail} type='sales' />,
 				});
@@ -65,7 +65,7 @@ const handleEdit = (item, setModal) => {
 };
 
 function AllGamesContent({ items }) {
-	const setModal = useModal();
+	const { setContent } = useModal();
 
 	return (
 		<div className={styles.allGamesContent}>
@@ -81,7 +81,7 @@ function AllGamesContent({ items }) {
 						}}
 						className={styles.list}
 						key={item.id}
-						dotMenu={handleEdit(item, setModal)}
+						dotMenu={handleEdit(item, setContent)}
 					/>
 				))}
 			</ul>

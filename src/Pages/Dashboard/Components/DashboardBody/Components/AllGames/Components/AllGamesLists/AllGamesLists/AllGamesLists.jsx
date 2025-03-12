@@ -294,7 +294,7 @@ const data = [
 		price: { regular: 49.99, discount: 15.99 },
 	},
 ];
-function AllGamesLists({ setModal }) {
+function AllGamesLists() {
 	const [searchText, setSearchText] = useState('');
 	const [items, setItems] = useState([]);
 	const [page, setPage] = useState({ totalPage: 69, active: 1 });
@@ -312,7 +312,7 @@ function AllGamesLists({ setModal }) {
 	return (
 		<div className={styles.allGames}>
 			<AllGamesHeader setSearchText={setSearchText} />
-			<AllGamesContent items={items} setModal={setModal} />
+			<AllGamesContent items={items} />
 			<div className={styles.paginationContainer}>
 				<Pagination
 					activePage={page.active}

@@ -24,7 +24,7 @@ function Users() {
 	const [users, setUsers] = useState([]);
 	const [page, setPage] = useState({ totalPage: 69, active: 1 });
 
-	const setModal = useModal();
+	const { setContent } = useModal();
 
 	const { setToast } = useToast();
 
@@ -49,7 +49,7 @@ function Users() {
 									{
 										name: 'Delete',
 										event: () => {
-											setModal({
+											setContent({
 												title: 'Delete User',
 												body: (
 													<div>
@@ -93,7 +93,7 @@ function Users() {
 									{
 										name: 'Make Admin',
 										event: () => {
-											setModal({
+											setContent({
 												title: 'Make Admin',
 												body: (
 													<div>

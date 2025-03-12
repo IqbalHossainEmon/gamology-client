@@ -14,7 +14,7 @@ function AllGamesPriceEditModal({ price }) {
 
 	const { setToast } = useToast('price');
 
-	const setModal = useModal();
+	const { hideModal } = useModal();
 
 	const handleSubmit = () => {
 		if (newPrice.current) {
@@ -47,11 +47,7 @@ function AllGamesPriceEditModal({ price }) {
 				message: 'Price has been updated successfully',
 				type: 'success',
 			});
-			setModal({
-				title: null,
-				body: null,
-				footer: null,
-			});
+			hideModal();
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,

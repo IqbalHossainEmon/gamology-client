@@ -9,15 +9,11 @@ function UserMakeAdminModal({ handleMakeAdmin: handleEvent }) {
 		errorMessage: '',
 	});
 	const confirmText = useRef(null);
-	const setModals = useModal();
+	const { hideModal } = useModal();
 
 	const handleMakeAdmin = () => {
 		if (confirmText.current.toUpperCase() === 'CONFIRM') {
-			setModals({
-				title: null,
-				body: null,
-				footer: null,
-			});
+			hideModal();
 			handleEvent();
 		} else {
 			setError(prev => ({

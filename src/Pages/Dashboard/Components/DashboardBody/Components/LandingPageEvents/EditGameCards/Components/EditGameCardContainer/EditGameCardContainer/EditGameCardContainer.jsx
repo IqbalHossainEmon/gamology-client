@@ -123,14 +123,14 @@ function EditGameCardContainer({
 
 	const firstDefaultData = useRef(cloneObject(defaultData));
 
-	const setModal = useModal();
+	const { setContent, hideModal } = useModal();
 
 	const evenRef = useRef(null);
 
 	if (!evenRef.current) {
 		evenRef.current = {
 			handleModal: (callback, isDelete) => {
-				setModal({
+				setContent({
 					title: `Confirm ${isDelete ? 'Deletion' : 'Clearing'}`,
 					body: (
 						<>
@@ -150,11 +150,7 @@ function EditGameCardContainer({
 								className={`${styles.btn} ${styles.yesBtn}`}
 								onClick={() => {
 									callback();
-									setModal({
-										title: null,
-										body: null,
-										footer: null,
-									});
+									hideModal();
 								}}
 							>
 								Yes
@@ -162,11 +158,7 @@ function EditGameCardContainer({
 							<ButtonWithRipple
 								className={`${styles.btn} ${styles.noBtn}`}
 								onClick={() => {
-									setModal({
-										title: null,
-										body: null,
-										footer: null,
-									});
+									hideModal();
 								}}
 							>
 								No

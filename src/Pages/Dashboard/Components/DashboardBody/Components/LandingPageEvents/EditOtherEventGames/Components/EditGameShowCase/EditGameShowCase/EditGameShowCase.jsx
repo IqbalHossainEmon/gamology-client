@@ -84,7 +84,6 @@ const handleCardDotList = (items, setItems) =>
 			}
 			return newList;
 		};
-
 		item.parentIndex = parentIndex;
 
 		return (
@@ -101,12 +100,12 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 		setItems(prev => {
 			const newPrev = cloneObject(prev);
 			newPrev[index].games.push(game);
-			dataRef.current[index].games.push(game);
+			dataRef.current[parentIndex].games.push(game);
 			return newPrev;
 		});
 	};
 
-	const setModal = useModal();
+	const { hideModal, setContent } = useModal();
 
 	return (
 		<>
@@ -128,17 +127,13 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 				</ButtonWithRipple>
 				<ButtonWithRipple
 					onClick={() =>
-						setModal({
+						setContent({
 							title: 'Delete Game Showcase',
 							body: <p>Are you sure you want to delete this game showcase?</p>,
 							footer: (
 								<EditGameShowCaseConfirmModal
 									onConfirm={() => {
-										setModal({
-											title: null,
-											body: null,
-											footer: null,
-										});
+										hideModal();
 										onDelete(parentIndex);
 									}}
 								/>

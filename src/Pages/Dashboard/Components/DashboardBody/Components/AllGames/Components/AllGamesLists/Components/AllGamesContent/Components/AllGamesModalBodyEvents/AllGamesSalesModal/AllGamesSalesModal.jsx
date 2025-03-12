@@ -11,7 +11,7 @@ function AllGamesSalesModal({ price: prevPrice }) {
 		errorMessage: '',
 	});
 
-	const setModal = useModal();
+	const { hideModal } = useModal();
 
 	const { setToast } = useToast();
 
@@ -33,11 +33,7 @@ function AllGamesSalesModal({ price: prevPrice }) {
 				type: 'success',
 			});
 
-			setModal({
-				title: null,
-				body: null,
-				footer: null,
-			});
+			hideModal();
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,

@@ -27,7 +27,7 @@ function EditUserBody({ user, setUser }) {
 
 	const userData = useRef(cloneObject(user));
 
-	const setModals = useModal();
+	const { setContent } = useModal();
 	const { setToast } = useToast();
 
 	const eventRefs = useRef(null);
@@ -95,7 +95,7 @@ function EditUserBody({ user, setUser }) {
 				}
 				// Save Changes
 				if (userData.current.role === 'Admin') {
-					setModals({
+					setContent({
 						title: 'Make Admin',
 						body: (
 							<p>
@@ -121,7 +121,7 @@ function EditUserBody({ user, setUser }) {
 				eventRefs.current.handleBackEndRequest();
 			},
 			handleDelete: () => {
-				setModals({
+				setContent({
 					title: 'Delete User',
 					body: (
 						<p>
@@ -147,7 +147,6 @@ function EditUserBody({ user, setUser }) {
 						/>
 					),
 				});
-				setModals(true);
 			},
 		};
 	}

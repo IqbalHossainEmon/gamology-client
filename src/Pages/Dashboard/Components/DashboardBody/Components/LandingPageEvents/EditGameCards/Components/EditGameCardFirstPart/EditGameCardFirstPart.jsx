@@ -15,7 +15,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 		);
 	};
 
-	const setModal = useModal();
+	const { setContent, hideModal } = useModal();
 
 	return (
 		<div className={styles.editGameCardFirstPart}>
@@ -49,7 +49,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 							}}
 							onDelete={() => {
 								if (cardsRef.current[0].cards.length === 1) {
-									setModal({
+									setContent({
 										title: 'Cannot delete',
 										body: (
 											<p>
@@ -59,13 +59,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 										),
 										footer: (
 											<ButtonWithRipple
-												onClick={() =>
-													setModal({
-														title: null,
-														body: null,
-														footer: null,
-													})
-												}
+												onClick={hideModal}
 												className={styles.okBtn}
 											>
 												Ok

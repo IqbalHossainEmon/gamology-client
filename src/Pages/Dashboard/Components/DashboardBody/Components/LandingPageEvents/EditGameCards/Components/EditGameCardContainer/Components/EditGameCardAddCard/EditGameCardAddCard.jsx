@@ -9,7 +9,7 @@ function EditGameCardAddCard({ width, onClick }) {
 	const btnRef = useRef(null);
 
 	useHoverTooltips(btnRef, 'Add Game to the list');
-	const setModal = useModal();
+	const { setContent } = useModal();
 
 	return (
 		<li
@@ -21,14 +21,14 @@ function EditGameCardAddCard({ width, onClick }) {
 					ref={btnRef}
 					type='button'
 					onClick={() => {
-						setModal({
+						setContent({
 							title: 'Add Game to the list',
 							body: (
 								<h3 className={styles.title}>
 									Search for the game you want to add to the list:{' '}
 								</h3>
 							),
-							footer: <AddGameCardModalBody setModal={setModal} onClick={onClick} />,
+							footer: <AddGameCardModalBody onClick={onClick} />,
 						});
 					}}
 					className={styles.btn}

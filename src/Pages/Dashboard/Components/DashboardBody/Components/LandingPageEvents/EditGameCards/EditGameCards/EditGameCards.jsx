@@ -313,7 +313,7 @@ function EditGameCards() {
 		}, 200);
 	}, [cloneObject]);
 
-	const setModal = useModal();
+	const { setContent, hideModal } = useModal();
 
 	const handleValidation = () => {
 		let flag = false;
@@ -369,20 +369,11 @@ function EditGameCards() {
 		setGameCards(cloneObject(cardsRef.current));
 
 		if (modalFlag) {
-			setModal({
+			setContent({
 				title: 'Clear Section',
 				body: <p>Sections with no cards are removed. </p>,
 				footer: (
-					<ButtonWithRipple
-						onClick={() =>
-							setModal({
-								title: null,
-								body: null,
-								footer: null,
-							})
-						}
-						className={styles.okBtn}
-					>
+					<ButtonWithRipple onClick={hideModal} className={styles.okBtn}>
 						Ok
 					</ButtonWithRipple>
 				),

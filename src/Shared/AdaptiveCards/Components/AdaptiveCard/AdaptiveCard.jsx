@@ -19,6 +19,7 @@ function AdaptiveCard({
 	onFieldChange,
 	cardHover,
 	innerIndex,
+	handleEditFooter,
 }) {
 	const { title, image, footer, description, link, isGame } = data;
 
@@ -61,7 +62,6 @@ function AdaptiveCard({
 						});
 						return;
 					}
-
 					onImageUpload(e.target.files[0]);
 				}
 			},
@@ -156,6 +156,15 @@ function AdaptiveCard({
 								<DiscountPriceWithPercent price={footer} />
 							)}
 						</div>
+					)}
+					{isEditing && (
+						<ButtonWithRipple
+							containerClassName={styles.editFooterBtnContainer}
+							className={styles.editFooterBtn}
+							onClick={handleEditFooter}
+						>
+							Edit Footer
+						</ButtonWithRipple>
 					)}
 				</div>
 			</div>

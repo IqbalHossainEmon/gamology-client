@@ -7,9 +7,9 @@ import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBo
 import styles from './EditGameShowCaseExtraCard.module.css';
 
 function EditGameShowCaseExtraCard({ onclick }) {
-	const setModal = useModal();
-
 	const btnRef = useRef(null);
+
+	const { setContent } = useModal();
 
 	useHoverTooltips(btnRef, 'Add Game to the list');
 
@@ -20,14 +20,14 @@ function EditGameShowCaseExtraCard({ onclick }) {
 				ref={btnRef}
 				className={styles.extraCard}
 				onClick={() => {
-					setModal({
+					setContent({
 						title: 'Add Game to the list',
 						body: (
 							<h3 className={styles.title}>
 								Search for the game you want to add to the list:{' '}
 							</h3>
 						),
-						footer: <AddGameCardModalBody setModal={setModal} onClick={onclick} />,
+						footer: <AddGameCardModalBody onClick={onclick} />,
 					});
 				}}
 			>

@@ -1,14 +1,17 @@
 import { useRef, useState } from 'react';
 import RippleEffect from '../../../../../../Shared/RippleEffect/RippleEffect';
 import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
+import useModal from '../../../../../../Utils/Hooks/useModal';
 import styles from './AddGameCardModalBody.module.css';
 
-function AddGameCardModalBody({ setModal, onClick }) {
+function AddGameCardModalBody({ onClick }) {
 	const [height, setHeight] = useState(0);
 	const [errorChange, setErrorChange] = useState(0);
 
-	const gameSelectedRef = useRef({});
+	const gameSelectedRef = useRef(null);
 	const errorMessage = useRef('');
+
+	const { hideModal } = useModal();
 
 	return (
 		<>
@@ -33,7 +36,7 @@ function AddGameCardModalBody({ setModal, onClick }) {
 			<button
 				className={styles.confirmBtn}
 				onClick={() => {
-					if (Object.keys(gameSelectedRef.current).length < 3) {
+					if (!gameSelectedRef.current) {
 						errorMessage.current = 'Please select a game';
 						setErrorChange(prev => prev + 1);
 						return;
@@ -60,11 +63,7 @@ function AddGameCardModalBody({ setModal, onClick }) {
 						price: { regular: 34.99, discount: 25.99 },
 					});
 
-					setModal({
-						title: null,
-						body: null,
-						footer: null,
-					});
+					hideModal();
 				}}
 				type='button'
 			>

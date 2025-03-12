@@ -15,18 +15,14 @@ function UserDeleteConfirmModal({
 	});
 	const confirmText = useRef(null);
 
-	const setModals = useModal();
+	const { hideModal } = useModal();
 
 	const handleDelete = () => {
 		if (handleRemove(confirmText.current)) {
 			setError(prev => ({ ...prev, errorChange: prev.errorChange + 1 }));
 			return;
 		}
-		setModals({
-			title: null,
-			body: null,
-			footer: null,
-		});
+		hideModal();
 	};
 	return (
 		<div className={styles.deleteModal}>

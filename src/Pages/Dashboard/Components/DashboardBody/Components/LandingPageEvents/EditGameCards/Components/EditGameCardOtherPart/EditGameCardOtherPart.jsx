@@ -17,7 +17,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 		);
 	};
 
-	const setModal = useModal();
+	const { setContent, hideModal } = useModal();
 
 	return (
 		<div className={styles.editGameCardOtherPart}>
@@ -64,7 +64,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 										}}
 										onDelete={() => {
 											if (gameCards.cards.length === 1) {
-												setModal({
+												setContent({
 													title: 'Confirm Deletion',
 													body: (
 														<>
@@ -91,11 +91,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 																		);
 																		return newPrev;
 																	});
-																	setModal({
-																		title: null,
-																		body: null,
-																		footer: null,
-																	});
+																	hideModal();
 																}}
 																className={`${styles.btn} ${styles.yesBtn}`}
 															>
@@ -103,11 +99,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 															</ButtonWithRipple>
 															<ButtonWithRipple
 																onClick={() => {
-																	setModal({
-																		title: null,
-																		body: null,
-																		footer: null,
-																	});
+																	hideModal();
 																}}
 																className={`${styles.btn} ${styles.noBtn}`}
 															>

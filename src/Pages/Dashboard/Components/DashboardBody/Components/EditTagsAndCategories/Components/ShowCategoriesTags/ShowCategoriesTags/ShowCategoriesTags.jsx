@@ -8,7 +8,7 @@ import styles from './ShowCategoriesTags.module.css';
 function ShowCategoriesTags({ categories, setCategories }) {
 	const eventRefs = useRef(null);
 
-	const setModal = useModal();
+	const { hideModal, setContent } = useModal();
 	const { setToast } = useToast();
 
 	if (!eventRefs.current) {
@@ -29,7 +29,7 @@ function ShowCategoriesTags({ categories, setCategories }) {
 			},
 			// This function is used to show modal to confirm the category deletion
 			handleCategoryDelete: category => {
-				setModal({
+				setContent({
 					title: 'Delete Category',
 					body: (
 						<p>
@@ -39,22 +39,16 @@ function ShowCategoriesTags({ categories, setCategories }) {
 					),
 					footer: (
 						<TagOrCategoryDeleteBody
-							handleHide={() =>
-								setModal({
-									title: null,
-									body: null,
-									footer: null,
-								})
-							}
+							handleHide={hideModal}
 							handler={() => eventRefs.current.categoryDeleteHandler(category)}
 							text={
-								<>
+								<p>
 									All tags under{' '}
 									<strong className={styles.categoryText}>{category}</strong>{' '}
 									category will be deleted. All Games that has tags under the{' '}
 									<strong className={styles.categoryText}>{category}</strong>{' '}
 									category will be effected.
-								</>
+								</p>
 							}
 						/>
 					),

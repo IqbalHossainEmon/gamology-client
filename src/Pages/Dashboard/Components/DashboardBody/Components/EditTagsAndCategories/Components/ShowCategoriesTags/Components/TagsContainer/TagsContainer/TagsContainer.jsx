@@ -6,12 +6,10 @@ import TagOrCategoryDeleteBody from '../TagOrCategoryDeleteBody/TagOrCategoryDel
 import styles from './TagsContainer.module.css';
 
 function TagsContainer({ tags, setTags }) {
-	const setModal = useModal();
-
 	const eventRefs = useRef(null);
 
+	const { hideModal, setContent } = useModal();
 	const { setToast } = useToast();
-
 	const { cloneObject } = useObjectUtilities();
 
 	if (!eventRefs.current) {
@@ -42,30 +40,24 @@ function TagsContainer({ tags, setTags }) {
 			},
 			// This function is used to show modal to confirm the tag deletion
 			handleTagDelete: text => {
-				setModal({
+				setContent({
 					title: 'Delete Tag',
 					body: (
-						<>
+						<p>
 							Are you sure you want to delete{' '}
 							<strong className={styles.categoryText}>{text}</strong> Tag?
-						</>
+						</p>
 					),
 					footer: (
 						<TagOrCategoryDeleteBody
-							handleHide={() =>
-								setModal({
-									title: null,
-									body: null,
-									footer: null,
-								})
-							}
+							handleHide={hideModal}
 							handler={() => eventRefs.current.tagDeleteHandler(text)}
 							text={
-								<>
+								<p>
 									All Games that has{' '}
 									<strong className={styles.categoryText}>{text}</strong> tag will
 									be effected.
-								</>
+								</p>
 							}
 						/>
 					),

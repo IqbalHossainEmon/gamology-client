@@ -11,7 +11,7 @@ function AllGamesDeleteConfirmModal() {
 		errorMessage: '',
 	});
 
-	const setModal = useModal();
+	const { hideModal } = useModal();
 
 	const { setToast } = useToast();
 
@@ -23,12 +23,7 @@ function AllGamesDeleteConfirmModal() {
 				message: 'Game has been deleted successfully',
 				type: 'success',
 			});
-
-			setModal({
-				title: null,
-				body: null,
-				footer: null,
-			});
+			hideModal();
 		} else {
 			setError(prev => ({
 				errorChange: prev.errorChange + 1,

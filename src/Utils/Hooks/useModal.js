@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import ModalContext from '../Contexts/ModalContext';
+import { hideModalContext, setModalContext } from '../Contexts/ModalContext';
 
 export default function useModal() {
-	return useContext(ModalContext);
+	return { setContent: useContext(setModalContext), hideModal: useContext(hideModalContext) };
 }

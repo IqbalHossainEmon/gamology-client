@@ -13,6 +13,7 @@ function AdaptiveCards({
 	onFieldChange,
 	index = 0,
 	cardHover = null,
+	handleEditFooter,
 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
@@ -44,6 +45,7 @@ function AdaptiveCards({
 							onFieldChange={(field, value) => onFieldChange(field, value, i)}
 							onImageUpload={data => onImageUpload(data, i)}
 							cardHover={cardHover}
+							handleEditFooter={() => handleEditFooter(index, i, item)}
 						/>
 					))}
 				</ul>
