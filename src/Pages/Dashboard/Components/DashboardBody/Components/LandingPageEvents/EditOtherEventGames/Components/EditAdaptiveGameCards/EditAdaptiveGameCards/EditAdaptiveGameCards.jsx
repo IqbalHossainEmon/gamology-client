@@ -6,42 +6,58 @@ import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import styles from './EditAdaptiveGameCards.module.css';
 
-function editHeaderComponent(index, link, setLink, cardRef, item, innerIndex, length) {
+function editHeaderComponent(
+	index,
+	link,
+	setLink,
+	cardRef,
+	item,
+	innerIndex,
+	length,
+	setAdaptiveGameCards
+) {
 	const lists = [
 		{
 			name: 'Delete',
 			shouldHide: true,
-			event: () => console.log('Delete Card', index),
+			event: () =>
+				setAdaptiveGameCards(pre => {
+					const newAdaptiveGameCard = [...pre];
+					newAdaptiveGameCard.splice(innerIndex, 1);
+					return newAdaptiveGameCard;
+				}),
 		},
 	];
+
+	const handleMove = direction => {
+		setAdaptiveGameCards(pre => {
+			const newAdaptiveGameCard = [...pre];
+			const currentItem = newAdaptiveGameCard.splice(innerIndex, 1)[0];
+			const newIndex = direction === 'left' ? innerIndex - 1 : innerIndex + 1;
+			newAdaptiveGameCard.splice(newIndex, 0, currentItem);
+			return newAdaptiveGameCard;
+		});
+	};
 
 	if (innerIndex === 0) {
 		lists.push({
 			name: 'Move Right',
-			event: detail => {
-				console.log('Move Right', detail);
-			},
+			event: () => handleMove('right'),
 		});
 	} else if (innerIndex === length - 1) {
 		lists.push({
 			name: 'Move Left',
-			event: detail => {
-				console.log('Move Left', detail);
-			},
+			event: () => handleMove('left'),
 		});
 	} else {
 		lists.push(
 			{
 				name: 'Move Left',
-				event: detail => {
-					console.log('Move Left', detail);
-				},
+				event: () => handleMove('left'),
 			},
 			{
 				name: 'Move Right',
-				event: detail => {
-					console.log('Move Right', detail);
-				},
+				event: () => handleMove('right'),
 			}
 		);
 	}
@@ -54,10 +70,7 @@ function editHeaderComponent(index, link, setLink, cardRef, item, innerIndex, le
 }
 
 function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
-	// 0 means price footer, 1 means 1 button footer, -1 means 2 button footer
-	const [adaptiveFooter, setAdaptiveFooter] = useState([0, 1, -1]);
-
-	const [adaptiveGameCard, setAdaptiveGameCard] = useState(defaultItems);
+	const [adaptiveGameCards, setAdaptiveGameCards] = useState(defaultItems);
 
 	const { cloneObject } = useObjectUtilities();
 
@@ -66,7 +79,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onImageUpload: (file, index) => {
-				setAdaptiveGameCard(pre => {
+				setAdaptiveGameCards(pre => {
 					const newAdaptiveGameCard = cloneObject(pre);
 					newAdaptiveGameCard[index].image = URL.createObjectURL(file);
 					dataRef.current[index] = newAdaptiveGameCard[index];
@@ -82,14 +95,19 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	return (
 		<div className={styles.editAdaptiveGameCards}>
 			<AdaptiveCards
-				items={adaptiveGameCard}
+				items={adaptiveGameCards}
 				isEditing
 				index={parentIndex}
-				editingHeader={editHeaderComponent}
+				editingHeader={(...props) => editHeaderComponent(...props, setAdaptiveGameCards)}
 				onFieldChange={eventRefs.current.onFieldChange}
 				onImageUpload={eventRefs.current.onImageUpload}
 			/>
-			<EditAdaptiveGameCardsButtons defaultData={dataRef.current} />
+			<EditAdaptiveGameCardsButtons
+				adaptiveGameCards={adaptiveGameCards}
+				setAdaptiveGameCards={setAdaptiveGameCards}
+				mainDataRef={dataRef}
+				parentIndex={parentIndex}
+			/>
 		</div>
 	);
 }

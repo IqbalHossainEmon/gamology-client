@@ -3,6 +3,10 @@
 	position: relative;
 }
 
+.adaptiveGameCardContainer {
+	margin-top: 1rem;
+}
+
 .onlyOne {
 	display: flex;
 	gap: 1rem 3rem;
@@ -13,7 +17,11 @@
 .multiple {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+}
+
+.titleContainer,
+.title {
+	margin-top: 1rem;
 }
 
 .imageContainer {
@@ -92,10 +100,11 @@
 
 .cardFooter {
 	width: 100%;
+	margin-top: 1rem;
 }
 
 .descriptionContainer {
-	margin: 1rem 0;
+	margin-top: 1rem;
 }
 
 .btnContainer {
