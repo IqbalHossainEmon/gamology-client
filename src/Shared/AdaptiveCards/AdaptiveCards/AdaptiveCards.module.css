@@ -12,7 +12,7 @@
 	width: 100%;
 	list-style-type: none;
 	display: flex;
-	gap: 20px;
+	gap: 1rem;
 }
 
 .transition {

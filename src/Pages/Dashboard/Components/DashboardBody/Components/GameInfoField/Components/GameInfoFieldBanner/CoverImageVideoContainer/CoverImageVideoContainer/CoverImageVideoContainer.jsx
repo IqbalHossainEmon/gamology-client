@@ -80,7 +80,6 @@ function CoverImageVideoContainer({
 							{`Choose Game's Banner's ${type}`}
 						</label>
 					) : null}
-
 					{type ? (
 						type === 'video' ? (
 							<CoverVideoContainer

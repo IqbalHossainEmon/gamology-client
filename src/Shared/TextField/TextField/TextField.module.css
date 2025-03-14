@@ -22,7 +22,7 @@
 	color: #cc2a24;
 }
 .label {
-	width: 100%;
+	max-width: calc(100% - 1.25em);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -58,6 +58,7 @@
 }
 
 .textShrink {
+	max-width: calc(125% - 1.25em);
 	translate: 0 -1.5625em;
 	scale: 0.8;
 	color: rgb(173, 173, 173);

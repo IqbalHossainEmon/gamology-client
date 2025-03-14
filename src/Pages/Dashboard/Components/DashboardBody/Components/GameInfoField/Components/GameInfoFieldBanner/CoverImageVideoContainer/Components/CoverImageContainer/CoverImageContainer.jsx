@@ -50,6 +50,13 @@ function CoverImageContainer({
 			handleCancel: () => {
 				setFocused(false);
 			},
+			onClick: () => {
+				inputRef.current.click();
+				setFocused(true);
+				if (errorShow) {
+					setErrorShow(false);
+				}
+			},
 		};
 	}
 
@@ -77,13 +84,7 @@ function CoverImageContainer({
 			/>
 			<button
 				className={styles.fileUploadButton}
-				onClick={() => {
-					inputRef.current.click();
-					setFocused(true);
-					if (errorShow) {
-						setErrorShow(false);
-					}
-				}}
+				onClick={eventRef.current.onClick}
 				ref={btnRef}
 				type='button'
 			>

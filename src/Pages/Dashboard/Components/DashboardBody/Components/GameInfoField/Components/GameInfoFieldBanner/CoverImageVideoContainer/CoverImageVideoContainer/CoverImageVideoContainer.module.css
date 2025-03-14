@@ -43,7 +43,7 @@
 }
 
 .label {
-	width: calc(100% - 0.625rem);
+	max-width: calc(100% - 1.25rem);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -63,6 +63,7 @@
 }
 
 .textShrink {
+	max-width: calc(125% - 3.1625rem);
 	translate: 0 -1.5625em;
 	scale: 0.8;
 	color: rgb(173, 173, 173);
@@ -70,6 +71,10 @@
 
 .focusedColor {
 	color: rgb(2, 99, 224);
+}
+
+.label {
+	max-width: calc(100% - 1.25rem);
 }
 
 .padding {
