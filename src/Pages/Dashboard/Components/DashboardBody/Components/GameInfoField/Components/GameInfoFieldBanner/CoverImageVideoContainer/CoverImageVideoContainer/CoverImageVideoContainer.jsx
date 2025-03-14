@@ -68,17 +68,13 @@ function CoverImageVideoContainer({
 				>
 					{type ? (
 						<label
-							className={`${
-								errorShow
-									? `${styles.errorColor} ${mainValueRef.current.image ? styles.textFilled : ''} `
-									: focused
-										? `${styles.focused} `
-										: (type === 'image' &&
-													mainValueRef.current.image.selected) ||
-											  (type === 'video' && mainValueRef.current.video)
-											? `${styles.textFilled} `
-											: ''
-							}${styles.label}`}
+							className={`${errorShow ? `${styles.errorColor} ` : ''}${
+								focused ||
+								(type === 'image' && mainValueRef.current.image.selected) ||
+								(type === 'video' && mainValueRef.current.video)
+									? `${styles.textShrink} `
+									: ''
+							}${focused ? `${styles.focusedColor} ` : ''}${styles.label}`}
 							htmlFor={`addGameBannerCover_${number}`}
 						>
 							{`Choose Game's Banner's ${type}`}

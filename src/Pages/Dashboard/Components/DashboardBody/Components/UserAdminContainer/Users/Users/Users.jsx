@@ -96,7 +96,7 @@ function Users() {
 											setContent({
 												title: 'Make Admin',
 												body: (
-													<div>
+													<>
 														<p>
 															Are you sure you want to make{' '}
 															<span className={styles.nameContainer}>
@@ -104,9 +104,8 @@ function Users() {
 															</span>{' '}
 															an admin?
 														</p>
-
 														<UserInfo user={user} />
-													</div>
+													</>
 												),
 												footer: (
 													<UserMakeAdminModal

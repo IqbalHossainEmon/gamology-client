@@ -89,9 +89,6 @@ function FileUploadButton({
 
 						setState(object, name);
 						setSelected({ selected: true, name: fileName, file: e.target.files[0] });
-					} else {
-						setState(undefined, name);
-						setSelected({ selected: false, name: 'name' });
 					}
 				}
 			},

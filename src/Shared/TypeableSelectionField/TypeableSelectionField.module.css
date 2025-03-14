@@ -19,20 +19,24 @@
 #errorColor {
 	color: #cc2a24;
 }
+
 .label {
+	max-width: calc(100% - 1.25rem);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	position: absolute;
+	pointer-events: none;
+	color: rgb(173, 173, 173);
 	user-select: none;
 	left: 0.625em;
 	top: 50%;
-	scale: 1;
 	translate: 0 -50%;
 	transform-origin: 0 0;
-	pointer-events: none;
-	color: rgb(173, 173, 173);
 	transition:
-		scale 200ms cubic-bezier(0, 0, 0.2, 1),
-		translate 200ms cubic-bezier(0, 0, 0.2, 1),
-		color 200ms cubic-bezier(0, 0, 0.2, 1);
+		scale 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		translate 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .field {
@@ -45,15 +49,14 @@
 	user-select: none;
 }
 
-.focused {
+.textShrink {
+	width: calc(130% - 3.1625rem);
 	translate: 0 -1.5625em;
-	scale: 0.7;
-	color: rgb(2, 99, 224);
-}
-.textFilled {
-	translate: 0 -1.5625em;
-	scale: 0.7;
+	scale: 0.8;
 	color: rgb(140, 140, 140);
+}
+.focusedColor {
+	color: rgb(2, 99, 224);
 }
 .focusBorder {
 	outline: 2px solid rgba(1, 81, 185, 0.733);
@@ -102,7 +105,6 @@
 		font-size: 0.75rem;
 	}
 	.label {
-		width: calc(100% - 40px);
 		text-align: left;
 	}
 	.focused {
@@ -114,5 +116,12 @@
 	}
 	.list {
 		max-height: 360px;
+	}
+}
+
+@media screen and (max-width: 48rem) {
+	.label,
+	.field {
+		font-size: 0.75rem;
 	}
 }

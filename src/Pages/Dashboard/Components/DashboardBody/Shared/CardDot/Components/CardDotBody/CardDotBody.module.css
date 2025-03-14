@@ -40,3 +40,10 @@
 	opacity: 1;
 	scale: 1;
 }
+
+@media only screen and (max-width: 1728px) {
+	.cardDots {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}

@@ -5,13 +5,13 @@ export default function DiscountPriceWithPercent({ price }) {
 	return (
 		<div className={styles.discountPriceWithPercent}>
 			{typeof price === 'object' && (
-				<div className={[styles.discountPercentage].join(' ')}>
+				<p className={[styles.discountPercentage].join(' ')}>
 					-{(((price.regular - price.discount) / price.regular) * 100).toFixed(0)}%
-				</div>
+				</p>
 			)}
-			<div className={styles.discountPrice}>
+			<p className={styles.discountPrice}>
 				<DiscountPrice price={price} />
-			</div>
+			</p>
 		</div>
 	);
 }

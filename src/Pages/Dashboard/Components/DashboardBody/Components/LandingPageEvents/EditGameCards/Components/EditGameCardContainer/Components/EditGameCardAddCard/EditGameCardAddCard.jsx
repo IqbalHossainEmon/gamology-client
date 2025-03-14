@@ -24,9 +24,9 @@ function EditGameCardAddCard({ width, onClick }) {
 						setContent({
 							title: 'Add Game to the list',
 							body: (
-								<h3 className={styles.title}>
+								<p className={styles.title}>
 									Search for the game you want to add to the list:{' '}
-								</h3>
+								</p>
 							),
 							footer: <AddGameCardModalBody onClick={onClick} />,
 						});

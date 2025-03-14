@@ -124,7 +124,7 @@ export default function SelectionField({
 				ref={elementRef}
 			>
 				<label
-					className={`${show ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
+					className={`${show || value ? `${styles.textShrink} ` : ''}${show ? `${styles.focusedColor} ` : ''}${styles.label}`}
 					htmlFor={placeholder ? `${placeholder}_${htmlFor}` : htmlFor}
 				>
 					{placeholder}

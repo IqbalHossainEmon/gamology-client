@@ -116,9 +116,7 @@ export default function TextField({
 				}${styles.container}`}
 			>
 				<label
-					className={`${
-						focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''
-					}${styles.label}${field === 'textarea' ? ` ${styles.textareaLabel}` : ''}`}
+					className={`${focused || value ? `${styles.textShrink} ` : ''}${focused ? `${styles.focusedColor} ` : ''}${styles.label} ${field === 'textarea' ? styles.textareaLabel : styles.inputLabel}`}
 					{...(errorShow && { id: styles.errorColor })}
 					htmlFor={htmlFor}
 				>

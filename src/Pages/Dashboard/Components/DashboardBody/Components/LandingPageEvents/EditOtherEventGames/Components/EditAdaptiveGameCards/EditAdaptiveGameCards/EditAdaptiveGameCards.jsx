@@ -79,10 +79,9 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	const [adaptiveGameCards, setAdaptiveGameCards] = useState(defaultItems);
 
 	const { cloneObject } = useObjectUtilities();
+	const { setContent } = useModal();
 
 	const eventRefs = useRef(null);
-
-	const { setContent } = useModal();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
@@ -98,18 +97,12 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 				dataRef.current[parentIndex].cards[index][field] = value;
 			},
 			onEditFooterClick: (index, innerIndex, data) => {
-				console.log(data);
-
 				setContent({
 					title: 'Edit Footer',
 					body: (
-						<h3 className={styles.editFooterHeader}>
-							What footer you want to set for
-							<span className={styles.nameContainer}>
-								{adaptiveGameCards[innerIndex].title}
-							</span>
-							?
-						</h3>
+						<p className={styles.editFooterHeader}>
+							Edit the footer of card {innerIndex + 1}?
+						</p>
 					),
 					footer: <p>Footer</p>,
 				});

@@ -3,7 +3,7 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 1rem;
+	margin: 1rem 0;
 }
 .headerBtnContainer {
 	display: flex;
@@ -19,6 +19,11 @@
 .marginTop {
 	margin-top: 1rem;
 }
+
+.marginBottom {
+	margin-bottom: 0.5rem;
+}
+
 .subHeader {
 	font-weight: 400;
 }

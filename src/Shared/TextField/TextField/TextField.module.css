@@ -22,7 +22,7 @@
 	color: #cc2a24;
 }
 .label {
-	width: calc(100% - 0.625rem);
+	width: 100%;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -31,13 +31,16 @@
 	color: rgb(173, 173, 173);
 	user-select: none;
 	left: 0.625em;
-	top: 50%;
-	translate: 0 -50%;
 	transform-origin: 0 0;
 	transition:
 		scale 150ms cubic-bezier(0.4, 0, 0.2, 1),
 		translate 150ms cubic-bezier(0.4, 0, 0.2, 1),
 		color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputLabel {
+	top: 50%;
+	translate: 0 -50%;
 }
 
 .textareaLabel {
@@ -54,15 +57,13 @@
 	user-select: none;
 }
 
-.textFilled {
+.textShrink {
 	translate: 0 -1.5625em;
 	scale: 0.8;
 	color: rgb(173, 173, 173);
 }
 
-.focused {
-	translate: 0 -1.5625em;
-	scale: 0.8;
+.focusedColor {
 	color: rgb(2, 99, 224);
 }
 
@@ -85,9 +86,7 @@
 	-moz-appearance: textfield;
 }
 @media screen and (max-width: 48rem) {
-	.label {
-		font-size: 0.75rem;
-	}
+	.label,
 	.field {
 		font-size: 0.75rem;
 	}

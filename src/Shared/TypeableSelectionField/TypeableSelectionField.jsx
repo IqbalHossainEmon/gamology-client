@@ -119,7 +119,7 @@ export default function TypeableSelectionField({
 				ref={elementRef}
 			>
 				<label
-					className={`${focused ? `${styles.focused} ` : value ? `${styles.textFilled} ` : ''}${styles.label}`}
+					className={`${focused || value ? `${styles.textShrink} ` : ''}${focused ? `${styles.focusedColor} ` : ''}${styles.label}`}
 					{...(errorShow && { id: styles.errorColor })}
 					htmlFor={htmlFor}
 				>

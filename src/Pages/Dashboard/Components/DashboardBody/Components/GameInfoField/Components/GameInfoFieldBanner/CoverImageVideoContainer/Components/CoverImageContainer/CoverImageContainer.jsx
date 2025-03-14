@@ -20,8 +20,7 @@ function CoverImageContainer({
 	if (!eventRef.current) {
 		eventRef.current = {
 			handleSelect: e => {
-				if (e.target.files) {
-					setFocused(false);
+				if (e.target.files.length) {
 					let select;
 					if (e.target.files[0]) {
 						const { name: fileName } = e.target.files[0] || {};
@@ -46,8 +45,8 @@ function CoverImageContainer({
 					}
 					handleSetValues(object, name);
 				}
+				setFocused(false);
 			},
-
 			handleCancel: () => {
 				setFocused(false);
 			},

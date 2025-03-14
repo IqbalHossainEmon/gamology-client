@@ -48,16 +48,16 @@
 	user-select: none;
 }
 
-.focused {
+.textShrink {
 	translate: 0 -1.5625em;
-	scale: 0.7;
-	color: rgb(2, 99, 224);
-}
-.textFilled {
-	translate: 0 -1.5625em;
-	scale: 0.7;
+	scale: 0.8;
 	color: rgb(140, 140, 140);
 }
+
+.focusedColor {
+	color: rgb(2, 99, 224);
+}
+
 .focusBorder {
 	outline: 2px solid rgba(1, 81, 185, 0.733);
 }

@@ -15,7 +15,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 	return (
 		<div>
 			<div className={styles.headerContainer}>
-				<h3 className={`${styles.marginTop} ${styles.subHeader}`}>
+				<h3 className={`${styles.marginBottom} ${styles.subHeader}`}>
 					Upload Image #{index + 1}
 				</h3>
 				<div className={styles.headerBtnContainer}>
