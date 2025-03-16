@@ -261,7 +261,6 @@ function EditOtherEventGames() {
 										games: cloneObject(emptyData),
 									});
 									console.log(temp);
-
 									return temp;
 								});
 							}}

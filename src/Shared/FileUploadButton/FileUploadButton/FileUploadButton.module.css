@@ -4,6 +4,10 @@
 	transition: opacity 200ms;
 	position: relative;
 }
+
+.fileUploadContainer:hover .hoverBorder {
+	outline: 2px solid rgba(2, 99, 224, 0.4);
+}
 .containerDisabled {
 	opacity: 0.5;
 }

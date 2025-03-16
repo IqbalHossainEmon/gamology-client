@@ -134,7 +134,7 @@ function FileUploadButton({
 						{...(disabled && { disabled })}
 						className={`${errorShow ? `${styles.errorBorder} ` : ''}${
 							styles.fileUploadButton
-						}${loading ? ' loading' : ''}${active ? ` ${styles.activeBorder}` : ''}`}
+						}${loading ? ' loading' : ''} ${active ? styles.activeBorder : styles.hoverBorder}`}
 						onClick={() => {
 							inputRef.current.click();
 							setActive(true);

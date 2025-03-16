@@ -1,3 +1,6 @@
+.outerContainer:hover .hoverBorder {
+	outline: 2px solid rgba(2, 99, 224, 0.4);
+}
 .container {
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.05);
@@ -124,9 +127,6 @@
 
 @media screen and (max-width: 48rem) {
 	.label {
-		font-size: 0.75rem;
-	}
-	.field {
 		font-size: 0.75rem;
 	}
 

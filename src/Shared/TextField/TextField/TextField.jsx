@@ -112,8 +112,12 @@ export default function TextField({
 		>
 			<div
 				className={`${
-					errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''
-				}${styles.container}`}
+					errorShow
+						? `${styles.error} `
+						: focused
+							? styles.focusBorder
+							: styles.hoverBorder
+				} ${styles.container}`}
 			>
 				<label
 					className={`${focused || value ? `${styles.textShrink} ` : ''}${focused ? `${styles.focusedColor} ` : ''}${styles.label} ${field === 'textarea' ? styles.textareaLabel : styles.inputLabel}`}

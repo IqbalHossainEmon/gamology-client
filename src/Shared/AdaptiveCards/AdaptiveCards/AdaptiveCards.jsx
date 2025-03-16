@@ -27,9 +27,9 @@ function AdaptiveCards({
 			<div className={styles.adaptiveGameCardsContainer}>
 				<ul
 					className={`${styles.adaptiveGameCardsList}${transition.transition ? ` ${styles.transition}` : ''}`}
-					{...(widthInRem < 48 && {
+					{...(widthInRem <= 48 && {
 						style: {
-							translate: `calc(-${100 * cardPosition}% - ${cardPosition * 1.5} * 1rem)`,
+							translate: `calc(-${100 * cardPosition}% - ${cardPosition} * 1rem)`,
 						},
 					})}
 				>

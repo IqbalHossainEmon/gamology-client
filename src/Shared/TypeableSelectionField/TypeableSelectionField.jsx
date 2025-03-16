@@ -115,7 +115,7 @@ export default function TypeableSelectionField({
 			ref={containerRef}
 		>
 			<div
-				className={`${errorShow ? `${styles.errorBorder} ` : focused ? `${styles.focusBorder} ` : ''}${styles.innerContainer}`}
+				className={`${errorShow ? `${styles.errorBorder} ` : focused ? styles.focusBorder : styles.hoverBorder} ${styles.innerContainer}`}
 				ref={elementRef}
 			>
 				<label

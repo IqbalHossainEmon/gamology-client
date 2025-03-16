@@ -9,3 +9,8 @@
 	border: none;
 	user-select: none;
 }
+@media screen and (max-width: 48rem) {
+	.field {
+		font-size: 0.75rem;
+	}
+}

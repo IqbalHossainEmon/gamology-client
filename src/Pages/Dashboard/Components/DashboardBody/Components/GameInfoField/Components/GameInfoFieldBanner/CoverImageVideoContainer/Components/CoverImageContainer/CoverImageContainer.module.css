@@ -14,7 +14,6 @@
 }
 .fileName {
 	opacity: 0;
-	font-size: medium;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -55,7 +54,7 @@
 }
 
 @media screen and (max-width: 48rem) {
-	.field {
+	.fileName {
 		font-size: 0.75rem;
 	}
 }

@@ -63,8 +63,12 @@ function CoverImageVideoContainer({
 			<div className={styles.containerWithPreview}>
 				<div
 					className={`${
-						errorShow ? `${styles.error} ` : focused ? `${styles.focusBorder} ` : ''
-					}${styles.container}${loading ? ` ${styles.loading}` : ''}${type ? '' : ` ${styles.padding} `}`}
+						errorShow
+							? `${styles.error} `
+							: focused
+								? styles.focusBorder
+								: styles.hoverBorder
+					} ${styles.container}${loading ? ` ${styles.loading}` : ''}${type ? '' : ` ${styles.padding} `}`}
 				>
 					{type ? (
 						<label
