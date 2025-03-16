@@ -4,13 +4,13 @@
 	text-align: left;
 	color: rgb(211, 211, 211);
 	background-color: transparent;
-	text-decoration: underline;
 	border: none;
 	cursor: pointer;
 	position: relative;
 	font-size: 1rem;
+	padding-left: 0.625em;
 }
 
 .btn:hover {
-	text-decoration: none;
+	text-decoration: underline;
 }

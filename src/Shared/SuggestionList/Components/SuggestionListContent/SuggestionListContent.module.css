@@ -23,14 +23,17 @@
 	backdrop-filter: blur(10px);
 	opacity: 0;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	transition:
 		height 200ms,
 		opacity 300ms;
 }
 
-.list {
+.scrollBar {
 	padding: 0.625em;
+}
+
+.list {
 	list-style: none;
 	overflow-y: auto;
 	width: 100%;
@@ -38,6 +41,7 @@
 
 .extraSection {
 	flex-shrink: 0;
+	padding: 0.25em;
 }
 
 .item {

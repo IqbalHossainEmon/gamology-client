@@ -5,6 +5,8 @@ import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObj
 import EditAdaptiveCardDotMenu from '../Components/EditAdaptiveCardDotMenu/EditAdaptiveCardDotMenu';
 import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField/EditAdaptiveCardsLinkField';
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
+import EditAdaptiveGameFooterBody from '../Components/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody';
+import EditAdaptiveGameFooterFooter from '../Components/EditAdaptiveGameFooterFooter/EditAdaptiveGameFooterFooter';
 import styles from './EditAdaptiveGameCards.module.css';
 
 function editHeaderComponent(
@@ -86,8 +88,6 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onImageUpload: (file, index) => {
-				console.log(index);
-
 				setAdaptiveGameCards(pre => {
 					const newAdaptiveGameCard = cloneObject(pre);
 					newAdaptiveGameCard[index].image = URL.createObjectURL(file);
@@ -101,12 +101,8 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 			onEditFooterClick: (index, innerIndex, data) => {
 				setContent({
 					title: 'Edit Footer',
-					body: (
-						<p className={styles.editFooterHeader}>
-							Edit the footer of card {innerIndex + 1}?
-						</p>
-					),
-					footer: <p>Footer</p>,
+					body: <EditAdaptiveGameFooterBody index={innerIndex} data={data} />,
+					footer: <EditAdaptiveGameFooterFooter />,
 				});
 			},
 		};

@@ -339,7 +339,6 @@ function EditGameCards() {
 
 		cardsRef.current.slice(1).forEach((gameCards, index) => {
 			const removeIndex = [];
-
 			gameCards.cards.forEach((game, innerIndex) => {
 				if (game.cards.length < 10) {
 					if (game.cards.length === 0) {
@@ -356,7 +355,6 @@ function EditGameCards() {
 					flag = true;
 				}
 			});
-
 			if (removeIndex.length === gameCards.cards.length) {
 				modalFlag = true;
 				cardsRef.current.splice(index + 1, 1);

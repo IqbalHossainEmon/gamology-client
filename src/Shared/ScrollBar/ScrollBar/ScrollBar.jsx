@@ -1,17 +1,17 @@
 import { useRef } from 'react';
 import Scroller from '../Components/Scroller/Scroller/Scroller';
 import styles from './ScrollBar.module.css';
-function ScrollBar({ children, showPath = true }) {
+function ScrollBar({ children, showPath = true, outerClassName, innerClassName }) {
 	const outerContainerRef = useRef(null);
 	const innerContainerRef = useRef(null);
 	return (
 		<div
-			className={styles.outerScrollContainer}
+			className={`${styles.outerScrollContainer}${outerClassName ? ` ${outerClassName}` : ''}`}
 			ref={element => {
 				outerContainerRef.current = element;
 			}}
 		>
-			<div className={styles.scrollContainer} ref={innerContainerRef}>
+			<div {...(innerClassName && { className: innerClassName })} ref={innerContainerRef}>
 				{children}
 			</div>
 			<Scroller

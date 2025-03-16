@@ -22,7 +22,6 @@ export default function ButtonWithRipple({
 				{...(tabIndexOff && { tabIndex: '-1' })}
 			>
 				{children}
-
 				<RippleEffect long={long} />
 			</button>
 		</div>

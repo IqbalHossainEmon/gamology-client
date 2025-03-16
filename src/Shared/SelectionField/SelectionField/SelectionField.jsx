@@ -106,7 +106,7 @@ export default function SelectionField({
 			<button
 				type='button'
 				{...(enabled || { tabIndex: '-1' })}
-				className={`${errorBorder ? `${styles.errorBorder} ` : show ? `${styles.focusBorder} ` : ''}${styles.button}`}
+				className={`${errorBorder ? `${styles.errorBorder} ` : show ? styles.focusBorder : styles.hoverBorder} ${styles.button}`}
 				onClick={() => {
 					setShow(prev => {
 						if (!prev) {

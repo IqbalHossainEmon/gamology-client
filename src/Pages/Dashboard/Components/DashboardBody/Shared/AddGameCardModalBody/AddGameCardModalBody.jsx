@@ -17,7 +17,7 @@ function AddGameCardModalBody({ onClick }) {
 		<>
 			<div
 				style={{
-					height: height ? `${height + 60}px` : '60px',
+					height: `${(height || 0) + 4}rem`,
 				}}
 				className={styles.addGameCardContainer}
 			>
