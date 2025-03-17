@@ -62,8 +62,8 @@ export default function TextField({
 				handleChange(e.target.value);
 			},
 			handleBlur: e => {
-				setState(e.target.value, e.target.name);
 				setFocused(false);
+				setState(e.target.value, e.target.name);
 			},
 		};
 	}

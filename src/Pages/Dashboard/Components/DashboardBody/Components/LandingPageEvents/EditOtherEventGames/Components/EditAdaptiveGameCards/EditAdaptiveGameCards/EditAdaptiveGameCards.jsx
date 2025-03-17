@@ -86,6 +86,8 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onImageUpload: (file, index) => {
+				console.log(index);
+
 				setAdaptiveGameCards(pre => {
 					const newAdaptiveGameCard = cloneObject(pre);
 					newAdaptiveGameCard[index].image = URL.createObjectURL(file);

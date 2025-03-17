@@ -40,33 +40,8 @@ function AdaptiveCard({
 	const imageElement = <a href={link}>{imageContainer}</a>;
 
 	const inputRef = useRef(null);
-	const eventRefs = useRef(null);
 
 	const setToast = useToast();
-
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			onImageClick: () => {
-				inputRef.current.click();
-			},
-			handleImageUpload: e => {
-				if (e.target.files[0]) {
-					const { name: fileName } = e.target.files[0] || {};
-
-					// reject if file is not an image
-					if (!fileName.match(/\.(jpg|jpeg|png|gif)$/)) {
-						setToast({
-							title: 'Invalid File',
-							message: 'Please select an image file',
-							type: 'error',
-						});
-						return;
-					}
-					onImageUpload(e.target.files[0]);
-				}
-			},
-		};
-	}
 
 	return (
 		<li className={styles.adaptiveGameCard} ref={cardRef}>
@@ -81,7 +56,7 @@ function AdaptiveCard({
 							<ButtonWithRipple
 								containerClassName={`${styles.fullWidth} ${styles.imageAspectRatio} ${styles.addImageBtnContainer}`}
 								className={`${styles.fullWidth} ${styles.addImageBtn}${image ? ` ${styles.containerNoPadding}` : ''}`}
-								onClick={eventRefs.current.onImageClick}
+								onClick={() => inputRef.current.click()}
 								long
 							>
 								{image ? imageContainer : <span className={styles.plus} />}
@@ -91,7 +66,22 @@ function AdaptiveCard({
 								ref={inputRef}
 								type='file'
 								accept='image/*'
-								onChange={eventRefs.current.handleImageUpload}
+								onChange={e => {
+									if (e.target.files[0]) {
+										const { name: fileName } = e.target.files[0] || {};
+
+										// reject if file is not an image
+										if (!fileName.match(/\.(jpg|jpeg|png|gif)$/)) {
+											setToast({
+												title: 'Invalid File',
+												message: 'Please select an image file',
+												type: 'error',
+											});
+											return;
+										}
+										onImageUpload(e.target.files[0]);
+									}
+								}}
 								className={styles.hiddenInput}
 							/>
 						</>
