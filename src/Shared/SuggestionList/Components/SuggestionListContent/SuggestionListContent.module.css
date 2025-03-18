@@ -29,10 +29,6 @@
 		opacity 300ms;
 }
 
-.scrollBar {
-	padding: 0.625em;
-}
-
 .list {
 	list-style: none;
 	overflow-y: auto;
@@ -115,6 +111,7 @@
 }
 
 .placeHolder {
+	padding: 0 0.625em;
 	position: relative;
 	display: flex;
 	align-items: center;

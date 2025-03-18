@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useHoverTooltips from '../../../../../../../../../../../Utils/Hooks/useHoverTooltips';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
-import AddGameCardModalBody from '../../../../../../../Shared/AddGameCardModalBody/AddGameCardModalBody';
+import AddGameCardModalFooter from '../../../../../../../Shared/AddGameCardModalFooter/AddGameCardModalFooter';
 import styles from './EditGameCardAddCard.module.css';
 
 function EditGameCardAddCard({ width, onClick }) {
@@ -28,7 +28,7 @@ function EditGameCardAddCard({ width, onClick }) {
 									Search for the game you want to add to the list:{' '}
 								</p>
 							),
-							footer: <AddGameCardModalBody onClick={onClick} />,
+							footer: <AddGameCardModalFooter onClick={onClick} />,
 						});
 					}}
 					className={styles.btn}

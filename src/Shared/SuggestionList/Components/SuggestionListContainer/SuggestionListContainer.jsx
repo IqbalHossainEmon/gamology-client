@@ -471,7 +471,7 @@ function SuggestionListContainer({
 	const isSelected = useRef(false);
 
 	const { setElement, onHide, showMenu } = useDropDownHide(val => {
-		// setShow(val);
+		setShow(val);
 	});
 
 	const { cloneObject } = useObjectUtilities();

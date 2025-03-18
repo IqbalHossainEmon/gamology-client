@@ -101,8 +101,8 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 			onEditFooterClick: (index, innerIndex, data) => {
 				setContent({
 					title: 'Edit Footer',
-					body: <EditAdaptiveGameFooterBody index={innerIndex} data={data} />,
-					footer: <EditAdaptiveGameFooterFooter />,
+					body: <EditAdaptiveGameFooterBody index={innerIndex} />,
+					footer: <EditAdaptiveGameFooterFooter data={data} />,
 				});
 			},
 		};

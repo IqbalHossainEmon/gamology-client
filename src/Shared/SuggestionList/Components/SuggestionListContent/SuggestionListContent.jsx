@@ -36,9 +36,10 @@ function SuggestionListContent({
 		: { numberOfButton: 0, Content: () => null };
 
 	useEffect(() => {
-		if (setContainerHeight) {
-			setContainerHeight(loading ? 15.25 : (height + 28 + (numberOfButton || 0) * 34) / 16);
+		if (setContainerHeight || loading) {
+			setContainerHeight(loading ? 14 : (height + (numberOfButton || 0) * 34) / 16);
 		}
+
 		return () => {
 			if (setContainerHeight) setContainerHeight(0);
 		};
@@ -53,14 +54,12 @@ function SuggestionListContent({
 		>
 			<div
 				style={{
-					height: loading
-						? '15.25rem'
-						: `${(height + 28 + (numberOfButton || 0) * 34) / 16}rem`,
+					height: loading ? '14rem' : `${(height + (numberOfButton || 0) * 34) / 16}rem`,
 				}}
 				className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>
 				{(loading || !!list.length) && (
-					<ScrollBar innerClassName={styles.scrollBar}>
+					<ScrollBar>
 						<ul className={styles.list}>
 							{loading
 								? [...Array(4).keys()].map(item => (
@@ -112,7 +111,6 @@ function SuggestionListContent({
 						</ul>
 					</ScrollBar>
 				)}
-
 				{!loading &&
 					(numberOfButton ? (
 						<div className={styles.extraSection}>

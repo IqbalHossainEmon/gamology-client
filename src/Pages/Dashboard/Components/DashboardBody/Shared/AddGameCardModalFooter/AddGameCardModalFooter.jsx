@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 import RippleEffect from '../../../../../../Shared/RippleEffect/RippleEffect';
 import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import useModal from '../../../../../../Utils/Hooks/useModal';
-import styles from './AddGameCardModalBody.module.css';
+import styles from './AddGameCardModalFooter.module.css';
 
-function AddGameCardModalBody({ onClick }) {
+function AddGameCardModalFooter({ onClick }) {
 	const [height, setHeight] = useState(0);
 	const [errorChange, setErrorChange] = useState(0);
 
@@ -17,7 +17,7 @@ function AddGameCardModalBody({ onClick }) {
 		<>
 			<div
 				style={{
-					height: `${(height || 0) + 4}rem`,
+					height: `${height ? height + 2.3 : 4}rem`,
 				}}
 				className={styles.addGameCardContainer}
 			>
@@ -73,4 +73,4 @@ function AddGameCardModalBody({ onClick }) {
 		</>
 	);
 }
-export default AddGameCardModalBody;
+export default AddGameCardModalFooter;

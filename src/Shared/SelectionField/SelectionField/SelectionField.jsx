@@ -20,6 +20,7 @@ export default function SelectionField({
 	enabled = true,
 	errorBorder = false,
 	none,
+	setHeight,
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
@@ -68,16 +69,17 @@ export default function SelectionField({
 					positionRef.current.bottom = false;
 				}
 				// get the height of the dropdown depending on the number of items in the dropdown
+				let height = 0;
 				if ((none ? list.length + 1 : list.length) > 8) {
-					positionRef.current.height = Math.min(
+					height = Math.min(
 						parseInt((positionRef.current.bottom ? bottomRemain : y) / oneRow, 10) *
 							oneRow,
 						oneRow * 8
 					);
 				} else {
-					positionRef.current.height =
-						(none ? list.length + 1 : list.length || 1) * oneRow;
+					height = (none ? list.length + 1 : list.length || 1) * oneRow;
 				}
+				positionRef.current.height = height;
 			},
 		};
 	}
@@ -144,6 +146,7 @@ export default function SelectionField({
 				<RippleEffect />
 			</button>
 			<SelectionFieldList
+				setHeight={setHeight}
 				list={list}
 				name={name}
 				none={none}

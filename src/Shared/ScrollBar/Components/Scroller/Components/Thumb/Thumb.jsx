@@ -81,7 +81,7 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 
 				const scrollPercent =
 					(container.scrollTop / (scrollerContainer - containerHeight)) * 100;
-				thumbRef.current.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
+				thumbRef?.current?.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
 				if (!showRef.current) {
 					if (timerId.current) {
 						clearTimeout(timerId.current);
