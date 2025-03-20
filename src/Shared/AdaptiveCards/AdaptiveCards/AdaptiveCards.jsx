@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import AdaptiveCard from '../Components/AdaptiveCard/AdaptiveCard';
@@ -22,6 +22,15 @@ function AdaptiveCards({
 
 	const handleTransition = useHandleTimerTransition(setTransition, 300);
 
+	const cardPositionRef = useRef(cardPosition);
+	cardPositionRef.current = cardPosition;
+
+	useEffect(() => {
+		if (cardPositionRef.current >= items.length) {
+			setCardPosition(items.length - 1);
+		}
+	}, [items]);
+
 	return (
 		<section className={styles.adaptiveGameCards}>
 			<div className={styles.adaptiveGameCardsContainer}>
@@ -41,11 +50,12 @@ function AdaptiveCards({
 							data={item}
 							innerIndex={i}
 							length={items.length}
+							parentIndex={index}
 							editingHeader={editingHeader}
 							onFieldChange={(field, value) => onFieldChange(field, value, i)}
 							onImageUpload={data => onImageUpload(data, i)}
 							cardHover={cardHover}
-							handleEditFooter={() => handleEditFooter(index, i, item)}
+							handleEditFooter={handleEditFooter}
 						/>
 					))}
 				</ul>

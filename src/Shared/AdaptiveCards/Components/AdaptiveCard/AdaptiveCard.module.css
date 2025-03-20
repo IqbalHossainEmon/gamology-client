@@ -10,9 +10,8 @@
 
 .onlyOne {
 	display: flex;
-	gap: 1rem 3rem;
+	gap: 0 3rem;
 	align-items: center;
-	flex-wrap: wrap;
 }
 
 .multiple {
@@ -36,7 +35,7 @@
 }
 
 .onlyOne .imageContainer {
-	width: 60%;
+	flex-grow: 1;
 }
 
 .imageAspectRatio {
@@ -152,6 +151,9 @@
 @media only screen and (max-width: 48rem) {
 	.adaptiveGameCard {
 		min-width: 100%;
+	}
+	.onlyOne {
+		display: block;
 	}
 	.multiPle {
 		width: 100%;

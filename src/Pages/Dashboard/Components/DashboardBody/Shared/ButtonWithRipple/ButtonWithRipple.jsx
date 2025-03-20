@@ -8,6 +8,7 @@ export default function ButtonWithRipple({
 	tabIndexOff,
 	className,
 	containerClassName,
+	btnRef,
 	long,
 }) {
 	return (
@@ -17,6 +18,7 @@ export default function ButtonWithRipple({
 			<button
 				className={`${styles.btn}${className ? ` ${className}` : ''}`}
 				onClick={onClick}
+				{...(btnRef && { ref: btnRef })}
 				type='button'
 				{...(disabled && { disabled })}
 				{...(tabIndexOff && { tabIndex: '-1' })}

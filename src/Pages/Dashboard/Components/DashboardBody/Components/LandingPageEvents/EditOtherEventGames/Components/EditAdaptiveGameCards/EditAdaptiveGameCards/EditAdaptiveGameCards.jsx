@@ -85,6 +85,8 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 
 	const eventRefs = useRef(null);
 
+	const footerBtnRef = useRef(null);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onImageUpload: (file, index) => {
@@ -98,11 +100,18 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 			onFieldChange: (field, value, index) => {
 				dataRef.current[parentIndex].cards[index][field] = value;
 			},
-			onEditFooterClick: (index, innerIndex, data) => {
+			onEditFooterClick: (index, innerIndex, data, parent) => {
 				setContent({
 					title: 'Edit Footer',
-					body: <EditAdaptiveGameFooterBody index={innerIndex} />,
-					footer: <EditAdaptiveGameFooterFooter data={data} />,
+					body: (
+						<EditAdaptiveGameFooterBody
+							btnRef={footerBtnRef}
+							index={innerIndex}
+							data={data}
+						/>
+					),
+					footer: <EditAdaptiveGameFooterFooter btnRef={footerBtnRef} />,
+					parentElement: parent,
 				});
 			},
 		};

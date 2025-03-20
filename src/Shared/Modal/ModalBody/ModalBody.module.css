@@ -3,20 +3,19 @@
 	max-height: calc(100% - 1rem);
 	width: fit-content;
 	position: fixed;
-	top: 50%;
-	left: 50%;
-	translate: -50% -50%;
-	z-index: 5;
 	display: flex;
 	border-radius: 0.5rem;
+	transform-origin: 0 0;
+	z-index: 5;
 	opacity: 0;
 	scale: 0.7;
 	background-color: #18181ccd;
 	-webkit-backdrop-filter: blur(50px);
 	backdrop-filter: blur(50px);
 	transition:
-		opacity 200ms,
-		scale 200ms;
+		opacity 200ms linear,
+		scale 200ms linear,
+		translate 200ms linear;
 }
 
 .modalContentContainer {

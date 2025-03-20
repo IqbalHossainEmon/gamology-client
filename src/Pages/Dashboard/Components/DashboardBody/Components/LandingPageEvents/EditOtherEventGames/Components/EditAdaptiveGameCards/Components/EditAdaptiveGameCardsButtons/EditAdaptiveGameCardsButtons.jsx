@@ -13,10 +13,12 @@ function EditAdaptiveGameCardsButtons({
 
 	const doesTitleExists = !!adaptiveGameCards[0].title;
 	const doesDescriptionExists = !!adaptiveGameCards[0].description;
+	const doesFooterExists = !!adaptiveGameCards[0].footer;
 
 	const tempDataHolder = useRef({
 		title: [],
 		description: [],
+		footer: [],
 	});
 
 	return (
@@ -67,7 +69,48 @@ function EditAdaptiveGameCardsButtons({
 			>
 				{doesDescriptionExists ? 'Remove' : 'Add'} Description
 			</ButtonWithRipple>
-			<ButtonWithRipple>Add Footer Button</ButtonWithRipple>
+			<ButtonWithRipple
+				onClick={() =>
+					setAdaptiveGameCards(prev => {
+						const newAdaptiveGameCards = cloneObject(prev);
+						if (doesFooterExists) {
+							newAdaptiveGameCards.map((card, index) => {
+								tempDataHolder.current.footer[index] = card.footer;
+								delete card.footer;
+								delete mainDataRef.current[parentIndex].cards[index].footer;
+								return card;
+							});
+						} else {
+							newAdaptiveGameCards.map((card, index) => {
+								card.footer = tempDataHolder.current.footer[index];
+								return card;
+							});
+						}
+						return newAdaptiveGameCards;
+					})
+				}
+			>
+				{doesFooterExists ? 'Remove' : 'Add'} Footer Button
+			</ButtonWithRipple>
+			{adaptiveGameCards.length < 3 && (
+				<ButtonWithRipple
+					onClick={() =>
+						setAdaptiveGameCards(prev => {
+							const newAdaptiveGameCards = cloneObject(prev);
+							// copy a card from the existing array than just empty it
+							const newCard = cloneObject(newAdaptiveGameCards[0]);
+							Object.keys(newCard).forEach(element => {
+								if (element === 'footer') newCard.footer = [];
+								else newCard[element] = '';
+							});
+							newAdaptiveGameCards.push(newCard);
+							return newAdaptiveGameCards;
+						})
+					}
+				>
+					Add Card
+				</ButtonWithRipple>
+			)}
 		</div>
 	);
 }

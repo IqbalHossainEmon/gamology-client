@@ -20,6 +20,7 @@ function AdaptiveCard({
 	cardHover,
 	innerIndex,
 	handleEditFooter,
+	parentIndex,
 }) {
 	const { title, image, footer, description, link, isGame } = data;
 
@@ -42,6 +43,8 @@ function AdaptiveCard({
 	const inputRef = useRef(null);
 
 	const setToast = useToast();
+
+	const footerBtnRef = useRef(null);
 
 	return (
 		<li className={styles.adaptiveGameCard} ref={cardRef}>
@@ -147,13 +150,21 @@ function AdaptiveCard({
 							)}
 						</div>
 					)}
-					{isEditing && (
+					{isEditing && data.footer && (
 						<ButtonWithRipple
+							btnRef={footerBtnRef}
 							containerClassName={styles.editFooterBtnContainer}
 							className={styles.editFooterBtn}
-							onClick={handleEditFooter}
+							onClick={() =>
+								handleEditFooter(
+									parentIndex,
+									innerIndex,
+									data,
+									footerBtnRef.current
+								)
+							}
 						>
-							Edit Footer
+							{data.footer.length === 0 ? 'Add' : 'Edit'} Footer
 						</ButtonWithRipple>
 					)}
 				</div>
