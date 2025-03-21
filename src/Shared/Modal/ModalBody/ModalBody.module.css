@@ -5,10 +5,11 @@
 	position: fixed;
 	display: flex;
 	border-radius: 0.5rem;
-	transform-origin: 0 0;
+	transform-origin: center center;
 	z-index: 5;
 	opacity: 0;
-	scale: 0.7;
+	scale: 0.1;
+	translate: -50% -50%;
 	background-color: #18181ccd;
 	-webkit-backdrop-filter: blur(50px);
 	backdrop-filter: blur(50px);
@@ -24,6 +25,11 @@
 .zoomIn {
 	opacity: 1;
 	scale: 1;
+}
+
+.noSelect {
+	pointer-events: none;
+	user-select: none;
 }
 
 .header {
@@ -72,6 +78,17 @@
 
 .modalContentContainer {
 	position: relative;
+}
+
+.crossBtn:focus {
+	outline: 2px solid #ffffff;
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+.crossBtn:focus .cross::after,
+.crossBtn:focus .cross::before {
+	background-color: #ffffff;
 }
 
 @media (hover: hover) and (pointer: fine) {

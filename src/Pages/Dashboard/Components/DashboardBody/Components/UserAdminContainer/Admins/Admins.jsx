@@ -69,7 +69,7 @@ function Admins() {
 								lists={[
 									{
 										name: 'Remove Admin',
-										event: () => {
+										event: (_, e) => {
 											setContent({
 												title: 'Remove Admin',
 												body: (
@@ -109,12 +109,13 @@ function Admins() {
 														}}
 													/>
 												),
+												e,
 											});
 										},
 									},
 									{
 										name: <ReportAdminWithIcon />,
-										event: () => {
+										event: (_, e) => {
 											setContent({
 												title: 'Report Admin',
 												body: (
@@ -152,6 +153,7 @@ function Admins() {
 														}}
 													/>
 												),
+												e,
 											});
 										},
 									},

@@ -23,12 +23,26 @@ const withModal = Component =>
 		if (!eventRefs.current) {
 			let timerID = null;
 			eventRefs.current = {
+				handleKeyDown: event => {
+					if (event.key === 'Escape') {
+						if (timerID) {
+							clearTimeout(timerID);
+							timerID = null;
+						}
+						setShow(false);
+						timerID = setTimeout(() => {
+							showBodyOverflow();
+							setContent(emptyModal);
+							timerID = null;
+						}, 200);
+					}
+				},
 				hideModal: () => {
 					if (timerID) {
 						clearTimeout(timerID);
 						timerID = null;
 					}
-
+					document.removeEventListener('keydown', eventRefs.current.handleKeyDown);
 					setShow(false);
 					timerID = setTimeout(() => {
 						showBodyOverflow();
@@ -38,46 +52,22 @@ const withModal = Component =>
 				},
 				setContent: (...args) => {
 					if (args[0].title && args[0].body) {
-						const parent = args[0].parentElement;
+						const { e } = args[0];
 
 						// get parent x and y position
-						if (parent) {
-							const parentRect = parent.getBoundingClientRect();
-
-							let { x, y } = parentRect;
-
-							const { width, height } = parentRect;
-
-							const screenWidth = window.innerWidth;
-							const screenHeight = window.innerHeight;
-
-							y += height / 2;
-
-							let quadrant;
-
-							// find which quadrant the parent is in
-							if (x >= screenWidth / 2 && y < screenHeight / 2) {
-								x += width;
-								quadrant = 'top-right';
-							} else if (x < screenWidth / 2 && y >= screenHeight / 2) {
-								y += height;
-								quadrant = 'bottom-left';
-							} else if (x >= screenWidth / 2 && y >= screenHeight / 2) {
-								x += width;
-								y += height;
-								quadrant = 'bottom-right';
-							}
-
-							args[0].parentElement = {
-								x,
-								y,
-								quadrant,
+						if (e) {
+							const { pageX, pageY } = e;
+							args[0].originPoint = {
+								top: pageY,
+								left: pageX,
 							};
 						}
 
 						setShow(true);
 						hideBodyOverflow();
 						setContent(...args);
+
+						document.addEventListener('keydown', eventRefs.current.handleKeyDown);
 					}
 				},
 			};

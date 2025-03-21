@@ -8,6 +8,7 @@ export default function ScreenShadow({ show: state, zIndex }) {
 		show && (
 			<div
 				className={`${styles.shadowPage}${fadeIn ? ` ${styles.shadowShow}` : ''}`}
+				tabIndex={-1}
 				{...(zIndex && { style: { zIndex } })}
 			/>
 		)

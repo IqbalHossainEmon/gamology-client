@@ -48,7 +48,7 @@ function Users() {
 									},
 									{
 										name: 'Delete',
-										event: () => {
+										event: (_, e) => {
 											setContent({
 												title: 'Delete User',
 												body: (
@@ -87,12 +87,13 @@ function Users() {
 														errorMessage="Please type 'DELETE' to confirm"
 													/>
 												),
+												e,
 											});
 										},
 									},
 									{
 										name: 'Make Admin',
-										event: () => {
+										event: (_, e) => {
 											setContent({
 												title: 'Make Admin',
 												body: (
@@ -113,7 +114,6 @@ function Users() {
 															const newUsers = users.filter(
 																item => item.id !== user.id
 															);
-
 															setToast({
 																title: 'Admin Made',
 																message: `${user.name.lastName} has been made admin successfully`,
@@ -123,6 +123,7 @@ function Users() {
 														}}
 													/>
 												),
+												e,
 											});
 										},
 									},
@@ -132,7 +133,7 @@ function Users() {
 						)}
 					</UserCard>
 				))}
-			</div>{' '}
+			</div>
 			<div className={styles.paginationContainer}>
 				<Pagination
 					activePage={page.active}

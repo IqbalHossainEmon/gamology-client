@@ -28,7 +28,7 @@ function ShowCategoriesTags({ categories, setCategories }) {
 				}
 			},
 			// This function is used to show modal to confirm the category deletion
-			handleCategoryDelete: category => {
+			handleCategoryDelete: (category, e) => {
 				setContent({
 					title: 'Delete Category',
 					body: (
@@ -52,6 +52,7 @@ function ShowCategoriesTags({ categories, setCategories }) {
 							}
 						/>
 					),
+					e,
 				});
 			},
 		};
@@ -65,8 +66,8 @@ function ShowCategoriesTags({ categories, setCategories }) {
 						<h3>{category.category}</h3>
 						<button
 							className={styles.crossBtn}
-							onClick={() =>
-								eventRefs.current.handleCategoryDelete(category.category)
+							onClick={e =>
+								eventRefs.current.handleCategoryDelete(category.category, e)
 							}
 							type='button'
 						>

@@ -20,7 +20,7 @@ function EditGameCardAddCard({ width, onClick }) {
 				<button
 					ref={btnRef}
 					type='button'
-					onClick={() => {
+					onClick={e => {
 						setContent({
 							title: 'Add Game to the list',
 							body: (
@@ -29,6 +29,7 @@ function EditGameCardAddCard({ width, onClick }) {
 								</p>
 							),
 							footer: <AddGameCardModalFooter onClick={onClick} />,
+							e,
 						});
 					}}
 					className={styles.btn}

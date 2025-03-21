@@ -315,7 +315,7 @@ function EditGameCards() {
 
 	const { setContent, hideModal } = useModal();
 
-	const handleValidation = () => {
+	const handleValidation = e => {
 		let flag = false;
 
 		let firstSectionFlag = false;
@@ -375,6 +375,7 @@ function EditGameCards() {
 						Ok
 					</ButtonWithRipple>
 				),
+				e,
 			});
 		}
 

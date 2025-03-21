@@ -100,7 +100,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 			onFieldChange: (field, value, index) => {
 				dataRef.current[parentIndex].cards[index][field] = value;
 			},
-			onEditFooterClick: (index, innerIndex, data, parent) => {
+			onEditFooterClick: (e, index, innerIndex, data) => {
 				setContent({
 					title: 'Edit Footer',
 					body: (
@@ -111,7 +111,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 						/>
 					),
 					footer: <EditAdaptiveGameFooterFooter btnRef={footerBtnRef} />,
-					parentElement: parent,
+					e,
 				});
 			},
 		};

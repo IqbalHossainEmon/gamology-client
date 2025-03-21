@@ -4,79 +4,112 @@ import styles from './ModalBody.module.css';
 
 function ModalBody({ content, fadeIn, hideModal }) {
 	const [style, setStyle] = useState({
-		x: 0,
-		y: 0,
 		top: 0,
 		left: 0,
-		transformOrigin: '0 center',
+		translate: '0 0',
+		// transformOrigin: '0 center',
 	});
 
 	const containerRef = useRef(null);
 
+	const crossBtnRef = useRef(null);
+
+	const hiddenButton = useRef(null);
+
 	useEffect(() => {
 		//   x and y position
-		if ((containerRef.current, content.parentElement)) {
-			const { quadrant } = content.parentElement;
-
-			const top = content.parentElement.y;
-			const left = content.parentElement.x;
-
-			const width = containerRef.current?.offsetWidth;
-			const height = containerRef.current?.offsetHeight;
+		if (content.originPoint) {
+			const { left, top } = content.originPoint;
 
 			const centerX = window.innerWidth / 2;
 			const centerY = window.innerHeight / 2;
 
-			const newX = centerX - width / 2 - left;
-			const newY = centerY - height / 2 - top;
+			const newStyle = {
+				left: `${left}px`,
+				top: `${top}px`,
+				translate: `calc(-50% - ${left - centerX}px) calc(-50% - ${top - centerY}px)`,
+			};
 
-			const translate = `${newX}px ${newY}px`;
-
-			switch (quadrant) {
-				case 'top-right':
-					setStyle((x, y, ...rest) => ({
-						...rest,
-						left: left - width,
-						top: top - height / 2,
-						transformOrigin: '100% center',
-						translate,
-					}));
-					break;
-				case 'bottom-left':
-					setStyle(prev => ({
-						...prev,
-						top: top - height,
-						left,
-						transformOrigin: '0 100%',
-						translate,
-					}));
-					break;
-				case 'bottom-right':
-					setStyle(prev => ({
-						...prev,
-						top: top - height,
-						left: left - width,
-						transformOrigin: '100% 100%',
-						translate,
-					}));
-					break;
-				default:
-					setStyle(({ x, y, ...rest }) => ({
-						...rest,
-						top: top - height / 2,
-						left,
-						translate,
-					}));
-					break;
-			}
+			setStyle(newStyle);
+		} else {
+			const newStyle = {
+				left: '50%',
+				top: '50%',
+			};
+			setStyle(newStyle);
 		}
-	}, [containerRef, content.parentElement]);
+	}, [content]);
+
+	// Focus trap effect
+	useEffect(() => {
+		const container = containerRef.current;
+
+		if (!fadeIn || !container) return;
+
+		const focusableSelector =
+			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+		const getFocusableElements = () =>
+			Array.from(container.querySelectorAll(focusableSelector)).filter(
+				el =>
+					!el.hasAttribute('disabled') &&
+					el.offsetParent !== null &&
+					el.getAttribute('tabindex') !== '-1' &&
+					el !== crossBtnRef.current
+			);
+
+		const handleKeyDown = e => {
+			if (e.key !== 'Tab') return;
+
+			const focusableElements = getFocusableElements();
+			const firstElement = focusableElements[0];
+			const lastElement = focusableElements[focusableElements.length - 1];
+
+			// If no element in modal is currently focused, focus the first element
+			if (!container.contains(document.activeElement)) {
+				e.preventDefault();
+				firstElement?.focus();
+				return;
+			}
+
+			if (e.shiftKey) {
+				// Shift + Tab (backward)
+				if (document.activeElement === firstElement) {
+					e.preventDefault();
+					lastElement?.focus();
+				}
+			}
+			// Tab (forward)
+			if (!e.shiftKey && document.activeElement === lastElement) {
+				e.preventDefault();
+				firstElement?.focus();
+			}
+		};
+
+		// Add event listener
+		container.addEventListener('keydown', handleKeyDown);
+
+		// Set initial focus after animation
+
+		const focusTimeout = setTimeout(() => {
+			const hiddenElement = hiddenButton.current;
+			hiddenElement.focus();
+		}, 250);
+
+		// Cleanup
+		return () => {
+			clearTimeout(focusTimeout);
+			if (container) {
+				container.removeEventListener('keydown', handleKeyDown);
+			}
+		};
+	}, [fadeIn]);
 
 	return (
 		<div
 			ref={containerRef}
-			className={`${fadeIn ? `${styles.zoomIn} ` : ''}${styles.modal}`}
-			{...(content.parentElement && fadeIn
+			className={`${fadeIn ? styles.zoomIn : styles.noSelect} ${styles.modal}`}
+			{...(content.originPoint && fadeIn
 				? {
 						style,
 					}
@@ -87,9 +120,29 @@ function ModalBody({ content, fadeIn, hideModal }) {
 					<h2 className={styles.header}>{content.title}</h2>
 					<div className={styles.body}>{content.body}</div>
 					<div>{content.footer}</div>
-					<button className={styles.crossBtn} onClick={hideModal} type='button'>
+					<button
+						ref={crossBtnRef}
+						className={styles.crossBtn}
+						onClick={hideModal}
+						type='button'
+						tabIndex={0}
+						aria-label='Close modal'
+					>
 						<span className={styles.cross} />
 					</button>
+					<button
+						type='button'
+						tabIndex={0}
+						name='hiddenButton'
+						ref={hiddenButton}
+						style={{
+							width: '0px',
+							height: '0px',
+							overflow: 'hidden',
+							outline: 'none',
+							border: 'none',
+						}}
+					/>
 				</div>
 			</ScrollBar>
 		</div>

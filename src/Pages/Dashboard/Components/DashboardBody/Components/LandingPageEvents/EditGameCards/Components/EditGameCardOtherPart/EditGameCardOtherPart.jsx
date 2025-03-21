@@ -62,7 +62,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 										onReset={data => {
 											cardsRef.current[outerIndex].cards[index] = data;
 										}}
-										onDelete={() => {
+										onDelete={e => {
 											if (gameCards.cards.length === 1) {
 												setContent({
 													title: 'Confirm Deletion',
@@ -107,6 +107,7 @@ function EditGameCardOtherPart({ gamesCards, cardsRef, setGameCards, errorMessag
 															</ButtonWithRipple>
 														</div>
 													),
+													e,
 												});
 												return;
 											}

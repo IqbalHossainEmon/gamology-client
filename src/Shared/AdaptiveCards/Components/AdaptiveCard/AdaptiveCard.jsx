@@ -44,8 +44,6 @@ function AdaptiveCard({
 
 	const setToast = useToast();
 
-	const footerBtnRef = useRef(null);
-
 	return (
 		<li className={styles.adaptiveGameCard} ref={cardRef}>
 			{editingHeader &&
@@ -152,17 +150,9 @@ function AdaptiveCard({
 					)}
 					{isEditing && data.footer && (
 						<ButtonWithRipple
-							btnRef={footerBtnRef}
 							containerClassName={styles.editFooterBtnContainer}
 							className={styles.editFooterBtn}
-							onClick={() =>
-								handleEditFooter(
-									parentIndex,
-									innerIndex,
-									data,
-									footerBtnRef.current
-								)
-							}
+							onClick={e => handleEditFooter(e, parentIndex, innerIndex, data)}
 						>
 							{data.footer.length === 0 ? 'Add' : 'Edit'} Footer
 						</ButtonWithRipple>

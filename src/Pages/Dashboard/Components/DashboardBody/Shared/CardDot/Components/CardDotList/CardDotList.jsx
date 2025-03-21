@@ -23,8 +23,8 @@ function CardDotList({ lists, onAppear, item, fadeIn, setHide }) {
 					list.name && (
 						<li key={list.name} ref={ref => listContainerRef.current.push(ref)}>
 							<button
-								onClick={() => {
-									list.event(item);
+								onClick={e => {
+									list.event(item, e);
 									if ((setHide, list.shouldHide)) setHide();
 								}}
 								type='button'

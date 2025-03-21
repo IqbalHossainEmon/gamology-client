@@ -129,7 +129,7 @@ function EditGameCardContainer({
 
 	if (!evenRef.current) {
 		evenRef.current = {
-			handleModal: (callback, isDelete) => {
+			handleModal: (callback, isDelete, e) => {
 				setContent({
 					title: `Confirm ${isDelete ? 'Deletion' : 'Clearing'}`,
 					body: (
@@ -165,26 +165,31 @@ function EditGameCardContainer({
 							</ButtonWithRipple>
 						</div>
 					),
+					e,
 				});
 			},
-			onDelete: () => {
-				const callback = onDelete();
+			onDelete: e => {
+				const callback = onDelete(e);
 				if (errorShowRef.current) {
 					setErrorShow(false);
 				}
 				if (callback) {
-					evenRef.current.handleModal(callback, true);
+					evenRef.current.handleModal(callback, true, e);
 				}
 			},
-			onClear: () => {
+			onClear: e => {
 				if (errorShowRef.current) {
 					setErrorShow(false);
 				}
 				if (cardsRef.current.length > 6) {
-					evenRef.current.handleModal(() => {
-						setCards(prev => ({ ...prev, cards: [] }));
-						onClear();
-					});
+					evenRef.current.handleModal(
+						() => {
+							setCards(prev => ({ ...prev, cards: [] }));
+							onClear();
+						},
+						false,
+						e
+					);
 				} else {
 					setCards(prev => ({ ...prev, cards: [] }));
 					onClear();

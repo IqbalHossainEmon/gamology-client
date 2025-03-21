@@ -83,7 +83,7 @@ function EditUserBody({ user, setUser }) {
 					});
 				}
 			},
-			handleSaveChanges: () => {
+			handleSaveChanges: e => {
 				if (eventRefs.current.handleValidation()) {
 					setErrorChange(prev => prev + 1);
 					errorMessages.current.wasOuterError = true;
@@ -115,12 +115,13 @@ function EditUserBody({ user, setUser }) {
 								}}
 							/>
 						),
+						e,
 					});
 					return;
 				}
 				eventRefs.current.handleBackEndRequest();
 			},
-			handleDelete: () => {
+			handleDelete: e => {
 				setContent({
 					title: 'Delete User',
 					body: (
@@ -146,6 +147,7 @@ function EditUserBody({ user, setUser }) {
 							errorMessage="Please type 'DELETE' to confirm"
 						/>
 					),
+					e,
 				});
 			},
 		};

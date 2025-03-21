@@ -126,7 +126,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 					Reset
 				</ButtonWithRipple>
 				<ButtonWithRipple
-					onClick={() =>
+					onClick={e =>
 						setContent({
 							title: 'Delete Game Showcase',
 							body: <p>Are you sure you want to delete this game showcase?</p>,
@@ -138,6 +138,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 									}}
 								/>
 							),
+							e,
 						})
 					}
 				>

@@ -47,7 +47,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 							onReset={data => {
 								cardsRef.current[0].cards[index] = data;
 							}}
-							onDelete={() => {
+							onDelete={e => {
 								if (cardsRef.current[0].cards.length === 1) {
 									setContent({
 										title: 'Cannot delete',
@@ -65,6 +65,7 @@ function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessage
 												Ok
 											</ButtonWithRipple>
 										),
+										e,
 									});
 									return;
 								}

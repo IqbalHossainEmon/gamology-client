@@ -19,7 +19,7 @@ function EditGameShowCaseExtraCard({ onclick }) {
 				type='button'
 				ref={btnRef}
 				className={styles.extraCard}
-				onClick={() => {
+				onClick={e => {
 					setContent({
 						title: 'Add Game to the list',
 						body: (
@@ -28,6 +28,7 @@ function EditGameShowCaseExtraCard({ onclick }) {
 							</p>
 						),
 						footer: <AddGameCardModalFooter onClick={onclick} />,
+						e,
 					});
 				}}
 			>
