@@ -7,7 +7,7 @@ const withScreenWidthProvider = Component =>
 			widthInPixels: window.innerWidth,
 			widthInRem:
 				window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize),
-			remsInPixel: parseFloat(getComputedStyle(document.documentElement).fontSize),
+			remHeightInPixels: parseFloat(getComputedStyle(document.documentElement).fontSize),
 		});
 
 		const handleChange = useRef(null);
@@ -19,7 +19,13 @@ const withScreenWidthProvider = Component =>
 					widthInRem:
 						window.innerWidth /
 						parseFloat(getComputedStyle(document.documentElement).fontSize),
-					remsInPixel: parseFloat(getComputedStyle(document.documentElement).fontSize),
+					remHeightInPixels: parseFloat(
+						getComputedStyle(document.documentElement).fontSize
+					),
+					heightInPixels: window.innerHeight,
+					heightInRem:
+						window.innerHeight /
+						parseFloat(getComputedStyle(document.documentElement).fontSize),
 				});
 			};
 		}

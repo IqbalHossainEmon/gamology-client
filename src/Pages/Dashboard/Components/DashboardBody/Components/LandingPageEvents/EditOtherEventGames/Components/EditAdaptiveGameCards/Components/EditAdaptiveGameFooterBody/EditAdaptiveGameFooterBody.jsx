@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import SelectionField from '../../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
+import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import styles from './EditAdaptiveGameFooterBody.module.css';
 
 function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
@@ -9,8 +10,6 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 	const [buttonNumber, setButtonNumber] = useState(
 		data.footer ? (Array.isArray(data.footer) ? data.footer.length : -1) : 0
 	);
-
-	const footerDataRef = useRef(data.footer);
 
 	let buttonElement = null;
 	switch (buttonNumber) {
@@ -75,6 +74,8 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 		};
 	}
 
+	const { remHeightInPixels } = useScreenWidth();
+
 	useEffect(() => {
 		const btn = btnRef.current;
 		if (btn) {
@@ -92,7 +93,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 			<p className={styles.editFooterHeader}>Edit the footer of card {index + 1}?</p>
 			<div
 				className={styles.editFooterHeaderContainer}
-				style={{ height: `${height ? height / 16 + 3.75 : 3.75}rem` }}
+				style={{ height: `${height ? height / remHeightInPixels + 3.75 : 3.75}rem` }}
 			>
 				<SelectionField
 					htmlFor='number-of-buttons'
@@ -102,7 +103,9 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 					defaultValue={
 						data.footer
 							? Array.isArray(data.footer)
-								? data.footer.length
+								? data.footer.length === 0
+									? 'None'
+									: data.footer.length
 								: 'Price'
 							: 'None'
 					}

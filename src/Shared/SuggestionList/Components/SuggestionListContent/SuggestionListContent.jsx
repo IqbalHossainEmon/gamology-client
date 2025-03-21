@@ -35,15 +35,19 @@ function SuggestionListContent({
 		? extraSection(length)
 		: { numberOfButton: 0, Content: () => null };
 
+	const { remHeightInPixels } = useScreenWidth();
+
 	useEffect(() => {
 		if (setContainerHeight || loading) {
-			setContainerHeight(loading ? 14 : (height + (numberOfButton || 0) * 34) / 16);
+			setContainerHeight(
+				loading ? 14 : (height + (numberOfButton || 0) * 34) / remHeightInPixels
+			);
 		}
 
 		return () => {
 			if (setContainerHeight) setContainerHeight(0);
 		};
-	}, [height, loading, numberOfButton, setContainerHeight]);
+	}, [height, loading, numberOfButton, remHeightInPixels, setContainerHeight]);
 
 	const { cloneObject } = useObjectUtilities();
 
@@ -54,7 +58,9 @@ function SuggestionListContent({
 		>
 			<div
 				style={{
-					height: loading ? '14rem' : `${(height + (numberOfButton || 0) * 34) / 16}rem`,
+					height: loading
+						? '14rem'
+						: `${(height + (numberOfButton || 0) * 34) / remHeightInPixels}rem`,
 				}}
 				className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>

@@ -8,7 +8,7 @@ export default function IndiGameTextDescription({ descriptions }) {
 	const [show, setShow] = useState(false);
 	const [transition, setTransition] = useState(false);
 
-	const { remsInPixel } = useScreenWidth();
+	const { remHeightInPixels } = useScreenWidth();
 
 	return (
 		<div>
@@ -18,10 +18,10 @@ export default function IndiGameTextDescription({ descriptions }) {
 					style: show
 						? transition
 							? {
-									height: `${(elementRef?.current?.offsetHeight || 0) / remsInPixel + 3}rem`,
+									height: `${(elementRef?.current?.offsetHeight || 0) / remHeightInPixels + 3}rem`,
 								}
 							: { height: 'auto' }
-						: { height: `${500 / remsInPixel}rem` },
+						: { height: `${500 / remHeightInPixels}rem` },
 				})}
 			>
 				<div className={styles.individualGameDetailDescription} ref={elementRef}>

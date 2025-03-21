@@ -12,14 +12,14 @@ function TextArea({ onChange, ...rest }, ref) {
 		};
 	};
 
-	const { remsInPixel } = useScreenWidth();
+	const { remHeightInPixels } = useScreenWidth();
 
 	const adjustHeight = useCallback(() => {
 		if (textFieldRef.current) {
 			textFieldRef.current.style.height = 'auto';
-			textFieldRef.current.style.height = `${textFieldRef.current.scrollHeight / remsInPixel}rem`;
+			textFieldRef.current.style.height = `${textFieldRef.current.scrollHeight / remHeightInPixels}rem`;
 		}
-	}, [remsInPixel]);
+	}, [remHeightInPixels]);
 
 	const debouncedAdjustHeight = useCallback(() => debounce(adjustHeight, 100)(), [adjustHeight]);
 

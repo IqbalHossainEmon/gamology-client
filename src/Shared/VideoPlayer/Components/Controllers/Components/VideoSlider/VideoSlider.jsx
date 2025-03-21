@@ -16,7 +16,7 @@ export default function VideoSlider({
 	const stateRef = useRef(position);
 	stateRef.current = position;
 	const pathRef = useRef(null);
-	const { widthInRem } = useScreenWidth();
+	const { widthInRem, heightInRem } = useScreenWidth();
 	const eventRefs = useRef(null);
 
 	if (!eventRefs.current) {
@@ -52,7 +52,7 @@ export default function VideoSlider({
 	}
 	useEffect(() => {
 		eventRefs.current.handleResize();
-	}, [widthInRem]);
+	}, [widthInRem, heightInRem]);
 
 	useEffect(() => {
 		setTimeout(() => {

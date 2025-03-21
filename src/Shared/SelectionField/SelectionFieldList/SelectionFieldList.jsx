@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './SelectionFieldList.module.css';
 
@@ -22,6 +23,8 @@ function SelectionFieldList({
 		else if (setHeight && !show) setHeight(0);
 	}, [positionRef, setHeight, show]);
 
+	const { remHeightInPixels } = useScreenWidth();
+
 	return (
 		show && (
 			<div
@@ -30,7 +33,7 @@ function SelectionFieldList({
 				<div
 					className={styles.listScrollContainer}
 					{...(positionRef.current.height && {
-						style: { height: `${positionRef.current.height / 16}rem` },
+						style: { height: `${positionRef.current.height / remHeightInPixels}rem` },
 					})}
 				>
 					<ScrollBar>

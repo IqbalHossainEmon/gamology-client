@@ -40,10 +40,11 @@ export default function SelectionField({
 		}
 	}, [defaultValue]);
 
-	const { widthInRem, remsInPixel } = useScreenWidth();
+	const { widthInRem, remHeightInPixels } = useScreenWidth();
 
-	const remWidthRefs = useRef({ widthInRem, remsInPixel });
-	remWidthRefs.current = { widthInRem, remsInPixel };
+	const remWidthRefs = useRef({ widthInRem, remHeightInPixels });
+	remWidthRefs.current.widthInRem = widthInRem;
+	remWidthRefs.current.remHeightInPixels = remHeightInPixels;
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 	const calculateTextWidth = useCalculateTextSize();
@@ -61,7 +62,7 @@ export default function SelectionField({
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
 				// Check if the dropdown should be at the bottom or top depending on the space available for 2 rows
-				const oneRow = 2.5 * remWidthRefs.current.remsInPixel;
+				const oneRow = 2.5 * remWidthRefs.current.remHeightInPixels;
 
 				if (bottomRemain >= oneRow * 2 || y < oneRow * 2) {
 					positionRef.current.bottom = true;

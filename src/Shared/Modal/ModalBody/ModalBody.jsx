@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './ModalBody.module.css';
 
@@ -7,7 +8,6 @@ function ModalBody({ content, fadeIn, hideModal }) {
 		top: 0,
 		left: 0,
 		translate: '0 0',
-		// transformOrigin: '0 center',
 	});
 
 	const containerRef = useRef(null);
@@ -16,8 +16,9 @@ function ModalBody({ content, fadeIn, hideModal }) {
 
 	const hiddenButton = useRef(null);
 
+	const { heightInPixels, widthInPixels } = useScreenWidth();
+
 	useEffect(() => {
-		//   x and y position
 		if (content.originPoint) {
 			const { left, top } = content.originPoint;
 
@@ -38,7 +39,7 @@ function ModalBody({ content, fadeIn, hideModal }) {
 			};
 			setStyle(newStyle);
 		}
-	}, [content]);
+	}, [content, heightInPixels, widthInPixels]);
 
 	// Focus trap effect
 	useEffect(() => {
@@ -55,7 +56,7 @@ function ModalBody({ content, fadeIn, hideModal }) {
 					!el.hasAttribute('disabled') &&
 					el.offsetParent !== null &&
 					el.getAttribute('tabindex') !== '-1' &&
-					el !== crossBtnRef.current
+					el.name !== 'hiddenButton'
 			);
 
 		const handleKeyDown = e => {
@@ -66,7 +67,11 @@ function ModalBody({ content, fadeIn, hideModal }) {
 			const lastElement = focusableElements[focusableElements.length - 1];
 
 			// If no element in modal is currently focused, focus the first element
-			if (!container.contains(document.activeElement)) {
+
+			if (
+				!container.contains(document.activeElement) ||
+				document.activeElement === hiddenButton.current
+			) {
 				e.preventDefault();
 				firstElement?.focus();
 				return;
@@ -86,17 +91,14 @@ function ModalBody({ content, fadeIn, hideModal }) {
 			}
 		};
 
-		// Add event listener
 		container.addEventListener('keydown', handleKeyDown);
 
 		// Set initial focus after animation
-
 		const focusTimeout = setTimeout(() => {
 			const hiddenElement = hiddenButton.current;
 			hiddenElement.focus();
 		}, 250);
 
-		// Cleanup
 		return () => {
 			clearTimeout(focusTimeout);
 			if (container) {

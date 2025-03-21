@@ -27,7 +27,7 @@ function CardDot({ parentRef, item, lists }) {
 	}
 
 	const isTouchAble = useIsTouchAble();
-	const { widthInRem } = useScreenWidth();
+	const { widthInRem, heightInRem } = useScreenWidth();
 
 	useEffect(() => {
 		const parent = parentRef.current;
@@ -56,7 +56,7 @@ function CardDot({ parentRef, item, lists }) {
 				isEventAdded.current = false;
 			}
 		};
-	}, [isTouchAble, parentRef, widthInRem]);
+	}, [isTouchAble, parentRef, widthInRem, heightInRem]);
 
 	return (
 		<CardDotBody

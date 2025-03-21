@@ -9,6 +9,7 @@
 	z-index: 5;
 	opacity: 0;
 	scale: 0.1;
+	overflow: hidden;
 	translate: -50% -50%;
 	background-color: #18181ccd;
 	-webkit-backdrop-filter: blur(50px);
