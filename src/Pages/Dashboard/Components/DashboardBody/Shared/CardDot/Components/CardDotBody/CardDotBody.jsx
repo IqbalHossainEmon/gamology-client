@@ -21,6 +21,7 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 	fadeInRef.current = fadeIn;
 
 	const eventRefs = useRef(null);
+	const btnRef = useRef(null);
 
 	const isTouchAble = useIsTouchAble();
 
@@ -61,6 +62,7 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 	return (
 		<div className={styles.cardDots}>
 			<button
+				ref={btnRef}
 				className={`${styles.btnDot}${fadeIn || listShow ? ` ${styles.zoomIn}` : ''}`}
 				onClick={eventRefs.current.onClick}
 				type='button'

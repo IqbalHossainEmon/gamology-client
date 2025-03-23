@@ -29,6 +29,10 @@
 		scale 200ms;
 }
 
+.btnDot:focus {
+	outline: 2px solid white;
+}
+
 .btnDot:hover {
 	background-color: rgb(29, 29, 29, 0.5);
 }

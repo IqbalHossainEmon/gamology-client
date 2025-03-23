@@ -29,14 +29,33 @@ function RippleEffect({ background, long }) {
 			handleClick: e => {
 				const btn = e.currentTarget;
 
-				const rect = btn.getBoundingClientRect();
-
-				const x = (e.touches ? e.touches[0].pageX : e.pageX) - rect.left;
-				const y = (e.touches ? e.touches[0].pageY : e.pageY) - rect.top;
-
 				// get the width and height of the button
 				const width = btn.offsetWidth;
 				const height = btn.offsetHeight;
+
+				const rect = btn.getBoundingClientRect();
+
+				let x, y;
+
+				switch (e.pointerType) {
+					case 'mouse':
+						x = e.clientX - rect.left;
+						y = e.clientY - rect.top;
+						break;
+					case 'touch':
+						const touch = e.touches[0];
+						x = touch.clientX - rect.left;
+						y = touch.clientY - rect.top;
+						break;
+					case 'pen':
+						x = e.clientX - rect.left;
+						y = e.clientY - rect.top;
+						break;
+					default:
+						x = width / 2;
+						y = height / 2;
+						break;
+				}
 
 				// Calculate distances from the click point to each corner
 				const distances = [

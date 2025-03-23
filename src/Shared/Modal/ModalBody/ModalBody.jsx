@@ -67,7 +67,6 @@ function ModalBody({ content, fadeIn, hideModal }) {
 			const lastElement = focusableElements[focusableElements.length - 1];
 
 			// If no element in modal is currently focused, focus the first element
-
 			if (
 				!container.contains(document.activeElement) ||
 				document.activeElement === hiddenButton.current
@@ -97,7 +96,7 @@ function ModalBody({ content, fadeIn, hideModal }) {
 		const focusTimeout = setTimeout(() => {
 			const hiddenElement = hiddenButton.current;
 			hiddenElement.focus();
-		}, 250);
+		}, 200);
 
 		return () => {
 			clearTimeout(focusTimeout);
@@ -137,13 +136,7 @@ function ModalBody({ content, fadeIn, hideModal }) {
 						tabIndex={0}
 						name='hiddenButton'
 						ref={hiddenButton}
-						style={{
-							width: '0px',
-							height: '0px',
-							overflow: 'hidden',
-							outline: 'none',
-							border: 'none',
-						}}
+						className={styles.hiddenBtn}
 					/>
 				</div>
 			</ScrollBar>

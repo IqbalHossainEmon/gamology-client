@@ -157,7 +157,9 @@ export default function TypeableSelectionField({
 				searchRef={elementRef}
 				setHeight={setHeight}
 				link='http://localhost:5173/api/autocomplete'
-				parentShow={!checkLinkStarValue(typeof value === 'string' ? value : value.name)}
+				parentShow={
+					!checkLinkStarValue(typeof value === 'string' ? value : value.name) && focused
+				}
 			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>

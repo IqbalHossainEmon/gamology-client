@@ -70,7 +70,6 @@ function AdaptiveCard({
 								onChange={e => {
 									if (e.target.files[0]) {
 										const { name: fileName } = e.target.files[0] || {};
-
 										// reject if file is not an image
 										if (!fileName.match(/\.(jpg|jpeg|png|gif)$/)) {
 											setToast({
@@ -138,7 +137,6 @@ function AdaptiveCard({
 														? 'rgb(0, 0, 0)'
 														: 'rgb(255, 255, 255)'
 												}
-												long
 											/>
 										</a>
 									))}

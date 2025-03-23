@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
+import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import Image from '../../../Image/Image/Image';
 import ScrollBar from '../../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './SuggestionListContent.module.css';

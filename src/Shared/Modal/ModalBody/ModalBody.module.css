@@ -23,6 +23,7 @@
 .modalContentContainer {
 	padding: 2em;
 }
+
 .zoomIn {
 	opacity: 1;
 	scale: 1;
@@ -90,6 +91,15 @@
 .crossBtn:focus .cross::after,
 .crossBtn:focus .cross::before {
 	background-color: #ffffff;
+}
+
+.hiddenBtn {
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+	outline: none;
+	border: none;
+	position: absolute;
 }
 
 @media (hover: hover) and (pointer: fine) {
