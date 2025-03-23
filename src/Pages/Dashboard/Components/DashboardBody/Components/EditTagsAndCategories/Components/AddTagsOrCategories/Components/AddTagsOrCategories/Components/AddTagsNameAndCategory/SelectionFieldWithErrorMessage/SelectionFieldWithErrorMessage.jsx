@@ -29,7 +29,7 @@ function SelectionFieldWithErrorMessage({
 				errorBorder={errorShow}
 				htmlFor={htmlFor}
 				list={list}
-				name={name}
+				propertyName={name}
 				onFocusClick={() => {
 					setErrorShow(false);
 					handleCheck();

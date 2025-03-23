@@ -42,7 +42,7 @@ function SelectionFieldTextField({
 						enabled={enabled}
 						htmlFor={`${parentIndex}${name}${length}${i}${index}`}
 						list={listArr.filter(la => !selectedKeys.includes(la))}
-						name='Key Type'
+						propertyName='Key Type'
 						onFocusClick={() => setHideParentErrorShow()}
 						placeholder='Required'
 						setState={value => {

@@ -41,7 +41,7 @@ export default function GameInfoFieldSpecifications({
 						errorMessage={errorMessages.current.gameSpecificationsError.copyWrite}
 						field='input'
 						htmlFor='copyright'
-						name='copyWrite'
+						propertyName='copyWrite'
 						placeholder='Copyright'
 						setState={handleValue}
 						{...(hasDefault && { defaultValue: defaultGameSpecifications.copyWrite })}
@@ -53,7 +53,7 @@ export default function GameInfoFieldSpecifications({
 						errorMessage={errorMessages.current.gameSpecificationsError.policy}
 						field='input'
 						htmlFor='privacy'
-						name='policy'
+						propertyName='policy'
 						placeholder='Privacy Policy Link'
 						setState={handleValue}
 						{...(hasDefault && { defaultValue: defaultGameSpecifications.policy })}

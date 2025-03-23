@@ -20,7 +20,7 @@ export default function GameInfoFieldDetails({
 				errorChange={errorChange}
 				errorMessage={errorMessages.current.gameInfoError.name}
 				field='input'
-				name='name'
+				propertyName='name'
 				placeholder="Game's Name"
 				setState={handleSetValue}
 				{...(hasDefault && { defaultValue: defaultGameInfo.name })}
@@ -32,7 +32,7 @@ export default function GameInfoFieldDetails({
 					errorMessage={errorMessages.current.gameInfoError.developer}
 					field='input'
 					htmlFor='developer'
-					name='developer'
+					propertyName='developer'
 					placeholder='Developer'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.developer })}
@@ -43,7 +43,7 @@ export default function GameInfoFieldDetails({
 					errorMessage={errorMessages.current.gameInfoError.publisher}
 					field='input'
 					htmlFor='publisher'
-					name='publisher'
+					propertyName='publisher'
 					placeholder='Publisher'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.publisher })}
@@ -55,7 +55,7 @@ export default function GameInfoFieldDetails({
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameInfoError.logo}
 					htmlFor='gameLogo'
-					name='logo'
+					propertyName='logo'
 					placeholder='Choose cover image'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.logo })}
@@ -66,7 +66,7 @@ export default function GameInfoFieldDetails({
 					errorChange={errorChange}
 					errorMessage={errorMessages.current.gameInfoError.phoneLogo}
 					htmlFor='phoneLogo'
-					name='phoneLogo'
+					propertyName='phoneLogo'
 					placeholder='Choose portrait cover image'
 					setState={handleSetValue}
 					{...(hasDefault && { defaultValue: defaultGameInfo.phoneLogo })}

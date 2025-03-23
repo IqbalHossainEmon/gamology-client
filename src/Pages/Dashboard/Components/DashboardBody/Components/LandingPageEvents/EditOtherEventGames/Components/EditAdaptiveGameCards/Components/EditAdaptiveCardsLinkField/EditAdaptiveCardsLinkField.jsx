@@ -3,7 +3,7 @@ import TypeableSelectionField from '../../../../../../../../../../../Shared/Type
 import useTextConverter from '../../../../../../../../../../../Utils/Hooks/useTextConverter';
 import styles from './EditAdaptiveCardsLinkField.module.css';
 
-function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet }) {
+function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet, errorChange, errorMessage }) {
 	const eventRefs = useRef(null);
 
 	const { convertNameToLink } = useTextConverter();
@@ -51,8 +51,8 @@ function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet }) {
 				checkLinkStarValue={eventRefs.current.checkLinkStarValue}
 				specialSetValueHandler={eventRefs.current.valueSetter}
 				handleValueCheck={eventRefs.current.valueChecker}
-				// errorMessage={errorMessage.current}
-				// errorChange={errorChange}
+				errorMessage={errorMessage}
+				errorChange={errorChange}
 			/>
 		</div>
 	);

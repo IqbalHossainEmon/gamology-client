@@ -17,7 +17,7 @@ function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {
 							field='input'
 							htmlFor={`tagName-${key}`}
 							key={key}
-							name={key}
+							propertyName={key}
 							placeholder='Tag Name'
 							setState={(val, name) => {
 								infoRef[name] = val;

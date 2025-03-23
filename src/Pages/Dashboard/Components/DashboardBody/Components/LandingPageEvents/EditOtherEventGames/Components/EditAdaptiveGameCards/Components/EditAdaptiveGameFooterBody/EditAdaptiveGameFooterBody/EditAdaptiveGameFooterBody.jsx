@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import TextField from '../../../../../../../../../../../../Shared/TextField/TextField/TextField';
+import TypeableSelectionField from '../../../../../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
+import useObjectUtilities from '../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import EditAdaptiveGameFooterBodySelectionField from '../EditAdaptiveGameFooterBodySelectionField/EditAdaptiveGameFooterBodySelectionField';
 import styles from './EditAdaptiveGameFooterBody.module.css';
 
@@ -22,6 +24,8 @@ const getTypeOfFooter = footer => {
 };
 
 function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
+	const { cloneObject } = useObjectUtilities();
+
 	const [buttonNumber, setButtonNumber] = useState(
 		data.footer ? (Array.isArray(data.footer) ? data.footer.length : -1) : 0
 	);
@@ -29,17 +33,20 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 	const [errorChange, setErrorChange] = useState(0);
 	const errorMessage = useRef(getTypeOfFooter(buttonNumber));
 
-	const dataHolder = useRef(data.footer);
+	const dataHolder = useRef(cloneObject(data.footer));
 
 	const eventRefs = useRef(null);
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			onClick: () => {},
-			setValue: (val, name) => {
-				if (Array.isArray(dataHolder.current)) {
-					console.log(dataHolder.current);
+			onClick: () => {
+				console.log(dataHolder.current);
+			},
+			setValue: (val, nameWithIndex) => {
+				const [name, innerIndex] = nameWithIndex.split('-');
+				if (innerIndex) {
+					dataHolder.current[innerIndex][name] = val;
 				} else {
-					console.log(dataHolder.current);
+					dataHolder.current[name] = val;
 				}
 			},
 		};
@@ -57,7 +64,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						errorChange={errorChange}
 						errorMessage={errorMessage.current.regular}
 						placeholder='Regular Price'
-						defaultValue={data.footer ? data.footer.regular : ''}
+						defaultValue={data.footer ? dataHolder.current.regular : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
 						name='regular'
@@ -68,7 +75,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						errorMessage={errorMessage.current.discount}
 						htmlFor='discounted-price'
 						placeholder='Discounted Price'
-						defaultValue={data.footer ? data.footer.discount : ''}
+						defaultValue={data.footer ? dataHolder.current.discount : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
 						name='discounted'
@@ -86,18 +93,23 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						field='input'
 						htmlFor={`button-text-${i}`}
 						placeholder={`Button ${i + 1} Text`}
-						defaultValue={data.footer ? data.footer[i]?.text : ''}
+						defaultValue={data.footer ? dataHolder.current[i]?.text : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
 						name={`text-${i}`}
 					/>
-					<TextField
+					<TypeableSelectionField
+						blurSet
+						propertyName='name'
+						checkLinkStarValue={eventRefs.current.checkLinkStarValue}
+						specialSetValueHandler={eventRefs.current.valueSetter}
+						handleValueCheck={eventRefs.current.valueChecker}
 						errorChange={errorChange}
 						errorMessage={errorMessage.current[i].link}
 						field='input'
 						htmlFor={`button-link-${i}`}
 						placeholder={`Button ${i + 1} Link`}
-						defaultValue={data.footer ? data.footer[i]?.link : ''}
+						defaultValue={data.footer ? dataHolder.current[i]?.link : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
 						name={`link-${i}`}

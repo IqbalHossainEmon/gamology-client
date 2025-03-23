@@ -46,8 +46,7 @@ function AdaptiveCard({
 
 	return (
 		<li className={styles.adaptiveGameCard} ref={cardRef}>
-			{editingHeader &&
-				editingHeader(htmlFor, link, onFieldChange, cardRef, data, innerIndex, length)}
+			{editingHeader && editingHeader(htmlFor, link, cardRef, data, innerIndex, length)}
 			<div
 				className={`${length === 1 ? styles.onlyOne : styles.multiple} ${styles.adaptiveGameCardContainer}`}
 			>

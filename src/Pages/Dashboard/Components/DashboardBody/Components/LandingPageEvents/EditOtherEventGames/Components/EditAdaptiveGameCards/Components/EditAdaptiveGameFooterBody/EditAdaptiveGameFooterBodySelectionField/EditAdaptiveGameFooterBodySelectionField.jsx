@@ -22,7 +22,7 @@ function EditAdaptiveGameFooterBodySelectionField({
 			<SelectionField
 				htmlFor='number-of-buttons'
 				list={[1, 2, 'Price']}
-				name='Number of Buttons'
+				propertyName='Number of Buttons'
 				setHeight={setHeight}
 				defaultValue={
 					data.footer
@@ -38,10 +38,20 @@ function EditAdaptiveGameFooterBodySelectionField({
 					const actualValue = val === 'Price' ? -1 : parseInt(val, 10);
 					setButtonNumber(actualValue);
 					errorMessage.current = getTypeOfFooter(actualValue);
-					if (dataHolder.current.length === 1 && errorMessage.current.length === 2) {
-						dataHolder.current.push({ ...errorMessage.current[1] });
+					if (Array.isArray(dataHolder.current) && actualValue > 0) {
+						if (dataHolder.current.length < actualValue) {
+							dataHolder.current.push({
+								text: '',
+								link: '',
+							});
+						} else if (dataHolder.current.length > actualValue) {
+							dataHolder.current.splice(actualValue);
+						}
 					} else {
-						dataHolder.current = getTypeOfFooter(actualValue);
+						dataHolder.current = {
+							regular: '',
+							discount: '',
+						};
 					}
 				}}
 			/>

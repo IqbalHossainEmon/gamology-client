@@ -30,7 +30,7 @@ export default function GameInfoFieldDescription({
 						}
 						field='input'
 						htmlFor={`main_header_${index}${item.id}`}
-						name='mainHeader'
+						propertyName='mainHeader'
 						placeholder='Main Header'
 						setState={handleSetValues}
 						{...(defaultData && { defaultValue: defaultData.shortDesc })}
@@ -48,7 +48,7 @@ export default function GameInfoFieldDescription({
 						}
 						field='input'
 						htmlFor={`sub_header_${index}${item.id}`}
-						name='subHeader'
+						propertyName='subHeader'
 						placeholder='Sub Header'
 						setState={handleSetValues}
 						{...(defaultData && { defaultValue: defaultData.subHeader })}
@@ -66,7 +66,7 @@ export default function GameInfoFieldDescription({
 						}
 						field='textarea'
 						htmlFor={`description_${index}${item.id}`}
-						name='description'
+						propertyName='description'
 						placeholder='Description'
 						setState={handleSetValues}
 						{...(defaultData && { defaultValue: defaultData.description })}

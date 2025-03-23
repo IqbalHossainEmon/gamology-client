@@ -42,7 +42,7 @@ function GameInfoFieldDescriptions({
 					errorMessage={errorMessages.current.gameDescriptionsError.shortDesc}
 					field='textarea'
 					htmlFor='short_description'
-					name='shortDesc'
+					propertyName='shortDesc'
 					placeholder='Short description...'
 					setState={handleSetSortDescription}
 					{...(hasDefault && { defaultValue: defaultGameDescriptions.shortDesc })}

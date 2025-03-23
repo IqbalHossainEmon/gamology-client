@@ -15,7 +15,7 @@ export default function SelectionField({
 	setState,
 	list = [],
 	defaultValue = '',
-	name = '',
+	propertyName = '',
 	onFocusClick,
 	enabled = true,
 	errorBorder = false,
@@ -149,7 +149,7 @@ export default function SelectionField({
 			<SelectionFieldList
 				setHeight={setHeight}
 				list={list}
-				name={name}
+				propertyName={propertyName}
 				none={none}
 				positionRef={positionRef}
 				setShow={setShow}

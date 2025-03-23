@@ -11,12 +11,13 @@ function FileUploadButton({
 	accept,
 	className,
 	setState,
-	name,
+	propertyName,
 	disabled,
 	errorMessage,
 	errorChange,
 	htmlFor = '',
 	defaultValue,
+	name,
 }) {
 	const [selected, setSelected] = useState({
 		selected: !!defaultValue,
@@ -87,7 +88,7 @@ function FileUploadButton({
 							file: e.target.files[0],
 						};
 
-						setState(object, name);
+						setState(object, propertyName);
 						setSelected({ selected: true, name: fileName, file: e.target.files[0] });
 					}
 				}

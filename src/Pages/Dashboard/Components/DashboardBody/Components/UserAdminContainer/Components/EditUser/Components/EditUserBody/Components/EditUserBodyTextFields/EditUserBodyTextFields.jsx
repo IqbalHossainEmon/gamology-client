@@ -16,7 +16,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					defaultValue={user.name.firstName}
 					htmlFor='firstName'
 					setState={setState}
-					name='firstName'
+					propertyName='firstName'
 				/>
 				<TextField
 					className={styles.textField}
@@ -25,7 +25,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					{...(user.name.middleName && { defaultValue: user.name.middleName })}
 					htmlFor='middleName'
 					setState={setState}
-					name='middleName'
+					propertyName='middleName'
 				/>
 				<TextField
 					errorChange={errorChange}
@@ -36,7 +36,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					defaultValue={user.name.lastName}
 					htmlFor='lastName'
 					setState={setState}
-					name='lastName'
+					propertyName='lastName'
 				/>
 			</div>
 			<h4 className={styles.subHeader}>Account Information</h4>
@@ -50,7 +50,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					defaultValue={user.displayName}
 					htmlFor='displayName'
 					setState={setState}
-					name='displayName'
+					propertyName='displayName'
 				/>
 				<TextField
 					errorChange={errorChange}
@@ -61,7 +61,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					defaultValue={user.email}
 					htmlFor='email'
 					setState={setState}
-					name='email'
+					propertyName='email'
 				/>
 			</div>
 			<h4 className={styles.subHeader}>Address</h4>
@@ -72,7 +72,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					field='input'
 					htmlFor='address_line1'
 					setState={setState}
-					name='addressLine1'
+					propertyName='addressLine1'
 				/>
 				<TextField
 					className={styles.addressTextField}
@@ -80,7 +80,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					field='input'
 					htmlFor='address_line2'
 					setState={setState}
-					name='addressLine2'
+					propertyName='addressLine2'
 				/>
 				<TextField
 					className={styles.textField}
@@ -88,7 +88,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					field='input'
 					htmlFor='city'
 					setState={setState}
-					name='city'
+					propertyName='city'
 				/>
 				<TextField
 					className={styles.textField}
@@ -96,7 +96,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					field='input'
 					htmlFor='region'
 					setState={setState}
-					name='region'
+					propertyName='region'
 				/>
 			</div>
 			<h4 className={styles.subHeader}>Role</h4>
@@ -107,7 +107,7 @@ function EditUserBodyTextFields({ setState, user, errorMessages, errorChange }) 
 					setState={setState}
 					list={['User', 'Admin']}
 					defaultValue='User'
-					name='role'
+					propertyName='role'
 				/>
 			</div>
 		</>

@@ -22,7 +22,6 @@ export default function TypeableSelectionField({
 	specialSetValueHandler,
 	handleValueCheck,
 	blurSet,
-	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
 	const [show, setShow] = useState(false);
@@ -87,7 +86,7 @@ export default function TypeableSelectionField({
 			handleBlur: e => {
 				setFocused(false);
 				if (blurSet && checkLinkStarValue(valueRef.current)) {
-					setState(e.target.value, true);
+					setState(e.target.value, true, propertyName);
 				}
 			},
 			getSuggestionValue: val => {

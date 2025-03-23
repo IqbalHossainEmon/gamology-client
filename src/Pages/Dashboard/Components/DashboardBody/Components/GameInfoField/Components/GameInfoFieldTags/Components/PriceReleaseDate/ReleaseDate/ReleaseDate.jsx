@@ -71,7 +71,7 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 							defaultValue={hasDefault ? defaultReleaseDate.day : ''}
 							htmlFor={1}
 							list={Array.from(Array(day.max), (_, idx) => ++idx)}
-							name='day'
+							propertyName='day'
 							onFocusClick={() => {
 								if (errorShow) {
 									setErrorShow(false);
@@ -87,7 +87,7 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 							defaultValue={hasDefault ? months[defaultReleaseDate.month - 1] : ''}
 							htmlFor={2}
 							list={months}
-							name='month'
+							propertyName='month'
 							onFocusClick={() => {
 								if (errorShow) {
 									setErrorShow(false);
@@ -106,7 +106,7 @@ function ReleaseDate({ gameInfo, errorChange, errorMessage, defaultReleaseDate, 
 								Array(100),
 								(_, idx) => new Date().getFullYear() + 1 - ++idx
 							)}
-							name='year'
+							propertyName='year'
 							onFocusClick={() => {
 								if (errorShow) {
 									setErrorShow(false);

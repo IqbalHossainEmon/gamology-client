@@ -10,6 +10,7 @@ export default function TextField({
 	htmlFor = 0,
 	setState,
 	errorMessage = '',
+	propertyName,
 	errorChange,
 	handleChange = () => {},
 	onFocusClick,
@@ -63,7 +64,7 @@ export default function TextField({
 			},
 			handleBlur: e => {
 				setFocused(false);
-				setState(e.target.value, e.target.name);
+				setState(e.target.value, propertyName);
 			},
 		};
 	}

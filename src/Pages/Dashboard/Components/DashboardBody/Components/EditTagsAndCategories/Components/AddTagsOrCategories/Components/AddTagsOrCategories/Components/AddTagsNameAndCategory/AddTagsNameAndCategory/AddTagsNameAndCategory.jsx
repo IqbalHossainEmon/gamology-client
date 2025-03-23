@@ -27,7 +27,7 @@ function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, categories 
 				errorMessage={errorRef.current.tag}
 				field='input'
 				htmlFor='tag-name'
-				name='tag'
+				propertyName='tag'
 				parentErrorShow={parentErrorShow}
 				placeholder='Enter New  Tag Name'
 				setState={(val, name) => {
@@ -40,7 +40,7 @@ function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, categories 
 				handleCheck={handleCheck}
 				htmlFor='category'
 				list={categories.map(category => category.category)}
-				name='category'
+				propertyName='category'
 				placeholder='Select Category'
 				setState={val => {
 					addInfoRef.current.tag.category = val;

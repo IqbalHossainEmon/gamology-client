@@ -63,7 +63,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 			<FileUploadButton
 				className={styles.marginTop}
 				placeholder={`Upload The banner Cover #${index + 1}`}
-				name='coverImg'
+				propertyName='coverImg'
 				htmlFor={`cover#${index}`}
 				defaultValue={defaultData.coverImg}
 				accept={'image/*'}
@@ -76,7 +76,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 			<FileUploadButton
 				className={styles.marginTop}
 				placeholder={`Upload The banner Cover Mobile #${index + 1}`}
-				name='coverMobile'
+				propertyName='coverMobile'
 				htmlFor={`coverMobile#${index}`}
 				defaultValue={defaultData.coverMobile}
 				accept={'image/*'}
@@ -89,7 +89,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 			<FileUploadButton
 				className={styles.marginTop}
 				placeholder={`Upload The banner Carousel Thumb #${index + 1}`}
-				name='carouselThumb'
+				propertyName='carouselThumb'
 				htmlFor={`carouselThumb#${index}`}
 				defaultValue={defaultData.carouselThumb}
 				accept={'image/*'}
@@ -102,7 +102,7 @@ function EditBannerSingleSection({ index, item, bannerData, errorMessages, error
 			<FileUploadButton
 				className={styles.marginTop}
 				placeholder={`Upload The banner Logo #${index + 1}`}
-				name='logoImg'
+				propertyName='logoImg'
 				htmlFor={`logo#${index}`}
 				defaultValue={defaultData.logoImg}
 				accept={'image/*'}

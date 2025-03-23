@@ -11,7 +11,7 @@ function SelectionFieldList({
 	list,
 	setValue,
 	setState,
-	name,
+	propertyName,
 	value,
 	none,
 	setHeight,
@@ -46,7 +46,7 @@ function SelectionFieldList({
 										onClick={() => {
 											setShow(false);
 											setValue('');
-											setState('', name);
+											setState('', propertyName);
 										}}
 										tabIndex={0}
 										type='button'
@@ -66,7 +66,7 @@ function SelectionFieldList({
 										onClick={() => {
 											setShow(false);
 											setValue(item);
-											setState(item, name);
+											setState(item, propertyName);
 										}}
 										type='button'
 									>

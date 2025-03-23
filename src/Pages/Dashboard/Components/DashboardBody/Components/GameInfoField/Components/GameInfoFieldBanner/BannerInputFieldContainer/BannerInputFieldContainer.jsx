@@ -58,7 +58,7 @@ export default function BannerInputFieldContainer({
 				<SelectionField
 					htmlFor={number}
 					list={['image', 'video']}
-					name='type'
+					propertyName='type'
 					placeholder='Content Type'
 					setState={(value, name) => {
 						setType(value);

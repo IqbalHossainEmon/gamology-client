@@ -53,7 +53,7 @@ function GameInfoFieldSpecsLangsSupported({
 					errorMessage={errorMessages[0]}
 					field='textarea'
 					htmlFor='lang_support_text'
-					name='text'
+					propertyName='text'
 					placeholder={
 						separate.separate ? 'Text Languages Supported' : 'Languages Supported'
 					}
@@ -76,7 +76,7 @@ function GameInfoFieldSpecsLangsSupported({
 						errorMessage={errorMessages[1]}
 						field='textarea'
 						htmlFor='lang_support_audio'
-						name='audio'
+						propertyName='audio'
 						placeholder='Audio Languages Supported'
 						rows='3'
 						setState={(value, name) => {
