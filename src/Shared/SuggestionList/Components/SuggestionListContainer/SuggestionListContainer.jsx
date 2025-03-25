@@ -448,6 +448,8 @@ function SuggestionListContainer({
 
 	const positionRef = useRef(false);
 
+	console.log(elementRef);
+
 	const previousBottomRemain = useRef(0);
 	const eventRefs = useRef(null);
 
@@ -485,6 +487,8 @@ function SuggestionListContainer({
 				}
 			},
 			handleCalcPosition: length => {
+				console.log(elementRef.current);
+
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
 

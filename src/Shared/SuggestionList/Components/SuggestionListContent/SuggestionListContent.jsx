@@ -39,7 +39,7 @@ function SuggestionListContent({
 	const { remHeightInPixels } = useScreenWidth();
 
 	useEffect(() => {
-		if (setContainerHeight || loading) {
+		if (setContainerHeight) {
 			setContainerHeight(
 				loading ? 14 : (height + (numberOfButton || 0) * 34) / remHeightInPixels
 			);

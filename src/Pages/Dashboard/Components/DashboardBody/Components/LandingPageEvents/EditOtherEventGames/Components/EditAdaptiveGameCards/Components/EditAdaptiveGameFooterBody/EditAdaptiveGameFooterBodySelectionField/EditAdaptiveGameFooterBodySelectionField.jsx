@@ -48,10 +48,7 @@ function EditAdaptiveGameFooterBodySelectionField({
 							dataHolder.current.splice(actualValue);
 						}
 					} else {
-						dataHolder.current = {
-							regular: '',
-							discount: '',
-						};
+						dataHolder.current = getTypeOfFooter(actualValue);
 					}
 				}}
 			/>

@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import TypeableSelectionField from '../../../../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
-import useTextConverter from '../../../../../../../../../../../Utils/Hooks/useTextConverter';
-import styles from './EditAdaptiveCardsLinkField.module.css';
+import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
+import useTextConverter from '../../../../../../Utils/Hooks/useTextConverter';
+import styles from './SearchGamesOrWriteLink.module.css';
 
-function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet, errorChange, errorMessage }) {
+function SearchGamesOrWriteLink({ index, link, setLink, blurSet, errorChange, errorMessage }) {
 	const eventRefs = useRef(null);
 
 	const { convertNameToLink } = useTextConverter();
@@ -57,4 +57,4 @@ function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet, errorChange
 		</div>
 	);
 }
-export default EditAdaptiveCardsLinkField;
+export default SearchGamesOrWriteLink;

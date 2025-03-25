@@ -39,10 +39,39 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onClick: () => {
-				console.log(dataHolder.current);
+				let isThereError = false;
+				if (Array.isArray(dataHolder.current)) {
+					dataHolder.current.forEach((item, i) => {
+						if (!item.text) {
+							errorMessage.current[i].text = `Button ${i + 1} text is required.`;
+						} else {
+							errorMessage.current[i].text = '';
+						}
+						if (!item.link) {
+							errorMessage.current[i].link = `Button ${i + 1} link is required.`;
+						} else {
+							errorMessage.current[i].link = '';
+						}
+					});
+				} else {
+					if (!dataHolder.current.discount) {
+						errorMessage.current.regular = 'Regular price is required.';
+						isThereError = true;
+					} else {
+						errorMessage.current.regular = '';
+					}
+					if (!dataHolder.current.regular) {
+						errorMessage.current.discount = 'Discounted price is required.';
+						isThereError = true;
+					} else {
+						errorMessage.current.discount = '';
+					}
+				}
+				if (isThereError) setErrorChange(prev => prev + 1);
+				console.log(errorMessage.current);
 			},
 			setValue: (val, nameWithIndex) => {
-				const [name, innerIndex] = nameWithIndex.split('-');
+				const [name, innerIndex] = nameWithIndex ? nameWithIndex.split('-') : [];
 				if (innerIndex) {
 					dataHolder.current[innerIndex][name] = val;
 				} else {

@@ -2,8 +2,8 @@ import { useRef, useState } from 'react';
 import AdaptiveCards from '../../../../../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import SearchGamesOrWriteLink from '../../../../../../Shared/SearchGamesOrWriteLink/SearchGamesOrWriteLink';
 import EditAdaptiveCardDotMenu from '../Components/EditAdaptiveCardDotMenu/EditAdaptiveCardDotMenu';
-import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField/EditAdaptiveCardsLinkField';
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import EditAdaptiveGameFooterBody from '../Components/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody';
 import EditAdaptiveGameFooterFooter from '../Components/EditAdaptiveGameFooterFooter/EditAdaptiveGameFooterFooter';
@@ -71,7 +71,7 @@ function editHeaderComponent(
 
 	return (
 		<>
-			<EditAdaptiveCardsLinkField index={index} link={link} setLink={setLink} blurSet />
+			<SearchGamesOrWriteLink index={index} link={link} setLink={setLink} blurSet />
 			{length > 1 && <EditAdaptiveCardDotMenu cardRef={cardRef} item={item} lists={lists} />}
 		</>
 	);

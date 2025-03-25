@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
 import ErrorMessage from '../ErrorMessage/ErrorMessage/ErrorMessage';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './TypeableSelectionField.module.css';
@@ -16,7 +15,7 @@ export default function TypeableSelectionField({
 	setState = () => {},
 	handleChange = () => {},
 	errorMessage,
-	errorChange = () => {},
+	errorChange,
 	setHeight,
 	checkLinkStarValue = () => false,
 	specialSetValueHandler,
@@ -24,7 +23,6 @@ export default function TypeableSelectionField({
 	blurSet,
 }) {
 	const [value, setValue] = useState(defaultValue);
-	const [show, setShow] = useState(false);
 	const [focused, setFocused] = useState(false);
 	const [errorShow, setErrorShow] = useState(!!errorMessage);
 
@@ -36,15 +34,6 @@ export default function TypeableSelectionField({
 
 	const errorShowRef = useRef(errorShow);
 	errorShowRef.current = errorShow;
-
-	const isShownRef = useRef(show);
-	isShownRef.current = show;
-
-	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
-
-	useEffect(() => {
-		setElement(containerRef.current);
-	}, [setElement]);
 
 	const eventRefs = useRef(null);
 
@@ -74,14 +63,6 @@ export default function TypeableSelectionField({
 			handleChange: e => {
 				setValue(e.target.value);
 				handleChange(e.target.value);
-				if (!isShownRef.current && e.target.value) {
-					showMenu();
-					setShow(true);
-				}
-				if (isShownRef.current && !e.target.value) {
-					onHide();
-					setShow(false);
-				}
 			},
 			handleBlur: e => {
 				setFocused(false);
@@ -139,7 +120,6 @@ export default function TypeableSelectionField({
 				/>
 			</div>
 			<SuggestionList
-				setShow={setShow}
 				setState={val => {
 					setValue(
 						specialSetValueHandler
@@ -160,6 +140,7 @@ export default function TypeableSelectionField({
 					!checkLinkStarValue(typeof value === 'string' ? value : value.name) && focused
 				}
 			/>
+
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);
