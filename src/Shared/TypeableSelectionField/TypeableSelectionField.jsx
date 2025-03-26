@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
 import ErrorMessage from '../ErrorMessage/ErrorMessage/ErrorMessage';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './TypeableSelectionField.module.css';
@@ -23,6 +24,7 @@ export default function TypeableSelectionField({
 	blurSet,
 }) {
 	const [value, setValue] = useState(defaultValue);
+	const [show, setShow] = useState(false);
 	const [focused, setFocused] = useState(false);
 	const [errorShow, setErrorShow] = useState(!!errorMessage);
 
@@ -34,6 +36,15 @@ export default function TypeableSelectionField({
 
 	const errorShowRef = useRef(errorShow);
 	errorShowRef.current = errorShow;
+
+	const isShownRef = useRef(show);
+	isShownRef.current = show;
+
+	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
+
+	useEffect(() => {
+		setElement(containerRef.current);
+	}, [setElement]);
 
 	const eventRefs = useRef(null);
 
@@ -52,6 +63,7 @@ export default function TypeableSelectionField({
 		eventRefs.current = {
 			handleFocus: () => {
 				setFocused(true);
+				window.addEventListener('keydown', eventRefs.current.onSpecialKey);
 				if (errorShowRef.current) {
 					setErrorShow(false);
 				}
@@ -63,6 +75,14 @@ export default function TypeableSelectionField({
 			handleChange: e => {
 				setValue(e.target.value);
 				handleChange(e.target.value);
+				if (!isShownRef.current && e.target.value) {
+					showMenu();
+					setShow(true);
+				}
+				if (isShownRef.current && !e.target.value) {
+					onHide();
+					setShow(false);
+				}
 			},
 			handleBlur: e => {
 				setFocused(false);
@@ -78,6 +98,32 @@ export default function TypeableSelectionField({
 					return handleValueCheck ? handleValueCheck(val.name) : val.name;
 				}
 				return '';
+			},
+			onSpecialKey: e => {
+				console.log(e.key);
+
+				switch (e.key) {
+					case 'Enter':
+						// Handle enter key
+						window.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+						break;
+					case 'Escape':
+						if (isShownRef.current) {
+							onHide();
+							setShow(false);
+						}
+						window.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+						break;
+					case 'Tab':
+						// see the focused element
+						setTimeout(() => {
+							setShow(containerRef.current.contains(document.activeElement));
+							window.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+						}, 0);
+						break;
+					default:
+						break;
+				}
 			},
 		};
 	}
@@ -120,6 +166,7 @@ export default function TypeableSelectionField({
 				/>
 			</div>
 			<SuggestionList
+				setShow={setShow}
 				setState={val => {
 					setValue(
 						specialSetValueHandler
@@ -137,7 +184,7 @@ export default function TypeableSelectionField({
 				setHeight={setHeight}
 				link='http://localhost:5173/api/autocomplete'
 				parentShow={
-					!checkLinkStarValue(typeof value === 'string' ? value : value.name) && focused
+					!checkLinkStarValue(typeof value === 'string' ? value : value.name) && show
 				}
 			/>
 

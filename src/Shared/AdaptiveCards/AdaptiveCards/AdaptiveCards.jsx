@@ -52,7 +52,7 @@ function AdaptiveCards({
 							length={items.length}
 							parentIndex={index}
 							editingHeader={editingHeader}
-							onFieldChange={(field, value) => onFieldChange(field, value, i)}
+							onFieldChange={(field, value) => onFieldChange(value, field, i)}
 							onImageUpload={data => onImageUpload(data, i)}
 							cardHover={cardHover}
 							handleEditFooter={handleEditFooter}

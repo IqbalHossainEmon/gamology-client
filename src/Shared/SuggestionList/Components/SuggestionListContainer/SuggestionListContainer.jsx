@@ -438,6 +438,7 @@ function SuggestionListContainer({
 	searchInputRef,
 	extraSectionParams,
 	link,
+	ref,
 	setContainerHeight,
 }) {
 	const [show, fadeIn] = useAppearDisappear(state, false, true, 350);
@@ -447,8 +448,6 @@ function SuggestionListContainer({
 	const [height, setHeight] = useState(0);
 
 	const positionRef = useRef(false);
-
-	console.log(elementRef);
 
 	const previousBottomRemain = useRef(0);
 	const eventRefs = useRef(null);
@@ -487,8 +486,6 @@ function SuggestionListContainer({
 				}
 			},
 			handleCalcPosition: length => {
-				console.log(elementRef.current);
-
 				const { height: eleHeight, y } = elementRef.current.getBoundingClientRect();
 				const bottomRemain = window.innerHeight - y - eleHeight;
 
@@ -640,6 +637,7 @@ function SuggestionListContainer({
 				showMenu={showMenu}
 				extraSection={extraSection}
 				suggestionRef={suggestionRef}
+				ref={ref}
 				setElement={setElement}
 				length={listLengthRef.current}
 				extraSectionParams={extraSectionParams}

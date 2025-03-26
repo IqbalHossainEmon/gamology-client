@@ -71,7 +71,16 @@ function editHeaderComponent(
 
 	return (
 		<>
-			<SearchGamesOrWriteLink index={index} link={link} setLink={setLink} blurSet />
+			<SearchGamesOrWriteLink
+				index={index}
+				defaultValue={link}
+				setState={setLink}
+				propertyName='name'
+				name={`SearchGamesOrWriteLink${index}`}
+				blurSet
+				htmlFor={`SearchGamesOrWriteLink${index}`}
+				placeholder="Enter main link (/games/'game_name' for games)"
+			/>
 			{length > 1 && <EditAdaptiveCardDotMenu cardRef={cardRef} item={item} lists={lists} />}
 		</>
 	);
@@ -97,7 +106,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 					return newAdaptiveGameCard;
 				});
 			},
-			onFieldChange: (field, value, index) => {
+			onFieldChange: (value, field, index) => {
 				dataRef.current[parentIndex].cards[index][field] = value;
 			},
 			onEditFooterClick: (e, index, innerIndex, data) => {

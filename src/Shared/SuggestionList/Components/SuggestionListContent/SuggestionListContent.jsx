@@ -26,12 +26,8 @@ function SuggestionListContent({
 	elementRef,
 	setContainerHeight,
 	isSelected,
+	ref,
 }) {
-	useEffect(() => {
-		setElement([suggestionRef.current, elementRef.current]);
-		showMenu();
-	}, [elementRef, onHide, setElement, showMenu, suggestionRef]);
-
 	const { numberOfButton, Content } = extraSection
 		? extraSection(length)
 		: { numberOfButton: 0, Content: () => null };
@@ -39,12 +35,16 @@ function SuggestionListContent({
 	const { remHeightInPixels } = useScreenWidth();
 
 	useEffect(() => {
+		setElement([suggestionRef.current, elementRef.current]);
+		showMenu();
+	}, [elementRef, onHide, setElement, showMenu, suggestionRef]);
+
+	useEffect(() => {
 		if (setContainerHeight) {
 			setContainerHeight(
-				loading ? 14 : (height + (numberOfButton || 0) * 34) / remHeightInPixels
+				loading ? 14 : (height + (numberOfButton || 0) * 42) / remHeightInPixels
 			);
 		}
-
 		return () => {
 			if (setContainerHeight) setContainerHeight(0);
 		};
@@ -52,16 +52,28 @@ function SuggestionListContent({
 
 	const { cloneObject } = useObjectUtilities();
 
+	const handleClick = item => {
+		isSelected.current = true;
+		const newItem = cloneObject(item);
+		delete newItem.editedName;
+		setShow(false);
+		onHide();
+		if (setState) setState(newItem);
+	};
+
 	return (
 		<div
 			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}`}
-			ref={suggestionRef}
+			ref={r => {
+				suggestionRef.current = r;
+				if (ref) ref.current = r;
+			}}
 		>
 			<div
 				style={{
 					height: loading
 						? '14rem'
-						: `${(height + (numberOfButton || 0) * 34) / remHeightInPixels}rem`,
+						: `${(height + (numberOfButton || 0) * 42) / remHeightInPixels}rem`,
 				}}
 				className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
 			>
@@ -90,13 +102,11 @@ function SuggestionListContent({
 												className={styles.itemButton}
 												tabIndex={show ? 0 : -1}
 												{...(value === item && { disabled: true })}
-												onClick={() => {
-													isSelected.current = true;
-													const newItem = cloneObject(item);
-													delete newItem.editedName;
-													setShow(false);
-													onHide();
-													if (setState) setState(newItem);
+												onClick={() => handleClick(item)}
+												onKeyDown={e => {
+													if (e.key === 'Enter' || e.key === ' ') {
+														handleClick(item);
+													}
 												}}
 												type='button'
 											>

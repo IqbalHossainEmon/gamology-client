@@ -3,7 +3,17 @@ import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionFi
 import useTextConverter from '../../../../../../Utils/Hooks/useTextConverter';
 import styles from './SearchGamesOrWriteLink.module.css';
 
-function SearchGamesOrWriteLink({ index, link, setLink, blurSet, errorChange, errorMessage }) {
+function SearchGamesOrWriteLink({
+	defaultValue,
+	setState = () => {},
+	blurSet,
+	errorChange,
+	errorMessage,
+	placeholder,
+	propertyName,
+	name,
+	htmlFor,
+}) {
 	const eventRefs = useRef(null);
 
 	const { convertNameToLink } = useTextConverter();
@@ -34,18 +44,18 @@ function SearchGamesOrWriteLink({ index, link, setLink, blurSet, errorChange, er
 			{/* only for frontend dev */}
 			{/* when search it will show the games from backend but when an option clicked it will of course show the link */}
 			<TypeableSelectionField
-				placeholder="Enter main link (/games/'game_name' for games)"
-				defaultValue={link}
+				placeholder={placeholder}
+				defaultValue={defaultValue}
 				blurSet={blurSet}
-				propertyName='name'
-				name={`editAdaptiveCardLink${index}`}
-				htmlFor={`editAdaptiveCardLink${index}`}
+				propertyName={propertyName}
+				name={name}
+				htmlFor={htmlFor}
 				/* only for frontend dev */
 				// link conversion only for now, the link will be set from the backend with the game name
 				setState={(val, isWithoutSelected) =>
-					setLink(
-						'link',
-						isWithoutSelected ? val : `/games/${convertNameToLink(val.name)}`
+					setState(
+						isWithoutSelected ? val : `/games/${convertNameToLink(val.name)}`,
+						'link'
 					)
 				}
 				checkLinkStarValue={eventRefs.current.checkLinkStarValue}

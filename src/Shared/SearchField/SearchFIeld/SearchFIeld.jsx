@@ -12,9 +12,13 @@ function SearchField({
 	extraSectionParams,
 }) {
 	const [value, setValue] = useState('');
+	const [show, setShow] = useState(false);
 
 	const searchRef = useRef(null);
 	const searchInputRef = useRef(null);
+	const suggestionList = useRef(null);
+
+	console.log(show);
 
 	return (
 		<>
@@ -22,13 +26,17 @@ function SearchField({
 				setNavShow={setNavShow}
 				setValue={setValue}
 				value={value}
+				setShow={setShow}
 				searchRef={searchRef}
 				searchInputRef={searchInputRef}
+				suggestionList={suggestionList}
 			/>
 			<SuggestionList
 				className={styles.suggestionList}
+				ref={suggestionList}
 				value={value}
 				extraSection={extraSection}
+				parentShow={value && show}
 				searchRef={searchRef}
 				searchInputRef={searchInputRef}
 				setState={(val, name) => {

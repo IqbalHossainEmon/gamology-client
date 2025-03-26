@@ -36,13 +36,13 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 					container.scrollTop = ratio;
 					lastDiff = diff;
 					const scrollPercent = (ratio / (scrollerContainer - containerHeight)) * 100;
-					thumb.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
+					thumb?.setAttribute('aria-valuenow', scrollPercent.toFixed(2));
 				} else if (ratio > scrollerContainer - containerHeight) {
 					container.scrollTop = scrollerContainer - containerHeight;
-					thumb.setAttribute('aria-valuenow', '100.00');
+					thumb?.setAttribute('aria-valuenow', '100.00');
 				} else {
 					container.scrollTop = 0;
-					thumb.setAttribute('aria-valuenow', '0.00');
+					thumb?.setAttribute('aria-valuenow', '0.00');
 				}
 			},
 			onMouseUp: () => {

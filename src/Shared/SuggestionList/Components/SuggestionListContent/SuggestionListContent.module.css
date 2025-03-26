@@ -45,6 +45,11 @@
 	height: 3.5rem;
 }
 
+.itemButton:focus {
+	outline: 1px solid rgba(255, 255, 255, 0.7);
+	outline-offset: -3px;
+}
+
 .itemButton {
 	padding: 0 0.625em;
 }

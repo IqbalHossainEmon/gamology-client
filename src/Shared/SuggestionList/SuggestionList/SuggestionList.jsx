@@ -13,6 +13,7 @@ function SuggestionList({
 	link,
 	setHeight,
 	className,
+	ref,
 	parentShow = true,
 }) {
 	const [navShow, setNavShow] = useState(false);
@@ -49,6 +50,7 @@ function SuggestionList({
 			className={className}
 			value={value}
 			elementRef={searchRef}
+			ref={ref}
 			noPositionChange
 			extraSection={extraSection}
 			maxLimit={maxLimit}

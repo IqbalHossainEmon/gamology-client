@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import TextField from '../../../../../../../../../../../../Shared/TextField/TextField/TextField';
-import TypeableSelectionField from '../../../../../../../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import useObjectUtilities from '../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import SearchGamesOrWriteLink from '../../../../../../../../Shared/SearchGamesOrWriteLink/SearchGamesOrWriteLink';
 import EditAdaptiveGameFooterBodySelectionField from '../EditAdaptiveGameFooterBodySelectionField/EditAdaptiveGameFooterBodySelectionField';
 import styles from './EditAdaptiveGameFooterBody.module.css';
 
@@ -68,7 +68,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 					}
 				}
 				if (isThereError) setErrorChange(prev => prev + 1);
-				console.log(errorMessage.current);
+				console.log(errorMessage.current, dataHolder.current);
 			},
 			setValue: (val, nameWithIndex) => {
 				const [name, innerIndex] = nameWithIndex ? nameWithIndex.split('-') : [];
@@ -96,7 +96,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						defaultValue={data.footer ? dataHolder.current.regular : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
-						name='regular'
+						propertyName='regular'
 					/>
 					<TextField
 						field='input'
@@ -107,7 +107,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						defaultValue={data.footer ? dataHolder.current.discount : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
-						name='discounted'
+						propertyName='discounted'
 					/>
 				</div>
 			);
@@ -125,23 +125,18 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						defaultValue={data.footer ? dataHolder.current[i]?.text : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
-						name={`text-${i}`}
+						propertyName={`text-${i}`}
 					/>
-					<TypeableSelectionField
+					<SearchGamesOrWriteLink
+						link='/'
+						setState={eventRefs.current.setValue}
 						blurSet
-						propertyName='name'
-						checkLinkStarValue={eventRefs.current.checkLinkStarValue}
-						specialSetValueHandler={eventRefs.current.valueSetter}
-						handleValueCheck={eventRefs.current.valueChecker}
 						errorChange={errorChange}
 						errorMessage={errorMessage.current[i].link}
-						field='input'
 						htmlFor={`button-link-${i}`}
 						placeholder={`Button ${i + 1} Link`}
 						defaultValue={data.footer ? dataHolder.current[i]?.link : ''}
-						setState={eventRefs.current.setValue}
-						type='text'
-						name={`link-${i}`}
+						propertyName={`link-${i}`}
 					/>
 				</div>
 			));

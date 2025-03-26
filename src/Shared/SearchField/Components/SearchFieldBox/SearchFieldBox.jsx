@@ -2,7 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import styles from './SearchFieldBox.module.css';
 
-export default function SearchFieldBox({ setNavShow, setValue, value, searchRef, searchInputRef }) {
+export default function SearchFieldBox({
+	setNavShow,
+	setValue,
+	value,
+	searchRef,
+	searchInputRef,
+	suggestionList,
+	setShow,
+}) {
 	const [searchFocus, setSearchFocus] = useState(false);
 
 	const eventRefs = useRef(null);
@@ -24,53 +32,63 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef,
 						eventRefs.current.handleBlurEsc
 					);
 				}
-				window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
 			},
-		};
-	}
-
-	if (!eventRefs.current.handleChange) {
-		eventRefs.current = {
-			...eventRefs.current,
 			handleChange: e => {
 				setValue(e.target.value);
 			},
 			handleSearchClick: e => {
 				// check if right click or not
-
 				if (searchFocusRef.current || e.button !== 0) return;
 				e.preventDefault();
-
 				searchInputRef.current.focus();
-			},
-			handleBlurOnWindowBlur: () => {
-				searchInputRef.current.blur();
 			},
 			handleBlurEsc: e => {
 				if (e.key === 'Escape' || e.key === 'Enter') {
 					setNavShow(false);
 					searchInputRef.current.blur();
-					searchRef.current.removeEventListener(
-						'keydown',
-						eventRefs.current.handleBlurEsc
-					);
-					window.removeEventListener('blur', eventRefs.current.handleBlurOnWindowBlur);
+					e.target.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+					window.removeEventListener('keydown', eventRefs.current.handleTab);
 				}
+			},
+			handleTab: e => {
+				setTimeout(() => {
+					if (
+						e.key === 'Tab' &&
+						!(
+							suggestionList.current?.contains(document.activeElement) ||
+							searchRef.current?.contains(document.activeElement)
+						)
+					) {
+						setShow(false);
+						setSearchFocus(false);
+						setNavShow(false);
+						e.target.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+						window.removeEventListener('keydown', eventRefs.current.handleTab);
+					}
+				}, 0);
 			},
 			onFocus: e => {
 				setSearchFocus(true);
+				setShow(true);
 				setNavShow(true);
 				e.target.addEventListener('keydown', eventRefs.current.handleBlurEsc);
+				window.addEventListener('keydown', eventRefs.current.handleTab);
 			},
 			onBlur: e => {
-				if (e.relatedTarget && e.relatedTarget === searchRef.current) {
+				const next = e.relatedTarget;
+				// If focus moves into the suggestion list, don't close
+				if (next && suggestionList.current && suggestionList?.current?.contains(next)) {
+					return;
+				}
+				// If focus moves back to the button wrapper, restore input focus
+				if (next && next === searchRef.current) {
 					searchInputRef.current.focus();
 					return;
 				}
-
 				setSearchFocus(false);
 				setNavShow(false);
 				e.target.removeEventListener('keydown', eventRefs.current.handleBlurEsc);
+				window.removeEventListener('keydown', eventRefs.current.handleTab);
 			},
 		};
 	}
@@ -80,13 +98,13 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef,
 		const search = searchInputRef.current;
 
 		search.addEventListener('focus', eventRefs.current.onFocus);
-		search.addEventListener('blur', eventRefs.current.onBlur);
+		search.addEventListener('focusout', eventRefs.current.onBlur);
 
 		return () => {
 			cleanUp(true);
 			if (search) {
 				search.removeEventListener('focus', eventRefs.current.onFocus);
-				search.removeEventListener('blur', eventRefs.current.onBlur);
+				search.removeEventListener('focusout', eventRefs.current.onBlur);
 			}
 		};
 	}, [searchInputRef, searchRef]);
@@ -94,6 +112,7 @@ export default function SearchFieldBox({ setNavShow, setValue, value, searchRef,
 	return (
 		<button
 			ref={searchRef}
+			tabIndex={-1}
 			type='button'
 			onClick={eventRefs.current.handleSearchClick}
 			className={`${styles.searchField}${searchFocus ? ` ${styles.show}` : widthInRem <= 48 ? ` ${styles.hide}` : ''}`}

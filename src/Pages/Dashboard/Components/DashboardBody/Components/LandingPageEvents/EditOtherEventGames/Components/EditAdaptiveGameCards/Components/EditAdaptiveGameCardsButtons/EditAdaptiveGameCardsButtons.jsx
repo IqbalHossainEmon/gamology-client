@@ -111,6 +111,14 @@ function EditAdaptiveGameCardsButtons({
 					Add Card
 				</ButtonWithRipple>
 			)}
+			{/* This is for dev purpose only */}
+			<ButtonWithRipple
+				onClick={() => {
+					console.log(mainDataRef);
+				}}
+			>
+				Log
+			</ButtonWithRipple>
 		</div>
 	);
 }
