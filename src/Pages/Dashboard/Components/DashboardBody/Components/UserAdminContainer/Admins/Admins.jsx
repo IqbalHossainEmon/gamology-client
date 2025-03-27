@@ -112,6 +112,7 @@ function Admins() {
 												e,
 											});
 										},
+										shouldCardDotHide: true,
 									},
 									{
 										name: <ReportAdminWithIcon />,
@@ -156,6 +157,7 @@ function Admins() {
 												e,
 											});
 										},
+										shouldCardDotHide: true,
 									},
 								]}
 								parentRef={props}

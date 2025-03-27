@@ -49,6 +49,12 @@ function CardDot({ parentRef, item, lists }) {
 		} else if (touchable) {
 			setDotShow(true);
 		}
+
+		if (parent) {
+			parent.addEventListener('focus', eventRef.current.handleShowBtn, true);
+			parent.addEventListener('blur', eventRef.current.handleHideBtn, true);
+		}
+
 		return () => {
 			if (parent && isEventAdded.current) {
 				parent.removeEventListener('mouseover', eventRef.current.handleShowBtn);

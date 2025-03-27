@@ -29,7 +29,6 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 		eventRefs.current = {
 			handleHide: state => {
 				setListShow(state);
-
 				if (!isMouseOverElement(parentRef.current) && !isTouchAble()) {
 					setParentShow(state);
 				}
@@ -91,6 +90,11 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 					item={item}
 					lists={lists}
 					setHide={eventRefs.current.handleHide}
+					btnRef={btnRef}
+					parentRef={parentRef}
+					onHide={onHide}
+					setListShow={setListShow}
+					setParentShow={setParentShow}
 				/>
 			)}
 		</div>

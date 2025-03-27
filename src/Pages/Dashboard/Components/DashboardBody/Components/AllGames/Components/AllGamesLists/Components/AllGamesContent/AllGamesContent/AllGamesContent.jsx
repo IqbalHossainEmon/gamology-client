@@ -24,6 +24,7 @@ const handleEdit = (item, setContent) => {
 					footer: <AllGamesModalBodySelect detail={detail} type='price' />,
 				});
 			},
+			shouldCardDotHide: true,
 		},
 		{
 			name: 'Delete',
@@ -39,6 +40,7 @@ const handleEdit = (item, setContent) => {
 					footer: <AllGamesModalBodySelect detail={detail} type='delete' />,
 				});
 			},
+			shouldCardDotHide: true,
 		},
 	];
 
@@ -57,6 +59,7 @@ const handleEdit = (item, setContent) => {
 					footer: <AllGamesModalBodySelect detail={detail} type='sales' />,
 				});
 			},
+			shouldCardDotHide: true,
 		});
 	}
 	return function inner(prop) {

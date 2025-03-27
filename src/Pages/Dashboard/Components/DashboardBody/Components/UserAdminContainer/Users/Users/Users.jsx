@@ -90,6 +90,7 @@ function Users() {
 												e,
 											});
 										},
+										shouldCardDotHide: true,
 									},
 									{
 										name: 'Make Admin',
@@ -126,6 +127,7 @@ function Users() {
 												e,
 											});
 										},
+										shouldCardDotHide: true,
 									},
 								]}
 								parentRef={props}

@@ -18,8 +18,6 @@ function SearchField({
 	const searchInputRef = useRef(null);
 	const suggestionList = useRef(null);
 
-	console.log(show);
-
 	return (
 		<>
 			<SearchFieldBox
