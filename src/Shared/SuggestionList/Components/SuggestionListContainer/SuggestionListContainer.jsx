@@ -478,11 +478,20 @@ function SuggestionListContainer({
 	const { cloneObject } = useObjectUtilities();
 
 	if (!eventRefs.current) {
+		let timerId;
 		eventRefs.current = {
 			onfocus: e => {
+				// console.log(e.target.value.length);
+
 				if (e.target.value.length > 0) {
 					setShow(true);
 					if (showRef.current) showMenu();
+				}
+			},
+			onBlur: e => {
+				if (e.target.value.length === 0) {
+					setShow(false);
+					if (showRef.current) onHide();
 				}
 			},
 			handleCalcPosition: length => {
@@ -582,41 +591,46 @@ function SuggestionListContainer({
 					cloneObject(filteredList).slice(0, maxLimit)
 				);
 			},
+			handleSideEffects: () => {
+				if (value && value !== ' ') {
+					if (!loadingRef.current) setLoading(true);
+
+					if (timerId) {
+						clearTimeout(timerId);
+					}
+					timerId = setTimeout(() => {
+						if (maxLimit) eventRefs.current.fetchDataWithLimit();
+						else eventRefs.current.fetchData();
+						timerId = null;
+					}, 200);
+				} else {
+					if (timerId) {
+						clearTimeout(timerId);
+						timerId = null;
+					}
+					if (loadingRef.current) setLoading(false);
+					setList([]);
+					if (heightRef.current > 56) {
+						setHeight(56);
+					}
+				}
+			},
 		};
 	}
 
-	const typeTimerId = useRef(null);
-
 	useEffect(() => {
-		searchInputRef.current.addEventListener('focus', eventRefs.current.onfocus);
+		const searchInput = searchInputRef.current;
+		searchInput.addEventListener('focus', eventRefs.current.onfocus);
+		searchInput.addEventListener('blur', eventRefs.current.onBlur);
+		return () => {
+			searchInput.removeEventListener('focus', eventRefs.current.onfocus);
+			searchInput.removeEventListener('blur', eventRefs.current.onBlur);
+		};
 	}, [searchInputRef]);
 
 	useEffect(() => {
 		if (!isSelected.current) {
-			if (value && value !== ' ') {
-				if (!loadingRef.current) setLoading(true);
-
-				if (typeTimerId.current) {
-					clearTimeout(typeTimerId.current);
-				}
-				typeTimerId.current = setTimeout(() => {
-					if (maxLimit) eventRefs.current.fetchDataWithLimit();
-					else eventRefs.current.fetchData();
-					typeTimerId.current = null;
-				}, 200);
-			} else {
-				if (typeTimerId.current) {
-					clearTimeout(typeTimerId.current);
-					typeTimerId.current = null;
-				}
-				if (loadingRef.current) setLoading(false);
-				setList([]);
-				if (heightRef.current > 56) {
-					setHeight(56);
-				}
-			}
-		} else {
-			isSelected.current = false;
+			eventRefs.current.handleSideEffects();
 		}
 	}, [maxLimit, value]);
 
@@ -625,6 +639,7 @@ function SuggestionListContainer({
 			<SuggestionListContent
 				fadeIn={fadeIn}
 				list={list}
+				handleSideEffects={eventRefs.current.handleSideEffects}
 				setState={setState}
 				value={value}
 				setShow={setShow}
@@ -644,6 +659,7 @@ function SuggestionListContainer({
 				elementRef={elementRef}
 				setContainerHeight={setContainerHeight}
 				isSelected={isSelected}
+				searchInputRef={searchInputRef}
 			/>
 		)
 	);

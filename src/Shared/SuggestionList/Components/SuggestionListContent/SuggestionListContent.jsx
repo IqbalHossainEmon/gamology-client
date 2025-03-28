@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
 import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import Image from '../../../Image/Image/Image';
@@ -25,8 +25,10 @@ function SuggestionListContent({
 	onHide,
 	elementRef,
 	setContainerHeight,
-	isSelected,
 	ref,
+	searchInputRef,
+	isSelected,
+	handleSideEffects,
 }) {
 	const { numberOfButton, Content } = extraSection
 		? extraSection(length)
@@ -37,7 +39,15 @@ function SuggestionListContent({
 	useEffect(() => {
 		setElement([suggestionRef.current, elementRef.current]);
 		showMenu();
-	}, [elementRef, onHide, setElement, showMenu, suggestionRef]);
+
+		if (!isSelected.current) {
+			handleSideEffects();
+		}
+
+		return () => {
+			isSelected.current = false;
+		};
+	}, [elementRef, handleSideEffects, isSelected, onHide, setElement, showMenu, suggestionRef]);
 
 	useEffect(() => {
 		if (setContainerHeight) {
@@ -52,14 +62,42 @@ function SuggestionListContent({
 
 	const { cloneObject } = useObjectUtilities();
 
-	const handleClick = item => {
-		isSelected.current = true;
-		const newItem = cloneObject(item);
-		delete newItem.editedName;
-		setShow(false);
-		onHide();
-		if (setState) setState(newItem);
-	};
+	const eventRefs = useRef(null);
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			handleClick: item => {
+				isSelected.current = true;
+				const newItem = cloneObject(item);
+				delete newItem.editedName;
+				setShow(false);
+				onHide();
+				if (setState) setState(newItem);
+			},
+			onTabDown: e => {
+				setTimeout(() => {
+					if (e.key === 'Tab') {
+						if (
+							!(
+								suggestionRef.current?.contains(document.activeElement) ||
+								searchInputRef.current?.contains(document.activeElement)
+							)
+						) {
+							setShow(false);
+							onHide();
+						}
+					}
+				}, 0);
+			},
+		};
+	}
+
+	useEffect(() => {
+		document.addEventListener('keydown', eventRefs.current.onTabDown, true);
+		return () => {
+			document.removeEventListener('keydown', eventRefs.current.onTabDown);
+		};
+	}, []);
 
 	return (
 		<div
@@ -102,10 +140,10 @@ function SuggestionListContent({
 												className={styles.itemButton}
 												tabIndex={show ? 0 : -1}
 												{...(value === item && { disabled: true })}
-												onClick={() => handleClick(item)}
+												onClick={() => eventRefs.current.handleClick(item)}
 												onKeyDown={e => {
 													if (e.key === 'Enter' || e.key === ' ') {
-														handleClick(item);
+														eventRefs.current.handleClick(item);
 													}
 												}}
 												type='button'

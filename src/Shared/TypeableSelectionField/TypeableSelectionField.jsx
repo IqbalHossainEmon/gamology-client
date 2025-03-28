@@ -60,17 +60,18 @@ export default function TypeableSelectionField({
 	}, [defaultValue]);
 
 	if (!eventRefs.current) {
+		let isAdded = true;
 		eventRefs.current = {
 			handleFocus: () => {
 				setFocused(true);
-				window.addEventListener('keydown', eventRefs.current.onSpecialKey);
+				document.addEventListener('keydown', eventRefs.current.onSpecialKey);
+				isAdded = true;
 				if (errorShowRef.current) {
 					setErrorShow(false);
 				}
 				if (onFocusClick) {
 					onFocusClick();
 				}
-				document.addEventListener('click', eventRefs.current.handleStop);
 			},
 			handleChange: e => {
 				setValue(e.target.value);
@@ -86,6 +87,9 @@ export default function TypeableSelectionField({
 			},
 			handleBlur: e => {
 				setFocused(false);
+				if (isAdded) {
+					document.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+				}
 				if (blurSet && checkLinkStarValue(valueRef.current)) {
 					setState(e.target.value, true, propertyName);
 				}
@@ -100,25 +104,26 @@ export default function TypeableSelectionField({
 				return '';
 			},
 			onSpecialKey: e => {
-				console.log(e.key);
-
 				switch (e.key) {
 					case 'Enter':
 						// Handle enter key
-						window.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+						document.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+						isAdded = false;
 						break;
 					case 'Escape':
 						if (isShownRef.current) {
 							onHide();
 							setShow(false);
 						}
-						window.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+						isAdded = false;
+						document.removeEventListener('keydown', eventRefs.current.onSpecialKey);
 						break;
 					case 'Tab':
 						// see the focused element
 						setTimeout(() => {
 							setShow(containerRef.current.contains(document.activeElement));
-							window.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+							document.removeEventListener('keydown', eventRefs.current.onSpecialKey);
+							isAdded = false;
 						}, 0);
 						break;
 					default:

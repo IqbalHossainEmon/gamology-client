@@ -1,10 +1,10 @@
-import AllGames from '../Components/AllGames/AllGames/AllGames';
+import EditOtherEventGames from '../Components/LandingPageEvents/EditOtherEventGames/EditOtherEventGames/EditOtherEventGames';
 import styles from './DashboardBody.module.css';
 
 function DashboardBody() {
 	return (
 		<div className={styles.dashboardBody}>
-			<AllGames />
+			<EditOtherEventGames />
 		</div>
 	);
 }
