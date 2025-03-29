@@ -5,7 +5,7 @@ import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObj
 import SearchGamesOrWriteLink from '../../../../../../Shared/SearchGamesOrWriteLink/SearchGamesOrWriteLink';
 import EditAdaptiveCardDotMenu from '../Components/EditAdaptiveCardDotMenu/EditAdaptiveCardDotMenu';
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
-import EditAdaptiveGameFooterBody from '../Components/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody';
+import EditAdaptiveGameFooterBody from '../Components/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody';
 import EditAdaptiveGameFooterFooter from '../Components/EditAdaptiveGameFooterFooter/EditAdaptiveGameFooterFooter';
 import styles from './EditAdaptiveGameCards.module.css';
 
@@ -74,8 +74,9 @@ function editHeaderComponent(
 			<SearchGamesOrWriteLink
 				index={index}
 				defaultValue={link}
-				setState={setLink}
+				setState={(val, field) => setLink(field, val)}
 				propertyName='name'
+				outerSetValuePropertyName='link'
 				name={`SearchGamesOrWriteLink${index}`}
 				blurSet
 				htmlFor={`SearchGamesOrWriteLink${index}`}

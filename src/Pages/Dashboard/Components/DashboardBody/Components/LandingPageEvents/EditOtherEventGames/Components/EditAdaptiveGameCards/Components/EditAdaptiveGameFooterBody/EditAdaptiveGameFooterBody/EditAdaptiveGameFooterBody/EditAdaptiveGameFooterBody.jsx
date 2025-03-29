@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import TextField from '../../../../../../../../../../../../Shared/TextField/TextField/TextField';
-import useObjectUtilities from '../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
-import SearchGamesOrWriteLink from '../../../../../../../../Shared/SearchGamesOrWriteLink/SearchGamesOrWriteLink';
-import EditAdaptiveGameFooterBodySelectionField from '../EditAdaptiveGameFooterBodySelectionField/EditAdaptiveGameFooterBodySelectionField';
+import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
+import useObjectUtilities from '../../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import EditAdaptiveGameFooterBodySelectionField from '../../EditAdaptiveGameFooterBodySelectionField/EditAdaptiveGameFooterBodySelectionField';
+import EditAdaptiveGamesFooterLinkField from '../Components/EditAdaptiveGamesFooterLinkField/EditAdaptiveGamesFooterLinkField';
 import styles from './EditAdaptiveGameFooterBody.module.css';
 
 const getTypeOfFooter = footer => {
@@ -70,7 +70,9 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 					}
 				}
 				if (isThereError) setErrorChange(prev => prev + 1);
-				console.log(errorMessage.current, dataHolder.current);
+				else {
+					// backend call to save the footer data
+				}
 			},
 			setValue: (val, nameWithIndex) => {
 				const [name, innerIndex] = nameWithIndex ? nameWithIndex.split('-') : [];
@@ -84,8 +86,6 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 	}
 
 	let fieldElements = null;
-
-	console.log(errorMessage.current);
 
 	switch (buttonNumber) {
 		case -1:
@@ -131,16 +131,13 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						type='text'
 						propertyName={`text-${i}`}
 					/>
-					<SearchGamesOrWriteLink
-						link='/'
-						setState={eventRefs.current.setValue}
-						blurSet
+					<EditAdaptiveGamesFooterLinkField
+						i={i}
+						data={data}
+						dataHolder={dataHolder}
+						eventRefs={eventRefs}
 						errorChange={errorChange}
-						errorMessage={errorMessage.current[i].link}
-						htmlFor={`button-link-${i}`}
-						placeholder={`Button ${i + 1} Link`}
-						defaultValue={data.footer ? dataHolder.current[i]?.link : ''}
-						propertyName={`link-${i}`}
+						errorMessage={errorMessage}
 					/>
 				</div>
 			));

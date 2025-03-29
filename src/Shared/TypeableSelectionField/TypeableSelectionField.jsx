@@ -48,6 +48,8 @@ export default function TypeableSelectionField({
 
 	const eventRefs = useRef(null);
 
+	const didErrorShowed = useRef(false);
+
 	useEffect(() => {
 		if (defaultValue && !valueRef.current) {
 			setValue(defaultValue);
@@ -56,8 +58,12 @@ export default function TypeableSelectionField({
 		}
 		if (errorShowRef.current) {
 			setErrorShow(false);
+			if (setHeight && didErrorShowed.current) {
+				setHeight(prev => prev - 1.849375);
+				didErrorShowed.current = false;
+			}
 		}
-	}, [defaultValue]);
+	}, [defaultValue, setHeight]);
 
 	if (!eventRefs.current) {
 		let isAdded = true;
@@ -68,6 +74,10 @@ export default function TypeableSelectionField({
 				isAdded = true;
 				if (errorShowRef.current) {
 					setErrorShow(false);
+					if (setHeight && didErrorShowed.current) {
+						setHeight(prev => prev - 1.849375);
+						didErrorShowed.current = false;
+					}
 				}
 				if (onFocusClick) {
 					onFocusClick();
@@ -132,13 +142,23 @@ export default function TypeableSelectionField({
 			},
 		};
 	}
+
 	useEffect(() => {
 		if (errorChange && errorMessage) {
 			setErrorShow(true);
+			if (setHeight) {
+				setHeight(prev => prev + 1.849375);
+				didErrorShowed.current = true;
+			}
 		} else {
 			setErrorShow(false);
+
+			if (setHeight && didErrorShowed.current) {
+				setHeight(prev => prev - 1.849375);
+				didErrorShowed.current = false;
+			}
 		}
-	}, [errorChange, errorMessage]);
+	}, [errorChange, errorMessage, setHeight]);
 
 	return (
 		<div
@@ -192,7 +212,6 @@ export default function TypeableSelectionField({
 					!checkLinkStarValue(typeof value === 'string' ? value : value.name) && show
 				}
 			/>
-
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
 	);

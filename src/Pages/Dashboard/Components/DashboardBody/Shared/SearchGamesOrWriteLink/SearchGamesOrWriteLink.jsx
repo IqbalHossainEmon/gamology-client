@@ -13,6 +13,8 @@ function SearchGamesOrWriteLink({
 	propertyName,
 	name,
 	htmlFor,
+	setHeight,
+	outerSetValuePropertyName,
 }) {
 	const eventRefs = useRef(null);
 
@@ -50,12 +52,13 @@ function SearchGamesOrWriteLink({
 				propertyName={propertyName}
 				name={name}
 				htmlFor={htmlFor}
+				setHeight={setHeight}
 				/* only for frontend dev */
 				// link conversion only for now, the link will be set from the backend with the game name
 				setState={(val, isWithoutSelected) =>
 					setState(
 						isWithoutSelected ? val : `/games/${convertNameToLink(val.name)}`,
-						'link'
+						outerSetValuePropertyName
 					)
 				}
 				checkLinkStarValue={eventRefs.current.checkLinkStarValue}
