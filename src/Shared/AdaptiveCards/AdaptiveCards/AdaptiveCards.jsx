@@ -46,7 +46,7 @@ function AdaptiveCards({
 						<AdaptiveCard
 							htmlFor={`${index}${i}`}
 							isEditing={isEditing}
-							key={item.link}
+							key={item.id}
 							data={item}
 							innerIndex={i}
 							length={items.length}

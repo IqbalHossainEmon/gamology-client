@@ -126,7 +126,7 @@ function AdaptiveCard({
 								<div className={styles.btnContainer}>
 									{footer.map((footerItem, index) => (
 										<a
-											key={footerItem.text}
+											key={footerItem.text + footerItem.link}
 											className={styles.btn}
 											href={footerItem.link}
 										>
@@ -150,7 +150,15 @@ function AdaptiveCard({
 						<ButtonWithRipple
 							containerClassName={styles.editFooterBtnContainer}
 							className={styles.editFooterBtn}
-							onClick={e => handleEditFooter(e, parentIndex, innerIndex, data)}
+							onClick={e =>
+								handleEditFooter(
+									e,
+									parentIndex,
+									innerIndex,
+									data,
+									data.footer.length === 0 ? 'Add' : 'Edit'
+								)
+							}
 						>
 							{data.footer.length === 0 ? 'Add' : 'Edit'} Footer
 						</ButtonWithRipple>

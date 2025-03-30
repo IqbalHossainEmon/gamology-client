@@ -91,7 +91,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 	const [adaptiveGameCards, setAdaptiveGameCards] = useState(defaultItems);
 
 	const { cloneObject } = useObjectUtilities();
-	const { setContent } = useModal();
+	const { setContent, hideModal } = useModal();
 
 	const eventRefs = useRef(null);
 
@@ -110,14 +110,17 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 			onFieldChange: (value, field, index) => {
 				dataRef.current[parentIndex].cards[index][field] = value;
 			},
-			onEditFooterClick: (e, index, innerIndex, data) => {
+			onEditFooterClick: (e, index, innerIndex, data, header) => {
 				setContent({
-					title: 'Edit Footer',
+					title: `${header} Footer`,
 					body: (
 						<EditAdaptiveGameFooterBody
 							btnRef={footerBtnRef}
 							index={innerIndex}
+							setFooterMainData={eventRefs.current.onFieldChange}
+							setAdaptiveGameCards={setAdaptiveGameCards}
 							data={data}
+							hideModal={hideModal}
 						/>
 					),
 					footer: <EditAdaptiveGameFooterFooter btnRef={footerBtnRef} />,

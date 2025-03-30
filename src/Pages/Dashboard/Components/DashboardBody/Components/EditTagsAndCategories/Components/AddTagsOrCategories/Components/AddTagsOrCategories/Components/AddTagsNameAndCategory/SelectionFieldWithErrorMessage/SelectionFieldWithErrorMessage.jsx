@@ -12,6 +12,7 @@ function SelectionFieldWithErrorMessage({
 	errorMessage,
 	errorChange,
 	handleCheck,
+	className,
 }) {
 	const [errorShow, setErrorShow] = useState(false);
 
@@ -24,7 +25,7 @@ function SelectionFieldWithErrorMessage({
 	}, [errorChange, errorMessage]);
 
 	return (
-		<div className={styles.selectionField}>
+		<div className={`${styles.selectionField}${className ? ` ${className}` : ''}`}>
 			<SelectionField
 				errorBorder={errorShow}
 				htmlFor={htmlFor}
@@ -32,7 +33,7 @@ function SelectionFieldWithErrorMessage({
 				propertyName={name}
 				onFocusClick={() => {
 					setErrorShow(false);
-					handleCheck();
+					if (handleCheck) handleCheck();
 				}}
 				placeholder={placeholder}
 				setState={setState}

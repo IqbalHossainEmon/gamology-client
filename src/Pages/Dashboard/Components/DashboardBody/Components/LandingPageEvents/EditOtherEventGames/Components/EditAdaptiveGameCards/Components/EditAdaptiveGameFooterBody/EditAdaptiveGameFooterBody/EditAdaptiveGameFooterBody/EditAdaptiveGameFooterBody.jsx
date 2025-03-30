@@ -23,7 +23,14 @@ const getTypeOfFooter = footer => {
 	}
 };
 
-function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
+function EditAdaptiveGameFooterBody({
+	index,
+	data,
+	btnRef,
+	hideModal,
+	setAdaptiveGameCards,
+	setFooterMainData,
+}) {
 	const { cloneObject } = useObjectUtilities();
 
 	const [buttonNumber, setButtonNumber] = useState(
@@ -56,13 +63,13 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						}
 					});
 				} else {
-					if (!dataHolder.current.discount) {
+					if (!dataHolder.current.regular) {
 						errorMessage.current.regular = 'Regular price is required.';
 						isThereError = true;
 					} else {
 						errorMessage.current.regular = '';
 					}
-					if (!dataHolder.current.regular) {
+					if (!dataHolder.current.discount) {
 						errorMessage.current.discount = 'Discounted price is required.';
 						isThereError = true;
 					} else {
@@ -72,13 +79,22 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 				if (isThereError) setErrorChange(prev => prev + 1);
 				else {
 					// backend call to save the footer data
+					hideModal();
+					setAdaptiveGameCards(prev => {
+						const newAdaptiveGameCards = cloneObject(prev);
+						newAdaptiveGameCards[index].footer = cloneObject(dataHolder.current);
+						return newAdaptiveGameCards;
+					});
+					setFooterMainData(cloneObject(dataHolder.current), 'footer', index);
 				}
 			},
 			setValue: (val, nameWithIndex) => {
 				const [name, innerIndex] = nameWithIndex ? nameWithIndex.split('-') : [];
 				if (innerIndex) {
+					if (!dataHolder.current[innerIndex]) dataHolder.current[innerIndex] = {};
 					dataHolder.current[innerIndex][name] = val;
 				} else {
+					if (Array.isArray(dataHolder.current)) dataHolder.current = {};
 					dataHolder.current[name] = val;
 				}
 			},
@@ -111,7 +127,7 @@ function EditAdaptiveGameFooterBody({ index, data, btnRef }) {
 						defaultValue={data.footer ? dataHolder.current.discount : ''}
 						setState={eventRefs.current.setValue}
 						type='text'
-						propertyName='discounted'
+						propertyName='discount'
 					/>
 				</div>
 			);

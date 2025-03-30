@@ -1,0 +1,109 @@
+import { useEffect, useRef, useState } from 'react';
+import useObjectUtilities from '../../../../../../../../../Utils/Hooks/useObjectUtilities';
+import SelectionFieldWithErrorMessage from '../../../../EditTagsAndCategories/Components/AddTagsOrCategories/Components/AddTagsOrCategories/Components/AddTagsNameAndCategory/SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
+import styles from './EditOtherEventAddSectionModalBody.module.css';
+
+const emptyDataShowCase = [
+	{ id: 0, games: [] },
+	{ id: 1, games: [] },
+	{ id: 2, games: [] },
+];
+
+const emptyDataAdaptiveCard = [
+	{ id: 0, cards: [] },
+	{ id: 1, cards: [] },
+	{ id: 2, cards: [] },
+];
+function EditOtherEventAddSectionModalBody({ setAllItems, submitRef, sectionsRefs, hideModal }) {
+	const [errorChange, setErrorChange] = useState(0);
+
+	const errorMessage = useRef('');
+
+	const sectionTypeRef = useRef('');
+
+	const eventRefs = useRef(null);
+
+	const { cloneObject } = useObjectUtilities();
+
+	console.log('RENDER');
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			onSubmit: () => {
+				if (!sectionTypeRef.current) {
+					errorMessage.current = 'Please selection a type first';
+					setErrorChange(prev => prev + 1);
+					return;
+				}
+				if (errorMessage.current) {
+					errorMessage.current = '';
+				}
+				setAllItems(prev => {
+					const temp = cloneObject(prev);
+					const isShowcase = sectionTypeRef.current === 'Showcase';
+					if (isShowcase) {
+						temp.push({
+							id: temp.length,
+							type: 'showcase',
+							games: cloneObject(emptyDataShowCase),
+						});
+						sectionsRefs.current.push({
+							id: temp.length,
+							type: 'showcase',
+							games: cloneObject(emptyDataShowCase),
+						});
+					} else {
+						temp.push({
+							id: temp.length,
+							type: 'adaptiveCard',
+							cards: cloneObject(emptyDataAdaptiveCard),
+						});
+						sectionsRefs.current.push({
+							id: temp.length,
+							type: 'adaptiveCard',
+							cards: cloneObject(emptyDataAdaptiveCard),
+						});
+					}
+					setTimeout(() => {
+						hideModal();
+					}, 0);
+
+					return temp;
+				});
+			},
+		};
+	}
+
+	useEffect(() => {
+		const submitBtn = submitRef.current;
+		console.log(submitBtn);
+		if (submitBtn) {
+			submitBtn.addEventListener('click', eventRefs.current.onSubmit);
+		}
+		return () => {
+			console.log('Event Listener Removed');
+			if (submitBtn) {
+				console.log('Event Listener Removed');
+				submitBtn.removeEventListener('click', eventRefs.current.onSubmit);
+			}
+		};
+	}, [submitRef]);
+
+	return (
+		<div className={styles.editOtherEventAddSectionModalBody}>
+			<SelectionFieldWithErrorMessage
+				className={styles.selectionField}
+				htmlFor='add-section'
+				list={['Showcase', 'Adaptive Card']}
+				name='Add What'
+				placeholder='Section Type'
+				setState={val => {
+					sectionTypeRef.current = val;
+				}}
+				errorChange={errorChange}
+				errorMessage={errorMessage.current}
+			/>
+		</div>
+	);
+}
+export default EditOtherEventAddSectionModalBody;

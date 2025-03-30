@@ -481,8 +481,6 @@ function SuggestionListContainer({
 		let timerId;
 		eventRefs.current = {
 			onfocus: e => {
-				// console.log(e.target.value.length);
-
 				if (e.target.value.length > 0) {
 					setShow(true);
 					if (showRef.current) showMenu();
@@ -592,12 +590,13 @@ function SuggestionListContainer({
 				);
 			},
 			handleSideEffects: () => {
-				if (value && value !== ' ') {
+				if (valueRef.current && valueRef.current !== ' ') {
 					if (!loadingRef.current) setLoading(true);
 
 					if (timerId) {
 						clearTimeout(timerId);
 					}
+
 					timerId = setTimeout(() => {
 						if (maxLimit) eventRefs.current.fetchDataWithLimit();
 						else eventRefs.current.fetchData();

@@ -16,9 +16,9 @@ function EditAdaptiveGameCardsButtons({
 	const doesFooterExists = !!adaptiveGameCards[0].footer;
 
 	const tempDataHolder = useRef({
-		title: [],
-		description: [],
-		footer: [],
+		title: ['', '', ''],
+		description: ['', '', ''],
+		footer: [[], [], []],
 	});
 
 	return (
@@ -111,14 +111,6 @@ function EditAdaptiveGameCardsButtons({
 					Add Card
 				</ButtonWithRipple>
 			)}
-			{/* This is for dev purpose only */}
-			<ButtonWithRipple
-				onClick={() => {
-					console.log(mainDataRef);
-				}}
-			>
-				Log
-			</ButtonWithRipple>
 		</div>
 	);
 }

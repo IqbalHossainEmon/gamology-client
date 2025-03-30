@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import ButtonWithRipple from '../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards';
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
+import EditOtherEventAddSectionModalBody from '../Components/EditOtherEventAddSectionModalBody/EditOtherEventAddSectionModalBody';
 import styles from './EditOtherEventGames.module.css';
 
 const showcaseDefaultData = [
@@ -121,6 +123,7 @@ const showcaseDefaultData = [
 
 const adaptiveGameData = [
 	{
+		id: 0,
 		link: "/games/marvels'_spider-man-remastered",
 		image: null,
 		title: "Marvel's Spider-Man Remastered",
@@ -128,6 +131,7 @@ const adaptiveGameData = [
 		footer: { regular: 59.99, discount: 29.99 },
 	},
 	{
+		id: 1,
 		link: '/browse',
 		title: 'Title 1',
 		image: 'https://images.unsplash.com/photo-1532630571098-79a3d222b00d?q=80&w=1944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -141,6 +145,7 @@ const adaptiveGameData = [
 		],
 	},
 	{
+		id: 2,
 		link: '/news',
 		title: 'Title 2',
 		image: 'https://images.unsplash.com/photo-1532630571098-79a3d222b00d?q=80&w=1944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -177,7 +182,11 @@ function EditOtherEventGames() {
 
 	const sectionsRefs = useRef(allItemsDefault);
 
+	const modalFooterBtnRef = useRef(null);
+
 	const { cloneObject } = useObjectUtilities();
+
+	const { setContent, hideModal } = useModal();
 
 	useEffect(() => {
 		const outerData = [];
@@ -241,26 +250,27 @@ function EditOtherEventGames() {
 					})}
 					<div>
 						<ButtonWithRipple
-							onClick={() => {
-								setAllItems(prev => {
-									const temp = [...prev];
-									const emptyData = [
-										{ id: 0, games: [] },
-										{ id: 1, games: [] },
-										{ id: 2, games: [] },
-									];
-									temp.push({
-										id: temp.length,
-										type: 'showcase',
-										games: cloneObject(emptyData),
-									});
-									sectionsRefs.current.push({
-										id: temp.length,
-										type: 'showcase',
-										games: cloneObject(emptyData),
-									});
-									console.log(temp);
-									return temp;
+							onClick={e => {
+								setContent({
+									title: 'Select Section Type',
+									body: (
+										<EditOtherEventAddSectionModalBody
+											setAllItems={setAllItems}
+											submitRef={modalFooterBtnRef}
+											sectionsRefs={sectionsRefs}
+											hideModal={hideModal}
+										/>
+									),
+									footer: (
+										<ButtonWithRipple
+											className={styles.addButton}
+											containerClassName={styles.addButtonContainer}
+											btnRef={modalFooterBtnRef}
+										>
+											Add +
+										</ButtonWithRipple>
+									),
+									e,
 								});
 							}}
 						>
@@ -269,6 +279,8 @@ function EditOtherEventGames() {
 					</div>
 				</>
 			)}
+
+			<button onClick={() => console.log(sectionsRefs.current)}>Add Adaptive Card</button>
 		</div>
 	);
 }

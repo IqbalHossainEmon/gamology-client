@@ -6,3 +6,14 @@
 	font-size: 1.5rem;
 	font-weight: 400;
 }
+
+.addButtonContainer {
+	width: 100%;
+}
+
+.addButton {
+	width: 100%;
+	border-radius: 0.5rem;
+	color: white;
+	background-color: #4caf50;
+}
