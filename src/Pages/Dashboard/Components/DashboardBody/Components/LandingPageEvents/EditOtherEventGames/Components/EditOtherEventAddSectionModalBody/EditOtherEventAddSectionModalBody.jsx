@@ -25,8 +25,6 @@ function EditOtherEventAddSectionModalBody({ setAllItems, submitRef, sectionsRef
 
 	const { cloneObject } = useObjectUtilities();
 
-	console.log('RENDER');
-
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onSubmit: () => {
@@ -38,52 +36,46 @@ function EditOtherEventAddSectionModalBody({ setAllItems, submitRef, sectionsRef
 				if (errorMessage.current) {
 					errorMessage.current = '';
 				}
+
+				const isShowcase = sectionTypeRef.current === 'Showcase';
+				let newSection;
+
 				setAllItems(prev => {
 					const temp = cloneObject(prev);
-					const isShowcase = sectionTypeRef.current === 'Showcase';
 					if (isShowcase) {
-						temp.push({
+						newSection = {
 							id: temp.length,
 							type: 'showcase',
 							games: cloneObject(emptyDataShowCase),
-						});
-						sectionsRefs.current.push({
-							id: temp.length,
-							type: 'showcase',
-							games: cloneObject(emptyDataShowCase),
-						});
+						};
+						temp.push(newSection);
 					} else {
-						temp.push({
+						newSection = {
 							id: temp.length,
 							type: 'adaptiveCard',
 							cards: cloneObject(emptyDataAdaptiveCard),
-						});
-						sectionsRefs.current.push({
-							id: temp.length,
-							type: 'adaptiveCard',
-							cards: cloneObject(emptyDataAdaptiveCard),
-						});
+						};
+						temp.push(newSection);
 					}
-					setTimeout(() => {
-						hideModal();
-					}, 0);
 
 					return temp;
 				});
+
+				sectionsRefs.current.push(newSection);
+
+				hideModal();
 			},
 		};
 	}
 
 	useEffect(() => {
 		const submitBtn = submitRef.current;
-		console.log(submitBtn);
+
 		if (submitBtn) {
 			submitBtn.addEventListener('click', eventRefs.current.onSubmit);
 		}
 		return () => {
-			console.log('Event Listener Removed');
 			if (submitBtn) {
-				console.log('Event Listener Removed');
 				submitBtn.removeEventListener('click', eventRefs.current.onSubmit);
 			}
 		};

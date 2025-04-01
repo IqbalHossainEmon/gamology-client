@@ -248,39 +248,37 @@ function EditOtherEventGames() {
 							);
 						return null;
 					})}
-					<div>
-						<ButtonWithRipple
-							onClick={e => {
-								setContent({
-									title: 'Select Section Type',
-									body: (
-										<EditOtherEventAddSectionModalBody
-											setAllItems={setAllItems}
-											submitRef={modalFooterBtnRef}
-											sectionsRefs={sectionsRefs}
-											hideModal={hideModal}
-										/>
-									),
-									footer: (
-										<ButtonWithRipple
-											className={styles.addButton}
-											containerClassName={styles.addButtonContainer}
-											btnRef={modalFooterBtnRef}
-										>
-											Add +
-										</ButtonWithRipple>
-									),
-									e,
-								});
-							}}
-						>
-							Add more +
-						</ButtonWithRipple>
-					</div>
 				</>
 			)}
-
-			<button onClick={() => console.log(sectionsRefs.current)}>Add Adaptive Card</button>
+			<div>
+				<ButtonWithRipple
+					onClick={e => {
+						setContent({
+							title: 'Select Section Type',
+							body: (
+								<EditOtherEventAddSectionModalBody
+									setAllItems={setAllItems}
+									submitRef={modalFooterBtnRef}
+									sectionsRefs={sectionsRefs}
+									hideModal={hideModal}
+								/>
+							),
+							footer: (
+								<ButtonWithRipple
+									className={styles.addButton}
+									containerClassName={styles.addButtonContainer}
+									btnRef={modalFooterBtnRef}
+								>
+									Add +
+								</ButtonWithRipple>
+							),
+							e,
+						});
+					}}
+				>
+					Add more +
+				</ButtonWithRipple>
+			</div>
 		</div>
 	);
 }
