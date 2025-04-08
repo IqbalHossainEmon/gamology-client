@@ -5,8 +5,8 @@ import EditAdaptiveCardsLinkField from '../Components/EditAdaptiveCardsLinkField
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import styles from './EditAdaptiveGameCards.module.css';
 
-function editHeaderComponent(index, link) {
-	return <EditAdaptiveCardsLinkField index={index} link={link} />;
+function editHeaderComponent(index, link, setLink) {
+	return <EditAdaptiveCardsLinkField index={index} link={link} setLink={setLink} blurSet />;
 }
 
 function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
@@ -25,14 +25,15 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 				setAdaptiveGameCard(pre => {
 					const newAdaptiveGameCard = cloneObject(pre);
 					newAdaptiveGameCard[index].image = URL.createObjectURL(file);
-					// dataRef.current[index] = adaptiveCard;
+					dataRef.current[index] = newAdaptiveGameCard[index];
 					return newAdaptiveGameCard;
 				});
 			},
+			onFieldChange: (field, value, index) => {
+				dataRef.current[parentIndex].cards[index][field] = value;
+			},
 		};
 	}
-
-	console.log(adaptiveGameCard);
 
 	return (
 		<div className={styles.editAdaptiveGameCards}>
@@ -41,9 +42,10 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 				isEditing
 				index={parentIndex}
 				editingHeader={editHeaderComponent}
+				onFieldChange={eventRefs.current.onFieldChange}
 				onImageUpload={eventRefs.current.onImageUpload}
 			/>
-			<EditAdaptiveGameCardsButtons />
+			<EditAdaptiveGameCardsButtons defaultData={dataRef.current} />
 		</div>
 	);
 }

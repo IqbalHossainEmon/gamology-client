@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
 import Image from '../../../Image/Image/Image';
 import ScrollBar from '../../../ScrollBar/ScrollBar/ScrollBar';
 import styles from './SuggestionListContent.module.css';
@@ -23,6 +24,7 @@ function SuggestionListContent({
 	onHide,
 	elementRef,
 	setContainerHeight,
+	isSelected,
 }) {
 	useEffect(() => {
 		setElement([suggestionRef.current, elementRef.current]);
@@ -39,6 +41,8 @@ function SuggestionListContent({
 		};
 	}, [height, loading, numberOfButton, setContainerHeight]);
 
+	const { cloneObject } = useObjectUtilities();
+
 	return (
 		<div
 			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}`}
@@ -47,7 +51,7 @@ function SuggestionListContent({
 			<div
 				style={{
 					height: loading
-						? '15rem'
+						? '15.25rem'
 						: `${(height + 20 + (numberOfButton || 0) * 34) / 16}rem`,
 				}}
 				className={`${styles.listContainer}${fadeIn ? ` ${styles.fadeIn}` : ''}`}
@@ -78,9 +82,12 @@ function SuggestionListContent({
 												tabIndex={show ? 0 : -1}
 												{...(value === item && { disabled: true })}
 												onClick={() => {
+													isSelected.current = true;
+													const newItem = cloneObject(item);
+													delete newItem.editedName;
 													setShow(false);
 													onHide();
-													if (setState) setState(item);
+													if (setState) setState(newItem);
 												}}
 												type='button'
 											>

@@ -3,14 +3,14 @@ import TypeableSelectionField from '../../../../../../../../../../../Shared/Type
 import useTextConverter from '../../../../../../../../../../../Utils/Hooks/useTextConverter';
 import styles from './EditAdaptiveCardsLinkField.module.css';
 
-function EditAdaptiveCardsLinkField({ index, link }) {
+function EditAdaptiveCardsLinkField({ index, link, setLink, blurSet }) {
 	const eventRefs = useRef(null);
 
 	const { convertNameToLink } = useTextConverter();
 
 	if (!eventRefs.current) {
 		eventRefs.current = {
-			handleListHide: val => {
+			checkLinkStarValue: val => {
 				const newValue = val;
 
 				if (newValue?.toLowerCase().startsWith('/games/') && newValue.length > 7) {
@@ -35,15 +35,15 @@ function EditAdaptiveCardsLinkField({ index, link }) {
 			<TypeableSelectionField
 				placeholder="Enter main link (/games/'game_name' for games)"
 				defaultValue={link}
+				blurSet={blurSet}
 				propertyName='name'
 				name={`editAdaptiveCardLink${index}`}
 				htmlFor={`editAdaptiveCardLink${index}`}
-				setState={val => {
-					console.log(val);
-				}}
-				handleListHide={eventRefs.current.handleListHide}
+				// link conversion only for now
+				setState={val => setLink('link', `/games/${convertNameToLink(val.name)}`)}
+				checkLinkStarValue={eventRefs.current.checkLinkStarValue}
 				specialSetValueHandler={eventRefs.current.valueSetter}
-				specialValueHandler={eventRefs.current.valueChecker}
+				handleValueCheck={eventRefs.current.valueChecker}
 				// errorMessage={errorMessage.current}
 				// errorChange={errorChange}
 			/>

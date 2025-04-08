@@ -13,6 +13,7 @@ function SuggestionList({
 	link,
 	setHeight,
 	className,
+	prototypeName,
 	parentShow = true,
 }) {
 	const [navShow, setNavShow] = useState(false);
@@ -56,6 +57,7 @@ function SuggestionList({
 			extraSectionParams={extraSectionParams}
 			link={link}
 			setContainerHeight={setHeight}
+			prototypeName={prototypeName}
 		/>
 	);
 }

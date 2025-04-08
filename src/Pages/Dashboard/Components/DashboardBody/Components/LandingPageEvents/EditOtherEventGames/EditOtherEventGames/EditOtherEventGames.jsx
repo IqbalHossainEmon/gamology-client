@@ -5,7 +5,7 @@ import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdapt
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import styles from './EditOtherEventGames.module.css';
 
-const data = [
+const showcaseDefaultData = [
 	{
 		id: 0,
 		header: 'New Releases',
@@ -155,39 +155,28 @@ const adaptiveGameData = [
 	},
 ];
 
-const emptyShowcaseItems = [
-	{ id: 0, games: [] },
-	{ id: 1, games: [] },
-	{ id: 2, games: [] },
+const allItemsDefault = [
+	{
+		id: 0,
+		type: 'showcase',
+		games: [
+			{ id: 0, games: [] },
+			{ id: 1, games: [] },
+			{ id: 2, games: [] },
+		],
+	},
+	{
+		id: 1,
+		type: 'adaptiveCard',
+		cards: [],
+	},
 ];
 
 function EditOtherEventGames() {
 	const [loading, setLoading] = useState(true);
-	const [allItems, setAllItems] = useState([
-		{
-			id: 0,
-			type: 'showcase',
-			games: emptyShowcaseItems,
-		},
-		{
-			id: 1,
-			type: 'adaptiveCard',
-			cards: [],
-		},
-	]);
+	const [allItems, setAllItems] = useState(allItemsDefault);
 
-	const sectionsRefs = useRef([
-		{
-			id: 0,
-			type: 'showcase',
-			games: emptyShowcaseItems,
-		},
-		{
-			id: 1,
-			type: 'adaptiveCard',
-			cards: [],
-		},
-	]);
+	const sectionsRefs = useRef(allItemsDefault);
 
 	const { cloneObject } = useObjectUtilities();
 
@@ -199,7 +188,7 @@ function EditOtherEventGames() {
 				outerData.push({
 					id: i,
 					type: 'showcase',
-					games: cloneObject(data),
+					games: cloneObject(showcaseDefaultData),
 				});
 			} else {
 				outerData.push({

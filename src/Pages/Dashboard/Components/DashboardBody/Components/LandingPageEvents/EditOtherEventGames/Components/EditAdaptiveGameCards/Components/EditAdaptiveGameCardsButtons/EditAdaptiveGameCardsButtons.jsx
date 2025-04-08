@@ -1,10 +1,10 @@
 import ButtonWithRipple from '../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import styles from './EditAdaptiveGameCardsButtons.module.css';
 
-function EditAdaptiveGameCardsButtons() {
+function EditAdaptiveGameCardsButtons({ defaultData }) {
 	return (
 		<div className={styles.editAdaptiveGameCardsButtons}>
-			<ButtonWithRipple>Add Title</ButtonWithRipple>
+			<ButtonWithRipple onClick={() => console.log(defaultData)}>Add Title</ButtonWithRipple>
 			<ButtonWithRipple>Add Description</ButtonWithRipple>
 			<ButtonWithRipple>Add Footer Button</ButtonWithRipple>
 		</div>

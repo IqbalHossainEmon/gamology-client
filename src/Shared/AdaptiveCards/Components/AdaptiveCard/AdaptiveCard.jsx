@@ -9,7 +9,15 @@ import RippleEffect from '../../../RippleEffect/RippleEffect';
 import TextField from '../../../TextField/TextField/TextField';
 import styles from './AdaptiveCard.module.css';
 
-function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader, onImageUpload }) {
+function AdaptiveCard({
+	data,
+	isOnlyOne,
+	isEditing,
+	htmlFor,
+	editingHeader,
+	onImageUpload,
+	onFieldChange,
+}) {
 	const { title, image, footer, description, link, isGame } = data;
 
 	const imageContainer = isGame ? (
@@ -59,7 +67,7 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader, onIm
 		<li
 			className={`${styles.adaptiveGameCard} ${isOnlyOne ? styles.onlyOne : styles.multiple}`}
 		>
-			{editingHeader && editingHeader(htmlFor, link)}
+			{editingHeader && editingHeader(htmlFor, link, onFieldChange)}
 			<div className={`${styles.imageContainer} hover-shadow`}>
 				{isEditing ? (
 					<>
@@ -90,7 +98,7 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader, onIm
 						<TextField
 							field='input'
 							placeholder='Title'
-							setState={value => console.log(value)}
+							setState={value => onFieldChange('title', value)}
 							htmlFor={`title${htmlFor}`}
 							defaultValue={title}
 						/>
@@ -105,7 +113,7 @@ function AdaptiveCard({ data, isOnlyOne, isEditing, htmlFor, editingHeader, onIm
 				{isEditing ? (
 					<div className={styles.descriptionContainer}>
 						<TextField
-							setState={value => console.log(value)}
+							setState={value => onFieldChange('description', value)}
 							field='textarea'
 							htmlFor={`description${htmlFor}`}
 							placeholder='Description'

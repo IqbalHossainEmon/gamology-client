@@ -437,10 +437,11 @@ function SuggestionListContainer({
 	maxLimit,
 	searchInputRef,
 	extraSectionParams,
+	prototypeName,
 	link,
 	setContainerHeight,
 }) {
-	const [show, fadeIn] = useAppearDisappear(true, false, true, 350);
+	const [show, fadeIn] = useAppearDisappear(state, false, true, 350);
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -467,6 +468,8 @@ function SuggestionListContainer({
 
 	const showRef = useRef(show);
 	showRef.current = show;
+
+	const isSelected = useRef(false);
 
 	const { setElement, onHide, showMenu } = useDropDownHide(val => {
 		setShow(val);
@@ -509,7 +512,6 @@ function SuggestionListContainer({
 					case true:
 						setHeight(length * 56);
 						break;
-
 					default:
 						if (length > 4 && !maxLimit) {
 							setHeight(
@@ -524,7 +526,6 @@ function SuggestionListContainer({
 						}
 						break;
 				}
-
 				return bottomRemain;
 			},
 			handleAddStrongMatch: givenList => {
@@ -576,7 +577,6 @@ function SuggestionListContainer({
 						valueRef.current !== ' ' &&
 						valueRef.current !== ''
 				);
-
 				listLengthRef.current = filteredList.length;
 				eventRefs.current.handleAddStrongMatch(
 					cloneObject(filteredList).slice(0, maxLimit)
@@ -592,27 +592,31 @@ function SuggestionListContainer({
 	}, [searchInputRef]);
 
 	useEffect(() => {
-		if (value !== '' && value !== ' ') {
-			if (!loadingRef.current) setLoading(true);
+		if (!isSelected.current) {
+			if (value && value !== ' ') {
+				if (!loadingRef.current) setLoading(true);
 
-			if (typeTimerId.current) {
-				clearTimeout(typeTimerId.current);
+				if (typeTimerId.current) {
+					clearTimeout(typeTimerId.current);
+				}
+				typeTimerId.current = setTimeout(() => {
+					if (maxLimit) eventRefs.current.fetchDataWithLimit();
+					else eventRefs.current.fetchData();
+					typeTimerId.current = null;
+				}, 200);
+			} else {
+				if (typeTimerId.current) {
+					clearTimeout(typeTimerId.current);
+					typeTimerId.current = null;
+				}
+				if (loadingRef.current) setLoading(false);
+				setList([]);
+				if (heightRef.current > 56) {
+					setHeight(56);
+				}
 			}
-			typeTimerId.current = setTimeout(() => {
-				if (maxLimit) eventRefs.current.fetchDataWithLimit();
-				else eventRefs.current.fetchData();
-				typeTimerId.current = null;
-			}, 200);
 		} else {
-			if (typeTimerId.current) {
-				clearTimeout(typeTimerId.current);
-				typeTimerId.current = null;
-			}
-			if (loadingRef.current) setLoading(false);
-			setList([]);
-			if (heightRef.current > 56) {
-				setHeight(56);
-			}
+			isSelected.current = false;
 		}
 	}, [maxLimit, value]);
 
@@ -638,6 +642,7 @@ function SuggestionListContainer({
 				extraSectionParams={extraSectionParams}
 				elementRef={elementRef}
 				setContainerHeight={setContainerHeight}
+				isSelected={isSelected}
 			/>
 		)
 	);

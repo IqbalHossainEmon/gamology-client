@@ -18,9 +18,10 @@ export default function TypeableSelectionField({
 	errorMessage,
 	errorChange = () => {},
 	setHeight,
-	handleListHide = () => false,
-	specialValueHandler,
+	checkLinkStarValue = () => false,
 	specialSetValueHandler,
+	handleValueCheck,
+	blurSet,
 	...rest
 }) {
 	const [value, setValue] = useState(defaultValue);
@@ -83,8 +84,20 @@ export default function TypeableSelectionField({
 					setShow(false);
 				}
 			},
-			handleBlur: () => {
+			handleBlur: e => {
 				setFocused(false);
+				if (blurSet && checkLinkStarValue(valueRef.current)) {
+					setState(e.target.value);
+				}
+			},
+			getSuggestionValue: val => {
+				if (typeof val === 'string') {
+					return handleValueCheck ? handleValueCheck(val) : val;
+				}
+				if (val && typeof val === 'object' && 'name' in val) {
+					return handleValueCheck ? handleValueCheck(val.name) : val.name;
+				}
+				return '';
 			},
 		};
 	}
@@ -138,20 +151,13 @@ export default function TypeableSelectionField({
 					);
 					setState(val);
 				}}
+				prototypeName='name'
 				searchInputRef={fieldRef}
-				value={
-					typeof value === 'string'
-						? specialValueHandler
-							? specialValueHandler(value)
-							: value
-						: specialValueHandler
-							? specialValueHandler(value.name)
-							: value.name
-				}
+				value={eventRefs.current.getSuggestionValue(value)}
 				searchRef={elementRef}
 				setHeight={setHeight}
 				link='http://localhost:5173/api/autocomplete'
-				parentShow={!handleListHide(typeof value === 'string' ? value : value.name)}
+				parentShow={!checkLinkStarValue(typeof value === 'string' ? value : value.name)}
 			/>
 			<ErrorMessage enable={errorShow} errorMessage={errorMessage} />
 		</div>
