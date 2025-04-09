@@ -278,6 +278,10 @@ function EditOtherEventGames() {
 				>
 					Add more +
 				</ButtonWithRipple>
+
+				<button type='button' onClick={() => console.log(sectionsRefs.current)}>
+					Log the changes
+				</button>
 			</div>
 		</div>
 	);

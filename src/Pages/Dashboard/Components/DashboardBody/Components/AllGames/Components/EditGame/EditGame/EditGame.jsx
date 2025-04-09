@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import useObjectUtilities from '../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../Utils/Hooks/useToast';
-import GameInfoField from '../../../../GameInfoField/GameInfoField/GameInfoField';
+import GameInfoField from '../../../../Shared/GameInfoField/GameInfoField/GameInfoField';
 import styles from './EditGame.module.css';
 
 const data = {
