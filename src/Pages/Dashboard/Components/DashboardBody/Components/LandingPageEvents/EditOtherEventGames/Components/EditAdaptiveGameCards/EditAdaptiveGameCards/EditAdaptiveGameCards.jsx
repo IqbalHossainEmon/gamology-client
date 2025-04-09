@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
 import AdaptiveCards from '../../../../../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
+import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import SearchGamesOrWriteLink from '../../../../../../Shared/SearchGamesOrWriteLink/SearchGamesOrWriteLink';
+import EditGameShowCaseConfirmModal from '../../EditGameShowCase/Components/EditGameShowCaseConfirmModal/EditGameShowCaseConfirmModal';
 import EditAdaptiveCardDotMenu from '../Components/EditAdaptiveCardDotMenu/EditAdaptiveCardDotMenu';
 import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsButtons/EditAdaptiveGameCardsButtons';
 import EditAdaptiveGameFooterBody from '../Components/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody';
@@ -87,7 +89,7 @@ function editHeaderComponent(
 	);
 }
 
-function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
+function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex, onDelete }) {
 	const [adaptiveGameCards, setAdaptiveGameCards] = useState(defaultItems);
 
 	const { cloneObject } = useObjectUtilities();
@@ -147,6 +149,35 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex }) {
 				mainDataRef={dataRef}
 				parentIndex={parentIndex}
 			/>
+			<div className={styles.btnContainer}>
+				<ButtonWithRipple
+					onClick={() => {
+						setAdaptiveGameCards(cloneObject(defaultItems));
+						dataRef.current = cloneObject(defaultItems);
+					}}
+				>
+					Reset
+				</ButtonWithRipple>
+				<ButtonWithRipple
+					onClick={e =>
+						setContent({
+							title: 'Delete Game Showcase',
+							body: <p>Are you sure you want to delete this Section?</p>,
+							footer: (
+								<EditGameShowCaseConfirmModal
+									onConfirm={() => {
+										hideModal();
+										onDelete(parentIndex);
+									}}
+								/>
+							),
+							e,
+						})
+					}
+				>
+					Delete
+				</ButtonWithRipple>
+			</div>
 		</div>
 	);
 }

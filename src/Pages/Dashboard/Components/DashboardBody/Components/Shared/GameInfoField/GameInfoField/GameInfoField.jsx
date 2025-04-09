@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import ButtonWithRipple from '../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import ButtonWithRipple from '../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import OuterErrorMessage from '../../../../Shared/OuterErrorMessage/OuterErrorMessage';
 import GameInfoFieldBanner from '../Components/GameInfoFieldBanner/GameInfoFieldBanner/GameInfoFieldBanner';
 import GameInfoFieldDescriptions from '../Components/GameInfoFieldDescriptions/GameInfoFieldDescriptions/GameInfoFieldDescriptions';

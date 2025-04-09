@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ButtonWithRipple from '../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
+import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import BannerInputFieldContainer from '../BannerInputFieldContainer/BannerInputFieldContainer';
 import styles from './GameInfoFieldBanner.module.css';
 

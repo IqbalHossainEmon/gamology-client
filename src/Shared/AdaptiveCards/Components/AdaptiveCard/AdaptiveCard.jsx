@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import ButtonWithRipple from '../../../../Pages/Dashboard/Components/DashboardBody/Shared/ButtonWithRipple/ButtonWithRipple';
 import useToast from '../../../../Utils/Hooks/useToast';
+import ButtonWithRipple from '../../../ButtonWithRipple/ButtonWithRipple';
 import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import UploadIcon from '../../../Icons/UploadIcon/UploadIcon';
 import Image from '../../../Image/Image/Image';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
-import ButtonWithRipple from '../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
 import styles from './GameInfoFieldDescriptions.module.css';
 

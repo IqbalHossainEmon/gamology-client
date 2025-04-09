@@ -1,0 +1,41 @@
+.btnContainer {
+	width: fit-content;
+}
+.btn {
+	background-color: rgba(255, 255, 255, 0.05);
+	position: relative;
+	color: rgb(173, 173, 173);
+	height: 100%;
+	padding: 1.25em;
+	font-size: medium;
+	border: none;
+	cursor: pointer;
+	outline: 1px solid transparent;
+	border-radius: 0.25rem;
+	transition:
+		opacity 200ms,
+		outline 200ms;
+}
+
+.btn:focus {
+	outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn:hover {
+	outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.disabled {
+	opacity: 0.5;
+}
+
+.btn:disabled {
+	cursor: default;
+}
+
+@media screen and (max-width: 48rem) {
+	.btn {
+		font-size: 0.75rem;
+		white-space: wrap;
+	}
+}

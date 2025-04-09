@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import ButtonWithRipple from '../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import ButtonWithRipple from '../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards';
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import EditOtherEventAddSectionModalBody from '../Components/EditOtherEventAddSectionModalBody/EditOtherEventAddSectionModalBody';
@@ -212,6 +212,44 @@ function EditOtherEventGames() {
 		setLoading(false);
 	}, [cloneObject]);
 
+	const eventRefs = useRef(null);
+
+	if (!eventRefs.current) {
+		eventRefs.current = {
+			onDelete: index => {
+				setAllItems(prev => {
+					const temp = [...prev];
+					temp.splice(index, 1);
+					return temp;
+				});
+				sectionsRefs.current.splice(index, 1);
+			},
+			onAdd: e => {
+				setContent({
+					title: 'Select Section Type',
+					body: (
+						<EditOtherEventAddSectionModalBody
+							setAllItems={setAllItems}
+							submitRef={modalFooterBtnRef}
+							sectionsRefs={sectionsRefs}
+							hideModal={hideModal}
+						/>
+					),
+					footer: (
+						<ButtonWithRipple
+							className={styles.addButton}
+							containerClassName={styles.addButtonContainer}
+							btnRef={modalFooterBtnRef}
+						>
+							Add +
+						</ButtonWithRipple>
+					),
+					e,
+				});
+			},
+		};
+	}
+
 	return (
 		<div className={styles.editOtherEventGames}>
 			{loading ? (
@@ -228,17 +266,11 @@ function EditOtherEventGames() {
 											parentIndex={index}
 											defaultItems={items.games}
 											dataRef={sectionsRefs}
-											onDelete={parentIndex => {
-												setAllItems(prev => {
-													const temp = [...prev];
-													temp.splice(parentIndex, 1);
-													sectionsRefs.current.splice(items.id, 1);
-													return temp;
-												});
-											}}
+											onDelete={eventRefs.current.onDelete}
 										/>
 									) : items.cards ? (
 										<EditAdaptiveGameCards
+											onDelete={eventRefs.current.onDelete}
 											parentIndex={index}
 											dataRef={sectionsRefs}
 											defaultItems={items.cards}
@@ -251,34 +283,7 @@ function EditOtherEventGames() {
 				</>
 			)}
 			<div>
-				<ButtonWithRipple
-					onClick={e => {
-						setContent({
-							title: 'Select Section Type',
-							body: (
-								<EditOtherEventAddSectionModalBody
-									setAllItems={setAllItems}
-									submitRef={modalFooterBtnRef}
-									sectionsRefs={sectionsRefs}
-									hideModal={hideModal}
-								/>
-							),
-							footer: (
-								<ButtonWithRipple
-									className={styles.addButton}
-									containerClassName={styles.addButtonContainer}
-									btnRef={modalFooterBtnRef}
-								>
-									Add +
-								</ButtonWithRipple>
-							),
-							e,
-						});
-					}}
-				>
-					Add more +
-				</ButtonWithRipple>
-
+				<ButtonWithRipple onClick={eventRefs.current.onAdd}>Add more +</ButtonWithRipple>
 				<button type='button' onClick={() => console.log(sectionsRefs.current)}>
 					Log the changes
 				</button>

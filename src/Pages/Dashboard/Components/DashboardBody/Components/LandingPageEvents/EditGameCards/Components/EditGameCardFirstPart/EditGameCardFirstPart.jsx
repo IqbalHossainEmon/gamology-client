@@ -1,5 +1,5 @@
+import ButtonWithRipple from '../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../../Utils/Hooks/useModal';
-import ButtonWithRipple from '../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
 import styles from './EditGameCardFirstPart.module.css';
 
