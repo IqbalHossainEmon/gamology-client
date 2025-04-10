@@ -75,18 +75,15 @@ export default function VideoSlider({
 			element.removeEventListener('webkitfullscreenchange', handleResize);
 		};
 
-		let videoContainerRef;
+		const videoContainerNode = videoContainer.current;
 
-		if (videoContainer.current) {
-			addFullscreenEventListeners(videoContainer.current);
-			videoContainerRef = videoContainer.current;
+		if (videoContainerNode) {
+			addFullscreenEventListeners(videoContainerNode);
+
+			return () => {
+				removeFullscreenEventListeners(videoContainerNode);
+			};
 		}
-
-		return () => {
-			if (videoContainerRef) {
-				removeFullscreenEventListeners(videoContainerRef);
-			}
-		};
 	}, [videoContainer]);
 
 	const onStart = useDragStartStop(eventRefs.current.handleMove, handleMouseUp);

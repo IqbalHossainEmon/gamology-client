@@ -165,12 +165,10 @@ function EditAdaptiveGameFooterBody({
 		const btn = btnRef.current;
 		if (btn) {
 			btn.addEventListener('click', eventRefs.current.onClick);
-		}
-		return () => {
-			if (btn) {
+			return () => {
 				btn.removeEventListener('click', eventRefs.current.onClick);
-			}
-		};
+			};
+		}
 	}, [btnRef]);
 
 	return (

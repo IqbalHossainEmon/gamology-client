@@ -50,12 +50,10 @@ function GameCardModalBody({ handleClick, btnRef }) {
 		const btn = btnRef.current;
 		if (btn) {
 			btn.addEventListener('click', evenRefs.current.onclick);
-		}
-		return () => {
-			if (btn) {
+			return () => {
 				btn.removeEventListener('click', evenRefs.current);
-			}
-		};
+			};
+		}
 	}, [btnRef]);
 
 	return (

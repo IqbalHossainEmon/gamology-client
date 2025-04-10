@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import useTextConverter from '../../../../../../Utils/Hooks/useTextConverter';
 import styles from './SearchGamesOrWriteLink.module.css';
@@ -15,6 +15,8 @@ function SearchGamesOrWriteLink({
 	htmlFor,
 	setHeight,
 	outerSetValuePropertyName,
+	valueUpdaterRef,
+	valueResetRef,
 }) {
 	const eventRefs = useRef(null);
 
@@ -41,6 +43,30 @@ function SearchGamesOrWriteLink({
 		};
 	}
 
+	const valueUpdaterEventRef = useRef(null);
+
+	useEffect(() => {
+		if (valueUpdaterRef) {
+			valueUpdaterRef.current = valueUpdaterEventRef.current;
+			return () => {
+				valueUpdaterRef.current = null;
+			};
+		}
+	}, [valueUpdaterRef]);
+
+	useEffect(() => {
+		if (valueResetRef) {
+			valueResetRef.current = () => {
+				console.log(defaultValue);
+
+				valueUpdaterEventRef.current(defaultValue);
+			};
+			return () => {
+				valueResetRef.current = null;
+			};
+		}
+	}, [defaultValue, valueResetRef]);
+
 	return (
 		<div className={styles.header}>
 			{/* only for frontend dev */}
@@ -66,6 +92,7 @@ function SearchGamesOrWriteLink({
 				handleValueCheck={eventRefs.current.valueChecker}
 				errorMessage={errorMessage}
 				errorChange={errorChange}
+				valueUpdaterRef={valueUpdaterEventRef}
 			/>
 		</div>
 	);

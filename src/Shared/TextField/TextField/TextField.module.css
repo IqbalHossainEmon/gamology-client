@@ -49,7 +49,7 @@
 }
 
 .textareaLabel {
-	top: 1.875em;
+	top: 1.25em;
 }
 
 .field {
@@ -65,6 +65,13 @@
 .textShrink {
 	max-width: calc(125% - 1.25em);
 	translate: 0 -1.5625em;
+	scale: 0.8;
+	color: rgb(173, 173, 173);
+}
+
+.textareaShrink {
+	max-width: calc(125% - 1.25em);
+	translate: 0 -0.962em;
 	scale: 0.8;
 	color: rgb(173, 173, 173);
 }

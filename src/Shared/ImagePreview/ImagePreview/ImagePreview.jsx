@@ -17,17 +17,19 @@ function ImagePreview({
 	const isFirstRef = useRef(true);
 
 	useEffect(() => {
-		let isUrlCreated;
 		if (isFirstRef.current && !imgRef.current) {
 			isFirstRef.current = false;
 
 			const img = new Image();
 
 			if (file instanceof File) {
-				img.src = isUrlCreated = URL.createObjectURL(file);
+				img.src = URL.createObjectURL(file);
 				img.alt = `preview ${file.name}`;
-				isUrlCreated = true;
-			} else if (typeof file === 'string') {
+				return () => {
+					URL.revokeObjectURL(img.src);
+				};
+			}
+			if (typeof file === 'string') {
 				img.src = file;
 				img.alt = `preview ${file.split('/').pop().split('.')[0]}`;
 			}
@@ -56,11 +58,6 @@ function ImagePreview({
 				imgRef.current = img;
 			};
 		}
-		return () => {
-			if (isUrlCreated) {
-				URL.revokeObjectURL(isUrlCreated);
-			}
-		};
 	}, [containerIdName, containerRef, file, imgRef, positionRef, setLoading]);
 
 	const [show, appear] = useAppearDisappear(position !== 0 && isShow, true);

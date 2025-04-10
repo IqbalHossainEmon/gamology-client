@@ -90,13 +90,11 @@ function TooltipBody({ fadeIn, data }) {
 					preferPosition
 				)
 			);
-		}
-		return () => {
-			if (tooltip) {
+			return () => {
 				tooltip.removeEventListener('mouseover', eventRefs.current.onMouseOver);
 				tooltip.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
-			}
-		};
+			};
+		}
 	}, [container, preferPosition]);
 
 	return (

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useToast from '../../../../Utils/Hooks/useToast';
 import ButtonWithRipple from '../../../ButtonWithRipple/ButtonWithRipple';
 import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
@@ -21,6 +21,7 @@ function AdaptiveCard({
 	innerIndex,
 	handleEditFooter,
 	parentIndex,
+	handleResetRef,
 }) {
 	const { title, image, footer, description, link, isGame } = data;
 
@@ -37,6 +38,18 @@ function AdaptiveCard({
 	) : (
 		<Image data={image} aspectRatioClassName={styles.imageAspectRatio} />
 	);
+
+	const titleValueUpdaterEventRef = useRef(null);
+	const descriptionValueUpdaterEventRef = useRef(null);
+
+	useEffect(() => {
+		if (handleResetRef) {
+			handleResetRef.current[innerIndex] = () => {
+				titleValueUpdaterEventRef.current(title);
+				descriptionValueUpdaterEventRef.current(description);
+			};
+		}
+	}, [description, handleResetRef, image, innerIndex, title]);
 
 	const imageElement = <a href={link}>{imageContainer}</a>;
 
@@ -99,6 +112,7 @@ function AdaptiveCard({
 										setState={value => onFieldChange('title', value)}
 										htmlFor={`title${htmlFor}`}
 										defaultValue={title}
+										valueUpdaterRef={titleValueUpdaterEventRef}
 									/>
 								</div>
 							)
@@ -116,6 +130,7 @@ function AdaptiveCard({
 										htmlFor={`description${htmlFor}`}
 										placeholder='Description'
 										defaultValue={description}
+										valueUpdaterRef={descriptionValueUpdaterEventRef}
 									/>
 								</div>
 							)

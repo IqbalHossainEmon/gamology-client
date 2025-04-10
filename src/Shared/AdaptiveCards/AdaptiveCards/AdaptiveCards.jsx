@@ -14,6 +14,7 @@ function AdaptiveCards({
 	index = 0,
 	cardHover = null,
 	handleEditFooter,
+	handleResetRef: resetRef,
 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
@@ -24,12 +25,41 @@ function AdaptiveCards({
 
 	const cardPositionRef = useRef(cardPosition);
 	cardPositionRef.current = cardPosition;
+	const handleResetRef = useRef([]);
 
 	useEffect(() => {
 		if (cardPositionRef.current >= items.length) {
 			setCardPosition(items.length - 1);
 		}
 	}, [items]);
+
+	useEffect(() => {
+		if (resetRef) {
+			resetRef.current = target => {
+				const fns = handleResetRef.current;
+				if (!Array.isArray(fns) || fns.length === 0) return;
+
+				if (!target) {
+					fns.forEach(fn => fn?.());
+					return;
+				}
+
+				if (typeof target === 'number') {
+					if (Number.isInteger(target) && target >= 0 && target < fns.length) {
+						fns[target]?.();
+					}
+					return;
+				}
+
+				if (Array.isArray(target)) {
+					const unique = new Set(
+						target.filter(idx => Number.isInteger(idx) && idx >= 0 && idx < fns.length)
+					);
+					unique.forEach(idx => fns[idx]?.());
+				}
+			};
+		}
+	}, [resetRef]);
 
 	return (
 		<section className={styles.adaptiveGameCards}>
@@ -44,6 +74,7 @@ function AdaptiveCards({
 				>
 					{items.map((item, i) => (
 						<AdaptiveCard
+							{...(resetRef && { handleResetRef })}
 							htmlFor={`${index}${i}`}
 							isEditing={isEditing}
 							key={item.id}

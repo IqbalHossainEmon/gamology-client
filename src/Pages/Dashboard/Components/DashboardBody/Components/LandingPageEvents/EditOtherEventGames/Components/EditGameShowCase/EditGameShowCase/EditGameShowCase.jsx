@@ -120,7 +120,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 				<ButtonWithRipple
 					onClick={() => {
 						setItems(cloneObject(defaultItems));
-						dataRef.current = cloneObject(defaultItems);
+						dataRef.current[parentIndex].games = cloneObject(defaultItems);
 					}}
 				>
 					Reset

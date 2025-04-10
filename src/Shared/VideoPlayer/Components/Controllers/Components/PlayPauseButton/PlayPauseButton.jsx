@@ -38,27 +38,22 @@ function PlayPauseButton({
 		};
 	}
 	useEffect(() => {
-		let videoRef;
-
 		const { onVideoPlay, onPauseVideo, onWindowVisibilityChange, handleEnd } =
 			eventRefs.current;
 
-		if (video.current) {
-			videoRef = video.current;
+		const videoRef = video.current;
+		if (videoRef) {
 			videoRef.addEventListener('play', onVideoPlay);
 			videoRef.addEventListener('pause', onPauseVideo);
 			videoRef.addEventListener('ended', handleEnd);
 			videoRef.addEventListener('playing', onWindowVisibilityChange);
-		}
-
-		return () => {
-			if (videoRef) {
+			return () => {
 				videoRef.removeEventListener('play', onVideoPlay);
 				videoRef.removeEventListener('pause', onPauseVideo);
 				videoRef.removeEventListener('ended', handleEnd);
 				videoRef.removeEventListener('playing', onWindowVisibilityChange);
-			}
-		};
+			};
+		}
 	}, [video]);
 
 	return (

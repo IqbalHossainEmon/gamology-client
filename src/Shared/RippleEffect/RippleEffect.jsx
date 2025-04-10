@@ -100,13 +100,10 @@ function RippleEffect({ background, long }) {
 			}
 
 			btn.addEventListener('click', handleClick);
-		}
-
-		return () => {
-			if (btn) {
+			return () => {
 				btn.removeEventListener('click', handleClick);
-			}
-		};
+			};
+		}
 	}, [background, long]);
 
 	return (

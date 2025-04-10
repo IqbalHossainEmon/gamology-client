@@ -73,12 +73,8 @@ function EditOtherEventAddSectionModalBody({ setAllItems, submitRef, sectionsRef
 
 		if (submitBtn) {
 			submitBtn.addEventListener('click', eventRefs.current.onSubmit);
+			return () => submitBtn.removeEventListener('click', eventRefs.current.onSubmit);
 		}
-		return () => {
-			if (submitBtn) {
-				submitBtn.removeEventListener('click', eventRefs.current.onSubmit);
-			}
-		};
 	}, [submitRef]);
 
 	return (

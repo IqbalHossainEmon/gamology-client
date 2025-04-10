@@ -155,13 +155,10 @@ export default function VideoProgressBar({
 			if (!interval.current) {
 				initializeInterval();
 			}
-		}
-
-		return () => {
-			if (video) {
+			return () => {
 				removeEventListeners();
-			}
-		};
+			};
+		}
 	}, [src, videoRef]);
 
 	return (

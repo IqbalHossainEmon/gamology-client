@@ -54,13 +54,15 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 		tooltipsInfos.current.message = message;
 		tooltipsInfos.current.position = position;
 
-		ele.addEventListener('mouseenter', eventRefs.current.onMouseEnter);
-		ele.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
+		if (ele) {
+			ele.addEventListener('mouseenter', eventRefs.current.onMouseEnter);
+			ele.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
 
-		return () => {
-			ele?.removeEventListener('mouseenter', eventRefs.current.onMouseEnter);
-			ele?.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
-		};
+			return () => {
+				ele.removeEventListener('mouseenter', eventRefs.current.onMouseEnter);
+				ele.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
+			};
+		}
 	}, [conditionCheckFunction, element, message, position]);
 };
 

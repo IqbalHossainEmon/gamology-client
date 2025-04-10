@@ -55,18 +55,13 @@ function Video({ videoContainer, src, captions, className }, ref) {
 			element.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
 		};
 
-		let videoContainerRef;
-
-		if (videoContainer.current) {
-			videoContainerRef = videoContainer.current;
+		const videoContainerRef = videoContainer.current;
+		if (videoContainerRef) {
 			addFullscreenEventListeners(videoContainerRef);
-		}
-
-		return () => {
-			if (videoContainerRef) {
+			return () => {
 				removeFullscreenEventListeners(videoContainerRef);
-			}
-		};
+			};
+		}
 	}, [videoContainer]);
 
 	return (

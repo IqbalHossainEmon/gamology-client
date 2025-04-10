@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useResetFunction from '../../../Utils/Hooks/useResetFunction';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage/ErrorMessage';
 import TextArea from '../TextArea/TextArea';
 import styles from './TextField.module.css';
@@ -18,6 +19,7 @@ export default function TextField({
 	defaultValue = '',
 	pattern,
 	parentErrorShow = true,
+	valueUpdaterRef,
 	...rest
 }) {
 	const [focused, setFocused] = useState(false);
@@ -86,10 +88,13 @@ export default function TextField({
 		} else if (!defaultValue && valueRef.current) {
 			setValue('');
 		}
+
 		if (errorShowRef.current) {
 			setErrorShow(false);
 		}
 	}, [defaultValue]);
+
+	useResetFunction(valueUpdaterRef, valueRef, setValue, errorShowRef, setErrorShow);
 
 	useEffect(() => {
 		if (!parentErrorShow) {
@@ -106,6 +111,8 @@ export default function TextField({
 		});
 	}, [placeholder]);
 
+	const isFieldInput = field === 'input' || field === 'number';
+
 	return (
 		<div
 			className={`${className ? `${className} ` : ''}${styles.textFieldMainContainer}`}
@@ -121,13 +128,13 @@ export default function TextField({
 				} ${styles.container}`}
 			>
 				<label
-					className={`${focused || value ? `${styles.textShrink} ` : ''}${focused ? `${styles.focusedColor} ` : ''}${styles.label} ${field === 'textarea' ? styles.textareaLabel : styles.inputLabel}`}
+					className={`${focused || value ? (isFieldInput ? `${styles.textShrink} ` : `${styles.textareaShrink} `) : ''}${focused ? `${styles.focusedColor} ` : ''}${styles.label} ${field === 'textarea' ? styles.textareaLabel : styles.inputLabel}`}
 					{...(errorShow && { id: styles.errorColor })}
 					htmlFor={htmlFor}
 				>
 					{placeholder}
 				</label>
-				{field === 'input' || field === 'number' ? (
+				{isFieldInput ? (
 					<input
 						{...(enabled || { disabled: true, readOnly: true })}
 						autoComplete='off'

@@ -32,7 +32,6 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
 			};
 
 			const { src, needRevoke } = imgSrc.current;
-
 			return () => {
 				if (needRevoke) {
 					URL.revokeObjectURL(src);

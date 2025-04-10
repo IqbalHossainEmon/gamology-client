@@ -26,14 +26,11 @@ function ImageWithHover({ container, game, cardHover, ...props }) {
 		if (containerElement) {
 			containerElement.addEventListener('mouseenter', eventRefs.current.mouseEnter);
 			containerElement.addEventListener('mouseleave', eventRefs.current.mouseLeave);
-		}
-
-		return () => {
-			if (containerElement) {
+			return () => {
 				containerElement.removeEventListener('mouseenter', eventRefs.current.mouseEnter);
 				containerElement.removeEventListener('mouseleave', eventRefs.current.mouseLeave);
-			}
-		};
+			};
+		}
 	}, [cardHover, container]);
 
 	return (

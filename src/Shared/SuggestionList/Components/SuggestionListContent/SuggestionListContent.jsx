@@ -54,10 +54,8 @@ function SuggestionListContent({
 			setContainerHeight(
 				loading ? 14 : (height + (numberOfButton || 0) * 42) / remHeightInPixels
 			);
+			return () => setContainerHeight(0);
 		}
-		return () => {
-			if (setContainerHeight) setContainerHeight(0);
-		};
 	}, [height, loading, numberOfButton, remHeightInPixels, setContainerHeight]);
 
 	const { cloneObject } = useObjectUtilities();

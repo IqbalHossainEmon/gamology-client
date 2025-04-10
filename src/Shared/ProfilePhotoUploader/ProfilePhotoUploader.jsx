@@ -14,18 +14,14 @@ function ProfilePhotoUploader({ data, setPhoto }) {
 	urlRef.current = photoDetail.url;
 
 	useEffect(() => {
-		let isUrlCreated = false;
 		if (typeof data === 'string') {
 			setPhotoDetail({ url: data, name: data.split('/').pop() });
 		} else if (data instanceof File) {
 			setPhotoDetail({ url: URL.createObjectURL(data), name: data.name });
-			isUrlCreated = true;
-		}
-		return () => {
-			if (isUrlCreated) {
+			return () => {
 				URL.revokeObjectURL(urlRef.current);
-			}
-		};
+			};
+		}
 	}, [data]);
 
 	const inputFieldRef = useRef(null);

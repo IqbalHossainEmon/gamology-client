@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
+import useResetFunction from '../../Utils/Hooks/useResetFunction';
 import ErrorMessage from '../ErrorMessage/ErrorMessage/ErrorMessage';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
 import styles from './TypeableSelectionField.module.css';
@@ -23,6 +24,7 @@ export default function TypeableSelectionField({
 	specialSetValueHandler,
 	handleValueCheck,
 	blurSet,
+	valueUpdaterRef = null,
 }) {
 	const [value, setValue] = useState(defaultValue);
 	const [show, setShow] = useState(false);
@@ -42,6 +44,8 @@ export default function TypeableSelectionField({
 	isShownRef.current = show;
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
+
+	useResetFunction(valueUpdaterRef, valueRef, setValue, errorShowRef, setErrorShow);
 
 	useEffect(() => {
 		setElement(containerRef.current);
