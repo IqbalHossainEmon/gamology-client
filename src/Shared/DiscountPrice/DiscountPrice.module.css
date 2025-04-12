@@ -24,3 +24,10 @@
 .discount {
 	text-decoration: none;
 }
+.free,
+.price,
+.regular,
+.discountPrice {
+	font-size: 0.875rem;
+	font-weight: 500;
+}

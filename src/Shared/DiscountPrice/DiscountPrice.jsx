@@ -13,13 +13,13 @@ export default function DiscountPrice({ price, className }) {
 	}
 	if (price === 0) {
 		return (
-			<span className={className}>
+			<span className={`${styles.free}${className ? ` ${className}` : ''}`}>
 				<span>Free</span>
 			</span>
 		);
 	}
 	return (
-		<span className={className}>
+		<span className={`${styles.price}${className ? ` ${className}` : ''}`}>
 			<span>${price}</span>
 		</span>
 	);

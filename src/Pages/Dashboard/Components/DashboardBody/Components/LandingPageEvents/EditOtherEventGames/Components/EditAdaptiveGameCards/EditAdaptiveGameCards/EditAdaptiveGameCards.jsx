@@ -106,8 +106,7 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex, onDelete })
 						setAdaptiveGameCards(cloneObject(defaultItems));
 						handleResetRef.current();
 						console.log(handleTitleResetRef.current);
-
-						handleTitleResetRef.current.forEach(ref => ref.current && ref.current());
+						handleTitleResetRef.current.forEach(ref => ref && ref.current());
 						dataRef.current[parentIndex].cards = cloneObject(defaultItems);
 					}}
 				>

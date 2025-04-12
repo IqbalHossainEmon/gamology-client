@@ -12,7 +12,7 @@ function extraCard(index, onclick) {
 	return <EditGameShowCaseExtraCard index={index} onclick={game => onclick(index, game)} />;
 }
 
-const handleCardDotList = (items, setItems) =>
+const handleCardDotList = (items, setItems, dataRef, outerIndex) =>
 	function Inner(parentRef, item, parentIndex) {
 		const { cloneObject } = useObjectUtilities();
 
@@ -23,20 +23,25 @@ const handleCardDotList = (items, setItems) =>
 			const { id } = item;
 
 			const handleMove = direction => {
+				let index;
 				setItems(prev => {
 					const newItems = cloneObject(prev);
-					const index = newItems[parentIndex].games.findIndex(card => card.id === id);
-
-					const temp = newItems[parentIndex].games.splice(index, 1)[0];
+					index = newItems[parentIndex].games.findIndex(card => card.id === id);
 
 					newItems[parentIndex].games.splice(
 						direction === 'top' ? index - 1 : index + 1,
 						0,
-						temp
+						newItems[parentIndex].games.splice(index, 1)[0]
 					);
 
 					return newItems;
 				});
+
+				dataRef.current[outerIndex].games[parentIndex].games.splice(
+					direction === 'top' ? index - 1 : index + 1,
+					0,
+					dataRef.current[outerIndex].games[parentIndex].games.splice(index, 1)[0]
+				);
 			};
 
 			const newList = [
@@ -46,9 +51,10 @@ const handleCardDotList = (items, setItems) =>
 						const newCards = items[parentIndex].games.filter(card => card.id !== id);
 						setItems(prev => {
 							const newItems = cloneObject(prev);
-							newItems[parentIndex].games = newCards;
+							newItems[parentIndex].games = cloneObject(newCards);
 							return newItems;
 						});
+						dataRef.current[outerIndex].games[parentIndex].games = newCards;
 					},
 				},
 			];
@@ -100,9 +106,9 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 		setItems(prev => {
 			const newPrev = cloneObject(prev);
 			newPrev[index].games.push(game);
-			dataRef.current[parentIndex].games.push(game);
 			return newPrev;
 		});
+		dataRef.current[parentIndex].games[index].games.push(game);
 	};
 
 	const { hideModal, setContent } = useModal();
@@ -111,7 +117,7 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 		<>
 			<GamesShowcase
 				parentIndex={parentIndex}
-				dotMenu={handleCardDotList(items, setItems)}
+				dotMenu={handleCardDotList(items, setItems, dataRef, parentIndex)}
 				items={items}
 				extraCard={index => extraCard(index, onclick)}
 				dataRef={dataRef}

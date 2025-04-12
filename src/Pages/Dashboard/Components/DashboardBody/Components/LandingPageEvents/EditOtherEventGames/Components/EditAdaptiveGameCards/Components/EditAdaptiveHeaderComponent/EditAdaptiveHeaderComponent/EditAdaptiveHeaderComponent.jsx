@@ -68,9 +68,9 @@ function EditAdaptiveHeaderComponent({
 	useEffect(() => {
 		if (handleTitleResetRef) {
 			const refCurrent = handleTitleResetRef.current;
-			refCurrent[innerIndex] = handleResetRef.current;
+			refCurrent[innerIndex].current = handleResetRef.current;
 			return () => {
-				refCurrent[innerIndex] = null;
+				refCurrent[innerIndex].current = null;
 			};
 		}
 	}, [handleResetRef, handleTitleResetRef, innerIndex]);
