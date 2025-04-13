@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import GamesShowcase from '../../../../../../../../../../Shared/GamesShowcase/GamesShowcase/GamesShowcase';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
@@ -113,6 +113,8 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 
 	const { hideModal, setContent } = useModal();
 
+	const titleValueResetRef = useRef([]);
+
 	return (
 		<>
 			<GamesShowcase
@@ -124,12 +126,14 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 				setHeader={(val, index) => {
 					dataRef.current[parentIndex].games[index].header = val;
 				}}
+				titleValueResetRef={titleValueResetRef}
 			/>
 			<div className={styles.btnContainer}>
 				<ButtonWithRipple
 					onClick={() => {
 						setItems(cloneObject(defaultItems));
 						dataRef.current[parentIndex].games = cloneObject(defaultItems);
+						titleValueResetRef.current.forEach(func => !!func && func());
 					}}
 				>
 					Reset

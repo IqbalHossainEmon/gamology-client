@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import TextField from '../../../../../TextField/TextField/TextField';
 import styles from './GamesShowcaseColumnHeader.module.css';
 
@@ -7,7 +8,19 @@ export default function GamesShowcaseColumnHeader({
 	setHeader,
 	isEditing,
 	parentIndex,
+	titleValueResetRef,
 }) {
+	const titleResetValueRef = useRef(null);
+
+	useEffect(() => {
+		const refCurrent = titleValueResetRef.current;
+
+		refCurrent[index] = () => titleResetValueRef.current(headerTitle);
+		return () => {
+			delete refCurrent[index];
+		};
+	}, [headerTitle, index, titleValueResetRef]);
+
 	return isEditing ? (
 		<div className={styles.textFieldContainer}>
 			<TextField
@@ -16,6 +29,7 @@ export default function GamesShowcaseColumnHeader({
 				defaultValue={headerTitle}
 				placeholder='Enter the Header Title'
 				htmlFor={`gameShowCaseHeader${index}${parentIndex}`}
+				valueUpdaterRef={titleResetValueRef}
 			/>
 		</div>
 	) : (

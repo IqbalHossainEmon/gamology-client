@@ -24,14 +24,13 @@ function EditAdaptiveGameCardsButtons({
 	return (
 		<div className={styles.editAdaptiveGameCardsButtons}>
 			<ButtonWithRipple
-				onClick={() =>
+				onClick={() => {
 					setAdaptiveGameCards(prev => {
 						const newAdaptiveGameCards = cloneObject(prev);
 						if (doesTitleExists) {
 							newAdaptiveGameCards.map((card, index) => {
 								tempDataHolder.current.title[index] = card.title;
 								delete card.title;
-								delete mainDataRef.current[parentIndex].cards[index].title;
 								return card;
 							});
 						} else {
@@ -41,20 +40,30 @@ function EditAdaptiveGameCardsButtons({
 							});
 						}
 						return newAdaptiveGameCards;
-					})
-				}
+					});
+					if (doesTitleExists) {
+						const index = mainDataRef.current[parentIndex].cards.findIndex(
+							card => !!card.title
+						);
+						delete mainDataRef.current[parentIndex].cards[index].title;
+					} else {
+						mainDataRef.current[parentIndex].cards.map((card, index) => {
+							card.title = tempDataHolder.current.title[index];
+							return card;
+						});
+					}
+				}}
 			>
 				{doesTitleExists ? 'Remove' : 'Add'} Title
 			</ButtonWithRipple>
 			<ButtonWithRipple
-				onClick={() =>
+				onClick={() => {
 					setAdaptiveGameCards(prev => {
 						const newAdaptiveGameCards = cloneObject(prev);
 						if (doesDescriptionExists) {
 							newAdaptiveGameCards.map((card, index) => {
 								tempDataHolder.current.description[index] = card.description;
 								delete card.description;
-								delete mainDataRef.current[parentIndex].cards[index].description;
 								return card;
 							});
 						} else {
@@ -64,20 +73,30 @@ function EditAdaptiveGameCardsButtons({
 							});
 						}
 						return newAdaptiveGameCards;
-					})
-				}
+					});
+					if (doesDescriptionExists) {
+						const index = mainDataRef.current[parentIndex].cards.findIndex(
+							card => !!card.description
+						);
+						delete mainDataRef.current[parentIndex].cards[index].description;
+					} else {
+						mainDataRef.current[parentIndex].cards.map((card, index) => {
+							card.description = tempDataHolder.current.description[index];
+							return card;
+						});
+					}
+				}}
 			>
 				{doesDescriptionExists ? 'Remove' : 'Add'} Description
 			</ButtonWithRipple>
 			<ButtonWithRipple
-				onClick={() =>
+				onClick={() => {
 					setAdaptiveGameCards(prev => {
 						const newAdaptiveGameCards = cloneObject(prev);
 						if (doesFooterExists) {
 							newAdaptiveGameCards.map((card, index) => {
 								tempDataHolder.current.footer[index] = card.footer;
 								delete card.footer;
-								delete mainDataRef.current[parentIndex].cards[index].footer;
 								return card;
 							});
 						} else {
@@ -87,8 +106,19 @@ function EditAdaptiveGameCardsButtons({
 							});
 						}
 						return newAdaptiveGameCards;
-					})
-				}
+					});
+					if (doesFooterExists) {
+						const index = mainDataRef.current[parentIndex].cards.findIndex(
+							card => !!card.footer
+						);
+						delete mainDataRef.current[parentIndex].cards[index].footer;
+					} else {
+						mainDataRef.current[parentIndex].cards.map((card, index) => {
+							card.footer = tempDataHolder.current.footer[index];
+							return card;
+						});
+					}
+				}}
 			>
 				{doesFooterExists ? 'Remove' : 'Add'} Footer Button
 			</ButtonWithRipple>

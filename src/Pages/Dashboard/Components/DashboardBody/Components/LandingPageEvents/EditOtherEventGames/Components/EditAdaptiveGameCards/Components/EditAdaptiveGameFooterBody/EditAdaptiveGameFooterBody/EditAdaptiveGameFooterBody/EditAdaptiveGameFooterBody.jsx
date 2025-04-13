@@ -87,6 +87,15 @@ function EditAdaptiveGameFooterBody({
 					} else {
 						errorMessage.current.discount = '';
 					}
+					if (
+						dataHolder.current.discount &&
+						dataHolder.current.regular &&
+						Number(dataHolder.current.discount) >= Number(dataHolder.current.regular)
+					) {
+						errorMessage.current.discount =
+							'Discounted price must be less than regular price.';
+						isThereError = true;
+					}
 				}
 				if (isThereError) setErrorChange(prev => prev + 1);
 				else {

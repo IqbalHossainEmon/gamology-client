@@ -57,8 +57,6 @@ function SearchGamesOrWriteLink({
 	useEffect(() => {
 		if (valueResetRef) {
 			valueResetRef.current = () => {
-				console.log(defaultValue);
-
 				valueUpdaterEventRef.current(defaultValue);
 			};
 			return () => {

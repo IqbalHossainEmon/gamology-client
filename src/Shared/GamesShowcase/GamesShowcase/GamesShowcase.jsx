@@ -15,6 +15,7 @@ export default function GamesShowcase({
 	dotMenu,
 	parentIndex,
 	setHeader,
+	titleValueResetRef,
 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
@@ -54,6 +55,7 @@ export default function GamesShowcase({
 							index={index}
 							extraCard={extraCard}
 							setHeader={setHeader}
+							titleValueResetRef={titleValueResetRef}
 						/>
 					))}
 				</ul>

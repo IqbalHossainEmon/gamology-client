@@ -12,7 +12,7 @@ const useResetFunction = (ref, currentValueRef, setValue, errorShowRef, setError
 				}
 			};
 			return () => {
-				ref.current = null;
+				delete ref.current;
 			};
 		}
 	}, [ref, currentValueRef, setValue, errorShowRef, setError]);

@@ -44,9 +44,13 @@ function AdaptiveCard({
 
 	useEffect(() => {
 		if (handleResetRef) {
-			handleResetRef.current[innerIndex] = () => {
+			const currentResetRef = handleResetRef.current;
+			currentResetRef[innerIndex] = () => {
 				titleValueUpdaterEventRef.current(title);
 				descriptionValueUpdaterEventRef.current(description);
+			};
+			return () => {
+				delete currentResetRef[innerIndex];
 			};
 		}
 	}, [description, handleResetRef, image, innerIndex, title]);
