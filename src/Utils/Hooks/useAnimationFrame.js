@@ -1,53 +1,59 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 export default function useAnimationFrame(setState, duration, isPaused, handleDone) {
 	const animationRef = useRef(null);
 	const startTimeRef = useRef(null);
 	const elapsedTimeRef = useRef(0);
-	const eventRefs = useRef(null);
 
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			cancelAnimation: paused => {
-				if (animationRef.current) {
-					if (paused) {
-						elapsedTimeRef.current += performance.now() - startTimeRef.current;
-					}
-					cancelAnimationFrame(animationRef.current);
-					startTimeRef.current = null;
-					animationRef.current = null;
-				}
-			},
-			animate: timestamp => {
-				if (!startTimeRef.current) {
-					startTimeRef.current = timestamp;
-				}
+	const cancelAnimation = useCallback(paused => {
+		if (animationRef.current) {
+			if (paused) {
+				elapsedTimeRef.current += performance.now() - startTimeRef.current;
+			}
+			cancelAnimationFrame(animationRef.current);
+			startTimeRef.current = null;
+			animationRef.current = null;
+		}
+	}, []);
 
-				const elapsed = timestamp - startTimeRef.current + elapsedTimeRef.current;
-				const progress = Math.min(elapsed / duration, 1);
+	const animateFnRef = useRef(null);
 
-				setState(progress);
+	const animate = useCallback(
+		timestamp => {
+			if (!startTimeRef.current) {
+				startTimeRef.current = timestamp;
+			}
 
-				if (progress < 1) {
-					animationRef.current = requestAnimationFrame(eventRefs.current.animate);
-				} else if (handleDone) {
-					handleDone();
-				}
-			},
-			handleStartOrResume: () => {
-				if (animationRef.current) {
-					eventRefs.current.cancelAnimation();
-				}
-				animationRef.current = requestAnimationFrame(eventRefs.current.animate);
-			},
-		};
-	}
+			const elapsed = timestamp - startTimeRef.current + elapsedTimeRef.current;
+			const progress = Math.min(elapsed / duration, 1);
+
+			setState(progress);
+
+			if (progress < 1) {
+				animationRef.current = requestAnimationFrame(animateFnRef.current);
+			} else if (handleDone) {
+				handleDone();
+			}
+		},
+		[duration, handleDone, setState]
+	);
+
+	useEffect(() => {
+		animateFnRef.current = animate;
+	}, [animate]);
+
+	const handleStartOrResume = useCallback(() => {
+		if (animationRef.current) {
+			cancelAnimation();
+		}
+		animationRef.current = requestAnimationFrame(animate);
+	}, [animate, cancelAnimation]);
 
 	useEffect(() => {
 		if (isPaused) {
-			eventRefs.current.cancelAnimation(true);
+			cancelAnimation(true);
 		} else {
-			eventRefs.current.handleStartOrResume();
+			handleStartOrResume();
 		}
 
 		return () => {
@@ -55,5 +61,5 @@ export default function useAnimationFrame(setState, duration, isPaused, handleDo
 				cancelAnimationFrame(animationRef.current);
 			}
 		};
-	}, [isPaused]);
+	}, [cancelAnimation, handleStartOrResume, isPaused]);
 }

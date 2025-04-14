@@ -88,19 +88,17 @@ export default function VideoSlider({
 
 	const onStart = useDragStartStop(eventRefs.current.handleMove, handleMouseUp);
 
-	if (!eventRefs.current.handleMouseDownClick) {
-		eventRefs.current.handleMouseDownClick = e => {
-			eventRefs.current.handleMove(e);
-			if (typeof handleMouseDown === 'function') handleMouseDown();
-			onStart(e);
-		};
-	}
+	const handleMouseDownClick = e => {
+		eventRefs.current.handleMove(e);
+		if (typeof handleMouseDown === 'function') handleMouseDown();
+		onStart(e);
+	};
 
 	return (
 		<div
 			className={styles.videoSliderPath}
-			onMouseDown={eventRefs.current.handleMouseDownClick}
-			onTouchStart={eventRefs.current.handleMouseDownClick}
+			onMouseDown={handleMouseDownClick}
+			onTouchStart={handleMouseDownClick}
 			ref={pathRef}
 			role='slider'
 			aria-label='video slider'

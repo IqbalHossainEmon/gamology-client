@@ -1,25 +1,29 @@
-import { memo, useEffect, useRef, useState } from 'react';
+import { forwardRef, memo, useEffect, useState } from 'react';
 import useDropDownHide from '../../../../../../../Utils/Hooks/useDropDownHide';
 import VideoPlayerToggleSwitch from '../VideoPlayerToggleSwitch/VideoPlayerToggleSwitch';
 import styles from './GearButton.module.css';
 
-function GearButton({ gearRef, hideControllerRefs }) {
+function GearButton({
+	gearRef,
+	setIsControllerShowing,
+	hideControllerRefs,
+	handleSetHideController,
+}) {
 	const [show, setShow] = useState(false);
-	const showRef = useRef(show);
-	showRef.current = show;
 
 	const { showMenu, setElement, onHide } = useDropDownHide(setShow);
 
 	useEffect(() => {
-		if (show && !hideControllerRefs.current.isAutoplayMenuShowing) {
-			hideControllerRefs.current.isAutoplayMenuShowing = true;
-		} else if (hideControllerRefs.current.isAutoplayMenuShowing) {
-			hideControllerRefs.current.isAutoplayMenuShowing = false;
-			if (hideControllerRefs.current.shouldHide) {
-				hideControllerRefs.current.hideEvent();
+		const { isAutoplayMenuShowing, shouldHide } = hideControllerRefs.current;
+		if (show && !isAutoplayMenuShowing) {
+			handleSetHideController('isAutoplayMenuShowing', true);
+		} else if (isAutoplayMenuShowing) {
+			handleSetHideController('isAutoplayMenuShowing', false);
+			if (shouldHide) {
+				setIsControllerShowing(false);
 			}
 		}
-	}, [hideControllerRefs, show]);
+	}, [handleSetHideController, hideControllerRefs, setIsControllerShowing, show]);
 
 	return (
 		<>
@@ -53,4 +57,4 @@ function GearButton({ gearRef, hideControllerRefs }) {
 	);
 }
 
-export default memo(GearButton);
+export default memo(forwardRef(GearButton));

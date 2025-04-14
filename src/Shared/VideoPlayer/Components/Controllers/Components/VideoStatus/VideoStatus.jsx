@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import useTimeFormat from '../../../../../../Utils/Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
 import styles from './VideoStatus.module.css';
@@ -7,7 +7,8 @@ function VideoStatus({ video, isPlaying }) {
 	const formatTime = useTimeFormat();
 	const timerId = useRef(null);
 	const videoRef = useRef(video.current);
-	const eventRefs = useRef(null);
+	const handleInitialPlayingRef = useRef(null);
+	const intersectionObserverRef = useRef(null);
 	const [status, setStatus] = useState({
 		duration: 0,
 		initialShow: true,
@@ -20,88 +21,107 @@ function VideoStatus({ video, isPlaying }) {
 
 	const statusContainerRef = useRef(null);
 
-	if (!eventRefs.current) {
-		let didIntersectionPause = false;
-		eventRefs.current = {
-			handleTransition: () => {
-				if (!timerId.current) {
-					timerId.current = setTimeout(() => {
-						timerId.current = null;
-						setStatus(prev => ({ ...prev, animation: false }));
-					}, 500);
-				}
-			},
-			loadMetaDataUpdate: ({ target: { duration } }) => {
-				setStatus(prev => ({ ...prev, duration }));
-			},
-			loadUpdate: () => {
-				if (localStorage.getItem('autoplay') && videoRef.current.paused) {
-					videoRef.current.play();
-				}
-			},
+	const didIntersectionPauseRef = useRef(false);
 
-			initialBtnPlay: () => {
-				if (videoRef.current.paused) {
-					videoRef.current.play();
-				}
-			},
-			handlePlaying: () => {
-				setStatus(prev => ({ ...prev, loading: false }));
-			},
-			handleWaiting: () => {
-				setStatus(prev => ({ ...prev, loading: true }));
-			},
-			handleInitialPlaying: () => {
-				isInitial.current = false;
-				setStatus(prev => ({ ...prev, initialShow: false }));
-				video.current.removeEventListener(
-					'playing',
-					eventRefs.current.handleInitialPlaying
-				);
-			},
-			intersectionObserver: new IntersectionObserver(([entry]) => {
-				if (!entry.isIntersecting) {
-					didIntersectionPause = true;
-					videoRef.current.pause();
-				} else {
-					videoRef.current.play();
-					didIntersectionPause = false;
-				}
-			}),
-			onBlurPause: () => {
-				if (document.visibilityState === 'hidden') {
-					videoRef.current.pause();
-				}
-			},
-			onVideoPlay: () => {
-				if (!isObserverAdded.current) {
-					eventRefs.current.intersectionObserver.observe(statusContainerRef.current);
-					isObserverAdded.current = true;
-				}
-				window.addEventListener('visibilitychange', eventRefs.current.onBlurPause);
-			},
-			onPauseVideo: () => {
-				if (isObserverAdded.current && !didIntersectionPause) {
-					eventRefs.current.intersectionObserver.disconnect();
-					isObserverAdded.current = false;
-				}
-				window.removeEventListener('visibilitychange', eventRefs.current.onBlurPause);
-			},
-		};
-	}
+	const handleTransition = useCallback(() => {
+		if (!timerId.current) {
+			timerId.current = setTimeout(() => {
+				timerId.current = null;
+				setStatus(prev => ({ ...prev, animation: false }));
+			}, 500);
+		}
+	}, []);
+
+	const loadMetaDataUpdate = useCallback(({ target: { duration } }) => {
+		setStatus(prev => ({ ...prev, duration }));
+	}, []);
+
+	const loadUpdate = useCallback(() => {
+		if (localStorage.getItem('autoplay') && videoRef.current.paused) {
+			videoRef.current.play();
+		}
+	}, []);
+
+	const initialBtnPlay = useCallback(() => {
+		if (videoRef.current.paused) {
+			videoRef.current.play();
+		}
+	}, []);
+
+	const handlePlaying = useCallback(() => {
+		setStatus(prev => ({ ...prev, loading: false }));
+	}, []);
+
+	const handleWaiting = useCallback(() => {
+		setStatus(prev => ({ ...prev, loading: true }));
+	}, []);
+
+	const handleInitialPlaying = useCallback(() => {
+		isInitial.current = false;
+		setStatus(prev => ({ ...prev, initialShow: false }));
+		videoRef.current.removeEventListener('playing', handleInitialPlayingRef.current);
+	}, []);
 
 	useEffect(() => {
-		if (videoRef.current) {
-			videoRef.current.addEventListener('playing', eventRefs.current.onVideoPlay);
-			videoRef.current.addEventListener('pause', eventRefs.current.onPauseVideo);
+		handleInitialPlayingRef.current = handleInitialPlaying;
+		isObserverAdded.current = false;
+	}, [handleInitialPlaying]);
+
+	const handleIntersection = useCallback(([entry]) => {
+		if (!entry.isIntersecting) {
+			didIntersectionPauseRef.current = true;
+			videoRef.current.pause();
+		} else {
+			videoRef.current.play();
+			didIntersectionPauseRef.current = false;
 		}
+	}, []);
+
+	useEffect(() => {
+		intersectionObserverRef.current = new IntersectionObserver(handleIntersection, {
+			threshold: 0.1,
+		});
 		return () => {
-			if (isObserverAdded.current) {
-				eventRefs.current.intersectionObserver.disconnect();
+			if (intersectionObserverRef.current) {
+				intersectionObserverRef.current.disconnect();
 				isObserverAdded.current = false;
 			}
 		};
+	}, [handleIntersection]);
+
+	const onBlurPause = useCallback(() => {
+		if (document.visibilityState === 'hidden') {
+			videoRef.current.pause();
+		}
 	}, []);
+	const onVideoPlay = useCallback(() => {
+		if (!isObserverAdded.current) {
+			intersectionObserverRef.current.observe(statusContainerRef.current);
+			isObserverAdded.current = true;
+		}
+		window.addEventListener('visibilitychange', onBlurPause);
+	}, [onBlurPause]);
+
+	const onPauseVideo = useCallback(() => {
+		if (isObserverAdded.current && !didIntersectionPauseRef) {
+			intersectionObserverRef.current.disconnect();
+			isObserverAdded.current = false;
+		}
+		window.removeEventListener('visibilitychange', onBlurPause);
+	}, [onBlurPause]);
+
+	useEffect(() => {
+		if (videoRef.current) {
+			videoRef.current.addEventListener('playing', onVideoPlay);
+			videoRef.current.addEventListener('pause', onPauseVideo);
+		}
+		return () => {
+			if (isObserverAdded.current) {
+				intersectionObserverRef.current.disconnect();
+				isObserverAdded.current = false;
+			}
+		};
+	}, [onPauseVideo, onVideoPlay]);
 
 	useEffect(() => {
 		if (!isInitial.current) {
@@ -115,32 +135,31 @@ function VideoStatus({ video, isPlaying }) {
 			} else {
 				setStatus({ play: false, animation: true, loading: false });
 			}
-			eventRefs.current.handleTransition();
+			handleTransition();
 		}
-	}, [isPlaying]);
+	}, [handleTransition, isPlaying]);
 
 	useEffect(() => {
-		const { loadMetaDataUpdate, loadUpdate, handlePlay, handleWaiting } = eventRefs.current;
 		const addEventListeners = videoElement => {
 			videoElement.addEventListener('loadedmetadata', loadMetaDataUpdate);
 			videoElement.addEventListener('loadeddata', loadUpdate);
-			videoElement.addEventListener('play', handlePlay);
+			videoElement.addEventListener('play', handlePlaying);
 			videoElement.addEventListener('waiting', handleWaiting);
 		};
 
 		const removeEventListeners = videoElement => {
 			videoElement.removeEventListener('loadedmetadata', loadMetaDataUpdate);
 			videoElement.removeEventListener('loadeddata', loadUpdate);
-			videoElement.removeEventListener('play', handlePlay);
+			videoElement.removeEventListener('play', handlePlaying);
 			videoElement.removeEventListener('waiting', handleWaiting);
 		};
 
 		let isPlayedOnce;
 
-		if (video.current) {
-			videoRef.current = video.current;
+		if (videoRef) {
+			videoRef.current = videoRef;
 			addEventListeners(videoRef.current);
-			video.current.addEventListener('playing', eventRefs.current.handleInitialPlaying);
+			videoRef.addEventListener('playing', handleInitialPlaying);
 			isPlayedOnce = isInitial.current;
 		}
 
@@ -148,14 +167,11 @@ function VideoStatus({ video, isPlaying }) {
 			if (videoRef.current) {
 				removeEventListeners(videoRef.current);
 				if (isPlayedOnce) {
-					videoRef.current.removeEventListener(
-						'playing',
-						eventRefs.current.handleInitialPlaying
-					);
+					videoRef.current.removeEventListener('playing', handleInitialPlaying);
 				}
 			}
 		};
-	}, [video]);
+	}, [handleInitialPlaying, handlePlaying, handleWaiting, loadMetaDataUpdate, loadUpdate, video]);
 
 	return (
 		<div ref={statusContainerRef} className={styles.statusContainer}>
@@ -182,7 +198,7 @@ function VideoStatus({ video, isPlaying }) {
 				<div className={styles.initialPlaceholder}>
 					<button
 						className={styles.initialPlaceholderButton}
-						onClick={eventRefs.current.initialBtnPlay}
+						onClick={initialBtnPlay}
 						type='button'
 					>
 						<span className={styles.svgContainer}>

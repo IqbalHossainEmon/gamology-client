@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function useAppearDisappear(state, isAppear, condition = true, duration = 200) {
 	const [show, setShow] = useState(false);
@@ -13,26 +13,26 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 		fadeInRef.current = fadeIn;
 	}, [fadeIn]);
 
-	const handleHideBtn = useCallback(() => {
-		if (startTimeRef.current) {
-			clearTimeout(startTimeRef.current);
-			startTimeRef.current = null;
-			setShow(false);
-			return;
-		}
-		if (endTimeRef.current) {
-			return;
-		}
-		if (fadeInRef.current) {
-			setFadeIn(false);
-			endTimeRef.current = setTimeout(() => {
-				setShow(false);
-				endTimeRef.current = null;
-			}, duration);
-		}
-	}, [duration]);
-
 	useEffect(() => {
+		const handleHideBtn = () => {
+			if (startTimeRef.current) {
+				clearTimeout(startTimeRef.current);
+				startTimeRef.current = null;
+				setShow(false);
+				return;
+			}
+			if (endTimeRef.current) {
+				return;
+			}
+			if (fadeInRef.current) {
+				setFadeIn(false);
+				endTimeRef.current = setTimeout(() => {
+					setShow(false);
+					endTimeRef.current = null;
+				}, duration);
+			}
+		};
+
 		const handleShow = () => {
 			if (endTimeRef.current) {
 				clearTimeout(endTimeRef.current);
@@ -77,7 +77,7 @@ export default function useAppearDisappear(state, isAppear, condition = true, du
 				}
 				break;
 		}
-	}, [state, condition, isAppear, duration, handleHideBtn]);
+	}, [state, condition, isAppear, duration]);
 
 	return [show, fadeIn];
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
 const withScreenWidthProvider = Component =>
@@ -10,36 +10,30 @@ const withScreenWidthProvider = Component =>
 			remHeightInPixels: parseFloat(getComputedStyle(document.documentElement).fontSize),
 		});
 
-		const handleChange = useRef(null);
-
-		if (!handleChange.current) {
-			handleChange.current = () => {
-				setScreenWidth({
-					widthInPixels: window.innerWidth,
-					widthInRem:
-						window.innerWidth /
-						parseFloat(getComputedStyle(document.documentElement).fontSize),
-					remHeightInPixels: parseFloat(
-						getComputedStyle(document.documentElement).fontSize
-					),
-					heightInPixels: window.innerHeight,
-					heightInRem:
-						window.innerHeight /
-						parseFloat(getComputedStyle(document.documentElement).fontSize),
-				});
-			};
-		}
+		const handleChange = useCallback(() => {
+			setScreenWidth({
+				widthInPixels: window.innerWidth,
+				widthInRem:
+					window.innerWidth /
+					parseFloat(getComputedStyle(document.documentElement).fontSize),
+				remHeightInPixels: parseFloat(getComputedStyle(document.documentElement).fontSize),
+				heightInPixels: window.innerHeight,
+				heightInRem:
+					window.innerHeight /
+					parseFloat(getComputedStyle(document.documentElement).fontSize),
+			});
+		}, []);
 
 		useEffect(() => {
-			window.addEventListener('resize', handleChange.current);
-			const observer = new ResizeObserver(handleChange.current);
+			window.addEventListener('resize', handleChange);
+			const observer = new ResizeObserver(handleChange);
 			observer.observe(document.documentElement);
 
 			return () => {
-				window.removeEventListener('resize', handleChange.current);
+				window.removeEventListener('resize', handleChange);
 				observer.disconnect();
 			};
-		}, []);
+		}, [handleChange]);
 
 		return (
 			<ScreenWidthContext.Provider value={screenWidth}>

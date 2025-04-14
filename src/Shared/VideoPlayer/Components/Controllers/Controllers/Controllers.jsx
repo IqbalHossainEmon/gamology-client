@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import FullScreenButton from '../Components/FullScreenButton/FullScreenButton/FullScreenButton';
 import useFullScreenLogic from '../Components/FullScreenButton/useFullScreenLogic/useFullScreenLogic';
 import GearButton from '../Components/GearButton/GearButton/GearButton';
@@ -15,7 +15,9 @@ function Controllers({
 	src,
 	isControllerShowing,
 	changePause,
+	setIsControllerShowing,
 	hideControllerRefs,
+	handleSetHideController,
 }) {
 	const handleFullScreen = useFullScreenLogic();
 	const [progress, setProgress] = useState(0);
@@ -28,54 +30,50 @@ function Controllers({
 	const canPlay = useRef(true);
 	const shouldPause = useRef(false);
 
-	const eventRefs = useRef(null);
+	const handlePlaying = useCallback(() => {
+		canPlay.current = true;
+		if (shouldPause.current) {
+			videoRef.current.pause();
+			shouldPause.current = false;
+		}
+	}, []);
 
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			handlePlaying: () => {
-				canPlay.current = true;
-				if (shouldPause.current) {
+	const handleWaiting = useCallback(() => {
+		canPlay.current = false;
+	}, []);
+
+	const togglePausePlay = useCallback(() => {
+		if (canPlay.current) {
+			if (!videoRef.current.ended) {
+				if (videoRef.current.paused) {
+					videoRef.current.play();
+				} else {
 					videoRef.current.pause();
-					shouldPause.current = false;
 				}
-			},
-			handleWaiting: () => {
-				canPlay.current = false;
-			},
-			togglePausePlay: () => {
-				if (canPlay.current) {
-					if (!videoRef.current.ended) {
-						if (videoRef.current.paused) {
-							videoRef.current.play();
-						} else {
-							videoRef.current.pause();
-						}
-					} else {
-						videoRef.current.currentTime = 0;
-						videoRef.current.play();
-					}
-				} else {
-					shouldPause.current = true;
-				}
-			},
-			// Handle full screen or toggle play depending on click type
-			handleClick: () => {
-				if (clickTimerId.current) {
-					handleFullScreen(videoContainer.current);
-					clearTimeout(clickTimerId.current);
-					clickTimerId.current = null;
-				} else {
-					clickTimerId.current = setTimeout(() => {
-						eventRefs.current.togglePausePlay();
-						clickTimerId.current = null;
-					}, 200);
-				}
-			},
-		};
-	}
+			} else {
+				videoRef.current.currentTime = 0;
+				videoRef.current.play();
+			}
+		} else {
+			shouldPause.current = true;
+		}
+	}, []);
+
+	// const Handle full screen or toggle play depending on click type
+	const handleClick = () => {
+		if (clickTimerId.current) {
+			handleFullScreen(videoContainer.current);
+			clearTimeout(clickTimerId.current);
+			clickTimerId.current = null;
+		} else {
+			clickTimerId.current = setTimeout(() => {
+				togglePausePlay();
+				clickTimerId.current = null;
+			}, 200);
+		}
+	};
 
 	useEffect(() => {
-		const { handlePlaying, handleWaiting } = eventRefs.current;
 		const addEventListeners = videoElement => {
 			videoElement.addEventListener('playing', handlePlaying);
 			videoElement.addEventListener('waiting', handleWaiting);
@@ -98,13 +96,13 @@ function Controllers({
 				removeEventListeners(videoRef.current);
 			}
 		};
-	}, [video]);
+	}, [handlePlaying, handleWaiting, video]);
 
 	return (
 		<>
 			<button
 				className={styles.fullDisplayPlayPauseBtn}
-				onClick={eventRefs.current.handleClick}
+				onClick={handleClick}
 				type='button'
 			/>
 			<ul className={styles.controllers} id={isControllerShowing ? styles.show : styles.hide}>
@@ -124,7 +122,7 @@ function Controllers({
 					<PlayPauseButton
 						canPlay={canPlay}
 						isSeekedRef={isSeekedRef}
-						togglePausePlay={eventRefs.current.togglePausePlay}
+						togglePausePlay={togglePausePlay}
 						video={video}
 						isPlaying={isPlaying}
 						setIsPlaying={setIsPlaying}
@@ -144,7 +142,9 @@ function Controllers({
 					<GearButton
 						gearRef={gearRef}
 						videoContainer={videoContainer}
+						setIsControllerShowing={setIsControllerShowing}
 						hideControllerRefs={hideControllerRefs}
+						handleSetHideController={handleSetHideController}
 					/>
 				</li>
 				<li>
