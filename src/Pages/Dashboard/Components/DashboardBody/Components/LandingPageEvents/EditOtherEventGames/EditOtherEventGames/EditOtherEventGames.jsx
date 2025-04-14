@@ -283,7 +283,9 @@ function EditOtherEventGames() {
 				</>
 			)}
 			<div>
-				<ButtonWithRipple onClick={eventRefs.current.onAdd}>Add more +</ButtonWithRipple>
+				<ButtonWithRipple onClick={() => eventRefs.current.onAdd()}>
+					Add more +
+				</ButtonWithRipple>
 				<button type='button' onClick={() => console.log(sectionsRefs.current)}>
 					Log the changes
 				</button>

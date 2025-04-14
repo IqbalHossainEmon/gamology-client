@@ -1,46 +1,50 @@
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 const useDropDownHide = setState => {
 	const element = useRef(null);
-	const eventRefs = useRef(null);
+	const stopMenuRef = useRef(null);
+	const closeMenuRef = useRef(null);
 
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			setElement: ele => {
-				element.current = ele;
-			},
-			closeMenu: e => {
-				switch (Array.isArray(element.current)) {
-					case true:
-						if (!element.current.some(ele => ele?.contains(e.target)) && e) {
-							eventRefs.current.stopMenu();
-						}
-						break;
-					default:
-						if (element.current && e && !element.current.contains(e.target)) {
-							eventRefs.current.stopMenu();
-						}
-						break;
-				}
-			},
-			showMenu: () => {
-				document.addEventListener('click', eventRefs.current.closeMenu);
-				window.addEventListener('blur', eventRefs.current.stopMenu);
-			},
-			removeEvents: () => {
-				document.removeEventListener('click', eventRefs.current.closeMenu);
-				window.removeEventListener('blur', eventRefs.current.stopMenu);
-			},
-			stopMenu: e => {
-				setState(false, e);
-				eventRefs.current.removeEvents();
-			},
-		};
-	}
+	const removeEvents = useCallback((stopMenu, closeMenu) => {
+		document.removeEventListener('click', closeMenu);
+		window.removeEventListener('blur', stopMenu);
+	}, []);
+
+	const closeMenu = useCallback(e => {
+		const isMultiple = Array.isArray(element.current);
+		const clickedOutside = isMultiple
+			? !element.current.some(ele => ele?.contains(e.target))
+			: element.current && !element.current.contains(e.target);
+
+		if (clickedOutside) {
+			stopMenuRef.current?.(e);
+		}
+	}, []);
+
+	const stopMenu = useCallback(
+		e => {
+			setState(false, e);
+			removeEvents(stopMenuRef.current, closeMenuRef.current);
+		},
+		[removeEvents, setState]
+	);
+
+	useEffect(() => {
+		stopMenuRef.current = stopMenu;
+		closeMenuRef.current = closeMenu;
+	}, [stopMenu, closeMenu]);
+
+	const showMenu = useCallback(() => {
+		document.addEventListener('click', closeMenuRef.current);
+		window.addEventListener('blur', stopMenuRef.current);
+	}, []);
+
 	return {
-		showMenu: eventRefs.current.showMenu,
-		setElement: eventRefs.current.setElement,
-		onHide: eventRefs.current.removeEvents,
+		showMenu,
+		setElement: useCallback(ele => {
+			element.current = ele;
+		}, []),
+		removeEvents,
 	};
 };
 

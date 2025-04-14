@@ -1,47 +1,45 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import useTooltip from './useTooltip';
 
 const useHoverTooltips = (element, message, conditionCheckFunction, position = 'left') => {
-	const eventRefs = useRef(null);
-
 	const setTooltip = useTooltip();
 
 	const tooltipsInfos = useRef({ container: null, message: '', position: '' });
 
-	if (!eventRefs.current) {
-		let prevElements = {
-			container: null,
-			message: '',
-			position: '',
-		};
-		eventRefs.current = {
-			onMouseEnter: () => {
-				if (
-					prevElements.container !== tooltipsInfos.current.container ||
-					prevElements.message !== tooltipsInfos.current.message ||
-					prevElements.position !== tooltipsInfos.current.position
-				) {
-					eventRefs.current.handleHide = setTooltip(tooltipsInfos);
-					prevElements = {
-						container: tooltipsInfos.current.container,
-						message: tooltipsInfos.current.message,
-						position: tooltipsInfos.current.position,
-					};
-				}
-			},
-			onMouseLeave: () => {
-				if (eventRefs.current.handleHide) {
-					eventRefs.current.handleHide(tooltipsInfos.current.container);
-					eventRefs.current.handleHide = undefined;
-					prevElements = {
-						container: null,
-						message: '',
-						position: '',
-					};
-				}
-			},
-		};
-	}
+	const prevElements = useRef({
+		container: null,
+		message: '',
+		position: '',
+	});
+
+	const handleHideRef = useRef(null);
+
+	const onMouseEnter = useCallback(() => {
+		if (
+			prevElements.current.container !== tooltipsInfos.current.container ||
+			prevElements.current.message !== tooltipsInfos.current.message ||
+			prevElements.current.position !== tooltipsInfos.current.position
+		) {
+			handleHideRef.current = setTooltip(tooltipsInfos);
+			prevElements.current = {
+				container: tooltipsInfos.current.container,
+				message: tooltipsInfos.current.message,
+				position: tooltipsInfos.current.position,
+			};
+		}
+	}, [setTooltip]);
+
+	const onMouseLeave = useCallback(() => {
+		if (handleHideRef.current) {
+			handleHideRef.current(tooltipsInfos.current.container);
+			handleHideRef.current = null;
+			prevElements.current = {
+				container: null,
+				message: '',
+				position: '',
+			};
+		}
+	}, []);
 
 	useEffect(() => {
 		if (!element.current) return;
@@ -55,15 +53,15 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 		tooltipsInfos.current.position = position;
 
 		if (ele) {
-			ele.addEventListener('mouseenter', eventRefs.current.onMouseEnter);
-			ele.addEventListener('mouseleave', eventRefs.current.onMouseLeave);
+			ele.addEventListener('mouseenter', onMouseEnter);
+			ele.addEventListener('mouseleave', onMouseLeave);
 
 			return () => {
-				ele.removeEventListener('mouseenter', eventRefs.current.onMouseEnter);
-				ele.removeEventListener('mouseleave', eventRefs.current.onMouseLeave);
+				ele.removeEventListener('mouseenter', onMouseEnter);
+				ele.removeEventListener('mouseleave', onMouseLeave);
 			};
 		}
-	}, [conditionCheckFunction, element, message, position]);
+	}, [conditionCheckFunction, element, message, onMouseEnter, onMouseLeave, position]);
 };
 
 export default useHoverTooltips;

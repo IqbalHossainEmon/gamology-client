@@ -1,16 +1,12 @@
-import { useRef } from 'react';
+import { useCallback } from 'react';
 
-const useIsTouchAble = () => {
-	const isTouchable = useRef(null);
-
-	if (!isTouchable.current) {
-		isTouchable.current = () =>
+const useIsTouchAble = () =>
+	useCallback(
+		() =>
 			window.matchMedia('(any-pointer: coarse)').matches ||
 			'ontouchstart' in window ||
-			navigator.maxTouchPoints > 0;
-	}
-
-	return isTouchable.current;
-};
+			navigator.maxTouchPoints > 0,
+		[]
+	);
 
 export default useIsTouchAble;

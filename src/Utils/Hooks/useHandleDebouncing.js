@@ -1,12 +1,10 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 const useHandleDebouncing = (seconds = 500) => {
 	const timeOutRef = useRef(null);
 	// Handle multiple click.
-	const eventRef = useRef(null);
-
-	if (!eventRef.current) {
-		eventRef.current = handleClick => {
+	return useCallback(
+		handleClick => {
 			if (timeOutRef.current) {
 				return;
 			}
@@ -14,10 +12,9 @@ const useHandleDebouncing = (seconds = 500) => {
 			timeOutRef.current = setTimeout(() => {
 				timeOutRef.current = null;
 			}, seconds);
-		};
-	}
-
-	return eventRef.current;
+		},
+		[seconds]
+	);
 };
 
 export default useHandleDebouncing;

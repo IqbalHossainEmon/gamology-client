@@ -1,51 +1,48 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import useIsTouchAble from './useIsTouchable';
 
 export default function useChangeBodyOverflow() {
 	const root = useRef(document.getElementById('root'));
-	const eventRefs = useRef(null);
 
 	const isTouchable = useIsTouchAble();
 
-	if (!eventRefs.current) {
-		let isAdded;
-		let isPaddingAdded;
-		eventRefs.current = {
-			checkForTouchScreen: () => {
-				if (isPaddingAdded && isTouchable()) {
-					root.current.classList.remove('scrollbar-replace-padding');
-					isPaddingAdded = false;
-				} else if (!isPaddingAdded && !isTouchable()) {
-					root.current.classList.add('scrollbar-replace-padding');
-					isPaddingAdded = true;
-				}
-			},
-			hideBodyOverflow: () => {
-				if (root.current.scrollHeight > root.current.clientHeight) {
-					root.current.classList.add('overflow-y-hidden');
-					window.addEventListener('resize', eventRefs.current.checkForTouchScreen);
-					if (!isTouchable()) {
-						root.current.classList.add('scrollbar-replace-padding');
-						isPaddingAdded = true;
-					}
-					isAdded = true;
-				}
-			},
-			showBodyOverflow: () => {
-				if (isAdded) {
-					root.current.classList.remove('overflow-y-hidden');
-					window.removeEventListener('resize', eventRefs.current.checkForTouchScreen);
-					if (isPaddingAdded) {
-						root.current.classList.remove('scrollbar-replace-padding');
-						isPaddingAdded = false;
-					}
-					isAdded = false;
-				}
-			},
-		};
-	}
+	const isAddedRef = useRef(false);
+	const isPaddingAddedRef = useRef(false);
+
+	const checkForTouchScreen = useCallback(() => {
+		if (isPaddingAddedRef.current && isTouchable()) {
+			root.current.classList.remove('scrollbar-replace-padding');
+			isPaddingAddedRef.current = false;
+		} else if (!isPaddingAddedRef.current && !isTouchable()) {
+			root.current.classList.add('scrollbar-replace-padding');
+			isPaddingAddedRef.current = true;
+		}
+	}, [isTouchable]);
+	const hideBodyOverflow = useCallback(() => {
+		if (root.current.scrollHeight > root.current.clientHeight) {
+			root.current.classList.add('overflow-y-hidden');
+			window.addEventListener('resize', checkForTouchScreen);
+			if (!isTouchable()) {
+				root.current.classList.add('scrollbar-replace-padding');
+				isPaddingAddedRef.current = true;
+			}
+			isAddedRef.current = true;
+		}
+	}, [checkForTouchScreen, isTouchable]);
+	const showBodyOverflow = useCallback(() => {
+		if (isAddedRef.current) {
+			root.current.classList.remove('overflow-y-hidden');
+			window.removeEventListener('resize', checkForTouchScreen);
+			if (isPaddingAddedRef.current) {
+				root.current.classList.remove('scrollbar-replace-padding');
+				isPaddingAddedRef.current = false;
+			}
+			isAddedRef.current = false;
+		}
+	}, [checkForTouchScreen]);
+
 	return {
-		hideBodyOverflow: eventRefs.current.hideBodyOverflow,
-		showBodyOverflow: eventRefs.current.showBodyOverflow,
+		hideBodyOverflow,
+		showBodyOverflow,
 	};
 }
