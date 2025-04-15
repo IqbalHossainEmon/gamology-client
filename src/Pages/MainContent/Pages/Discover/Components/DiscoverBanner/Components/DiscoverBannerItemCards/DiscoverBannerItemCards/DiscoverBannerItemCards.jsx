@@ -1,5 +1,6 @@
 import useHandleDebouncing from '../../../../../../../../../Utils/Hooks/useHandleDebouncing';
 import DiscoverBannerItemCard from '../DiscoverBannerItemCard/DiscoverBannerItemCard/DiscoverBannerItemCard';
+
 import styles from './DiscoverBannerItemCards.module.css';
 
 export default function DiscoverBannerItemCards({

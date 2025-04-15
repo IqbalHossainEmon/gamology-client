@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
+
 import styles from './Video.module.css';
 
 function Video({ videoContainer, src, captions, className }, ref) {

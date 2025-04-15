@@ -1,4 +1,5 @@
 import IndiGameAsideBodyBtn from '../Components/IndiGameAsideBodyBtn/IndiGameAsideBodyBtn';
+
 import styles from './IndiGameAsideBody.module.css';
 
 export default function IndiGameAsideBody({ info }) {

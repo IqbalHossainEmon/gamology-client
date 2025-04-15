@@ -1,7 +1,9 @@
 import { useRef } from 'react';
+
 import RippleEffect from '../../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useObjectUtilities from '../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import useToast from '../../../../../../../../../../../../Utils/Hooks/useToast';
+
 import styles from './AddTagsSubmissionButton.module.css';
 
 function AddTagsSubmissionButton({

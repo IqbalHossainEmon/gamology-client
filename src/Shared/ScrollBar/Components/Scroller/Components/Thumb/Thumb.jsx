@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
+
 import styles from './Thumb.module.css';
 function Thumb({ style, container, thumbRef, isIOS }) {
 	const { factor, height } = style;
@@ -21,7 +23,9 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 		let isLeft = false;
 		eventRefs.current = {
 			onMove: e => {
-				if (startingPositionRef.current === null) return;
+				if (startingPositionRef.current === null) {
+					return;
+				}
 				const { clientY } = e;
 				diff = clientY - startingPositionRef.current + prevDiff;
 
@@ -51,7 +55,9 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 				prevDiff = lastDiff;
 				window.removeEventListener('blur', eventRefs.current.onMouseUp);
 
-				if (isLeft) setShow(false);
+				if (isLeft) {
+					setShow(false);
+				}
 			},
 			onEnter: () => {
 				if (!showRef.current) {
@@ -72,7 +78,9 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 				}
 			},
 			onscroll: () => {
-				if (startingPositionRef.current) return;
+				if (startingPositionRef.current) {
+					return;
+				}
 
 				const containerHeight = container.clientHeight;
 				const scrollerContainer = container.scrollHeight;
@@ -89,7 +97,9 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 
 					setShow(true);
 					timerId.current = setTimeout(() => {
-						if (showRef.current) setShow(false);
+						if (showRef.current) {
+							setShow(false);
+						}
 					}, 1000);
 				}
 			},
@@ -116,8 +126,9 @@ function Thumb({ style, container, thumbRef, isIOS }) {
 		container.addEventListener('scroll', eventRefs.current.onscroll);
 
 		return () => {
-			if (isAdded.current)
+			if (isAdded.current) {
 				container.removeEventListener('mousemove', eventRefs.current.onEnter);
+			}
 			container.removeEventListener('mouseleave', eventRefs.current.onLeave);
 			container.removeEventListener('scroll', eventRefs.current.onscroll);
 		};

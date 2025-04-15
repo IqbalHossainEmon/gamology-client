@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+
 import RotateArrow from '../../../../../../../../../../../Shared/RotateArrow/RotateArrow';
 import useDropDownHide from '../../../../../../../../../../../Utils/Hooks/useDropDownHide';
 import IndiGameOrderByListContainer from '../Components/IndiGameOrderByListContainer/IndiGameOrderByListContainer';
+
 import styles from './IndiGameOrderBy.module.css';
 
 export default function IndiGameOrderBy({ handleSort }) {

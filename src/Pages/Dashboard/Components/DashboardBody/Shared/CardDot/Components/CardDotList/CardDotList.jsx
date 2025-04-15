@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import styles from './CardDotList.module.css';
 
 function CardDotList({
@@ -60,7 +61,9 @@ function CardDotList({
 							<button
 								onClick={e => {
 									list.event(item, e);
-									if (setHide && list.shouldHide) setHide();
+									if (setHide && list.shouldHide) {
+										setHide();
+									}
 									if (list.shouldCardDotHide) {
 										setListShow(false);
 										setParentShow(false);

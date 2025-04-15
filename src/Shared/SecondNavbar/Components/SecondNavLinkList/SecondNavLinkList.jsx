@@ -1,6 +1,7 @@
 import useAppearDisappear from '../../../../Utils/Hooks/useAppearDisappear';
 import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import LinksList from '../../../LinksList/LinksList';
+
 import styles from './SecondNavLinkList.module.css';
 
 const links = [

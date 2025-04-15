@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import LinksList from '../../../LinksList/LinksList';
+
 import styles from './SecondNavRightLinks.module.css';
 
 export default function SecondNavRightLinks({ screenWidth }) {

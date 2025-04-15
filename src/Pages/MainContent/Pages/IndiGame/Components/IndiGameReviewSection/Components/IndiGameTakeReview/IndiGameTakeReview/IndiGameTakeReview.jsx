@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+
 import HorizontalDivider from '../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import Image from '../../../../../../../../../Shared/Image/Image/Image';
 import ReviewStar from '../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import IndiGameOwnReview from '../Components/IndiGameOwnReview/IndiGameOwnReview';
 import IndiGameWriteReviewContainer from '../Components/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer/IndiGameWriteReviewContainer';
+
 import styles from './IndiGameTakeReview.module.css';
 
 const userIcon = 'assets/images/icons/user.png';

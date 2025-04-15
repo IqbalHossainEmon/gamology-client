@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import OptionsContainer from '../Components/OptionsContainer/OptionsContainer';
 import PriceReleaseDate from '../Components/PriceReleaseDate/PriceReleaseDate/PriceReleaseDate';
+
 import styles from './GameInfoFieldTags.module.css';
 
 const data = [

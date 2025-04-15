@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import HorizontalDivider from '../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import IndiGameMultipleSpecification from '../Components/IndiGameMultipleSpecification/IndiGameMultipleSpecification';
 import IndiGameSpecificationOther from '../Components/IndiGameSpecificationOther/IndiGameSpecificationOther';
+
 import styles from './IndiGameSpecifications.module.css';
 
 const data = {

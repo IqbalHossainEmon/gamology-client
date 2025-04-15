@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+
 import ProfilePhotoUploader from '../../../../../../../../../../../Shared/ProfilePhotoUploader/ProfilePhotoUploader';
 import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
@@ -8,6 +9,7 @@ import OuterErrorMessage from '../../../../../../../Shared/OuterErrorMessage/Out
 import UserMakeAdminModal from '../../../../../Users/Components/UserMakeAdminModal/UserMakeAdminModal';
 import UserDeleteConfirmModal from '../../../../UserDeleteConfirmModal/UserDeleteConfirmModal';
 import EditUserBodyTextFields from '../Components/EditUserBodyTextFields/EditUserBodyTextFields';
+
 import styles from './EditUserBody.module.css';
 
 function EditUserBody({ user, setUser }) {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import ErrorMessage from '../../../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import SelectionField from '../../../../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
+
 import styles from './SelectionFieldWithErrorMessage.module.css';
 
 function SelectionFieldWithErrorMessage({
@@ -33,7 +35,9 @@ function SelectionFieldWithErrorMessage({
 				propertyName={name}
 				onFocusClick={() => {
 					setErrorShow(false);
-					if (handleCheck) handleCheck();
+					if (handleCheck) {
+						handleCheck();
+					}
 				}}
 				placeholder={placeholder}
 				setState={setState}

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
+
 import styles from './GameInfoFieldSpecsLangsSupported.module.css';
 
 function GameInfoFieldSpecsLangsSupported({

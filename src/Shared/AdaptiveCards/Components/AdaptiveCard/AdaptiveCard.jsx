@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import useToast from '../../../../Utils/Hooks/useToast';
 import ButtonWithRipple from '../../../ButtonWithRipple/ButtonWithRipple';
 import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/DiscountPriceWithPercent';
@@ -7,6 +8,7 @@ import Image from '../../../Image/Image/Image';
 import ImageWithHover from '../../../ImageWithHover/ImageWithHover';
 import RippleEffect from '../../../RippleEffect/RippleEffect';
 import TextField from '../../../TextField/TextField/TextField';
+
 import styles from './AdaptiveCard.module.css';
 
 function AdaptiveCard({

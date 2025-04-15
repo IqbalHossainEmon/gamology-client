@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import ErrorMessage from '../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
 import SectionFieldTextFieldContainer from '../SectionFieldTextFieldContainer/SectionFieldTextFieldContainer';
+
 import styles from './GameInfoFieldSpecification.module.css';
 
 export default function GameInfoFieldSpecification({

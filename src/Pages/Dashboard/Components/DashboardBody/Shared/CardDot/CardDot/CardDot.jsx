@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useIsTouchAble from '../../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../../Utils/Hooks/useScreenWidth';
 import CardDotBody from '../Components/CardDotBody/CardDotBody';

@@ -1,7 +1,9 @@
 import { useRef } from 'react';
+
 import ArrowButton from '../../../../../../../../../../Shared/ArrowButton/ArrowButton';
 import useHandleDebouncing from '../../../../../../../../../../Utils/Hooks/useHandleDebouncing';
 import IndiGameBannerItem from '../IndiGameBannerItem/IndiGameBannerItem';
+
 import styles from './IndiGameBannerItems.module.css';
 
 export default function IndiGameBannerItems({

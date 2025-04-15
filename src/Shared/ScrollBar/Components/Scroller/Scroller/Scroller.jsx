@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ScrollPath from '../Components/ScrollPath/ScrollPath';
 import Thumb from '../Components/Thumb/Thumb';
 function Scroller({ innerContainerRef, outerContainerRef, showPath }) {

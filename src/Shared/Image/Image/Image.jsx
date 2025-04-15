@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ImageError from '../Component/ImageError/ImageError';
 import ImagePlaceholder from '../Component/ImagePlaceholder/ImagePlaceholder';
+
 import styles from './Image.module.css';
 
 function Image({ data, alt, aspectRatioClassName, placeholder, className, ...rest }) {
@@ -22,11 +24,13 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
 	useEffect(() => {
 		const img = imgRef.current;
 		if (img) {
-			if (img.complete) setCurrentState(1);
-			else
+			if (img.complete) {
+				setCurrentState(1);
+			} else {
 				img.onload = () => {
 					setCurrentState(1);
 				};
+			}
 			img.onerror = () => {
 				setCurrentState(-1);
 			};

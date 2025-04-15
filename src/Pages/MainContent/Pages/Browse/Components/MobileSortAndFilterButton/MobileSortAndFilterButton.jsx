@@ -1,6 +1,7 @@
 import Image from '../../../../../../Shared/Image/Image/Image';
 import useBrowseFilter from '../../Utils/Hooks/useBrowseFilter/useBrowseFilter';
 import useBrowseSort from '../../Utils/Hooks/useBrowseSort/useBrowseSort';
+
 import styles from './MobileSortAndFilterButton.module.css';
 
 export default function MobileSortAndFilterButton() {

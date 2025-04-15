@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useToast from '../../Utils/Hooks/useToast';
 import UploadIcon from '../Icons/UploadIcon/UploadIcon';
 import Image from '../Image/Image/Image';
+
 import styles from './ProfilePhotoUploader.module.css';
 
 function ProfilePhotoUploader({ data, setPhoto }) {

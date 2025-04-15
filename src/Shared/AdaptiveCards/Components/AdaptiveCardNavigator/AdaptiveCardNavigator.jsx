@@ -1,4 +1,5 @@
 import ArrowButton from '../../../ArrowButton/ArrowButton';
+
 import styles from './AdaptiveCardNavigator.module.css';
 
 function AdaptiveCardNavigator({ setCardPosition, cardPosition, length }) {

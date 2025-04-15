@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
 import SelectionField from '../../../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import useScreenWidth from '../../../../../../../../../../../../Utils/Hooks/useScreenWidth';
+
 import styles from './EditAdaptiveGameFooterBodySelectionField.module.css';
 
 function EditAdaptiveGameFooterBodySelectionField({

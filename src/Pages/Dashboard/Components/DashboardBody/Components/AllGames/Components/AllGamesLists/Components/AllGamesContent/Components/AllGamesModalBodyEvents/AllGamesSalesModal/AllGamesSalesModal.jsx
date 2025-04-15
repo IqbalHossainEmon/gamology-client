@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useModal from '../../../../../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../../../../../Utils/Hooks/useToast';
+
 import styles from './AllGamesSalesModal.module.css';
 
 function AllGamesSalesModal({ price: prevPrice }) {

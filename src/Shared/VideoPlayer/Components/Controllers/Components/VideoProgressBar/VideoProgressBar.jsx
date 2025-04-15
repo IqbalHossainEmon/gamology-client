@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import VideoSlider from '../VideoSlider/VideoSlider';
 
 export default function VideoProgressBar({

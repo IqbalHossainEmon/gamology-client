@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import EditGameCardFirstPart from '../Components/EditGameCardFirstPart/EditGameCardFirstPart';
 import EditGameCardOtherPart from '../Components/EditGameCardOtherPart/EditGameCardOtherPart';
+
 import styles from './EditGameCards.module.css';
 
 const items = [

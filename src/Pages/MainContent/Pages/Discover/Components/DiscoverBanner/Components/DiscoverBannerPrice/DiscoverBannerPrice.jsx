@@ -1,4 +1,5 @@
 import DiscountPrice from '../../../../../../../../Shared/DiscountPrice/DiscountPrice';
+
 import styles from './DiscoverBannerPrice.module.css';
 
 function DiscoverBannerPrice({ price }) {

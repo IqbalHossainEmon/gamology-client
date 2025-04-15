@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useAppearDisappear from '../../../../../../../Utils/Hooks/useAppearDisappear';
 import ToggleSwitch from '../../../../../../ToggleSwitch/ToggleSwitch';
+
 import styles from './VideoPlayerToggleSwitch.module.css';
 
 function VideoPlayerToggleSwitch({ show: state, setElement, gearRef }) {

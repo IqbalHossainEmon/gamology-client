@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ArrowIcon from '../Icons/ArrowIcon/ArrowIcon';
+
 import styles from './RotateArrow.module.css';
 
 export default function RotateArrow({ state, toggleBtnRef }) {

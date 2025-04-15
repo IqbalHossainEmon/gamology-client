@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import Pagination from '../../../../../../../Shared/Pagination/Pagination/Pagination';
 import useModal from '../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../Utils/Hooks/useToast';
@@ -6,6 +7,7 @@ import CardDot from '../../../Shared/CardDot/CardDot/CardDot';
 import UserCard from '../Components/UserCard/UserCard';
 import UserDeleteConfirmModal from '../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
 import UserInfo from '../Users/Components/UserInfo/UserInfo';
+
 import styles from './Admins.module.css';
 
 const adminDetail = [];

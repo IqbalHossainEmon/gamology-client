@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+
 import Toasts from '../../Shared/Toasts/Toasts/Toasts';
 import { HideToastContext, SetToastContext } from '../Contexts/ToastContext';
 
@@ -12,15 +13,16 @@ const withToast = Component =>
 		const toastIdRef = useRef(0);
 
 		const hideToastAnimation = useCallback(id => {
+			const transitionTime = 500; // ms
 			setToasts(prevState => {
 				const newState = [...prevState];
 
 				newState[newState.findIndex(toast => toast.id === id)].fadeOut = true;
-				setTimeout(() => {
-					setToasts(prev => prev.filter(toast => toast.id !== id));
-				}, 500);
 				return newState;
 			});
+			setTimeout(() => {
+				setToasts(prev => prev.filter(toast => toast.id !== id));
+			}, transitionTime);
 		}, []);
 
 		const handleHideToast = useCallback(
@@ -46,13 +48,16 @@ const withToast = Component =>
 				setToasts(prevState => {
 					toastIdRef.current++;
 
-					if (toastsRef.current.length > 3) {
-						for (let i = 0; i < toastsRef.current.length - 3; i++) {
-							hideToastAnimation(toastsRef.current[i].id);
-						}
-					}
 					return [...prevState, { ...toast, id: toastIdRef.current }];
 				});
+
+				const toastThreshold = 3; // Maximum number of toasts to show at once
+
+				if (toastsRef.current.length > toastThreshold) {
+					for (let i = 0; i < toastsRef.current.length - toastThreshold; i++) {
+						hideToastAnimation(toastsRef.current[i].id);
+					}
+				}
 				return toastIdRef.current;
 			},
 			[hideToastAnimation]

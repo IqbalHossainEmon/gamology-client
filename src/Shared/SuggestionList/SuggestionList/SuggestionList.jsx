@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import SuggestionListContainer from '../Components/SuggestionListContainer/SuggestionListContainer';
 
 function SuggestionList({
@@ -44,7 +45,9 @@ function SuggestionList({
 			state={navShow && parentShow}
 			setShow={val => {
 				setNavShow(val);
-				if (!shouldClearTheSearch) shouldShow.current = false;
+				if (!shouldClearTheSearch) {
+					shouldShow.current = false;
+				}
 			}}
 			setState={setState}
 			className={className}

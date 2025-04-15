@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+
 import HorizontalDivider from '../../../../../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import Image from '../../../../../../../../../../../../../Shared/Image/Image/Image';
 import ReviewStar from '../../../../../../../../../../../../../Shared/ReviewStar/ReviewStar';
 import useScreenWidth from '../../../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import IndiGameReviewBtn from '../Components/IndiGameReviewBtn/IndiGameReviewBtn';
 import IndiGameReviewInput from '../Components/IndiGameReviewInput/IndiGameReviewInput';
+
 import styles from './IndiGameWriteReview.module.css';
 
 export default function IndiGameWriteReview({

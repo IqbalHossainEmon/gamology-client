@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import FileUploadButton from '../../../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import SelectionField from '../../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import CoverImageVideoContainer from '../CoverImageVideoContainer/CoverImageVideoContainer/CoverImageVideoContainer';
+
 import styles from './BannerInputFieldContainer.module.css';
 
 export default function BannerInputFieldContainer({

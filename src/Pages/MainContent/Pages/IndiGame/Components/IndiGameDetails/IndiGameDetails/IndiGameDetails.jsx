@@ -1,6 +1,7 @@
 import IndiGameBanner from '../Components/IndiGameBanner/IndiGameBanner/IndiGameBanner';
 import IndiGameDescription from '../Components/IndiGameDescription/IndiGameDescription/IndiGameDescription';
 import IndiGameDetailAside from '../Components/IndiGameDetailAside/IndiGameDetailAside/IndiGameDetailAside';
+
 import styles from './IndiGameDetails.module.css';
 
 const data = {

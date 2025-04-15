@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+
 import useObjectUtilities from '../../../../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import RangeField from '../Components/RangeField/RangeField/RangeField';
 import RangeInput from '../Components/RangeInput/RangeInput/RangeInput';
+
 import styles from './FilterRangeOption.module.css';
 
 export default function FilterRangeOption({ option, limit, setState: setValue, disabled }) {
@@ -36,17 +38,21 @@ export default function FilterRangeOption({ option, limit, setState: setValue, d
 			handleSetValue: (higher, lower) => {
 				let actualHigher, actualLower;
 
-				if (typeof higher === 'number')
+				if (typeof higher === 'number') {
 					actualHigher = parseFloat(
 						(higher / singleStepRef.current + limit.lower).toFixed(float)
 					);
-				else actualHigher = stateRef.current.bigger;
+				} else {
+					actualHigher = stateRef.current.bigger;
+				}
 
-				if (typeof lower === 'number')
+				if (typeof lower === 'number') {
 					actualLower = parseFloat(
 						((lower / singleStepRef.current || 0) + limit.lower).toFixed(float)
 					);
-				else actualLower = stateRef.current.smaller;
+				} else {
+					actualLower = stateRef.current.smaller;
+				}
 
 				setValue(prev => {
 					const newPrev = cloneObject(prev);

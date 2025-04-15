@@ -1,12 +1,16 @@
 import { useRef, useState } from 'react';
+
 import useAppearDisappear from '../../../../../../../../Utils/Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../../../../../Utils/Hooks/useDropDownHide';
 import useIsTouchAble from '../../../../../../../../Utils/Hooks/useIsTouchable';
 import CardDotList from '../CardDotList/CardDotList';
+
 import styles from './CardDotBody.module.css';
 
 const isMouseOverElement = element => {
-	if (!element) return;
+	if (!element) {
+		return;
+	}
 	const mouseX = window.event?.x || 0;
 	const mouseY = window.event?.y || 0;
 

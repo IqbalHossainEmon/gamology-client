@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+
 import useIsTouchAble from './useIsTouchable';
 
 export default function useDragStartStop(moveEvent, handleMouseUp, grab = false) {
@@ -23,7 +24,9 @@ export default function useDragStartStop(moveEvent, handleMouseUp, grab = false)
 
 			window.removeEventListener('blur', onStopRef.current);
 
-			if (handleMouseUp) handleMouseUp(e);
+			if (handleMouseUp) {
+				handleMouseUp(e);
+			}
 			if (document.getElementById('root').classList.contains('grabbing')) {
 				document.getElementById('root').removeAttribute('class');
 			}
@@ -37,7 +40,9 @@ export default function useDragStartStop(moveEvent, handleMouseUp, grab = false)
 
 	const onStart = useCallback(
 		e => {
-			if (e.defaultPrevented) e.preventDefault();
+			if (e.defaultPrevented) {
+				e.preventDefault();
+			}
 			const touchAble = isTouchAble();
 
 			window.addEventListener('blur', onStop);

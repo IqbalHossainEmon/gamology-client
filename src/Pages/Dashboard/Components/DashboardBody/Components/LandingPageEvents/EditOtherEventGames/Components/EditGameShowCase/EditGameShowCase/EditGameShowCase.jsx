@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import GamesShowcase from '../../../../../../../../../../Shared/GamesShowcase/GamesShowcase/GamesShowcase';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
@@ -6,6 +7,7 @@ import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObj
 import GameCardManagementMenu from '../../../../../Utils/GameCardManagementMenu';
 import EditGameShowCaseConfirmModal from '../Components/EditGameShowCaseConfirmModal/EditGameShowCaseConfirmModal';
 import EditGameShowCaseExtraCard from '../Components/EditGameShowCaseExtraCard/EditGameShowCaseExtraCard';
+
 import styles from './EditGameShowCase.module.css';
 
 function extraCard(index, onclick) {

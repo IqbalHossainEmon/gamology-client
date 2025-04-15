@@ -1,4 +1,5 @@
 import Toast from '../Components/Toast/Toast';
+
 import styles from './Toasts.module.css';
 
 function Toasts({ toasts }) {

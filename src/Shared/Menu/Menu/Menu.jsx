@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import MenuTitle from '../MenuTitle/MenuTitle';
+
 import styles from './Menu.module.css';
 
 export default function Menu({

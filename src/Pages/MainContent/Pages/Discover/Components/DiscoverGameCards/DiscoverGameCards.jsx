@@ -1,4 +1,5 @@
 import GameCards from '../../../../../../Shared/GameCards/GameCards/GameCards';
+
 import styles from './DiscoverGameCards.module.css';
 const items = [
 	{

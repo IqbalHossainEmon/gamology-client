@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import RippleEffect from '../../../../../../Shared/RippleEffect/RippleEffect';
 import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
+
 import styles from './ExploreGames.module.css';
 
 const fetched = {

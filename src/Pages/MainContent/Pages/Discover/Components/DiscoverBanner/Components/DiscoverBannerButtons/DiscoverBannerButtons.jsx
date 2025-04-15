@@ -1,5 +1,6 @@
 import ArrowButton from '../../../../../../../../Shared/ArrowButton/ArrowButton';
 import useHandleDebouncing from '../../../../../../../../Utils/Hooks/useHandleDebouncing';
+
 import styles from './DiscoverBannerButtons.module.css';
 
 export default function DiscoverBannerButtons({ handleClick }) {

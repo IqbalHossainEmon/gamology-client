@@ -1,4 +1,5 @@
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+
 import styles from './ApplyButton.module.css';
 
 export default function ApplyButton({ filterState, state, dispatch, setShow }) {

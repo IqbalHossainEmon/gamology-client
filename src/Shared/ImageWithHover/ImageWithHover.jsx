@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import Image from '../Image/Image/Image';
+
 import styles from './ImageWithHover.module.css';
 
 function ImageWithHover({ container, game, cardHover, ...props }) {
@@ -20,7 +22,9 @@ function ImageWithHover({ container, game, cardHover, ...props }) {
 	}
 
 	useEffect(() => {
-		if (typeof cardHover !== 'function') return;
+		if (typeof cardHover !== 'function') {
+			return;
+		}
 		const containerElement = container?.current;
 
 		if (containerElement) {

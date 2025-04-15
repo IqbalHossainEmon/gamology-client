@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import RippleEffect from '../../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
+
 import styles from './CoverImageContainer.module.css';
 
 function CoverImageContainer({

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
+
 import styles from './ModalBody.module.css';
 
 function ModalBody({ content, fadeIn, hideModal }) {
@@ -45,7 +47,9 @@ function ModalBody({ content, fadeIn, hideModal }) {
 	useEffect(() => {
 		const container = containerRef.current;
 
-		if (!fadeIn || !container) return;
+		if (!fadeIn || !container) {
+			return;
+		}
 
 		const focusableSelector =
 			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -60,7 +64,9 @@ function ModalBody({ content, fadeIn, hideModal }) {
 			);
 
 		const handleKeyDown = e => {
-			if (e.key !== 'Tab') return;
+			if (e.key !== 'Tab') {
+				return;
+			}
 
 			const focusableElements = getFocusableElements();
 			const firstElement = focusableElements[0];

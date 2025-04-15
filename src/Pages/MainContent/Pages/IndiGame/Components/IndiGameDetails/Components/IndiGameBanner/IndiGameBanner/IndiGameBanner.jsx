@@ -1,7 +1,9 @@
 import { useEffect, useReducer } from 'react';
+
 import IndiGameBannerCards from '../Components/IndiGameBannerCards/IndiGameBannerCards';
 import IndiGameBannerItems from '../Components/IndiGameBannerItems/IndiGameBannerItems';
 import useIndiGameBannerLogics from '../useIndiGameBannerLogics/useIndiGameBannerLogics';
+
 import styles from './IndiGameBanner.module.css';
 
 const items = [

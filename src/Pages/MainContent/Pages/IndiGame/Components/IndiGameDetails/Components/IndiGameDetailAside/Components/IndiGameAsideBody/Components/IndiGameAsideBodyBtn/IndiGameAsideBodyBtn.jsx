@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
 import LoaderSpinner from '../../../../../../../../../../../../Shared/LoaderSpinner/LoaderSpinner';
 import RippleEffect from '../../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
+
 import styles from './IndiGameAsideBodyBtn.module.css';
 
 function IndiGameAsideBodyBtn() {

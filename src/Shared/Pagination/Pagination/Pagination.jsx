@@ -1,5 +1,6 @@
 import ArrowIcon from '../../Icons/ArrowIcon/ArrowIcon';
 import usePaginationLogic, { DOTS } from '../PaginationLogic/usePaginationLogic';
+
 import styles from './Pagination.module.css';
 
 export default function Pagination({ activePage, setActivePage, totalPage, pageNumberStyle }) {

@@ -1,4 +1,5 @@
 import Image from '../../../Image/Image/Image';
+
 import styles from './NavProfileInfo.module.css';
 
 export default function NavProfileInfo() {

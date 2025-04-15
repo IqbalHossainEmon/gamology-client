@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import ErrorMessage from '../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import GameCards from '../../../../../../../../../../Shared/GameCards/GameCards/GameCards';
@@ -7,6 +8,7 @@ import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import GameCardManagementMenu from '../../../../../Utils/GameCardManagementMenu';
 import EditGameCardAddCard from '../Components/EditGameCardAddCard/EditGameCardAddCard';
+
 import styles from './EditGameCardContainer.module.css';
 
 const handleExtraCard = (width, margin, handleCLick) => (
@@ -27,8 +29,11 @@ const handleCardDotList = (cards, setCards, onIndividualDelete, onMoveLeft, onMo
 					const newCards = [...prev.cards];
 					const index = newCards.findIndex(card => card.id === id);
 
-					if (direction === 'left') onMoveLeft(id);
-					else onMoveRight(id);
+					if (direction === 'left') {
+						onMoveLeft(id);
+					} else {
+						onMoveRight(id);
+					}
 					const temp = newCards.splice(index, 1)[0];
 					newCards.splice(direction === 'left' ? index - 1 : index + 1, 0, temp);
 					return { ...prev, cards: newCards };

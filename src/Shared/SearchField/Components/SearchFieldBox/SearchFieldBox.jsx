@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
+
 import styles from './SearchFieldBox.module.css';
 
 export default function SearchFieldBox({
@@ -38,7 +40,9 @@ export default function SearchFieldBox({
 			},
 			handleSearchClick: e => {
 				// check if right click or not
-				if (searchFocusRef.current || e.button !== 0) return;
+				if (searchFocusRef.current || e.button !== 0) {
+					return;
+				}
 				e.preventDefault();
 				searchInputRef.current.focus();
 			},

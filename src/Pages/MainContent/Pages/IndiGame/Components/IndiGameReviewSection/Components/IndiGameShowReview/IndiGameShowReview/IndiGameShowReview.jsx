@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import Pagination from '../../../../../../../../../Shared/Pagination/Pagination/Pagination';
 import IndiGameOrderBy from '../Components/IndiGameOrderBy/IndiGameOrderBy/IndiGameOrderBy';
 import IndiGameReviews from '../Components/IndiGameReviews/IndiGameReviews';
+
 import styles from './IndiGameShowReview.module.css';
 
 const data = [

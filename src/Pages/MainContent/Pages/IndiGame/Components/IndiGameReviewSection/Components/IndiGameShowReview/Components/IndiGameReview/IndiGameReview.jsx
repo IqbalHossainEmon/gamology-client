@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import HorizontalDivider from '../../../../../../../../../../Shared/HorizontalDivider/HorizontalDivider';
 import Image from '../../../../../../../../../../Shared/Image/Image/Image';
 import ReviewStar from '../../../../../../../../../../Shared/ReviewStar/ReviewStar';
+
 import styles from './IndiGameReview.module.css';
 
 const month = [

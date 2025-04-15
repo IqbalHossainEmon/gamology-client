@@ -1,9 +1,11 @@
 import { useState } from 'react';
+
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScreenShadow from '../../ScreenShadow/ScreenShadow';
 import SecondNavLeftLinks from '../Components/SecondNavLeftLinks/SecondNavLeftLinks';
 import SecondNavRightLinks from '../Components/SecondNavRightLinks/SecondNavRightLinks';
 import SecondNavSearchField from '../Components/SecondNavSearchField/SecondNavSearchField/SecondNavSearchField';
+
 import styles from './SecondNavbar.module.css';
 
 export default function SecondNavbar() {

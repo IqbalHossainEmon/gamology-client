@@ -1,6 +1,7 @@
 import Image from '../../../../../../../../../Shared/Image/Image/Image';
 import RippleEffect from '../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import DiscoverBannerPrice from '../../DiscoverBannerPrice/DiscoverBannerPrice';
+
 import styles from './DiscoverBannerItem.module.css';
 
 export default function DiscoverBannerItem({ banner, bannerState, activeBanner }) {

@@ -1,4 +1,5 @@
 import DiscoverBannerInfoItem from '../DiscoverBannerInfoItem/DiscoverBannerInfoItem';
+
 import styles from './DiscoverBannerInfoItems.module.css';
 
 export default function DiscoverBannerInfoItems({ data, bannerState, activeBanner }) {

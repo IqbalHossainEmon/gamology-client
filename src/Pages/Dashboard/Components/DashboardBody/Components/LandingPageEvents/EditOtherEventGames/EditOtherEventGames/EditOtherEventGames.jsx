@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../Utils/Hooks/useModal';
 import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
 import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards';
 import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
 import EditOtherEventAddSectionModalBody from '../Components/EditOtherEventAddSectionModalBody/EditOtherEventAddSectionModalBody';
+
 import styles from './EditOtherEventGames.module.css';
 
 const showcaseDefaultData = [
@@ -258,7 +260,7 @@ function EditOtherEventGames() {
 				<>
 					<h2 className={styles.editOtherEventGamesHeader}>Edit Other Events</h2>
 					{allItems.map((items, index) => {
-						if (!!items.games || !!items.cards)
+						if (!!items.games || !!items.cards) {
 							return (
 								<div key={items.id} className={styles.editOtherEventSection}>
 									{items.games ? (
@@ -278,6 +280,7 @@ function EditOtherEventGames() {
 									) : null}
 								</div>
 							);
+						}
 						return null;
 					})}
 				</>

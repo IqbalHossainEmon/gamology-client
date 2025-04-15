@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useObjectUtilities from '../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import SelectionFieldWithErrorMessage from '../../../../EditTagsAndCategories/Components/AddTagsOrCategories/Components/AddTagsOrCategories/Components/AddTagsNameAndCategory/SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
+
 import styles from './EditOtherEventAddSectionModalBody.module.css';
 
 const emptyDataShowCase = [

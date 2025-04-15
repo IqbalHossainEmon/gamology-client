@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+
 import useTooltip from './useTooltip';
 
 const useHoverTooltips = (element, message, conditionCheckFunction, position = 'left') => {
@@ -42,9 +43,13 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 	}, []);
 
 	useEffect(() => {
-		if (!element.current) return;
+		if (!element.current) {
+			return;
+		}
 
-		if (conditionCheckFunction && !conditionCheckFunction()) return;
+		if (conditionCheckFunction && !conditionCheckFunction()) {
+			return;
+		}
 
 		const ele = element.current;
 

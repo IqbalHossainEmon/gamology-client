@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useDropDownHide from '../../Utils/Hooks/useDropDownHide';
 import useResetFunction from '../../Utils/Hooks/useResetFunction';
 import ErrorMessage from '../ErrorMessage/ErrorMessage/ErrorMessage';
 import SuggestionList from '../SuggestionList/SuggestionList/SuggestionList';
+
 import styles from './TypeableSelectionField.module.css';
 
 export default function TypeableSelectionField({

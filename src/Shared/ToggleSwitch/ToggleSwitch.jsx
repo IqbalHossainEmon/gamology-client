@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useDragStartStop from '../../Utils/Hooks/useDragStartStop';
 import useHandleTimerTransition from '../../Utils/Hooks/useHandleTimerTransition';
+
 import styles from './ToggleSwitch.module.css';
 
 const rangePathWidth = 13;
@@ -76,7 +78,9 @@ function ToggleSwitch({
 					mouseUpEvent(e);
 				}
 
-				if (isMouseDown.current) isMouseDown.current = false;
+				if (isMouseDown.current) {
+					isMouseDown.current = false;
+				}
 				let isToggled = false;
 				if (stateRef.current < rangePathWidth / 2) {
 					isToggled = false;
@@ -107,7 +111,9 @@ function ToggleSwitch({
 			onStart(e);
 			isMouseDown.current = true;
 			eventRefs.current.handleStart(e);
-			if (mouseDownEvent) mouseDownEvent();
+			if (mouseDownEvent) {
+				mouseDownEvent();
+			}
 		};
 	}
 

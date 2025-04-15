@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+
 import useScreenWidth from './useScreenWidth';
 
 export default function usePointersEveryStep(rangePathRef, conditionStepRef) {

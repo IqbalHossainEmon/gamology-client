@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
 import RippleEffect from '../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
+
 import styles from './AddTagsUnderCategory.module.css';
 
 function AddTagsUnderCategory({ infoRef, errorChange, errorMessage }) {

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ErrorMessage from '../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import ImagePreviewContainer from '../../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer';
 import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
@@ -6,6 +7,7 @@ import useIsTouchAble from '../../../../../../../../../../../Utils/Hooks/useIsTo
 import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import CoverImageContainer from '../Components/CoverImageContainer/CoverImageContainer';
 import CoverVideoContainer from '../Components/CoverVideoContainer/CoverVideoContainer';
+
 import styles from './CoverImageVideoContainer.module.css';
 
 function CoverImageVideoContainer({

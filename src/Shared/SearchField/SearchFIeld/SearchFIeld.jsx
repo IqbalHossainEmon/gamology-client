@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
+
 import SuggestionList from '../../SuggestionList/SuggestionList/SuggestionList';
 import SearchFieldBox from '../Components/SearchFieldBox/SearchFieldBox';
+
 import styles from './SearchFIeld.module.css';
 
 function SearchField({
@@ -38,12 +40,15 @@ function SearchField({
 				searchRef={searchRef}
 				searchInputRef={searchInputRef}
 				setState={(val, name) => {
-					if (updateSearchValue) updateSearchValue(val);
+					if (updateSearchValue) {
+						updateSearchValue(val);
+					}
 
 					if (shouldClearTheSearch) {
 						setValue('');
-					} else if (typeof val === 'object') setValue(val[name]);
-					else {
+					} else if (typeof val === 'object') {
+						setValue(val[name]);
+					} else {
 						setValue(val);
 					}
 				}}

@@ -2,6 +2,7 @@ import Card from '../../../../../../../../../../../Shared/Card/Card';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
 import CardDot from '../../../../../../../Shared/CardDot/CardDot/CardDot';
 import AllGamesModalBodySelect from '../Components/AllGamesModalBodyEvents/AllGamesModalBodySelect/AllGamesModalBodySelect';
+
 import styles from './AllGamesContent.module.css';
 
 const handleEdit = (item, setContent) => {

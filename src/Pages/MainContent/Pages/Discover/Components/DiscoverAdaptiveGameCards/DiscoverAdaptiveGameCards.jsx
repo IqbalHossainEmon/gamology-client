@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import AdaptiveCards from '../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
+
 import styles from './DiscoverAdaptiveGameCards.module.css';
 
 const data = [

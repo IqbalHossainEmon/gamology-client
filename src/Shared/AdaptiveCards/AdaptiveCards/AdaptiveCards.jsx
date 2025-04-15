@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import AdaptiveCard from '../Components/AdaptiveCard/AdaptiveCard';
 import AdaptiveCardNavigator from '../Components/AdaptiveCardNavigator/AdaptiveCardNavigator';
+
 import styles from './AdaptiveCards.module.css';
 
 function AdaptiveCards({
@@ -37,7 +39,9 @@ function AdaptiveCards({
 		if (resetRef) {
 			resetRef.current = target => {
 				const fns = handleResetRef.current;
-				if (!Array.isArray(fns) || fns.length === 0) return;
+				if (!Array.isArray(fns) || fns.length === 0) {
+					return;
+				}
 
 				if (!target) {
 					fns.forEach(fn => fn?.());
@@ -96,7 +100,9 @@ function AdaptiveCards({
 					length={items.length}
 					setCardPosition={prop => {
 						setCardPosition(prop);
-						if (!transition.transition) setTransition({ transition: true });
+						if (!transition.transition) {
+							setTransition({ transition: true });
+						}
 						handleTransition();
 					}}
 					cardPosition={cardPosition}

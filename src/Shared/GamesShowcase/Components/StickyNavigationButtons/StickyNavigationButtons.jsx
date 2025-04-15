@@ -1,4 +1,5 @@
 import ArrowButton from '../../../ArrowButton/ArrowButton';
+
 import styles from './StickyNavigationButtons.module.css';
 
 function StickyNavigationButtons({ setCardPosition }) {

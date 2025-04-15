@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import styles from './RippleEffect.module.css';
 
 function RippleEffect({ background, long }) {
@@ -18,7 +19,9 @@ function RippleEffect({ background, long }) {
 					() => {
 						setEle(prev => {
 							// If there is only one element in the array then set the key to 0
-							if (prev.length === 1) key.current = 0;
+							if (prev.length === 1) {
+								key.current = 0;
+							}
 							return prev.slice(1);
 						});
 					},

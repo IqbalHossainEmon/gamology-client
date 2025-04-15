@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import styles from './IndiGameReviewInput.module.css';
 function IndiGameReviewInput({ setData, isTextArea }) {
 	const [value, setValue] = useState('');

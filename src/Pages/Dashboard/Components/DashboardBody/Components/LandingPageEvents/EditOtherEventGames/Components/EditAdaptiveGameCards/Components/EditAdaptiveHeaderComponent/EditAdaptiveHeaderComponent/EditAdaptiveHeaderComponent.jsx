@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import SearchGamesOrWriteLink from '../../../../../../../../Shared/SearchGamesOrWriteLink/SearchGamesOrWriteLink';
 import EditAdaptiveCardDotMenu from '../Components/EditAdaptiveCardDotMenu/EditAdaptiveCardDotMenu';
 
@@ -21,7 +22,9 @@ function EditAdaptiveHeaderComponent({
 			name: 'Delete',
 			shouldHide: false,
 			event: () => {
-				if (innerIndex < 0 || !dataRef.current[index]?.cards) return;
+				if (innerIndex < 0 || !dataRef.current[index]?.cards) {
+					return;
+				}
 				setAdaptiveGameCards(prev => [...prev.toSpliced(innerIndex, 1)]);
 				dataRef.current[index].cards.splice(innerIndex, 1);
 			},
@@ -29,7 +32,9 @@ function EditAdaptiveHeaderComponent({
 		const handleMove = direction => {
 			setAdaptiveGameCards(prev => {
 				const newIndex = direction === 'left' ? innerIndex - 1 : innerIndex + 1;
-				if (newIndex < 0 || newIndex >= prev.length) return prev;
+				if (newIndex < 0 || newIndex >= prev.length) {
+					return prev;
+				}
 				const newArray = [...prev];
 				[newArray[innerIndex], newArray[newIndex]] = [
 					newArray[newIndex],

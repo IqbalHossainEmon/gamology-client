@@ -1,5 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react';
+
 import useFullScreenLogic from '../useFullScreenLogic/useFullScreenLogic';
+
 import styles from './FullScreenButton.module.css';
 
 function FullScreenButton({ videoContainer }) {
@@ -66,6 +68,9 @@ function FullScreenButton({ videoContainer }) {
 						/>
 					</g>
 				</svg>
+				<a href='https://vite.dev' target='_blank'>
+					sdfsdf
+				</a>
 			</span>
 		</button>
 	);

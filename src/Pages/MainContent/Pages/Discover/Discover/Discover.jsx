@@ -4,6 +4,7 @@ import DiscoverGameCards from '../Components/DiscoverGameCards/DiscoverGameCards
 import DiscoverGameShowcase from '../Components/DiscoverGameShowCase/DiscoverGameShowCase';
 import ExploreGames from '../Components/ExploreGames/ExploreGames';
 import FreeGames from '../Components/FreeGames/FreeGames/FreeGames';
+
 import styles from './Discover.module.css';
 
 export default function Discover() {

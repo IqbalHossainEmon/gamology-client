@@ -3,6 +3,7 @@ import useBrowseFilter from '../../../Utils/Hooks/useBrowseFilter/useBrowseFilte
 import BrowseCloseButton from '../../Shared/BrowseCloseButton/CloseButton';
 import FilterOptionsLoading from '../Components/FilterOptionsLoading/FilterOptionsLoading';
 import FilterOptionsWithApplyBtn from '../Components/FilterOptionsWithApplyBtn/FilterOptionsWithApplyBtn/FilterOptionsWithApplyBtn';
+
 import styles from './FilterGames.module.css';
 
 export default function FilterGames({ filterState, dispatch, limits, options, loading }) {

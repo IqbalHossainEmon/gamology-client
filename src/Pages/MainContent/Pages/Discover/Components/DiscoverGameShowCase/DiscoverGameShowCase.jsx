@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import GamesShowcase from '../../../../../../Shared/GamesShowcase/GamesShowcase/GamesShowcase';
+
 import styles from './DiscoverGameShowCase.module.css';
 
 const newGames = [

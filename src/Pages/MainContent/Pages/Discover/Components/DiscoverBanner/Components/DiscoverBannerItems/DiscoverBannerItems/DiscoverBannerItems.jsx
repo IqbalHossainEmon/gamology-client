@@ -1,5 +1,6 @@
 import DiscoverBannerItemMobile from '../../DiscoverBannerItemMobile/DiscoverBannerItemMobile';
 import DiscoverBannerItem from '../DiscoverBannerItem/DiscoverBannerItem';
+
 import styles from './DiscoverBannerItems.module.css';
 
 export default function DiscoverBannerItems({

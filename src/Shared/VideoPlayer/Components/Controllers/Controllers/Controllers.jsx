@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import FullScreenButton from '../Components/FullScreenButton/FullScreenButton/FullScreenButton';
 import useFullScreenLogic from '../Components/FullScreenButton/useFullScreenLogic/useFullScreenLogic';
 import GearButton from '../Components/GearButton/GearButton/GearButton';
@@ -7,6 +8,7 @@ import ProgressTimeShow from '../Components/ProgressTimeShow/ProgressTimeShow';
 import VideoProgressBar from '../Components/VideoProgressBar/VideoProgressBar';
 import VideoStatus from '../Components/VideoStatus/VideoStatus';
 import VideoVolume from '../Components/VideoVolume/VideoVolume';
+
 import styles from './Controllers.module.css';
 
 function Controllers({

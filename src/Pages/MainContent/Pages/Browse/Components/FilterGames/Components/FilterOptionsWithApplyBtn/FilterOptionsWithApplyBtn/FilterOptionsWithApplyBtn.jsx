@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import ApplyButton from '../Components/ApplyButton/ApplyButton';
 import FilterOptions from '../Components/FilterOptions/FilterOptions/FilterOptions';
 

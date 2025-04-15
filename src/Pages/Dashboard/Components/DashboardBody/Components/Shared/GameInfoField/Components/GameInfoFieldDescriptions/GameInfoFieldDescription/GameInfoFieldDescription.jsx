@@ -1,5 +1,7 @@
 import { useRef } from 'react';
+
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
+
 import styles from './GameInfoFieldDescription.module.css';
 
 export default function GameInfoFieldDescription({

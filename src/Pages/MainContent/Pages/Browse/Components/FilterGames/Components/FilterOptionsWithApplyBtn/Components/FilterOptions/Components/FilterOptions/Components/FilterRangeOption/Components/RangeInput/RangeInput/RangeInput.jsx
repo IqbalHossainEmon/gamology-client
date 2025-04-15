@@ -1,4 +1,5 @@
 import RangeInputField from '../RangeInputField/RangeInputField';
+
 import styles from './RangeInput.module.css';
 
 export default function RangeInput({

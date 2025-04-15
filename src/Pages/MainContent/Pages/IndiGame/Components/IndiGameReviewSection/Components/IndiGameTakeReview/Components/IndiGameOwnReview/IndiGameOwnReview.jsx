@@ -1,4 +1,5 @@
 import IndiGameReview from '../../../IndiGameShowReview/Components/IndiGameReview/IndiGameReview';
+
 import styles from './IndiGameOwnReview.module.css';
 
 export default function IndiGameOwnReview({ review }) {

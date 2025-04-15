@@ -1,6 +1,7 @@
 import ButtonWithRipple from '../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import EditGameCardContainer from '../EditGameCardContainer/EditGameCardContainer/EditGameCardContainer';
+
 import styles from './EditGameCardFirstPart.module.css';
 
 function EditGameCardFirstPart({ gameCards, setGameCards, cardsRef, errorMessages, errorChange }) {

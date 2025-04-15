@@ -1,4 +1,5 @@
 import AllGamesLists from '../Components/AllGamesLists/AllGamesLists/AllGamesLists';
+
 import styles from './AllGames.module.css';
 
 function AllGames() {

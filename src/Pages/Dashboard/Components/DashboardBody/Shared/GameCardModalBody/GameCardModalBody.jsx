@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import TypeableSelectionField from '../../../../../../Shared/TypeableSelectionField/TypeableSelectionField';
 import useModal from '../../../../../../Utils/Hooks/useModal';
+
 import styles from './GameCardModalBody.module.css';
 
 function GameCardModalBody({ handleClick, btnRef }) {

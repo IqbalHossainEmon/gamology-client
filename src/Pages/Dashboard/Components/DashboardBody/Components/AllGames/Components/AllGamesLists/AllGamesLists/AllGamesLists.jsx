@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import Pagination from '../../../../../../../../../Shared/Pagination/Pagination/Pagination';
 import AllGamesContent from '../Components/AllGamesContent/AllGamesContent/AllGamesContent';
 import AllGamesHeader from '../Components/AllGamesHeader/AllGamesHeader/AllGamesHeader';
+
 import styles from './AllGamesLists.module.css';
 
 const data = [

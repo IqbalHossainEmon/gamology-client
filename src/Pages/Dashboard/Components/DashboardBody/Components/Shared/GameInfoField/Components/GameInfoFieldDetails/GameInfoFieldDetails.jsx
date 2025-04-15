@@ -1,5 +1,6 @@
 import FileUploadButton from '../../../../../../../../../Shared/FileUploadButton/FileUploadButton/FileUploadButton';
 import TextField from '../../../../../../../../../Shared/TextField/TextField/TextField';
+
 import styles from './GameInfoFieldDetails.module.css';
 
 export default function GameInfoFieldDetails({

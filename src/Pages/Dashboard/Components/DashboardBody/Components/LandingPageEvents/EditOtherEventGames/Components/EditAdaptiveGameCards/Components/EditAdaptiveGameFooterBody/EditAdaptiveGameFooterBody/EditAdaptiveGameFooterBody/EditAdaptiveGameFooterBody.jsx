@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+
 import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
 import useObjectUtilities from '../../../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
 import EditAdaptiveGameFooterBodySelectionField from '../../EditAdaptiveGameFooterBodySelectionField/EditAdaptiveGameFooterBodySelectionField';
 import EditAdaptiveGamesFooterLinkField from '../Components/EditAdaptiveGamesFooterLinkField/EditAdaptiveGamesFooterLinkField';
+
 import styles from './EditAdaptiveGameFooterBody.module.css';
 
 const getTypeOfFooter = footer => {
@@ -97,8 +99,9 @@ function EditAdaptiveGameFooterBody({
 						isThereError = true;
 					}
 				}
-				if (isThereError) setErrorChange(prev => prev + 1);
-				else {
+				if (isThereError) {
+					setErrorChange(prev => prev + 1);
+				} else {
 					// backend call to save the footer data
 					hideModal();
 					setAdaptiveGameCards(prev => {
@@ -112,10 +115,14 @@ function EditAdaptiveGameFooterBody({
 			setValue: (val, nameWithIndex) => {
 				const [name, innerIndex] = nameWithIndex ? nameWithIndex.split('-') : [];
 				if (innerIndex) {
-					if (!dataHolder.current[innerIndex]) dataHolder.current[innerIndex] = {};
+					if (!dataHolder.current[innerIndex]) {
+						dataHolder.current[innerIndex] = {};
+					}
 					dataHolder.current[innerIndex][name] = val;
 				} else {
-					if (Array.isArray(dataHolder.current)) dataHolder.current = {};
+					if (Array.isArray(dataHolder.current)) {
+						dataHolder.current = {};
+					}
 					dataHolder.current[name] = val;
 				}
 			},

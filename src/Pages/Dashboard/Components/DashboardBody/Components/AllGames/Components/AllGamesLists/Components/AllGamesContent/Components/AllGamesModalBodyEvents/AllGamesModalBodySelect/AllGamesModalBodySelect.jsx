@@ -2,6 +2,7 @@ import DiscountPrice from '../../../../../../../../../../../../../Shared/Discoun
 import AllGamesDeleteConfirmModal from '../AllGamesDeleteConfirmModal/AllGamesDeleteConfirmModal';
 import AllGamesPriceEditModal from '../AllGamesPriceEditModal/AllGamesPriceEditModal';
 import AllGamesSalesModal from '../AllGamesSalesModal/AllGamesSalesModal';
+
 import styles from './AllGamesModalBodySelect.module.css';
 
 function AllGamesModalBodySelect({ type, detail }) {

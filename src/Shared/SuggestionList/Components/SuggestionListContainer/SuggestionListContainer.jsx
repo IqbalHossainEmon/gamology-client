@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useAppearDisappear from '../../../../Utils/Hooks/useAppearDisappear';
 import useDropDownHide from '../../../../Utils/Hooks/useDropDownHide';
 import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
 import SuggestionListContent from '../SuggestionListContent/SuggestionListContent';
+
 import styles from './SuggestionListContainer.module.css';
 
 const data = [
@@ -483,13 +485,17 @@ function SuggestionListContainer({
 			onfocus: e => {
 				if (e.target.value.length > 0) {
 					setShow(true);
-					if (showRef.current) showMenu();
+					if (showRef.current) {
+						showMenu();
+					}
 				}
 			},
 			onBlur: e => {
 				if (e.target.value.length === 0) {
 					setShow(false);
-					if (showRef.current) onHide();
+					if (showRef.current) {
+						onHide();
+					}
 				}
 			},
 			handleCalcPosition: length => {
@@ -512,7 +518,9 @@ function SuggestionListContainer({
 					if (length < 2 && bottomRemain >= 56) {
 						positionRef.current = false;
 						prevLength.current = length;
-					} else positionRef.current = true;
+					} else {
+						positionRef.current = true;
+					}
 				}
 
 				switch (!!maxLimit) {
@@ -557,12 +565,16 @@ function SuggestionListContainer({
 				previousBottomRemain.current = eventRefs.current.handleCalcPosition(
 					givenList.length
 				);
-				if (loadingRef.current) setLoading(false);
+				if (loadingRef.current) {
+					setLoading(false);
+				}
 				setList(givenList);
 			},
 			fetchData: () => {
 				// fetch data
-				if (!loadingRef.current) setLoading(true);
+				if (!loadingRef.current) {
+					setLoading(true);
+				}
 				const filteredList = data.filter(
 					item =>
 						item.name.toLowerCase().includes(valueRef.current?.toLowerCase()) &&
@@ -576,7 +588,9 @@ function SuggestionListContainer({
 			},
 			fetchDataWithLimit: () => {
 				// fetch data
-				if (!loadingRef.current) setLoading(true);
+				if (!loadingRef.current) {
+					setLoading(true);
+				}
 
 				const filteredList = data.filter(
 					item =>
@@ -591,15 +605,20 @@ function SuggestionListContainer({
 			},
 			handleSideEffects: () => {
 				if (valueRef.current && valueRef.current !== ' ') {
-					if (!loadingRef.current) setLoading(true);
+					if (!loadingRef.current) {
+						setLoading(true);
+					}
 
 					if (timerId) {
 						clearTimeout(timerId);
 					}
 
 					timerId = setTimeout(() => {
-						if (maxLimit) eventRefs.current.fetchDataWithLimit();
-						else eventRefs.current.fetchData();
+						if (maxLimit) {
+							eventRefs.current.fetchDataWithLimit();
+						} else {
+							eventRefs.current.fetchData();
+						}
 						timerId = null;
 					}, 200);
 				} else {
@@ -607,7 +626,9 @@ function SuggestionListContainer({
 						clearTimeout(timerId);
 						timerId = null;
 					}
-					if (loadingRef.current) setLoading(false);
+					if (loadingRef.current) {
+						setLoading(false);
+					}
 					setList([]);
 					if (heightRef.current > 56) {
 						setHeight(56);

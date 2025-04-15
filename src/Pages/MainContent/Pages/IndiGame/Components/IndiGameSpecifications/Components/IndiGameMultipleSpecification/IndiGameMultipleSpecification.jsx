@@ -1,4 +1,5 @@
 import IndiGameSpecification from '../IndiGameSpecification/IndiGameSpecification';
+
 import styles from './IndiGameMultipleSpecification.module.css';
 
 export default function IndiGameMultipleSpecification({ spec = [], active }) {

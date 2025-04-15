@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import ScrollBar from '../../ScrollBar/ScrollBar/ScrollBar';
+
 import styles from './SelectionFieldList.module.css';
 
 function SelectionFieldList({
@@ -19,8 +21,11 @@ function SelectionFieldList({
 	const [show, fadeIn] = useAppearDisappear(state);
 
 	useEffect(() => {
-		if (setHeight && show) setHeight(positionRef.current.height);
-		else if (setHeight && !show) setHeight(0);
+		if (setHeight && show) {
+			setHeight(positionRef.current.height);
+		} else if (setHeight && !show) {
+			setHeight(0);
+		}
 	}, [positionRef, setHeight, show]);
 
 	const { remHeightInPixels } = useScreenWidth();

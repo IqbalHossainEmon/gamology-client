@@ -1,5 +1,6 @@
 import Menu from '../../../../../../../../../../../../../Shared/Menu/Menu/Menu';
 import FilterOptionEachPartBody from '../Components/FilterOptionEachPartBody/FilterOptionEachPartBody';
+
 import styles from './FilterOptionEachPart.module.css';
 
 export default function FilterOptionEachPart({ option, state, setState, limits = {} }) {

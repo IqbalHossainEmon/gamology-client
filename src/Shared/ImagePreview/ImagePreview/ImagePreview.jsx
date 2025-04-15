@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useAppearDisappear from '../../../Utils/Hooks/useAppearDisappear';
 import ImagePreviewBody from '../ImagePreviewBody/ImagePreviewBody';
+
 import styles from './ImagePreview.module.css';
 
 function ImagePreview({

@@ -1,4 +1,5 @@
 import DiscountPrice from '../DiscountPrice/DiscountPrice';
+
 import styles from './DiscountPriceWithPercent.module.css';
 
 export default function DiscountPriceWithPercent({ price }) {

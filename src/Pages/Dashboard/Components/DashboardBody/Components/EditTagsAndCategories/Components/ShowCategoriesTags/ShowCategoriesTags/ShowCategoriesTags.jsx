@@ -1,8 +1,10 @@
 import { useRef } from 'react';
+
 import useModal from '../../../../../../../../../Utils/Hooks/useModal';
 import useToast from '../../../../../../../../../Utils/Hooks/useToast';
 import TagOrCategoryDeleteBody from '../Components/TagsContainer/TagOrCategoryDeleteBody/TagOrCategoryDeleteBody';
 import TagsContainer from '../Components/TagsContainer/TagsContainer/TagsContainer';
+
 import styles from './ShowCategoriesTags.module.css';
 
 function ShowCategoriesTags({ categories, setCategories }) {

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import ScreenShadow from '../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
 import ScrollBar from '../../../../../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
 import useDropDownHide from '../../../../../../../../../Utils/Hooks/useDropDownHide';
@@ -7,6 +8,7 @@ import useBrowseSort from '../../../../../Utils/Hooks/useBrowseSort/useBrowseSor
 import BrowseCloseButton from '../../../../Shared/BrowseCloseButton/CloseButton';
 import PcSortList from '../Components/PcSortList/PcSortList/PcSortList';
 import SortList from '../Components/SortList/SortList';
+
 import styles from './SortContainer.module.css';
 
 export default function SortContainer({ state, handleChange }) {

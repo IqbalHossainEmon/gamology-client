@@ -1,5 +1,6 @@
 import GamesShowcaseHeader from '../Components/GamesShowcaseColumnHeader/GamesShowcaseColumnHeader';
 import GamesShowcaseColumnRow from '../Components/GamesShowcaseColumnRow/GamesShowcaseColumnRow';
+
 import styles from './GamesShowcaseColumn.module.css';
 
 export default function GamesShowcaseColumn({

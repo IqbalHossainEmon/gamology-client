@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
+
 import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import TextField from '../../../../../../../../../../../Shared/TextField/TextField/TextField';
+
 import styles from './TagOrCategoryDeleteBody.module.css';
 
 function TagOrCategoryDeleteBody({ handleHide, text, handler }) {

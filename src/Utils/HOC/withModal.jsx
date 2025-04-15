@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+
 import Modal from '../../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../../Shared/ScreenShadow/ScreenShadow';
 import { hideModalContext, setModalContext } from '../Contexts/ModalContext';

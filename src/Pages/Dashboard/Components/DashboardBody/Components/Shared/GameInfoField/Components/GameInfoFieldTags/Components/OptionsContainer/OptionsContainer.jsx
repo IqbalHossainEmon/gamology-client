@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ErrorMessage from '../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage';
 import FilterOption from '../../../../../../../../../../../Shared/FilterOption/FilterOption';
+
 import styles from './OptionsContainer.module.css';
 
 export default function OptionsContainer({

@@ -2,6 +2,7 @@ import DiscountPriceWithPercent from '../../../DiscountPriceWithPercent/Discount
 import Image from '../../../Image/Image/Image';
 import ImageWithHover from '../../../ImageWithHover/ImageWithHover';
 import RippleEffect from '../../../RippleEffect/RippleEffect';
+
 import styles from './DynamicGameCard.module.css';
 
 function DynamicGameCard({ data, isOnlyOne, link }) {

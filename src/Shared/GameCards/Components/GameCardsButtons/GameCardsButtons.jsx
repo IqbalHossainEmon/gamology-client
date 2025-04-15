@@ -1,4 +1,5 @@
 import ArrowButton from '../../../ArrowButton/ArrowButton';
+
 import styles from './GameCardsButtons.module.css';
 
 export default function GameCardsButtons({ handleClick, cardActive, length }) {

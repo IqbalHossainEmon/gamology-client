@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import ImageWithHover from '../../../../../../../Shared/ImageWithHover/ImageWithHover';
+
 import styles from './FreeGame.module.css';
 
 // Get the month name depending on given time

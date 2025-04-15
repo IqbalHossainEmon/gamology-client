@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import Controllers from '../Components/Controllers/Controllers/Controllers';
 import Video from '../Components/Video/Video';
+
 import styles from './VideoPlayer.module.css';
 
 export default function VideoPlayer({ src, captions, aspectRatioClassName, changePause }) {
@@ -36,7 +38,9 @@ export default function VideoPlayer({ src, captions, aspectRatioClassName, chang
 				mouseMoveTimerId.current = null;
 				if (hideControllerRefs.current.isAutoplayMenuShowing) {
 					hideControllerRefs.current.shouldHide = true;
-				} else setIsControllerShowing(false);
+				} else {
+					setIsControllerShowing(false);
+				}
 			}, time);
 		}
 	}, []);

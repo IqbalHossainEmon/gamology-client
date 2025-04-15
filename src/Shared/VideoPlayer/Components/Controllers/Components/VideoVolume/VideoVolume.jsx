@@ -1,7 +1,8 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import VideoSlider from '../VideoSlider/VideoSlider';
 
+import VideoSlider from '../VideoSlider/VideoSlider';
 import VolumeButton from '../VolumeButton/VolumeButton';
+
 import styles from './VideoVolume.module.css';
 
 function VideoVolume({ video, videoContainer, changePause }) {

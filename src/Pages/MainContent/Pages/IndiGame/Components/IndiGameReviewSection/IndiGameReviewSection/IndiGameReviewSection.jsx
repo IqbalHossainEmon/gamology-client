@@ -1,5 +1,6 @@
 import IndiGameShowReview from '../Components/IndiGameShowReview/IndiGameShowReview/IndiGameShowReview';
 import IndiGameTakeReview from '../Components/IndiGameTakeReview/IndiGameTakeReview/IndiGameTakeReview';
+
 import styles from './IndiGameReviewSection.module.css';
 
 function IndiGameReviewSection() {

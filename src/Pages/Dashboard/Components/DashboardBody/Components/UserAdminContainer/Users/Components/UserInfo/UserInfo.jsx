@@ -1,4 +1,5 @@
 import Image from '../../../../../../../../../Shared/Image/Image/Image';
+
 import styles from './UserInfo.module.css';
 
 function UserInfo({ user }) {

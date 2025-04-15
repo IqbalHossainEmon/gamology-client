@@ -1,6 +1,7 @@
 import Image from '../../../../../../../../../Shared/Image/Image/Image';
 import useScreenWidth from '../../../../../../../../../Utils/Hooks/useScreenWidth';
 import DiscoverBannerPrice from '../../DiscoverBannerPrice/DiscoverBannerPrice';
+
 import styles from './DiscoverBannerInfoItem.module.css';
 
 export default function DiscoverBannerInfoItem({ banner, bannerState, activeBanner }) {

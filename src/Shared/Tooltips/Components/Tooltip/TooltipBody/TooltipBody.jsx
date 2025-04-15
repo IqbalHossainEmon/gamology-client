@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useTooltip from '../../../../../Utils/Hooks/useTooltip';
+
 import styles from './TooltipBody.module.css';
 
 const getTooltipPosition = (targetElementBounds, tooltipDimensions, scrollY, preferPosition) => {

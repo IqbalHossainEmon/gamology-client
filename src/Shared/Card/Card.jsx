@@ -1,7 +1,9 @@
 import { useRef } from 'react';
+
 import useTextConverter from '../../Utils/Hooks/useTextConverter';
 import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import ImageWithHover from '../ImageWithHover/ImageWithHover';
+
 import styles from './Card.module.css';
 
 export default function Card({ cardInfo, style, className, dotMenu, link, isCurrentlyActive }) {

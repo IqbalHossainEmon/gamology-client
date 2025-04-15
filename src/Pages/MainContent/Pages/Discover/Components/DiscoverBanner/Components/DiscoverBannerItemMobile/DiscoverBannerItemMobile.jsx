@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import Image from '../../../../../../../../Shared/Image/Image/Image';
+
 import styles from './DiscoverBannerItemMobile.module.css';
 
 export default function DiscoverBannerItemMobile({ banner, cardsPosition }) {

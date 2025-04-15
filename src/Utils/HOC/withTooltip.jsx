@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+
 import Tooltips from '../../Shared/Tooltips/Tooltips/Tooltips';
 import SetTooltipContext from '../Contexts/TooltipContext';
 
@@ -10,7 +11,9 @@ const withTooltip = Component =>
 		const elementOnHideListRef = useRef([]);
 
 		const handleCheckAndDelete = useCallback(() => {
-			if (timeIdRef.current) clearTimeout(timeIdRef.current);
+			if (timeIdRef.current) {
+				clearTimeout(timeIdRef.current);
+			}
 
 			timeIdRef.current = setTimeout(() => {
 				setTooltips(prev => prev.filter(element => element.show));

@@ -1,19 +1,31 @@
 const areObjectsEqual = (firstObject, secondObject) => {
 	// Fast path: reference equality
-	if (firstObject === secondObject) return true;
+	if (firstObject === secondObject) {
+		return true;
+	}
 
 	// Handle NaN comparison
-	if (Number.isNaN(firstObject) && Number.isNaN(secondObject)) return true;
+	if (Number.isNaN(firstObject) && Number.isNaN(secondObject)) {
+		return true;
+	}
 
 	// Different types
-	if (typeof firstObject !== typeof secondObject) return false;
+	if (typeof firstObject !== typeof secondObject) {
+		return false;
+	}
 
 	// Handle null and undefined - both must be null/undefined to be equal
-	if (firstObject == null && secondObject == null) return true;
-	if (firstObject == null || secondObject == null) return false;
+	if (firstObject == null && secondObject == null) {
+		return true;
+	}
+	if (firstObject == null || secondObject == null) {
+		return false;
+	}
 
 	// Handle primitives
-	if (typeof firstObject !== 'object') return firstObject === secondObject;
+	if (typeof firstObject !== 'object') {
+		return firstObject === secondObject;
+	}
 
 	// Handle Date objects
 	if (firstObject instanceof Date && secondObject instanceof Date) {
@@ -33,7 +45,9 @@ const areObjectsEqual = (firstObject, secondObject) => {
 
 	if (isFirstReactElement || isSecondReactElement) {
 		// If one is a React element and the other isn't, they're different
-		if (isFirstReactElement !== isSecondReactElement) return false;
+		if (isFirstReactElement !== isSecondReactElement) {
+			return false;
+		}
 
 		// If both are React elements, compare their key properties
 		if (isFirstReactElement && isSecondReactElement) {
@@ -52,24 +66,34 @@ const areObjectsEqual = (firstObject, secondObject) => {
 
 	// Handle arrays
 	if (Array.isArray(firstObject)) {
-		if (!Array.isArray(secondObject)) return false;
-		if (firstObject.length !== secondObject.length) return false;
+		if (!Array.isArray(secondObject)) {
+			return false;
+		}
+		if (firstObject.length !== secondObject.length) {
+			return false;
+		}
 
 		return firstObject.every((item, index) => areObjectsEqual(item, secondObject[index]));
 	}
 
-	if (Array.isArray(secondObject)) return false;
+	if (Array.isArray(secondObject)) {
+		return false;
+	}
 
 	// Handle plain objects
 	const keysA = Object.keys(firstObject);
 	const keysB = Object.keys(secondObject);
 
-	if (keysA.length !== keysB.length) return false;
+	if (keysA.length !== keysB.length) {
+		return false;
+	}
 
 	// Check each property exists in both objects and values are equal
 	return keysA.every(key => {
 		// Check if the property exists in secondObject
-		if (!Object.prototype.hasOwnProperty.call(secondObject, key)) return false;
+		if (!Object.prototype.hasOwnProperty.call(secondObject, key)) {
+			return false;
+		}
 
 		// Recursively compare property values
 		return areObjectsEqual(firstObject[key], secondObject[key]);

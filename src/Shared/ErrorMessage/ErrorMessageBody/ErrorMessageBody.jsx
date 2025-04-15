@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import styles from './ErrorMessageBody.module.css';
 
 function ErrorMessageBody({ errorMessage, fadeIn }) {

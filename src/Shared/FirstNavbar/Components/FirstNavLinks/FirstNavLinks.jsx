@@ -1,4 +1,5 @@
 import LinksList from '../../../LinksList/LinksList';
+
 import styles from './FirstNavLinks.module.css';
 
 const links = [

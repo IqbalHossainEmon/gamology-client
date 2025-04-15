@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
+
 import useDragStartStop from '../../../../../../Utils/Hooks/useDragStartStop';
 import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
+
 import styles from './VideoSlider.module.css';
 
 export default function VideoSlider({
@@ -90,7 +92,9 @@ export default function VideoSlider({
 
 	const handleMouseDownClick = e => {
 		eventRefs.current.handleMove(e);
-		if (typeof handleMouseDown === 'function') handleMouseDown();
+		if (typeof handleMouseDown === 'function') {
+			handleMouseDown();
+		}
 		onStart(e);
 	};
 

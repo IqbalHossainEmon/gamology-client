@@ -1,8 +1,18 @@
 import { useRef } from 'react';
+
 import useDragStartStop from '../../../../../../../../../../../../../../../../../../Utils/Hooks/useDragStartStop';
+
 import styles from './RangeKnob.module.css';
 
-function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabled, handleSetValue }) {
+function RangeKnob({
+	state,
+	setState,
+	transition,
+	name,
+	getLeftRightStep,
+	disabled,
+	handleSetValue,
+}) {
 	const stateRef = useRef(state);
 	stateRef.current = state;
 
@@ -12,7 +22,8 @@ function RangeKnob({ state, setState, transition, name, getLeftRightStep, disabl
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			handleMove: e => {
-				const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } = getLeftRightStep(e);
+				const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } =
+					getLeftRightStep(e);
 
 				let value = stateRef.current;
 

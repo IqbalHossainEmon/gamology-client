@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import TextField from '../../../../../../../../../../Shared/TextField/TextField/TextField';
 import GameInfoFieldDescription from '../GameInfoFieldDescription/GameInfoFieldDescription';
+
 import styles from './GameInfoFieldDescriptions.module.css';
 
 function GameInfoFieldDescriptions({

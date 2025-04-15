@@ -1,5 +1,7 @@
 import { forwardRef } from 'react';
+
 import Card from '../../../Card/Card';
+
 import styles from './HorizontalCards.module.css';
 
 function HorizontalCards(

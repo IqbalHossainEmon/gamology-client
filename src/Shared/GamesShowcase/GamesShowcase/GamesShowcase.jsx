@@ -1,9 +1,11 @@
 import { useState } from 'react';
+
 import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
 import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
 import GameShowCasePositionButtonGroup from '../Components/GameShowCasePositionButtonGroup/GameShowCasePositionButtonGroup';
 import GamesShowcaseColumn from '../Components/GamesShowcaseColumn/GamesShowcaseColumn/GamesShowcaseColumn';
 import CardPositionControls from '../Components/StickyNavigationButtons/StickyNavigationButtons';
+
 import styles from './GamesShowcase.module.css';
 
 export default function GamesShowcase({
@@ -30,7 +32,9 @@ export default function GamesShowcase({
 				<CardPositionControls
 					setCardPosition={prop => {
 						setCardPosition(prop);
-						if (!transition.transition) setTransition({ transition: true });
+						if (!transition.transition) {
+							setTransition({ transition: true });
+						}
 						handleTransitionTimer();
 					}}
 				/>
@@ -66,7 +70,9 @@ export default function GamesShowcase({
 					length={items.length}
 					setCardPosition={prop => {
 						setCardPosition(prop);
-						if (!transition.transition) setTransition({ transition: true });
+						if (!transition.transition) {
+							setTransition({ transition: true });
+						}
 						handleTransitionTimer();
 					}}
 				/>

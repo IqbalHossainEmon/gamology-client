@@ -1,7 +1,9 @@
 import { useRef } from 'react';
+
 import AddCategoryNameAndTags from '../Components/AddCategoryNameAndTags/AddCategoryNameAndTags';
 import AddTagsNameAndCategory from '../Components/AddTagsNameAndCategory/AddTagsNameAndCategory/AddTagsNameAndCategory';
 import AddTagsSubmissionButton from '../Components/AddTagsSubmissionButton/AddTagsSubmissionButton';
+
 import styles from './AddTagsOrCategories.module.css';
 
 function AddTagsOrCategories({
@@ -34,7 +36,9 @@ function AddTagsOrCategories({
 				if (!addInfoRef.current.tag?.category) {
 					errorRef.current.category = 'Please Select Category';
 					isValid = false;
-				} else errorRef.current.category = '';
+				} else {
+					errorRef.current.category = '';
+				}
 
 				if (addInfoRef.current.tag?.name) {
 					const isTagExist = prevCategories.current.some(category =>

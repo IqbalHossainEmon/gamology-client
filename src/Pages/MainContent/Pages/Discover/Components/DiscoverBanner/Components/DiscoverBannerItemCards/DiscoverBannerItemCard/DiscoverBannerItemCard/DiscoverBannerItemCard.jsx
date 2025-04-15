@@ -1,5 +1,6 @@
 import Image from '../../../../../../../../../../Shared/Image/Image/Image';
 import CardNameContainer from '../Components/CardNameContainer/CardNameContainer';
+
 import styles from './DiscoverBannerItemCard.module.css';
 
 const handleCardPosition = num => {

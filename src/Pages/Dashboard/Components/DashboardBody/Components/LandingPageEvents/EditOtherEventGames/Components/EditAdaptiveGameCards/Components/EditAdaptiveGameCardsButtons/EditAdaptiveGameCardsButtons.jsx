@@ -1,6 +1,8 @@
 import { useRef } from 'react';
+
 import ButtonWithRipple from '../../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useObjectUtilities from '../../../../../../../../../../../Utils/Hooks/useObjectUtilities';
+
 import styles from './EditAdaptiveGameCardsButtons.module.css';
 
 function EditAdaptiveGameCardsButtons({
@@ -130,16 +132,22 @@ function EditAdaptiveGameCardsButtons({
 							// copy a card from the existing array than just empty it
 							const newCard = cloneObject(newAdaptiveGameCards[0]);
 							Object.keys(newCard).forEach(element => {
-								if (element === 'footer') newCard.footer = [];
-								else newCard[element] = '';
+								if (element === 'footer') {
+									newCard.footer = [];
+								} else {
+									newCard[element] = '';
+								}
 							});
 							newAdaptiveGameCards.push(newCard);
 							return newAdaptiveGameCards;
 						});
 						const newCard = cloneObject(mainDataRef.current[parentIndex].cards[0]);
 						Object.keys(newCard).forEach(element => {
-							if (element === 'footer') newCard.footer = [];
-							else newCard[element] = '';
+							if (element === 'footer') {
+								newCard.footer = [];
+							} else {
+								newCard[element] = '';
+							}
 						});
 						mainDataRef.current[parentIndex].cards.push(cloneObject(newCard));
 					}}

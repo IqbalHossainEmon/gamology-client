@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import styles from './ReviewStar.module.css';
 
 const emptyStar = 'assets/images/icons/star-empty.png';

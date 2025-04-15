@@ -1,4 +1,5 @@
 import Image from '../Image/Image/Image';
+
 import styles from './Footer.module.css';
 
 export default function Footer() {

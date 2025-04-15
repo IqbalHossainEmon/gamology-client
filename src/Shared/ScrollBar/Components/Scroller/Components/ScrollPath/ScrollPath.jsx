@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
+
 import useIsTouchAble from '../../../../../../Utils/Hooks/useIsTouchable';
 import useScreenWidth from '../../../../../../Utils/Hooks/useScreenWidth';
+
 import styles from './ScrollPath.module.css';
 function ScrollPath({ container, innerContainer, thumb, height }) {
 	const eventRefs = useRef(null);
@@ -28,7 +30,9 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 			(innerContainer.current.scrollHeight / container.current.clientHeight) * 2.5;
 	}, [container, innerContainer, widthInRem, heightInRem]);
 
-	if (isTouchEnabled) return null;
+	if (isTouchEnabled) {
+		return null;
+	}
 
 	if (!eventRefs.current) {
 		let isGoingDown = false;
@@ -65,7 +69,9 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 		let mouseMoveAdded = false;
 		eventRefs.current = {
 			resumeEvent: () => {
-				if (animationFrameId) return;
+				if (animationFrameId) {
+					return;
+				}
 				scroll();
 				pathRef.current.removeEventListener('mousemove', eventRefs.current.resumeEvent);
 				mouseMoveAdded = false;
@@ -101,7 +107,9 @@ function ScrollPath({ container, innerContainer, thumb, height }) {
 						isGoingDown = false;
 						break;
 				}
-				if (animationFrameId) return;
+				if (animationFrameId) {
+					return;
+				}
 				scroll();
 				document.addEventListener('mouseup', eventRefs.current.stopEvent);
 				window.addEventListener('blur', eventRefs.current.stopEvent);

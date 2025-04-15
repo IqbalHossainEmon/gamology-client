@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
+
 import TextField from '../../../../../TextField/TextField/TextField';
+
 import styles from './GamesShowcaseColumnHeader.module.css';
 
 export default function GamesShowcaseColumnHeader({

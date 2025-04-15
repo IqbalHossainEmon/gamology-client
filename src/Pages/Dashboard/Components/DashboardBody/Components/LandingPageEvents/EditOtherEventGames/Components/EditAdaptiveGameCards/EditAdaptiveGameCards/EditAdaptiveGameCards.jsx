@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import AdaptiveCards from '../../../../../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
 import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
@@ -8,6 +9,7 @@ import EditAdaptiveGameCardsButtons from '../Components/EditAdaptiveGameCardsBut
 import EditAdaptiveGameFooterBody from '../Components/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody/EditAdaptiveGameFooterBody';
 import EditAdaptiveGameFooterFooter from '../Components/EditAdaptiveGameFooterFooter/EditAdaptiveGameFooterFooter';
 import EditAdaptiveHeaderComponent from '../Components/EditAdaptiveHeaderComponent/EditAdaptiveHeaderComponent/EditAdaptiveHeaderComponent';
+
 import styles from './EditAdaptiveGameCards.module.css';
 
 const editHeaderComponent = (

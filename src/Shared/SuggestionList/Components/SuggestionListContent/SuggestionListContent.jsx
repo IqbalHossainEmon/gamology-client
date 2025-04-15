@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
+
 import useObjectUtilities from '../../../../Utils/Hooks/useObjectUtilities';
 import useScreenWidth from '../../../../Utils/Hooks/useScreenWidth';
 import Image from '../../../Image/Image/Image';
 import ScrollBar from '../../../ScrollBar/ScrollBar/ScrollBar';
+
 import styles from './SuggestionListContent.module.css';
 
 function SuggestionListContent({
@@ -70,7 +72,9 @@ function SuggestionListContent({
 				delete newItem.editedName;
 				setShow(false);
 				onHide();
-				if (setState) setState(newItem);
+				if (setState) {
+					setState(newItem);
+				}
 			},
 			onTabDown: e => {
 				setTimeout(() => {
@@ -102,7 +106,9 @@ function SuggestionListContent({
 			className={`${positionRef.current ? styles.showAbove : styles.showBottom} ${styles.mainContainer}${className ? ` ${className}` : ''}`}
 			ref={r => {
 				suggestionRef.current = r;
-				if (ref) ref.current = r;
+				if (ref) {
+					ref.current = r;
+				}
 			}}
 		>
 			<div

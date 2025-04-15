@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import styles from './ImagePreviewBody.module.css';
 
 function ImagePreviewBody({ position, appear, img }) {

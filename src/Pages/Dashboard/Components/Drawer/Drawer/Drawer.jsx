@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import ScreenShadow from '../../../../../Shared/ScreenShadow/ScreenShadow';
 import ScrollBar from '../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
 import useChangeBodyOverflow from '../../../../../Utils/Hooks/useChangeBodyOverflow';
@@ -7,6 +8,7 @@ import useScreenWidth from '../../../../../Utils/Hooks/useScreenWidth';
 import DrawerFooter from '../Components/DrawerFooter/DrawerFooter';
 import drawerIcon from '../Components/drawerIcon/drawerIcon';
 import DrawerOptions from '../Components/DrawerOptions/DrawerOptions';
+
 import styles from './Drawer.module.css';
 
 function Drawer() {

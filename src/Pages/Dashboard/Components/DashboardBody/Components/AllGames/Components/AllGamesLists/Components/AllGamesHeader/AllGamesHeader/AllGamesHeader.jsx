@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import ScreenShadow from '../../../../../../../../../../../Shared/ScreenShadow/ScreenShadow';
+
 import SearchField from '../../../../../../../../../../../Shared/SearchField/SearchFIeld/SearchFIeld';
 import useScreenWidth from '../../../../../../../../../../../Utils/Hooks/useScreenWidth';
 import AllGamesHeaderSearchFieldShowAll from '../Component/AllGamesHeaderSearchFieldShowAll/AllGamesHeaderSearchFieldShowAll';
+
 import styles from './AllGamesHeader.module.css';
 
 function AllGamesHeader({ setSearchText }) {
@@ -38,15 +39,17 @@ function AllGamesHeader({ setSearchText }) {
 		};
 	}
 	const renderExtraSection = useRef(null);
-	if (!renderExtraSection.current)
+	if (!renderExtraSection.current) {
 		renderExtraSection.current = length => {
-			if (length > 1)
+			if (length > 1) {
 				return {
 					numberOfButton: 1,
 					Content: AllGamesHeaderSearchFieldShowAll,
 				};
+			}
 			return { numberOfButton: 0, Content: null };
 		};
+	}
 
 	return (
 		<div className={styles.allGamesHeader}>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import EditUserBody from '../Components/EditUserBody/EditUserBody/EditUserBody';
 import EditUserHeader from '../Components/EditUserHeader/EditUserHeader';
 import EditUserLoading from '../Components/EditUserLoading/EditUserLoading';
+
 import styles from './EditUser.module.css';
 
 const usr = {

@@ -1,6 +1,8 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
+
 import useTimeFormat from '../../../../../../Utils/Hooks/useTimeFormate';
 import CircularSpinner from '../../../../../CircularSpinner/CircularSpinner';
+
 import styles from './VideoStatus.module.css';
 
 function VideoStatus({ video, isPlaying }) {
@@ -23,14 +25,14 @@ function VideoStatus({ video, isPlaying }) {
 
 	const didIntersectionPauseRef = useRef(false);
 
-	const handleTransition = useCallback(() => {
+	const handleTransition = () => {
 		if (!timerId.current) {
 			timerId.current = setTimeout(() => {
 				timerId.current = null;
 				setStatus(prev => ({ ...prev, animation: false }));
 			}, 500);
 		}
-	}, []);
+	};
 
 	const loadMetaDataUpdate = useCallback(({ target: { duration } }) => {
 		setStatus(prev => ({ ...prev, duration }));
@@ -123,9 +125,9 @@ function VideoStatus({ video, isPlaying }) {
 		};
 	}, [onPauseVideo, onVideoPlay]);
 
-	useEffect(() => {
+	const handlePausePlayStateChange = useEffectEvent(isPlayingState => {
 		if (!isInitial.current) {
-			if (isPlaying) {
+			if (isPlayingState) {
 				setStatus(prev => {
 					if (!prev.initialShow) {
 						return { play: true, animation: true, loading: false };
@@ -137,7 +139,9 @@ function VideoStatus({ video, isPlaying }) {
 			}
 			handleTransition();
 		}
-	}, [handleTransition, isPlaying]);
+	});
+
+	useEffect(() => handlePausePlayStateChange(isPlaying), [isPlaying]);
 
 	useEffect(() => {
 		const addEventListeners = videoElement => {

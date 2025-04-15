@@ -1,5 +1,7 @@
 import { useRef } from 'react';
+
 import ImageWithHover from '../../../../../../../../Shared/ImageWithHover/ImageWithHover';
+
 import styles from './UserCard.module.css';
 
 function UserCard({ data, children, admin }) {

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import ScreenWidthContext from '../Contexts/ScreenWidthContext';
 
 const withScreenWidthProvider = Component =>

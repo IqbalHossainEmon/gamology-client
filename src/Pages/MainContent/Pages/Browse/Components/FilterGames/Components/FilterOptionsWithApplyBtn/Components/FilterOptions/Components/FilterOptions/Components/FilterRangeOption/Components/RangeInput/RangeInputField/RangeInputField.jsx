@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import styles from './RangeInputField.module.css';
 
 export default function RangeInputField({ inputRef, disabled, state, handleEnter, name, float }) {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import styles from './ImagePlaceholder.module.css';
 
 function ImagePlaceholder({ currentState, placeholder }) {

@@ -1,4 +1,5 @@
 import ArrowButton from '../../../ArrowButton/ArrowButton';
+
 import styles from './DynamicCardNavigator.module.css';
 
 function DynamicCardNavigator({ setCardPosition, cardPosition, length }) {

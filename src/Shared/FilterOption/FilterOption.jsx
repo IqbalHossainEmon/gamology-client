@@ -1,5 +1,7 @@
 import { useRef } from 'react';
+
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+
 import styles from './FilterOption.module.css';
 
 function FilterOption({ text, setState, border, state, name, disabled }) {
@@ -15,7 +17,9 @@ function FilterOption({ text, setState, border, state, name, disabled }) {
 				document.removeEventListener('mouseup', eventRef.current.handleClick);
 			},
 			handleToggle: e => {
-				if (!e.touches) return;
+				if (!e.touches) {
+					return;
+				}
 
 				if (isForTouch) {
 					setState(prev => ({ ...prev, [name]: !prev[name] }), name);

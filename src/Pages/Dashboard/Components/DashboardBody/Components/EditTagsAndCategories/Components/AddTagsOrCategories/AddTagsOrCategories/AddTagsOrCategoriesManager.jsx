@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
+
 import SelectionField from '../../../../../../../../../Shared/SelectionField/SelectionField/SelectionField';
 import AddTagsOrCategories from '../Components/AddTagsOrCategories/AddTagsOrCategories/AddTagsOrCategories';
+
 import styles from './AddTagsOrCategoriesManager.module.css';
 
 function AddTagsOrCategoriesManager({ categories, setCategories }) {

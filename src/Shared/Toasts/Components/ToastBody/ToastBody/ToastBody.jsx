@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+
 import useToast from '../../../../../Utils/Hooks/useToast';
 import toastIcon from '../Components/toastIcon/toastIcon';
 import ToastTimer from '../Components/ToastTimer/ToastTimer';
+
 import styles from './ToastBody.module.css';
 
 function ToastBody({ fadeIn: show, data }) {
@@ -16,12 +18,16 @@ function ToastBody({ fadeIn: show, data }) {
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onMouseMove: () => {
-				if (isHovered.current) return;
+				if (isHovered.current) {
+					return;
+				}
 				isHovered.current = true;
 				setIsHover(true);
 			},
 			onMouseLeave: () => {
-				if (!isHovered.current) return;
+				if (!isHovered.current) {
+					return;
+				}
 				isHovered.current = false;
 				setIsHover(false);
 			},

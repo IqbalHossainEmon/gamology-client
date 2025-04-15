@@ -1,6 +1,8 @@
 import { useRef } from 'react';
+
 import ScrollBar from '../../../../../../../../../../../Shared/ScrollBar/ScrollBar/ScrollBar';
 import FilterOptionEachPart from '../Components/FilterOptions/FilterOptionEachPart/FilterOptionEachPart';
+
 import styles from './FilterOptions.module.css';
 
 function FilterOptions({ screenWidth, options, state, setState, limits }) {

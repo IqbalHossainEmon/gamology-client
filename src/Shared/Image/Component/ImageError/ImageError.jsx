@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import styles from './ImageError.module.css';
 
 function ImageError({ alt }) {

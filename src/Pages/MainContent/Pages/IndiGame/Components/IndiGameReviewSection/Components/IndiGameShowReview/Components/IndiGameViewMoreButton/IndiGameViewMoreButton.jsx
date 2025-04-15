@@ -1,4 +1,5 @@
 import RippleEffect from '../../../../../../../../../../Shared/RippleEffect/RippleEffect';
+
 import styles from './IndiGameViewMoreButton.module.css';
 
 export default function IndiGameViewMoreButton({ handleChange }) {

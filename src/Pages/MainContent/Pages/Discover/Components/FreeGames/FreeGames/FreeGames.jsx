@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import Image from '../../../../../../../Shared/Image/Image/Image';
 import RippleEffect from '../../../../../../../Shared/RippleEffect/RippleEffect';
 import FreeGame from '../FreeGame/FreeGame';
+
 import styles from './FreeGames.module.css';
 
 const data = [

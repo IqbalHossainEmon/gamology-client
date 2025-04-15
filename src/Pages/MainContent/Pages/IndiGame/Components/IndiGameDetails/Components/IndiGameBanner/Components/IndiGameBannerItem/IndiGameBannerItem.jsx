@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+
 import Image from '../../../../../../../../../../Shared/Image/Image/Image';
 import VideoPlayer from '../../../../../../../../../../Shared/VideoPlayer/VideoPlayer/VideoPlayer';
+
 import styles from './IndiGameBannerItem.module.css';
 
 export default function IndiGameBannerItem({ data, active, index }) {

@@ -1,6 +1,7 @@
 import DiscountPriceWithPercent from '../../../../../../../../../../Shared/DiscountPriceWithPercent/DiscountPriceWithPercent';
 import Image from '../../../../../../../../../../Shared/Image/Image/Image';
 import useScreenWidth from '../../../../../../../../../../Utils/Hooks/useScreenWidth';
+
 import styles from './IndiGameAsideHeader.module.css';
 
 export default function IndiGameAsideHeader({ src, name, price, phoneSrc }) {
