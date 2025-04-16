@@ -18,6 +18,7 @@ const useTextConverter = () => {
 		}, name);
 		return result;
 	}, []);
+
 	// convertIdToName: function to convert id to name format (if there is any '-' in id then it will be replaced with ' ' and first character of each word will be in uppercase format)
 	const convertIdToName = useCallback(id => {
 		const transforms = [
@@ -35,6 +36,7 @@ const useTextConverter = () => {
 		}, id);
 		return result;
 	}, []);
+
 	const convertNameToLink = useCallback(name => {
 		const transforms = [
 			str => str.replace(/[^a-zA-Z0-9\s-]/g, ''),
@@ -50,6 +52,7 @@ const useTextConverter = () => {
 		}, name);
 		return result;
 	}, []);
+
 	const convertToPascalCase = useCallback(
 		name => name?.replace(/\b[a-z]/g, char => char.toUpperCase()),
 		[]

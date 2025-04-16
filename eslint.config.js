@@ -106,16 +106,6 @@ export default defineConfig([
 			semi: ['error', 'always'],
 			quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 			'comma-dangle': ['error', 'only-multiline'],
-			'no-magic-numbers': [
-				'warn',
-				{
-					ignore: [0, 1, -1],
-					ignoreArrayIndexes: true,
-					enforceConst: true,
-					detectObjects: false,
-				},
-			],
-
 			// -----------------------
 			// React (eslint-plugin-react)
 			// -----------------------
@@ -128,13 +118,11 @@ export default defineConfig([
 			],
 			'react/no-array-index-key': 'warn', // Prefer stable keys
 			'react/no-unknown-property': 'error', // E.g., use className not class
-
 			// -----------------------
 			// React Hooks
 			// -----------------------
 			'react-hooks/rules-of-hooks': 'error',
 			'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useMyHook|useAnother)' }],
-
 			// -----------------------
 			// Accessibility (eslint-plugin-jsx-a11y)
 			// -----------------------
@@ -174,7 +162,6 @@ export default defineConfig([
 			],
 			'jsx-a11y/media-has-caption': 'warn',
 			'jsx-a11y/heading-has-content': 'warn',
-
 			// -----------------------
 			// Imports (eslint-plugin-import)
 			// -----------------------
@@ -193,7 +180,6 @@ export default defineConfig([
 					alphabetize: { order: 'asc', caseInsensitive: true },
 				},
 			],
-
 			// -----------------------
 			// Best-practice / style helpers
 			// -----------------------

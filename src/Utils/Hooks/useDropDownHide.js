@@ -2,48 +2,81 @@ import { useCallback, useEffect, useRef } from 'react';
 
 const useDropDownHide = setState => {
 	const element = useRef(null);
-	const stopMenuRef = useRef(null);
-	const closeMenuRef = useRef(null);
+	const stateRef = useRef(setState);
+	const listenersAttachedRef = useRef(false);
+	const handlersRef = useRef({});
 
-	const removeEvents = useCallback((stopMenu, closeMenu) => {
-		document.removeEventListener('click', closeMenu);
-		window.removeEventListener('blur', stopMenu);
-	}, []);
+	// Keep setState reference up to date
+	useEffect(() => {
+		stateRef.current = setState;
+	}, [setState]);
 
-	const closeMenu = useCallback(e => {
-		const isMultiple = Array.isArray(element.current);
-		const clickedOutside = isMultiple
-			? !element.current.some(ele => ele?.contains(e.target))
-			: element.current && !element.current.contains(e.target);
-
-		if (clickedOutside) {
-			stopMenuRef.current?.(e);
+	// Remove event listeners
+	const removeEvents = useCallback(() => {
+		if (
+			listenersAttachedRef.current &&
+			handlersRef.current.clickOutside &&
+			handlersRef.current.blur
+		) {
+			document.removeEventListener('click', handlersRef.current.clickOutside);
+			window.removeEventListener('blur', handlersRef.current.blur);
+			listenersAttachedRef.current = false;
 		}
 	}, []);
 
-	const stopMenu = useCallback(
-		e => {
-			setState(false, e);
-			removeEvents(stopMenuRef.current, closeMenuRef.current);
-		},
-		[removeEvents, setState]
-	);
-
+	// Handle click outside
 	useEffect(() => {
-		stopMenuRef.current = stopMenu;
-		closeMenuRef.current = closeMenu;
-	}, [stopMenu, closeMenu]);
+		handlersRef.current.clickOutside = e => {
+			// Check element.current directly to avoid stale closure
+			const isMultiple = Array.isArray(element.current);
+			const clickedOutside = isMultiple
+				? !element.current.some(ele => ele?.contains(e.target))
+				: element.current && !element.current.contains(e.target);
+
+			if (clickedOutside && listenersAttachedRef.current) {
+				stateRef.current(false, e);
+				removeEvents();
+			}
+		};
+
+		handlersRef.current.blur = e => {
+			if (listenersAttachedRef.current) {
+				stateRef.current(false, e);
+				removeEvents();
+			}
+		};
+	}, [removeEvents]);
+
+	// Cleanup on unmount
+	useEffect(() => {
+		const handlers = handlersRef.current;
+		return () => {
+			if (listenersAttachedRef.current && handlers.clickOutside && handlers.blur) {
+				document.removeEventListener('click', handlers.clickOutside);
+				window.removeEventListener('blur', handlers.blur);
+			}
+		};
+	}, []);
 
 	const showMenu = useCallback(() => {
-		document.addEventListener('click', closeMenuRef.current);
-		window.addEventListener('blur', stopMenuRef.current);
+		if (
+			!listenersAttachedRef.current &&
+			handlersRef.current.clickOutside &&
+			handlersRef.current.blur
+		) {
+			document.addEventListener('click', handlersRef.current.clickOutside);
+			window.addEventListener('blur', handlersRef.current.blur);
+			listenersAttachedRef.current = true;
+		}
+	}, []);
+
+	const setElement = useCallback(ele => {
+		element.current = ele;
 	}, []);
 
 	return {
 		showMenu,
-		setElement: useCallback(ele => {
-			element.current = ele;
-		}, []),
+		setElement,
 		removeEvents,
 	};
 };

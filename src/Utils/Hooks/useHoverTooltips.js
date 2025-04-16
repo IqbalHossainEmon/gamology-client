@@ -30,7 +30,7 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 		}
 	}, [setTooltip]);
 
-	const onMouseLeave = useCallback(() => {
+	const onMouseLeave = () => {
 		if (handleHideRef.current) {
 			handleHideRef.current(tooltipsInfos.current.container);
 			handleHideRef.current = null;
@@ -40,7 +40,7 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 				position: '',
 			};
 		}
-	}, []);
+	};
 
 	useEffect(() => {
 		if (!element.current) {
@@ -66,7 +66,7 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 				ele.removeEventListener('mouseleave', onMouseLeave);
 			};
 		}
-	}, [conditionCheckFunction, element, message, onMouseEnter, onMouseLeave, position]);
+	}, [conditionCheckFunction, element, message, onMouseEnter, position]);
 };
 
 export default useHoverTooltips;

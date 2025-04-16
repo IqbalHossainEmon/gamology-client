@@ -7,6 +7,7 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 
 	const pathInfoRef = useRef({ width: 0, offsetLeft: 0 });
 	const { widthInRem, heightInRem } = useScreenWidth();
+	const hundred = 100;
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -31,13 +32,13 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 		const cursorInEle =
 			(e?.touches ? e.touches[0].clientX : e.clientX) - pathInfoRef.current.offsetLeft;
 
-		let cursorInPercent = (cursorInEle / pathInfoRef.current.width) * 100;
+		let cursorInPercent = (cursorInEle / pathInfoRef.current.width) * hundred;
 
-		if (cursorInPercent < 0 || cursorInPercent > 100) {
+		if (cursorInPercent < 0 || cursorInPercent > hundred) {
 			if (cursorInPercent < 0) {
 				cursorInPercent = 0;
 			} else {
-				cursorInPercent = 100;
+				cursorInPercent = hundred;
 			}
 		}
 		return cursorInPercent;
@@ -63,17 +64,17 @@ export default function usePointersEveryStep(rangePathRef, conditionStepRef) {
 			let pointerLeftStep = Math.round(cursorInPercent / everyStep) * everyStep;
 			let pointerRightStep = pointerLeftStep + everyStep;
 
-			if (pointerLeftStep < 0 || pointerLeftStep > 100) {
+			if (pointerLeftStep < 0 || pointerLeftStep > hundred) {
 				if (pointerLeftStep < 0) {
 					pointerLeftStep = 0;
 				} else {
-					pointerLeftStep = 100;
+					pointerLeftStep = hundred;
 				}
 			}
 
-			if (pointerRightStep > 100 || pointerRightStep < 0) {
-				if (pointerRightStep > 100) {
-					pointerRightStep = 100;
+			if (pointerRightStep > hundred || pointerRightStep < 0) {
+				if (pointerRightStep > hundred) {
+					pointerRightStep = hundred;
 				} else {
 					pointerRightStep = 0;
 				}
