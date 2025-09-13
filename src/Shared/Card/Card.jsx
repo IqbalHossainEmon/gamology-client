@@ -1,11 +1,14 @@
 import { useRef } from 'react';
+import useTextConverter from '../../Utils/Hooks/useTextConverter';
 import DiscountPriceWithPercent from '../DiscountPriceWithPercent/DiscountPriceWithPercent';
 import ImageWithHover from '../ImageWithHover/ImageWithHover';
 import styles from './Card.module.css';
 
-export default function Card({ cardInfo, style, className, dotMenu, link }) {
+export default function Card({ cardInfo, style, className, dotMenu, link, isCurrentlyActive }) {
 	const parentRef = useRef(null);
-	const { id, name, img, price } = cardInfo;
+	const { name, img, price } = cardInfo;
+
+	const { convertNameToLink } = useTextConverter();
 
 	const mainBody = (
 		<>
@@ -29,8 +32,22 @@ export default function Card({ cardInfo, style, className, dotMenu, link }) {
 			{...(style && { style })}
 		>
 			<div className='hover-shadow' ref={parentRef}>
-				{link ? <a href={`${link}/${id}`}>{mainBody}</a> : mainBody}
-				{dotMenu ? dotMenu(parentRef, cardInfo) : null}
+				{link ? (
+					<a
+						href={isCurrentlyActive ? `${link}/${convertNameToLink(name)}` : undefined}
+						tabIndex={isCurrentlyActive ? 0 : -1}
+						aria-disabled={!isCurrentlyActive}
+						{...(isCurrentlyActive && {
+							href: `${link}/${convertNameToLink(name)}`,
+							className: styles.activeNow,
+						})}
+					>
+						{mainBody}
+					</a>
+				) : (
+					mainBody
+				)}
+				{dotMenu && isCurrentlyActive ? dotMenu(parentRef, cardInfo) : null}
 			</div>
 		</li>
 	);

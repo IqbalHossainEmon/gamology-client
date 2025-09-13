@@ -67,6 +67,7 @@ export default function GameCards({
 				ref={cardsContainer}
 				cardActive={cardActive}
 				transition={transition}
+				cardOnDeck={cardOnDeck}
 				dotMenu={dotMenu}
 				extraCard={extraCard}
 				link={link}

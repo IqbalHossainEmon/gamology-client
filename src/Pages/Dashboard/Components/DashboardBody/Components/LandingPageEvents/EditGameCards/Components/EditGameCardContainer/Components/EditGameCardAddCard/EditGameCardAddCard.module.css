@@ -45,6 +45,23 @@
 }
 
 .title {
-	font-size: 1.1rem;
 	font-weight: 400;
+}
+
+.confirmBtnContainer {
+	width: 100%;
+}
+
+.confirmBtn {
+	width: 100%;
+	background-image: linear-gradient(to right, #8200ff, #df00ff);
+	color: white;
+	border: none;
+	padding: 1em 2em;
+	border-radius: 0.2rem;
+	cursor: pointer;
+	display: block;
+	margin-left: auto;
+	margin-top: 1rem;
+	position: relative;
 }

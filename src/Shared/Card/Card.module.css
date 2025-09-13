@@ -10,6 +10,10 @@
 	flex-grow: 1;
 }
 
+.activeNow {
+	pointer-events: none;
+}
+
 .cardImg {
 	width: 100%;
 	border-radius: 4px;

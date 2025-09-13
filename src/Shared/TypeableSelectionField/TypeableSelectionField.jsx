@@ -11,6 +11,7 @@ export default function TypeableSelectionField({
 	name,
 	defaultValue = '',
 	propertyName = '',
+	link = '',
 	onFocusClick,
 	enabled = true,
 	setState = () => {},
@@ -207,7 +208,7 @@ export default function TypeableSelectionField({
 				value={eventRefs.current.getSuggestionValue(value)}
 				searchRef={elementRef}
 				setHeight={setHeight}
-				link='http://localhost:5173/api/autocomplete'
+				link={link}
 				parentShow={
 					!checkLinkStarValue(typeof value === 'string' ? value : value.name) && show
 				}

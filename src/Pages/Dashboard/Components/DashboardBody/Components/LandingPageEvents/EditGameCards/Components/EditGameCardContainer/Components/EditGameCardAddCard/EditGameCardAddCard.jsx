@@ -2,7 +2,8 @@ import { useRef } from 'react';
 import RippleEffect from '../../../../../../../../../../../Shared/RippleEffect/RippleEffect';
 import useHoverTooltips from '../../../../../../../../../../../Utils/Hooks/useHoverTooltips';
 import useModal from '../../../../../../../../../../../Utils/Hooks/useModal';
-import AddGameCardModalFooter from '../../../../../../../Shared/AddGameCardModalFooter/AddGameCardModalFooter';
+import ButtonWithRipple from '../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
+import GameCardModalBody from '../../../../../../../Shared/GameCardModalBody/GameCardModalBody';
 import styles from './EditGameCardAddCard.module.css';
 
 function EditGameCardAddCard({ width, onClick }) {
@@ -10,6 +11,8 @@ function EditGameCardAddCard({ width, onClick }) {
 
 	useHoverTooltips(btnRef, 'Add Game to the list');
 	const { setContent } = useModal();
+
+	const modalButtonRef = useRef(null);
 
 	return (
 		<li
@@ -24,11 +27,27 @@ function EditGameCardAddCard({ width, onClick }) {
 						setContent({
 							title: 'Add Game to the list',
 							body: (
-								<p className={styles.title}>
-									Search for the game you want to add to the list:{' '}
-								</p>
+								<>
+									<p className={styles.title}>
+										Search for the game you want to add to the list:{' '}
+									</p>
+									<GameCardModalBody
+										handleClick={onClick}
+										btnRef={modalButtonRef}
+									/>
+								</>
 							),
-							footer: <AddGameCardModalFooter onClick={onClick} />,
+							footer: (
+								<ButtonWithRipple
+									containerClassName={styles.confirmBtnContainer}
+									className={styles.confirmBtn}
+									long
+									rippleColor='#3e9c35'
+									btnRef={modalButtonRef}
+								>
+									Submit
+								</ButtonWithRipple>
+							),
 							e,
 						});
 					}}

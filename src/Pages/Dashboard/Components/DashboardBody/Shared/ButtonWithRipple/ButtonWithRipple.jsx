@@ -10,6 +10,7 @@ export default function ButtonWithRipple({
 	containerClassName,
 	btnRef,
 	long,
+	rippleColor,
 }) {
 	return (
 		<div
@@ -24,7 +25,7 @@ export default function ButtonWithRipple({
 				{...(tabIndexOff && { tabIndex: '-1' })}
 			>
 				{children}
-				<RippleEffect long={long} />
+				<RippleEffect long={long} background={rippleColor} />
 			</button>
 		</div>
 	);

@@ -3,7 +3,7 @@ import Card from '../../../Card/Card';
 import styles from './HorizontalCards.module.css';
 
 function HorizontalCards(
-	{ data, cardsWidth, extraCard, dotMenu, cardActive, transition, link },
+	{ data, cardsWidth, extraCard, dotMenu, cardActive, transition, link, cardOnDeck },
 	ref
 ) {
 	return (
@@ -13,11 +13,12 @@ function HorizontalCards(
 					className={`${transition ? `${styles.transition} ` : ''}${styles.cardSlider}`}
 					style={{ translate: `${-(cardsWidth * cardActive + 20 * cardActive)}px` }}
 				>
-					{data.map(({ id, name, carouselThumb, price, category }) => (
+					{data.map(({ id, name, carouselThumb, price, category }, i) => (
 						<Card
 							link={link}
 							cardInfo={{ id, name, img: carouselThumb, price, category }}
 							key={id}
+							isCurrentlyActive={i >= cardActive && i < cardActive + cardOnDeck}
 							style={{ width: `${cardsWidth}px` }}
 							dotMenu={dotMenu}
 						/>
