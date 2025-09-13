@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AdaptiveCards from '../../../../../../../../../../Shared/AdaptiveCards/AdaptiveCards/AdaptiveCards';
 import ButtonWithRipple from '../../../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
 import useModal from '../../../../../../../../../../Utils/Hooks/useModal';
@@ -19,7 +19,8 @@ const editHeaderComponent = (
 	innerIndex,
 	length,
 	setAdaptiveGameCards,
-	handleTitleResetRef
+	handleTitleResetRef,
+	dataRef
 ) => (
 	<EditAdaptiveHeaderComponent
 		index={index}
@@ -31,6 +32,7 @@ const editHeaderComponent = (
 		length={length}
 		setAdaptiveGameCards={setAdaptiveGameCards}
 		handleTitleResetRef={handleTitleResetRef}
+		dataRef={dataRef}
 	/>
 );
 
@@ -44,15 +46,34 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex, onDelete })
 	const eventRefs = useRef(null);
 	const footerBtnRef = useRef(null);
 
+	const prevUrlRef = useRef([]);
+
+	useEffect(
+		() => () => {
+			if (prevUrlRef.current.length > 0) {
+				prevUrlRef.current.forEach(url => {
+					if (url) {
+						URL.revokeObjectURL(url);
+					}
+				});
+			}
+		},
+		[]
+	);
+
 	if (!eventRefs.current) {
 		eventRefs.current = {
 			onImageUpload: (file, index) => {
+				if (prevUrlRef.current[index]) {
+					URL.revokeObjectURL(prevUrlRef.current[index]);
+				}
+				prevUrlRef.current[index] = URL.createObjectURL(file);
 				setAdaptiveGameCards(pre => {
 					const newAdaptiveGameCard = cloneObject(pre);
-					newAdaptiveGameCard[index].image = URL.createObjectURL(file);
-					dataRef.current[index] = newAdaptiveGameCard[index];
+					newAdaptiveGameCard[index].image = prevUrlRef.current[index];
 					return newAdaptiveGameCard;
 				});
+				dataRef.current[parentIndex].cards[index].image = file;
 			},
 			onFieldChange: (value, field, index) => {
 				dataRef.current[parentIndex].cards[index][field] = value;
@@ -87,7 +108,12 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex, onDelete })
 				isEditing
 				index={parentIndex}
 				editingHeader={(...props) =>
-					editHeaderComponent(...props, setAdaptiveGameCards, handleTitleResetRef)
+					editHeaderComponent(
+						...props,
+						setAdaptiveGameCards,
+						handleTitleResetRef,
+						dataRef
+					)
 				}
 				onFieldChange={eventRefs.current.onFieldChange}
 				onImageUpload={eventRefs.current.onImageUpload}
@@ -105,7 +131,6 @@ function EditAdaptiveGameCards({ dataRef, defaultItems, parentIndex, onDelete })
 					onClick={() => {
 						setAdaptiveGameCards(cloneObject(defaultItems));
 						handleResetRef.current();
-						console.log(handleTitleResetRef.current);
 						handleTitleResetRef.current.forEach(ref => ref && ref.current());
 						dataRef.current[parentIndex].cards = cloneObject(defaultItems);
 					}}

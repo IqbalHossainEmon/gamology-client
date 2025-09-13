@@ -14,6 +14,7 @@ export default function GamesShowcase({
 	getHoverCard,
 	dotMenu,
 	parentIndex,
+	setHeader,
 }) {
 	const [cardPosition, setCardPosition] = useState(0);
 	const [transition, setTransition] = useState({ transition: false });
@@ -52,9 +53,7 @@ export default function GamesShowcase({
 							link={link}
 							index={index}
 							extraCard={extraCard}
-							setHeader={val => {
-								console.log(val);
-							}}
+							setHeader={setHeader}
 						/>
 					))}
 				</ul>

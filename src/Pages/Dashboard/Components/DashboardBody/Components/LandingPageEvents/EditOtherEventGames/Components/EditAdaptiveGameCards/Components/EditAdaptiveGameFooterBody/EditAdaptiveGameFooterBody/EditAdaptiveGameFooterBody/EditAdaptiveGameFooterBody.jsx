@@ -66,11 +66,23 @@ function EditAdaptiveGameFooterBody({
 					if (!dataHolder.current.regular) {
 						errorMessage.current.regular = 'Regular price is required.';
 						isThereError = true;
+					} else if (!dataHolder.current.regular.trim()) {
+						errorMessage.current.regular = 'Regular price cannot be empty.';
+						isThereError = true;
+					} else if (Number.isNaN(Number(dataHolder.current.regular))) {
+						errorMessage.current.regular = 'Regular price must be a number.';
+						isThereError = true;
 					} else {
 						errorMessage.current.regular = '';
 					}
 					if (!dataHolder.current.discount) {
 						errorMessage.current.discount = 'Discounted price is required.';
+						isThereError = true;
+					} else if (!dataHolder.current.discount.trim()) {
+						errorMessage.current.discount = 'Discounted price cannot be empty.';
+						isThereError = true;
+					} else if (Number.isNaN(Number(dataHolder.current.discount))) {
+						errorMessage.current.discount = 'Discounted price must be a number.';
 						isThereError = true;
 					} else {
 						errorMessage.current.discount = '';

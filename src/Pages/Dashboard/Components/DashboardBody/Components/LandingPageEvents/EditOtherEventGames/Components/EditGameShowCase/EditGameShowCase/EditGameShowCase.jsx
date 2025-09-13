@@ -121,6 +121,9 @@ function EditGameShowCase({ dataRef, defaultItems, onDelete, parentIndex }) {
 				items={items}
 				extraCard={index => extraCard(index, onclick)}
 				dataRef={dataRef}
+				setHeader={(val, index) => {
+					dataRef.current[parentIndex].games[index].header = val;
+				}}
 			/>
 			<div className={styles.btnContainer}>
 				<ButtonWithRipple

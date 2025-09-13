@@ -12,6 +12,7 @@ function EditAdaptiveHeaderComponent({
 	length,
 	setAdaptiveGameCards,
 	handleTitleResetRef,
+	dataRef,
 }) {
 	const lists = [];
 
@@ -20,44 +21,52 @@ function EditAdaptiveHeaderComponent({
 			name: 'Delete',
 			shouldHide: false,
 			event: () => {
-				setAdaptiveGameCards(pre => {
-					const newAdaptiveGameCard = [...pre];
-					newAdaptiveGameCard.splice(innerIndex, 1);
-					return newAdaptiveGameCard;
-				});
+				if (innerIndex < 0 || !dataRef.current[index]?.cards) return;
+				setAdaptiveGameCards(prev => [...prev.toSpliced(innerIndex, 1)]);
+				dataRef.current[index].cards.splice(innerIndex, 1);
 			},
 		});
 		const handleMove = direction => {
-			setAdaptiveGameCards(pre => {
-				const newAdaptiveGameCard = [...pre];
-				const currentItem = newAdaptiveGameCard.splice(innerIndex, 1)[0];
+			setAdaptiveGameCards(prev => {
 				const newIndex = direction === 'left' ? innerIndex - 1 : innerIndex + 1;
-				newAdaptiveGameCard.splice(newIndex, 0, currentItem);
-				return newAdaptiveGameCard;
+				if (newIndex < 0 || newIndex >= prev.length) return prev;
+				const newArray = [...prev];
+				[newArray[innerIndex], newArray[newIndex]] = [
+					newArray[newIndex],
+					newArray[innerIndex],
+				];
+				return newArray;
 			});
+
+			dataRef.current[index].cards.splice(innerIndex, 1);
+			const newIndex = direction === 'left' ? innerIndex - 1 : innerIndex + 1;
+			dataRef.current[index].cards.splice(newIndex, 0, item);
 		};
 
-		if (innerIndex === 0) {
-			lists.push({
-				name: 'Move Right',
-				event: () => handleMove('right'),
-			});
-		} else if (innerIndex === length - 1) {
-			lists.push({
-				name: 'Move Left',
-				event: () => handleMove('left'),
-			});
-		} else {
-			lists.push(
-				{
-					name: 'Move Left',
-					event: () => handleMove('left'),
-				},
-				{
+		switch (innerIndex) {
+			case 0:
+				lists.push({
 					name: 'Move Right',
 					event: () => handleMove('right'),
-				}
-			);
+				});
+				break;
+			case length - 1:
+				lists.push({
+					name: 'Move Left',
+					event: () => handleMove('left'),
+				});
+				break;
+			default:
+				lists.push(
+					{
+						name: 'Move Left',
+						event: () => handleMove('left'),
+					},
+					{
+						name: 'Move Right',
+						event: () => handleMove('right'),
+					}
+				);
 		}
 	} else {
 		lists.pop();
@@ -78,14 +87,13 @@ function EditAdaptiveHeaderComponent({
 	return (
 		<>
 			<SearchGamesOrWriteLink
-				index={index}
 				defaultValue={link}
 				setState={(val, field) => setLink(field, val)}
 				propertyName='name'
 				outerSetValuePropertyName='link'
-				name={`SearchGamesOrWriteLink${index}`}
+				name={`SearchGamesOrWriteLink${`${index}${innerIndex}`}`}
 				blurSet
-				htmlFor={`SearchGamesOrWriteLink${index}`}
+				htmlFor={`SearchGamesOrWriteLink${`${index}${innerIndex}`}`}
 				placeholder="Enter main link (/games/'game_name' for games)"
 				valueResetRef={handleResetRef}
 			/>

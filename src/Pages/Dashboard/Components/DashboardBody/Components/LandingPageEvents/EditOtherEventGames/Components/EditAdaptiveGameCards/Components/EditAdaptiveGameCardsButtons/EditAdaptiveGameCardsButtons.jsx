@@ -94,7 +94,7 @@ function EditAdaptiveGameCardsButtons({
 			</ButtonWithRipple>
 			{adaptiveGameCards.length < 3 && (
 				<ButtonWithRipple
-					onClick={() =>
+					onClick={() => {
 						setAdaptiveGameCards(prev => {
 							const newAdaptiveGameCards = cloneObject(prev);
 							// copy a card from the existing array than just empty it
@@ -105,8 +105,14 @@ function EditAdaptiveGameCardsButtons({
 							});
 							newAdaptiveGameCards.push(newCard);
 							return newAdaptiveGameCards;
-						})
-					}
+						});
+						const newCard = cloneObject(mainDataRef.current[parentIndex].cards[0]);
+						Object.keys(newCard).forEach(element => {
+							if (element === 'footer') newCard.footer = [];
+							else newCard[element] = '';
+						});
+						mainDataRef.current[parentIndex].cards.push(cloneObject(newCard));
+					}}
 				>
 					Add Card
 				</ButtonWithRipple>

@@ -12,7 +12,7 @@ export default function GamesShowcaseColumnHeader({
 		<div className={styles.textFieldContainer}>
 			<TextField
 				field='input'
-				setState={setHeader}
+				setState={val => setHeader(val, index)}
 				defaultValue={headerTitle}
 				placeholder='Enter the Header Title'
 				htmlFor={`gameShowCaseHeader${index}${parentIndex}`}
