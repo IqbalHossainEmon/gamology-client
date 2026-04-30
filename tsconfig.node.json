@@ -6,6 +6,8 @@
     "module": "esnext",
     "types": ["node"],
     "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

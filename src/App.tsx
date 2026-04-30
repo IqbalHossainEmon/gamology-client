@@ -1,8 +1,8 @@
 import './App.css';
-import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard.jsx';
 import FirstNavbar from './Shared/FirstNavbar/FirstNavBar/FirstNavbar';
-import withAppsHOCs from './Utils/HOC/withAppsHOCs';
 import useReloadScroll from './Utils/Hooks/useReloadScroll';
+import withAppsHOCs from './Utils/HOC/withAppsHOCs.jsx';
 
 function AppMain() {
 	useReloadScroll();
