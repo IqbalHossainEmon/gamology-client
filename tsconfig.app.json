@@ -13,7 +13,6 @@
     "skipLibCheck": true,
     "strict": true,
     "allowJs": true,
-    "checkJs": true,
     "noUncheckedIndexedAccess": true,
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -10,7 +10,7 @@ const useHoverTooltips = (element, message, conditionCheckFunction, position = '
 	const prevElements = useRef({
 		container: null,
 		message: '',
-		position: '',
+		preferPosition: '',
 	});
 
 	const handleHideRef = useRef(null);

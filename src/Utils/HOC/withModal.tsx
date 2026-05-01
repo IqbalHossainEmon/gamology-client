@@ -1,27 +1,45 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, type ComponentType } from 'react';
 
 import Modal from '../../Shared/Modal/Modal/Modal';
 import ScreenShadow from '../../Shared/ScreenShadow/ScreenShadow';
-import { hideModalContext, setModalContext } from '../Contexts/ModalContext';
+import { HideModalContext, SetModalContext } from '../Contexts/ModalContext';
 import useChangeBodyOverflow from '../Hooks/useChangeBodyOverflow';
 
-const emptyModal = {
+export type ModalContent = {
+	title: string | null;
+	body: string | React.ReactNode | null;
+	footer?: string | React.ReactNode | null;
+	parentElement?: HTMLElement | null;
+	originPoint?: {
+		top: number;
+		left: number;
+	} | null;
+	e?: React.MouseEvent;
+};
+
+
+const emptyModal: ModalContent = {
 	title: null,
 	body: null,
 	footer: null,
 	parentElement: null,
 };
 
-const withModal = Component =>
-	function InnerComponent(props) {
+
+export type SetModalContextType = (value: ModalContent) => void;
+export type HideModalContextType = () => void;
+
+
+const withModal = <P extends object>(Component: ComponentType<P>) =>
+	function InnerComponent(props: P) {
 		const [content, setContent] = useState(emptyModal);
 		const [show, setShow] = useState(false);
-		const timerIdRef = useRef(null);
+		const timerIdRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 		const { hideBodyOverflow, showBodyOverflow } = useChangeBodyOverflow();
 
 		const handleKeyDown = useCallback(
-			event => {
+			(event: KeyboardEvent) => {
 				if (event.key === 'Escape') {
 					if (timerIdRef.current) {
 						clearTimeout(timerIdRef.current);
@@ -38,7 +56,7 @@ const withModal = Component =>
 			[showBodyOverflow]
 		);
 
-		const hideModal = useCallback(() => {
+		const hideModal: HideModalContextType = useCallback(() => {
 			if (timerIdRef.current) {
 				clearTimeout(timerIdRef.current);
 				timerIdRef.current = null;
@@ -52,15 +70,15 @@ const withModal = Component =>
 			}, 200);
 		}, [handleKeyDown, showBodyOverflow]);
 
-		const handleSetContent = useCallback(
-			(...args) => {
-				if (args[0].title && args[0].body) {
-					const { e } = args[0];
+		const handleSetContent: SetModalContextType = useCallback(
+			value => {
+				if (value.title && value.body) {
+					const { e } = value;
 
 					// get parent x and y position
 					if (e) {
 						const { pageX, pageY } = e;
-						args[0].originPoint = {
+						value.originPoint = {
 							top: pageY,
 							left: pageX,
 						};
@@ -68,7 +86,7 @@ const withModal = Component =>
 
 					setShow(true);
 					hideBodyOverflow();
-					setContent(...args);
+					setContent(value);
 
 					document.addEventListener('keydown', handleKeyDown);
 				}
@@ -77,13 +95,13 @@ const withModal = Component =>
 		);
 
 		return (
-			<setModalContext.Provider value={handleSetContent}>
-				<hideModalContext.Provider value={hideModal}>
+			<SetModalContext.Provider value={handleSetContent}>
+				<HideModalContext.Provider value={hideModal}>
 					<Component {...props} />
 					<Modal content={content} show={show} hideModal={hideModal} />
 					<ScreenShadow show={show} zIndex={3} />
-				</hideModalContext.Provider>
-			</setModalContext.Provider>
+				</HideModalContext.Provider>
+			</SetModalContext.Provider>
 		);
 	};
 

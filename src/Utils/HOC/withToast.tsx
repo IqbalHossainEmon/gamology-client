@@ -1,23 +1,39 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, type ComponentType } from 'react';
 
 import Toasts from '../../Shared/Toasts/Toasts/Toasts';
 import { HideToastContext, SetToastContext } from '../Contexts/ToastContext';
 
-const withToast = Component =>
-	function InnerComponent(props) {
-		const [toasts, setToasts] = useState([]);
+export type Toast = {
+	title: string;
+	message: string;
+	type: 'success' | 'error' | 'info' | 'warning';
+	id: number;
+	fadeOut?: boolean;
+};
 
-		const toastsRef = useRef(toasts);
-		toastsRef.current = toasts;
+
+export type HandleSetToast = (toast: Toast) => void;
+export type HandleHideToast = (id: number) => void;
+
+const withToast = <P extends object>(Component: ComponentType<P>) =>
+	function InnerComponent(props: P) {
+		const [toasts, setToasts] = useState([] as Toast[]);
+
+		const toastsRef = useRef<Toast[]>(toasts);
+
+		useCallback(() => {
+			toastsRef.current = toasts;
+		}, [toasts]);
 
 		const toastIdRef = useRef(0);
 
-		const hideToastAnimation = useCallback(id => {
+		const hideToastAnimation = useCallback((id: number) => {
 			const transitionTime = 500; // ms
 			setToasts(prevState => {
 				const newState = [...prevState];
+				const index = newState.findIndex((toast: Toast) => toast.id === id);
 
-				newState[newState.findIndex(toast => toast.id === id)].fadeOut = true;
+				if (index !== -1 && newState[index]) newState[index].fadeOut = true;
 				return newState;
 			});
 			setTimeout(() => {
@@ -25,18 +41,18 @@ const withToast = Component =>
 			}, transitionTime);
 		}, []);
 
-		const handleHideToast = useCallback(
-			id => {
+		const handleHideToast: HandleHideToast = useCallback(
+			(id: number) => {
 				if (id) {
 					hideToastAnimation(id);
-				} else {
+				} else if (toastsRef.current[0]) {
 					hideToastAnimation(toastsRef.current[0].id);
 				}
 			},
 			[hideToastAnimation]
 		);
-		const handleSetToast = useCallback(
-			toast => {
+		const handleSetToast : HandleSetToast= useCallback(
+			(toast: Toast) => {
 				if (typeof toast === 'object') {
 					if (!toast.title || !toast.message || !toast.type) {
 						return;
@@ -55,7 +71,10 @@ const withToast = Component =>
 
 				if (toastsRef.current.length > toastThreshold) {
 					for (let i = 0; i < toastsRef.current.length - toastThreshold; i++) {
-						hideToastAnimation(toastsRef.current[i].id);
+						const toast = toastsRef.current[i];
+						if (toast) {
+							hideToastAnimation(toast.id);
+						}
 					}
 				}
 				return toastIdRef.current;
