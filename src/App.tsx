@@ -1,18 +1,18 @@
-import './App.css';
-import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
-import FirstNavbar from './Shared/FirstNavbar/FirstNavbar/FirstNavbar';
-import useReloadScroll from './Utils/Hooks/useReloadScroll';
-import withAppsHOCs from './Utils/HOC/withAppsHOCs';
+import "./App.css";
+import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import FirstNavbar from "./Shared/FirstNavbar/FirstNavbar/FirstNavbar";
+import useReloadScroll from "./Utils/Hooks/useReloadScroll";
+import withAppsHOCs from "./Utils/HOC/withAppsHOCs";
 
 function AppMain() {
-	useReloadScroll();
+  useReloadScroll();
 
-	return (
-		<>
-			<FirstNavbar />
-			<Dashboard />
-		</>
-	);
+  return (
+    <>
+      <FirstNavbar />
+      <Dashboard />
+    </>
+  );
 }
 
 const App = withAppsHOCs(AppMain);
