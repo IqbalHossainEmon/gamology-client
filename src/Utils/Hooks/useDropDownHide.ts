@@ -1,17 +1,15 @@
 import { useCallback, useEffect, useRef } from "react";
 
-const useDropDownHide = (setState: (val: boolean) => void) => {
-  const element = useRef(null);
-  const stateRef = useRef(setState);
+const useDropDownHide = (
+  setState: (val: boolean, e: FocusEvent | MouseEvent) => void,
+) => {
+  const element = useRef<HTMLElement | HTMLElement[]>(null);
   const listenersAttachedRef = useRef(false);
-  const handlersRef = useRef({});
+  const handlersRef = useRef<{
+    clickOutside?: (e: MouseEvent) => void;
+    blur?: (e: FocusEvent) => void;
+  }>({});
 
-  // Keep setState reference up to date
-  useEffect(() => {
-    stateRef.current = setState;
-  }, [setState]);
-
-  // Remove event listeners
   const removeEvents = useCallback(() => {
     if (
       listenersAttachedRef.current &&
@@ -24,32 +22,33 @@ const useDropDownHide = (setState: (val: boolean) => void) => {
     }
   }, []);
 
-  // Handle click outside
   useEffect(() => {
     handlersRef.current.clickOutside = (e) => {
-      // Check element.current directly to avoid stale closure
-      const isMultiple = Array.isArray(element.current);
-      const clickedOutside = isMultiple
-        ? !element.current.some((ele) => ele?.contains(e.target))
-        : element.current && !element.current.contains(e.target);
+      const { current } = element;
+      const target = e.target instanceof Node ? e.target : null;
+      if (!current) return;
+
+      const clickedOutside = Array.isArray(current)
+        ? !current.some((ele) => ele.contains(target))
+        : current && !current.contains(target);
 
       if (clickedOutside && listenersAttachedRef.current) {
-        stateRef.current(false, e);
+        setState(false, e);
         removeEvents();
       }
     };
 
     handlersRef.current.blur = (e) => {
       if (listenersAttachedRef.current) {
-        stateRef.current(false, e);
+        setState(false, e);
         removeEvents();
       }
     };
-  }, [removeEvents]);
+  }, [removeEvents, setState]);
 
-  // Cleanup on unmount
   useEffect(() => {
     const handlers = handlersRef.current;
+
     return () => {
       if (
         listenersAttachedRef.current &&
@@ -74,7 +73,7 @@ const useDropDownHide = (setState: (val: boolean) => void) => {
     }
   }, []);
 
-  const setElement = useCallback((ele) => {
+  const setElement = useCallback((ele: HTMLElement | HTMLLIElement[]) => {
     element.current = ele;
   }, []);
 

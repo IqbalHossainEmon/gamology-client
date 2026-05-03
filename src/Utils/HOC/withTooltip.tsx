@@ -1,18 +1,13 @@
-import {
-  useCallback,
-  useRef,
-  useState,
-  type ComponentType,
-  type RefObject,
-} from "react";
+import { useCallback, useRef, useState, type ComponentType } from "react";
 
 import Tooltips from "../../Shared/Tooltips/Tooltips/Tooltips";
 import SetTooltipContext from "../Contexts/TooltipContext";
+import type { Direction } from "../Types/directoin";
 
 type TooltipRefValue = {
   container: HTMLElement;
   message: string;
-  preferPosition?: "top" | "bottom" | "left" | "right";
+  preferPosition?: Direction;
 };
 
 type Tooltip = TooltipRefValue & {
@@ -20,9 +15,11 @@ type Tooltip = TooltipRefValue & {
   show: boolean;
 };
 
-export type TooltipInteractionHandlers = ({
-  current,
-}: RefObject<TooltipRefValue>) => (container: HTMLElement) => void;
+export type TooltipInteractionHandlers = (
+  tooltip: Omit<TooltipRefValue, "preferPositon"> | {
+    position: Direction;
+  },
+) => (container: HTMLElement) => void;
 
 const withTooltip = <T extends object>(Component: ComponentType<T>) =>
   function InnerComponent(props: T) {
@@ -70,8 +67,8 @@ const withTooltip = <T extends object>(Component: ComponentType<T>) =>
     );
 
     const tooltipInteractionHandlers: TooltipInteractionHandlers = useCallback(
-      ({ current }) => {
-        const { container, message, preferPosition } = current;
+      (tooltip) => {
+        const { container, message, preferPosition } = tooltip;
 
         const doesNeedToHide = elementOnHideListRef.current.find(
           (tooltip) => tooltip.container === container,
