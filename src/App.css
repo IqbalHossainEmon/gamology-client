@@ -128,10 +128,9 @@ a:hover {
 }
 
 @supports not (-webkit-appearance: none) {
-}
-
-.scrollbar-replace-padding {
-  padding-right: 10px;
+  .scrollbar-replace-padding {
+    /* padding-right: 10px; */
+  }
 }
 
 .overflow-y-hidden {

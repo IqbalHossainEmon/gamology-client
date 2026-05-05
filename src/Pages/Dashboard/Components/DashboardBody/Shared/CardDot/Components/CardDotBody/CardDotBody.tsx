@@ -53,7 +53,7 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 
   const { setElement, showMenu, removeEvents } = useDropDownHide(handleHide);
 
-  const [show, childFadeIn] = useAppearDisappear(listShow, false);
+  const [show, childFadeIn] = useAppearDisappear(listShow);
 
   const onClick = () => {
     setListShow((prev) => {

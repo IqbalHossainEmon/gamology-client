@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 const useAppearDisappear = (
   state: boolean,
-  isAppear: boolean,
-  condition?: boolean,
-  duration?: number,
+  isAppear: boolean = false,
+  condition: boolean = true,
+  duration: number = 200,
 ) => {
   const [show, setShow] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
@@ -69,6 +69,11 @@ const useAppearDisappear = (
         }
         break;
       default:
+        console.log("useAppearDisappear", {
+          state,
+          condition,
+          prevStateRef: prevStateRef.current,
+        });
         if (prevStateRef.current !== state && condition) {
           switch (state) {
             case true:
