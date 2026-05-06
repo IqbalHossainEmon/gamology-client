@@ -11,7 +11,9 @@ const isReactElement = (value: unknown): value is ReactElementLike =>
   (typeof (value as Record<string, unknown>)["$$typeof"] === "symbol" ||
     typeof (value as Record<string, unknown>)["$$typeof"] === "number");
 
-const getTag = (value: object): string => Object.prototype.toString.call(value);
+const objectToString = Object.prototype.toString;
+
+const getTag = (value: object): string => objectToString.call(value);
 
 const areObjectsEqual = (
   firstObject: unknown,
@@ -187,9 +189,12 @@ const areObjectsEqual = (
           return false;
         }
 
-        return keysA.every((key) =>
-          areObjectsEqual(firstDict[key], secondDict[key], comparing),
-        );
+        for (const key of keysA) {
+          if (!areObjectsEqual(firstDict[key], secondDict[key], comparing)) {
+            return false;
+          }
+        }
+        return true;
       }
     }
   } finally {
@@ -211,11 +216,13 @@ function cloneObject<T>(obj: T, cloned = new Map<object, unknown>()): T {
 
   switch (tag) {
     case "[object Array]": {
-      const arrClone: unknown[] = [];
+      const arr = obj as unknown[];
+      const len = arr.length;
+      const arrClone: unknown[] = new Array(len);
       cloned.set(obj as object, arrClone);
-      (obj as unknown[]).forEach((item) =>
-        arrClone.push(cloneObject(item, cloned)),
-      );
+      for (let i = 0; i < len; i++) {
+        arrClone[i] = cloneObject(arr[i], cloned);
+      }
       return arrClone as unknown as T;
     }
 
@@ -262,9 +269,9 @@ function cloneObject<T>(obj: T, cloned = new Map<object, unknown>()): T {
       cloned.set(obj as object, objClone);
 
       const keys = Object.getOwnPropertyNames(dict);
-      keys.forEach((key) => {
+      for (const key of keys) {
         objClone[key] = cloneObject(dict[key], cloned);
-      });
+      }
 
       return objClone as unknown as T;
     }
