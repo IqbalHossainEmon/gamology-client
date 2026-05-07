@@ -1,17 +1,17 @@
 .discover {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	z-index: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 0;
 }
 
 .content {
-	width: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 63.9375rem) {
-	.content {
-		width: calc(100% - 1rem);
-	}
+  .content {
+    width: calc(100% - 1rem);
+  }
 }

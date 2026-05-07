@@ -8,22 +8,22 @@ import FreeGames from '../Components/FreeGames/FreeGames/FreeGames';
 import styles from './Discover.module.css';
 
 export default function Discover() {
-	return (
-		<div className={styles.discover}>
-			<DiscoverBanner />
-			<div className={styles.content}>
-				<DiscoverGameCards header='Game on sale' />
-				<FreeGames />
-				<DiscoverGameCards header='Summer Spotlight' />
-				<DiscoverAdaptiveGameCards />
-				<DiscoverGameCards header='Summer Spotlight' />
-				<DiscoverGameShowcase />
-				<DiscoverGameCards header='Most Popular' />
-				<DiscoverGameShowcase />
-				<DiscoverAdaptiveGameCards />
-				<DiscoverGameShowcase />
-			</div>
-			<ExploreGames />
-		</div>
-	);
+  return (
+    <div className={styles.discover}>
+      <DiscoverBanner />
+      <div className={styles.content}>
+        <DiscoverGameCards header='Game on sale' />
+        <FreeGames />
+        <DiscoverGameCards header='Summer Spotlight' />
+        <DiscoverAdaptiveGameCards />
+        <DiscoverGameCards header='Summer Spotlight' />
+        <DiscoverGameShowcase />
+        <DiscoverGameCards header='Most Popular' />
+        <DiscoverGameShowcase />
+        <DiscoverAdaptiveGameCards />
+        <DiscoverGameShowcase />
+      </div>
+      <ExploreGames />
+    </div>
+  );
 }
