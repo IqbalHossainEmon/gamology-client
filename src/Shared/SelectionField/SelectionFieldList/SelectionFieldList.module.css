@@ -1,113 +1,113 @@
 .showBottom {
-	top: 100%;
+  top: 100%;
 }
 .showAbove {
-	bottom: 100%;
+  bottom: 100%;
 }
 .mainContainer {
-	position: absolute;
-	width: 100%;
-	border-radius: 4px;
-	background-color: rgba(37, 37, 37, 0.719);
-	-webkit-backdrop-filter: blur(50px);
-	backdrop-filter: blur(50px);
-	cursor: default;
-	z-index: 1;
-	opacity: 0;
-	transition:
-		opacity 200ms,
-		translate 200ms;
-	user-select: none;
+  position: absolute;
+  width: 100%;
+  border-radius: 4px;
+  background-color: rgba(37, 37, 37, 0.719);
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  cursor: default;
+  z-index: 1;
+  opacity: 0;
+  transition:
+    opacity 200ms,
+    translate 200ms;
+  user-select: none;
 }
 
 .left {
-	translate: -10%;
+  translate: -10%;
 }
 
 .right {
-	translate: 10%;
+  translate: 10%;
 }
 
 .fadeIn {
-	opacity: 1;
-	translate: 0;
+  opacity: 1;
+  translate: 0;
 }
 
 .listScrollContainer {
-	overflow-y: auto;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .listContainer {
-	position: relative;
-	padding: 0 0.75em;
-	list-style-type: none;
+  position: relative;
+  padding: 0 0.75em;
+  list-style-type: none;
 }
 
 .listContainer::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .listContainer::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .item {
-	position: relative;
-	height: 2.5rem;
+  position: relative;
+  height: 2.5rem;
 }
 
 .item button {
-	width: 100%;
-	padding: 0.625em 0;
-	cursor: pointer;
-	height: 100%;
-	background-color: transparent;
-	color: rgb(140, 140, 140);
-	border: none;
-	font-size: 1rem;
-	text-align: center;
-	transition:
-		color 200ms,
-		opacity 0ms 300ms;
+  width: 100%;
+  padding: 0.625em 0;
+  cursor: pointer;
+  height: 100%;
+  background-color: transparent;
+  color: rgb(140, 140, 140);
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  transition:
+    color 200ms,
+    opacity 0ms 300ms;
 }
 
 .item:hover button {
-	color: rgb(196, 196, 196);
+  color: rgb(196, 196, 196);
 }
 .item button:hover::after {
-	background-color: rgb(196, 196, 196);
+  background-color: rgb(196, 196, 196);
 }
 
 .item:not(:last-child)::after {
-	content: ' ';
-	position: absolute;
-	width: 100%;
-	height: 1px;
-	background-color: rgba(255, 255, 255, 0.3);
-	left: 0;
-	bottom: 0;
-	transition: background-color 200ms;
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  left: 0;
+  bottom: 0;
+  transition: background-color 200ms;
 }
 
 .selected button {
-	opacity: 0.5;
-	cursor: default;
-	pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
 }
 .selected:hover button {
-	color: rgb(140, 140, 140);
+  color: rgb(140, 140, 140);
 }
 .noDataItem {
-	width: 100%;
-	text-align: center;
-	color: rgb(140, 140, 140);
-	font-size: 1rem;
-	padding: 0.625em 0;
+  width: 100%;
+  text-align: center;
+  color: rgb(140, 140, 140);
+  font-size: 1rem;
+  padding: 0.625em 0;
 }
 
 @media screen and (max-width: 48rem) {
-	.item button {
-		font-size: 0.75rem;
-	}
+  .item button {
+    font-size: 0.75rem;
+  }
 }

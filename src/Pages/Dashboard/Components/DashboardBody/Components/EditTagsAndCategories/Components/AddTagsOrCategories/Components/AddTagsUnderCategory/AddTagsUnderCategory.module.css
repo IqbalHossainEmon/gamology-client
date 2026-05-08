@@ -1,35 +1,35 @@
 .tagsUnderCategory {
-	width: 100%;
-	margin-top: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
 .tagField {
-	width: 100%;
+  width: 100%;
 }
 .btnContainer,
 .tagField:not(:first-child) {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .btnContainer {
-	display: flex;
-	gap: 1rem;
-	user-select: none;
-	-webkit-user-select: none;
+  display: flex;
+  gap: 1rem;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .addTagBtn button,
 .removeTagBtn button {
-	border: none;
-	background-color: rgba(255, 255, 255, 0.05);
-	color: #ffffff9a;
-	padding: 1em;
-	font-size: 1rem;
-	border-radius: 5px;
-	cursor: pointer;
-	position: relative;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff9a;
+  padding: 1em;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
 }
 
 .disabled {
-	pointer-events: none;
-	opacity: 0.5;
+  pointer-events: none;
+  opacity: 0.5;
 }

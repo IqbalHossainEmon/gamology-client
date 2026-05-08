@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 import useAppearDisappear from "../../../../Utils/Hooks/useAppearDisappear";
 import useDropDownHide from "../../../../Utils/Hooks/useDropDownHide";
-import useObjectUtilities from "../../../../Utils/Hooks/useObjectUtilities";
 import SuggestionListContent from "../SuggestionListContent/SuggestionListContent";
 
 import styles from "./SuggestionListContainer.module.css";
+import { cloneObject } from "../../../../Utils/Lib/objectUtilities";
 
 const data = [
   {
@@ -494,8 +494,6 @@ function SuggestionListContainer({
   const isSelected = useRef(false);
 
   const { setElement, onHide, showMenu } = useDropDownHide(setShow);
-
-  const { cloneObject } = useObjectUtilities();
 
   if (!eventRefs.current) {
     let timerId;

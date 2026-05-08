@@ -1,16 +1,16 @@
 .field {
-	width: 100%;
-	outline: none;
-	font-size: 1rem;
-	line-height: 1.25em;
-	background: transparent;
-	padding: 1.5625em 0.625em 0.9375em 0.625em;
-	color: rgb(173, 173, 173);
-	border: none;
-	user-select: none;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.25em;
+  background: transparent;
+  padding: 1.5625em 0.625em 0.9375em 0.625em;
+  color: rgb(173, 173, 173);
+  border: none;
+  user-select: none;
 }
 @media screen and (max-width: 48rem) {
-	.field {
-		font-size: 0.75rem;
-	}
+  .field {
+    font-size: 0.75rem;
+  }
 }

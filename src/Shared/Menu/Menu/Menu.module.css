@@ -1,34 +1,34 @@
 .optionButton {
-	background: transparent;
-	border: none;
-	text-align: left;
-	position: relative;
-	transition: padding 200ms;
+  background: transparent;
+  border: none;
+  text-align: left;
+  position: relative;
+  transition: padding 200ms;
 }
 
 .outerOption {
-	color: rgb(196, 196, 196);
-	width: 100%;
+  color: rgb(196, 196, 196);
+  width: 100%;
 }
 
 .outerOption {
-	transition: padding 200ms;
+  transition: padding 200ms;
 }
 
 .innerOptionsContainer {
-	overflow: hidden;
-	height: 0px;
-	transition: height 200ms;
+  overflow: hidden;
+  height: 0px;
+  transition: height 200ms;
 }
 
 @media only screen and (max-width: 68.6875rem) {
-	.arrowBottom {
-		right: 1rem;
-		top: 50%;
-	}
+  .arrowBottom {
+    right: 1rem;
+    top: 50%;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
-	.optionButton {
-		cursor: pointer;
-	}
+  .optionButton {
+    cursor: pointer;
+  }
 }

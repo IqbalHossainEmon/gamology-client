@@ -1,53 +1,53 @@
 .filterOption {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	cursor: pointer;
-	position: relative;
-	margin: 1.25em 0;
-	transition: filter 200ms;
-	background-color: transparent;
-	text-align: left;
-	border: none;
-	color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin: 1.25em 0;
+  transition: filter 200ms;
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  color: white;
 }
 .text {
-	user-select: none;
-	width: calc(100% - 4.375rem);
-	-webkit-user-select: none;
-	overflow-wrap: anywhere;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	color: rgb(173, 173, 173);
-	font-size: 0.875rem;
-	line-height: 1.125rem;
-	transition: color 200ms;
+  user-select: none;
+  width: calc(100% - 4.375rem);
+  -webkit-user-select: none;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(173, 173, 173);
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  transition: color 200ms;
 }
 
 .filterOption:hover .text {
-	color: rgb(222, 222, 222);
+  color: rgb(222, 222, 222);
 }
 
 .toggleButtonContainer {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .borderBot::after {
-	content: '';
-	position: absolute;
-	pointer-events: none;
-	background-color: rgba(255, 255, 255, 0.2);
-	width: 100%;
-	height: 1px;
-	bottom: -0.625em;
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 1px;
+  bottom: -0.625em;
 }
 .shadow > p {
-	transition: filter 200ms;
+  transition: filter 200ms;
 }
 .shadow:hover > p {
-	filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
+  filter: drop-shadow(0px 0px 5px rgba(141, 141, 141, 0.616)) brightness(1.1);
 }

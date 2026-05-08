@@ -1,64 +1,64 @@
 .buttonPosition {
-	position: -o-sticky;
-	position: sticky;
-	bottom: 10px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
+  position: -o-sticky;
+  position: sticky;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 .buttonContainer {
-	max-width: 12.5rem;
-	background-color: rgb(0, 0, 0);
-	display: flex;
-	flex-direction: row;
-	align-items: stretch;
-	justify-content: center;
-	padding: 0.3125em 0.625em;
-	border-radius: 5px;
-	pointer-events: visible;
+  max-width: 12.5rem;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0.3125em 0.625em;
+  border-radius: 5px;
+  pointer-events: visible;
 }
 
 .sortButton,
 .filterButton {
-	/* width: 50%; */
-	background-color: transparent;
-	color: rgb(190, 190, 190);
-	font-size: 1rem;
-	font-weight: 500;
-	padding: 0.3125em;
-	border: none;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	cursor: pointer;
+  /* width: 50%; */
+  background-color: transparent;
+  color: rgb(190, 190, 190);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.3125em;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
 }
 
 .sortButton span,
 .filterButton span {
-	margin-left: 0.625rem;
+  margin-left: 0.625rem;
 }
 
 .verticalLine {
-	border-left: 2px solid #222222;
-	margin: 0 0.625em;
+  border-left: 2px solid #222222;
+  margin: 0 0.625em;
 }
 
 .imageContainer {
-	width: 20px;
+  width: 20px;
 }
 
 .aspectRatioClassName {
-	padding-bottom: 100%;
+  padding-bottom: 100%;
 }
 
 @media screen and (max-width: 13.125rem) {
-	.buttonContainer {
-		max-width: 150px;
-	}
-	.sortButton,
-	.filterButton {
-		font-size: 0.625rem;
-	}
+  .buttonContainer {
+    max-width: 150px;
+  }
+  .sortButton,
+  .filterButton {
+    font-size: 0.625rem;
+  }
 }

@@ -1,53 +1,53 @@
 .modalBody {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 .modalBody p {
-	line-break: loose;
+  line-break: loose;
 }
 .btnContainer {
-	width: 100%;
-	display: flex;
-	margin-top: 1rem;
-	gap: 1rem;
+  width: 100%;
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
 .checkPoint {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .deleteBtn {
-	width: 100%;
-	background-color: #cc2a24;
-	color: white;
-	border: none;
-	font-size: 1rem;
-	border-radius: 0.2rem;
-	padding: 0.5rem 1rem;
-	cursor: pointer;
-	position: relative;
-	margin-left: auto;
-	display: inline-block;
+  width: 100%;
+  background-color: #cc2a24;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
+  display: inline-block;
 }
 
 @media screen and (min-width: 106.3125rem) {
-	.modalBody p {
-		max-width: 30vw;
-	}
+  .modalBody p {
+    max-width: 30vw;
+  }
 }
 
 @media screen and (max-width: 106.25rem) and (min-width: 76.5625rem) {
-	.modalBody p {
-		max-width: 40vw;
-	}
+  .modalBody p {
+    max-width: 40vw;
+  }
 }
 @media screen and (max-width: 76.5rem) and (min-width: 62.5rem) {
-	.modalBody p {
-		max-width: 65vw;
-	}
+  .modalBody p {
+    max-width: 65vw;
+  }
 }
 
 @media screen and (max-width: 48rem) {
-	.modalBody p {
-		max-width: 80vw;
-	}
+  .modalBody p {
+    max-width: 80vw;
+  }
 }

@@ -1,10 +1,10 @@
-import styles from './FilterOptionsLoading.module.css';
+import styles from "./FilterOptionsLoading.module.css";
 
 function FilterOptionsLoading() {
-	return (
-		<div className={styles.loadingContainer}>
-			<p>Loading...</p>
-		</div>
-	);
+  return (
+    <div className={styles.loadingContainer}>
+      <p>Loading...</p>
+    </div>
+  );
 }
 export default FilterOptionsLoading;

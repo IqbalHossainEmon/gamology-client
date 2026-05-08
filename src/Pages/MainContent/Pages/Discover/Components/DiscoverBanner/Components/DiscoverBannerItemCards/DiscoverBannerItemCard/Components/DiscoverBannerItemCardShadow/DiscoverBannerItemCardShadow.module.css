@@ -1,15 +1,15 @@
 .shadowContainer {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	z-index: 0;
-	overflow: hidden;
-	border-radius: 0 4px 4px 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 0 4px 4px 0;
 }
 
 .shadow {
-	background-color: rgba(0, 0, 0, 0.5);
-	width: 100%;
-	height: 100%;
-	translate: 0 calc(-100% + 0.5px);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  translate: 0 calc(-100% + 0.5px);
 }

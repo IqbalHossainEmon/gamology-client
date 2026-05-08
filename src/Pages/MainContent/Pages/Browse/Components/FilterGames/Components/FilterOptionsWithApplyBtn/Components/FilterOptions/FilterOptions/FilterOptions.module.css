@@ -1,32 +1,32 @@
 .parentContainer {
-	position: relative;
+  position: relative;
 }
 
 .childContainer {
-	height: 100%;
+  height: 100%;
 }
 
 @media only screen and (max-width: 48rem) {
-	.filterOptionList {
-		padding-bottom: 2em;
-	}
-	.filterContainer {
-		position: relative;
-		height: 100%;
-		width: 100%;
-	}
-	.parentContainer {
-		overflow: hidden;
-		height: 100%;
-		padding: 1em;
-	}
+  .filterOptionList {
+    padding-bottom: 2em;
+  }
+  .filterContainer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .parentContainer {
+    overflow: hidden;
+    height: 100%;
+    padding: 1em;
+  }
 
-	.parentContainer {
-		overflow-y: scroll;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
-	.childContainer::-webkit-scrollbar {
-		display: none;
-	}
+  .parentContainer {
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .childContainer::-webkit-scrollbar {
+    display: none;
+  }
 }

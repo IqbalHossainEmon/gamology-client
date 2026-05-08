@@ -1,10 +1,16 @@
-import { useEffect, useState } from 'react';
+import {
+  cloneElement,
+  useEffect,
+  useState,
+  type ReactElement,
+  type HTMLAttributes,
+} from "react";
 
-import styles from './ImagePlaceholder.module.css';
+import styles from "./ImagePlaceholder.module.css";
 
 type Props = {
   currentState: number;
-  placeholder?: React.ReactElement | string;
+  placeholder?: ReactElement<HTMLAttributes<HTMLElement>>;
 };
 
 function ImagePlaceholder({ currentState, placeholder }: Props) {
@@ -21,16 +27,12 @@ function ImagePlaceholder({ currentState, placeholder }: Props) {
   return (
     show &&
     (placeholder ? (
-      {
-        ...placeholder,
-        props: {
-          ...placeholder.props,
-          className: `${placeholder.props.className ? `${placeholder.props.className} ` : ''}${styles.placeholderGiven}${currentState !== 0 ? ` ${styles.placeholderFadeOut}` : ''}`,
-        },
-      }
+      cloneElement(placeholder, {
+        className: `${placeholder.props.className ? `${placeholder.props.className} ` : ""}${styles.placeholderGiven}${currentState !== 0 ? ` ${styles.placeholderFadeOut}` : ""}`,
+      })
     ) : (
       <div
-        className={`${styles.placeholder}${currentState !== 0 ? ` ${styles.placeholderFadeOut}` : ''}`}
+        className={`${styles.placeholder}${currentState !== 0 ? ` ${styles.placeholderFadeOut}` : ""} `}
       />
     ))
   );

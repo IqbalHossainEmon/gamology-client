@@ -1,13 +1,13 @@
 .dashboard {
-	width: 100%;
-	display: flex;
-	align-items: flex-start;
-	column-gap: 1rem;
-	position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  column-gap: 1rem;
+  position: relative;
 }
 
 @media only screen and (max-width: 68.75rem) {
-	.dashboard {
-		column-gap: 0;
-	}
+  .dashboard {
+    column-gap: 0;
+  }
 }

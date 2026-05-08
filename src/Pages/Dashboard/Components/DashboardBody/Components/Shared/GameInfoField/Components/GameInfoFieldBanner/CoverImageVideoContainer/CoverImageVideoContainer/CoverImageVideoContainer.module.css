@@ -1,140 +1,140 @@
 .outerContainer:hover .hoverBorder {
-	outline: 2px solid rgba(2, 99, 224, 0.4);
+  outline: 2px solid rgba(2, 99, 224, 0.4);
 }
 .container {
-	width: 100%;
-	background-color: rgba(255, 255, 255, 0.05);
-	outline: 2px solid transparent;
-	border: none;
-	border-radius: 4px;
-	font-size: 1rem;
-	position: relative;
-	transition:
-		outline 200ms cubic-bezier(0.4, 0, 0.2, 1),
-		opacity 200ms;
-	color: rgb(173, 173, 173);
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  outline: 2px solid transparent;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  position: relative;
+  transition:
+    outline 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms;
+  color: rgb(173, 173, 173);
 }
 
 .loading {
-	background-color: transparent;
-	background-image: linear-gradient(
-		90deg,
-		rgba(255, 255, 255, 0.05) 0%,
-		rgba(255, 255, 255, 0.06) 25%,
-		rgba(255, 255, 255, 0.1) 50%,
-		rgba(255, 255, 255, 0.06) 75%,
-		rgba(255, 255, 255, 0.05) 100%
-	);
-	background-size: 500% 100%;
-	background-position: 0 0;
-	animation: shimmer 6000ms linear infinite forwards 250ms;
+  background-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.06) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.06) 75%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 500% 100%;
+  background-position: 0 0;
+  animation: shimmer 6000ms linear infinite forwards 250ms;
 }
 @keyframes shimmer {
-	0% {
-		background-position: -500% 0;
-	}
-	100% {
-		background-position: 500% 0;
-	}
+  0% {
+    background-position: -500% 0;
+  }
+  100% {
+    background-position: 500% 0;
+  }
 }
 .disabled {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 .outerContainer {
-	margin-bottom: 0.625em;
-	position: relative;
+  margin-bottom: 0.625em;
+  position: relative;
 }
 
 .label {
-	max-width: calc(100% - 1.25rem);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	position: absolute;
-	pointer-events: none;
-	color: rgb(173, 173, 173);
-	user-select: none;
-	left: 0.625em;
-	top: 50%;
-	translate: 0 -50%;
-	transform-origin: 0 0;
-	transition:
-		top 200ms cubic-bezier(0, 0, 0.2, 1),
-		scale 200ms cubic-bezier(0, 0, 0.2, 1),
-		translate 200ms cubic-bezier(0, 0, 0.2, 1),
-		color 200ms cubic-bezier(0, 0, 0.2, 1);
+  max-width: calc(100% - 1.25rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  pointer-events: none;
+  color: rgb(173, 173, 173);
+  user-select: none;
+  left: 0.625em;
+  top: 50%;
+  translate: 0 -50%;
+  transform-origin: 0 0;
+  transition:
+    top 200ms cubic-bezier(0, 0, 0.2, 1),
+    scale 200ms cubic-bezier(0, 0, 0.2, 1),
+    translate 200ms cubic-bezier(0, 0, 0.2, 1),
+    color 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .textShrink {
-	max-width: calc(125% - 3.1625rem);
-	translate: 0 -1.5625em;
-	scale: 0.8;
-	color: rgb(173, 173, 173);
+  max-width: calc(125% - 3.1625rem);
+  translate: 0 -1.5625em;
+  scale: 0.8;
+  color: rgb(173, 173, 173);
 }
 
 .focusedColor {
-	color: rgb(2, 99, 224);
+  color: rgb(2, 99, 224);
 }
 
 .label {
-	max-width: calc(100% - 1.25rem);
+  max-width: calc(100% - 1.25rem);
 }
 
 .padding {
-	padding: 1.25em 0.625em;
+  padding: 1.25em 0.625em;
 }
 
 .defaultText {
-	cursor: default;
-	user-select: none;
-	line-height: 1.25em;
+  cursor: default;
+  user-select: none;
+  line-height: 1.25em;
 }
 .fileUploadField {
-	display: none;
-	pointer-events: none;
+  display: none;
+  pointer-events: none;
 }
 .errorColor {
-	color: #cc2a24;
+  color: #cc2a24;
 }
 .error {
-	outline: 2px solid #cc2a24;
+  outline: 2px solid #cc2a24;
 }
 
 .selected {
-	opacity: 1;
+  opacity: 1;
 }
 .focusBorder {
-	outline: 2px solid rgba(1, 81, 185, 0.733);
+  outline: 2px solid rgba(1, 81, 185, 0.733);
 }
 
 .previewBtn {
-	background-color: rgba(255, 255, 255, 0.05);
-	position: relative;
-	color: rgb(173, 173, 173);
-	height: 100%;
-	padding: 1.25em;
-	font-size: medium;
-	border: none;
-	cursor: pointer;
-	transition: opacity 200ms;
+  background-color: rgba(255, 255, 255, 0.05);
+  position: relative;
+  color: rgb(173, 173, 173);
+  height: 100%;
+  padding: 1.25em;
+  font-size: medium;
+  border: none;
+  cursor: pointer;
+  transition: opacity 200ms;
 }
 
 .containerWithPreview {
-	display: flex;
-	align-items: center;
-	gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 @media screen and (max-width: 48rem) {
-	.label {
-		font-size: 0.75rem;
-	}
+  .label {
+    font-size: 0.75rem;
+  }
 
-	.containerWithPreview {
-		flex-direction: column;
-		align-items: start;
-	}
-	.defaultText {
-		font-size: 0.75rem;
-	}
+  .containerWithPreview {
+    flex-direction: column;
+    align-items: start;
+  }
+  .defaultText {
+    font-size: 0.75rem;
+  }
 }

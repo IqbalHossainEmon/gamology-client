@@ -1,9 +1,9 @@
 .specsContainer {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 }
 .specs {
-	flex: 1 1 300px;
+  flex: 1 1 300px;
 }

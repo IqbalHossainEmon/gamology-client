@@ -1,33 +1,33 @@
 .button {
-	background-color: transparent;
-	color: rgb(153, 153, 153);
-	border: none;
-	display: flex;
-	font-size: 1.25rem;
-	font-weight: 500;
-	padding-right: 1.5rem;
-	position: relative;
-	cursor: pointer;
+  background-color: transparent;
+  color: rgb(153, 153, 153);
+  border: none;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding-right: 1.5rem;
+  position: relative;
+  cursor: pointer;
 }
 .button span {
-	color: rgb(222, 222, 222);
+  color: rgb(222, 222, 222);
 }
 .sortBy {
-	margin-left: 0.3125rem;
+  margin-left: 0.3125rem;
 }
 
 .downArrow {
-	position: absolute;
-	width: 0.7rem;
-	height: 0.7rem;
-	top: 50%;
-	right: 0.3125rem;
-	translate: 0 -50%;
-	margin-left: 0.3125rem;
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  top: 50%;
+  right: 0.3125rem;
+  translate: 0 -50%;
+  margin-left: 0.3125rem;
 }
 
 @media only screen and (max-width: 48rem) {
-	.button {
-		display: none;
-	}
+  .button {
+    display: none;
+  }
 }

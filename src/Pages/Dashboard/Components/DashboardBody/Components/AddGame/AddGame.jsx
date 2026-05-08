@@ -1,24 +1,24 @@
-import useToast from '../../../../../../Utils/Hooks/useToast';
-import GameInfoField from '../Shared/GameInfoField/GameInfoField/GameInfoField';
+import useToast from "../../../../../../Utils/Hooks/useToast";
+import GameInfoField from "../Shared/GameInfoField/GameInfoField/GameInfoField";
 
-import styles from './AddGame.module.css';
+import styles from "./AddGame.module.css";
 
 function AddGame() {
-	const { setToast } = useToast();
+  const { setToast } = useToast();
 
-	const handleGameInfo = data => {
-		console.log(data);
-		setToast({
-			title: 'Successful',
-			message: 'Game added successfully',
-			type: 'success',
-		});
-	};
+  const handleGameInfo = (data) => {
+    console.log(data);
+    setToast({
+      title: "Successful",
+      message: "Game added successfully",
+      type: "success",
+    });
+  };
 
-	return (
-		<div className={styles.addGames}>
-			<GameInfoField handleGameInfo={handleGameInfo} />
-		</div>
-	);
+  return (
+    <div className={styles.addGames}>
+      <GameInfoField handleGameInfo={handleGameInfo} />
+    </div>
+  );
 }
 export default AddGame;

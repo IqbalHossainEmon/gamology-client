@@ -69,11 +69,6 @@ const useAppearDisappear = (
         }
         break;
       default:
-        console.log("useAppearDisappear", {
-          state,
-          condition,
-          prevStateRef: prevStateRef.current,
-        });
         if (prevStateRef.current !== state && condition) {
           switch (state) {
             case true:

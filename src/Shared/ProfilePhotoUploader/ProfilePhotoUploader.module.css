@@ -1,28 +1,28 @@
 .profilePhotoButton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	max-width: 20rem;
-	max-height: 20rem;
-	border-radius: 4px;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	position: relative;
-	overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 20rem;
+  max-height: 20rem;
+  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .profileImageContainer {
-	width: 100%;
-	position: relative;
+  width: 100%;
+  position: relative;
 }
 
 .inputField {
-	display: none;
+  display: none;
 }
 
 .aspectRatioClassName {
-	padding-bottom: 100%;
+  padding-bottom: 100%;
 }

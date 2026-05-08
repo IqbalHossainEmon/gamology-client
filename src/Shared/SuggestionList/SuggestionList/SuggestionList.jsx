@@ -1,67 +1,67 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import SuggestionListContainer from '../Components/SuggestionListContainer/SuggestionListContainer';
+import SuggestionListContainer from "../Components/SuggestionListContainer/SuggestionListContainer";
 
 function SuggestionList({
-	value,
-	searchRef,
-	searchInputRef,
-	extraSection,
-	maxLimit,
-	setState,
-	shouldClearTheSearch,
-	extraSectionParams,
-	link,
-	setHeight,
-	className,
-	ref,
-	parentShow = true,
+  value,
+  searchRef,
+  searchInputRef,
+  extraSection,
+  maxLimit,
+  setState,
+  shouldClearTheSearch,
+  extraSectionParams,
+  link,
+  setHeight,
+  className,
+  ref,
+  parentShow = true,
 }) {
-	const [navShow, setNavShow] = useState(false);
+  const [navShow, setNavShow] = useState(false);
 
-	const checkerRef = useRef({ onceShown: false, prevValue: value });
+  const checkerRef = useRef({ onceShown: false, prevValue: value });
 
-	const shouldShow = useRef(true);
+  const shouldShow = useRef(true);
 
-	useEffect(() => {
-		if (
-			value !== ' ' &&
-			value?.length > 0 &&
-			shouldShow.current &&
-			checkerRef.current.prevValue !== value
-		) {
-			setNavShow(true);
-			checkerRef.current.onceShown = true;
-		} else if (checkerRef.current.onceShown) {
-			setNavShow(false);
+  useEffect(() => {
+    if (
+      value !== " " &&
+      value?.length > 0 &&
+      shouldShow.current &&
+      checkerRef.current.prevValue !== value
+    ) {
+      setNavShow(true);
+      checkerRef.current.onceShown = true;
+    } else if (checkerRef.current.onceShown) {
+      setNavShow(false);
 
-			checkerRef.current.onceShown = false;
-		}
-		shouldShow.current = true;
-	}, [value]);
+      checkerRef.current.onceShown = false;
+    }
+    shouldShow.current = true;
+  }, [value]);
 
-	return (
-		<SuggestionListContainer
-			state={navShow && parentShow}
-			setShow={val => {
-				setNavShow(val);
-				if (!shouldClearTheSearch) {
-					shouldShow.current = false;
-				}
-			}}
-			setState={setState}
-			className={className}
-			value={value}
-			elementRef={searchRef}
-			ref={ref}
-			noPositionChange
-			extraSection={extraSection}
-			maxLimit={maxLimit}
-			searchInputRef={searchInputRef}
-			extraSectionParams={extraSectionParams}
-			link={link}
-			setContainerHeight={setHeight}
-		/>
-	);
+  return (
+    <SuggestionListContainer
+      state={navShow && parentShow}
+      setShow={(val) => {
+        setNavShow(val);
+        if (!shouldClearTheSearch) {
+          shouldShow.current = false;
+        }
+      }}
+      setState={setState}
+      className={className}
+      value={value}
+      elementRef={searchRef}
+      ref={ref}
+      noPositionChange
+      extraSection={extraSection}
+      maxLimit={maxLimit}
+      searchInputRef={searchInputRef}
+      extraSectionParams={extraSectionParams}
+      link={link}
+      setContainerHeight={setHeight}
+    />
+  );
 }
 export default SuggestionList;

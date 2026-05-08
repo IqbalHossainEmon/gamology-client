@@ -1,31 +1,31 @@
 .topHeader {
-	margin-bottom: 0.9375rem;
+  margin-bottom: 0.9375rem;
 }
 
 .header {
-	font-weight: 400;
-	color: #aaa;
+  font-weight: 400;
+  color: #aaa;
 }
 .row {
-	width: 100%;
-	display: flex;
-	margin-bottom: 1.25rem;
+  width: 100%;
+  display: flex;
+  margin-bottom: 1.25rem;
 }
 
 .row .column {
-	width: 50%;
+  width: 50%;
 }
 .column {
-	font-size: 1rem;
-	word-break: break-all;
+  font-size: 1rem;
+  word-break: break-all;
 }
 
 .column:first-child {
-	padding-right: 1.25em;
+  padding-right: 1.25em;
 }
 
 @media only screen and (max-width: 48rem) {
-	.column {
-		font-size: 0.875rem;
-	}
+  .column {
+    font-size: 0.875rem;
+  }
 }

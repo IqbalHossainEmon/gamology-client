@@ -1,78 +1,78 @@
 .innerOption {
-	background-color: #ffffff00;
-	transition: background-color 200ms;
+  background-color: #ffffff00;
+  transition: background-color 200ms;
 }
 
 .outerOption,
 .innerOption {
-	border: none;
-	font-size: 1rem;
-	color: rgb(196, 196, 196);
-	width: 100%;
-	background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  color: rgb(196, 196, 196);
+  width: 100%;
+  background-color: transparent;
 }
 
 .outerOption p,
 .innerOption p {
-	padding: 0.6rem 0 0.6rem 0;
-	display: flex;
-	align-items: center;
+  padding: 0.6rem 0 0.6rem 0;
+  display: flex;
+  align-items: center;
 }
 
 .outerOption:hover,
 .innerOption:hover {
-	background-color: #ffffff11;
+  background-color: #ffffff11;
 }
 
 .outerOptionCollapse {
-	padding-bottom: 1em;
+  padding-bottom: 1em;
 }
 
 .iconContainer {
-	width: 1.2rem;
-	height: 100%;
-	margin: 0 1rem;
-	display: flex;
-	align-items: center;
+  width: 1.2rem;
+  height: 100%;
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
 }
 .innerOption .iconContainer {
-	translate: 0.5rem;
-	margin-right: 1rem;
-	transition: translate 200ms;
+  translate: 0.5rem;
+  margin-right: 1rem;
+  transition: translate 200ms;
 }
 
 .iconContainer svg {
-	width: 100%;
-	height: 100%;
-	fill: rgb(196, 196, 196);
+  width: 100%;
+  height: 100%;
+  fill: rgb(196, 196, 196);
 }
 
 .text {
-	margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .innerOptionsContainer {
-	width: 100%;
-	padding: 2px;
-	list-style-type: none;
-	overflow: hidden;
-	transition: height 200ms;
+  width: 100%;
+  padding: 2px;
+  list-style-type: none;
+  overflow: hidden;
+  transition: height 200ms;
 }
 
 @media only screen and (min-width: 68.75rem) {
-	.innerOption .iconContainer.noTranslate {
-		translate: 0rem;
-	}
+  .innerOption .iconContainer.noTranslate {
+    translate: 0rem;
+  }
 }
 
 @media only screen and (max-width: 68.6875rem) {
-	.outerOptionCollapse {
-		padding: 0.6rem 0 0.6rem 0;
-	}
+  .outerOptionCollapse {
+    padding: 0.6rem 0 0.6rem 0;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.innerOption {
-		cursor: pointer;
-	}
+  .innerOption {
+    cursor: pointer;
+  }
 }

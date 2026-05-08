@@ -41,7 +41,7 @@ const useDragStartStop = (
       const root = document.getElementById("root");
 
       if (root && root.classList.contains("grabbing"))
-        root.removeAttribute("class");
+        root.classList.remove("grabbing");
     },
     [handleMouseUp, moveEvent],
   );

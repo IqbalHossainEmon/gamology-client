@@ -1,0 +1,33 @@
+import styles from "./DiscountPrice.module.css";
+
+type Props = {
+  price: number | { regular: number; discount: number };
+  className?: string;
+};
+
+export default function DiscountPrice({ price, className }: Props) {
+  if (typeof price === "object") {
+    return (
+      <span
+        className={`${styles.discountPrice}${className ? ` ${className}` : ""}`}
+      >
+        <span className={styles.regularContainer}>
+          <span className={styles.regular}>${price.regular}</span>*
+        </span>
+        <ins className={styles.discount}>${price.discount}</ins>
+      </span>
+    );
+  }
+  if (price === 0) {
+    return (
+      <span className={`${styles.free}${className ? ` ${className}` : ""}`}>
+        <span>Free</span>
+      </span>
+    );
+  }
+  return (
+    <span className={`${styles.price}${className ? ` ${className}` : ""}`}>
+      <span>${price}</span>
+    </span>
+  );
+}

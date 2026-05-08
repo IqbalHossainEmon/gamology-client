@@ -1,5 +1,5 @@
-import styles from './HorizontalDivider.module.css';
+import styles from "./HorizontalDivider.module.css";
 
 export default function HorizontalDivider() {
-	return <div className={styles.line} />;
+  return <div className={styles.line} />;
 }

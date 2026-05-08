@@ -1,39 +1,39 @@
 .gameColumn {
-	width: calc(100% / 3);
-	transition: opacity 200ms;
-	position: relative;
-	padding: 0 1rem;
+  width: calc(100% / 3);
+  transition: opacity 200ms;
+  position: relative;
+  padding: 0 1rem;
 }
 
 .column {
-	list-style: none;
-	position: relative;
-	margin-top: 1rem;
+  list-style: none;
+  position: relative;
+  margin-top: 1rem;
 }
 
 .gameColumn:not(:last-child)::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 3px;
-	height: 100%;
-	translate: 2px;
-	background-color: rgba(255, 255, 255, 0.1);
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  translate: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media only screen and (max-width: 48rem) {
-	.gameColumn {
-		width: 100%;
-	}
-	.opacity0 {
-		opacity: 0;
-	}
-	.gameColumn {
-		flex-shrink: 0;
-	}
+  .gameColumn {
+    width: 100%;
+  }
+  .opacity0 {
+    opacity: 0;
+  }
+  .gameColumn {
+    flex-shrink: 0;
+  }
 
-	.bar:after {
-		display: none;
-	}
+  .bar:after {
+    display: none;
+  }
 }

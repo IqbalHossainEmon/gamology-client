@@ -1,299 +1,313 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import ButtonWithRipple from '../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple';
-import useModal from '../../../../../../../../Utils/Hooks/useModal';
-import useObjectUtilities from '../../../../../../../../Utils/Hooks/useObjectUtilities';
-import EditAdaptiveGameCards from '../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards';
-import EditGameShowCase from '../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase';
-import EditOtherEventAddSectionModalBody from '../Components/EditOtherEventAddSectionModalBody/EditOtherEventAddSectionModalBody';
+import ButtonWithRipple from "../../../../../../../../Shared/ButtonWithRipple/ButtonWithRipple";
+import useModal from "../../../../../../../../Utils/Hooks/useModal";
+import EditAdaptiveGameCards from "../Components/EditAdaptiveGameCards/EditAdaptiveGameCards/EditAdaptiveGameCards";
+import EditGameShowCase from "../Components/EditGameShowCase/EditGameShowCase/EditGameShowCase";
+import EditOtherEventAddSectionModalBody from "../Components/EditOtherEventAddSectionModalBody/EditOtherEventAddSectionModalBody";
 
-import styles from './EditOtherEventGames.module.css';
+import styles from "./EditOtherEventGames.module.css";
+import { cloneObject } from "../../../../../../../../Utils/Lib/objectUtilities";
 
 const showcaseDefaultData = [
-	{
-		id: 0,
-		header: 'New Releases',
-		games: [
-			{
-				id: 1000,
-				name: "Marvel's Spider-Man Remastered",
-				carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-				price: { regular: 59.99, discount: 29.99 },
-			},
-			{
-				id: 1001,
-				name: 'UNCHARTED™: Legacy of Thieves Collection',
-				carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-				price: { regular: 49.99, discount: 15.99 },
-			},
-			{
-				id: 1010,
-				name: 'Fall Guy',
-				carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
-				price: 59,
-			},
-			{
-				id: 1011,
-				name: 'Fortnite',
-				carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-				price: 0,
-			},
-			{
-				id: 1100,
-				name: 'A Plague Tale Requiem',
-				carouselThumb:
-					'/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-				price: { regular: 59.99, discount: 29.99 },
-			},
-		],
-	},
-	{
-		id: 1,
-		header: 'Top Rated',
-		games: [
-			{
-				id: 1000,
-				name: "Marvel's Spider-Man Remastered",
-				carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-				price: { regular: 59.99, discount: 29.99 },
-			},
-			{
-				id: 1001,
-				name: 'UNCHARTED™: Legacy of Thieves Collection',
-				carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-				price: { regular: 49.99, discount: 15.99 },
-			},
-			{
-				id: 1010,
-				name: 'Fall Guy',
-				carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
-				price: 59,
-			},
-			{
-				id: 1011,
-				name: 'Fortnite',
-				carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-				price: 0,
-			},
-			{
-				id: 1100,
-				name: 'A Plague Tale Requiem',
-				carouselThumb:
-					'/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-				price: { regular: 59.99, discount: 29.99 },
-			},
-		],
-	},
-	{
-		id: 2,
-		header: 'Coming Soon',
-		games: [
-			{
-				id: 1000,
-				name: "Marvel's Spider-Man Remastered",
-				carouselThumb: '/assets/images/CarouselCard/spiderman-carousel-thumb.png',
-				price: { regular: 59.99, discount: 29.99 },
-			},
-			{
-				id: 1001,
-				name: 'UNCHARTED™: Legacy of Thieves Collection',
-				carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-				price: { regular: 49.99, discount: 15.99 },
-			},
-			{
-				id: 1010,
-				name: 'Fall Guy',
-				carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
-				price: 59,
-			},
-			{
-				id: 1011,
-				name: 'Fortnite',
-				carouselThumb: '/assets/images/CarouselCard/fortnite-carousel-thumb.jpg',
-				price: 0,
-			},
-			{
-				id: 1100,
-				name: 'A Plague Tale Requiem',
-				carouselThumb:
-					'/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg',
-				price: { regular: 59.99, discount: 29.99 },
-			},
-		],
-	},
+  {
+    id: 0,
+    header: "New Releases",
+    games: [
+      {
+        id: 1000,
+        name: "Marvel's Spider-Man Remastered",
+        carouselThumb:
+          "/assets/images/CarouselCard/spiderman-carousel-thumb.png",
+        price: { regular: 59.99, discount: 29.99 },
+      },
+      {
+        id: 1001,
+        name: "UNCHARTED™: Legacy of Thieves Collection",
+        carouselThumb:
+          "/assets/images/CarouselCard/fortnite-carousel-thumb.jpg",
+        price: { regular: 49.99, discount: 15.99 },
+      },
+      {
+        id: 1010,
+        name: "Fall Guy",
+        carouselThumb:
+          "/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg",
+        price: 59,
+      },
+      {
+        id: 1011,
+        name: "Fortnite",
+        carouselThumb:
+          "/assets/images/CarouselCard/fortnite-carousel-thumb.jpg",
+        price: 0,
+      },
+      {
+        id: 1100,
+        name: "A Plague Tale Requiem",
+        carouselThumb:
+          "/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg",
+        price: { regular: 59.99, discount: 29.99 },
+      },
+    ],
+  },
+  {
+    id: 1,
+    header: "Top Rated",
+    games: [
+      {
+        id: 1000,
+        name: "Marvel's Spider-Man Remastered",
+        carouselThumb:
+          "/assets/images/CarouselCard/spiderman-carousel-thumb.png",
+        price: { regular: 59.99, discount: 29.99 },
+      },
+      {
+        id: 1001,
+        name: "UNCHARTED™: Legacy of Thieves Collection",
+        carouselThumb:
+          "/assets/images/CarouselCard/fortnite-carousel-thumb.jpg",
+        price: { regular: 49.99, discount: 15.99 },
+      },
+      {
+        id: 1010,
+        name: "Fall Guy",
+        carouselThumb:
+          "/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg",
+        price: 59,
+      },
+      {
+        id: 1011,
+        name: "Fortnite",
+        carouselThumb:
+          "/assets/images/CarouselCard/fortnite-carousel-thumb.jpg",
+        price: 0,
+      },
+      {
+        id: 1100,
+        name: "A Plague Tale Requiem",
+        carouselThumb:
+          "/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg",
+        price: { regular: 59.99, discount: 29.99 },
+      },
+    ],
+  },
+  {
+    id: 2,
+    header: "Coming Soon",
+    games: [
+      {
+        id: 1000,
+        name: "Marvel's Spider-Man Remastered",
+        carouselThumb:
+          "/assets/images/CarouselCard/spiderman-carousel-thumb.png",
+        price: { regular: 59.99, discount: 29.99 },
+      },
+      {
+        id: 1001,
+        name: "UNCHARTED™: Legacy of Thieves Collection",
+        carouselThumb:
+          "/assets/images/CarouselCard/fortnite-carousel-thumb.jpg",
+        price: { regular: 49.99, discount: 15.99 },
+      },
+      {
+        id: 1010,
+        name: "Fall Guy",
+        carouselThumb:
+          "/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg",
+        price: 59,
+      },
+      {
+        id: 1011,
+        name: "Fortnite",
+        carouselThumb:
+          "/assets/images/CarouselCard/fortnite-carousel-thumb.jpg",
+        price: 0,
+      },
+      {
+        id: 1100,
+        name: "A Plague Tale Requiem",
+        carouselThumb:
+          "/assets/images/CarouselCard/a-plague-tale-requiem-carousel-thumb.jpg",
+        price: { regular: 59.99, discount: 29.99 },
+      },
+    ],
+  },
 ];
 
 const adaptiveGameData = [
-	{
-		id: 0,
-		link: "/games/marvels'_spider-man-remastered",
-		image: null,
-		title: "Marvel's Spider-Man Remastered",
-		description: 'Description 0',
-		footer: { regular: 59.99, discount: 29.99 },
-	},
-	{
-		id: 1,
-		link: '/browse',
-		title: 'Title 1',
-		image: 'https://images.unsplash.com/photo-1532630571098-79a3d222b00d?q=80&w=1944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		description: 'Description 1',
-		footer: [
-			{ text: 'Read More', link: '#/' },
-			{
-				text: 'Browse',
-				link: '#/',
-			},
-		],
-	},
-	{
-		id: 2,
-		link: '/news',
-		title: 'Title 2',
-		image: 'https://images.unsplash.com/photo-1532630571098-79a3d222b00d?q=80&w=1944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-		description: 'Description 2',
-		footer: [
-			{
-				text: 'Read More',
-				link: '#/',
-			},
-		],
-	},
+  {
+    id: 0,
+    link: "/games/marvels'_spider-man-remastered",
+    image: null,
+    title: "Marvel's Spider-Man Remastered",
+    description: "Description 0",
+    footer: { regular: 59.99, discount: 29.99 },
+  },
+  {
+    id: 1,
+    link: "/browse",
+    title: "Title 1",
+    image:
+      "https://images.unsplash.com/photo-1532630571098-79a3d222b00d?q=80&w=1944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Description 1",
+    footer: [
+      { text: "Read More", link: "#/" },
+      {
+        text: "Browse",
+        link: "#/",
+      },
+    ],
+  },
+  {
+    id: 2,
+    link: "/news",
+    title: "Title 2",
+    image:
+      "https://images.unsplash.com/photo-1532630571098-79a3d222b00d?q=80&w=1944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Description 2",
+    footer: [
+      {
+        text: "Read More",
+        link: "#/",
+      },
+    ],
+  },
 ];
 
 const allItemsDefault = [
-	{
-		id: 0,
-		type: 'showcase',
-		games: [
-			{ id: 0, games: [] },
-			{ id: 1, games: [] },
-			{ id: 2, games: [] },
-		],
-	},
-	{
-		id: 1,
-		type: 'adaptiveCard',
-		cards: [],
-	},
+  {
+    id: 0,
+    type: "showcase",
+    games: [
+      { id: 0, games: [] },
+      { id: 1, games: [] },
+      { id: 2, games: [] },
+    ],
+  },
+  {
+    id: 1,
+    type: "adaptiveCard",
+    cards: [],
+  },
 ];
 
 function EditOtherEventGames() {
-	const [loading, setLoading] = useState(true);
-	const [allItems, setAllItems] = useState(allItemsDefault);
+  const [loading, setLoading] = useState(true);
+  const [allItems, setAllItems] = useState(allItemsDefault);
 
-	const sectionsRefs = useRef(allItemsDefault);
+  const sectionsRefs = useRef(allItemsDefault);
 
-	const modalFooterBtnRef = useRef(null);
+  const modalFooterBtnRef = useRef(null);
 
-	const { cloneObject } = useObjectUtilities();
+  const { setContent, hideModal } = useModal();
 
-	const { setContent, hideModal } = useModal();
+  useEffect(() => {
+    const outerData = [];
 
-	useEffect(() => {
-		const outerData = [];
+    for (let i = 0; i < 6; i++) {
+      if (i % 2 === 0) {
+        outerData.push({
+          id: i,
+          type: "showcase",
+          games: cloneObject(showcaseDefaultData),
+        });
+      } else {
+        outerData.push({
+          id: i,
+          type: "adaptiveCard",
+          cards: cloneObject(adaptiveGameData),
+        });
+      }
+    }
 
-		for (let i = 0; i < 6; i++) {
-			if (i % 2 === 0) {
-				outerData.push({
-					id: i,
-					type: 'showcase',
-					games: cloneObject(showcaseDefaultData),
-				});
-			} else {
-				outerData.push({
-					id: i,
-					type: 'adaptiveCard',
-					cards: cloneObject(adaptiveGameData),
-				});
-			}
-		}
+    setAllItems(cloneObject(outerData));
+    sectionsRefs.current = cloneObject(outerData);
+    setLoading(false);
+  }, [cloneObject]);
 
-		setAllItems(cloneObject(outerData));
-		sectionsRefs.current = cloneObject(outerData);
-		setLoading(false);
-	}, [cloneObject]);
+  const eventRefs = useRef(null);
 
-	const eventRefs = useRef(null);
+  if (!eventRefs.current) {
+    eventRefs.current = {
+      onDelete: (index) => {
+        setAllItems((prev) => {
+          const temp = [...prev];
+          temp.splice(index, 1);
+          return temp;
+        });
+        sectionsRefs.current.splice(index, 1);
+      },
+      onAdd: (e) => {
+        setContent({
+          title: "Select Section Type",
+          body: (
+            <EditOtherEventAddSectionModalBody
+              setAllItems={setAllItems}
+              submitRef={modalFooterBtnRef}
+              sectionsRefs={sectionsRefs}
+              hideModal={hideModal}
+            />
+          ),
+          footer: (
+            <ButtonWithRipple
+              className={styles.addButton}
+              containerClassName={styles.addButtonContainer}
+              btnRef={modalFooterBtnRef}
+            >
+              Add +
+            </ButtonWithRipple>
+          ),
+          e,
+        });
+      },
+    };
+  }
 
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			onDelete: index => {
-				setAllItems(prev => {
-					const temp = [...prev];
-					temp.splice(index, 1);
-					return temp;
-				});
-				sectionsRefs.current.splice(index, 1);
-			},
-			onAdd: e => {
-				setContent({
-					title: 'Select Section Type',
-					body: (
-						<EditOtherEventAddSectionModalBody
-							setAllItems={setAllItems}
-							submitRef={modalFooterBtnRef}
-							sectionsRefs={sectionsRefs}
-							hideModal={hideModal}
-						/>
-					),
-					footer: (
-						<ButtonWithRipple
-							className={styles.addButton}
-							containerClassName={styles.addButtonContainer}
-							btnRef={modalFooterBtnRef}
-						>
-							Add +
-						</ButtonWithRipple>
-					),
-					e,
-				});
-			},
-		};
-	}
-
-	return (
-		<div className={styles.editOtherEventGames}>
-			{loading ? (
-				<p>loading...</p>
-			) : (
-				<>
-					<h2 className={styles.editOtherEventGamesHeader}>Edit Other Events</h2>
-					{allItems.map((items, index) => {
-						if (!!items.games || !!items.cards) {
-							return (
-								<div key={items.id} className={styles.editOtherEventSection}>
-									{items.games ? (
-										<EditGameShowCase
-											parentIndex={index}
-											defaultItems={items.games}
-											dataRef={sectionsRefs}
-											onDelete={eventRefs.current.onDelete}
-										/>
-									) : items.cards ? (
-										<EditAdaptiveGameCards
-											onDelete={eventRefs.current.onDelete}
-											parentIndex={index}
-											dataRef={sectionsRefs}
-											defaultItems={items.cards}
-										/>
-									) : null}
-								</div>
-							);
-						}
-						return null;
-					})}
-				</>
-			)}
-			<div>
-				<ButtonWithRipple onClick={() => eventRefs.current.onAdd()}>
-					Add more +
-				</ButtonWithRipple>
-				<button type='button' onClick={() => console.log(sectionsRefs.current)}>
-					Log the changes
-				</button>
-			</div>
-		</div>
-	);
+  return (
+    <div className={styles.editOtherEventGames}>
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <>
+          <h2 className={styles.editOtherEventGamesHeader}>
+            Edit Other Events
+          </h2>
+          {allItems.map((items, index) => {
+            if (!!items.games || !!items.cards) {
+              return (
+                <div key={items.id} className={styles.editOtherEventSection}>
+                  {items.games ? (
+                    <EditGameShowCase
+                      parentIndex={index}
+                      defaultItems={items.games}
+                      dataRef={sectionsRefs}
+                      onDelete={eventRefs.current.onDelete}
+                    />
+                  ) : items.cards ? (
+                    <EditAdaptiveGameCards
+                      onDelete={eventRefs.current.onDelete}
+                      parentIndex={index}
+                      dataRef={sectionsRefs}
+                      defaultItems={items.cards}
+                    />
+                  ) : null}
+                </div>
+              );
+            }
+            return null;
+          })}
+        </>
+      )}
+      <div>
+        <ButtonWithRipple onClick={() => eventRefs.current.onAdd()}>
+          Add more +
+        </ButtonWithRipple>
+        <button type="button" onClick={() => console.log(sectionsRefs.current)}>
+          Log the changes
+        </button>
+      </div>
+    </div>
+  );
 }
 export default EditOtherEventGames;

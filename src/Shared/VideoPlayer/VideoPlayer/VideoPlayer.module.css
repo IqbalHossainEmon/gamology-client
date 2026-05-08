@@ -1,14 +1,14 @@
 .videoContainer:not(:fullscreen) {
-	width: 100%;
-	position: relative;
+  width: 100%;
+  position: relative;
 }
 .videoContainer:fullscreen .video {
-	position: absolute;
-	left: 50%;
-	top: 0;
-	translate: -50%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  translate: -50%;
 }
 
 .videoContainer:fullscreen {
-	padding-bottom: 0;
+  padding-bottom: 0;
 }

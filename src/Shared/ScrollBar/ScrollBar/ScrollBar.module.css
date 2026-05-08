@@ -1,14 +1,14 @@
 .outerScrollContainer::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 .outerScrollContainer {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	overflow: hidden auto;
-	perspective: 1px;
-	perspective-origin: right top;
-	-webkit-overflow-scrolling: touch;
-	position: relative;
-	max-height: 100%;
-	width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: hidden auto;
+  perspective: 1px;
+  perspective-origin: right top;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  max-height: 100%;
+  width: 100%;
 }

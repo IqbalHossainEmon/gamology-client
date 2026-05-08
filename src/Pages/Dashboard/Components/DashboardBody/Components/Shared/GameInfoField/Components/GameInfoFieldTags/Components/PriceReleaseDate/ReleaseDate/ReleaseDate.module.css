@@ -1,44 +1,44 @@
 .releaseDate {
-	display: flex;
-	margin-left: 0.625em;
-	align-items: center;
-	width: 100%;
+  display: flex;
+  margin-left: 0.625em;
+  align-items: center;
+  width: 100%;
 }
 .dateContainer {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 .releaseDay {
-	width: 6.25rem;
+  width: 6.25rem;
 }
 .releaseMonth {
-	width: 9.375rem;
+  width: 9.375rem;
 }
 .releaseYear {
-	width: 6.25rem;
+  width: 6.25rem;
 }
 .releaseComponent {
-	margin-left: 0.625em;
+  margin-left: 0.625em;
 }
 @media screen and (max-width: 40.3125rem) {
-	.releaseDate {
-		margin: 0;
-		margin-top: 0.625em;
-	}
+  .releaseDate {
+    margin: 0;
+    margin-top: 0.625em;
+  }
 }
 @media screen and (max-width: 28.375rem) {
-	.releaseDate,
-	.dateContainer {
-		display: flex;
-		flex-direction: column;
-		align-items: start;
-		width: 100%;
-	}
-	.releaseDate > p {
-		margin-bottom: 0.625em;
-	}
-	.releaseComponent {
-		margin-bottom: 0.625em;
-		margin-left: 0;
-	}
+  .releaseDate,
+  .dateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+  .releaseDate > p {
+    margin-bottom: 0.625em;
+  }
+  .releaseComponent {
+    margin-bottom: 0.625em;
+    margin-left: 0;
+  }
 }

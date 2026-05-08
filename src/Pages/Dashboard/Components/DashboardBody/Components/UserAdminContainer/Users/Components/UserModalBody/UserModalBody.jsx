@@ -1,11 +1,11 @@
-import UserDeleteConfirmModal from '../../../Components/UserDeleteConfirmModal/UserDeleteConfirmModal';
-import UserMakeAdminModal from '../UserMakeAdminModal/UserMakeAdminModal';
+import UserDeleteConfirmModal from "../../../Components/UserDeleteConfirmModal/UserDeleteConfirmModal";
+import UserMakeAdminModal from "../UserMakeAdminModal/UserMakeAdminModal";
 
 function UserModalBody({ type, handleEvent }) {
-	return type === 'delete' ? (
-		<UserDeleteConfirmModal handleRemove={handleEvent} />
-	) : (
-		<UserMakeAdminModal handleMakeAdmin={handleEvent} />
-	);
+  return type === "delete" ? (
+    <UserDeleteConfirmModal handleRemove={handleEvent} />
+  ) : (
+    <UserMakeAdminModal handleMakeAdmin={handleEvent} />
+  );
 }
 export default UserModalBody;

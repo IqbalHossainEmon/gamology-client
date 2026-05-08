@@ -1,32 +1,45 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type HTMLAttributes,
+  type ReactElement,
+} from "react";
 
-import ImageError from '../Component/ImageError/ImageError';
-import ImagePlaceholder from '../Component/ImagePlaceholder/ImagePlaceholder';
+import ImageError from "../Component/ImageError/ImageError";
+import ImagePlaceholder from "../Component/ImagePlaceholder/ImagePlaceholder";
 
-import styles from './Image.module.css';
+import styles from "./Image.module.css";
 
 type Props = {
-  data: string | File | Blob,
-  alt: string,
-  aspectRatioClassName: string,
-  placeholder: string,
-  className: string,
+  data: string | File | Blob;
+  alt: string;
+  aspectRatioClassName?: string | undefined;
+  placeholder?: ReactElement<HTMLAttributes<HTMLElement>> | undefined;
+  className?: string | undefined;
 };
 
-function Image({ data, alt, aspectRatioClassName, placeholder, className, ...rest }: Props) {
+function Image({
+  data,
+  alt,
+  aspectRatioClassName,
+  placeholder,
+  className,
+  ...rest
+}: Props) {
   const [currentState, setCurrentState] = useState(0);
   const imgRef = useRef<HTMLImageElement>(null);
 
   const imgSrc = useMemo(() => {
-    if (typeof data === 'string') {
+    if (typeof data === "string") {
       return { src: data, needRevoke: false };
     }
     if (data instanceof File || data instanceof Blob) {
       return { src: URL.createObjectURL(data), needRevoke: true };
     }
-    return { src: '', needRevoke: false };
+    return { src: "", needRevoke: false };
   }, [data]);
-
 
   useEffect(() => {
     const img = imgRef.current;
@@ -66,7 +79,7 @@ function Image({ data, alt, aspectRatioClassName, placeholder, className, ...res
           ref={imgRef}
           src={imgSrc.src}
           alt={alt}
-          className={`${className ? `${className} ` : ''}${aspectRatioClassName ? styles.imageWithAspectRatio : styles.imageNoAspectRatio}${currentState === 0 ? ` ${styles.loading}` : ''} ${styles.image}`}
+          className={`${className ? `${className} ` : ""}${aspectRatioClassName ? styles.imageWithAspectRatio : styles.imageNoAspectRatio}${currentState === 0 ? ` ${styles.loading}` : ""} ${styles.image}`}
         />
       ) : (
         <ImageError alt={alt} />

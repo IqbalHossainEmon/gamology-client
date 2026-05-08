@@ -9,7 +9,7 @@ function AppMain() {
 
   return (
     <>
-      <FirstNavbar />
+      {/* <FirstNavbar /> */}
       <MainContent />
     </>
   );

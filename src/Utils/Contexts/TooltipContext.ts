@@ -1,6 +1,8 @@
-import { createContext } from 'react';
-import type { TooltipInteractionHandlers } from '../HOC/withTooltip';
+import { createContext } from "react";
+import type { TooltipInteractionHandlers } from "../HOC/withTooltip";
 
-const SetTooltipContext = createContext<TooltipInteractionHandlers | undefined>(undefined);
+const SetTooltipContext = createContext<TooltipInteractionHandlers | undefined>(
+  undefined,
+);
 
 export default SetTooltipContext;

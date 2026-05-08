@@ -1,82 +1,82 @@
 .navOptionBg {
-	z-index: 3;
-	position: absolute;
-	right: 0;
-	top: 0;
-	background-color: rgb(46, 46, 46);
-	width: 3.4375rem;
-	height: 3.125rem;
-	border-radius: 0 0 0 20px;
-	transition:
-		width 300ms 300ms,
-		height 300ms 300ms,
-		border-radius 200ms 300ms,
-		box-shadow 300ms 0ms;
+  z-index: 3;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgb(46, 46, 46);
+  width: 3.4375rem;
+  height: 3.125rem;
+  border-radius: 0 0 0 20px;
+  transition:
+    width 300ms 300ms,
+    height 300ms 300ms,
+    border-radius 200ms 300ms,
+    box-shadow 300ms 0ms;
 }
 .hamburgerActive {
-	top: 0;
-	right: 0;
-	width: 80vw;
-	height: 100vh;
-	border-radius: 0 0 0 0;
-	box-shadow: -20vw 0px 20px 20px rgba(0, 0, 0, 0.5);
-	transition:
-		width 300ms,
-		height 300ms,
-		border-radius 200ms 100ms,
-		box-shadow 300ms 300ms;
+  top: 0;
+  right: 0;
+  width: 80vw;
+  height: 100vh;
+  border-radius: 0 0 0 0;
+  box-shadow: -20vw 0px 20px 20px rgba(0, 0, 0, 0.5);
+  transition:
+    width 300ms,
+    height 300ms,
+    border-radius 200ms 100ms,
+    box-shadow 300ms 300ms;
 }
 .hamburgerButton {
-	display: block;
-	background-color: transparent;
-	z-index: 4;
-	top: 0.875rem;
-	right: 0.625rem;
-	position: absolute;
-	width: 1.875rem;
-	height: 1.375rem;
-	cursor: pointer;
-	border: none;
+  display: block;
+  background-color: transparent;
+  z-index: 4;
+  top: 0.875rem;
+  right: 0.625rem;
+  position: absolute;
+  width: 1.875rem;
+  height: 1.375rem;
+  cursor: pointer;
+  border: none;
 }
 .hamburger {
-	display: none;
-	position: absolute;
+  display: none;
+  position: absolute;
 }
 .hamburger {
-	display: block;
-	top: 0.625rem;
-	left: 0px;
-	height: 2px;
-	width: 1.875rem;
-	background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
-	transition: 500ms;
-	border: none;
+  display: block;
+  top: 0.625rem;
+  left: 0px;
+  height: 2px;
+  width: 1.875rem;
+  background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
+  transition: 500ms;
+  border: none;
 }
 .hamburger::before,
 .hamburger::after {
-	z-index: 3;
-	content: '';
-	display: block;
-	position: absolute;
-	height: 2px;
-	right: 1.875rem;
-	width: 1.875rem;
-	left: 0;
-	background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
-	transition: 300ms;
+  z-index: 3;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  right: 1.875rem;
+  width: 1.875rem;
+  left: 0;
+  background-image: linear-gradient(to right, #8300ff, #b000ff, #dc00ff);
+  transition: 300ms;
 }
 .hamburger::after {
-	top: -0.625rem;
+  top: -0.625rem;
 }
 .hamburger::before {
-	top: 0.625rem;
+  top: 0.625rem;
 }
 
 .cross {
-	rotate: 45deg;
+  rotate: 45deg;
 }
 .cross::after,
 .cross::before {
-	rotate: 90deg;
-	top: 0;
+  rotate: 90deg;
+  top: 0;
 }

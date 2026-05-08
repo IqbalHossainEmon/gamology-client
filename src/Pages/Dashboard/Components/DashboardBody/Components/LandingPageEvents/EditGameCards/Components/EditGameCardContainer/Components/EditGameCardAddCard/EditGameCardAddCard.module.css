@@ -1,67 +1,67 @@
 .addGameCardContainer {
-	flex-shrink: 0;
-	display: flex;
+  flex-shrink: 0;
+  display: flex;
 }
 
 .addGameCard {
-	width: 100%;
-	position: relative;
+  width: 100%;
+  position: relative;
 }
 
 .btn {
-	width: 100%;
-	height: 100%;
-	background-color: rgba(255, 255, 255, 0.05);
-	border: none;
-	cursor: pointer;
-	transition: background-color 200ms;
-	position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+  position: absolute;
 }
 
 .btn:hover {
-	background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .plus::before {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 0.2rem;
-	height: 1.5rem;
-	background-color: white;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.2rem;
+  height: 1.5rem;
+  background-color: white;
 }
 
 .plus::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 1.5rem;
-	height: 0.2rem;
-	background-color: white;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.5rem;
+  height: 0.2rem;
+  background-color: white;
 }
 
 .title {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .confirmBtnContainer {
-	width: 100%;
+  width: 100%;
 }
 
 .confirmBtn {
-	width: 100%;
-	background-image: linear-gradient(to right, #8200ff, #df00ff);
-	color: white;
-	border: none;
-	padding: 1em 2em;
-	border-radius: 0.2rem;
-	cursor: pointer;
-	display: block;
-	margin-left: auto;
-	margin-top: 1rem;
-	position: relative;
+  width: 100%;
+  background-image: linear-gradient(to right, #8200ff, #df00ff);
+  color: white;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-top: 1rem;
+  position: relative;
 }

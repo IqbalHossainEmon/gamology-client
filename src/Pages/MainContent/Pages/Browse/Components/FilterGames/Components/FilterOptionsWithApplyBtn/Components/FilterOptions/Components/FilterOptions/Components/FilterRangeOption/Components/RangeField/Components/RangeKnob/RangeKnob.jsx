@@ -1,69 +1,73 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import useDragStartStop from '../../../../../../../../../../../../../../../../../../Utils/Hooks/useDragStartStop';
+import useDragStartStop from "../../../../../../../../../../../../../../../../../../Utils/Hooks/useDragStartStop";
 
-import styles from './RangeKnob.module.css';
+import styles from "./RangeKnob.module.css";
 
 function RangeKnob({
-	state,
-	setState,
-	transition,
-	name,
-	getLeftRightStep,
-	disabled,
-	handleSetValue,
+  state,
+  setState,
+  transition,
+  name,
+  getLeftRightStep,
+  disabled,
+  handleSetValue,
 }) {
-	const stateRef = useRef(state);
-	stateRef.current = state;
+  const stateRef = useRef(state);
+  stateRef.current = state;
 
-	// Calculate move value
-	const eventRefs = useRef(null);
+  // Calculate move value
+  const eventRefs = useRef(null);
 
-	if (!eventRefs.current) {
-		eventRefs.current = {
-			handleMove: e => {
-				const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } =
-					getLeftRightStep(e);
+  if (!eventRefs.current) {
+    eventRefs.current = {
+      handleMove: (e) => {
+        const { pointerLeftStep, pointerRightStep, leftDiff, rightDiff } =
+          getLeftRightStep(e);
 
-				let value = stateRef.current;
+        let value = stateRef.current;
 
-				// If cursors position is inside the slider range;
+        // If cursors position is inside the slider range;
 
-				// Check and set value depend on step
-				if (leftDiff < rightDiff) {
-					value = pointerLeftStep;
-				} else if (leftDiff > rightDiff) {
-					value = pointerRightStep;
-				} else if (pointerLeftStep === pointerRightStep) {
-					value = pointerLeftStep;
-				}
+        // Check and set value depend on step
+        if (leftDiff < rightDiff) {
+          value = pointerLeftStep;
+        } else if (leftDiff > rightDiff) {
+          value = pointerRightStep;
+        } else if (pointerLeftStep === pointerRightStep) {
+          value = pointerLeftStep;
+        }
 
-				if (value !== stateRef.current) {
-					setState(prev => ({ ...prev, [name]: value }));
-				}
-			},
-		};
-	}
+        if (value !== stateRef.current) {
+          setState((prev) => ({ ...prev, [name]: value }));
+        }
+      },
+    };
+  }
 
-	const onStart = useDragStartStop(eventRefs.current.handleMove, handleSetValue, true);
+  const onStart = useDragStartStop(
+    eventRefs.current.handleMove,
+    handleSetValue,
+    true,
+  );
 
-	return (
-		<div
-			className={`${transition ? `${styles.knobTransition} ` : ''}${styles.knobContainer}`}
-			style={{ translate: `${state}%` }}
-		>
-			<div
-				className={styles.knop}
-				data-knob={name}
-				onMouseDown={onStart}
-				onTouchStart={onStart}
-				role='slider'
-				aria-label='range knob'
-				aria-valuenow={state}
-				tabIndex={disabled ? -1 : 0}
-			/>
-		</div>
-	);
+  return (
+    <div
+      className={`${transition ? `${styles.knobTransition} ` : ""}${styles.knobContainer}`}
+      style={{ translate: `${state}%` }}
+    >
+      <div
+        className={styles.knop}
+        data-knob={name}
+        onMouseDown={onStart}
+        onTouchStart={onStart}
+        role="slider"
+        aria-label="range knob"
+        aria-valuenow={state}
+        tabIndex={disabled ? -1 : 0}
+      />
+    </div>
+  );
 }
 
 export default RangeKnob;

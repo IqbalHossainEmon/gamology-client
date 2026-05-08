@@ -1,4 +1,10 @@
-import { useCallback, useRef, useState, type ComponentType } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentType,
+} from "react";
 
 import Toasts from "../../Shared/Toasts/Toasts/Toasts";
 import { HideToastContext, SetToastContext } from "../Contexts/ToastContext";
@@ -20,7 +26,7 @@ const withToast = <P extends object>(Component: ComponentType<P>) =>
 
     const toastsRef = useRef<Toast[]>(toasts);
 
-    useCallback(() => {
+    useEffect(() => {
       toastsRef.current = toasts;
     }, [toasts]);
 

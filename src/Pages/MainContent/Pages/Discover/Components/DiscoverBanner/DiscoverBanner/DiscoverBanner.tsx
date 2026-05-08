@@ -5,7 +5,7 @@ import BannerButtons from '../Components/DiscoverBannerButtons/DiscoverBannerBut
 import DiscoverBannerInfoItems from '../Components/DiscoverBannerInfoItems/DiscoverBannerInfoItems/DiscoverBannerInfoItems';
 import DiscoverBannerItemCards from '../Components/DiscoverBannerItemCards/DiscoverBannerItemCards/DiscoverBannerItemCards';
 import DiscoverBannerItems from '../Components/DiscoverBannerItems/DiscoverBannerItems/DiscoverBannerItems';
-import useDiscoverBannerLogics, { type ActionTypes, type DiscoverBannerData } from '../useDiscoverBannerLogics/useDiscoverBannerLogics';
+import useDiscoverBannerLogics, { type DiscoverBannerData } from '../useDiscoverBannerLogics/useDiscoverBannerLogics';
 
 import styles from './DiscoverBanner.module.css';
 
@@ -32,7 +32,7 @@ const items = [
     id: 1010,
     name: 'Fall Guy',
     coverImg: '/assets/images/CarouselCoverDesktop/fall-guy.png',
-    logoImg: '/assets/images/CarouselInfo/fall-guy-logo.avif',
+    logoImg: '/assets/images/CarouselInfo/fall-guy-logo.png',
     carouselThumb: '/assets/images/CarouselCard/fall-guys-carousel-thumb.jpg',
     coverMobile: '/assets/images/CarouselCoverMobile/fall-guys-carousel-mobile.jpg',
     price: 0,
@@ -58,21 +58,9 @@ const items = [
 ];
 
 export default function DiscoverBanner() {
-  const { reducer, initialState, activeBanner, setDispatch } =
-    useDiscoverBannerLogics();
-  const [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const { reducer, initialState, activeBanner, setDispatch } = useDiscoverBannerLogics();
+  const [{ data, active, fadeIn, fadeOut, cardsPosition, isPause }, dispatch] = useReducer(reducer, initialState);
   const { widthInRem } = useScreenWidth();
-
-  const handleClick = (type: { type: ActionTypes }) => {
-    dispatch(type);
-  }
-
-  const handleShadowDispatch = () => {
-    dispatch({ type: 'next' });
-  }
 
   useEffect(() => {
     setDispatch(dispatch);
@@ -116,15 +104,14 @@ export default function DiscoverBanner() {
           activeBanner={activeBanner}
           bannerState={{ active, fadeOut, fadeIn }}
           data={data}
-        />
-      </div>
-      <BannerButtons handleClick={handleClick} />
+        /> </div>
+      <BannerButtons dispatch={dispatch} />
       {widthInRem > 48 && (
         <DiscoverBannerItemCards
           cardsPosition={cardsPosition}
-          cardShadowUtils={{ dispatch: handleShadowDispatch, isPause }}
           data={data}
-          handleClick={handleClick}
+          dispatch={dispatch}
+          isPause={isPause}
         />
       )}
     </section>

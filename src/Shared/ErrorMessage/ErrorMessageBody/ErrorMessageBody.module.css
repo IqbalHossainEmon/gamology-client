@@ -1,32 +1,32 @@
 .errorMessageContainer {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
-	height: 0px;
-	transition: height 300ms;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 0px;
+  transition: height 300ms;
 }
 
 .fadeIn {
-	height: var(--error-message-height);
+  height: var(--error-message-height);
 }
 
 .errorMessage {
-	width: calc(100% - 0.625rem);
-	font-size: 0.9rem;
-	background-color: #cc2a24;
-	padding: 0.4375em 2.1875em 0.4375em 0.4375em;
-	position: relative;
-	border-radius: 0 0 5px 5px;
+  width: calc(100% - 0.625rem);
+  font-size: 0.9rem;
+  background-color: #cc2a24;
+  padding: 0.4375em 2.1875em 0.4375em 0.4375em;
+  position: relative;
+  border-radius: 0 0 5px 5px;
 }
 
 .info {
-	position: absolute;
-	right: 10px;
-	top: 50%;
-	transform: translateY(-50%);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

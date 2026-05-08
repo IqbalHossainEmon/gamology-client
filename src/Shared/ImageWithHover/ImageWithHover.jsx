@@ -1,49 +1,61 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import Image from '../Image/Image/Image';
+import Image from "../Image/Image/Image";
 
-import styles from './ImageWithHover.module.css';
+import styles from "./ImageWithHover.module.css";
 
 function ImageWithHover({ container, game, cardHover, ...props }) {
-	const [hoverShow, setHoverShow] = useState(false);
+  const [hoverShow, setHoverShow] = useState(false);
 
-	const eventRefs = useRef(null);
-	const shouldHideRef = useRef(true);
+  const eventRefs = useRef(null);
+  const shouldHideRef = useRef(true);
 
-	if (!eventRefs.current && typeof cardHover === 'function') {
-		eventRefs.current = {
-			mouseEnter: () => setHoverShow(true),
-			mouseLeave: () => {
-				if (shouldHideRef.current) {
-					setHoverShow(false);
-				}
-			},
-		};
-	}
+  if (!eventRefs.current && typeof cardHover === "function") {
+    eventRefs.current = {
+      mouseEnter: () => setHoverShow(true),
+      mouseLeave: () => {
+        if (shouldHideRef.current) {
+          setHoverShow(false);
+        }
+      },
+    };
+  }
 
-	useEffect(() => {
-		if (typeof cardHover !== 'function') {
-			return;
-		}
-		const containerElement = container?.current;
+  useEffect(() => {
+    if (typeof cardHover !== "function") {
+      return;
+    }
+    const containerElement = container?.current;
 
-		if (containerElement) {
-			containerElement.addEventListener('mouseenter', eventRefs.current.mouseEnter);
-			containerElement.addEventListener('mouseleave', eventRefs.current.mouseLeave);
-			return () => {
-				containerElement.removeEventListener('mouseenter', eventRefs.current.mouseEnter);
-				containerElement.removeEventListener('mouseleave', eventRefs.current.mouseLeave);
-			};
-		}
-	}, [cardHover, container]);
+    if (containerElement) {
+      containerElement.addEventListener(
+        "mouseenter",
+        eventRefs.current.mouseEnter,
+      );
+      containerElement.addEventListener(
+        "mouseleave",
+        eventRefs.current.mouseLeave,
+      );
+      return () => {
+        containerElement.removeEventListener(
+          "mouseenter",
+          eventRefs.current.mouseEnter,
+        );
+        containerElement.removeEventListener(
+          "mouseleave",
+          eventRefs.current.mouseLeave,
+        );
+      };
+    }
+  }, [cardHover, container]);
 
-	return (
-		<div className={styles.imageWithHover}>
-			<Image {...props} />
-			{hoverShow &&
-				typeof cardHover === 'function' &&
-				cardHover(game, setHoverShow, shouldHideRef)}
-		</div>
-	);
+  return (
+    <div className={styles.imageWithHover}>
+      <Image {...props} />
+      {hoverShow &&
+        typeof cardHover === "function" &&
+        cardHover(game, setHoverShow, shouldHideRef)}
+    </div>
+  );
 }
 export default ImageWithHover;

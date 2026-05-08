@@ -1,55 +1,55 @@
 .cardNameContainer {
-	position: absolute;
-	translate: -1px;
-	top: 0;
-	left: 100%;
-	height: 100%;
-	max-height: 100%;
-	z-index: 0;
-	overflow: hidden;
+  position: absolute;
+  translate: -1px;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  max-height: 100%;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .cardName {
-	position: relative;
-	height: 100%;
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	translate: -100% 0px;
-	transition: translate 200ms;
-	border-radius: 0 4px 4px 0;
-	font-size: 0.875rem;
-	overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  translate: -100% 0px;
+  transition: translate 200ms;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.875rem;
+  overflow: hidden;
 }
 
 .cardName::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.2);
-	-webkit-backdrop-filter: blur(4px);
-	backdrop-filter: blur(4px);
-	z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: -1;
 }
 
 .cardNameText {
-	padding: 0 0.625em;
-	z-index: 1;
-	width: 100%;
-	height: fit-content;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 4;
-	line-clamp: 4;
-	-webkit-box-orient: vertical;
-	white-space: normal;
-	font-size: 0.8rem;
+  padding: 0 0.625em;
+  z-index: 1;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  font-size: 0.8rem;
 }
 
 .fadeIn {
-	translate: 0px 0px;
-	transition: translate 300ms 550ms;
+  translate: 0px 0px;
+  transition: translate 300ms 550ms;
 }

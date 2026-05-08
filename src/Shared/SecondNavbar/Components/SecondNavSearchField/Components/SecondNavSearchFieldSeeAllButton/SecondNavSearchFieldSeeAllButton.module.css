@@ -1,16 +1,16 @@
 .btn {
-	width: 100%;
-	height: 34px;
-	text-align: left;
-	color: rgb(211, 211, 211);
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	position: relative;
-	font-size: 1rem;
-	padding-left: 0.625em;
+  width: 100%;
+  height: 34px;
+  text-align: left;
+  color: rgb(211, 211, 211);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+  padding-left: 0.625em;
 }
 
 .btn:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }

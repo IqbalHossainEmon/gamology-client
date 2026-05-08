@@ -1,29 +1,29 @@
 .addGameBanner {
-	margin: 3rem 0;
+  margin: 3rem 0;
 }
 .btnContainer {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .btn {
-	margin-right: 0.625rem;
-	margin-top: 1.875rem;
+  margin-right: 0.625rem;
+  margin-top: 1.875rem;
 }
 
 .header {
-	font-size: 1.3rem;
-	font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 @media only screen and (max-width: 63.9375rem) and (min-width: 48.0625rem) {
-	.header {
-		font-size: 1.2rem;
-	}
+  .header {
+    font-size: 1.2rem;
+  }
 }
 
 @media only screen and (max-width: 48rem) {
-	.header {
-		font-size: 1rem;
-	}
+  .header {
+    font-size: 1rem;
+  }
 }

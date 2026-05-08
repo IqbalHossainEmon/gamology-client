@@ -1,13 +1,13 @@
 .toastContainer {
-	max-width: calc(100% - 1rem);
-	position: fixed;
-	right: 0;
-	bottom: 1rem;
-	list-style-type: none;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	z-index: 2;
-	user-select: none;
-	pointer-events: none;
+  max-width: calc(100% - 1rem);
+  position: fixed;
+  right: 0;
+  bottom: 1rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
 }

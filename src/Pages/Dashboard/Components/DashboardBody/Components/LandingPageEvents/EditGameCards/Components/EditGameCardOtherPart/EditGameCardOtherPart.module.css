@@ -1,27 +1,27 @@
 .editGameCardOtherPartContainer .editGameCardContainer:not(:last-of-type) {
-	margin-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 .editGameCardOtherPart h3 {
-	margin-top: 1rem;
-	font-weight: 400;
-	margin-bottom: 2rem;
+  margin-top: 1rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
 }
 
 .btnContainer {
-	display: flex;
-	justify-content: flex-end;
-	gap: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .btn {
-	width: 100%;
-	padding: 0.5rem 1rem;
-	color: white;
-	border-radius: 4px;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 4px;
 }
 .yesBtn {
-	background-color: #d32f2f;
+  background-color: #d32f2f;
 }
 .noBtn {
-	background-color: #388e3c;
+  background-color: #388e3c;
 }

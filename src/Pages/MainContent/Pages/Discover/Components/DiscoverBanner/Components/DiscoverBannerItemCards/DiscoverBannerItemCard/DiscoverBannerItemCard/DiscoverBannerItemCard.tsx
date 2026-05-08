@@ -1,8 +1,11 @@
-import Image from '../../../../../../../../../../Shared/Image/Image/Image';
-import type { DiscoverBannerIndex } from '../../../../useDiscoverBannerLogics/useDiscoverBannerLogics';
-import CardNameContainer from '../Components/CardNameContainer/CardNameContainer';
+import Image from "../../../../../../../../../../Shared/Image/Image/Image";
+import type {
+  DiscoverBannerDispatch,
+  DiscoverBannerIndex,
+} from "../../../../useDiscoverBannerLogics/useDiscoverBannerLogics";
+import CardNameContainer from "../Components/CardNameContainer/CardNameContainer";
 
-import styles from './DiscoverBannerItemCard.module.css';
+import styles from "./DiscoverBannerItemCard.module.css";
 
 const handleCardPosition = (num: DiscoverBannerIndex) => {
   switch (num) {
@@ -17,37 +20,37 @@ const handleCardPosition = (num: DiscoverBannerIndex) => {
     case 4:
       return styles.five;
     default:
-      return '';
+      return "";
   }
 };
 
 const handleOnClickParam = (num: DiscoverBannerIndex) => {
   if (num > 2) {
-    return 'prev';
+    return "prev";
   }
-  return 'next';
+  return "next";
 };
 
 type Props = {
-  banner: { carouselThumb: string, index: DiscoverBannerIndex, name: string },
-  handleClick: (prop: { type: 'next' | 'prev' }) => void,
-  cardsPosition: DiscoverBannerIndex[],
-  cardShadowUtils: {
-    dispatch: () => void;
-    isPause: boolean;
-  };
-}
+  banner: { carouselThumb: string; index: DiscoverBannerIndex; name: string };
+  cardsPosition: DiscoverBannerIndex[];
+  dispatch: DiscoverBannerDispatch;
+  isPause: boolean;
+};
 
 export default function DiscoverBannerItemCard({
   banner,
-  handleClick,
   cardsPosition,
-  cardShadowUtils,
+  dispatch,
+  isPause,
 }: Props) {
   const { carouselThumb, index, name } = banner;
-  // This function takes card positions in the screen and returns a object where cards position styles and function is added as element
 
   const handleCardClick = () => {
+    const handleClick = (action: { type: "next" | "prev" }) => {
+      dispatch(action);
+    };
+
     const position = cardsPosition[index];
     if (position === 2 || position === 3) {
       handleClick({ type: handleOnClickParam(position) });
@@ -55,22 +58,22 @@ export default function DiscoverBannerItemCard({
         handleClick({ type: handleOnClickParam(position) });
       }, 500);
     } else {
-      if (position)
-        handleClick({ type: handleOnClickParam(position) });
+      if (position) handleClick({ type: handleOnClickParam(position) });
     }
   };
 
-  const cardStyles = handleCardPosition(cardsPosition[index]);
+  const cardStyles = handleCardPosition(
+    cardsPosition[index] as DiscoverBannerIndex,
+  );
 
   return (
     <li
-      className={`${styles.cardContainer}${cardsPosition[index] !== 0 ? ' hover-shadow ' : ''}`}
-      // id={handleCardPosition(cardsPosition[index])}
+      className={`${styles.cardContainer}${cardsPosition[index] !== 0 ? " hover-shadow" : ""}`}
       {...(cardStyles && { id: cardStyles })}
     >
       <button
         className={styles.cardBtn}
-        type='button'
+        type="button"
         {...(cardsPosition[index] !== 0 && { onClick: handleCardClick })}
       >
         <Image
@@ -81,9 +84,10 @@ export default function DiscoverBannerItemCard({
         />
       </button>
       <CardNameContainer
-        cardShadowUtils={cardShadowUtils}
         name={name}
         state={cardsPosition[index] === 0}
+        dispatch={dispatch}
+        isPause={isPause}
       />
     </li>
   );

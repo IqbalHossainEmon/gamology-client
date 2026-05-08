@@ -8,7 +8,7 @@ const getTooltipPosition = (
   targetElementBounds,
   tooltipDimensions,
   scrollY,
-  preferPosition,
+  position,
 ) => {
   const { top, left, width, height } = targetElementBounds;
   const { height: tooltipHeight, width: tooltipWidth } = tooltipDimensions;
@@ -47,7 +47,7 @@ const getTooltipPosition = (
     bottom: ["bottom", "top", "left", "right"],
   };
 
-  const preferOrder = fallbackOrder[preferPosition] || [
+  const preferOrder = fallbackOrder[position] || [
     "left",
     "right",
     "top",
@@ -58,9 +58,9 @@ const getTooltipPosition = (
 };
 
 function TooltipBody({ fadeIn, data }) {
-  const { container, message, preferPosition } = data;
+  const { container, message, position } = data;
 
-  const [position, setPosition] = useState({ top: 0, left: 0, arrowOn: "" });
+  const [pos, setPos] = useState({ top: 0, left: 0, arrowOn: "" });
 
   const tooltipRef = useRef(null);
 
@@ -94,12 +94,12 @@ function TooltipBody({ fadeIn, data }) {
 
       scrollY = document.getElementById("root").scrollTop;
 
-      setPosition(
+      setPos(
         getTooltipPosition(
           container.getBoundingClientRect(),
           tooltip.getBoundingClientRect(),
           scrollY,
-          preferPosition,
+          position,
         ),
       );
       return () => {
@@ -110,12 +110,12 @@ function TooltipBody({ fadeIn, data }) {
         );
       };
     }
-  }, [container, preferPosition]);
+  }, [container, position]);
 
   return (
     <div
-      className={`${styles.toolTips}${fadeIn ? ` ${styles.fadeIn}` : ""} ${styles[position.arrowOn]}`}
-      style={{ left: `${position.left}px`, top: `${position.top}px` }}
+      className={`${styles.toolTips}${fadeIn ? ` ${styles.fadeIn}` : ""} ${styles[pos.arrowOn]}`}
+      style={{ left: `${pos.left}px`, top: `${pos.top}px` }}
       ref={tooltipRef}
     >
       <p>{message}</p>

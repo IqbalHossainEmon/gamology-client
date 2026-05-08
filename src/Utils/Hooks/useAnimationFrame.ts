@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 
 type animationFrameRef = ReturnType<typeof requestAnimationFrame>;
-
 type Animate = (timestamp: number) => void;
 
 const useAnimationFrame = (
@@ -9,6 +8,7 @@ const useAnimationFrame = (
   duration: number,
   isPaused: boolean,
   handleDone?: () => void,
+  delay: number = 0,
 ) => {
   const animationRef = useRef<animationFrameRef>(null);
   const startTimeRef = useRef<animationFrameRef>(null);
@@ -33,8 +33,14 @@ const useAnimationFrame = (
       }
 
       const elapsed = timestamp - startTimeRef.current + elapsedTimeRef.current;
-      const progress = Math.min(elapsed / duration, 1);
+      if (elapsed < delay) {
+        if (animateFnRef.current) {
+          animationRef.current = requestAnimationFrame(animateFnRef.current);
+        }
+        return;
+      }
 
+      const progress = Math.min((elapsed - delay) / duration, 1);
       setState(progress);
 
       if (progress < 1 && animateFnRef.current) {
@@ -43,7 +49,7 @@ const useAnimationFrame = (
         handleDone();
       }
     },
-    [duration, handleDone, setState],
+    [delay, duration, handleDone, setState],
   );
 
   useEffect(() => {
@@ -71,5 +77,4 @@ const useAnimationFrame = (
     };
   }, [cancelAnimation, handleStartOrResume, isPaused]);
 };
-
 export default useAnimationFrame;

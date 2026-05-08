@@ -1,34 +1,34 @@
 .links {
-	display: flex;
-	list-style: none;
-	gap: 0.625rem;
+  display: flex;
+  list-style: none;
+  gap: 0.625rem;
 }
 
 .option a {
-	text-decoration: none;
-	color: rgba(255, 255, 255, 0.5);
-	transition: color 300ms;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 300ms;
 }
 
 .option a:hover {
-	color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 #active {
-	color: rgba(255, 255, 255);
+  color: rgba(255, 255, 255);
 }
 
 @media only screen and (max-width: 48rem) {
-	.links {
-		z-index: 1;
-		right: 0px;
-		position: absolute;
-		right: 0.5rem;
-		gap: 0.2rem;
-	}
+  .links {
+    z-index: 1;
+    right: 0px;
+    position: absolute;
+    right: 0.5rem;
+    gap: 0.2rem;
+  }
 
-	.option a {
-		fill: rgba(255, 255, 255, 0.5);
-		transition: fill 300ms;
-	}
+  .option a {
+    fill: rgba(255, 255, 255, 0.5);
+    transition: fill 300ms;
+  }
 }

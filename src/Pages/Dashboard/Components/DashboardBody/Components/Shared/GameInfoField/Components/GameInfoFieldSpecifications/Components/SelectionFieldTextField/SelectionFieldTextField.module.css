@@ -1,16 +1,16 @@
 .specsContainer {
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 1.25rem;
-	gap: 20px;
-	width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  gap: 20px;
+  width: 100%;
 }
 
 .selectionField {
-	flex: 0 1 9.375rem;
-	min-width: 9.375rem;
+  flex: 0 1 9.375rem;
+  min-width: 9.375rem;
 }
 
 .textField {
-	flex: 1 1;
+  flex: 1 1;
 }

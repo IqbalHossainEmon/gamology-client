@@ -28,8 +28,6 @@ const useDropDownHide = (
       const target = e.target instanceof Node ? e.target : null;
       if (!current) return;
 
-    console.log(current)
-
       const clickedOutside = Array.isArray(current)
         ? !current.some((ele) => ele.contains(target))
         : current && !current.contains(target);
@@ -64,13 +62,11 @@ const useDropDownHide = (
   }, []);
 
   const showMenu = useCallback(() => {
-    console.log("showMenu called");
     if (
       !listenersAttachedRef.current &&
       handlersRef.current.clickOutside &&
       handlersRef.current.blur
     ) {
-      console.log("Attaching event listeners");
       document.addEventListener("click", handlersRef.current.clickOutside);
       window.addEventListener("blur", handlersRef.current.blur);
       listenersAttachedRef.current = true;

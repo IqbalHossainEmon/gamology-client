@@ -24,12 +24,10 @@ function CardDotList({
       onTabDown: (e) => {
         setTimeout(() => {
           if (e.key === "Tab") {
-            if (
-              !(
-                btnRef.current?.contains(document.activeElement) ||
-                parentRef.current?.contains(document.activeElement)
-              )
-            ) {
+            if (!(
+              btnRef.current?.contains(document.activeElement) ||
+              parentRef.current?.contains(document.activeElement)
+            )) {
               setParentShow(false);
               setListShow(false);
               onHide();

@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import { HideToastContext, SetToastContext } from '../Contexts/ToastContext';
+import { HideToastContext, SetToastContext } from "../Contexts/ToastContext";
 
 export default function useToast() {
   const setToast = useContext(SetToastContext);

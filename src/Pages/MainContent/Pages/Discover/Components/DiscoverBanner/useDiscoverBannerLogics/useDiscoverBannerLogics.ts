@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ActionDispatch } from 'react';
+import { useEffect, useRef, type ActionDispatch } from "react";
 
 const BANNER_COUNT = 5;
 
@@ -9,25 +9,27 @@ export type DiscoverBannerData = {
   logoImg: string;
   carouselThumb: string;
   coverMobile: string;
-  price: {
-    regular: number;
-    discount: number;
-  } | number
+  price:
+    | {
+        regular: number;
+        discount: number;
+      }
+    | number;
 };
 
 export type DiscoverBannerIndex = 0 | 1 | 2 | 3 | 4;
 
-type State = {
+export type DiscoverBannerState = {
   data: DiscoverBannerData[];
   active: DiscoverBannerIndex | null;
   fadeIn: DiscoverBannerIndex;
   fadeOut: DiscoverBannerIndex | null;
   cardsPosition: DiscoverBannerIndex[];
   isPause: boolean;
-}
+};
 
 // Initial state of the banner
-const initialState: State = {
+const initialState: DiscoverBannerState = {
   data: [],
   active: 0,
   fadeIn: 0,
@@ -37,28 +39,44 @@ const initialState: State = {
 };
 
 // Calculate the next state of the active item
-const increaseByOne = (state: State, fadeIn: number): State => ({
+const increaseByOne = (
+  state: DiscoverBannerState,
+  fadeIn: number,
+): DiscoverBannerState => ({
   ...state,
   active: null,
-  fadeIn: (fadeIn + 1) % BANNER_COUNT as DiscoverBannerIndex,
+  fadeIn: ((fadeIn + 1) % BANNER_COUNT) as DiscoverBannerIndex,
   fadeOut: fadeIn as DiscoverBannerIndex,
-  cardsPosition: state.cardsPosition.map(cardPosition =>
-    cardPosition > 0 ? cardPosition - 1 : BANNER_COUNT - 1
+  cardsPosition: state.cardsPosition.map((cardPosition) =>
+    cardPosition > 0 ? cardPosition - 1 : BANNER_COUNT - 1,
   ) as DiscoverBannerIndex[],
 });
 
-const decreaseByOne = (state: State, fadeIn: number): State => ({
+const decreaseByOne = (
+  state: DiscoverBannerState,
+  fadeIn: number,
+): DiscoverBannerState => ({
   ...state,
   active: null,
-  fadeIn: (fadeIn + (BANNER_COUNT - 1)) % BANNER_COUNT as DiscoverBannerIndex,
+  fadeIn: ((fadeIn + (BANNER_COUNT - 1)) % BANNER_COUNT) as DiscoverBannerIndex,
   fadeOut: fadeIn as DiscoverBannerIndex,
-  cardsPosition: state.cardsPosition.map(cardPosition =>
-    cardPosition < BANNER_COUNT - 1 ? cardPosition + 1 : 0
+  cardsPosition: state.cardsPosition.map((cardPosition) =>
+    cardPosition < BANNER_COUNT - 1 ? cardPosition + 1 : 0,
   ) as DiscoverBannerIndex[],
 });
+
+export type DiscoverBannerActiveBannerFunc = (
+  bannerId: DiscoverBannerIndex,
+  bannerState: Pick<DiscoverBannerState, "active" | "fadeIn" | "fadeOut">,
+  styles: CSSModuleClasses,
+) => string | undefined;
 
 // Determine the banner styles
-function activeBanner(bannerId: DiscoverBannerIndex, bannerState: State, styles: CSSModuleClasses) {
+const activeBanner: DiscoverBannerActiveBannerFunc = (
+  bannerId,
+  bannerState,
+  styles,
+) => {
   const { fadeIn, fadeOut, active } = bannerState;
 
   switch (bannerId) {
@@ -69,30 +87,41 @@ function activeBanner(bannerId: DiscoverBannerIndex, bannerState: State, styles:
     case fadeOut:
       return styles.bannerFadeOut;
     default:
-      return '';
+      return "";
   }
-}
+};
 
-export type ActionTypes = "fetch" | "next" | "prev" | "pauseState";
+export type DiscoverBannerActionTypes =
+  "fetch" | "next" | "prev" | "pauseState";
 
-type Action = { type: ActionTypes; data?: DiscoverBannerData[]; state?: boolean };
+type DiscoverBannerAction = {
+  type: DiscoverBannerActionTypes;
+  data?: DiscoverBannerData[];
+  state?: boolean;
+};
+export type DiscoverBannerDispatch = ActionDispatch<
+  [action: DiscoverBannerAction]
+>;
 
 // Reducer function to manage state transitions
-function reducer(state: State, action: Action): State {
+function reducer(
+  state: DiscoverBannerState,
+  action: DiscoverBannerAction,
+): DiscoverBannerState {
   const { fadeIn } = state;
 
   switch (action.type) {
-    case 'fetch':
+    case "fetch":
       if (!action.data) return state;
       return { ...state, data: action.data };
 
-    case 'next':
+    case "next":
       return increaseByOne(state, fadeIn);
 
-    case 'prev':
+    case "prev":
       return decreaseByOne(state, fadeIn);
 
-    case 'pauseState':
+    case "pauseState":
       if (action.state === undefined) return state;
       return { ...state, isPause: action.state };
 
@@ -103,28 +132,28 @@ function reducer(state: State, action: Action): State {
 
 // Hook to manage banner logic
 export default function useDiscoverBannerLogcs() {
-  const dispatchRef = useRef<ActionDispatch<[action: Action]>>(() => { });
+  const dispatchRef = useRef<DiscoverBannerDispatch>(() => {});
 
   const next = () => {
-    dispatchRef.current({ type: 'next' });
-  }
+    dispatchRef.current({ type: "next" });
+  };
   const pause = () => {
-    dispatchRef.current({ type: 'pauseState', state: true });
-  }
+    dispatchRef.current({ type: "pauseState", state: true });
+  };
   const resume = () => {
-    dispatchRef.current({ type: 'pauseState', state: false });
-  }
-  const setDispatch = (dispatch: ActionDispatch<[action: Action]>) => {
+    dispatchRef.current({ type: "pauseState", state: false });
+  };
+  const setDispatch = (dispatch: DiscoverBannerDispatch) => {
     dispatchRef.current = dispatch;
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('blur', pause);
-    window.addEventListener('focus', resume);
+    window.addEventListener("blur", pause);
+    window.addEventListener("focus", resume);
 
     return () => {
-      window.removeEventListener('blur', pause);
-      window.removeEventListener('focus', resume);
+      window.removeEventListener("blur", pause);
+      window.removeEventListener("focus", resume);
     };
   }, []);
 
@@ -133,6 +162,6 @@ export default function useDiscoverBannerLogcs() {
     reducer,
     activeBanner,
     setDispatch,
-    next
+    next,
   };
 }

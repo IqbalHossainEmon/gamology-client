@@ -7,7 +7,7 @@ import type { Direction } from "../Types/directoin";
 type TooltipRefValue = {
   container: HTMLElement;
   message: string;
-  preferPosition?: Direction;
+  position?: Direction;
 };
 
 type Tooltip = TooltipRefValue & {
@@ -16,9 +16,7 @@ type Tooltip = TooltipRefValue & {
 };
 
 export type TooltipInteractionHandlers = (
-  tooltip: Omit<TooltipRefValue, "preferPositon"> | {
-    position: Direction;
-  },
+  tooltip: TooltipRefValue,
 ) => (container: HTMLElement) => void;
 
 const withTooltip = <T extends object>(Component: ComponentType<T>) =>
@@ -46,7 +44,7 @@ const withTooltip = <T extends object>(Component: ComponentType<T>) =>
         const bundle = {
           container,
           timerId: setTimeout(() => {
-            elementOnHideListRef.current.filter(
+            elementOnHideListRef.current = elementOnHideListRef.current.filter(
               (t) => t.container !== container,
             );
 
@@ -68,7 +66,7 @@ const withTooltip = <T extends object>(Component: ComponentType<T>) =>
 
     const tooltipInteractionHandlers: TooltipInteractionHandlers = useCallback(
       (tooltip) => {
-        const { container, message, preferPosition } = tooltip;
+        const { container, message, position } = tooltip;
 
         const doesNeedToHide = elementOnHideListRef.current.find(
           (tooltip) => tooltip.container === container,
@@ -92,7 +90,7 @@ const withTooltip = <T extends object>(Component: ComponentType<T>) =>
                     container,
                     show: true,
                     message,
-                    preferPosition,
+                     position,
                   }
                 : tooltip,
             );
@@ -104,7 +102,7 @@ const withTooltip = <T extends object>(Component: ComponentType<T>) =>
               container,
               show: true,
               message,
-              preferPosition,
+              position,
             },
           ];
         });

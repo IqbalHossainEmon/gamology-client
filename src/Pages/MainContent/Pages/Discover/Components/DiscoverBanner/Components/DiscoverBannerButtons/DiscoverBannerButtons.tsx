@@ -1,25 +1,26 @@
-import ArrowButton from '../../../../../../../../Shared/ArrowButton/ArrowButton';
-import useHandleDebouncing from '../../../../../../../../Utils/Hooks/useHandleDebouncing';
+import ArrowButton from "../../../../../../../../Shared/ArrowButton/ArrowButton";
+import useHandleDebouncing from "../../../../../../../../Utils/Hooks/useHandleDebouncing";
 
-import styles from './DiscoverBannerButtons.module.css';
+import styles from "./DiscoverBannerButtons.module.css";
+import type { DiscoverBannerDispatch } from "../../useDiscoverBannerLogics/useDiscoverBannerLogics";
 
 type Props = {
-  handleClick: (action: { type: 'next' | 'prev' }) => void;
+  dispatch: DiscoverBannerDispatch;
 };
 
-export default function DiscoverBannerButtons({ handleClick }: Props) {
+export default function DiscoverBannerButtons({ dispatch }: Props) {
   const handleDebouncing = useHandleDebouncing(400);
   return (
     <>
       <ArrowButton
-        className={[styles.btn, styles.nextBtn].join(' ')}
-        handleClick={() => handleDebouncing(() => handleClick({ type: 'next' }))}
-        name='Next Button'
+        className={[styles.btn, styles.nextBtn].join(" ")}
+        handleClick={() => handleDebouncing(() => dispatch({ type: "next" }))}
+        name="Next Button"
       />
       <ArrowButton
-        className={[styles.btn, styles.prevBtn].join(' ')}
-        handleClick={() => handleDebouncing(() => handleClick({ type: 'prev' }))}
-        name='Previous Button'
+        className={[styles.btn, styles.prevBtn].join(" ")}
+        handleClick={() => handleDebouncing(() => dispatch({ type: "prev" }))}
+        name="Previous Button"
       />
     </>
   );

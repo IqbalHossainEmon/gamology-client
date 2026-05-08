@@ -1,20 +1,20 @@
 .headerText {
-	padding: 1em 0;
+  padding: 1em 0;
 }
 .headerText {
-	font-weight: 500;
-	font-size: 2rem;
+  font-weight: 500;
+  font-size: 2rem;
 }
 .searchFieldContainer {
-	height: 40px;
+  height: 40px;
 }
 .allGamesHeader {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 .searchField {
-	position: relative;
-	z-index: 4;
+  position: relative;
+  z-index: 4;
 }
 .searchShow {
-	z-index: 4;
+  z-index: 4;
 }

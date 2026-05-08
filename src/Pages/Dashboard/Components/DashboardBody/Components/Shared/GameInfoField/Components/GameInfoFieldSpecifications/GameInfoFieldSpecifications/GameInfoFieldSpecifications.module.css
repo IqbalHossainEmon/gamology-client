@@ -1,24 +1,24 @@
 .addGameSpecifications {
-	margin: 3rem 0;
+  margin: 3rem 0;
 }
 
 .textField {
-	margin-top: 1.25rem;
+  margin-top: 1.25rem;
 }
 
 .header {
-	font-size: 1.3rem;
-	font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 @media only screen and (max-width: 63.9375rem) and (min-width: 48.0625rem) {
-	.header {
-		font-size: 1.2rem;
-	}
+  .header {
+    font-size: 1.2rem;
+  }
 }
 
 @media only screen and (max-width: 48rem) {
-	.header {
-		font-size: 1rem;
-	}
+  .header {
+    font-size: 1rem;
+  }
 }

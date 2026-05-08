@@ -7,7 +7,6 @@ export default function useChangeBodyOverflow() {
 
   const isTouchable = useIsTouchAble();
 
-
   const isAddedRef = useRef(false);
   const isPaddingAddedRef = useRef(false);
 

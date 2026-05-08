@@ -1,53 +1,58 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import TextField from '../../../../../../../../../../../../../Shared/TextField/TextField/TextField';
-import SelectionFieldWithErrorMessage from '../SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage';
+import TextField from "../../../../../../../../../../../../../Shared/TextField/TextField/TextField";
+import SelectionFieldWithErrorMessage from "../SelectionFieldWithErrorMessage/SelectionFieldWithErrorMessage";
 
-function AddTagsNameAndCategory({ errorRef, errorChange, addInfoRef, categories }) {
-	const [parentErrorShow, setParentErrorShow] = useState(true);
-	const parentErrorShowRef = useRef(errorChange);
-	parentErrorShowRef.current = parentErrorShow;
+function AddTagsNameAndCategory({
+  errorRef,
+  errorChange,
+  addInfoRef,
+  categories,
+}) {
+  const [parentErrorShow, setParentErrorShow] = useState(true);
+  const parentErrorShowRef = useRef(errorChange);
+  parentErrorShowRef.current = parentErrorShow;
 
-	const handleCheck = () => {
-		if (errorRef.current.tag.props) {
-			setParentErrorShow(false);
-		}
-	};
+  const handleCheck = () => {
+    if (errorRef.current.tag.props) {
+      setParentErrorShow(false);
+    }
+  };
 
-	useEffect(() => {
-		if (!parentErrorShowRef.current) {
-			setParentErrorShow(true);
-		}
-	}, [errorChange]);
+  useEffect(() => {
+    if (!parentErrorShowRef.current) {
+      setParentErrorShow(true);
+    }
+  }, [errorChange]);
 
-	return (
-		<div>
-			<TextField
-				defaultValue={addInfoRef.current.tag.name}
-				errorChange={errorChange}
-				errorMessage={errorRef.current.tag}
-				field='input'
-				htmlFor='tag-name'
-				propertyName='tag'
-				parentErrorShow={parentErrorShow}
-				placeholder='Enter New  Tag Name'
-				setState={(val, name) => {
-					addInfoRef.current[name].name = val;
-				}}
-			/>
-			<SelectionFieldWithErrorMessage
-				errorChange={errorChange}
-				errorMessage={errorRef.current.category}
-				handleCheck={handleCheck}
-				htmlFor='category'
-				list={categories.map(category => category.category)}
-				propertyName='category'
-				placeholder='Select Category'
-				setState={val => {
-					addInfoRef.current.tag.category = val;
-				}}
-			/>
-		</div>
-	);
+  return (
+    <div>
+      <TextField
+        defaultValue={addInfoRef.current.tag.name}
+        errorChange={errorChange}
+        errorMessage={errorRef.current.tag}
+        field="input"
+        htmlFor="tag-name"
+        propertyName="tag"
+        parentErrorShow={parentErrorShow}
+        placeholder="Enter New  Tag Name"
+        setState={(val, name) => {
+          addInfoRef.current[name].name = val;
+        }}
+      />
+      <SelectionFieldWithErrorMessage
+        errorChange={errorChange}
+        errorMessage={errorRef.current.category}
+        handleCheck={handleCheck}
+        htmlFor="category"
+        list={categories.map((category) => category.category)}
+        propertyName="category"
+        placeholder="Select Category"
+        setState={(val) => {
+          addInfoRef.current.tag.category = val;
+        }}
+      />
+    </div>
+  );
 }
 export default AddTagsNameAndCategory;

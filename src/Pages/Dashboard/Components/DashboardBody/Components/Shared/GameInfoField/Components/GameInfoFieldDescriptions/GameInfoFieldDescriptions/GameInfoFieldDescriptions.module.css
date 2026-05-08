@@ -1,33 +1,33 @@
 .addGameDescriptions {
-	margin: 3rem 0;
+  margin: 3rem 0;
 }
 .sortDescription {
-	margin: 1.25em 0;
+  margin: 1.25em 0;
 }
 
 .buttonContainer {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .btn,
 .mainBtn {
-	margin-right: 1.25em;
-	margin-top: 1.25em;
+  margin-right: 1.25em;
+  margin-top: 1.25em;
 }
 .header {
-	font-size: 1.3rem;
-	font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 @media only screen and (max-width: 63.9375rem) and (min-width: 48.0625rem) {
-	.header {
-		font-size: 1.2rem;
-	}
+  .header {
+    font-size: 1.2rem;
+  }
 }
 
 @media only screen and (max-width: 48rem) {
-	.header {
-		font-size: 1rem;
-	}
+  .header {
+    font-size: 1rem;
+  }
 }

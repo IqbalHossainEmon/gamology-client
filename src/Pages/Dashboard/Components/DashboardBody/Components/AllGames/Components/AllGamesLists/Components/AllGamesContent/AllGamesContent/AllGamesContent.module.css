@@ -1,46 +1,46 @@
 .cardsContainer {
-	list-style: none;
-	display: grid;
-	padding: 0.625em 0.3125em;
-	grid-template-columns: repeat(6, 1fr);
-	gap: 3rem 1rem;
+  list-style: none;
+  display: grid;
+  padding: 0.625em 0.3125em;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3rem 1rem;
 }
 .list {
-	position: relative;
+  position: relative;
 }
 
 .list:hover .dots {
-	opacity: 1;
+  opacity: 1;
 }
 
 @media only screen and (hover: none) {
-	.dots {
-		opacity: 1;
-	}
+  .dots {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 48.0625rem) {
-	.cardsContainer {
-		grid-template-columns: repeat(4, 1fr);
-	}
+  .cardsContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 @media only screen and (max-width: 48rem) and (min-width: 34.5625rem) {
-	.cardsContainer {
-		grid-template-columns: repeat(3, 1fr);
-	}
+  .cardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media only screen and (max-width: 34.5rem) and (min-width: 15.625rem) {
-	.cardsContainer {
-		grid-template-columns: repeat(2, 1fr);
-	}
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media only screen and (max-width: 15.5625rem) {
-	.cardsContainer {
-		grid-template-columns: repeat(1, 1fr);
-	}
+  .cardsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 @media only screen and (max-width: 68.6875rem) {
-	.allGamesContent {
-		padding: 0 0.5em;
-	}
+  .allGamesContent {
+    padding: 0 0.5em;
+  }
 }

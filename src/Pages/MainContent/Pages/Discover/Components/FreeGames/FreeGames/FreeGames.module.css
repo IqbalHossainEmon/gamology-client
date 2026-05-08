@@ -1,92 +1,92 @@
 .freeGames {
-	width: 100%;
-	position: relative;
-	background-color: #202024;
-	padding: 2em 3em;
-	border-radius: 5px;
-	margin-bottom: 4rem;
+  width: 100%;
+  position: relative;
+  background-color: #202024;
+  padding: 2em 3em;
+  border-radius: 5px;
+  margin-bottom: 4rem;
 }
 
 .header {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 .headerName {
-	font-size: 1.125rem;
-	font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 400;
 }
 .viewMoreBtn {
-	margin-left: auto;
-	background-color: #1a1a1a;
-	position: relative;
-	color: white;
-	border: none;
-	padding: 0.5rem 1rem;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s;
+  margin-left: auto;
+  background-color: #1a1a1a;
+  position: relative;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 .viewMoreBtn:hover {
-	background-color: #2a2a2a;
+  background-color: #2a2a2a;
 }
 .games {
-	padding-top: 1.25em;
-	width: 100%;
-	display: grid;
-	align-items: start;
-	gap: 20px;
-	list-style-type: none;
+  padding-top: 1.25em;
+  width: 100%;
+  display: grid;
+  align-items: start;
+  gap: 20px;
+  list-style-type: none;
 }
 
 .games4 {
-	grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .games3 {
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .games2 {
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .games1 {
-	grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .headerIcon {
-	width: 2rem;
-	margin-right: 1rem;
+  width: 2rem;
+  margin-right: 1rem;
 }
 
 .aspectRatioClassName {
-	padding-bottom: 100%;
+  padding-bottom: 100%;
 }
 
 @media screen and (max-width: 48rem) {
-	.freeGames {
-		padding: 1em 1.5em;
-	}
+  .freeGames {
+    padding: 1em 1.5em;
+  }
 }
 
 @media only screen and (max-width: 37.25rem) {
-	.games4 {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
+  .games4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media only screen and (max-width: 37.25rem) {
-	.freeGames {
-		padding: 1em;
-	}
+  .freeGames {
+    padding: 1em;
+  }
 }
 
 @media only screen and (max-width: 24.9375rem) {
-	.games3 {
-		grid-template-columns: repeat(1, minmax(0, 1fr));
-	}
+  .games3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
 
 @media only screen and (max-width: 20.3125rem) {
-	.games4,
-	.games2 {
-		grid-template-columns: repeat(1, minmax(0, 1fr));
-	}
+  .games4,
+  .games2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }

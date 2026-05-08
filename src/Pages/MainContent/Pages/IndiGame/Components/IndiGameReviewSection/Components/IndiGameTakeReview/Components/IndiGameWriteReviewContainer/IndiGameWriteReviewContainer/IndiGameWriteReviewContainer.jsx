@@ -1,9 +1,9 @@
-import useAppearDisappear from '../../../../../../../../../../../Utils/Hooks/useAppearDisappear';
-import IndiGameWriteReview from '../Components/IndiGameWriteReview/IndiGameWriteReview/IndiGameWriteReview';
+import useAppearDisappear from "../../../../../../../../../../../Utils/Hooks/useAppearDisappear";
+import IndiGameWriteReview from "../Components/IndiGameWriteReview/IndiGameWriteReview/IndiGameWriteReview";
 
 function IndiGameWriteReviewContainer({ state, ...rest }) {
-	const [show, fadeIn] = useAppearDisappear(state);
+  const [show, fadeIn] = useAppearDisappear(state);
 
-	return show && <IndiGameWriteReview fadeHeight={fadeIn} {...rest} />;
+  return show && <IndiGameWriteReview fadeHeight={fadeIn} {...rest} />;
 }
 export default IndiGameWriteReviewContainer;

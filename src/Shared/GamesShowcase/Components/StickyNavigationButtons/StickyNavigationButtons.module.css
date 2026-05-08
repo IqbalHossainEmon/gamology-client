@@ -1,18 +1,18 @@
 .arrowBtn {
-	width: 100%;
-	position: -o-sticky;
-	position: sticky;
-	top: 50%;
-	translate: 0 -50%;
-	z-index: 1;
-	display: flex;
-	justify-content: space-between;
+  width: 100%;
+  position: -o-sticky;
+  position: sticky;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
 }
 .prevBtn {
-	width: 1.5rem;
-	rotate: -90deg;
+  width: 1.5rem;
+  rotate: -90deg;
 }
 .nextBtn {
-	width: 1.5rem;
-	rotate: 90deg;
+  width: 1.5rem;
+  rotate: 90deg;
 }

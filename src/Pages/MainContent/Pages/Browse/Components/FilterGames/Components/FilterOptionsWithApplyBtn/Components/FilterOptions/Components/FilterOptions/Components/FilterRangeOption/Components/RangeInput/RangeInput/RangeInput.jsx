@@ -1,89 +1,89 @@
-import RangeInputField from '../RangeInputField/RangeInputField';
+import RangeInputField from "../RangeInputField/RangeInputField";
 
-import styles from './RangeInput.module.css';
+import styles from "./RangeInput.module.css";
 
 export default function RangeInput({
-	state,
-	leftInputRef,
-	rightInputRef,
-	disabled,
-	limit,
-	float,
-	setState,
-	singleStepRef,
-	handleSetValue,
+  state,
+  leftInputRef,
+  rightInputRef,
+  disabled,
+  limit,
+  float,
+  setState,
+  singleStepRef,
+  handleSetValue,
 }) {
-	const handleEnter = e => {
-		if (e.key === 'Enter') {
-			const { value, name } = e.target;
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      const { value, name } = e.target;
 
-			let val = (value - limit.lower) * singleStepRef.current;
+      let val = (value - limit.lower) * singleStepRef.current;
 
-			if (val > 100 || val < 0) {
-				if (val > 100) {
-					val = 100;
-				} else {
-					val = 0;
-				}
-			}
+      if (val > 100 || val < 0) {
+        if (val > 100) {
+          val = 100;
+        } else {
+          val = 0;
+        }
+      }
 
-			setState(prev => {
-				const { knob1, knob2 } = prev;
-				switch (name) {
-					case 'smaller':
-						handleSetValue(undefined, val);
-						if (knob1 < knob2) {
-							if (knob1 !== val) {
-								return { ...prev, knob1: val };
-							}
-							e.target.value = limit.lower;
-							return prev;
-						}
-						if (knob2 !== val) {
-							return { ...prev, knob2: val };
-						}
-						e.target.value = limit.lower;
-						return prev;
-					case 'bigger':
-						handleSetValue(val, undefined);
-						if (knob2 > knob1) {
-							if (knob2 !== val) {
-								return { ...prev, knob2: val };
-							}
-							e.target.value = limit.higher;
-							return prev;
-						}
-						if (knob1 !== val) {
-							return { ...prev, knob1: val };
-						}
-						e.target.value = limit.higher;
-						return prev;
-					default:
-						return prev;
-				}
-			});
-		}
-	};
+      setState((prev) => {
+        const { knob1, knob2 } = prev;
+        switch (name) {
+          case "smaller":
+            handleSetValue(undefined, val);
+            if (knob1 < knob2) {
+              if (knob1 !== val) {
+                return { ...prev, knob1: val };
+              }
+              e.target.value = limit.lower;
+              return prev;
+            }
+            if (knob2 !== val) {
+              return { ...prev, knob2: val };
+            }
+            e.target.value = limit.lower;
+            return prev;
+          case "bigger":
+            handleSetValue(val, undefined);
+            if (knob2 > knob1) {
+              if (knob2 !== val) {
+                return { ...prev, knob2: val };
+              }
+              e.target.value = limit.higher;
+              return prev;
+            }
+            if (knob1 !== val) {
+              return { ...prev, knob1: val };
+            }
+            e.target.value = limit.higher;
+            return prev;
+          default:
+            return prev;
+        }
+      });
+    }
+  };
 
-	return (
-		<div className={styles.rangeInput}>
-			<RangeInputField
-				disabled={disabled}
-				float={float}
-				handleEnter={handleEnter}
-				inputRef={leftInputRef}
-				name='smaller'
-				state={state}
-			/>
-			<span className={styles.minus} />
-			<RangeInputField
-				disabled={disabled}
-				float={float}
-				handleEnter={handleEnter}
-				inputRef={rightInputRef}
-				name='bigger'
-				state={state}
-			/>
-		</div>
-	);
+  return (
+    <div className={styles.rangeInput}>
+      <RangeInputField
+        disabled={disabled}
+        float={float}
+        handleEnter={handleEnter}
+        inputRef={leftInputRef}
+        name="smaller"
+        state={state}
+      />
+      <span className={styles.minus} />
+      <RangeInputField
+        disabled={disabled}
+        float={float}
+        handleEnter={handleEnter}
+        inputRef={rightInputRef}
+        name="bigger"
+        state={state}
+      />
+    </div>
+  );
 }

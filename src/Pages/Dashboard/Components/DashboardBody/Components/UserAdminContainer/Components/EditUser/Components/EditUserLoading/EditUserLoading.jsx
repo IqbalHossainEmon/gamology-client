@@ -1,10 +1,10 @@
-import styles from './EditUserLoading.module.css';
+import styles from "./EditUserLoading.module.css";
 
 function EditUserLoading() {
-	return (
-		<div className={styles.loading}>
-			<p>loading...</p>
-		</div>
-	);
+  return (
+    <div className={styles.loading}>
+      <p>loading...</p>
+    </div>
+  );
 }
 export default EditUserLoading;

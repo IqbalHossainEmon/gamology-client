@@ -1,78 +1,78 @@
 .firstNavLinks {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	list-style: none;
-	overflow: hidden;
-	padding: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  overflow: hidden;
+  padding: 2px;
 }
 .firstNavLinks a {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	width: 100%;
-	color: rgba(255, 255, 255, 0.5);
-	text-decoration: none;
-	transition: color 200ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 200ms;
 }
 
 .option {
-	height: 100%;
-	flex-shrink: 0;
-	user-select: none;
-	-webkit-user-select: none;
-	white-space: nowrap;
-	position: relative;
+  height: 100%;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  white-space: nowrap;
+  position: relative;
 }
 
 .option a {
-	padding: 0 1.5rem;
-	transition: color 200ms;
+  padding: 0 1.5rem;
+  transition: color 200ms;
 }
 
 .option a:focus {
-	outline: 1px solid rgba(255, 255, 255);
+  outline: 1px solid rgba(255, 255, 255);
 }
 
 .option::after {
-	content: '';
-	background-color: rgba(255, 255, 255, 0.8);
-	width: 100%;
-	height: 5px;
-	left: 0;
-	bottom: -7px;
-	transition: bottom 200ms;
-	position: absolute;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  height: 5px;
+  left: 0;
+  bottom: -7px;
+  transition: bottom 200ms;
+  position: absolute;
 }
 .option:hover a {
-	color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .option:hover::after {
-	bottom: -2px;
+  bottom: -2px;
 }
 .active a {
-	color: #fff;
-	cursor: default;
-	pointer-events: none;
+  color: #fff;
+  cursor: default;
+  pointer-events: none;
 }
 
 .active::after {
-	bottom: -2px;
+  bottom: -2px;
 }
 @media only screen and (max-width: 48rem) {
-	.firstNavLinks {
-		display: flex;
-		z-index: 1;
-		flex-direction: column;
-		flex-shrink: 1;
-	}
-	.option::after {
-		content: none;
-	}
-	.option {
-		height: auto;
-		padding: 0;
-		margin-top: 1rem;
-	}
+  .firstNavLinks {
+    display: flex;
+    z-index: 1;
+    flex-direction: column;
+    flex-shrink: 1;
+  }
+  .option::after {
+    content: none;
+  }
+  .option {
+    height: auto;
+    padding: 0;
+    margin-top: 1rem;
+  }
 }

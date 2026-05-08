@@ -1,37 +1,37 @@
 .FilterGames {
-	width: 25%;
+  width: 25%;
 }
 .filterText {
-	font-weight: 400;
+  font-weight: 400;
 }
 @media only screen and (max-width: 54rem) and (min-width: 48.0625rem) {
-	.FilterGames {
-		width: 30%;
-	}
+  .FilterGames {
+    width: 30%;
+  }
 }
 
 @media only screen and (max-width: 48rem) {
-	.FilterGames {
-		position: fixed;
-		bottom: 0%;
-		width: 100vw;
-		height: 100vh;
-		background-color: #303030;
-		left: 0;
-		z-index: 5;
-		padding: 0;
-		transition: translate 300ms;
-	}
+  .FilterGames {
+    position: fixed;
+    bottom: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: #303030;
+    left: 0;
+    z-index: 5;
+    padding: 0;
+    transition: translate 300ms;
+  }
 
-	.show {
-		translate: 0 0%;
-	}
-	.hidden {
-		translate: 0 100%;
-	}
-	.closeButton {
-		position: fixed;
-		right: 10px;
-		top: 10px;
-	}
+  .show {
+    translate: 0 0%;
+  }
+  .hidden {
+    translate: 0 100%;
+  }
+  .closeButton {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+  }
 }

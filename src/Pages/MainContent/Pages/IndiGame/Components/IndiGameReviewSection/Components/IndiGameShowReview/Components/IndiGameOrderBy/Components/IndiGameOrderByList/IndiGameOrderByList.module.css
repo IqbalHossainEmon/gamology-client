@@ -1,23 +1,23 @@
 .orderOption {
-	width: 100%;
+  width: 100%;
 }
 .orderOption:not(:last-child) {
-	margin-bottom: 0.125rem;
+  margin-bottom: 0.125rem;
 }
 
 .optionBtn {
-	width: 100%;
-	background-color: rgb(18, 18, 18);
-	border: none;
-	padding: 0.1875em 0.3125em;
-	color: #969696;
-	transition:
-		color 200ms,
-		background-color 200ms;
-	cursor: pointer;
+  width: 100%;
+  background-color: rgb(18, 18, 18);
+  border: none;
+  padding: 0.1875em 0.3125em;
+  color: #969696;
+  transition:
+    color 200ms,
+    background-color 200ms;
+  cursor: pointer;
 }
 .activeBtn {
-	background-color: rgb(46, 46, 46);
-	color: #999999;
-	cursor: default;
+  background-color: rgb(46, 46, 46);
+  color: #999999;
+  cursor: default;
 }

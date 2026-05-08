@@ -1,42 +1,42 @@
 .card {
-	flex-shrink: 0;
-	position: relative;
+  flex-shrink: 0;
+  position: relative;
 }
 
 .name {
-	font-weight: 500;
-	font-size: 1rem;
-	margin: 0.625rem 0 0.8rem 0;
-	flex-grow: 1;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0.625rem 0 0.8rem 0;
+  flex-grow: 1;
 }
 
 .activeNow {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .cardImg {
-	width: 100%;
-	border-radius: 4px;
-	position: relative;
+  width: 100%;
+  border-radius: 4px;
+  position: relative;
 }
 .cardImg img {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .price {
-	width: 100%;
+  width: 100%;
 }
 
 .aspectRatioClassName {
-	padding-bottom: calc(100% / 3 * 4);
+  padding-bottom: calc(100% / 3 * 4);
 }
 
 @media screen and (max-width: 1600px) {
-	.name {
-		font-size: 0.875rem;
-	}
+  .name {
+    font-size: 0.875rem;
+  }
 }

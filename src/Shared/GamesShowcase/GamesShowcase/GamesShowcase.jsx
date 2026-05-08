@@ -1,82 +1,82 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import useHandleTimerTransition from '../../../Utils/Hooks/useHandleTimerTransition';
-import useScreenWidth from '../../../Utils/Hooks/useScreenWidth';
-import GameShowCasePositionButtonGroup from '../Components/GameShowCasePositionButtonGroup/GameShowCasePositionButtonGroup';
-import GamesShowcaseColumn from '../Components/GamesShowcaseColumn/GamesShowcaseColumn/GamesShowcaseColumn';
-import CardPositionControls from '../Components/StickyNavigationButtons/StickyNavigationButtons';
+import useHandleTimerTransition from "../../../Utils/Hooks/useHandleTimerTransition";
+import useScreenWidth from "../../../Utils/Hooks/useScreenWidth";
+import GameShowCasePositionButtonGroup from "../Components/GameShowCasePositionButtonGroup/GameShowCasePositionButtonGroup";
+import GamesShowcaseColumn from "../Components/GamesShowcaseColumn/GamesShowcaseColumn/GamesShowcaseColumn";
+import CardPositionControls from "../Components/StickyNavigationButtons/StickyNavigationButtons";
 
-import styles from './GamesShowcase.module.css';
+import styles from "./GamesShowcase.module.css";
 
 export default function GamesShowcase({
-	items,
-	link,
-	extraCard,
-	dataRef,
-	getHoverCard,
-	dotMenu,
-	parentIndex,
-	setHeader,
-	titleValueResetRef,
+  items,
+  link,
+  extraCard,
+  dataRef,
+  getHoverCard,
+  dotMenu,
+  parentIndex,
+  setHeader,
+  titleValueResetRef,
 }) {
-	const [cardPosition, setCardPosition] = useState(0);
-	const [transition, setTransition] = useState({ transition: false });
+  const [cardPosition, setCardPosition] = useState(0);
+  const [transition, setTransition] = useState({ transition: false });
 
-	const { widthInRem } = useScreenWidth();
+  const { widthInRem } = useScreenWidth();
 
-	const handleTransitionTimer = useHandleTimerTransition(setTransition);
+  const handleTransitionTimer = useHandleTimerTransition(setTransition);
 
-	return (
-		<section className={styles.container}>
-			{widthInRem <= 48 && (
-				<CardPositionControls
-					setCardPosition={prop => {
-						setCardPosition(prop);
-						if (!transition.transition) {
-							setTransition({ transition: true });
-						}
-						handleTransitionTimer();
-					}}
-				/>
-			)}
-			<div className={styles.gamesShowcaseContainer}>
-				<ul
-					className={`${styles.gamesShowcase}${transition.transition ? ` ${styles.transition}` : ''}`}
-					{...(widthInRem < 48 && {
-						style: { translate: `-${100 * cardPosition}%` },
-					})}
-				>
-					{items.map((item, index) => (
-						<GamesShowcaseColumn
-							parentIndex={parentIndex}
-							getHoverCard={getHoverCard}
-							dotMenu={dotMenu}
-							dataRef={dataRef}
-							games={item.games}
-							header={item.header}
-							key={item.id}
-							link={link}
-							index={index}
-							extraCard={extraCard}
-							setHeader={setHeader}
-							titleValueResetRef={titleValueResetRef}
-						/>
-					))}
-				</ul>
-			</div>
-			{widthInRem <= 48 && (
-				<GameShowCasePositionButtonGroup
-					cardPosition={cardPosition}
-					length={items.length}
-					setCardPosition={prop => {
-						setCardPosition(prop);
-						if (!transition.transition) {
-							setTransition({ transition: true });
-						}
-						handleTransitionTimer();
-					}}
-				/>
-			)}
-		</section>
-	);
+  return (
+    <section className={styles.container}>
+      {widthInRem <= 48 && (
+        <CardPositionControls
+          setCardPosition={(prop) => {
+            setCardPosition(prop);
+            if (!transition.transition) {
+              setTransition({ transition: true });
+            }
+            handleTransitionTimer();
+          }}
+        />
+      )}
+      <div className={styles.gamesShowcaseContainer}>
+        <ul
+          className={`${styles.gamesShowcase}${transition.transition ? ` ${styles.transition}` : ""}`}
+          {...(widthInRem < 48 && {
+            style: { translate: `-${100 * cardPosition}%` },
+          })}
+        >
+          {items.map((item, index) => (
+            <GamesShowcaseColumn
+              parentIndex={parentIndex}
+              getHoverCard={getHoverCard}
+              dotMenu={dotMenu}
+              dataRef={dataRef}
+              games={item.games}
+              header={item.header}
+              key={item.id}
+              link={link}
+              index={index}
+              extraCard={extraCard}
+              setHeader={setHeader}
+              titleValueResetRef={titleValueResetRef}
+            />
+          ))}
+        </ul>
+      </div>
+      {widthInRem <= 48 && (
+        <GameShowCasePositionButtonGroup
+          cardPosition={cardPosition}
+          length={items.length}
+          setCardPosition={(prop) => {
+            setCardPosition(prop);
+            if (!transition.transition) {
+              setTransition({ transition: true });
+            }
+            handleTransitionTimer();
+          }}
+        />
+      )}
+    </section>
+  );
 }

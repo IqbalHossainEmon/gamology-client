@@ -1,23 +1,23 @@
 .dashboardBody {
-	width: 75vw;
-	max-width: 1632px;
-	margin: 0 auto;
-	padding: 3em 1rem;
-	position: relative;
+  width: 75vw;
+  max-width: 1632px;
+  margin: 0 auto;
+  padding: 3em 1rem;
+  position: relative;
 }
 
 @media only screen and (max-width: 68.6875rem) {
-	.dashboardBodyContainer {
-		width: 100%;
-	}
-	.dashboardBody {
-		width: calc(100% - 1rem);
-		margin-top: 1rem;
-	}
+  .dashboardBodyContainer {
+    width: 100%;
+  }
+  .dashboardBody {
+    width: calc(100% - 1rem);
+    margin-top: 1rem;
+  }
 }
 @media only screen and (max-width: 31.1875rem) {
-	.dashboardBody {
-		width: 100%;
-		margin-top: 1rem;
-	}
+  .dashboardBody {
+    width: 100%;
+    margin-top: 1rem;
+  }
 }

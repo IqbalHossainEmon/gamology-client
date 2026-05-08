@@ -1,21 +1,21 @@
 .editGameCards {
-	width: 100%;
+  width: 100%;
 }
 .editGameCardHeader {
-	font-size: 1.5rem;
-	font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 .addSectionBtn {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .saveBtn {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 .okBtn {
-	width: 100%;
-	padding: 0.5rem 1rem;
-	border-radius: 4px;
-	background-color: #388e3c;
-	color: white;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: #388e3c;
+  color: white;
 }

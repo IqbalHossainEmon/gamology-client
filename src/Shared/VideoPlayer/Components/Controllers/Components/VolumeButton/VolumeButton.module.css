@@ -1,12 +1,12 @@
 .volumeBtn {
-	border: none;
-	background: none;
-	padding: 0.625em;
-	height: 100%;
-	cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0.625em;
+  height: 100%;
+  cursor: pointer;
 }
 
 .volumeBtn > svg {
-	width: 0.75rem;
-	height: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
 }
