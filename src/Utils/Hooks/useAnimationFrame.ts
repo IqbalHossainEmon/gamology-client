@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
 
-type animationFrameRef = ReturnType<typeof requestAnimationFrame>;
 type Animate = (timestamp: number) => void;
 
 const useAnimationFrame = (
@@ -10,8 +9,8 @@ const useAnimationFrame = (
   handleDone?: () => void,
   delay: number = 0,
 ) => {
-  const animationRef = useRef<animationFrameRef>(null);
-  const startTimeRef = useRef<animationFrameRef>(null);
+  const animationRef = useRef<ReturnType<typeof requestAnimationFrame>>(null);
+  const startTimeRef = useRef<DOMHighResTimeStamp>(null);
   const elapsedTimeRef = useRef<number>(0);
   const animateFnRef = useRef<Animate>(null);
 

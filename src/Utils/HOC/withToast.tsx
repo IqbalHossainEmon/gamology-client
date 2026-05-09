@@ -58,11 +58,12 @@ const withToast = <P extends object>(Component: ComponentType<P>) =>
     );
     const handleSetToast: HandleSetToast = useCallback(
       (toast: Toast) => {
-        if (typeof toast === "object") {
-          if (!toast.title || !toast.message || !toast.type) {
-            return;
-          }
-        } else {
+        if (
+          typeof toast !== "object" ||
+          !toast.title ||
+          !toast.message ||
+          !toast.type
+        ) {
           return;
         }
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, type RefObject } from "react";
 
 import useTooltip from "./useTooltip";
-import type { Direction } from "../Types/directoin";
+import type { Direction } from "../Types/direction";
 
 type Tooltip = {
   container: HTMLElement | null;

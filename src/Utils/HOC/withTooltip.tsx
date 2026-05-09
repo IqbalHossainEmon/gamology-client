@@ -2,7 +2,7 @@ import { useCallback, useRef, useState, type ComponentType } from "react";
 
 import Tooltips from "../../Shared/Tooltips/Tooltips/Tooltips";
 import SetTooltipContext from "../Contexts/TooltipContext";
-import type { Direction } from "../Types/directoin";
+import type { Direction } from "../Types/direction";
 
 type TooltipRefValue = {
   container: HTMLElement;

@@ -48,6 +48,7 @@ const withModal = <P extends object>(Component: ComponentType<P>) =>
             setContent(emptyModal);
             timerIdRef.current = null;
           }, 200);
+          document.removeEventListener("keydown", handleKeyDown);
         }
       },
       [showBodyOverflow],

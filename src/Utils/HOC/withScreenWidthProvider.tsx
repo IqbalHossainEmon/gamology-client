@@ -39,14 +39,11 @@ const withScreenWidthProvider = <P extends object>(
     useEffect(() => {
       handleChange();
 
-      window.addEventListener("resize", handleChange);
-
       const observer =
         "ResizeObserver" in window ? new ResizeObserver(handleChange) : null;
       observer?.observe(document.documentElement);
 
       return () => {
-        window.removeEventListener("resize", handleChange);
         observer?.disconnect();
       };
     }, [handleChange]);
