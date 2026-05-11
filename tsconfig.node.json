@@ -12,6 +12,13 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "resolveJsonModule": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Strict */
+    "strict": true,
+    "useUnknownInCatchVariables": true,
 
     /* Linting */
     "noUnusedLocals": true,
