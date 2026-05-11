@@ -2,7 +2,7 @@ import { createContext } from "react";
 import type {
   HideModalContextType,
   SetModalContextType,
-} from "../HOC/withModal";
+} from "../HOC/ModalProvider";
 
 export const SetModalContext = createContext<SetModalContextType | undefined>(
   undefined,

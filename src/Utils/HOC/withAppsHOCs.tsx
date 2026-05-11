@@ -1,4 +1,4 @@
-import { type ComponentType } from "react";
+import type { ComponentType } from "react";
 
 import withModal from "./withModal";
 import withScreenWidthProvider from "./withScreenWidthProvider";
