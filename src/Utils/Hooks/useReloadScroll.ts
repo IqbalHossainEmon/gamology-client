@@ -1,15 +1,39 @@
 import { useEffect } from "react";
 
+interface LoadScroll {
+  scroll: number;
+  path: string;
+}
+
+const parseLoadScroll = (raw: string): LoadScroll | null => {
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (
+      typeof parsed === "object" &&
+      parsed !== null &&
+      "path" in parsed &&
+      "scroll" in parsed &&
+      typeof parsed.path === "string" &&
+      typeof parsed.scroll === "number"
+    ) {
+      return { path: parsed.path, scroll: parsed.scroll };
+    }
+  } catch {
+    // fall through
+  }
+  return null;
+};
+
 const useReloadScroll = () => {
   useEffect(() => {
-    const root = document.getElementById("root");
+    const root = document.querySelector("#root");
 
     const handleLoad = () => {
       setTimeout(() => {
         const loadScroll = localStorage.getItem("loadScroll");
-        if (loadScroll && root) {
-          const parsedScroll = JSON.parse(loadScroll);
-          if (window.location.pathname === parsedScroll.path) {
+        if (loadScroll !== null && root) {
+          const parsedScroll = parseLoadScroll(loadScroll);
+          if (parsedScroll && window.location.pathname === parsedScroll.path) {
             root.scrollTo(0, parsedScroll.scroll);
           }
           localStorage.removeItem("loadScroll");

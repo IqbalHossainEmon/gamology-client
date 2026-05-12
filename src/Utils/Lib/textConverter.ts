@@ -19,23 +19,23 @@ const applyTransforms = (
 // "van" in "van Der Berg") is escaped so convertIdToName can restore that
 // casing later. Everything ends up lowercase.
 const nameToIdTransforms: readonly Transform[] = [
-  (str) => str.replace(/-/g, "\\-"),
-  (str) => str.replace(/\s/g, "-"),
-  (str) => str.replace(/\b[a-z]/g, (char) => `\\${char}`),
+  (str) => str.replaceAll("-", "\\-"),
+  (str) => str.replaceAll(/\s/gu, "-"),
+  (str) => str.replaceAll(/\b[a-z]/gu, (char) => `\\${char}`),
   (str) => str.toLowerCase(),
 ];
 
 // id -> name: reverses convertNameToId's transforms in the opposite order.
 const idToNameTransforms: readonly Transform[] = [
-  (str) => str.replace(/(?<!\\)-/g, " "),
-  (str) => str.replace(/\\-/g, "-"),
-  (str) => str.replace(/\b(?<!\\)\w/g, (char) => char.toUpperCase()),
-  (str) => str.replace(/\\([a-z])/g, "$1"),
+  (str) => str.replaceAll(/(?<!\\)-/gu, " "),
+  (str) => str.replaceAll("\\-", "-"),
+  (str) => str.replaceAll(/\b(?<!\\)\w/gu, (char) => char.toUpperCase()),
+  (str) => str.replaceAll(/\\([a-z])/gu, "$1"),
 ];
 
 const nameToLinkTransforms: readonly Transform[] = [
-  (str) => str.replace(/[^a-zA-Z0-9\s-]/g, ""),
-  (str) => str.replace(/\s+/g, "-"),
+  (str) => str.replaceAll(/[^a-zA-Z0-9\s-]/gu, ""),
+  (str) => str.replaceAll(/\s+/gu, "-"),
   (str) => str.toLowerCase(),
 ];
 
@@ -54,5 +54,4 @@ export const convertNameToLink = (name: string): string =>
 
 // Capitalizes the first letter of each word.
 export const convertToPascalCase = (name?: string): string | undefined =>
-  name?.replace(/\b[a-z]/g, (char) => char.toUpperCase());
-
+  name?.replaceAll(/\b[a-z]/gu, (char) => char.toUpperCase());

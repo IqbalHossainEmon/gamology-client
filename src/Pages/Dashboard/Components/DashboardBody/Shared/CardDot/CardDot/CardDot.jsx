@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-import useIsTouchAble from "../../../../../../../Utils/Hooks/useIsTouchable";
 import useScreenWidth from "../../../../../../../Utils/Hooks/useScreenWidth";
 import CardDotBody from "../Components/CardDotBody/CardDotBody";
+import isTouchAble from "../../../../../../../Utils/Lib/isTouchable";
 
 function CardDot({ parentRef, item, lists }) {
   const [dotShow, setDotShow] = useState(false);
@@ -27,7 +27,6 @@ function CardDot({ parentRef, item, lists }) {
     };
   }
 
-  const isTouchAble = useIsTouchAble();
   const { widthInRem, heightInRem } = useScreenWidth();
 
   useEffect(() => {
@@ -66,7 +65,7 @@ function CardDot({ parentRef, item, lists }) {
         isEventAdded.current = false;
       }
     };
-  }, [isTouchAble, parentRef, widthInRem, heightInRem]);
+  }, [parentRef, widthInRem, heightInRem]);
 
   return (
     <CardDotBody

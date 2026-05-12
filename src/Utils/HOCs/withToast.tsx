@@ -33,7 +33,8 @@ const withToast = <P extends object>(Component: ComponentType<P>) =>
     const toastIdRef = useRef(0);
 
     const hideToastAnimation = useCallback((id: number) => {
-      const transitionTime = 500; // ms
+      // ms
+      const transitionTime = 500; 
       setToasts((prevState) => {
         const newState = [...prevState];
         const index = newState.findIndex((toast: Toast) => toast.id === id);
@@ -65,11 +66,15 @@ const withToast = <P extends object>(Component: ComponentType<P>) =>
           return [...prevState, { ...toast, id: toastIdRef.current }];
         });
 
-        const toastThreshold = 3; // Maximum number of toasts to show at once
+        // Maximum number of toasts to show at once
+        const toastThreshold = 3;
 
         if (toastsRef.current.length > toastThreshold) {
           for (let i = 0; i < toastsRef.current.length - toastThreshold; i++) {
-            hideToastAnimation(toastsRef.current[i].id);
+            const innerToast = toastsRef.current[i];
+            if (innerToast) {
+              hideToastAnimation(innerToast.id);
+            }
           }
         }
         return toastIdRef.current;

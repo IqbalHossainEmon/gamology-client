@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-import useIsTouchAble from "../../../Utils/Hooks/useIsTouchable";
 import useScreenWidth from "../../../Utils/Hooks/useScreenWidth";
 import ErrorMessage from "../../ErrorMessage/ErrorMessage/ErrorMessage";
 import RippleEffect from "../../RippleEffect/RippleEffect";
 import ImagePreviewContainer from "../ImagePreviewContainer/ImagePreviewContainer";
 
 import styles from "./FileUploadButton.module.css";
+import isTouchAble from "../../../Utils/Lib/isTouchable";
 
 function FileUploadButton({
   placeholder,
@@ -101,7 +101,6 @@ function FileUploadButton({
       },
     };
   }
-  const isTouchAble = useIsTouchAble();
   const touchAble = isTouchAble();
 
   useScreenWidth();

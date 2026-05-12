@@ -30,7 +30,7 @@ const useDropDownHide = (
 
       const clickedOutside = Array.isArray(current)
         ? !current.some((ele) => ele.contains(target))
-        : current && !current.contains(target);
+        : !current.contains(target);
 
       if (clickedOutside && listenersAttachedRef.current) {
         setState(false, e);

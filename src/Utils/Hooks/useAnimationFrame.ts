@@ -7,7 +7,7 @@ const useAnimationFrame = (
   duration: number,
   isPaused: boolean,
   handleDone?: () => void,
-  delay: number = 0,
+  delay = 0,
 ) => {
   const animationRef = useRef<ReturnType<typeof requestAnimationFrame>>(null);
   const startTimeRef = useRef<DOMHighResTimeStamp>(null);
@@ -15,8 +15,8 @@ const useAnimationFrame = (
   const animateFnRef = useRef<Animate>(null);
 
   const cancelAnimation = useCallback((paused: boolean) => {
-    if (animationRef.current) {
-      if (paused && startTimeRef.current) {
+    if (animationRef.current !== null) {
+      if (paused && startTimeRef.current !== null) {
         elapsedTimeRef.current += performance.now() - startTimeRef.current;
       }
       cancelAnimationFrame(animationRef.current);
@@ -27,9 +27,7 @@ const useAnimationFrame = (
 
   const animate = useCallback(
     (timestamp: number) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
+      startTimeRef.current ??= timestamp;
 
       const elapsed = timestamp - startTimeRef.current + elapsedTimeRef.current;
       if (elapsed < delay) {
@@ -56,7 +54,7 @@ const useAnimationFrame = (
   }, [animate]);
 
   const handleStartOrResume = useCallback(() => {
-    if (animationRef.current) {
+    if (animationRef.current !== null) {
       cancelAnimation(false);
     }
     animationRef.current = requestAnimationFrame(animate);
@@ -70,7 +68,7 @@ const useAnimationFrame = (
     }
 
     return () => {
-      if (animationRef.current) {
+      if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current);
       }
     };

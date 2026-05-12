@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 
-import useIsTouchAble from "../../../../../../Utils/Hooks/useIsTouchable";
 import useScreenWidth from "../../../../../../Utils/Hooks/useScreenWidth";
 
 import styles from "./ScrollPath.module.css";
+import isTouchAble from "../../../../../../Utils/Lib/isTouchable";
 function ScrollPath({ container, innerContainer, thumb, height }) {
   const eventRefs = useRef(null);
   const pathRef = useRef(null);
 
-  const isTouchEnabled = useIsTouchAble()();
+  const isTouchEnabled = isTouchAble();
 
   const changingValue = useRef(0);
 

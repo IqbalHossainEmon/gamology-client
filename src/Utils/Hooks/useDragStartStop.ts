@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-
-import useIsTouchAble from "./useIsTouchable";
+import isTouchAble from "../Lib/isTouchable";
 
 type OnStop = (e: MouseEvent | TouchEvent | FocusEvent) => void;
 
@@ -11,7 +10,6 @@ const useDragStartStop = (
   handleMouseUp?: (e: MouseEvent | TouchEvent | FocusEvent) => void,
   grab?: boolean,
 ) => {
-  const isTouchAble = useIsTouchAble();
   const isTouchEvenAdded = useRef(false);
   const onStopRef = useRef<OnStop>(null);
 
@@ -38,9 +36,9 @@ const useDragStartStop = (
         handleMouseUp(e);
       }
 
-      const root = document.getElementById("root");
+      const root = document.querySelector("#root");
 
-      if (root && root.classList.contains("grabbing"))
+      if (root?.classList.contains("grabbing") === true)
         root.classList.remove("grabbing");
     },
     [handleMouseUp, moveEvent],
@@ -67,13 +65,13 @@ const useDragStartStop = (
         document.addEventListener("mouseup", onStop);
       }
 
-      const root = document.getElementById("root");
+      const root = document.querySelector("#root");
 
-      if (touchAble && grab && root) {
+      if (touchAble && grab === true && root) {
         root.classList.add("grabbing");
       }
     },
-    [grab, isTouchAble, moveEvent, onStop],
+    [grab, moveEvent, onStop],
   );
 
   return onStart;

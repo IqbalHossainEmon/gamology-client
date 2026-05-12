@@ -7,7 +7,7 @@ export default function useHandleTimerTransition<T>(
   const timerId = useRef<ReturnType<typeof setTimeout>>(null);
 
   return useCallback(() => {
-    if (timerId.current) {
+    if (timerId.current !== null) {
       clearTimeout(timerId.current);
       timerId.current = null;
     }

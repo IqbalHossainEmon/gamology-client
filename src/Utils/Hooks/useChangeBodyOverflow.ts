@@ -1,11 +1,8 @@
 import { useCallback, useRef } from "react";
-
-import useIsTouchAble from "./useIsTouchable";
+import isTouchAble from "../Lib/isTouchable";
 
 export default function useChangeBodyOverflow() {
-  const root = useRef(document.getElementById("root"));
-
-  const isTouchable = useIsTouchAble();
+  const root = useRef(document.querySelector("#root"));
 
   const isAddedRef = useRef(false);
   const isPaddingAddedRef = useRef(false);
@@ -13,14 +10,14 @@ export default function useChangeBodyOverflow() {
   const checkForTouchScreen = useCallback(() => {
     if (!root.current) throw new Error("Root element not found");
 
-    if (isPaddingAddedRef.current && isTouchable()) {
+    if (isPaddingAddedRef.current && isTouchAble()) {
       root.current.classList.remove("scrollbar-replace-padding");
       isPaddingAddedRef.current = false;
-    } else if (!isPaddingAddedRef.current && !isTouchable()) {
+    } else if (!isPaddingAddedRef.current && !isTouchAble()) {
       root.current.classList.add("scrollbar-replace-padding");
       isPaddingAddedRef.current = true;
     }
-  }, [isTouchable]);
+  }, []);
 
   const hideBodyOverflow = useCallback(() => {
     if (!root.current) throw new Error("Root element not found");
@@ -29,14 +26,14 @@ export default function useChangeBodyOverflow() {
       root.current.classList.add("overflow-y-hidden");
       window.addEventListener("resize", checkForTouchScreen);
 
-      if (!isTouchable()) {
+      if (!isTouchAble()) {
         root.current.classList.add("scrollbar-replace-padding");
         isPaddingAddedRef.current = true;
       }
 
       isAddedRef.current = true;
     }
-  }, [checkForTouchScreen, isTouchable]);
+  }, [checkForTouchScreen]);
 
   const showBodyOverflow = useCallback(() => {
     if (!root.current) throw new Error("Root element not found");

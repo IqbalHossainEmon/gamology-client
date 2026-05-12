@@ -6,30 +6,37 @@ import {
   type RefObject,
   type TouchEvent as RTouchEvent,
 } from "react";
-import useScreenWidth from "./useScreenWidth";
 
 export default function usePointersEveryStep(
   rangePathRef: RefObject<HTMLDivElement>,
   conditionStepRef: RefObject<number | { ifLess: number; step: number }[]>,
 ) {
   // Get value cursors value left right side value and left difference and right difference depending on cursors position inside the cursor.
-
   const pathInfoRef = useRef({ width: 0, offsetLeft: 0 });
-  const { widthInRem, heightInRem } = useScreenWidth();
   const hundred = 100;
 
   useEffect(() => {
-    setTimeout(() => {
-      pathInfoRef.current.width = rangePathRef.current.offsetWidth;
-      pathInfoRef.current.offsetLeft =
-        rangePathRef.current.getBoundingClientRect().left;
-    }, 0);
-  }, [rangePathRef, widthInRem, heightInRem]);
+    const el = rangePathRef.current;
+
+    const update = () => {
+      pathInfoRef.current.width = el.offsetWidth;
+      pathInfoRef.current.offsetLeft = el.getBoundingClientRect().left;
+    };
+    update();
+
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+
+    return () => {
+      ro.disconnect();
+    };
+  }, [rangePathRef]);
 
   const handleSetEveryStep = useCallback(
     (value: number) => {
       if (
-        !conditionStepRef.current ||
+        (typeof conditionStepRef.current === "number" &&
+          !conditionStepRef.current) ||
         !Array.isArray(conditionStepRef.current)
       ) {
         return 1;
@@ -40,8 +47,9 @@ export default function usePointersEveryStep(
         return st.step;
       }
 
-      const lastStep =
-        conditionStepRef.current[conditionStepRef.current.length - 1];
+      const lastStep = conditionStepRef.current.at(
+        conditionStepRef.current.length - 1,
+      );
       if (lastStep) {
         return lastStep.step;
       }
@@ -71,19 +79,14 @@ export default function usePointersEveryStep(
 
   const getLeftRightPointerStep = useCallback(
     (e: RMouseEvent<HTMLElement> | RTouchEvent<HTMLElement>) => {
+      const cursorInPercent = getCursorInPercent(e);
+      const stepValue = conditionStepRef.current;
       let everyStep = 1;
 
-      const cursorInPercent = getCursorInPercent(e);
-
-      switch (typeof conditionStepRef?.current) {
-        case "object":
-          everyStep = handleSetEveryStep(cursorInPercent);
-          break;
-        case "number":
-          everyStep = conditionStepRef.current;
-          break;
-        default:
-          break;
+      if (typeof stepValue === "number") {
+        everyStep = stepValue;
+      } else if (Array.isArray(stepValue)) {
+        everyStep = handleSetEveryStep(cursorInPercent);
       }
 
       let pointerLeftStep = Math.round(cursorInPercent / everyStep) * everyStep;

@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import ErrorMessage from "../../../../../../../../../../../Shared/ErrorMessage/ErrorMessage/ErrorMessage";
 import ImagePreviewContainer from "../../../../../../../../../../../Shared/FileUploadButton/ImagePreviewContainer/ImagePreviewContainer";
 import RippleEffect from "../../../../../../../../../../../Shared/RippleEffect/RippleEffect";
-import useIsTouchAble from "../../../../../../../../../../../Utils/Hooks/useIsTouchable";
 import useScreenWidth from "../../../../../../../../../../../Utils/Hooks/useScreenWidth";
 import CoverImageContainer from "../Components/CoverImageContainer/CoverImageContainer";
 import CoverVideoContainer from "../Components/CoverVideoContainer/CoverVideoContainer";
 
 import styles from "./CoverImageVideoContainer.module.css";
+import isTouchAble from "../../../../../../../../../../../Utils/Lib/isTouchable";
 
 function CoverImageVideoContainer({
   type,
@@ -44,7 +44,6 @@ function CoverImageVideoContainer({
   const previewBtnRef = useRef(null);
   const btnRef = useRef(null);
 
-  const isTouchAble = useIsTouchAble();
   const touchAble = isTouchAble();
 
   useScreenWidth();

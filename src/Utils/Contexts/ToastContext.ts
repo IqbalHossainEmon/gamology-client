@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { HandleHideToast, HandleSetToast } from "../HOC/withToast";
+import type { HandleHideToast, HandleSetToast } from "../HOCs/withToast";
 
 export const SetToastContext = createContext<HandleSetToast | undefined>(
   undefined,

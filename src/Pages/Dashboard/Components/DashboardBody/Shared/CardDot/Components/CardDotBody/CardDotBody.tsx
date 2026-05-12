@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import useAppearDisappear from "../../../../../../../../Utils/Hooks/useAppearDisappear";
 import useDropDownHide from "../../../../../../../../Utils/Hooks/useDropDownHide";
-import useIsTouchAble from "../../../../../../../../Utils/Hooks/useIsTouchable";
 import CardDotList from "../CardDotList/CardDotList";
 
 import styles from "./CardDotBody.module.css";
+import isTouchAble from "../../../../../../../../Utils/Lib/isTouchable";
 
 const isMouseOverElement = (
   element: HTMLElement,
@@ -39,7 +39,6 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
 
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  const isTouchAble = useIsTouchAble();
 
   const handleHide = useCallback(
     (state: boolean, e: MouseEvent | FocusEvent) => {
@@ -48,7 +47,7 @@ function CardDotBody({ item, lists, parentRef, fadeIn, setParentShow }) {
         setParentShow(state);
       }
     },
-    [setParentShow, parentRef, isTouchAble],
+    [setParentShow, parentRef ],
   );
 
   const { setElement, showMenu, removeEvents } = useDropDownHide(handleHide);

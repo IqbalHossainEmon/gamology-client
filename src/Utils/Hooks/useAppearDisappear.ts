@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 const useAppearDisappear = (
   state: boolean,
-  isAppear: boolean = false,
-  condition: boolean = true,
-  duration: number = 200,
+  isAppear = false,
+  condition = true,
+  duration = 200,
 ) => {
   const [show, setShow] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
@@ -20,13 +20,13 @@ const useAppearDisappear = (
 
   useEffect(() => {
     const handleHideBtn = () => {
-      if (startTimeRef.current) {
+      if (startTimeRef.current !== null) {
         clearTimeout(startTimeRef.current);
         startTimeRef.current = null;
         setShow(false);
         return;
       }
-      if (endTimeRef.current) {
+      if (endTimeRef.current !== null) {
         return;
       }
       if (fadeInRef.current) {
@@ -39,15 +39,17 @@ const useAppearDisappear = (
     };
 
     const handleShow = () => {
-      if (endTimeRef.current) {
+      if (endTimeRef.current !== null) {
         clearTimeout(endTimeRef.current);
         endTimeRef.current = null;
         setFadeIn(true);
         return;
       }
-      if (startTimeRef.current) {
+
+      if (startTimeRef.current !== null) {
         return;
       }
+
       if (!fadeInRef.current) {
         setShow(true);
         startTimeRef.current = setTimeout(() => {
@@ -63,18 +65,18 @@ const useAppearDisappear = (
           case true:
             handleShow();
             break;
-          default:
+          case false:
             handleHideBtn();
             break;
         }
         break;
-      default:
+      case false:
         if (prevStateRef.current !== state && condition) {
           switch (state) {
             case true:
               handleShow();
               break;
-            default:
+            case false:
               handleHideBtn();
               break;
           }

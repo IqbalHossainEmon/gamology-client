@@ -5,7 +5,7 @@ import BrowseGameCards from "../Components/BrowseGameCards/BrowseGameCards";
 import BrowseHeader from "../Components/BrowseHeader/BrowseHeader/BrowseHeader";
 import FilterGames from "../Components/FilterGames/FilterGames/FilterGames";
 import MobileSortAndFilterButton from "../Components/MobileSortAndFilterButton/MobileSortAndFilterButton";
-import withFilterSortProvider from "../Utils/HOC/withFilterSortProvider";
+import withFilterSortProvider from "../Utils/HOCs/withFilterSortProvider";
 import useBrowseLogics from "../Utils/Hooks/useBrowseLogics/useBrowseLogics";
 
 import styles from "./Browse.module.css";

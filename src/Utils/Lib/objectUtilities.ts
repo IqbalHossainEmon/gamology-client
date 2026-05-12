@@ -1,9 +1,9 @@
-type ReactElementLike = {
+interface ReactElementLike {
   $$typeof: symbol | number;
   type: unknown;
   key: unknown;
   props: Record<string, unknown>;
-};
+}
 
 const isReactElement = (value: unknown): value is ReactElementLike =>
   typeof value === "object" &&
@@ -277,4 +277,3 @@ export function cloneObject<T>(obj: T, cloned = new Map<object, unknown>()): T {
     }
   }
 }
-

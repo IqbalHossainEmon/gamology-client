@@ -3,17 +3,17 @@ import { useCallback, useEffect, useRef, type RefObject } from "react";
 import useTooltip from "./useTooltip";
 import type { Direction } from "../Types/direction";
 
-type Tooltip = {
+interface Tooltip {
   container: HTMLElement | null;
   message: string;
   position: Direction | null;
-};
+}
 
 const useHoverTooltips = (
   element: RefObject<HTMLElement>,
-  message: string,
+  outerMessage: string,
   conditionCheckFunction: (() => boolean) | null = null,
-  position: Direction = "left",
+  outerPosition: Direction = "left",
 ) => {
   const setTooltip = useTooltip();
 
@@ -53,7 +53,7 @@ const useHoverTooltips = (
     }
   }, [setTooltip]);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
     const { container } = tooltipsInfos.current;
     if (handleHideRef.current && container) {
       handleHideRef.current(container);
@@ -64,24 +64,16 @@ const useHoverTooltips = (
         position: null,
       };
     }
-  };
+  }, []);
 
   useEffect(() => {
-    if (!element.current) {
-      return;
-    }
-
     if (conditionCheckFunction && !conditionCheckFunction()) {
-      return;
-    }
+      const ele = element.current;
 
-    const ele = element.current;
+      tooltipsInfos.current.container = element.current;
+      tooltipsInfos.current.message = outerMessage;
+      tooltipsInfos.current.position = outerPosition;
 
-    tooltipsInfos.current.container = element.current;
-    tooltipsInfos.current.message = message;
-    tooltipsInfos.current.position = position;
-
-    if (ele) {
       ele.addEventListener("mouseenter", onMouseEnter);
       ele.addEventListener("mouseleave", onMouseLeave);
 
@@ -90,7 +82,15 @@ const useHoverTooltips = (
         ele.removeEventListener("mouseleave", onMouseLeave);
       };
     }
-  }, [conditionCheckFunction, element, message, onMouseEnter, position]);
+    return () => {};
+  }, [
+    conditionCheckFunction,
+    element,
+    outerMessage,
+    onMouseEnter,
+    outerPosition,
+    onMouseLeave,
+  ]);
 };
 
 export default useHoverTooltips;
